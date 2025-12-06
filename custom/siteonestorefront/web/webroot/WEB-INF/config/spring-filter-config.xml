@@ -225,7 +225,7 @@
 	</bean>
 
 	<bean id="importCSVMultipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver">
-		<property name="maxUploadSize" value="#{configurationService.configuration.getProperty('import.csv.max.upload.size.bytes')}" />
+<!--		<property name="maxUploadSize" value="#{configurationService.configuration.getProperty('import.csv.max.upload.size.bytes')}" />-->
 	</bean>
 	
 	<bean id="importCartCSVMultipartFilter" class="org.springframework.web.multipart.support.MultipartFilter">
@@ -233,7 +233,7 @@
 	</bean>
 
 	<bean id="importCartCSVMultipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver">
-		<property name="maxUploadSize" value="#{configurationService.configuration.getProperty('import.csv.max.upload.size.bytes')}" />
+<!--		<property name="maxUploadSize" value="#{configurationService.configuration.getProperty('import.csv.max.upload.size.bytes')}" />-->
 	</bean>
 	
 	<bean id="uploadLogoMultipartFilter" class="org.springframework.web.multipart.support.MultipartFilter">
@@ -241,7 +241,7 @@
 	</bean>
 
 	<bean id="uploadLogoMultipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver">
-		<property name="maxUploadSize" value="#{configurationService.configuration.getProperty('upload.companylogo.max.upload.size.bytes')}" />
+<!--		<property name="maxUploadSize" value="#{configurationService.configuration.getProperty('upload.companylogo.max.upload.size.bytes')}" />-->
 	</bean>
 	
 	<bean id="sessionStoreRestorationFilter" class="com.siteone.storefront.filters.SessionStoreRestorationFilter" >
