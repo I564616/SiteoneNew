@@ -1,0 +1,1 @@
+delete FROM productfeatures item_t0 WHERE (( item_t0.p_numbervalue  is null and  item_t0.p_valuetype  = 3) or (CAST( item_t0.p_stringvalue  AS CHAR(10000)) = '' and  item_t0.p_valuetype  = 1)) and  item_t0.modifiedTS  > '2021-10-30 00:00:00.00'

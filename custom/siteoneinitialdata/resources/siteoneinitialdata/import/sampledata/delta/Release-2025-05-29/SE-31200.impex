@@ -1,0 +1,56 @@
+### Shop By industry ### 
+###Stage Content Start
+
+$contentCatalog=siteoneContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$productCatalog=siteoneProductCatalog
+$productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$supercategories=supercategories( code, catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Staged']));;;;;;;;;
+
+INSERT_UPDATE Category;code[unique=true];name[lang=en];$supercategories;$contentCV;allowedPrincipals(uid);productCount
+ ;SH1817;Architects and Specifiers;SH18;siteoneProductCatalog:Staged;admingroup;1 
+
+##Create above category and do content sync for new category then run rest stage impex
+
+INSERT_UPDATE GlobalProductNavigationNode;$contentCV[unique=true];uid[unique=true];name;parent(uid, $contentCV);category(code, $productCV);&nodeRef;sequenceNumber;url
+;;ShopByIndustryNavNode;ShopByIndustryNavNode;CategoriesNavNode;SH18;ShopByIndustryNavNode;9;
+;;GolfNavNode;GolfNavNode;ShopByIndustryNavNode;SH1811;GolfNavNode;4;/en/golfsales
+;;SportsFieldNavNode;SportsFieldNavNode;ShopByIndustryNavNode;SH1812;SportsFieldNavNode;7;/en/sportsturf
+;;PestManagementNavNode;PestManagementNavNode;ShopByIndustryNavNode;SH1813;PestManagementNavNode;5;/en/pestmanagement
+;;SnowandIceRemovalNavNode;SnowandIceRemovalNavNode;ShopByIndustryNavNode;SH1814;SnowandIceRemovalNavNode;6;/en/snow-equipment-and-parts
+;;BulkProductsNavNode;BulkProductsNavNode;ShopByIndustryNavNode;SH1815;BulkProductsNavNode;2;/en/bulk
+;;CommIrrigationNavNode;CommIrrigationNavNode;ShopByIndustryNavNode;SH1816;CommIrrigationNavNode;3;https://greentech.siteone.com/
+;;SpecNavNode;SpecNavNode;ShopByIndustryNavNode;SH1817;SpecNavNode;1;/en/spec
+
+INSERT_UPDATE CategoryComponent;$contentCV[unique=true];uid[unique=true];category(code,$productCV);media(code, $contentCV);&componentRef;name
+;;categoryComponent8;SH18;;categoryComponent8;Category component 8
+
+UPDATE VerticalBarComponent;$contentCV[unique=true];uid[unique=true];name;globalProductNodes(uid,$contentCV);&componentRef;;;
+;;VerticalBarComponent;All Products;AgronomicMaintenanceNavNode,Hardscapes&OutdoorLivingNavNode,IrrigationNavNode,LandscapeSupplyNavNode,LightingNavNode,NurseryNavNode,ToolsEquipment&SafetyNavNode,ShopByIndustryNavNode;VerticalBarComponent;;;
+
+###Stage Content End
+############################################################3
+## Onine Content - To add new node alphabetically
+### Shop By industry ###
+
+$contentCatalog=siteoneContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Online])[default=$contentCatalog:Online]
+$productCatalog=siteoneProductCatalog
+$productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Online'])[unique=true,default=$productCatalog:Online]
+$supercategories=supercategories( code, catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Online']));;;;;;;;;
+
+INSERT_UPDATE GlobalProductNavigationNode;$contentCV[unique=true];uid[unique=true];name;parent(uid, $contentCV);category(code, $productCV);&nodeRef;sequenceNumber;url
+;;ShopByIndustryNavNode;ShopByIndustryNavNode;CategoriesNavNode;SH18;ShopByIndustryNavNode;9;
+;;GolfNavNode;GolfNavNode;ShopByIndustryNavNode;SH1811;GolfNavNode;4;/en/golfsales
+;;SportsFieldNavNode;SportsFieldNavNode;ShopByIndustryNavNode;SH1812;SportsFieldNavNode;7;/en/sportsturf
+;;PestManagementNavNode;PestManagementNavNode;ShopByIndustryNavNode;SH1813;PestManagementNavNode;5;/en/pestmanagement
+;;SnowandIceRemovalNavNode;SnowandIceRemovalNavNode;ShopByIndustryNavNode;SH1814;SnowandIceRemovalNavNode;6;/en/snow-equipment-and-parts
+;;BulkProductsNavNode;BulkProductsNavNode;ShopByIndustryNavNode;SH1815;BulkProductsNavNode;2;/en/bulk
+;;CommIrrigationNavNode;CommIrrigationNavNode;ShopByIndustryNavNode;SH1816;CommIrrigationNavNode;3;https://greentech.siteone.com/
+;;SpecNavNode;SpecNavNode;ShopByIndustryNavNode;SH1817;SpecNavNode;1;/en/spec
+
+INSERT_UPDATE CategoryComponent;$contentCV[unique=true];uid[unique=true];category(code,$productCV);media(code, $contentCV);&componentRef;name
+;;categoryComponent8;SH18;;categoryComponent8;Category component 8
+
+UPDATE VerticalBarComponent;$contentCV[unique=true];uid[unique=true];name;globalProductNodes(uid,$contentCV);&componentRef;;;
+;;VerticalBarComponent;All Products;AgronomicMaintenanceNavNode,Hardscapes&OutdoorLivingNavNode,IrrigationNavNode,LandscapeSupplyNavNode,LightingNavNode,NurseryNavNode,ToolsEquipment&SafetyNavNode,ShopByIndustryNavNode;VerticalBarComponent;;;

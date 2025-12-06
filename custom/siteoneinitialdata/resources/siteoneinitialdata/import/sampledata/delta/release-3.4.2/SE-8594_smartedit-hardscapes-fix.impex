@@ -1,0 +1,20 @@
+$contentCatalog=siteoneContentCatalog
+$contentCatalogName=SiteOne Content Catalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$productCatalog=siteoneProductCatalog
+$productCatalogName=SiteOne Product Catalog
+$productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$lang=en
+
+
+INSERT_UPDATE SiteOneCategoryBannerComponent;$contentCV[unique=true];uid[unique=true];name;media[lang=$lang](code,$contentCV)
+;;gallerypatios211;gallerypatios21;gallerypatios21
+;;galleryOutdoorLiving221;galleryOutdoorLiving22;galleryOutdoorLiving22
+;;galleryOutdoorFires231;galleryOutdoorFires23;galleryOutdoorFires23
+;;galleryPoolDecks241;galleryPoolDecks24;galleryPoolDecks24
+;;galleryDriveways251;galleryDriveways25;galleryDriveways25
+;;galleryRetainingWalls261;galleryRetainingWalls26;galleryRetainingWalls26
+;;galleryLandscaping271;galleryLandscaping27;galleryLandscaping27
+
+INSERT_UPDATE SiteOneGalleryImageComponent;$contentCV[unique=true];uid[unique=true];name;headline;imageList(uid,$contentCV)
+;;galleryPageImageComponent01;Gallery Page Title Component;PHOTO GALLERY;gallerypatios211,galleryOutdoorLiving221,galleryOutdoorFires231,galleryPoolDecks241,galleryDriveways251,galleryRetainingWalls261,galleryLandscaping271

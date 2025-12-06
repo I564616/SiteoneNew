@@ -1,0 +1,15 @@
+#if(${ctx.operation} == "ADD")
+	${ctx.messages.addSubject}
+#end
+#if(${ctx.operation} == "EDIT")
+	${ctx.messages.editSubject}
+#end
+#if(${ctx.operation} == "DELETE")
+	${ctx.messages.deleteSubject}
+#end
+#if(${ctx.operation} == "ACCESSTM")
+	${ctx.messages.privilegeSubject}
+#end
+#if(${ctx.operation} == "ACCESSADMIN")
+	${ctx.messages.privilegeSubject}
+#end

@@ -1,0 +1,4 @@
+$siteUid=siteone-us
+$lang=es
+UPDATE CMSSite;uid[unique=true];productPriceDisclaimer[lang=$lang]
+;$siteUid;El uso de este sitio está sujeto a ciertos <a href="/termsandconditions">Términos y Condiciones</a>.<span class="hidden-md hidden-lg"> </span><span class="hidden-xs hidden-sm"><br/></span>Los precios de las sucursales locales pueden variar de los mostrados y los niveles de inventario no pueden ser garantizados.

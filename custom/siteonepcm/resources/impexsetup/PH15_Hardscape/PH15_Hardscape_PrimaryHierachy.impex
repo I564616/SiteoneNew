@@ -1,0 +1,49 @@
+$supercategories=supercategories( code, catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Staged']));;;;;;;;;
+$catalogVersion=catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Staged'])[unique=true,default='siteoneProductCatalog:Staged'];;;;;;;;;
+;;;;;;;;;
+INSERT_UPDATE Category;code[unique=true];name[lang=en];$supercategories;$catalogVersion;allowedPrincipals(uid)
+;PH1;Primary;;siteoneProductCatalog:Staged;admingroup
+;PH15;Hardscapes & Outdoor Living;PH1;siteoneProductCatalog:Staged;admingroup 
+;PH1511;Architectural products;PH15;siteoneProductCatalog:Staged;admingroup 
+;PH1512;Lumber;PH15;siteoneProductCatalog:Staged;admingroup 
+;PH1513;Outdoor Living;PH15;siteoneProductCatalog:Staged;admingroup 
+;PH1514;Stones, Pavers & Edging;PH15;siteoneProductCatalog:Staged;admingroup 
+;PH1515;Tools, Equipment & Accessories;PH15;siteoneProductCatalog:Staged;admingroup 
+;PH1511110;Benches;PH1511;siteoneProductCatalog:Staged;admingroup 
+;PH1511111;Tables;PH1511;siteoneProductCatalog:Staged;admingroup 
+;PH1511112;Tree Grates;PH1511;siteoneProductCatalog:Staged;admingroup 
+;PH1512110;Crossties & Timbers;PH1512;siteoneProductCatalog:Staged;admingroup 
+;PH1513110;Fireplaces & Fire Pits;PH1513;siteoneProductCatalog:Staged;admingroup 
+;PH1513111;Furniture;PH1513;siteoneProductCatalog:Staged;admingroup 
+;PH1513112;Grills & Accessories;PH1513;siteoneProductCatalog:Staged;admingroup 
+;PH1513113;Kits;PH1513;siteoneProductCatalog:Staged;admingroup 
+;PH1513114;Lighting;PH1513;siteoneProductCatalog:Staged;admingroup 
+;PH1513115;Pottery;PH1513;siteoneProductCatalog:Staged;admingroup 
+;PH1514110;Construction Products;PH1514;siteoneProductCatalog:Staged;admingroup 
+;PH1514111;Edging;PH1514;siteoneProductCatalog:Staged;admingroup 
+;PH1514112;Manufactured Hardscape Products;PH1514;siteoneProductCatalog:Staged;admingroup 
+;PH1514113;Natural Stone;PH1514;siteoneProductCatalog:Staged;admingroup 
+;PH1515110;Adhesives;PH1515;siteoneProductCatalog:Staged;admingroup 
+;PH1515111;Blades;PH1515;siteoneProductCatalog:Staged;admingroup 
+;PH1515112;Polymeric Sand;PH1515;siteoneProductCatalog:Staged;admingroup 
+;PH1515113;Sealers & Cleaners;PH1515;siteoneProductCatalog:Staged;admingroup 
+;PH1514110100;Bagged;PH1514110;siteoneProductCatalog:Staged;admingroup 
+;PH1514110101;Block;PH1514110;siteoneProductCatalog:Staged;admingroup 
+;PH1514110102;Bulk;PH1514110;siteoneProductCatalog:Staged;admingroup 
+;PH1514111100;Landscape Edging;PH1514111;siteoneProductCatalog:Staged;admingroup 
+;PH1514111101;Edging Accessories;PH1514111;siteoneProductCatalog:Staged;admingroup 
+;PH1514111102;Paver Restraints;PH1514111;siteoneProductCatalog:Staged;admingroup 
+;PH1514112100;Clay & Brick Pavers;PH1514112;siteoneProductCatalog:Staged;admingroup 
+;PH1514112101;Manufactured & Cultured Stones;PH1514112;siteoneProductCatalog:Staged;admingroup 
+;PH1514112102;Pavers;PH1514112;siteoneProductCatalog:Staged;admingroup 
+;PH1514112103;Permeable Pavers;PH1514112;siteoneProductCatalog:Staged;admingroup 
+;PH1514112104;Porcelain;PH1514112;siteoneProductCatalog:Staged;admingroup 
+;PH1514112105;Wall Blocks;PH1514112;siteoneProductCatalog:Staged;admingroup 
+;PH1514113100;Boulders & River Rocks;PH1514113;siteoneProductCatalog:Staged;admingroup 
+;PH1514113101;Bulk;PH1514113;siteoneProductCatalog:Staged;admingroup 
+;PH1514113102;Dimensional Stones;PH1514113;siteoneProductCatalog:Staged;admingroup 
+;PH1514113103;Bagged Decorative Stones;PH1514113;siteoneProductCatalog:Staged;admingroup 
+;PH1514113104;Flagstone;PH1514113;siteoneProductCatalog:Staged;admingroup 
+;PH1514113105;Building & Stacked Stones;PH1514113;siteoneProductCatalog:Staged;admingroup 
+;PH1514113106;Stepping Stones & Treads;PH1514113;siteoneProductCatalog:Staged;admingroup 
+;PH1514113107;Veneer;PH1514113;siteoneProductCatalog:Staged;admingroup 

@@ -1,0 +1,54 @@
+##----------------------------------------------------------------------------------------------
+##----------------------------------------SE-12465----------------------------------------------
+##----------------------------------------------------------------------------------------------
+
+$productCatalog=siteoneProductCatalog
+$catalogVersion=catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Staged'])[unique=true,default='siteoneProductCatalog:Staged'];;;;;;;;;;;;;;;;;;
+
+## Classifying Class creation
+INSERT_UPDATE classificationclass;code[unique=true];name[lang=en];catalogVersion(catalog(id),version);;;;;
+;CH01_1514110;Product Details;siteoneClassification:1;;;;;
+;CH01_1513114;Product Details;siteoneClassification:1;;;;;
+;CH01_1512110;Product Details;siteoneClassification:1;;;;;
+
+
+##----------------------------------------------------------------------------------------------
+
+##--e with Staged catalog version 
+$productCatalog=siteoneProductCatalog
+$catalogVersion=catalogversion(catalog(id[default='siteoneProductCatalog']),version[default='Staged'])[unique=true,default='siteoneProductCatalog:Staged']
+$classCatalogVersion=catalogversion(catalog(id[default='siteoneClassification']),version[default='1'])[unique=true,default='siteoneClassification:1']
+$supercategories=source(code, $classCatalogVersion)[unique=true]
+$categories=target(code, $catalogVersion)[unique=true]
+INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories
+;PH1514110;CH01_1514110;
+;PH1513114;CH01_1513114;
+;PH1512110;CH01_1512110;
+
+
+
+##----------------------------------------------------------------------------------------------
+
+##------------------------------------- OK
+##--e with online catalog version 
+$productCatalog=siteoneProductCatalog
+$catalogVersion=catalogversion(catalog(id[default='siteoneProductCatalog']),version[default='Online'])[unique=true,default='siteoneProductCatalog:Online']
+$classCatalogVersion=catalogversion(catalog(id[default='siteoneClassification']),version[default='1'])[unique=true,default='siteoneClassification:1']
+$supercategories=source(code, $classCatalogVersion)[unique=true]
+$categories=target(code, $catalogVersion)[unique=true]
+INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories
+;PH1514110;CH01_1514110;
+;PH1513114;CH01_1513114;
+;PH1512110;CH01_1512110;
+
+
+##-----------------------------------------------------------------------------------
+##--f
+
+$classCatalogVersion=catalogversion(catalog(id[default='siteoneClassification']),version[default='1'])[unique=true,default='siteoneClassification:1']
+$supercategories=source(code, $classCatalogVersion)[unique=true]
+$categories=target(code, $classCatalogVersion)[unique=true]
+INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories
+;CH01_1514110;CH01_1514;
+;CH01_1513114;CH01_1513;
+;CH01_1512110;CH01_1512;

@@ -1,0 +1,298 @@
+.login-page__headline,
+.user-register__headline{
+	.page-headline();
+}
+.login-page__headline{
+	h1.headline.desktop{
+		display:block;
+	}
+	h1.headline.mobile{
+		display:none;
+	}
+	@media (max-width: @screen-sm-max){
+		h1.headline.desktop{
+			display:none;
+		}
+		h1.headline.mobile{
+			display:block;
+		}
+	}
+}
+.request-account-wrapper{
+	@media (max-width: @screen-sm-max){
+		margin:0px 0px !important;
+		text-align:center;
+	}
+
+	.desktop-request-account{
+		display:block;
+	}
+	.mobile-request-account{
+		display:none;
+	}
+	@media (max-width: @screen-sm-max){
+		.desktop-request-account{
+			display:none;
+		}
+		.mobile-request-account{
+			display:block;
+		}
+	}
+}
+@media (max-width: @screen-sm-max){
+.forgot-password{
+    margin: 15px 0px;
+}
+}
+.login-left-content-slot{
+    margin-right: 10px;
+}
+@media (max-width: @screen-xs-max){
+.registration_sec-gc{
+  border-left:#ccc solid 1px;
+     padding: 15px 15px 0px 15px;
+     margin-top: 30px;
+
+  	@media (max-width: @screen-sm-max) {
+      border-top:#ccc solid 1px;
+      padding: 30px 15px 0px 15px;
+      margin-top: 20px;
+      border-left:none;
+      
+  	}
+  	
+  ul {
+  	li{margin:0px 0px 10px 10px;}
+  	}
+}
+.title-guest-gc{
+margin-left:27px;
+}
+}
+@media (max-width: @screen-md-max){
+.registration_sec-gc{
+  border-left:#ccc solid 1px;
+     padding: 0px 0px 0px 40px ;
+     margin-top: 30px;
+
+  	@media (max-width: @screen-sm-max) {
+      border-top:#ccc solid 1px;
+      padding: 30px 15px 0px 15px;
+      margin-top: 20px;
+      border-left:none;
+      
+  	}
+  	
+  ul {
+  	li{margin:0px 0px 10px 10px;}
+  	}
+}
+}
+.header-signinoverlay-gc{
+    opacity: 100%;
+    font-size: 30px !important;
+    margin: 10px 0;
+    color: #000000;
+    font-family: Geogrotesque-medium;
+        margin-bottom: 20px;
+        margin-top:0px;
+    padding-top: 10px;
+}
+.registration_sec{
+     border-left:#ccc solid 1px;
+     padding: 0px 0px 50px 70px;
+
+  	@media (max-width: @screen-sm-max) {
+      border-top:#ccc solid 1px;
+      padding: 30px 15px 0px 15px;
+      margin-top: 20px;
+      border-left:none;
+      
+  	}
+  	
+  ul {
+  	li{margin:0px 0px 10px 10px;}
+  	}	
+}
+
+.login-customerSec{margin-right:40px;
+	@media (max-width: @screen-sm-max) {margin-right:0px;}
+}
+.forgotten-password{
+	form & {
+    margin-top: 15px;
+  }
+
+  &.alert {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+	.description{
+      margin-bottom: (@grid-gutter-width/2);
+	}
+
+  #colorbox & .btn-primary {
+    margin-top: 35px;
+
+    @media(min-width: @screen-md) {
+      width: 50%;
+    }
+  }
+}
+
+.register-form-action, .login-form-action {
+  margin-top: 35px;
+}
+
+.forgotten-password + .login-form-action {
+  margin-top: 0;
+}
+
+.alert-dismissable,
+.alert-dismissible  {
+  .close {
+	right: 0;
+	opacity:1;
+  }
+}
+
+.register__container {
+  .full-width-padding();
+}
+
+@media (max-width: @screen-xs-max) {
+	.login-form-action {
+		.btn-default {
+          margin-top: @grid-gutter-width * 1.5;
+		}
+	}
+}
+
+@media (max-width: @screen-xs-max) {
+	.login-section,
+  	.register-section {
+
+		.forgotten-password {
+          margin-bottom: 45px;
+		}
+	}
+	.login-section{
+	 input[type=text] {width:100% !important;}
+	 input[type=password] {width:100% !important;}
+	 }
+}
+
+.login-section{
+
+ .input[type=text]{width:90%;
+ @media (max-width: @screen-sm-max) {width:100%;}
+ }
+  .input[type=password]{width:90%;
+  @media (max-width: @screen-sm-max) {width:100%;}
+  }
+ label{text-transform:none;}
+ 
+ }
+ 
+ 
+
+.login-inputs{width:360px; 
+  @media (max-width: @screen-xs-max) {width:100%;}
+    @media (max-width: @screen-sm-max) {width:100%;}
+   }
+   
+   .small-font{font-size:11pt;
+     @media (max-width: @screen-xs-max) {font-size:9pt;}
+    @media (max-width: @screen-sm-max) {font-size:9pt;}
+   }
+   
+   
+.account-req-btn{width:210px;
+  @media (max-width: @screen-xs-max) {width:100%;}
+    @media (max-width: @screen-sm-max) {width:100%;}
+}
+ 
+ html:lang(es){
+.account-req-btn{width:210px;
+  @media (max-width: @screen-xs-max) {width:95%;}
+    @media (max-width: @screen-sm-max) {width:95%;}
+}
+}
+ .login-btn {
+  float:left;
+  @media (max-width: @screen-xs-max) {width:100%;}
+  @media (max-width: @screen-sm-max) {width:100%;}
+}
+
+.headline4{
+  font-family: 'Geogrotesque-Medium';
+  font-size: 24pt;
+  color:@label-color;
+}
+
+.notNow{
+margin-left:-25px;
+  @media (max-width: @screen-xs-max) {margin-left:0px;}
+    @media (max-width: @screen-xs-max) {margin-left:0px;;}
+}
+
+  @media (max-width: @screen-sm-max) {
+body.page-login{
+ .forgot-password{text-align:left !important;}
+  .request-account-wrapper{text-align:left !important;}
+  }
+  
+  }
+  
+  body.page-checkout-login .login-btn{width:200px;}
+
+@media (max-width: 1023px) {
+	.floating-text {
+		p {
+			a {
+				display: none;
+			}
+		}
+	}
+}
+.login-product-detail{
+	@media (max-width: @screen-sm-max) {
+		.registration_sec{margin:30px 0px;padding:30px 0px}
+		.rememberSec .row{display:flex;}
+		.headline{padding:0px !important;}
+	}
+}
+ 
+ 
+ .overlay-forgot-pwd{
+ 	#cboxContent{height:auto !important;} 
+ }
+
+ #loginForm #loginsubmitPopup,#loginForm #loginsubmit { cursor: pointer; }
+ .unlock-account{
+ 	position:absolute !important;
+ 	
+ 	#cboxLoadedContent {
+ 		margin-top: 0px !important;
+		width:auto !important;
+		overflow:hidden !important; 
+	}
+	#cboxContent{
+		 height: 100% !important;
+   }
+ }
+ .pswrd-container {
+ 	position:relative;
+ 	
+ 	.showhide-pswrd {
+ 		position: absolute;
+	    right: 0px;
+	    cursor: pointer;
+	    height: 47px;
+	    padding: 17px 10px 0px 0px;
+	    padding-left: 10px;
+	    display: block;
+	    
+ 	}
+ }

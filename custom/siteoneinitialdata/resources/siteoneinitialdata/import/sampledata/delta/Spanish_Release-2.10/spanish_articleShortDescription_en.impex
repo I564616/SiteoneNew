@@ -1,0 +1,139 @@
+$contentCatalog=siteoneContentCatalog
+$contentCatalogName=SiteOne Content Catalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$productCatalog=siteoneProductCatalog
+$productCatalogName=SiteOne Product Catalog
+$productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$picture=media(code, $contentCV);
+$image=image(code, $contentCV);
+$media=media(code, $contentCV);
+$page=page(uid, $contentCV);
+$contentPage=contentPage(uid, $contentCV);
+$product=product(code, $productCV)
+$category=category(code, $productCV)
+$siteResource=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/contentCatalogs/$contentCatalog
+$productResource=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/productCatalogs/$productCatalog
+$jarResourceCms=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/cockpits/cmscockpit
+$addonExtensionName=siteoneacceleratoraddon
+$medias=medias(code, $contentCV);
+$articleMedia=articleMedia(code, $contentCV);
+$mediaContainer=media(qualifier, $contentCV);
+$siteUid=siteone
+$lang=en
+
+INSERT_UPDATE SiteOneArticle[disable.UniqueAttributesValidator.for.types='SiteOneArticle'];articleCode[unique=true];articleName[lang=$lang];shortDesc[lang=$lang]
+
+
+;Enhancing-Smart-Irrigation-Through-Spray-Technology;Enhancing Smart Irrigation Through Spray Technology;"<p>Updated spray head offerings typically include high efficiency features such as pressure regulators flow restriction devices and check valves. Read on for a description of these important components and the benefits for customers.</p>"
+
+;Backflow-Preventers;Backflow Preventers;"<p>Understanding what backflow is	 how it occurs	 and how to stop potentially dangerous backflow situations will help to avoid problems in your clients' drinking water.</p>"
+
+;Happy-Customers-Pay-More;Happy Customers Pay More;"<p>Save homeowners money in the long run by installing better products like pressure regulated spray heads.</p>"
+
+;Keeping-Tools-in-Shape;Keeping Tools in Shape;"<p>The state of your tools can either help or hurt you in the landscaping business. Learn how to make your tools last season after season.  </p>";
+
+;Slope-Irrigation-Tips;Slope Irrigation Tips;"<p>Effective slope irrigation is a mixture of good upfront planning and proper installation technique. If done properly it will not only make for a happy customer	 you'll avoid costly call backs.</p>"
+
+;Reading-a-Pump-Curve;Reading a Pump Curve;"<p>Determine the performance of your pump before installation – find out how to properly read a pump curve.</p>"
+
+;Grow-Your-Business-by-Adding-Hardscape-Services;Grow Your Business by Adding Hardscape Services;"<p>New technologies can allow your landscape company to begin offering hardscape services with minimal training and without hiring new personnel.</p>"
+
+;Find-Income-During-A-Drought;Find Income During A Drought;"<p>Savvy turf care professionals can find a silver lining even in a drought. Want in on their secret? Follow these quick and easy tips to generate income when temperatures are high and water is in short supply.</p>"
+
+;Reading-Grass-Seed-Labels;Reading Grass Seed Labels;"<p>Ever feel like you need a PhD to understand a seed label? Now you don't. This article is your key to deciphering these pesky labels, required by law to be attached to every bag of grass seed.</p>"
+
+;Choosing-the-Right-Fertilizer;Choosing the Right Fertilizer;"<p>Plants need to eat their Wheaties, too. Be honest: are you certain that yours are getting the proper nutrition, day in and day out? Use these tips to choose a fertilizer with the appropriate nutrient ratio for your turf and landscape needs.</p>"
+
+
+
+;Managing-Turf-Drought;Managing Turf Drought;"<p>From proper irrigation to mowing to fertilization here are some helpful ways to manage drought that can help protect plants while conserving water.</p>"
+
+;How-to-Glue-PVC-Pipe;How to Glue PVC Pipe;"<p>Follow these 19 steps on cutting and setting PVC pipe during your next project.</p>"
+
+;Timing-Crabgrass-Treatment;Timing Crabgrass Treatment;"<p>Timing is everything when controlling crabgrass with pre-emergent herbicides. Here are some solutions to help get the timing right.</p>"
+
+;Pros-of-Being-a-Pro-Partners-Program;The Pros of Being a Pro: Partners Program;"<p>Ready for Better Deals and Better Rewards? Watch the video to learn how you can start earning rewards on your first purchase through SiteOne’s industry leading Partners Program.</p>"
+
+;The-Pros-of-Being-a-Pro-One-Stop-Shopping;Pros Like You Come to SiteOne to Stock Up on Supplies Like This;"<p>Get everything you need in one place; watch our video to learn more about the benefits of partnering with SiteOne. </p>"
+
+;Giving-Sod-A-Healthy-Start;Giving Sod a Healthy Start;"<p>Sod can deliver an established lawn fast; make sure you take the steps necessary to ensure it lives a long and healthy life after the last truck leaves the site.</p>"
+
+;Institutional-Irrigation-Systems;Institutional Irrigation Systems;"<p>Learn the ins-and-outs on how to properly plan and install pipe sprinklers nozzles and more.</p>"
+
+;Stormwater-Management;Stormwater Management;"Stormwater management can be a huge business opportunity for landscape contractors. Find out how you can capitalize on this overlooked service."
+
+;Preventing-Drought-Stress;Preventing Drought Stress with LESCOÂ® Moisture Manager;"<p>Hygroscopic humectants like LESCO ® Moisture Manager maintain moisture levels between rains to reduce plant water consumption by as much as 50%. </p>"
+
+;Save-Time-Restringing-Trimmers;Save Time Restringing Trimmers ;"<p>Watch this video to learn how the Oregon® Gator® Speedload™ cutting system takes the hassle out of reloading.</p>"
+
+
+;Plant-Planning-For-Season-Changes;Plant Planning for Season Changes;"<p>Selecting year-round interest plants emphasizes the beauty of your landscape design and reinforces the value of your services to customers.</p>"
+
+;Improve-Your-Landscapes-With-New-Irrigation-Techniques;Improve Your Landscapes With New Irrigation Techniques;"You dont have to be a control freak to appreciate new irrigation technologies like WiFi enabled systems. Here is how to put these innovations to work  giving customers unprecedented control over their turf and helping your business grow."
+
+
+
+;Turning-Calibration-Into-Big-Savings;Turning Calibration into Big Savings;"<p>Properly calibrating your broadcast and drop spreader means less product waste and more money saved.</p>"
+
+;Customer-Service;Customer Service;"<p>Satisfied customers mean everything to your business. Here are a few tips to keep your customers happy and create repeat and referral business.</p>"
+
+;Cool-&-Warm-Season-Grasses;Cool & Warm Season Grasses;"Grass is grass, right? Nope. Not even close. As any landscape pro worth his or her salt already knows, every turf species has its own unique requirements. Consult this article as a reference for which turf to plant when."
+
+;Consultative-Selling;Consultative Selling;"<p>Consultative selling is a different approach to selling not rooted in product features and benefits but in how customers can reach solutions to the challenges they face.</p>"
+
+;Improving-Customer-Satisfaction-With-LESCO-Aroma;Improving Customer Satisfaction with LESCO"<sup>®</sup>" Aroma;"<p>By mixing LESCO Aroma Masking Agent liquid into the sprayer along with the not-so-pleasant smelling other ingredients you can help get clients back to business faster.</p>"
+
+;Tips-for-Selecting-Battery-Powered-Equipment;Tips for Selecting Battery-Powered Equipment;"<p>Regulations and ethanol are pushing landscape contractors toward electric handheld equipment. Use these tips to select the right tool.</p>"
+
+;Timing-Pre-Emergent-Correctly;Timing Pre-Emergent Correctly;"<p>The timing of your pre-emergent release is critical when it comes to controlling crabgrass.</p>"
+
+;Managing-Your-Staff;Managing Your Staff;"<p>From recruiting and hiring to retaining or terminating	learn proven methods for managing employees in the green industry.</p>"
+
+;Managing-Winter-Turf-Injury;Managing Winter Turf Injury;"<p>Harsh winter conditions can take their toll on your golf course.  Learn more about these helpful turf colorants and visual aids from LESCO® to reduce the effects of snow and ice.</p>"
+
+;Helpful-Hints-for-Spreading;Helpful Hints for Spreading;"<p>Follow these helpful hints for properly applying turf care products using a spreader.</p>"	
+
+;Fall-Turf-Renovation;Fall Turf Renovation;"<p>After the heat of summer turf needs to be rejuvenated. Fall is a great time to boost turf health through overseeding	 aerating and topdressing.</p>"
+
+;Benefits-of-Soil-Testing;Benefits of Soil Testing;"<p>Routine soil testing is a great tool to help point out nutrient deficiencies and surpluses soil pH	 and Cation Exchange Capacity (CEC).</p>"
+
+;Word-of-Mouth-Marketing;Word-of-Mouth Marketing;"<p>Green industry professionals can lower advertising and marketing costs raise prices and grow their business with a successful word-of-mouth marketing program.</p>"
+
+;Feast-Or-Famine-Feeding;Feast or Famine Feeding;"<p>Learn how fertilizers solve the feast or famine problem to produce turf that is healthier stronger	 and more disease tolerant.</p>"
+
+;Add-Landscape-Lighting-And-Outdoor-Audio-As-Additional-Service;Add Landscape Lighting and Outdoor Audio as an Additional Service for Next Season;"<p>Landscape lighting and outdoor audio installations are a growing trend and can be a revenue-generator for landscape contractors.</p>"
+
+;Do-Customers-Need-Lighting;Do Customers Need Lighting?;"<p>The questions and strategies outlined here can help green industry professionals overcome the most common client objections to landscape lighting.</p>"
+
+;Lighting-The-Path-To-New-Projects;Lighting the Path to New Projects;"<p>There are many reasons why landscape lighting is among one of the fastest growing categories for landscape contractors nationwide.</p>"
+
+;Winterizing-An-Irrigation-System;Winterizing an Irrigation System;"<p>Avoid a big mess this spring. Follow these steps to prepare your irrigation system for cold weather.</p>"
+
+;Using-Less-Water-To-Earn-More-Revenue;Using Less Water to Earn More Revenue;"<p>As water restrictions get tighter use these water-saving tools to help ease the strain for customers and differentiate your irrigation business. Check out this video to start putting these technologies to work for you. </p>"
+
+;Planning-Plant-Purchases;Planning Plant Purchases;"<p>With these helpful tips from SiteOne you can ensure your nursery order for trees and shrubs is fulfilled on time.</p>"
+
+;The-Key-to-Easy-Drain-Installation;The Key to Easy Drain Installation;"<p>Installing French drains is a good way for your business to make more money. Products from Ezflow make it quick and easy.</p>"
+
+;How-Fertilizer-Feeds-Turf;How Fertilizer Feeds Turf;"If you’re a dyed-in-the-wool turf care professional, you know what N-P-K is. But did you know that there’s an often overlooked, secondary group of micronutrients? Learn more about these secret powerhouses and how they keep turf healthy and growing."
+
+;Tips-For-Protecting-Client-Hardscapes-From-Cold;Tips for Protecting your Client's Hardscapes from Cold ;"<p>As your install schedule slows with the season, shift your focus to winterizing customers&rsquo; hardscapes and thinking ahead to what needs you can help them meet in the cool season.</p>"
+
+;Efficiency-Theme-of-Hardscapes;Efficiency Theme of Hardscapes North America Trends;"<p>Check out our recap of hardscapes industry trends from the last Hardscapes North America Show.</p>"
+
+;Surviving-A-Tax-Audit;Surviving a Tax Audit;"<p>When you receive an audit notice from the IRS, your first reaction may be panic, but you reduce stress by following this simple advice.</p>"
+
+;Preparing-For-Snow-And-Ice-Removal;Site 101: Preparing for Snow and Ice Removal;"<p style=""margin-left:0in; margin-right:0in"">The first snowfall of the year comes on fast and like anything else in this business, it pays to be prepared, but when is the right time to start thinking about snow and ice removal?</p>"
+
+;Pre-Frost-Maintenance-Ideas;Pre-Frost Maintenance Ideas;"<p>Enhance your clients&#39; experience and your repeat business by thinking ahead of the first cold front or snow event of the season.&nbsp;</p>"
+
+;SiteOne-Celebrates-OSHA-Safe-And-Sound-Week;SiteOne Celebrates OSHA Safe and Sound Week;"<p>SiteOne celebrates OSHA Safe and Sound Week with artwork submissions from the children in our associates&#39; lives.</p>"
+
+;Tips-For-Keeping-Holiday-Plants-Alive;Tips for Keeping Holiday Plants Alive all Season ;"<p>If your clients have requested your assistance with holiday decorating then they understand the benefits of professional help through the seasons to keep their homes and businesses looking their best.&nbsp;</p>"
+
+
+;Getting-Time-Savings-Delivered;Getting Time Savings Delivered;"<p>With SiteOne&rsquo;s Nursery Direct Program, you can have plants delivered straight to your job site - even if you don&#39;t have a nursery branch in your area.</p>"
+
+;How-Fertilizer-Feeds-Turf;How Fertilizer Feeds Turf;"If you’re a dyed-in-the-wool turf care professional, you know what N-P-K is. But did you know that there’s an often overlooked, secondary group of micronutrients? Learn more about these secret powerhouses and how they keep turf healthy and growing."
+
+;Stocking-Up-The-Smart-Way;Stocking Up The Smart Way;"<p style=""margin-left:0in; margin-right:0in"">Watch this video to learn about the benefits of early ordering and other ideas to keep your inventory in check and your operations rolling come busy season.</p>"

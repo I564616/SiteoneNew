@@ -1,0 +1,2129 @@
+
+$contentCatalog=siteoneContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+
+
+
+INSERT_UPDATE SiteoneParagaraphComponent;$contentCV[unique=true];uid[unique=true];name;headline[lang=en];headline[lang=es];content[lang=en];content[lang=es]; 
+;;comp_00000WEP;Irrigation Table1;Featured Specials;;"<p><style type=""text/css"">
+.tablemast {
+font-size: 2vw;
+}
+.tabletext {
+font-size: 1.2vw;
+}
+.irrigation {
+  max-width: 100%;
+  height: auto;
+}
+.tablelink {
+  max-width: 100%;
+  height: 50px;
+  line-height: 50px;
+  background: #799f37;
+  font-size: 20px;
+}
+.tablelink:hover {
+	background: #8eb947;
+}
+.noline {text-decoration:none;}
+.newtable td {
+padding:0; margin:0;
+}
+.newtable {
+border-collapse: collapse;
+}
+.vtext {
+vertical-align:middle;
+}
+</style></p>
+<div style=""overflow-x: auto;"">
+<table align=""center"" width=""90%"" border=""0"" cellpadding=""5"" cellspacing=""0"">
+    <tbody>
+        <tr>
+            <td width=""25%"" align=""center"" valign=""top"" bgcolor=""#ffffff""><img src=""/medias/sys_master/root/hc2/hbd/8920931958814/featured-rainbird-valves.jpg"" class=""irrigation"" width=""400"" height=""400"" alt="""" /></td>
+            <td width=""25%"" align=""center"" valign=""top"" bgcolor=""#ffffff""><img src=""/medias/sys_master/root/h04/h01/8920932614174/featured-nds-valve-boxes.jpg"" class=""irrigation"" width=""400"" height=""400"" alt="""" /></td>
+            <td width=""25%"" align=""center"" valign=""top"" bgcolor=""#ffffff""><img src=""/medias/sys_master/root/h85/hfb/8920933269534/featured-hunter-mp-rotator.jpg"" class=""irrigation"" width=""400"" height=""400"" alt="""" /></td>
+            <td width=""25%"" align=""center"" valign=""top"" bgcolor=""#ffffff""><img src=""/medias/sys_master/root/hef/hed/8920934121502/featured-cytogro.jpg"" class=""irrigation"" width=""400"" height=""400"" alt="""" /></td>
+        </tr>
+    </tbody>
+</table>
+<table align=""center"" width=""90%"" border=""0"" cellpadding=""5"" cellspacing=""0"">
+    <tbody>
+        <tr>
+            <td class=""vtext"" width=""25%"" align=""center"" valign=""top"" bgcolor=""#e0e0e0"">
+            <p><font size=""+1""><strong>10% OFF</strong></font><br />
+            PGA, DV, &amp; HV valves</p>
+            </td>
+            <td class=""vtext"" width=""5"" align=""center"" valign=""top"" bgcolor=""#e0e0e0""><img src=""/medias/sys_master/root/h87/had/8920931794974/smart-divider.png"" alt=""divider"" /></td>
+            <td class=""vtext"" width=""25%"" align=""center"" valign=""top"" bgcolor=""#e0e0e0"">
+            <p><font size=""+1""><strong>20% OFF</strong></font><br />
+            Valve boxes</p>
+            </td>
+            <td class=""vtext"" width=""5"" align=""center"" valign=""top"" bgcolor=""#e0e0e0""><img src=""/medias/sys_master/root/h87/had/8920931794974/smart-divider.png"" alt=""divider"" /></td>
+            <td class=""vtext"" width=""25%"" align=""center"" valign=""top"" bgcolor=""#e0e0e0"">
+            <p><font size=""+1""><strong>$10.00 OFF</strong></font><br />
+            Bag of MP Rotator family of nozzles</p>
+            </td>
+            <td class=""vtext"" width=""5"" align=""center"" valign=""top"" bgcolor=""#e0e0e0""><img src=""/medias/sys_master/root/h87/had/8920931794974/smart-divider.png"" alt=""divider"" /></td>
+            <td class=""vtext"" width=""25%"" align=""center"" valign=""top"" bgcolor=""#e0e0e0"">
+            <p><font size=""+1""><strong>FREE CYTOGRO</strong></font><br />
+            When you buy three bags of Moisture Manager, get a quart of Cytogro free</p>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<table class=""newtable"" align=""center"" width=""90%"" cellspacing=""0"" cellpadding=""0"" border=""0"">
+    <tbody>
+        <tr>
+            <td class=""vtext"" bgcolor=""#799F37"" colspan=""4""><center><a href=""http://www.yahoo.com"">
+            <div class=""tablelink""><img src=""/medias/sys_master/images/images/h84/h43/8920920522782/get-these-deals.png"" alt="""" /></div>
+            </a></center></td>
+        </tr>
+    </tbody>
+</table>
+</div>";
+;;comp_00000WEP;Irrigation Table1;Featured Specials;;"<p><style type=""text/css"">
+.tablemast {
+font-size: 2vw;
+}
+.tabletext {
+font-size: 1.2vw;
+}
+.irrigation {
+  max-width: 100%;
+  height: auto;
+}
+.tablelink {
+  max-width: 100%;
+  height: 50px;
+  line-height: 50px;
+  background: #799f37;
+  font-size: 20px;
+}
+.tablelink:hover {
+	background: #8eb947;
+}
+.noline {text-decoration:none;}
+.newtable td {
+padding:0; margin:0;
+}
+.newtable {
+border-collapse: collapse;
+}
+.vtext {
+vertical-align:middle;
+}
+</style></p>
+<div style=""overflow-x: auto;"">
+<table align=""center"" width=""90%"" border=""0"" cellpadding=""5"" cellspacing=""0"">
+    <tbody>
+        <tr>
+            <td width=""25%"" align=""center"" valign=""top"" bgcolor=""#ffffff""><img src=""/medias/sys_master/root/hc2/hbd/8920931958814/featured-rainbird-valves.jpg"" class=""irrigation"" width=""400"" height=""400"" alt="""" /></td>
+            <td width=""25%"" align=""center"" valign=""top"" bgcolor=""#ffffff""><img src=""/medias/sys_master/root/h04/h01/8920932614174/featured-nds-valve-boxes.jpg"" class=""irrigation"" width=""400"" height=""400"" alt="""" /></td>
+            <td width=""25%"" align=""center"" valign=""top"" bgcolor=""#ffffff""><img src=""/medias/sys_master/root/h85/hfb/8920933269534/featured-hunter-mp-rotator.jpg"" class=""irrigation"" width=""400"" height=""400"" alt="""" /></td>
+            <td width=""25%"" align=""center"" valign=""top"" bgcolor=""#ffffff""><img src=""/medias/sys_master/root/hef/hed/8920934121502/featured-cytogro.jpg"" class=""irrigation"" width=""400"" height=""400"" alt="""" /></td>
+        </tr>
+    </tbody>
+</table>
+<table align=""center"" width=""90%"" border=""0"" cellpadding=""5"" cellspacing=""0"">
+    <tbody>
+        <tr>
+            <td class=""vtext"" width=""25%"" align=""center"" valign=""top"" bgcolor=""#e0e0e0"">
+            <p><font size=""+1""><strong>10% OFF</strong></font><br />
+            PGA, DV, &amp; HV valves</p>
+            </td>
+            <td class=""vtext"" width=""5"" align=""center"" valign=""top"" bgcolor=""#e0e0e0""><img src=""/medias/sys_master/root/h87/had/8920931794974/smart-divider.png"" alt=""divider"" /></td>
+            <td class=""vtext"" width=""25%"" align=""center"" valign=""top"" bgcolor=""#e0e0e0"">
+            <p><font size=""+1""><strong>20% OFF</strong></font><br />
+            Valve boxes</p>
+            </td>
+            <td class=""vtext"" width=""5"" align=""center"" valign=""top"" bgcolor=""#e0e0e0""><img src=""/medias/sys_master/root/h87/had/8920931794974/smart-divider.png"" alt=""divider"" /></td>
+            <td class=""vtext"" width=""25%"" align=""center"" valign=""top"" bgcolor=""#e0e0e0"">
+            <p><font size=""+1""><strong>$10.00 OFF</strong></font><br />
+            Bag of MP Rotator family of nozzles</p>
+            </td>
+            <td class=""vtext"" width=""5"" align=""center"" valign=""top"" bgcolor=""#e0e0e0""><img src=""/medias/sys_master/root/h87/had/8920931794974/smart-divider.png"" alt=""divider"" /></td>
+            <td class=""vtext"" width=""25%"" align=""center"" valign=""top"" bgcolor=""#e0e0e0"">
+            <p><font size=""+1""><strong>FREE CYTOGRO</strong></font><br />
+            When you buy three bags of Moisture Manager, get a quart of Cytogro free</p>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<table class=""newtable"" align=""center"" width=""90%"" cellspacing=""0"" cellpadding=""0"" border=""0"">
+    <tbody>
+        <tr>
+            <td class=""vtext"" bgcolor=""#799F37"" colspan=""4""><center><a href=""http://www.yahoo.com"">
+            <div class=""tablelink""><img src=""/medias/sys_master/images/images/h84/h43/8920920522782/get-these-deals.png"" alt="""" /></div>
+            </a></center></td>
+        </tr>
+    </tbody>
+</table>
+</div>";
+;;comp_00000WEW;Irrigation Stack Table1;Featured Specials;;"<p><style type=""text/css"">
+<FCK:meta name=""viewport"" content=""width=device-width, initial-scale=1"">
+@media only screen and (max-width: 1279px) and (min-width: 768px) { 
+  .test { 
+    float: none !important; 
+    width: auto !important;
+  }
+}
+.column {
+float: left;
+width: 25%;
+max-width: 1279px;
+min-width: 220px;
+padding: 1px;
+}
+.column2 {
+float: center;
+width: 100%;
+padding: 1px;
+}
+.irrigation {
+max-width: 100%;
+<!--min-width: 208px;-->
+height: auto;
+}
+.newtable td {
+padding:0; margin:0; width:100%;
+}
+.newtable {
+border-collapse: collapse;
+}
+.vtext {
+vertical-align:middle;
+}
+</style></p>
+<div align=""center"">
+<div class=""column"">
+<table width=""100%"" border=""0"" cellpadding=""5"" cellspacing=""0"">
+    <tbody>
+        <tr>
+            <td align=""center"" valign=""top"" bgcolor=""#ffffff""><img class=""irrigation"" src=""/medias/sys_master/root/hc2/hbd/8920931958814/featured-rainbird-valves.jpg"" alt="""" /></td>
+        </tr>
+        <tr>
+            <td class=""vtext"" align=""center"" valign=""top"" bgcolor=""#e0e0e0"">
+            <p><font size=""+1""><strong>10% OFF</strong></font><br />
+            PGA, DV, &amp; HV valves</p>
+            </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+<div class=""column""><!--table2-->
+<table width=""100%"" border=""0"" cellpadding=""5"" cellspacing=""0"">
+    <tbody>
+        <tr>
+            <td align=""center"" valign=""top"" bgcolor=""#ffffff""><img class=""irrigation"" src=""/medias/sys_master/root/hc2/hbd/8920931958814/featured-rainbird-valves.jpg"" alt="""" /></td>
+        </tr>
+        <tr>
+            <td class=""vtext"" align=""center"" valign=""top"" bgcolor=""#e0e0e0"">
+            <p><font size=""+1""><strong>10% OFF</strong></font><br />
+            PGA, DV, &amp; HV valves</p>
+            </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+<!--table3-->
+<div class=""column"">
+<table width=""100%"" border=""0"" cellpadding=""5"" cellspacing=""0"">
+    <tbody>
+        <tr>
+            <td align=""center"" valign=""top"" bgcolor=""#ffffff""><img class=""irrigation"" src=""/medias/sys_master/root/hc2/hbd/8920931958814/featured-rainbird-valves.jpg"" alt="""" /></td>
+        </tr>
+        <tr>
+            <td class=""vtext"" align=""center"" valign=""top"" bgcolor=""#e0e0e0"">
+            <p><font size=""+1""><strong>10% OFF</strong></font><br />
+            PGA, DV, &amp; HV valves</p>
+            </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+<!--table4-->
+<div class=""column"">
+<table width=""100%"" border=""0"" cellpadding=""5"" cellspacing=""0"">
+    <tbody>
+        <tr>
+            <td align=""center"" valign=""top"" bgcolor=""#ffffff""><img class=""irrigation"" src=""/medias/sys_master/root/hc2/hbd/8920931958814/featured-rainbird-valves.jpg"" alt="""" /></td>
+        </tr>
+        <tr>
+            <td class=""vtext"" align=""center"" valign=""top"" bgcolor=""#e0e0e0"">
+            <p><font size=""+1""><strong>FREE CYTOGRO</strong></font><br />
+            PGA, DV, &amp; HV valves</p>
+            </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+<div class=""column2"">
+<table class=""newtable"" align=""center"" width=""100%"" cellspacing=""0"" cellpadding=""0"" border=""0"">
+    <tbody>
+        <tr>
+            <td class=""vtext"" bgcolor=""#799F37""><center><a href=""http://www.yahoo.com"">
+            <div class=""tablelink""><img class=""irrigation"" src=""/medias/sys_master/images/images/h84/h43/8920920522782/get-these-deals.png"" alt="""" /></div>
+            </a></center></td>
+        </tr>
+    </tbody>
+</table>
+</div>
+</div>";
+;;comp_00000WEW;Irrigation Stack Table1;Featured Specials;;"<p><style type=""text/css"">
+<FCK:meta name=""viewport"" content=""width=device-width, initial-scale=1"">
+@media only screen and (max-width: 1279px) and (min-width: 768px) { 
+  .test { 
+    float: none !important; 
+    width: auto !important;
+  }
+}
+.column {
+float: left;
+width: 25%;
+max-width: 1279px;
+min-width: 220px;
+padding: 1px;
+}
+.column2 {
+float: center;
+width: 100%;
+padding: 1px;
+}
+.irrigation {
+max-width: 100%;
+<!--min-width: 208px;-->
+height: auto;
+}
+.newtable td {
+padding:0; margin:0; width:100%;
+}
+.newtable {
+border-collapse: collapse;
+}
+.vtext {
+vertical-align:middle;
+}
+</style></p>
+<div align=""center"">
+<div class=""column"">
+<table width=""100%"" border=""0"" cellpadding=""5"" cellspacing=""0"">
+    <tbody>
+        <tr>
+            <td align=""center"" valign=""top"" bgcolor=""#ffffff""><img class=""irrigation"" src=""/medias/sys_master/root/hc2/hbd/8920931958814/featured-rainbird-valves.jpg"" alt="""" /></td>
+        </tr>
+        <tr>
+            <td class=""vtext"" align=""center"" valign=""top"" bgcolor=""#e0e0e0"">
+            <p><font size=""+1""><strong>10% OFF</strong></font><br />
+            PGA, DV, &amp; HV valves</p>
+            </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+<div class=""column""><!--table2-->
+<table width=""100%"" border=""0"" cellpadding=""5"" cellspacing=""0"">
+    <tbody>
+        <tr>
+            <td align=""center"" valign=""top"" bgcolor=""#ffffff""><img class=""irrigation"" src=""/medias/sys_master/root/hc2/hbd/8920931958814/featured-rainbird-valves.jpg"" alt="""" /></td>
+        </tr>
+        <tr>
+            <td class=""vtext"" align=""center"" valign=""top"" bgcolor=""#e0e0e0"">
+            <p><font size=""+1""><strong>10% OFF</strong></font><br />
+            PGA, DV, &amp; HV valves</p>
+            </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+<!--table3-->
+<div class=""column"">
+<table width=""100%"" border=""0"" cellpadding=""5"" cellspacing=""0"">
+    <tbody>
+        <tr>
+            <td align=""center"" valign=""top"" bgcolor=""#ffffff""><img class=""irrigation"" src=""/medias/sys_master/root/hc2/hbd/8920931958814/featured-rainbird-valves.jpg"" alt="""" /></td>
+        </tr>
+        <tr>
+            <td class=""vtext"" align=""center"" valign=""top"" bgcolor=""#e0e0e0"">
+            <p><font size=""+1""><strong>10% OFF</strong></font><br />
+            PGA, DV, &amp; HV valves</p>
+            </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+<!--table4-->
+<div class=""column"">
+<table width=""100%"" border=""0"" cellpadding=""5"" cellspacing=""0"">
+    <tbody>
+        <tr>
+            <td align=""center"" valign=""top"" bgcolor=""#ffffff""><img class=""irrigation"" src=""/medias/sys_master/root/hc2/hbd/8920931958814/featured-rainbird-valves.jpg"" alt="""" /></td>
+        </tr>
+        <tr>
+            <td class=""vtext"" align=""center"" valign=""top"" bgcolor=""#e0e0e0"">
+            <p><font size=""+1""><strong>FREE CYTOGRO</strong></font><br />
+            PGA, DV, &amp; HV valves</p>
+            </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+<div class=""column2"">
+<table class=""newtable"" align=""center"" width=""100%"" cellspacing=""0"" cellpadding=""0"" border=""0"">
+    <tbody>
+        <tr>
+            <td class=""vtext"" bgcolor=""#799F37""><center><a href=""http://www.yahoo.com"">
+            <div class=""tablelink""><img class=""irrigation"" src=""/medias/sys_master/images/images/h84/h43/8920920522782/get-these-deals.png"" alt="""" /></div>
+            </a></center></td>
+        </tr>
+    </tbody>
+</table>
+</div>
+</div>";
+;;comp_00000WEX;Irrigation Inline Table1;Inline Block;;"<p><style type=""text/css"">
+}
+.floatedtable {
+float: left;
+width: 25%;
+padding: 1px;
+}
+.irrigation {
+max-width: 100%;
+min-width: 25%;
+height: auto;
+}
+.newtable td {
+padding:0; margin:0;
+}
+.newtable {
+border-collapse: collapse;
+}
+.vtext {
+vertical-align:middle;
+}
+</style></p>
+<table class=""floatedtable"" border=""0"" cellpadding=""5"" cellspacing=""0"">
+    <tbody>
+        <tr>
+            <td align=""center"" valign=""top"" bgcolor=""#ffffff""><img src=""/medias/sys_master/root/hc2/hbd/8920931958814/featured-rainbird-valves.jpg"" alt="""" /></td>
+        </tr>
+        <tr>
+            <td class=""vtext"" align=""center"" valign=""top"" bgcolor=""#e0e0e0"">
+            <p><font size=""+1""><strong>10% OFF</strong></font><br />
+            PGA, DV, &amp; HV valves</p>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<table class=""floatedtable"" border=""0"" cellpadding=""5"" cellspacing=""0"">
+    <tbody>
+        <tr>
+            <td align=""center"" valign=""top"" bgcolor=""#ffffff""><img src=""/medias/sys_master/root/hc2/hbd/8920931958814/featured-rainbird-valves.jpg"" alt="""" /></td>
+        </tr>
+        <tr>
+            <td class=""vtext"" align=""center"" valign=""top"" bgcolor=""#e0e0e0"">
+            <p><font size=""+1""><strong>10% OFF</strong></font><br />
+            PGA, DV, &amp; HV valves</p>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<!--table3-->
+<table class=""floatedtable"" border=""0"" cellpadding=""5"" cellspacing=""0"">
+    <tbody>
+        <tr>
+            <td align=""center"" valign=""top"" bgcolor=""#ffffff""><img src=""/medias/sys_master/root/hc2/hbd/8920931958814/featured-rainbird-valves.jpg"" alt="""" /></td>
+        </tr>
+        <tr>
+            <td class=""vtext"" align=""center"" valign=""top"" bgcolor=""#e0e0e0"">
+            <p><font size=""+1""><strong>10% OFF</strong></font><br />
+            PGA, DV, &amp; HV valves</p>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<!--table4-->
+<table class=""floatedtable"" border=""0"" cellpadding=""5"" cellspacing=""0"">
+    <tbody>
+        <tr>
+            <td align=""center"" valign=""top"" bgcolor=""#ffffff""><img src=""/medias/sys_master/root/hc2/hbd/8920931958814/featured-rainbird-valves.jpg"" alt="""" /></td>
+        </tr>
+        <tr>
+            <td class=""vtext"" align=""center"" valign=""top"" bgcolor=""#e0e0e0"">
+            <p><font size=""+1""><strong>FREE CYTOGRO</strong></font><br />
+				`PGA, DV, &amp; HV valves</p>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<table class=""newtable"" width=""100%"" cellspacing=""0"" cellpadding=""0"" border=""0"">
+    <tbody>
+        <tr>
+            <td class=""vtext"" bgcolor=""#799F37""><center><a href=""http://www.yahoo.com"">
+            <div class=""tablelink""><img src=""/medias/sys_master/images/images/h84/h43/8920920522782/get-these-deals.png"" alt="""" /></div>
+            </a></center></td>
+        </tr>
+    </tbody>
+</table>";
+;;comp_00000WEX;Irrigation Inline Table1;Inline Block;;"<p><style type=""text/css"">
+}
+.floatedtable {
+float: left;
+width: 25%;
+padding: 1px;
+}
+.irrigation {
+max-width: 100%;
+min-width: 25%;
+height: auto;
+}
+.newtable td {
+padding:0; margin:0;
+}
+.newtable {
+border-collapse: collapse;
+}
+.vtext {
+vertical-align:middle;
+}
+</style></p>
+<table class=""floatedtable"" border=""0"" cellpadding=""5"" cellspacing=""0"">
+    <tbody>
+        <tr>
+            <td align=""center"" valign=""top"" bgcolor=""#ffffff""><img src=""/medias/sys_master/root/hc2/hbd/8920931958814/featured-rainbird-valves.jpg"" alt="""" /></td>
+        </tr>
+        <tr>
+            <td class=""vtext"" align=""center"" valign=""top"" bgcolor=""#e0e0e0"">
+            <p><font size=""+1""><strong>10% OFF</strong></font><br />
+            PGA, DV, &amp; HV valves</p>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<table class=""floatedtable"" border=""0"" cellpadding=""5"" cellspacing=""0"">
+    <tbody>
+        <tr>
+            <td align=""center"" valign=""top"" bgcolor=""#ffffff""><img src=""/medias/sys_master/root/hc2/hbd/8920931958814/featured-rainbird-valves.jpg"" alt="""" /></td>
+        </tr>
+        <tr>
+            <td class=""vtext"" align=""center"" valign=""top"" bgcolor=""#e0e0e0"">
+            <p><font size=""+1""><strong>10% OFF</strong></font><br />
+            PGA, DV, &amp; HV valves</p>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<!--table3-->
+<table class=""floatedtable"" border=""0"" cellpadding=""5"" cellspacing=""0"">
+    <tbody>
+        <tr>
+            <td align=""center"" valign=""top"" bgcolor=""#ffffff""><img src=""/medias/sys_master/root/hc2/hbd/8920931958814/featured-rainbird-valves.jpg"" alt="""" /></td>
+        </tr>
+        <tr>
+            <td class=""vtext"" align=""center"" valign=""top"" bgcolor=""#e0e0e0"">
+            <p><font size=""+1""><strong>10% OFF</strong></font><br />
+            PGA, DV, &amp; HV valves</p>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<!--table4-->
+<table class=""floatedtable"" border=""0"" cellpadding=""5"" cellspacing=""0"">
+    <tbody>
+        <tr>
+            <td align=""center"" valign=""top"" bgcolor=""#ffffff""><img src=""/medias/sys_master/root/hc2/hbd/8920931958814/featured-rainbird-valves.jpg"" alt="""" /></td>
+        </tr>
+        <tr>
+            <td class=""vtext"" align=""center"" valign=""top"" bgcolor=""#e0e0e0"">
+            <p><font size=""+1""><strong>FREE CYTOGRO</strong></font><br />
+            PGA, DV, &amp; HV valves</p>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<table class=""newtable"" width=""100%"" cellspacing=""0"" cellpadding=""0"" border=""0"">
+    <tbody>
+        <tr>
+            <td class=""vtext"" bgcolor=""#799F37""><center><a href=""http://www.yahoo.com"">
+            <div class=""tablelink""><img src=""/medias/sys_master/images/images/h84/h43/8920920522782/get-these-deals.png"" alt="""" /></div>
+            </a></center></td>
+        </tr>
+    </tbody>
+</table>";
+;;comp_00000WEY;Smart Featured Specials;;;"<p><style type=""text/css"">
+* {
+  box-sizing: border-box;
+}
+.newtable {
+spacing:0; padding:0; margin:0; width:100%;
+}
+.tablelink {
+  max-width: 100%;
+  height: 50px;
+  line-height: 50px;
+  background: #799f37;
+  font-size: 20px;
+}
+.tablelink:hover {
+	background: #8eb947;
+}
+/* Create four equal columns that float next to each other */
+.column {
+  float: left;
+  width: 25%;
+  padding: 1px;
+}
+
+/* Create horizontal green line that spans width */
+.topline {
+width: 100%;
+height: 10px;
+display: block;
+}
+
+/* Create responsive button that spans width */
+.button2 {
+width: 100%;
+height: 50px;
+display: block;
+padding: 13px;
+background: url(/medias/sys_master/images/images/h84/h43/8920920522782/get-these-deals.png) no-repeat center center;
+}
+.button2:hover {
+background-color: #8eb947;
+}
+
+/* Align text vertically */
+.vtext {
+vertical-align:middle;
+height: 135px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: """";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the four columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+  }
+}
+</style></p> <p><font size=""+2""><strong>Featured Specials</strong></font></p> <div style=""background-color:#799F37"" class=""row""><div class=""topline"">&nbsp;</div></div> <div class=""row""><!--COLUMN ONE--> <div class=""column""><table border=""0"" width=""100%"" cellspacing=""0"" cellpadding=""0"">     <tbody>         <tr>             <td align=""center"" bgcolor=""ffffff""><img src=""/medias/sys_master/root/hc2/hbd/8920931958814/featured-rainbird-valves.jpg"" width=""85%"" alt=""RainBird"" /></td>         </tr>     </tbody> </table></div> <!--COLUMN TWO--> <div class=""column""><table border=""0"" width=""100%"" cellspacing=""0"" cellpadding=""0"">     <tbody>         <tr>             <td align=""center"" bgcolor=""ffffff""><img src=""/medias/sys_master/root/h04/h01/8920932614174/featured-nds-valve-boxes.jpg"" width=""85%"" alt=""NDS"" /></td>         </tr>     </tbody> </table></div> <!--COLUMN THREE--> <div class=""column""><table border=""0"" width=""100%"" cellspacing=""0"" cellpadding=""0"">     <tbody>         <tr>             <td align=""center"" bgcolor=""ffffff""><img src=""/medias/sys_master/root/h85/hfb/8920933269534/featured-hunter-mp-rotator.jpg"" width=""85%"" alt=""Hunter"" /></td>         </tr>     </tbody> </table></div> <!--COLUMN FOUR--> <div class=""column""><table border=""0"" width=""100%"" cellspacing=""0"" cellpadding=""0"">     <tbody>         <tr>             <td align=""center"" bgcolor=""ffffff""><img src=""/medias/sys_master/root/hef/hed/8920934121502/featured-cytogro.jpg"" width=""85%"" alt=""Free Cytogro"" /></td>         </tr>     </tbody> </table></div></div> <div style=""background-color:#ebebeb"" class=""row""><!--COLUMN ONE TEXT--> <div class=""column""><table width=""100%"" cellspacing=""0"" cellpadding=""0"">     <tbody>         <tr>             <td style=""border-right: 1px solid #d7d7d7"" solid="""" class=""vtext"" align=""center""><p><font size=""+2""><strong>10% OFF</strong></font></p>             <p>PGA, DV, and HV Valves</p></td>         </tr>     </tbody> </table></div> <!--COLUMN TWO TEXT--> <div class=""column""><table width=""100%"" cellspacing=""0"" cellpadding=""0"">     <tbody>         <tr>             <td style=""border-right: 1px solid #d7d7d7"" solid="""" class=""vtext"" align=""center""><p><font size=""+2""><strong>20% OFF</strong></font></p>             <p>Valve Boxes</p></td>         </tr>     </tbody> </table></div> <!--COLUMN THREE TEXT--> <div class=""column""><table width=""100%"" cellspacing=""0"" cellpadding=""0"">     <tbody>         <tr>             <td style=""border-right: 1px solid #d7d7d7"" solid="""" class=""vtext"" align=""center""><p><font size=""+2""><strong>$10 OFF</strong></font></p>             <p>Bag of MP Rotator Family of Nozzles</p></td>         </tr>     </tbody> </table></div> <!--COLUMN FOUR TEXT--> <div class=""column""><table width=""100%"" cellspacing=""0"" cellpadding=""0"">     <tbody>         <tr>             <td class=""vtext"" align=""center""><p><font size=""+2""><strong>FREE CYTOGRO</strong></font></p>             <p>When you buy three bags of Moisture Manager, get a quart of Cytogro free.</p></td>         </tr>     </tbody> </table></div></div> <div style=""background-color:#799F37"" class=""row""><div class=""button2"" onclick=""window.open('/medias/sys_master/root/h1f/h3e/8921073418270/2019-SmartIrrigation.pdf')"" style=""cursor: pointer;""><center></center></div></div> <p>&nbsp;</p>";
+;;comp_00000WEY;Smart Featured Specials;;;"<p><style type=""text/css"">
+* {
+  box-sizing: border-box;
+}
+.newtable {
+spacing:0; padding:0; margin:0; width:100%;
+}
+.tablelink {
+  max-width: 100%;
+  height: 50px;
+  line-height: 50px;
+  background: #799f37;
+  font-size: 20px;
+}
+.tablelink:hover {
+	background: #8eb947;
+}
+/* Create four equal columns that float next to each other */
+.column {
+  float: left;
+  width: 25%;
+  padding: 1px;
+}
+
+/* Create horizontal green line that spans width */
+.topline {
+width: 100%;
+height: 10px;
+display: block;
+}
+
+/* Create responsive button that spans width */
+.button2 {
+width: 100%;
+height: 50px;
+display: block;
+padding: 13px;
+background: url(/medias/sys_master/images/images/h84/h43/8920920522782/get-these-deals.png) no-repeat center center;
+}
+.button2:hover {
+background-color: #8eb947;
+}
+
+/* Align text vertically */
+.vtext {
+vertical-align:middle;
+height: 135px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: """";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the four columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+  }
+}
+</style></p> <p><font size=""+2""><strong>Featured Specials</strong></font></p> <div style=""background-color:#799F37"" class=""row""><div class=""topline"">&nbsp;</div></div> <div class=""row""><!--COLUMN ONE--> <div class=""column""><table border=""0"" width=""100%"" cellspacing=""0"" cellpadding=""0"">     <tbody>         <tr>             <td align=""center"" bgcolor=""ffffff""><img src=""/medias/sys_master/root/hc2/hbd/8920931958814/featured-rainbird-valves.jpg"" width=""85%"" alt=""RainBird"" /></td>         </tr>     </tbody> </table></div> <!--COLUMN TWO--> <div class=""column""><table border=""0"" width=""100%"" cellspacing=""0"" cellpadding=""0"">     <tbody>         <tr>             <td align=""center"" bgcolor=""ffffff""><img src=""/medias/sys_master/root/h04/h01/8920932614174/featured-nds-valve-boxes.jpg"" width=""85%"" alt=""NDS"" /></td>         </tr>     </tbody> </table></div> <!--COLUMN THREE--> <div class=""column""><table border=""0"" width=""100%"" cellspacing=""0"" cellpadding=""0"">     <tbody>         <tr>             <td align=""center"" bgcolor=""ffffff""><img src=""/medias/sys_master/root/h85/hfb/8920933269534/featured-hunter-mp-rotator.jpg"" width=""85%"" alt=""Hunter"" /></td>         </tr>     </tbody> </table></div> <!--COLUMN FOUR--> <div class=""column""><table border=""0"" width=""100%"" cellspacing=""0"" cellpadding=""0"">     <tbody>         <tr>             <td align=""center"" bgcolor=""ffffff""><img src=""/medias/sys_master/root/hef/hed/8920934121502/featured-cytogro.jpg"" width=""85%"" alt=""Free Cytogro"" /></td>         </tr>     </tbody> </table></div></div> <div style=""background-color:#ebebeb"" class=""row""><!--COLUMN ONE TEXT--> <div class=""column""><table width=""100%"" cellspacing=""0"" cellpadding=""0"">     <tbody>         <tr>             <td style=""border-right: 1px solid #d7d7d7"" solid="""" class=""vtext"" align=""center""><p><font size=""+2""><strong>10% OFF</strong></font></p>             <p>PGA, DV, and HV Valves</p></td>         </tr>     </tbody> </table></div> <!--COLUMN TWO TEXT--> <div class=""column""><table width=""100%"" cellspacing=""0"" cellpadding=""0"">     <tbody>         <tr>             <td style=""border-right: 1px solid #d7d7d7"" solid="""" class=""vtext"" align=""center""><p><font size=""+2""><strong>20% OFF</strong></font></p>             <p>Valve Boxes</p></td>         </tr>     </tbody> </table></div> <!--COLUMN THREE TEXT--> <div class=""column""><table width=""100%"" cellspacing=""0"" cellpadding=""0"">     <tbody>         <tr>             <td style=""border-right: 1px solid #d7d7d7"" solid="""" class=""vtext"" align=""center""><p><font size=""+2""><strong>$10 OFF</strong></font></p>             <p>Bag of MP Rotator Family of Nozzles</p></td>         </tr>     </tbody> </table></div> <!--COLUMN FOUR TEXT--> <div class=""column""><table width=""100%"" cellspacing=""0"" cellpadding=""0"">     <tbody>         <tr>             <td class=""vtext"" align=""center""><p><font size=""+2""><strong>FREE CYTOGRO</strong></font></p>             <p>When you buy three bags of Moisture Manager, get a quart of Cytogro free.</p></td>         </tr>     </tbody> </table></div></div> <div style=""background-color:#799F37"" class=""row""><div class=""button2"" onclick=""window.open('/medias/sys_master/root/h1f/h3e/8921073418270/2019-SmartIrrigation.pdf')"" style=""cursor: pointer;""><center></center></div></div> <p>&nbsp;</p>";
+;;comp_00000WEZ;Smart Tool Specials;;;"<p><style type=""text/css"">
+* {
+  box-sizing: border-box;
+}
+.newtable {
+spacing:0; padding:0; margin:0; width:100%;
+}
+.tablelink {
+  max-width: 100%;
+  height: 50px;
+  line-height: 50px;
+  background: #799f37;
+  font-size: 20px;
+}
+.tablelink:hover {
+	background: #8eb947;
+}
+/* Create four equal columns that float next to each other */
+.column {
+  float: left;
+  width: 25%;
+  padding: 1px;
+}
+
+/* Create horizontal green line that spans width */
+.topline {
+width: 100%;
+height: 10px;
+display: block;
+}
+
+/* Create responsive button that spans width */
+.button2 {
+width: 100%;
+height: 50px;
+display: block;
+padding: 13px;
+background: url(/medias/sys_master/images/images/h84/h43/8920920522782/get-these-deals.png) no-repeat center center;
+}
+.button2:hover {
+background-color: #8eb947;
+}
+
+/* Align text vertically */
+.vtext {
+vertical-align:middle;
+height: 135px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: """";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the four columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+  }
+}
+</style></p>
+<p><font size=""+2""><strong>Tool Specials</strong></font></p>
+<div style=""background-color:#799F37"" class=""row"">
+<div class=""topline"">&nbsp;</div>
+</div>
+<div class=""row""><!--COLUMN ONE-->
+<div class=""column"">
+<table border=""0"" width=""100%"" cellspacing=""0"" cellpadding=""0"">
+    <tbody>
+        <tr>
+            <td align=""center"" bgcolor=""ffffff""><img src=""/medias/sys_master/root/hac/hc3/8921079676958/tools-lesco-spreader.jpg"" width=""85%"" alt=""Lesco Spreader"" /></td>
+        </tr>
+    </tbody>
+</table>
+</div>
+<!--COLUMN TWO-->
+<div class=""column"">
+<table border=""0"" width=""100%"" cellspacing=""0"" cellpadding=""0"">
+    <tbody>
+        <tr>
+            <td align=""center"" bgcolor=""ffffff""><img src=""/medias/sys_master/root/ha1/h10/8921079840798/tools-lesco-sprayer.jpg"" width=""85%"" alt=""Lesco Sprayer"" /></td>
+        </tr>
+    </tbody>
+</table>
+</div>
+<!--COLUMN THREE-->
+<div class=""column"">
+<table border=""0"" width=""100%"" cellspacing=""0"" cellpadding=""0"">
+    <tbody>
+        <tr>
+            <td align=""center"" bgcolor=""ffffff""><img src=""/medias/sys_master/root/hb5/h60/8921080004638/tools-georipper-trencher.jpg"" width=""85%"" alt=""Georipper Trencher"" /></td>
+        </tr>
+    </tbody>
+</table>
+</div>
+<!--COLUMN FOUR-->
+<div class=""column"">
+<table border=""0"" width=""100%"" cellspacing=""0"" cellpadding=""0"">
+    <tbody>
+        <tr>
+            <td align=""center"" bgcolor=""ffffff""><img src=""/medias/sys_master/root/h6b/h4a/8921080168478/tools-ames-long-handle.jpg"" width=""85%"" alt=""Ames Tools"" /></td>
+        </tr>
+    </tbody>
+</table>
+</div>
+</div>
+<div style=""background-color:#ebebeb"" class=""row""><!--COLUMN ONE TEXT-->
+<div class=""column"">
+<table width=""100%"" cellspacing=""0"" cellpadding=""0"">
+    <tbody>
+        <tr>
+            <td style=""border-right: 1px solid #d7d7d7"" solid="""" class=""vtext"" align=""center"">
+            <p><font size=""+2""><strong>SiteOne<sup>&reg;</sup> EXCLUSIVE</strong></font></p>
+            <p>80# spreader</p>
+            </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+<!--COLUMN TWO TEXT-->
+<div class=""column"">
+<table width=""100%"" cellspacing=""0"" cellpadding=""0"">
+    <tbody>
+        <tr>
+            <td style=""border-right: 1px solid #d7d7d7"" solid="""" class=""vtext"" align=""center"">
+            <p><font size=""+2""><strong>5% OFF</strong></font></p>
+            <p>Backpack sprayer</p>
+            </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+<!--COLUMN THREE TEXT-->
+<div class=""column"">
+<table width=""100%"" cellspacing=""0"" cellpadding=""0"">
+    <tbody>
+        <tr>
+            <td style=""border-right: 1px solid #d7d7d7"" solid="""" class=""vtext"" align=""center"">
+            <p><font size=""+2""><strong>NOW AVAILABLE</strong></font></p>
+            <p>Handheld Mini Trencher</p>
+            </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+<!--COLUMN FOUR TEXT-->
+<div class=""column"">
+<table width=""100%"" cellspacing=""0"" cellpadding=""0"">
+    <tbody>
+        <tr>
+            <td class=""vtext"" align=""center"">
+            <p><font size=""+2""><strong>5% OFF</strong></font></p>
+            <p>Select Long Handle Tools</p>
+            </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+</div>
+<div style=""background-color:#799F37"" class=""row"">
+<div class=""button2"" onclick=""window.open('/medias/sys_master/root/h1f/h3e/8921073418270/2019-SmartIrrigation.pdf')"" style=""cursor: pointer;""><center></center></div>
+</div>
+<p>&nbsp;</p>";
+;;comp_00000WEZ;Smart Tool Specials;;;"<p><style type=""text/css"">
+* {
+  box-sizing: border-box;
+}
+.newtable {
+spacing:0; padding:0; margin:0; width:100%;
+}
+.tablelink {
+  max-width: 100%;
+  height: 50px;
+  line-height: 50px;
+  background: #799f37;
+  font-size: 20px;
+}
+.tablelink:hover {
+	background: #8eb947;
+}
+/* Create four equal columns that float next to each other */
+.column {
+  float: left;
+  width: 25%;
+  padding: 1px;
+}
+
+/* Create horizontal green line that spans width */
+.topline {
+width: 100%;
+height: 10px;
+display: block;
+}
+
+/* Create responsive button that spans width */
+.button2 {
+width: 100%;
+height: 50px;
+display: block;
+padding: 13px;
+background: url(/medias/sys_master/images/images/h84/h43/8920920522782/get-these-deals.png) no-repeat center center;
+}
+.button2:hover {
+background-color: #8eb947;
+}
+
+/* Align text vertically */
+.vtext {
+vertical-align:middle;
+height: 135px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: """";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the four columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+  }
+}
+</style></p>
+<p><font size=""+2""><strong>Tool Specials</strong></font></p>
+<div style=""background-color:#799F37"" class=""row"">
+<div class=""topline"">&nbsp;</div>
+</div>
+<div class=""row""><!--COLUMN ONE-->
+<div class=""column"">
+<table border=""0"" width=""100%"" cellspacing=""0"" cellpadding=""0"">
+    <tbody>
+        <tr>
+            <td align=""center"" bgcolor=""ffffff""><img src=""/medias/sys_master/root/hac/hc3/8921079676958/tools-lesco-spreader.jpg"" width=""85%"" alt=""Lesco Spreader"" /></td>
+        </tr>
+    </tbody>
+</table>
+</div>
+<!--COLUMN TWO-->
+<div class=""column"">
+<table border=""0"" width=""100%"" cellspacing=""0"" cellpadding=""0"">
+    <tbody>
+        <tr>
+            <td align=""center"" bgcolor=""ffffff""><img src=""/medias/sys_master/root/ha1/h10/8921079840798/tools-lesco-sprayer.jpg"" width=""85%"" alt=""Lesco Sprayer"" /></td>
+        </tr>
+    </tbody>
+</table>
+</div>
+<!--COLUMN THREE-->
+<div class=""column"">
+<table border=""0"" width=""100%"" cellspacing=""0"" cellpadding=""0"">
+    <tbody>
+        <tr>
+            <td align=""center"" bgcolor=""ffffff""><img src=""/medias/sys_master/root/hb5/h60/8921080004638/tools-georipper-trencher.jpg"" width=""85%"" alt=""Georipper Trencher"" /></td>
+        </tr>
+    </tbody>
+</table>
+</div>
+<!--COLUMN FOUR-->
+<div class=""column"">
+<table border=""0"" width=""100%"" cellspacing=""0"" cellpadding=""0"">
+    <tbody>
+        <tr>
+            <td align=""center"" bgcolor=""ffffff""><img src=""/medias/sys_master/root/h6b/h4a/8921080168478/tools-ames-long-handle.jpg"" width=""85%"" alt=""Ames Tools"" /></td>
+        </tr>
+    </tbody>
+</table>
+</div>
+</div>
+<div style=""background-color:#ebebeb"" class=""row""><!--COLUMN ONE TEXT-->
+<div class=""column"">
+<table width=""100%"" cellspacing=""0"" cellpadding=""0"">
+    <tbody>
+        <tr>
+            <td style=""border-right: 1px solid #d7d7d7"" solid="""" class=""vtext"" align=""center"">
+            <p><font size=""+2""><strong>SiteOne<sup>&reg;</sup> EXCLUSIVE</strong></font></p>
+            <p>80# spreader</p>
+            </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+<!--COLUMN TWO TEXT-->
+<div class=""column"">
+<table width=""100%"" cellspacing=""0"" cellpadding=""0"">
+    <tbody>
+        <tr>
+            <td style=""border-right: 1px solid #d7d7d7"" solid="""" class=""vtext"" align=""center"">
+            <p><font size=""+2""><strong>5% OFF</strong></font></p>
+            <p>Backpack sprayer</p>
+            </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+<!--COLUMN THREE TEXT-->
+<div class=""column"">
+<table width=""100%"" cellspacing=""0"" cellpadding=""0"">
+    <tbody>
+        <tr>
+            <td style=""border-right: 1px solid #d7d7d7"" solid="""" class=""vtext"" align=""center"">
+            <p><font size=""+2""><strong>NOW AVAILABLE</strong></font></p>
+            <p>Handheld Mini Trencher</p>
+            </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+<!--COLUMN FOUR TEXT-->
+<div class=""column"">
+<table width=""100%"" cellspacing=""0"" cellpadding=""0"">
+    <tbody>
+        <tr>
+            <td class=""vtext"" align=""center"">
+            <p><font size=""+2""><strong>5% OFF</strong></font></p>
+            <p>Select Long Handle Tools</p>
+            </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+</div>
+<div style=""background-color:#799F37"" class=""row"">
+<div class=""button2"" onclick=""window.open('/medias/sys_master/root/h1f/h3e/8921073418270/2019-SmartIrrigation.pdf')"" style=""cursor: pointer;""><center></center></div>
+</div>
+<p>&nbsp;</p>";
+;;comp_00000WF0;Smart Irrigation Specials;;;"<p><style type=""text/css"">
+* {
+  box-sizing: border-box;
+}
+.newtable {
+spacing:0; padding:0; margin:0; width:100%;
+}
+.tablelink {
+  max-width: 100%;
+  height: 50px;
+  line-height: 50px;
+  background: #799f37;
+  font-size: 20px;
+}
+.tablelink:hover {
+	background: #8eb947;
+}
+/* Create four equal columns that float next to each other */
+.column {
+  float: left;
+  width: 25%;
+  padding: 1px;
+}
+
+/* Create horizontal green line that spans width */
+.topline {
+width: 100%;
+height: 10px;
+display: block;
+}
+
+/* Create responsive button that spans width */
+.button2 {
+width: 100%;
+height: 50px;
+display: block;
+padding: 13px;
+background: url(/medias/sys_master/images/images/h84/h43/8920920522782/get-these-deals.png) no-repeat center center;
+}
+.button2:hover {
+background-color: #8eb947;
+}
+
+/* Align text vertically */
+.vtext {
+vertical-align:middle;
+height: 135px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: """";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the four columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+  }
+}
+</style></p>
+<p><font size=""+2""><strong>Irrigation Specials</strong></font></p>
+<div style=""background-color:#799F37"" class=""row"">
+<div class=""topline"">&nbsp;</div>
+</div>
+<div class=""row""><!--COLUMN ONE-->
+<div class=""column"">
+<table border=""0"" width=""100%"" cellspacing=""0"" cellpadding=""0"">
+    <tbody>
+        <tr>
+            <td align=""center"" bgcolor=""ffffff""><img src=""&#9;&#9;/medias/sys_master/root/h5c/h8c/8921083674654/irrigation-rainbird-control-zone-kits.jpg"" width=""85%"" alt=""Zone Kits"" /></td>
+        </tr>
+    </tbody>
+</table>
+</div>
+<!--COLUMN TWO-->
+<div class=""column"">
+<table border=""0"" width=""100%"" cellspacing=""0"" cellpadding=""0"">
+    <tbody>
+        <tr>
+            <td align=""center"" bgcolor=""ffffff""><img src=""/medias/sys_master/root/hc4/h1e/8921083510814/irrigation-hunter-hydrawise.jpg"" width=""85%"" alt=""Lesco Sprayer"" /></td>
+        </tr>
+    </tbody>
+</table>
+</div>
+<!--COLUMN THREE-->
+<div class=""column"">
+<table border=""0"" width=""100%"" cellspacing=""0"" cellpadding=""0"">
+    <tbody>
+        <tr>
+            <td align=""center"" bgcolor=""ffffff""><img src=""&#9;&#9;/medias/sys_master/root/h2b/h79/8921081905182/irrigation-rainbird-nozzles.jpg"" width=""85%"" alt=""Rainbird Nozzles"" /></td>
+        </tr>
+    </tbody>
+</table>
+</div>
+<!--COLUMN FOUR-->
+<div class=""column"">
+<table border=""0"" width=""100%"" cellspacing=""0"" cellpadding=""0"">
+    <tbody>
+        <tr>
+            <td align=""center"" bgcolor=""ffffff""><img src=""/medias/sys_master/root/h45/h21/8921081741342/irrigation-nds-catch-basin.jpg"" width=""85%"" alt=""Catch Basin"" /></td>
+        </tr>
+    </tbody>
+</table>
+</div>
+</div>
+<div style=""background-color:#ebebeb"" class=""row""><!--COLUMN ONE TEXT-->
+<div class=""column"">
+<table width=""100%"" cellspacing=""0"" cellpadding=""0"">
+    <tbody>
+        <tr>
+            <td style=""border-right: 1px solid #d7d7d7"" solid="""" class=""vtext"" align=""center"">
+            <p><font size=""+2""><strong>10% OFF</strong></font></p>
+            <p>Residential Control Zone Kits</p>
+            </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+<!--COLUMN TWO TEXT-->
+<div class=""column"">
+<table width=""100%"" cellspacing=""0"" cellpadding=""0"">
+    <tbody>
+        <tr>
+            <td style=""border-right: 1px solid #d7d7d7"" solid="""" class=""vtext"" align=""center"">
+            <p><font size=""+2""><strong>10% OFF</strong></font></p>
+            <p>Hydrawise Family of Controllers</p>
+            </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+<!--COLUMN THREE TEXT-->
+<div class=""column"">
+<table width=""100%"" cellspacing=""0"" cellpadding=""0"">
+    <tbody>
+        <tr>
+            <td style=""border-right: 1px solid #d7d7d7"" solid="""" class=""vtext"" align=""center"">
+            <p><font size=""+2""><strong>10% OFF</strong></font></p>
+            <p>VAN, HE-VAN, and MPR Nozzles</p>
+            </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+<!--COLUMN FOUR TEXT-->
+<div class=""column"">
+<table width=""100%"" cellspacing=""0"" cellpadding=""0"">
+    <tbody>
+        <tr>
+            <td class=""vtext"" align=""center"">
+            <p><font size=""+2""><strong>NOW AVAILABLE</strong></font></p>
+            <p>Large 18&quot; and 24&quot; Catch Basin Kits</p>
+            </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+</div>
+<div style=""background-color:#799F37"" class=""row"">
+<div class=""button2"" onclick=""window.open('/medias/sys_master/root/h1f/h3e/8921073418270/2019-SmartIrrigation.pdf')"" style=""cursor: pointer;""><center></center></div>
+</div>
+<p>&nbsp;</p>";
+;;comp_00000WF0;Smart Irrigation Specials;;;"<p><style type=""text/css"">
+* {
+  box-sizing: border-box;
+}
+.newtable {
+spacing:0; padding:0; margin:0; width:100%;
+}
+.tablelink {
+  max-width: 100%;
+  height: 50px;
+  line-height: 50px;
+  background: #799f37;
+  font-size: 20px;
+}
+.tablelink:hover {
+	background: #8eb947;
+}
+/* Create four equal columns that float next to each other */
+.column {
+  float: left;
+  width: 25%;
+  padding: 1px;
+}
+
+/* Create horizontal green line that spans width */
+.topline {
+width: 100%;
+height: 10px;
+display: block;
+}
+
+/* Create responsive button that spans width */
+.button2 {
+width: 100%;
+height: 50px;
+display: block;
+padding: 13px;
+background: url(/medias/sys_master/images/images/h84/h43/8920920522782/get-these-deals.png) no-repeat center center;
+}
+.button2:hover {
+background-color: #8eb947;
+}
+
+/* Align text vertically */
+.vtext {
+vertical-align:middle;
+height: 135px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: """";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the four columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+  }
+}
+</style></p>
+<p><font size=""+2""><strong>Irrigation Specials</strong></font></p>
+<div style=""background-color:#799F37"" class=""row"">
+<div class=""topline"">&nbsp;</div>
+</div>
+<div class=""row""><!--COLUMN ONE-->
+<div class=""column"">
+<table border=""0"" width=""100%"" cellspacing=""0"" cellpadding=""0"">
+    <tbody>
+        <tr>
+            <td align=""center"" bgcolor=""ffffff""><img src=""&#9;&#9;/medias/sys_master/root/h5c/h8c/8921083674654/irrigation-rainbird-control-zone-kits.jpg"" width=""85%"" alt=""Zone Kits"" /></td>
+        </tr>
+    </tbody>
+</table>
+</div>
+<!--COLUMN TWO-->
+<div class=""column"">
+<table border=""0"" width=""100%"" cellspacing=""0"" cellpadding=""0"">
+    <tbody>
+        <tr>
+            <td align=""center"" bgcolor=""ffffff""><img src=""/medias/sys_master/root/hc4/h1e/8921083510814/irrigation-hunter-hydrawise.jpg"" width=""85%"" alt=""Lesco Sprayer"" /></td>
+        </tr>
+    </tbody>
+</table>
+</div>
+<!--COLUMN THREE-->
+<div class=""column"">
+<table border=""0"" width=""100%"" cellspacing=""0"" cellpadding=""0"">
+    <tbody>
+        <tr>
+            <td align=""center"" bgcolor=""ffffff""><img src=""&#9;&#9;/medias/sys_master/root/h2b/h79/8921081905182/irrigation-rainbird-nozzles.jpg"" width=""85%"" alt=""Rainbird Nozzles"" /></td>
+        </tr>
+    </tbody>
+</table>
+</div>
+<!--COLUMN FOUR-->
+<div class=""column"">
+<table border=""0"" width=""100%"" cellspacing=""0"" cellpadding=""0"">
+    <tbody>
+        <tr>
+            <td align=""center"" bgcolor=""ffffff""><img src=""/medias/sys_master/root/h45/h21/8921081741342/irrigation-nds-catch-basin.jpg"" width=""85%"" alt=""Catch Basin"" /></td>
+        </tr>
+    </tbody>
+</table>
+</div>
+</div>
+<div style=""background-color:#ebebeb"" class=""row""><!--COLUMN ONE TEXT-->
+<div class=""column"">
+<table width=""100%"" cellspacing=""0"" cellpadding=""0"">
+    <tbody>
+        <tr>
+            <td style=""border-right: 1px solid #d7d7d7"" solid="""" class=""vtext"" align=""center"">
+            <p><font size=""+2""><strong>10% OFF</strong></font></p>
+            <p>Residential Control Zone Kits</p>
+            </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+<!--COLUMN TWO TEXT-->
+<div class=""column"">
+<table width=""100%"" cellspacing=""0"" cellpadding=""0"">
+    <tbody>
+        <tr>
+            <td style=""border-right: 1px solid #d7d7d7"" solid="""" class=""vtext"" align=""center"">
+            <p><font size=""+2""><strong>10% OFF</strong></font></p>
+            <p>Hydrawise Family of Controllers</p>
+            </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+<!--COLUMN THREE TEXT-->
+<div class=""column"">
+<table width=""100%"" cellspacing=""0"" cellpadding=""0"">
+    <tbody>
+        <tr>
+            <td style=""border-right: 1px solid #d7d7d7"" solid="""" class=""vtext"" align=""center"">
+            <p><font size=""+2""><strong>10% OFF</strong></font></p>
+            <p>VAN, HE-VAN, and MPR Nozzles</p>
+            </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+<!--COLUMN FOUR TEXT-->
+<div class=""column"">
+<table width=""100%"" cellspacing=""0"" cellpadding=""0"">
+    <tbody>
+        <tr>
+            <td class=""vtext"" align=""center"">
+            <p><font size=""+2""><strong>NOW AVAILABLE</strong></font></p>
+            <p>Large 18&quot; and 24&quot; Catch Basin Kits</p>
+            </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+</div>
+<div style=""background-color:#799F37"" class=""row"">
+<div class=""button2"" onclick=""window.open('/medias/sys_master/root/h1f/h3e/8921073418270/2019-SmartIrrigation.pdf')"" style=""cursor: pointer;""><center></center></div>
+</div>
+<p>&nbsp;</p>";
+;;comp_00000WF1;Smart Lighting Specials;;;"<p><style type=""text/css"">
+* {
+  box-sizing: border-box;
+}
+.newtable {
+spacing:0; padding:0; margin:0; width:100%;
+}
+.tablelink {
+  max-width: 100%;
+  height: 50px;
+  line-height: 50px;
+  background: #799f37;
+  font-size: 20px;
+}
+.tablelink:hover {
+	background: #8eb947;
+}
+/* Create four equal columns that float next to each other */
+.column {
+  float: left;
+  width: 25%;
+  padding: 1px;
+}
+
+/* Create horizontal green line that spans width */
+.topline {
+width: 100%;
+height: 10px;
+display: block;
+}
+
+/* Create responsive button that spans width */
+.button2 {
+width: 100%;
+height: 50px;
+display: block;
+padding: 13px;
+background: url(/medias/sys_master/images/images/h84/h43/8920920522782/get-these-deals.png) no-repeat center center;
+}
+.button2:hover {
+background-color: #8eb947;
+}
+
+/* Align text vertically */
+.vtext {
+vertical-align:middle;
+height: 135px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: """";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the four columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+  }
+}
+</style></p>
+<p><font size=""+2""><strong>Lighting Specials</strong></font></p>
+<div style=""background-color:#799F37"" class=""row"">
+<div class=""topline"">&nbsp;</div>
+</div>
+<div class=""row""><!--COLUMN ONE-->
+<div class=""column"">
+<table border=""0"" width=""100%"" cellspacing=""0"" cellpadding=""0"">
+    <tbody>
+        <tr>
+            <td align=""center"" bgcolor=""ffffff""><img src=""/medias/sys_master/root/h21/h91/8921091211294/lighting-vista-gr5006.jpg"" width=""85%"" alt=""Vista Up Light"" /></td>
+        </tr>
+    </tbody>
+</table>
+</div>
+<!--COLUMN TWO-->
+<div class=""column"">
+<table border=""0"" width=""100%"" cellspacing=""0"" cellpadding=""0"">
+    <tbody>
+        <tr>
+            <td align=""center"" bgcolor=""ffffff""><img src=""/medias/sys_master/root/h04/h07/8921090654238/lighting-vista-pr6500.jpg"" width=""85%"" alt=""Vista Lamp"" /></td>
+        </tr>
+    </tbody>
+</table>
+</div>
+<!--COLUMN THREE-->
+<div class=""column"">
+<table border=""0"" width=""100%"" cellspacing=""0"" cellpadding=""0"">
+    <tbody>
+        <tr>
+            <td align=""center"" bgcolor=""ffffff""><img src=""/medias/sys_master/root/h23/h5f/8921088851998/lighting-protrade-aluminum-mr16.jpg"" width=""85%"" alt=""Pro-Trade Aluminum"" /></td>
+        </tr>
+    </tbody>
+</table>
+</div>
+<!--COLUMN FOUR-->
+<div class=""column"">
+<table border=""0"" width=""100%"" cellspacing=""0"" cellpadding=""0"">
+    <tbody>
+        <tr>
+            <td align=""center"" bgcolor=""ffffff""><img src=""/medias/sys_master/root/hfe/h0e/8921086263326/lighting-protrade-brass-mr16.jpg"" width=""85%"" alt=""Pro-Trade Brass"" /></td>
+        </tr>
+    </tbody>
+</table>
+</div>
+</div>
+<div style=""background-color:#ebebeb"" class=""row""><!--COLUMN ONE TEXT-->
+<div class=""column"">
+<table width=""100%"" cellspacing=""0"" cellpadding=""0"">
+    <tbody>
+        <tr>
+            <td style=""border-right: 1px solid #d7d7d7"" solid="""" class=""vtext"" align=""center"">
+            <p><font size=""+2""><strong>$5 OFF</strong></font></p>
+            <p>Select Pre-lamped Aluminum GR-5006 Up Lights</p>
+            </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+<!--COLUMN TWO TEXT-->
+<div class=""column"">
+<table width=""100%"" cellspacing=""0"" cellpadding=""0"">
+    <tbody>
+        <tr>
+            <td style=""border-right: 1px solid #d7d7d7"" solid="""" class=""vtext"" align=""center"">
+            <p><font size=""+2""><strong>$10 OFF</strong></font></p>
+            <p>Select Pre-lamped Aluminum PR-6500 Path Lights</p>
+            </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+<!--COLUMN THREE TEXT-->
+<div class=""column"">
+<table width=""100%"" cellspacing=""0"" cellpadding=""0"">
+    <tbody>
+        <tr>
+            <td style=""border-right: 1px solid #d7d7d7"" solid="""" class=""vtext"" align=""center"">
+            <p><font size=""+2""><strong>$32.49</strong></font></p>
+            <p>Aluminum Up Light with 3W MR16 LED</p>
+            </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+<!--COLUMN FOUR TEXT-->
+<div class=""column"">
+<table width=""100%"" cellspacing=""0"" cellpadding=""0"">
+    <tbody>
+        <tr>
+            <td class=""vtext"" align=""center"">
+            <p><font size=""+2""><strong>$42.99</strong></font></p>
+            <p>Brass Up Light with 3W MR16 LED</p>
+            </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+</div>
+<div style=""background-color:#799F37"" class=""row"">
+<div class=""button2"" onclick=""window.open('/medias/sys_master/root/h1f/h3e/8921073418270/2019-SmartIrrigation.pdf')"" style=""cursor: pointer;""><center></center></div>
+</div>
+<p>&nbsp;</p>";
+;;comp_00000WF1;Smart Lighting Specials;;;"<p><style type=""text/css"">
+* {
+  box-sizing: border-box;
+}
+.newtable {
+spacing:0; padding:0; margin:0; width:100%;
+}
+.tablelink {
+  max-width: 100%;
+  height: 50px;
+  line-height: 50px;
+  background: #799f37;
+  font-size: 20px;
+}
+.tablelink:hover {
+	background: #8eb947;
+}
+/* Create four equal columns that float next to each other */
+.column {
+  float: left;
+  width: 25%;
+  padding: 1px;
+}
+
+/* Create horizontal green line that spans width */
+.topline {
+width: 100%;
+height: 10px;
+display: block;
+}
+
+/* Create responsive button that spans width */
+.button2 {
+width: 100%;
+height: 50px;
+display: block;
+padding: 13px;
+background: url(/medias/sys_master/images/images/h84/h43/8920920522782/get-these-deals.png) no-repeat center center;
+}
+.button2:hover {
+background-color: #8eb947;
+}
+
+/* Align text vertically */
+.vtext {
+vertical-align:middle;
+height: 135px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: """";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the four columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+  }
+}
+</style></p>
+<p><font size=""+2""><strong>Lighting Specials</strong></font></p>
+<div style=""background-color:#799F37"" class=""row"">
+<div class=""topline"">&nbsp;</div>
+</div>
+<div class=""row""><!--COLUMN ONE-->
+<div class=""column"">
+<table border=""0"" width=""100%"" cellspacing=""0"" cellpadding=""0"">
+    <tbody>
+        <tr>
+            <td align=""center"" bgcolor=""ffffff""><img src=""/medias/sys_master/root/h21/h91/8921091211294/lighting-vista-gr5006.jpg"" width=""85%"" alt=""Vista Up Light"" /></td>
+        </tr>
+    </tbody>
+</table>
+</div>
+<!--COLUMN TWO-->
+<div class=""column"">
+<table border=""0"" width=""100%"" cellspacing=""0"" cellpadding=""0"">
+    <tbody>
+        <tr>
+            <td align=""center"" bgcolor=""ffffff""><img src=""/medias/sys_master/root/h04/h07/8921090654238/lighting-vista-pr6500.jpg"" width=""85%"" alt=""Vista Lamp"" /></td>
+        </tr>
+    </tbody>
+</table>
+</div>
+<!--COLUMN THREE-->
+<div class=""column"">
+<table border=""0"" width=""100%"" cellspacing=""0"" cellpadding=""0"">
+    <tbody>
+        <tr>
+            <td align=""center"" bgcolor=""ffffff""><img src=""/medias/sys_master/root/h23/h5f/8921088851998/lighting-protrade-aluminum-mr16.jpg"" width=""85%"" alt=""Pro-Trade Aluminum"" /></td>
+        </tr>
+    </tbody>
+</table>
+</div>
+<!--COLUMN FOUR-->
+<div class=""column"">
+<table border=""0"" width=""100%"" cellspacing=""0"" cellpadding=""0"">
+    <tbody>
+        <tr>
+            <td align=""center"" bgcolor=""ffffff""><img src=""/medias/sys_master/root/hfe/h0e/8921086263326/lighting-protrade-brass-mr16.jpg"" width=""85%"" alt=""Pro-Trade Brass"" /></td>
+        </tr>
+    </tbody>
+</table>
+</div>
+</div>
+<div style=""background-color:#ebebeb"" class=""row""><!--COLUMN ONE TEXT-->
+<div class=""column"">
+<table width=""100%"" cellspacing=""0"" cellpadding=""0"">
+    <tbody>
+        <tr>
+            <td style=""border-right: 1px solid #d7d7d7"" solid="""" class=""vtext"" align=""center"">
+            <p><font size=""+2""><strong>$5 OFF</strong></font></p>
+            <p>Select Pre-lamped Aluminum GR-5006 Up Lights</p>
+            </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+<!--COLUMN TWO TEXT-->
+<div class=""column"">
+<table width=""100%"" cellspacing=""0"" cellpadding=""0"">
+    <tbody>
+        <tr>
+            <td style=""border-right: 1px solid #d7d7d7"" solid="""" class=""vtext"" align=""center"">
+            <p><font size=""+2""><strong>$10 OFF</strong></font></p>
+            <p>Select Pre-lamped Aluminum PR-6500 Path Lights</p>
+            </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+<!--COLUMN THREE TEXT-->
+<div class=""column"">
+<table width=""100%"" cellspacing=""0"" cellpadding=""0"">
+    <tbody>
+        <tr>
+            <td style=""border-right: 1px solid #d7d7d7"" solid="""" class=""vtext"" align=""center"">
+            <p><font size=""+2""><strong>$32.49</strong></font></p>
+            <p>Aluminum Up Light with 3W MR16 LED</p>
+            </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+<!--COLUMN FOUR TEXT-->
+<div class=""column"">
+<table width=""100%"" cellspacing=""0"" cellpadding=""0"">
+    <tbody>
+        <tr>
+            <td class=""vtext"" align=""center"">
+            <p><font size=""+2""><strong>$42.99</strong></font></p>
+            <p>Brass Up Light with 3W MR16 LED</p>
+            </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+</div>
+<div style=""background-color:#799F37"" class=""row"">
+<div class=""button2"" onclick=""window.open('/medias/sys_master/root/h1f/h3e/8921073418270/2019-SmartIrrigation.pdf')"" style=""cursor: pointer;""><center></center></div>
+</div>
+<p>&nbsp;</p>";
+;;comp_00000WF2;Smart Nursery Specials;;;"<p><style type=""text/css"">
+* {
+  box-sizing: border-box;
+}
+.newtable {
+spacing:0; padding:0; margin:0; width:100%;
+}
+
+.nursery {
+max-width: 100%;
+height: auto;
+}
+
+.tablelink {
+  max-width: 100%;
+  height: 50px;
+  line-height: 50px;
+  background: #799f37;
+  font-size: 20px;
+}
+.tablelink:hover {
+	background: #8eb947;
+}
+/* Create two equal columns that float next to each other */
+.twocolumn {
+  float: left;
+  width: 50%;
+  padding: 1px;
+}
+
+/* Create horizontal green line that spans width */
+.topline {
+width: 100%;
+height: 10px;
+display: block;
+}
+
+/* Create responsive button that spans width */
+.button2 {
+width: 100%;
+height: 50px;
+display: block;
+padding: 13px;
+background: url(/medias/sys_master/images/images/h84/h43/8920920522782/get-these-deals.png) no-repeat center center;
+}
+.button2:hover {
+background-color: #8eb947;
+}
+
+/* Align text vertically */
+.vtext {
+vertical-align:middle;
+height: 135px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: """";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+  }
+}
+</style></p>
+<p><font size=""+2""><strong>Nursery Specials</strong></font></p>
+<div style=""background-color:#799F37"" class=""row"">
+<div class=""topline"">&nbsp;</div>
+</div>
+<div class=""row""><!--COLUMN ONE-->
+<div class=""twocolumn""><center><img class=""nursery"" src=""/medias/sys_master/root/h6f/h76/8921107824670/nursery-select-logo3.jpg"" alt="""" /></center></div>
+<!--COLUMN TWO-->
+<div class=""twocolumn""><center><img class=""nursery"" src=""/medias/sys_master/root/h73/ha2/8921107398686/nursery-direct-image3.jpg"" alt="""" /></center></div>
+</div>
+<div style=""background-color:#ebebeb"" class=""row""><!--COLUMN ONE TEXT-->
+<div class=""twocolumn"">
+<table width=""100%"" cellspacing=""0"" cellpadding=""0"">
+    <tbody>
+        <tr>
+            <td style=""border-right: 1px solid #d7d7d7"" solid="""" class=""vtext"" align=""center"">
+            <p><font size=""+2""><strong>NURSERY SELECT</strong></font></p>
+            <p>SiteOne's Nursery Select line provides popular varieties of higher caliper trees and mature bushes for a full, lush landscape result without the wait time.</p>
+            </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+<!--COLUMN TWO TEXT-->
+<div class=""twocolumn"">
+<table width=""100%"" cellspacing=""0"" cellpadding=""0"">
+    <tbody>
+        <tr>
+            <td class=""vtext"" align=""center"">
+            <p><font size=""+2""><strong>NURSERY DIRECT</strong></font></p>
+            <p>Get top quality and selection delivered direct to your job site, nationwide.</p>
+            </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+</div>
+<div style=""background-color:#799F37"" class=""row"">
+<div class=""button2"" onclick=""window.open('/medias/sys_master/root/h1f/h3e/8921073418270/2019-SmartIrrigation.pdf')"" style=""cursor: pointer;""><center></center></div>
+</div>
+<p>&nbsp;</p>";
+;;comp_00000WF2;Smart Nursery Specials;;;"<p><style type=""text/css"">
+* {
+  box-sizing: border-box;
+}
+.newtable {
+spacing:0; padding:0; margin:0; width:100%;
+}
+
+.nursery {
+max-width: 100%;
+height: auto;
+}
+
+.tablelink {
+  max-width: 100%;
+  height: 50px;
+  line-height: 50px;
+  background: #799f37;
+  font-size: 20px;
+}
+.tablelink:hover {
+	background: #8eb947;
+}
+/* Create two equal columns that float next to each other */
+.twocolumn {
+  float: left;
+  width: 50%;
+  padding: 1px;
+}
+
+/* Create horizontal green line that spans width */
+.topline {
+width: 100%;
+height: 10px;
+display: block;
+}
+
+/* Create responsive button that spans width */
+.button2 {
+width: 100%;
+height: 50px;
+display: block;
+padding: 13px;
+background: url(/medias/sys_master/images/images/h84/h43/8920920522782/get-these-deals.png) no-repeat center center;
+}
+.button2:hover {
+background-color: #8eb947;
+}
+
+/* Align text vertically */
+.vtext {
+vertical-align:middle;
+height: 135px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: """";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+  }
+}
+</style></p>
+<p><font size=""+2""><strong>Nursery Specials</strong></font></p>
+<div style=""background-color:#799F37"" class=""row"">
+<div class=""topline"">&nbsp;</div>
+</div>
+<div class=""row""><!--COLUMN ONE-->
+<div class=""twocolumn""><center><img class=""nursery"" src=""/medias/sys_master/root/h6f/h76/8921107824670/nursery-select-logo3.jpg"" alt="""" /></center></div>
+<!--COLUMN TWO-->
+<div class=""twocolumn""><center><img class=""nursery"" src=""/medias/sys_master/root/h73/ha2/8921107398686/nursery-direct-image3.jpg"" alt="""" /></center></div>
+</div>
+<div style=""background-color:#ebebeb"" class=""row""><!--COLUMN ONE TEXT-->
+<div class=""twocolumn"">
+<table width=""100%"" cellspacing=""0"" cellpadding=""0"">
+    <tbody>
+        <tr>
+            <td style=""border-right: 1px solid #d7d7d7"" solid="""" class=""vtext"" align=""center"">
+            <p><font size=""+2""><strong>NURSERY SELECT</strong></font></p>
+            <p>SiteOne's Nursery Select line provides popular varieties of higher caliper trees and mature bushes for a full, lush landscape result without the wait time.</p>
+            </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+<!--COLUMN TWO TEXT-->
+<div class=""twocolumn"">
+<table width=""100%"" cellspacing=""0"" cellpadding=""0"">
+    <tbody>
+        <tr>
+            <td class=""vtext"" align=""center"">
+            <p><font size=""+2""><strong>NURSERY DIRECT</strong></font></p>
+            <p>Get top quality and selection delivered direct to your job site, nationwide.</p>
+            </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+</div>
+<div style=""background-color:#799F37"" class=""row"">
+<div class=""button2"" onclick=""window.open('/medias/sys_master/root/h1f/h3e/8921073418270/2019-SmartIrrigation.pdf')"" style=""cursor: pointer;""><center></center></div>
+</div>
+<p>&nbsp;</p>";
+;;comp_00000WF5;Smart Nursery Disclaimer;;;"<p><span style=""font-size: smaller;"">Offers valid in-branch only July 1 &ndash; August 31, 2019. Offers not valid for national account or bid project customers. Some products not available at all locations. This promotion may not be combined with other SiteOne coupons, offers, special nets, and/or contract pricing. State restrictions on the sale and use of pesticides apply. Consult the label before purchase or use for full details. Always read and follow the label directions. Offers subject to change. Restrictions apply. All prices shown are in US currency. See branch for details.</span></p>";
+;;comp_00000WF5;Smart Nursery Disclaimer;;;"<p><span style=""font-size: smaller;"">Offers valid in-branch only July 1 &ndash; August 31, 2019. Offers not valid for national account or bid project customers. Some products not available at all locations. This promotion may not be combined with other SiteOne coupons, offers, special nets, and/or contract pricing. State restrictions on the sale and use of pesticides apply. Consult the label before purchase or use for full details. Always read and follow the label directions. Offers subject to change. Restrictions apply. All prices shown are in US currency. See branch for details.</span></p>";
+;;comp_00000WFA;Summer Green Paragraph 1;;;"<div class=""col-container"">
+<p><font size=""+2""><strong>Take advantage of limited-time rebates and rewards from the top turf maintenance brands in the industry.</strong></font></p>
+<div>We've consolidated these programs in a quick and easy online reference tool to maximize your incentives and keep your business growing this summer. Plus, get the knowledge and expertise you need for proper application timing at your local SiteOne&reg; branch.</p>
+</div>";
+;;comp_00000WFA;Summer Green Paragraph 1;;;"<div class=""col-container"">
+<p><font size=""+2""><strong>Take advantage of limited-time rebates and rewards from the top turf maintenance brands in the industry.</strong></font></p>
+<div>We've consolidated these programs in a quick and easy online reference tool to maximize your incentives and keep your business growing this summer. Plus, get the knowledge and expertise you need for proper application timing at your local SiteOne&reg; branch.</p>
+</div>";
+;;comp_00000WFB;Summer Green Offers Paragraph;;;"<p><style type=""text/css"">
+
+* {
+  box-sizing: border-box;
+}
+
+.col-container {
+  display: table;
+  width: 100%;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+.col {
+  display: table-cell;
+  padding: 0 px;
+  width: 25%;
+  min-height: 200px;
+  background-repeat: no-repeat;
+  background-size: 110% auto;
+  background-position: 50% 50%;
+  background-color: white;
+  border-top: 9px solid #799f37;
+}
+
+.content {
+  display: table-cell;
+  padding: 20px;
+  padding-left: 30px;
+  padding-right: 30px;
+  width: 75%;
+  border-top: 9px solid #799f37;
+  border-right: 2px dotted #c2c2c2;
+  border-bottom: 2px dotted #c2c2c2;
+}
+
+.topborder {
+	height: 8px;
+	width: 100%;
+	background-color: #8eb947;
+}
+	
+@media only screen and (max-width: 900px) {
+  .col { 
+    display: block;
+    width: 100%;
+  }
+  .content { 
+    display: block;
+    width: 100%;
+  }
+}
+.custombutton {
+  background-color: #799f37;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+.custombutton:hover {
+background-color: #8eb947;
+}
+</style></p>
+<!-- BAYER -->
+<div class=""col-container"">
+<div class=""col"" style=""background-image: url(/medias/sys_master/root/h1d/h3f/8921230737438/Summer-of-Green-Bayer-600.jpg);"">&nbsp;</div>
+<div class=""content"" style=""background:#ffffff"">
+<p><font size=""+3""><strong>Bayer</strong></font><br />
+<font size=""+2"">SPRING HERBICIDE PROGRAM</font></p>
+<p><font size=""+1"">An exclusive offer for members of MyBayerRewards. Not a member? Sign up <a href=""https://myrewards.cropscience.bayer.com/"" target=""_blank"">here</a>.</font></p>
+<div class=""custombutton"" onclick=""window.open('/medias/sys_master/root/hde/hfe/8921234047006/Bayer-Armada-Summer-2019.pdf')"">Download PDF</div>
+</div>
+</div>
+<p><br />
+<br />
+<!-- FMC --></p>
+<div class=""col-container"">
+<div class=""col"" style=""background-image: url(/medias/sys_master/root/h28/hf2/8921230901278/Summer-of-Green-FMC-600.jpg);"">&nbsp;</div>
+<div class=""content"" style=""background:#ffffff"">
+<p><font size=""+3""><strong>FMC</strong></font><br />
+<font size=""+2"">TRUE CHAMPIONS PROGRAM</font></p>
+<p><font size=""+1"">Enroll for exclusive purchase rewards, solution assurances, and industry commitment initiatives.</font></p>
+<div class=""custombutton"" onclick=""window.open('/medias/sys_master/root/h6e/h32/8921234309150/FMC-True-Champions-Summer-2019.pdf')"">Download PDF</div>
+</div>
+</div>
+<p><br />
+<br />
+<!-- LESCO --></p>
+<div class=""col-container"">
+<div class=""col"" style=""background-image: url(/medias/sys_master/root/hc0/ha2/8921231065118/Summer-of-Green-LESCO-600.jpg);"">&nbsp;</div>
+<div class=""content"" style=""background:#ffffff"">
+<p><font size=""+3""><strong>LESCO</strong></font><br />
+<font size=""+2"">SPRING HERBICIDE PROGRAM</font></p>
+<p><font size=""+1"">Earn distributor credit rewards from Nufarm on bundled product purchases and pick your savings tier.</font></p>
+<div class=""custombutton"" onclick=""window.open('/medias/sys_master/root/h86/h1b/8921234472990/Lesco-NuFarm-Summer-2019.pdf')"">Download PDF</div>
+</div>
+</div>
+<p><br />
+<br />
+<!-- SYNGENTA --></p>
+<div class=""col-container"">
+<div class=""col"" style=""background-image: url(/medias/sys_master/root/heb/h62/8921231228958/Summer-of-Green-Syngenta-600.jpg);"">&nbsp;</div>
+<div class=""content"" style=""background:#ffffff"">
+<p><font size=""+3""><strong>Syngenta</strong></font><br />
+<font size=""+2"">GREENTRUST 365 / MULTIPAK OFFERS</font></p>
+<p><font size=""+1"">Program participants from the lawn and landscape industry can redeem GreenTrust Rewards points for a number of gift card options.</font></p>
+<div class=""custombutton"" onclick=""window.open('/medias/sys_master/root/h3a/h41/8921235062814/Syngenta-GreenTrust-2019.pdf')"">Download PDF</div>
+</div>
+</div>
+<p>&nbsp;</p>";
+;;comp_00000WFB;Summer Green Offers Paragraph;;;"<p><style type=""text/css"">
+
+* {
+  box-sizing: border-box;
+}
+
+.col-container {
+  display: table;
+  width: 100%;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+.col {
+  display: table-cell;
+  padding: 0 px;
+  width: 25%;
+  min-height: 200px;
+  background-repeat: no-repeat;
+  background-size: 110% auto;
+  background-position: 50% 50%;
+  background-color: white;
+  border-top: 9px solid #799f37;
+}
+
+.content {
+  display: table-cell;
+  padding: 20px;
+  padding-left: 30px;
+  padding-right: 30px;
+  width: 75%;
+  border-top: 9px solid #799f37;
+  border-right: 2px dotted #c2c2c2;
+  border-bottom: 2px dotted #c2c2c2;
+}
+
+.topborder {
+	height: 8px;
+	width: 100%;
+	background-color: #8eb947;
+}
+	
+@media only screen and (max-width: 900px) {
+  .col { 
+    display: block;
+    width: 100%;
+  }
+  .content { 
+    display: block;
+    width: 100%;
+  }
+}
+.custombutton {
+  background-color: #799f37;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+.custombutton:hover {
+background-color: #8eb947;
+}
+</style></p>
+<!-- BAYER -->
+<div class=""col-container"">
+<div class=""col"" style=""background-image: url(/medias/sys_master/root/h1d/h3f/8921230737438/Summer-of-Green-Bayer-600.jpg);"">&nbsp;</div>
+<div class=""content"" style=""background:#ffffff"">
+<p><font size=""+3""><strong>Bayer</strong></font><br />
+<font size=""+2"">SPRING HERBICIDE PROGRAM</font></p>
+<p><font size=""+1"">An exclusive offer for members of MyBayerRewards. Not a member? Sign up <a href=""https://myrewards.cropscience.bayer.com/"" target=""_blank"">here</a>.</font></p>
+<div class=""custombutton"" onclick=""window.open('/medias/sys_master/root/hde/hfe/8921234047006/Bayer-Armada-Summer-2019.pdf')"">Download PDF</div>
+</div>
+</div>
+<p><br />
+<br />
+<!-- FMC --></p>
+<div class=""col-container"">
+<div class=""col"" style=""background-image: url(/medias/sys_master/root/h28/hf2/8921230901278/Summer-of-Green-FMC-600.jpg);"">&nbsp;</div>
+<div class=""content"" style=""background:#ffffff"">
+<p><font size=""+3""><strong>FMC</strong></font><br />
+<font size=""+2"">TRUE CHAMPIONS PROGRAM</font></p>
+<p><font size=""+1"">Enroll for exclusive purchase rewards, solution assurances, and industry commitment initiatives.</font></p>
+<div class=""custombutton"" onclick=""window.open('/medias/sys_master/root/h6e/h32/8921234309150/FMC-True-Champions-Summer-2019.pdf')"">Download PDF</div>
+</div>
+</div>
+<p><br />
+<br />
+<!-- LESCO --></p>
+<div class=""col-container"">
+<div class=""col"" style=""background-image: url(/medias/sys_master/root/hc0/ha2/8921231065118/Summer-of-Green-LESCO-600.jpg);"">&nbsp;</div>
+<div class=""content"" style=""background:#ffffff"">
+<p><font size=""+3""><strong>LESCO</strong></font><br />
+<font size=""+2"">SPRING HERBICIDE PROGRAM</font></p>
+<p><font size=""+1"">Earn distributor credit rewards from Nufarm on bundled product purchases and pick your savings tier.</font></p>
+<div class=""custombutton"" onclick=""window.open('/medias/sys_master/root/h86/h1b/8921234472990/Lesco-NuFarm-Summer-2019.pdf')"">Download PDF</div>
+</div>
+</div>
+<p><br />
+<br />
+<!-- SYNGENTA --></p>
+<div class=""col-container"">
+<div class=""col"" style=""background-image: url(/medias/sys_master/root/heb/h62/8921231228958/Summer-of-Green-Syngenta-600.jpg);"">&nbsp;</div>
+<div class=""content"" style=""background:#ffffff"">
+<p><font size=""+3""><strong>Syngenta</strong></font><br />
+<font size=""+2"">GREENTRUST 365 / MULTIPAK OFFERS</font></p>
+<p><font size=""+1"">Program participants from the lawn and landscape industry can redeem GreenTrust Rewards points for a number of gift card options.</font></p>
+<div class=""custombutton"" onclick=""window.open('/medias/sys_master/root/h3a/h41/8921235062814/Syngenta-GreenTrust-2019.pdf')"">Download PDF</div>
+</div>
+</div>
+<p>&nbsp;</p>";
+;;comp_00000WFC;Summer Green Bottom Promo;;;"<p><img src=""/medias/sys_master/root/h7d/hf7/8921231589406/SOG-2019-partners-banner.jpg"" alt="""" /></p>";
+;;comp_00000WFC;Summer Green Bottom Promo;;;"<p><img src=""/medias/sys_master/root/h7d/hf7/8921231589406/SOG-2019-partners-banner.jpg"" alt="""" /></p>";

@@ -1,0 +1,24 @@
+##### For updating Order details email template 
+
+# Import config properties into impex macros for modulegen
+UPDATE GenericItem[processor=de.hybris.platform.commerceservices.impex.impl.ConfigPropertyImportProcessor];pk[unique=true]
+$emailResource=$config-emailResourceValue
+$emailPackageName=$config-emailContextPackageName
+
+# Language
+$lang=en
+
+UPDATE RendererTemplate;code[unique=true];description[lang=$lang];templateScript[lang=$lang,translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+;SiteOne_Email_OrderReadyForPickUp_Body;"Order Ready For PickUp Template";$emailResource/email-orderReadyOrScheduledEmailBody.vm
+;SiteOne_Email_OrderScheduledForDelivery_Body;"Order Scheduled For Delivery Template";$emailResource/email-orderReadyOrScheduledEmailBody.vm
+;siteone_Tracking_Link_Email_Notification_Body;"Tracking Link Email Body";$emailResource/email-orderTrackingLinkEmailBody.vm
+;siteone_Email_Ready_For_Pickup_Body;"Ready For Pickup Email Body";$emailResource/email-readyForPickupBody.vm
+
+
+# Language
+$lang=es
+UPDATE RendererTemplate;code[unique=true];description[lang=$lang];templateScript[lang=$lang,translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+;SiteOne_Email_OrderReadyForPickUp_Body;"Order Ready For PickUp Template";$emailResource/email-orderReadyOrScheduledEmailBody.vm
+;SiteOne_Email_OrderScheduledForDelivery_Body;"Order Scheduled For Delivery Template";$emailResource/email-orderReadyOrScheduledEmailBody.vm
+;siteone_Tracking_Link_Email_Notification_Body;"Tracking Link Email Body";$emailResource/email-orderTrackingLinkEmailBody.vm
+;siteone_Email_Ready_For_Pickup_Body;"Ready For Pickup Email Body";$emailResource/email-readyForPickupBody.vm

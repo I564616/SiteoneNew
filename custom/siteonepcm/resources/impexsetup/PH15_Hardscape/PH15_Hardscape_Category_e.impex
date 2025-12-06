@@ -1,0 +1,39 @@
+$productCatalog=siteoneProductCatalog
+$catalogVersion=catalogversion(catalog(id[default='siteoneProductCatalog']),version[default='Staged'])[unique=true,default='siteoneProductCatalog:Staged']
+$classCatalogVersion=catalogversion(catalog(id[default='siteoneClassification']),version[default='1'])[unique=true,default='siteoneClassification:1']
+$supercategories=source(code, $classCatalogVersion)[unique=true]
+$categories=target(code, $catalogVersion)[unique=true]
+INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories
+;PH1515112;CH01_1515112;
+;PH1515113;CH01_1515113;
+;PH1511;CH01_1511;
+;PH1512;CH01_1512;
+;PH1513110;CH01_1513110;
+;PH1513111;CH01_1513111;
+;PH1513112;CH01_1513112;
+;PH1513113;CH01_1513113;
+;PH1513115;CH01_1513115;
+;PH1514110101;CH01_1514110101;
+;PH1514111;CH01_1514111;
+;PH1514112;CH01_1514112;
+;PH1514113;CH01_1514113;
+;PH1511112;CH01_1511112;
+;PH1514110100;CH01_1514110100;
+;PH1514113101;CH01_1514113101;
+;PH1514113102;CH01_1514113102;
+;PH1514113103;CH01_1514113103;
+;PH1514113104;CH01_1514113104;
+;PH1514113105;CH01_1514113105;
+;PH1514113106;CH01_1514113106;
+;PH1514113107;CH01_1514113107;
+;PH1515110;CH01_1515110;
+;PH1514112101;CH01_1514112101;
+;PH1511110;CH01_1511110;
+;PH1511111;CH01_1511111;
+;PH1515111;CH01_1515111;
+;PH1514113100;CH01_1514113100;
+;PH1514;CH01_1514;
+;PH15;CH01_15;
+;PH1515;CH01_1515;
+
+

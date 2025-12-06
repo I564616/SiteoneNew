@@ -1,0 +1,79 @@
+#CMS Impexes -------------------------
+
+$contentCatalog=siteoneContentCatalog
+$contentCatalogName=SiteOne Content Catalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$productCatalog=siteoneProductCatalog
+$productCatalogName=SiteOne Product Catalog
+$productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$picture=media(code, $contentCV);
+$image=image(code, $contentCV);
+$media=media(code, $contentCV);
+$page=page(uid, $contentCV);
+$contentPage=contentPage(uid, $contentCV);
+$product=product(code, $productCV)
+$category=category(code, $productCV)
+$siteResource=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/contentCatalogs/$contentCatalog
+$productResource=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/productCatalogs/$productCatalog
+$jarResourceCms=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/cockpits/cmscockpit
+$addonExtensionName=siteoneacceleratoraddon
+$medias=medias(code, $contentCV);
+$articleMedia=articleMedia(code, $contentCV);
+$mediaContainer=media(qualifier, $contentCV);
+$siteUid=siteone
+$lang=en
+
+
+INSERT_UPDATE GlobalProductNavigationNode;$contentCV[unique=true];uid[unique=true];name;parent(uid, $contentCV);category(code, $productCV);&nodeRef;sequenceNumber;
+;;AgronomicMaintenanceNavNode;AgronomicMaintenanceNavNode;CategoriesNavNode;SH13;AgronomicMaintenanceNavNode;1;
+
+;;AgroEquipmentNavNode;AgroEquipmentNavNode;AgronomicMaintenanceNavNode;SH1323;AgroEquipmentNavNode;1;
+;;Fertility&NutritionNavNode;Fertility&NutritionNavNode;AgronomicMaintenanceNavNode;SH1315;Fertility&NutritionNavNode;2;
+;;Fertilizer+PesticideCombinationProductsNavNode;Fertilizer + Pesticide Combination ProductsNavNode;AgronomicMaintenanceNavNode;SH1311;Fertilizer+PesticideCombinationProductsNavNode;3;
+;;FieldConditionersNavNode;FieldConditionersNavNode;AgronomicMaintenanceNavNode;SH1320;FieldConditionersNavNode;4;
+;;HydromulchNavNode;HydromulchNavNode;AgronomicMaintenanceNavNode;SH1314;HydromulchNavNode;5;
+;;IceMeltNavNode;IceMeltNavNode;AgronomicMaintenanceNavNode;SH1312;IceMeltNavNode;6;
+#;;AgronomicMaintenanceLandscapeBulbsNavNode;AgronomicMaintenanceLandscapeBulbsNavNode;AgronomicMaintenanceNavNode;SH1313;AgronomicMaintenanceLandscapeBulbsNavNode;6;
+;;PaintNavNode;PaintNavNode;AgronomicMaintenanceNavNode;SH1316;PaintNavNode;7;
+;;PestControlNavNode;PestControlNavNode;AgronomicMaintenanceNavNode;SH1318;PestControlNavNode;8;
+;;PesticidesandOtherRelatedProductsNavNode;PesticidesandOther Related ProductsNavNode;AgronomicMaintenanceNavNode;SH1317;PesticidesandOther Related ProductsNavNode;9;
+;;SeedNavNode;SeedNavNode;AgronomicMaintenanceNavNode;SH1319;SeedNavNode;10;
+;;SpecialtyChemicals&AdjuvantsNavNode;SpecialtyChemicals&AdjuvantsNavNode;AgronomicMaintenanceNavNode;SH1321;SpecialtyChemicals&AdjuvantsNavNode;11;
+;;TreeInjectionProducts&EquipmentNavNode;TreeInjectionProducts&EquipmentNavNode;AgronomicMaintenanceNavNode;SH1322;TreeInjectionProducts&EquipmentNavNode;12;
+
+;;AgroEnginePoweredSpreaderNavNode;enginePoweredSpreaderNavNode;AgroEquipmentNavNode;SH1323110;enginePoweredSpreaderNavNode;1;
+;;AgroHandhelPowerEquipmentNavNode;AgroHandhelPowerEquipmentNavNode;AgroEquipmentNavNode;SH1323111;AgroHandhelPowerEquipmentNavNode;2;
+;;AgroHardscapesNavNode;AgroHardscapesNavNode;AgroEquipmentNavNode;SH1323112;AgroHardscapesNavNode;3;
+;;AgroPartsNavNode;AgroPartsNavNode;AgroEquipmentNavNode;SH1323113;AgroPartsNavNode;4;
+;;AgroRenovationNavNode;AgroRenovationNavNode;AgroEquipmentNavNode;SH1323114;AgroRenovationNavNode;5;
+;;AgroAnoAndIceNavNode;AgroAnoAndIceNavNode;AgroEquipmentNavNode;SH1323115;AgroAnoAndIceNavNode;6;
+;;AgroSpecialityEquipmentNavNode;AgroSpecialityEquipmentNavNode;AgroEquipmentNavNode;SH1323116;AgroSpecialityEquipmentNavNode;7;
+;;AgroSprayersNavNode;AgroSprayersNavNode;AgroEquipmentNavNode;SH1323117;AgroSprayersNavNode;8;
+;;AgroSpreadersNavNode;AgroSpreadersNavNode;AgroEquipmentNavNode;SH1323118;AgroSpreadersNavNode;9;
+
+
+#Level-2  Landscape Supply
+
+INSERT_UPDATE GlobalProductNavigationNode;$contentCV[unique=true];uid[unique=true];name;parent(uid, $contentCV);category(code, $productCV);&nodeRef;sequenceNumber;visible
+
+;;ConsumablesNavNode;ConsumablesNavNode;LandscapeSupplyNavNode;SH1211;ConsumablesNavNode;1;true
+;;LandscapeSupplyEquipmentNavNode;LandscapeSupplyEquipmentNavNode;LandscapeSupplyNavNode;SH1212;LandscapeSupplyEquipmentNavNode;2;false
+;;ErosionControlNavNode;ErosionControlNavNode;LandscapeSupplyNavNode;SH1213;ErosionControlNavNode;2;true
+;;GolfSports&TurfNavNode;GolfSports&TurfNavNode;LandscapeSupplyNavNode;SH1214;GolfSports&TurfNavNode;3;true
+;;InjectionSystemsNavNode;InjectionSystemsNavNode;LandscapeSupplyNavNode;SH1215;InjectionSystemsNavNode;4;true
+;;LandscapeAccessoriesNavNode;LandscapeAccessoriesNavNode;LandscapeSupplyNavNode;SH1216;LandscapeAccessoriesNavNode;5;true
+;;LandscapeSupplySafetyNavNode;LandscapeSupplySafetyNavNode;LandscapeSupplyNavNode;SH1219;LandscapeSupplySafetyNavNode;6;true
+;;LandscapeSupplySodNavNode;LandscapeSupplySodNavNode;LandscapeSupplyNavNode;SH1217;LandscapeSupplySodNavNode;7;true
+;;StormwaterNavNode;StormwaterNavNode;LandscapeSupplyNavNode;SH1218;StormwaterNavNode;8;true
+;;LandscapeSupplyToolsNavNode;LandscapeSupplyToolsNavNode;LandscapeSupplyNavNode;SH1220;LandscapeSupplyToolsNavNode;9;true
+
+
+;;EnginePoweredSpreader/SprayerNavNode;EnginePoweredSpreader/SprayerNavNode;LandscapeSupplyEquipmentNavNode;SH1212110;EnginePoweredSpreader/SprayerNavNode;1;false
+;;HandheldPowerEquipmentNavNode;HandheldPowerEquipmentNavNode;LandscapeSupplyEquipmentNavNode;SH1212111;HandheldPowerEquipmentNavNode;2;false
+#;;EquipmentHardscapesSH1212112NavNode;EquipmentHardscapesSH1212112NavNode;LandscapeSupplyEquipmentNavNode;SH1212112;EquipmentHardscapesSH1212112NavNode;3;false
+;;PartsNavNode;PartsNavNode;LandscapeSupplyEquipmentNavNode;SH1212113;PartsNavNode;3;false
+;;RenovationNavNode;RenovationNavNode;LandscapeSupplyEquipmentNavNode;SH1212114;RenovationNavNode;4;false
+;;Snow&IceNavNode ;Snow&IceNavNode ;LandscapeSupplyEquipmentNavNode;SH1212115;Snow&IceNavNode ;5;false
+;;SpecialtyEquipmentSH1212116NavNode;SpecialtyEquipmentSH1212116NavNode;LandscapeSupplyEquipmentNavNode;SH1212116;SpecialtyEquipmentSH1212116NavNode;6;false
+;;SprayersNavNode;SprayersNavNode;LandscapeSupplyEquipmentNavNode;SH1212117;SprayersNavNode;7;false
+;;SpreadersNavNode;SpreadersNavNode;LandscapeSupplyEquipmentNavNode;SH1212118;SpreadersNavNode;8;false

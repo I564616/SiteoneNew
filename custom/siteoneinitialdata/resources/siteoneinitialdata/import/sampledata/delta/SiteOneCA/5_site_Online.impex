@@ -1,0 +1,170 @@
+# license agreement you entered into with SAP.
+# -----------------------------------------------------------------------
+#
+# Import the CMS Site configuration for the SiteOne store
+#
+
+$productCatalog=siteoneProductCatalog
+$contentCatalog=siteoneContentCatalog
+$usContentCatalogs=siteoneUSContentCatalog
+$caContentCatalogs=siteoneCAContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Online])[default=$contentCatalog:Online]
+$defaultLanguage=en
+$defaultCurrency=USD
+$storeUid=siteone
+$siteUid=siteone-us
+$webServiceSiteUid=$siteUidWS
+$siteMapLangCur=enUsd
+$siteMapUrlLimitPerFile=50000
+$siteMapPage=Homepage,Product,Category,Store,Content
+$customSiteMapUrls=
+
+
+# Import config properties into impex macros
+UPDATE GenericItem[processor=de.hybris.platform.commerceservices.impex.impl.ConfigPropertyImportProcessor];pk[unique=true]
+
+# Import modulegen config properties into impex macros
+$jarResource=$config-jarResource
+
+# Load the storefront context root config param
+$storefrontContextRoot=$config-storefrontContextRoot
+
+
+INSERT_UPDATE CMSSite;uid[unique=true];theme(code);channel(code);stores(uid);contentCatalogs(id);defaultCatalog(id);defaultContentCatalog(id);defaultLanguage(isoCode);urlPatterns;active;previewURL;startingPage(uid,$contentCV);urlEncodingAttributes;defaultPromotionGroup(Identifier)[default=siteonePromoGrp];
+;$siteUid;lambda;B2B;$storeUid;$contentCatalog,$usContentCatalogs;$productCatalog;$contentCatalog;$defaultLanguage;(?i)^https?://qa1\-[^/]*((?![\?\&]site=).)*,(?i)^https?://$siteUid\.[^/]+(|/.*|\?.*)$,(?i)^https?://us\.local:9002$,(?i)^https?://siteone\.[^/]+(|/.*|\?.*)$;true;$storefrontContextRoot/?site=$siteUid;siteonehomepage;language
+
+UPDATE CMSSite;uid[unique=true];productPriceDisclaimer
+;$siteUid;Use of this site is subject to certain <a href="/termsandconditions">Terms and Conditions</a>.<span class="hidden-md hidden-lg"> </span><span class="hidden-xs hidden-sm"><br/></span>Local branch prices may vary from those displayed and inventory levels cannot be guaranteed.
+### SiteMap Config For US Start ###
+UPDATE CMSSite;uid[unique=true];cartRemovalAge;anonymousCartRemovalAge
+;$siteUid;5184000;5184000
+
+INSERT_UPDATE RendererTemplate;&siteMapRenderer;code[unique=true];content(&siteMapMediaId);contextClass;rendererType(code)[default='velocity'];
+;$siteUid-siteMapTemplate;$siteUid-siteMapTemplate;$siteUid-siteMapMedia;de.hybris.platform.acceleratorservices.sitemap.renderer.SiteMapContext;
+
+INSERT_UPDATE SiteMapLanguageCurrency;&siteMapLanguageCurrency;language(isoCode)[unique=true];currency(isocode)[unique=true];
+;enUsd;en;USD
+
+INSERT_UPDATE SiteMapPage;&siteMapPage;code(code)[unique=true];frequency(code)[unique=true];priority[unique=true];active[default=true]
+;Homepage;Homepage;daily;1.0;;
+;Product;Product;weekly;0.6;;
+#;CategoryLanding;CategoryLanding;daily;0.9;;
+;Category;Category;daily;0.8;;
+;Store;Store;weekly;0.6;;
+;Content;Content;monthly;0.4;;
+#;Custom;Custom;daily;1.0;;
+
+INSERT_UPDATE SiteMapConfig;&siteMapConfigId;configId[unique=true];siteMapLanguageCurrencies(&siteMapLanguageCurrency);siteMapPages(&siteMapPage);siteMapTemplate(&siteMapRenderer)[unique=true];
+;$siteUidSiteMapConfig;$siteUidSiteMapConfig;$siteMapLangCur;$siteMapPage;$siteUid-siteMapTemplate;$customSiteMapUrls;
+
+INSERT_UPDATE CatalogUnawareMedia;&siteMapMediaId;code[unique=true];realfilename;@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='text/plain']
+;$siteUid-siteMapMedia;$siteUid-siteMapMedia;siteMapTemplate.vm;$jarResource/site-siteMapTemplate.vm;
+
+INSERT_UPDATE SiteMapMediaCronJob;code[unique=true];job(code)[default=siteMapMediaJob];contentSite(uid)[default=$siteUid];sessionLanguage(isoCode)[default=en]
+;$siteUid-SiteMapMediaUSJob;;;;$siteMapUrlLimitPerFile
+
+### SiteMap Config For US End ###
+
+$productCatalog=siteoneProductCatalog
+$caProductCatalog=siteoneCAProductCatalog
+$contentCatalog=siteoneContentCatalog
+$usContentCatalogs=siteoneUSContentCatalog
+$caContentCatalogs=siteoneCAContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Online])[default=$contentCatalog:Online]
+$cacontentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$caContentCatalogs]),CatalogVersion.version[default=Online])[default=$caContentCatalogs:Online]
+$defaultLanguage=en
+$defaultCurrency=CAD
+$storeUid=siteoneCA
+$siteUid=siteone-ca
+$webServiceSiteUid=$siteUidWS
+$siteMapLangCur=enCad
+$siteMapUrlLimitPerFile=50000
+$siteMapPage=Homepage,Product,Category,Store,Content
+$customSiteMapUrls=
+
+
+# Import config properties into impex macros
+UPDATE GenericItem[processor=de.hybris.platform.commerceservices.impex.impl.ConfigPropertyImportProcessor];pk[unique=true]
+
+# Import modulegen config properties into impex macros
+$jarResource=$config-jarResource
+
+# Load the storefront context root config param
+$storefrontContextRoot=$config-storefrontContextRoot
+
+INSERT_UPDATE CMSSite;uid[unique=true];theme(code);channel(code);stores(uid);contentCatalogs(id);defaultCatalog(id);defaultLanguage(isoCode);urlPatterns;active;previewURL;startingPage(uid,$cacontentCV);urlEncodingAttributes;solrFacetSearchConfiguration(name);defaultPromotionGroup(Identifier)[default=siteoneCAPromoGrp];
+;$siteUid;lambda;B2B;$storeUid;$contentCatalog,$caContentCatalogs;$caProductCatalog;$defaultLanguage;(?i)^https?://qa1ca\-[^/]*((?![\?\&]site=).)*,(?i)^https?://$siteUid\.[^/]+(|/.*|\?.*)$,(?i)^https?://ca\.local:9002$,(?i)^https?://preview.siteone\.[^/]+(|/.*|\?.*)$;true;$storefrontContextRoot/?site=$siteUid;siteonecanada;language;siteoneIndexCA
+
+UPDATE CMSSite;uid[unique=true];cartRemovalAge;anonymousCartRemovalAge
+;$siteUid;5184000;5184000
+### SiteMap Config For CA Start ###
+
+INSERT_UPDATE Currency ; isocode[unique=true] ; active ; base  ; conversion ; digits ; symbol 
+                        ; CAD                  ;true    ;false  ; 1,38       ;2       ;$
+
+INSERT_UPDATE RendererTemplate;&siteMapRenderer;code[unique=true];content(&siteMapMediaId);contextClass;rendererType(code)[default='velocity'];
+;$siteUid-siteMapTemplate;$siteUid-siteMapTemplate;$siteUid-siteMapMedia;de.hybris.platform.acceleratorservices.sitemap.renderer.SiteMapContext;
+
+UPDATE CMSSite;uid[unique=true];productPriceDisclaimer
+;$siteUid;Use of this site is subject to certain <a href="/termsandconditions">Terms and Conditions</a>.<span class="hidden-md hidden-lg"> </span><span class="hidden-xs hidden-sm"><br/></span>Local branch prices may vary from those displayed and inventory levels cannot be guaranteed.
+INSERT_UPDATE SiteMapLanguageCurrency;&siteMapLanguageCurrency;language(isoCode)[unique=true];currency(isocode)[unique=true];
+;enCad;en;CAD
+
+INSERT_UPDATE SiteMapPage;&siteMapPage;code(code)[unique=true];frequency(code)[unique=true];priority[unique=true];active[default=true]
+;Homepage;Homepage;daily;1.0;;
+;Product;Product;weekly;0.6;;
+#;CategoryLanding;CategoryLanding;daily;0.9;;
+;Category;Category;daily;0.8;;
+;Store;Store;weekly;0.6;;
+;Content;Content;monthly;0.4;;
+#;Custom;Custom;daily;1.0;;
+
+INSERT_UPDATE SiteMapConfig;&siteMapConfigId;configId[unique=true];siteMapLanguageCurrencies(&siteMapLanguageCurrency);siteMapPages(&siteMapPage);siteMapTemplate(&siteMapRenderer)[unique=true];
+;$siteUidSiteMapConfig;$siteUidSiteMapConfig;$siteMapLangCur;$siteMapPage;$siteUid-siteMapTemplate;$customSiteMapUrls;
+
+INSERT_UPDATE CatalogUnawareMedia;&siteMapMediaId;code[unique=true];realfilename;@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='text/plain']
+;$siteUid-siteMapMedia;$siteUid-siteMapMedia;siteMapTemplate.vm;$jarResource/site-siteMapTemplate.vm;
+
+INSERT_UPDATE SiteMapMediaCronJob;code[unique=true];job(code)[default=siteMapMediaJob];contentSite(uid)[default=$siteUid];sessionLanguage(isoCode)[default=en]
+;$siteUid-SiteMapMediaCAJob;;;;$siteMapUrlLimitPerFile
+
+### SiteMap Config For CA End ###
+
+$productCatalog=siteoneProductCatalog
+$contentCatalog=siteoneContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Online])[default=$contentCatalog:Online]
+$defaultLanguage=en
+$defaultCurrency=USD
+$storeUid=siteone
+$siteUid=siteone
+$webServiceSiteUid=$siteUidWS
+$siteMapLangCur=enUsd
+$siteMapUrlLimitPerFile=50000
+$siteMapPage=Homepage,Product,Category,Store,Content
+$customSiteMapUrls=
+
+# Import config properties into impex macros
+UPDATE GenericItem[processor=de.hybris.platform.commerceservices.impex.impl.ConfigPropertyImportProcessor];pk[unique=true]
+
+# Import modulegen config properties into impex macros
+$jarResource=$config-jarResource
+
+# Load the storefront context root config param
+$storefrontContextRoot=$config-storefrontContextRoot
+
+# CMS Site
+
+UPDATE CMSSite;uid[unique=true];urlPatterns;active;;
+;$siteUid;;false;
+
+# Language
+$lang=en
+
+# Create CMS Site
+UPDATE CMSSite;uid[unique=true];name[lang=$lang];locale[lang=$lang]
+ ;siteone-us;"SiteOne US";en_GB
+ ;siteone-ca;"SiteOne CA";en_GB
+
+UPDATE CMSSite;uid[unique=true];cartRemovalCronJob(code);uncollectedOrdersCronJob(code);siteMapConfig(configId)
+;siteone-us;siteone-CartRemovalJob;siteone-UncollectedOrdersJob;siteoneSiteMapConfig
+;siteone-ca;siteone-CartRemovalJob;siteone-UncollectedOrdersJob;siteone-caSiteMapConfig

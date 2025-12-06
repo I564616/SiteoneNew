@@ -1,0 +1,4 @@
+INSERT_UPDATE SiteOneFeatureSwitch;key[unique=true];value
+;MobileAppForceUpgrade;true
+;MobileAppMinSuppAndroidVersion;5.0
+;MobileAppMinSuppIOSVersion;44

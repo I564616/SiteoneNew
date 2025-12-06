@@ -1,0 +1,74 @@
+
+## Impexes for category nav nodes in header
+
+$contentCatalog=siteoneContentCatalog
+$contentCatalogName=SiteOne Content Catalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$productCatalog=siteoneProductCatalog
+$productCatalogName=SiteOne Product Catalog
+$productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$picture=media(code, $contentCV);
+$image=image(code, $contentCV);
+$media=media(code, $contentCV);
+$page=page(uid, $contentCV);
+$contentPage=contentPage(uid, $contentCV);
+$product=product(code, $productCV)
+$category=category(code, $productCV)
+$siteResource=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/contentCatalogs/$contentCatalog
+$productResource=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/productCatalogs/$productCatalog
+$jarResourceCms=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/cockpits/cmscockpit
+$addonExtensionName=siteoneacceleratoraddon
+$medias=medias(code, $contentCV);
+$articleMedia=articleMedia(code, $contentCV);
+$mediaContainer=media(qualifier, $contentCV);
+$siteUid=siteone
+$lang=en
+
+
+## Hardscape
+UPDATE GlobalProductNavigationNode;pk[unique=true];uid;name
+;8796102755392;HardscapeAccessoriesNavNode;HardscapeAccessoriesNavNode
+;8796102591552;WoodProductsNavNode;WoodProductsNavNode
+;8796102722624;EdgingL2NavNode;EdgingL2NavNode
+;8796102952000;Grills&AccessoriesNavNode;Grills&AccessoriesNavNode
+;8796102984768;PaverRestraintsNavNode;PaverRestraintsNavNode
+;8796103083072;LandscapeEdgingNavNode;LandscapeEdgingNavNode
+;8796103050304;EdgingAccessoriesNavNode;EdgingAccessoriesNavNode
+;8796103017536;TreeRingsNavNode;TreeRingsNavNode
+
+INSERT_UPDATE GlobalProductNavigationNode;$contentCV[unique=true];uid[unique=true];name;parent(uid, $contentCV);category(code, $productCV);&nodeRef;sequenceNumber;visible
+;;SiteFurnishingsNavNode;SiteFurnishingsNavNode;ArchitecturalproductsNavNode;SH1511113;SiteFurnishingsNavNode;2;true
+;;LumberL3NavNode;LumberL3NavNode;WoodProductsNavNode;SH1512111;LumberL3NavNode;2;true
+;;Tiles&PaversNavNode;Tiles&PaversNavNode;WoodProductsNavNode;SH1512112;Tiles&PaversNavNode;3;true
+;;GardenCenterProductsNavNode;GardenCenterProductsNavNode;OutdoorLivingNavNode;SH1513114;GardenCenterProductsNavNode;5;true
+;;OutdoorDecorNavNode;OutdoorDecorNavNode;OutdoorLivingNavNode;SH1513116;OutdoorDecorNavNode;6;true
+;;ManufacturedHardscapeProductsL2NavNode;ManufacturedHardscapeProductsL2NavNode;Hardscapes&OutdoorLivingNavNode;SH1516;ManufacturedHardscapeProductsL2NavNode;6;true
+;;Clay&BrickPaversNavNode;Clay&BrickPaversNavNode;ManufacturedHardscapeProductsL2NavNode;SH1516110;Clay&BrickPaversNavNode;1;true
+;;Manufactured&CulturedStonesNavNode;Manufactured&CulturedStonesNavNode;ManufacturedHardscapeProductsL2NavNode;SH1516111;Manufactured&CulturedStonesNavNode;2;true
+;;PaversNavNode;PaversNavNode;ManufacturedHardscapeProductsL2NavNode;SH1516112;PaversNavNode;3;true
+;;PermeablePaversNavNode;PermeablePaversNavNode;ManufacturedHardscapeProductsL2NavNode;SH1516113;PermeablePaversNavNode;4;true
+;;PorcelainNavNode;PorcelainNavNode;ManufacturedHardscapeProductsL2NavNode;SH1516114;PorcelainNavNode;5;true
+;;WallBlocksNavNode;WallBlocksNavNode;ManufacturedHardscapeProductsL2NavNode;SH1516115;WallBlocksNavNode;6;true
+;;NaturalStoneL2NavNode;NaturalStoneL2NavNode;Hardscapes&OutdoorLivingNavNode;SH1517;NaturalStoneL2NavNode;7;true
+;;BouldersNavNode;BouldersNavNode;NaturalStoneL2NavNode;SH1517110;BouldersNavNode;1;true
+;;BulkConstructionAggregatesNavNode;BulkConstructionAggregatesNavNode;NaturalStoneL2NavNode;SH1517111;BulkConstructionAggregatesNavNode;2;true
+;;DimensionalStoneFlooringNavNode;DimensionalStoneFlooringNavNode;NaturalStoneL2NavNode;SH1517112;DimensionalStoneFlooringNavNode;3;true
+;;DimStoneCapTreadsSill&AccessoriesNavNode;DimStoneCapTreadsSill&AccessoriesNavNode;NaturalStoneL2NavNode;SH1517113;DimStoneCapTreadsSill&AccessoriesNavNode;4;true
+;;BaggedDecorativeStonesNavNode;BaggedDecorativeStonesNavNode;NaturalStoneL2NavNode;SH1517114;BaggedDecorativeStonesNavNode;5;true
+;;FlagstoneNavNode;FlagstoneNavNode;NaturalStoneL2NavNode;SH1517115;FlagstoneNavNode;6;true
+;;GardenAccentsNavNode;GardenAccentsNavNode;NaturalStoneL2NavNode;SH1517116;GardenAccentsNavNode;7;true
+;;Building&StackedStonesNavNode;Building&StackedStonesNavNode;NaturalStoneL2NavNode;SH1517117;Building&StackedStonesNavNode;8;true
+;;SawnThinVeneerNavNode;SawnThinVeneerNavNode;NaturalStoneL2NavNode;SH1517118;SawnThinVeneerNavNode;9;true
+;;IrregularSlabsSteps&OutcroppingsNavNode;IrregularSlabsSteps&OutcroppingsNavNode;NaturalStoneL2NavNode;SH1517119;IrregularSlabsSteps&OutcroppingsNavNode;10;true
+;;VeneerPanelsNavNode;VeneerPanelsNavNode;NaturalStoneL2NavNode;SH1517120;VeneerPanelsNavNode;11;true
+;;BulkDecorativeAggregatesNavNode;BulkDecorativeAggregatesNavNode;NaturalStoneL2NavNode;SH1517121;BulkDecorativeAggregatesNavNode;12;true
+;;Cobblestone&EdgingNavNode;Cobblestone&EdgingNavNode;NaturalStoneL2NavNode;SH1517122;Cobblestone&EdgingNavNode;13;true
+;;RiverRock&CobblesNavNode;RiverRock&CobblesNavNode;NaturalStoneL2NavNode;SH1517123;RiverRock&CobblesNavNode;14;true
+;;Masonry&ConstructionProductsNavNode;Masonry&ConstructionProductsNavNode;Hardscapes&OutdoorLivingNavNode;SH1518;Masonry&ConstructionProductsNavNode;8;true
+;;AsphaltNavNode;AsphaltNavNode;Masonry&ConstructionProductsNavNode;SH1518110;AsphaltNavNode;1;true
+;;BrickNavNode;BrickNavNode;Masonry&ConstructionProductsNavNode;SH1518111;BrickNavNode;2;true
+;;ChemicalsNavNode;ChemicalsNavNode;Masonry&ConstructionProductsNavNode;SH1518112;ChemicalsNavNode;3;true
+;;Parts&AccessoriesL3NavNode;Parts&AccessoriesL3NavNode;Masonry&ConstructionProductsNavNode;SH1518113;Parts&AccessoriesL3NavNode;4;true
+;;Steel&MetalConstructionProductsNavNode;Steel&MetalConstructionProductsNavNode;Masonry&ConstructionProductsNavNode;SH1518114;Steel&MetalConstructionProductsNavNode;5;true
+;;StuccoNavNode;StuccoNavNode;Masonry&ConstructionProductsNavNode;SH1518115;StuccoNavNode;6;true
+;;PedestalsNavNode;PedestalsNavNode;HardscapeAccessoriesNavNode;SH1515114;PedestalsNavNode;5;true

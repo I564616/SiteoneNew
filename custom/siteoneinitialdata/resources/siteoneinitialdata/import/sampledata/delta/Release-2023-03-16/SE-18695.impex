@@ -1,0 +1,11 @@
+$productCatalog=siteoneProductCatalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+
+Update genericVariantProduct[batchmode=true];itemtype(code)[unique=true];$catalogVersion;regionallyAssorted[default='false'];secretSku[default='false']
+;GenericVariantProduct;;
+
+$productCatalog=siteoneProductCatalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Online'])[unique=true,default=$productCatalog:Online]
+
+Update genericVariantProduct[batchmode=true];itemtype(code)[unique=true];$catalogVersion;regionallyAssorted[default='false'];secretSku[default='false']
+;GenericVariantProduct;;

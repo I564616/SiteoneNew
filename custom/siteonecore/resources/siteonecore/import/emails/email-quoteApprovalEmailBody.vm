@@ -1,0 +1,501 @@
+## messageSource=classpath:/siteonecore/messages/email-quoteApproval_$lang.properties
+#macro( genHtmlBoldFont $text )
+<font color="#414a4f" size="2" ><b>$text</b></font>
+#end
+#macro(genHtmlLinkStartTag $url)
+<a href="$url"><font color="#666666">
+#end
+#macro(genHtmlLinkEndTag)
+</font></a>
+#end
+#macro(genHtmlLink $url $textColor $bodyContent)
+<a href="$url"><font color="$textColor">$bodyContent</font></a>
+#end
+#set($showLineNumberModified = false)
+#foreach($entry in $ctx.modifiedItemDetails)
+  #if($entry.lineNumber && $entry.lineNumber != "")
+    #set($showLineNumberModified = true)
+    #break
+  #end
+#end
+
+#set($showLineNumberItem = false)
+#foreach($entry in $ctx.itemDetails)
+  #if($entry.lineNumber && $entry.lineNumber != "")
+    #set($showLineNumberItem = true)
+    #break
+  #end
+#end
+#if(${ctx.countryBaseSiteID} == "siteone-ca") 
+<table width="100%" cellpadding="0" cellspacing="0" border="0" align="center" style="max-width: 600px; min-width: 400px; font-size: 15px; font-family: Arial, Helvetica, sans-serif; color: #000000; border: 1px solid #ccc;">
+	<thead>
+		<tr>
+			<th colspan="6" valign="left" align="left">
+				<a style="text-decoration:none;" href="${ctx.baseThemeUrl}">
+					<img title="SiteoneLogo" src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/SiteoneLogo.jpg" alt="SiteoneLogo" width="200">
+				</a>
+			</th>
+			<th colspan="6" valign="right" align="right" style="padding: 15px;">
+				<a style="text-decoration:none; padding-right: 15px;" href="https://www.facebook.com/siteonesupplycanada/">
+					<img src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/Print_facebook_color.png" alt="Facebook" title="Facebook" width="24">
+				</a>
+				<a style="text-decoration:none; padding-right: 15px;" href="https://www.instagram.com/Siteonesupplycanada/">
+					<img src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/Print_instagram_color.png" alt="Instagram" title="Instagram" width="24">
+				</a>
+				<a style="text-decoration:none;" href="https://x.com/SiteOneCanada">
+					<img src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/Print_twitter_color.png" alt="X" title="X" width="24">
+				</a>
+			</th>
+		</tr>
+	</thead>
+	<tbody style="padding:25px;" cellpadding="20" cellspacing="20">
+		<tr>
+			<td colspan="12">
+				<p style="padding: 20px; margin: 0; background-color: #f1f2f2; color:#414244; font-weight:bold;">${ctx.approverName},<br><br>
+				You have an update on the quote from ${ctx.customerName}.</p>
+			</td>
+		</tr>
+		#if(${ctx.isFullQuotes})
+			#if(${ctx.modifiedItemDetails})
+				<tr>
+					<td colspan="12" style="padding:35px 25px 15px 25px; color: #5a5b5d; line-height: 25px; font-weight: bold;">
+						${ctx.customerName} has approved the full <a href="${ctx.baseThemeUrl}/my-account/my-quotes/${ctx.quoteNumber}" style="color: #78A22F; text-decoration:none !important; text-decoration:none;" target="_blank">Quote #${ctx.quoteNumber}</a> for order, with ${ctx.modifiedItemDetails.size()} edit#if(${ctx.modifiedItemDetails.size()} != '1')s#end:
+					</td>
+				</tr>
+			#else
+				<tr>
+					<td colspan="12" style="padding:35px 25px 15px 25px; color: #5a5b5d; line-height: 25px; font-weight: bold;">
+						${ctx.customerName} has approved the full <a href="${ctx.baseThemeUrl}/my-account/my-quotes/${ctx.quoteNumber}" style="color: #78A22F; text-decoration:none !important; text-decoration:none;" target="_blank">Quote #${ctx.quoteNumber}</a> to be converted to an order.
+					</td>
+				</tr>
+			#end
+		#else
+			#if(${ctx.modifiedItemDetails})
+				<tr>
+					<td colspan="12" style="padding:35px 25px 15px 25px; color: #5a5b5d; line-height: 25px; font-weight: bold;">
+						${ctx.customerName} has approved ${ctx.itemCount} item#if(${ctx.itemCount} != '1')s#end from <a href="${ctx.baseThemeUrl}/my-account/my-quotes/${ctx.quoteNumber}" style="color: #78A22F; text-decoration:none !important; text-decoration:none;" target="_blank">Quote #${ctx.quoteNumber}</a> for order, with ${ctx.modifiedItemDetails.size()} edit#if(${ctx.modifiedItemDetails.size()} != '1')s#end:
+					</td>
+				</tr>
+			#else
+				<tr>
+					<td colspan="12" style="padding:35px 25px 15px 25px; color: #5a5b5d; line-height: 25px; font-weight: bold;">
+						${ctx.customerName} has approved ${ctx.itemCount} item#if(${ctx.itemCount} != '1')s#end from <a href="${ctx.baseThemeUrl}/my-account/my-quotes/${ctx.quoteNumber}" style="color: #78A22F; text-decoration:none !important; text-decoration:none;" target="_blank">Quote #${ctx.quoteNumber}</a> for order:
+					</td>
+				</tr>
+			#end
+		#end
+		<tr>
+			<td colspan="3" width="22%" style="padding:0px 10px 15px 25px; color: #5a5b5d; line-height: 25px; vertical-align: top; font-weight: bold;">
+				PO Number:
+			</td>
+			<td colspan="9" style="padding:0px 25px 15px 10px; color: #5a5b5d; line-height: 25px;">
+				#if(${ctx.poNumber})
+                    ${ctx.poNumber}
+                #else
+                    Not Provided
+                #end
+			</td>
+		</tr>
+		<tr>
+			<td colspan="3" width="22%" style="padding:0px 10px 15px 25px; color: #5a5b5d; line-height: 25px; vertical-align: top; font-weight: bold;">
+				Notes:
+			</td>
+			<td colspan="9" style="padding:0px 25px 15px 10px; color: #5a5b5d; line-height: 25px;">
+                #if(${ctx.optionalNotes} && ${ctx.optionalNotes} != '')
+                    ${ctx.optionalNotes}
+                #else
+                    -
+                #end
+			</td>
+		</tr>
+            <tr>
+                <td colspan="12" style="padding:0px 25px 15px 25px; color: #5a5b5d; line-height: 25px;">
+                #if(${ctx.modifiedItemDetails} && ${ctx.modifiedItemDetails} != '')
+                    The customer has been notified that the requested quantity edits could affect the originally quoted price.</br>                   
+                        <b style="color: #000000;">Next steps:</b> Upon converting this quote to an order, <b style="color: #000000">please make the requested quantity edits on the resulting order <i>(not on the quote itself)</i>.</b>
+                    #end
+                </td>
+            </tr>
+        #if(${ctx.isFullQuotes})
+        <tr>
+            <td colspan="12">
+                #if(${ctx.modifiedItemDetails})
+                    <table width="100%" cellpadding="0" cellspacing="0" border="0" align="center" style="max-width: 600px; min-width: 400px; font-size: 12px; font-family: Arial, Helvetica, sans-serif; color: #000000; line-height: 18px; padding: 20px; text-align: center;">
+                        <tbody>
+                            <tr style="font-weight: 700; text-align: left; color: #EF8700;">
+                                <td colspan="12" width="100%" style="padding: 10px; border-top: 1px solid #EF8700; border-right: 1px solid #EF8700; border-left: 1px solid #EF8700;">${ctx.modifiedItemDetails.size()} item#if(${ctx.modifiedItemDetails.size()} != '1')s are #else is #end approved with requested quantity updates:</td>
+                            </tr>
+                            <tr style="text-transform: uppercase; background-color: #5D5D5D; color: #fff; border: 1px solid #5d5d5d; font-weight: 700; vertical-align: top;">
+                                #if($showLineNumberModified)
+                                <td colspan="1" width="9%" style="padding: 10px; border-right: 1px solid #999;">LN</td>
+                                #end
+                                <td colspan="3" width="30%" style="padding: 10px; border-right: 1px solid #999; text-align: left;">ITEM # DESCRIPTION</td>
+                                <td colspan="2" width="14%" style="padding: 10px; border-right: 1px solid #999;">QTY</td>
+                                <td colspan="2" width="19%" style="padding: 10px; border-right: 1px solid #999;">UNIT PRICE</td>
+                                <td colspan="2" width="9%" style="padding: 10px; border-right: 1px solid #999;">UOM</td>
+                                <td colspan="2" width="19%" style="padding: 10px;">EXT. PRICE</td>
+                            </tr>
+                            #set( $loopindex1 = 0 )
+                            #foreach( $entry in $ctx.modifiedItemDetails )
+                                #set( $loopindex1 = $loopindex1 + 1 )
+								#set( $stringQty = $entry.quantity )
+								#set( $numberQty = $stringQty * 1 )
+								#set( $intQty = $numberQty.intValue() )
+                                <tr style="background-color: #if($loopindex1 % 2 != 0 ) #F1F6E9 #else #FBFDF8 #end; vertical-align: top;">
+                                    #if($showLineNumberModified)
+                                    <td colspan="1" width="9%" style="padding: 10px; font-weight: bold; border-bottom: 1px solid #DAD9D9; border-left: 1px solid #DAD9D9;">${entry.lineNumber}</td>
+                                    #end    
+                                    <td colspan="3" width="30%" style="padding: 10px; text-align: left; border-bottom: 1px solid #DAD9D9;"><span style="font-weight: bold;">${entry.itemNumber}</span><br>${entry.itemDescription}</td>
+                                    <td colspan="2" width="14%" style="padding: 10px; border-bottom: 1px solid #DAD9D9;"><b>${entry.approvedQty}</b><p style="color: #5A5B5D; font-size: 10px; margin-top: 5px; margin-bottom: 0;"><i>(Quoted: $intQty)</i></p></td>
+                                    <td colspan="2" width="19%" style="padding: 10px; border-bottom: 1px solid #DAD9D9;">$${entry.unitPrice}</td>
+                                    <td colspan="2" width="9%" style="padding: 10px; border-bottom: 1px solid #DAD9D9;">${entry.UOM}</td>
+                                    <td colspan="2" width="19%" style="padding: 10px; border-bottom: 1px solid #DAD9D9; border-right: 1px solid #DAD9D9;">$${entry.extPrice}</td>
+                                </tr>
+                            #end
+                        </tbody>
+                    </table>
+                #end
+            </td>
+        </tr>
+        #else
+        <tr>
+            <td colspan="12">
+                #if(${ctx.modifiedItemDetails})
+                    <table width="100%" cellpadding="0" cellspacing="0" border="0" align="center" style="max-width: 600px; min-width: 400px; font-size: 12px; font-family: Arial, Helvetica, sans-serif; color: #000000; line-height: 18px; padding: 20px; text-align: center;">
+                        <tbody>
+                            <tr style="font-weight: 700; text-align: left; color: #EF8700;">
+                                <td colspan="12" width="100%" style="padding: 10px; border-top: 1px solid #EF8700; border-right: 1px solid #EF8700; border-left: 1px solid #EF8700;">${ctx.modifiedItemDetails.size()} item#if(${ctx.modifiedItemDetails.size()} != '1')s are #else is #end approved with requested quantity updates:</td>
+                            </tr>
+                            <tr style="text-transform: uppercase; background-color: #5D5D5D; color: #fff; border: 1px solid #5d5d5d; font-weight: 700; vertical-align: top;">
+                                #if($showLineNumberModified)
+                                <td colspan="1" width="9%" style="padding: 10px; border-right: 1px solid #999;">LN</td>
+                                #end
+                                <td colspan="3" width="30%" style="padding: 10px; border-right: 1px solid #999; text-align: left;">ITEM # DESCRIPTION</td>
+                                <td colspan="2" width="14%" style="padding: 10px; border-right: 1px solid #999;">QTY</td>
+                                <td colspan="2" width="19%" style="padding: 10px; border-right: 1px solid #999;">UNIT PRICE</td>
+                                <td colspan="2" width="9%" style="padding: 10px; border-right: 1px solid #999;">UOM</td>
+                                <td colspan="2" width="19%" style="padding: 10px;">EXT. PRICE</td>
+                            </tr>
+                            #set( $loopindex1 = 0 )
+                            #foreach( $entry in $ctx.modifiedItemDetails )
+                                #set( $loopindex1 = $loopindex1 + 1 )
+								#set( $stringQty = $entry.quantity )
+								#set( $numberQty = $stringQty * 1 )
+								#set( $intQty = $numberQty.intValue() )
+                                <tr style="background-color: #if($loopindex1 % 2 != 0 ) #F1F6E9 #else #FBFDF8 #end; vertical-align: top;">
+                                    #if($showLineNumberModified)
+                                    <td colspan="1" width="9%" style="padding: 10px; font-weight: bold; border-bottom: 1px solid #DAD9D9; border-left: 1px solid #DAD9D9;">${entry.lineNumber}</td>
+                                    #end
+                                    <td colspan="3" width="30%" style="padding: 10px; text-align: left; border-bottom: 1px solid #DAD9D9;"><span style="font-weight: bold;">${entry.itemNumber}</span><br>${entry.itemDescription}</td>
+                                    <td colspan="2" width="14%" style="padding: 10px; border-bottom: 1px solid #DAD9D9;"><b>${entry.approvedQty}</b><p style="color: #5A5B5D; font-size: 10px; margin-top: 5px; margin-bottom: 0;"><i>(Quoted: $intQty)</i></p></td>
+                                    <td colspan="2" width="19%" style="padding: 10px; border-bottom: 1px solid #DAD9D9;">$${entry.unitPrice}</td>
+                                    <td colspan="2" width="9%" style="padding: 10px; border-bottom: 1px solid #DAD9D9;">${entry.UOM}</td>
+                                    <td colspan="2" width="19%" style="padding: 10px; border-bottom: 1px solid #DAD9D9; border-right: 1px solid #DAD9D9;">$${entry.extPrice}</td>
+                                </tr>
+                            #end
+                        </tbody>
+                    </table>
+                #end
+                #if(${ctx.itemDetails})
+                    <table width="100%" cellpadding="0" cellspacing="0" border="0" align="center" style="max-width: 600px; min-width: 400px; font-size: 12px; font-family: Arial, Helvetica, sans-serif; color: #000000; line-height: 18px; padding: 20px; text-align: center;">
+                        <tbody>
+                            #if(${ctx.modifiedItemDetails})
+                                <tr style="font-weight: 700; text-align: left;">
+                                    <td colspan="12" width="100%" style="padding: 10px; border-top: 1px solid #999; border-right: 1px solid #999; border-left: 1px solid #999;">${ctx.itemDetails.size()} item#if(${ctx.itemDetails.size()} != '1')s are #else is #end approved without updates:</td>
+                                </tr>
+                            #end
+                            <tr style="text-transform: uppercase; background-color: #5D5D5D; color: #fff; border: 1px solid #5d5d5d; font-weight: 700; vertical-align: top;">
+                                #if($showLineNumberItem)
+                                <td colspan="1" width="9%" style="padding: 10px; border-right: 1px solid #999;">LN</td>
+                                #end
+                                <td colspan="3" width="30%" style="padding: 10px; border-right: 1px solid #999; text-align: left;">ITEM # DESCRIPTION</td>
+                                <td colspan="2" width="14%" style="padding: 10px; border-right: 1px solid #999;">QTY</td>
+                                <td colspan="2" width="19%" style="padding: 10px; border-right: 1px solid #999;">UNIT PRICE</td>
+                                <td colspan="2" width="9%" style="padding: 10px; border-right: 1px solid #999;">UOM</td>
+                                <td colspan="2" width="19%" style="padding: 10px;">EXT. PRICE</td>
+                            </tr>
+                            #set( $loopindex2 = 0 )
+                            #foreach( $entry in $ctx.itemDetails )
+                                 #set( $loopindex2 = $loopindex2 + 1 )
+								 #set( $stringQty = $entry.quantity )
+								#set( $numberQty = $stringQty * 1 )
+								#set( $intQty = $numberQty.intValue() )
+                                <tr style="background-color: #if($loopindex2 % 2 != 0 ) #f5f6f6 #else #fff #end; vertical-align: top;">
+                                    #if($showLineNumberItem)
+                                    <td colspan="1" width="9%" style="padding: 10px; font-weight: bold; border-bottom: 1px solid #DAD9D9; border-left: 1px solid #DAD9D9;">${entry.lineNumber}</td>
+                                    #end
+                                    <td colspan="3" width="30%" style="padding: 10px; text-align: left; border-bottom: 1px solid #DAD9D9;"><span style="font-weight: bold;">${entry.itemNumber}</span><br>${entry.itemDescription}</td>
+                                    <td colspan="2" width="14%" style="padding: 10px; border-bottom: 1px solid #DAD9D9;">$intQty</td>
+                                    <td colspan="2" width="19%" style="padding: 10px; border-bottom: 1px solid #DAD9D9;">$${entry.unitPrice}</td>
+                                    <td colspan="2" width="9%" style="padding: 10px; border-bottom: 1px solid #DAD9D9;">${entry.UOM}</td>
+                                    <td colspan="2" width="19%" style="padding: 10px; border-bottom: 1px solid #DAD9D9; border-right: 1px solid #DAD9D9;">$${entry.extPrice}</td>
+                                </tr>
+                            #end
+                        </tbody>
+                    </table>
+                #end
+            </td>
+        </tr>
+        #end
+		<tr>
+			<td valign="top" colspan="12">
+				<p style="padding: 20px; font-size: 16px; background-color: #f1f2f2; font-weight:bold; margin: 15px 0 0 0;">Customer Contact Information</p>
+			</td>
+		</tr>
+	</tbody>
+	<tfoot>
+		<tr>
+			<td colspan="12" style="padding:35px 25px; font-size: 14px; line-height: 20px; color: #5a5b5d;">
+                #if((${ctx.accountName} && ${ctx.accountName} != '') && (${ctx.accountId} && ${ctx.accountId} != '' ))
+                    ${ctx.accountName}&nbsp;${ctx.accountId}</br>
+                #end
+                #if(${ctx.customerName} && ${ctx.customerName} != '')
+                    ${ctx.customerName}</br>
+                #end
+                #if(${ctx.phoneNumber} && ${ctx.phoneNumber} != '')
+                    ${ctx.phoneNumber}</br>
+                #end
+                #if(${ctx.customerEmailAddress} && ${ctx.customerEmailAddress} != '')
+                    ${ctx.customerEmailAddress}
+                #end
+			</td>
+		</tr>
+	</tfoot>
+</table>
+#else
+<table width="100%" cellpadding="0" cellspacing="0" border="0" align="center" style="max-width: 600px; min-width: 400px; font-size: 15px; font-family: Arial, Helvetica, sans-serif; color: #000000; border: 1px solid #ccc;">
+	<thead>
+		<tr>
+			<th colspan="6" valign="left" align="left">
+				<a style="text-decoration:none;" href="${ctx.baseThemeUrl}">
+					<img title="SiteoneLogo" src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/SiteoneLogo.jpg" alt="SiteoneLogo" width="200">
+				</a>
+			</th>
+			<th colspan="6" valign="right" align="right" style="padding: 15px;">
+				<a style="text-decoration:none; padding-right: 15px;" href="https://www.facebook.com/SiteOneLandscape/">
+					<img src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/Print_facebook_color.png" alt="Facebook" title="Facebook" width="24">
+				</a>
+				<a style="text-decoration:none; padding-right: 15px;" href="https://www.instagram.com/siteonesupply/">
+					<img src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/Print_instagram_color.png" alt="Instagram" title="Instagram" width="24">
+				</a>
+				<a style="text-decoration:none;" href="https://x.com/SiteOneSupply">
+					<img src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/Print_twitter_color.png" alt="X" title="X" width="24">
+				</a>
+			</th>
+		</tr>
+	</thead>
+	<tbody style="padding:25px;" cellpadding="20" cellspacing="20">
+		<tr>
+			<td colspan="12">
+				<p style="padding: 20px; margin: 0; background-color: #f1f2f2; color:#414244; font-weight:bold;">${ctx.approverName},<br><br>
+				You have an update on the quote from ${ctx.customerName}.</p>
+			</td>
+		</tr>
+		#if(${ctx.isFullQuotes})
+			#if(${ctx.modifiedItemDetails})
+				<tr>
+					<td colspan="12" style="padding:35px 25px 15px 25px; color: #5a5b5d; line-height: 25px; font-weight: bold;">
+						${ctx.customerName} has approved the full <a href="${ctx.baseThemeUrl}/my-account/my-quotes/${ctx.quoteNumber}" style="color: #78A22F; text-decoration:none !important; text-decoration:none;" target="_blank">Quote #${ctx.quoteNumber}</a> for order, with ${ctx.modifiedItemDetails.size()} edit#if(${ctx.modifiedItemDetails.size()} != '1')s#end:
+					</td>
+				</tr>
+			#else
+				<tr>
+					<td colspan="12" style="padding:35px 25px 15px 25px; color: #5a5b5d; line-height: 25px; font-weight: bold;">
+						${ctx.customerName} has approved the full <a href="${ctx.baseThemeUrl}/my-account/my-quotes/${ctx.quoteNumber}" style="color: #78A22F; text-decoration:none !important; text-decoration:none;" target="_blank">Quote #${ctx.quoteNumber}</a> to be converted to an order.
+					</td>
+				</tr>
+			#end
+		#else
+			#if(${ctx.modifiedItemDetails})
+				<tr>
+					<td colspan="12" style="padding:35px 25px 15px 25px; color: #5a5b5d; line-height: 25px; font-weight: bold;">
+						${ctx.customerName} has approved ${ctx.itemCount} item#if(${ctx.itemCount} != '1')s#end from <a href="${ctx.baseThemeUrl}/my-account/my-quotes/${ctx.quoteNumber}" style="color: #78A22F; text-decoration:none !important; text-decoration:none;" target="_blank">Quote #${ctx.quoteNumber}</a> for order, with ${ctx.modifiedItemDetails.size()} edit#if(${ctx.modifiedItemDetails.size()} != '1')s#end:
+					</td>
+				</tr>
+			#else
+				<tr>
+					<td colspan="12" style="padding:35px 25px 15px 25px; color: #5a5b5d; line-height: 25px; font-weight: bold;">
+						${ctx.customerName} has approved ${ctx.itemCount} item#if(${ctx.itemCount} != '1')s#end from <a href="${ctx.baseThemeUrl}/my-account/my-quotes/${ctx.quoteNumber}" style="color: #78A22F; text-decoration:none !important; text-decoration:none;" target="_blank">Quote #${ctx.quoteNumber}</a> for order:
+					</td>
+				</tr>
+			#end
+		#end
+		<tr>
+			<td colspan="3" width="22%" style="padding:0px 10px 15px 25px; color: #5a5b5d; line-height: 25px; vertical-align: top; font-weight: bold;">
+				PO Number:
+			</td>
+			<td colspan="9" style="padding:0px 25px 15px 10px; color: #5a5b5d; line-height: 25px;">
+				#if(${ctx.poNumber})
+                    ${ctx.poNumber}
+                #else
+                    Not Provided
+                #end
+			</td>
+		</tr>
+		<tr>
+			<td colspan="3" width="22%" style="padding:0px 10px 15px 25px; color: #5a5b5d; line-height: 25px; vertical-align: top; font-weight: bold;">
+				Notes:
+			</td>
+			<td colspan="9" style="padding:0px 25px 15px 10px; color: #5a5b5d; line-height: 25px;">
+                #if(${ctx.optionalNotes} && ${ctx.optionalNotes} != '')
+                    ${ctx.optionalNotes}
+                #else
+                    -
+                #end
+			</td>
+		</tr>
+            <tr>
+                <td colspan="12" style="padding:0px 25px 15px 25px; color: #5a5b5d; line-height: 25px;">
+                #if(${ctx.modifiedItemDetails} && ${ctx.modifiedItemDetails} != '')
+                    The customer has been notified that the requested quantity edits could affect the originally quoted price.</br>                   
+                        <b style="color: #000000;">Next steps:</b> Upon converting this quote to an order, <b style="color: #000000">please make the requested quantity edits on the resulting order <i>(not on the quote itself)</i>.</b>
+                    #end
+                </td>
+            </tr>
+        #if(${ctx.isFullQuotes})
+        <tr>
+            <td colspan="12">
+                #if(${ctx.modifiedItemDetails})
+                    <table width="100%" cellpadding="0" cellspacing="0" border="0" align="center" style="max-width: 600px; min-width: 400px; font-size: 12px; font-family: Arial, Helvetica, sans-serif; color: #000000; line-height: 18px; padding: 20px; text-align: center;">
+                        <tbody>
+                            <tr style="font-weight: 700; text-align: left; color: #EF8700;">
+                                <td colspan="12" width="100%" style="padding: 10px; border-top: 1px solid #EF8700; border-right: 1px solid #EF8700; border-left: 1px solid #EF8700;">${ctx.modifiedItemDetails.size()} item#if(${ctx.modifiedItemDetails.size()} != '1')s are #else is #end approved with requested quantity updates:</td>
+                            </tr>
+                            <tr style="text-transform: uppercase; background-color: #5D5D5D; color: #fff; border: 1px solid #5d5d5d; font-weight: 700; vertical-align: top;">
+                                #if($showLineNumberModified)
+                                <td colspan="1" width="9%" style="padding: 10px; border-right: 1px solid #999;">LN</td>
+                                #end
+                                <td colspan="3" width="30%" style="padding: 10px; border-right: 1px solid #999; text-align: left;">ITEM # DESCRIPTION</td>
+                                <td colspan="2" width="14%" style="padding: 10px; border-right: 1px solid #999;">QTY</td>
+                                <td colspan="2" width="19%" style="padding: 10px; border-right: 1px solid #999;">UNIT PRICE</td>
+                                <td colspan="2" width="9%" style="padding: 10px; border-right: 1px solid #999;">UOM</td>
+                                <td colspan="2" width="19%" style="padding: 10px;">EXT. PRICE</td>
+                            </tr>
+                            #set( $loopindex1 = 0 )
+                            #foreach( $entry in $ctx.modifiedItemDetails )
+                                #set( $loopindex1 = $loopindex1 + 1 )
+								#set( $stringQty = $entry.quantity )
+								#set( $numberQty = $stringQty * 1 )
+								#set( $intQty = $numberQty.intValue() )
+                                <tr style="background-color: #if($loopindex1 % 2 != 0 ) #F1F6E9 #else #FBFDF8 #end; vertical-align: top;">
+                                    #if($showLineNumberModified)
+                                    <td colspan="1" width="9%" style="padding: 10px; font-weight: bold; border-bottom: 1px solid #DAD9D9; border-left: 1px solid #DAD9D9;">${entry.lineNumber}</td>
+                                    #end
+                                    <td colspan="3" width="30%" style="padding: 10px; text-align: left; border-bottom: 1px solid #DAD9D9;"><span style="font-weight: bold;">${entry.itemNumber}</span><br>${entry.itemDescription}</td>
+                                    <td colspan="2" width="14%" style="padding: 10px; border-bottom: 1px solid #DAD9D9;"><b>${entry.approvedQty}</b><p style="color: #5A5B5D; font-size: 10px; margin-top: 5px; margin-bottom: 0;"><i>(Quoted: $intQty)</i></p></td>
+                                    <td colspan="2" width="19%" style="padding: 10px; border-bottom: 1px solid #DAD9D9;">$${entry.unitPrice}</td>
+                                    <td colspan="2" width="9%" style="padding: 10px; border-bottom: 1px solid #DAD9D9;">${entry.UOM}</td>
+                                    <td colspan="2" width="19%" style="padding: 10px; border-bottom: 1px solid #DAD9D9; border-right: 1px solid #DAD9D9;">$${entry.extPrice}</td>
+                                </tr>
+                            #end
+                        </tbody>
+                    </table>
+                #end
+            </td>
+        </tr>
+        #else
+        <tr>
+            <td colspan="12">
+                #if(${ctx.modifiedItemDetails})
+                    <table width="100%" cellpadding="0" cellspacing="0" border="0" align="center" style="max-width: 600px; min-width: 400px; font-size: 12px; font-family: Arial, Helvetica, sans-serif; color: #000000; line-height: 18px; padding: 20px; text-align: center;">
+                        <tbody>
+                            <tr style="font-weight: 700; text-align: left; color: #EF8700;">
+                                <td colspan="12" width="100%" style="padding: 10px; border-top: 1px solid #EF8700; border-right: 1px solid #EF8700; border-left: 1px solid #EF8700;">${ctx.modifiedItemDetails.size()} item#if(${ctx.modifiedItemDetails.size()} != '1')s are #else is #end approved with requested quantity updates:</td>
+                            </tr>
+                            <tr style="text-transform: uppercase; background-color: #5D5D5D; color: #fff; border: 1px solid #5d5d5d; font-weight: 700; vertical-align: top;">
+                                #if($showLineNumberModified)
+                                <td colspan="1" width="9%" style="padding: 10px; border-right: 1px solid #999;">LN</td>
+                                #end
+                                <td colspan="3" width="30%" style="padding: 10px; border-right: 1px solid #999; text-align: left;">ITEM # DESCRIPTION</td>
+                                <td colspan="2" width="14%" style="padding: 10px; border-right: 1px solid #999;">QTY</td>
+                                <td colspan="2" width="19%" style="padding: 10px; border-right: 1px solid #999;">UNIT PRICE</td>
+                                <td colspan="2" width="9%" style="padding: 10px; border-right: 1px solid #999;">UOM</td>
+                                <td colspan="2" width="19%" style="padding: 10px;">EXT. PRICE</td>
+                            </tr>
+                            #set( $loopindex1 = 0 )
+                            #foreach( $entry in $ctx.modifiedItemDetails )
+                                #set( $loopindex1 = $loopindex1 + 1 )
+								#set( $stringQty = $entry.quantity )
+								#set( $numberQty = $stringQty * 1 )
+								#set( $intQty = $numberQty.intValue() )
+                                <tr style="background-color: #if($loopindex1 % 2 != 0 ) #F1F6E9 #else #FBFDF8 #end; vertical-align: top;">
+                                    #if($showLineNumberModified)
+                                    <td colspan="1" width="9%" style="padding: 10px; font-weight: bold; border-bottom: 1px solid #DAD9D9; border-left: 1px solid #DAD9D9;">${entry.lineNumber}</td>
+                                    #end
+                                    <td colspan="3" width="30%" style="padding: 10px; text-align: left; border-bottom: 1px solid #DAD9D9;"><span style="font-weight: bold;">${entry.itemNumber}</span><br>${entry.itemDescription}</td>
+                                    <td colspan="2" width="14%" style="padding: 10px; border-bottom: 1px solid #DAD9D9;"><b>${entry.approvedQty}</b><p style="color: #5A5B5D; font-size: 10px; margin-top: 5px; margin-bottom: 0;"><i>(Quoted: $intQty)</i></p></td>
+                                    <td colspan="2" width="19%" style="padding: 10px; border-bottom: 1px solid #DAD9D9;">$${entry.unitPrice}</td>
+                                    <td colspan="2" width="9%" style="padding: 10px; border-bottom: 1px solid #DAD9D9;">${entry.UOM}</td>
+                                    <td colspan="2" width="19%" style="padding: 10px; border-bottom: 1px solid #DAD9D9; border-right: 1px solid #DAD9D9;">$${entry.extPrice}</td>
+                                </tr>
+                            #end
+                        </tbody>
+                    </table>
+                #end
+                #if(${ctx.itemDetails})
+                    <table width="100%" cellpadding="0" cellspacing="0" border="0" align="center" style="max-width: 600px; min-width: 400px; font-size: 12px; font-family: Arial, Helvetica, sans-serif; color: #000000; line-height: 18px; padding: 20px; text-align: center;">
+                        <tbody>
+                            #if(${ctx.modifiedItemDetails})
+                                <tr style="font-weight: 700; text-align: left;">
+                                    <td colspan="12" width="100%" style="padding: 10px; border-top: 1px solid #999; border-right: 1px solid #999; border-left: 1px solid #999;">${ctx.itemDetails.size()} item#if(${ctx.itemDetails.size()} != '1')s are #else is #end approved without updates:</td>
+                                </tr>
+                            #end
+                            <tr style="text-transform: uppercase; background-color: #5D5D5D; color: #fff; border: 1px solid #5d5d5d; font-weight: 700; vertical-align: top;">
+                                #if($showLineNumberItem)
+                                <td colspan="1" width="9%" style="padding: 10px; border-right: 1px solid #999;">LN</td>
+                                #end
+                                <td colspan="3" width="30%" style="padding: 10px; border-right: 1px solid #999; text-align: left;">ITEM # DESCRIPTION</td>
+                                <td colspan="2" width="14%" style="padding: 10px; border-right: 1px solid #999;">QTY</td>
+                                <td colspan="2" width="19%" style="padding: 10px; border-right: 1px solid #999;">UNIT PRICE</td>
+                                <td colspan="2" width="9%" style="padding: 10px; border-right: 1px solid #999;">UOM</td>
+                                <td colspan="2" width="19%" style="padding: 10px;">EXT. PRICE</td>
+                            </tr>
+                            #set( $loopindex2 = 0 )
+                            #foreach( $entry in $ctx.itemDetails )
+                                 #set( $loopindex2 = $loopindex2 + 1 )
+								 #set( $stringQty = $entry.quantity )
+								#set( $numberQty = $stringQty * 1 )
+								#set( $intQty = $numberQty.intValue() )
+                                <tr style="background-color: #if($loopindex2 % 2 != 0 ) #f5f6f6 #else #fff #end; vertical-align: top;">
+                                    #if($showLineNumberItem)
+                                    <td colspan="1" width="9%" style="padding: 10px; font-weight: bold; border-bottom: 1px solid #DAD9D9; border-left: 1px solid #DAD9D9;">${entry.lineNumber}</td>
+                                    #end
+                                    <td colspan="3" width="30%" style="padding: 10px; text-align: left; border-bottom: 1px solid #DAD9D9;"><span style="font-weight: bold;">${entry.itemNumber}</span><br>${entry.itemDescription}</td>
+                                    <td colspan="2" width="14%" style="padding: 10px; border-bottom: 1px solid #DAD9D9;">$intQty</td>
+                                    <td colspan="2" width="19%" style="padding: 10px; border-bottom: 1px solid #DAD9D9;">$${entry.unitPrice}</td>
+                                    <td colspan="2" width="9%" style="padding: 10px; border-bottom: 1px solid #DAD9D9;">${entry.UOM}</td>
+                                    <td colspan="2" width="19%" style="padding: 10px; border-bottom: 1px solid #DAD9D9; border-right: 1px solid #DAD9D9;">$${entry.extPrice}</td>
+                                </tr>
+                            #end
+                        </tbody>
+                    </table>
+                #end
+            </td>
+        </tr>
+        #end
+		<tr>
+			<td valign="top" colspan="12">
+				<p style="padding: 20px; font-size: 16px; background-color: #f1f2f2; font-weight:bold; margin: 15px 0 0 0;">Customer Contact Information</p>
+			</td>
+		</tr>
+	</tbody>
+	<tfoot>
+		<tr>
+			<td colspan="12" style="padding:35px 25px; font-size: 14px; line-height: 20px; color: #5a5b5d;">
+                #if((${ctx.accountName} && ${ctx.accountName} != '') && (${ctx.accountId} && ${ctx.accountId} != '' ))
+                    ${ctx.accountName}&nbsp;${ctx.accountId}</br>
+                #end
+                #if(${ctx.customerName} && ${ctx.customerName} != '')
+                    ${ctx.customerName}</br>
+                #end
+                #if(${ctx.phoneNumber} && ${ctx.phoneNumber} != '')
+                    ${ctx.phoneNumber}</br>
+                #end
+                #if(${ctx.customerEmailAddress} && ${ctx.customerEmailAddress} != '')
+                    ${ctx.customerEmailAddress}
+                #end
+			</td>
+		</tr>
+	</tfoot>
+</table>
+#end

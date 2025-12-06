@@ -1,0 +1,308 @@
+# -----------------------------------------------------------------------
+# [y] hybris Platform
+#
+# Copyright (c) 2017 SAP SE or an SAP affiliate company.  All rights reserved.
+#
+# This software is the confidential and proprietary information of SAP
+# ("Confidential Information"). You shall not disclose such Confidential
+# Information and shall use it only in accordance with the terms of the
+# license agreement you entered into with SAP.
+# -----------------------------------------------------------------------
+#
+# Import the Solr configuration for the SiteOne store
+#
+$contentCatalog=siteoneContentCatalog
+$productCatalog=siteoneProductCatalog
+$catalogVersions=catalogVersions(catalog(id),version);
+$serverConfigName=siteoneSolrServerConfig
+$indexConfigName=siteoneSolrIndexConfig
+$searchConfigName=siteonePageSize
+$searchEventConfigName=siteoneEventPageSize
+$facetSearchConfigName=siteoneIndex
+$facetSearchConfigDescription=SiteOne Solr Index
+$searchIndexNamePrefix=siteone
+$solrIndexedType=siteoneProductType
+$indexBaseSite=siteone
+$indexLanguages=en,es
+$indexCurrencies=USD
+
+$solrContentSearchIndexedType=siteoneContentSearchType
+$contentSearchConfigName=contentSearchIndex
+$contentSearchConfigDescription=Content Search Solr Index
+
+$solrEventSearchIndexedType=siteoneEventSearchType
+$eventSearchConfigName=eventSearchIndex
+$eventSearchConfigDescription=Event Search Solr Index
+
+INSERT_UPDATE SolrFacetSearchConfig;name[unique=true];description;indexNamePrefix;languages(isocode);currencies(isocode);solrServerConfig(name);solrSearchConfig(description);solrIndexConfig(name);solrIndexedTypes(identifier);enabledLanguageFallbackMechanism;$catalogVersions
+;$facetSearchConfigName;$facetSearchConfigDescription;$searchIndexNamePrefix;$indexLanguages;$indexCurrencies;$serverConfigName;$searchConfigName;$indexConfigName;$solrIndexedType;true;$productCatalog:Online,$productCatalog:Staged
+
+INSERT_UPDATE SolrFacetSearchConfig;name[unique=true];description;indexNamePrefix;languages(isocode);currencies(isocode);solrServerConfig(name);solrSearchConfig(description);solrIndexConfig(name);solrIndexedTypes(identifier);enabledLanguageFallbackMechanism;$catalogVersions
+;$contentSearchConfigName;$contentSearchConfigDescription;$searchIndexNamePrefix;$indexLanguages;$indexCurrencies;$serverConfigName;$searchConfigName;$indexConfigName;$solrContentSearchIndexedType;true;$contentCatalog:Online,$contentCatalog:Staged
+
+INSERT_UPDATE SolrFacetSearchConfig;name[unique=true];description;indexNamePrefix;languages(isocode);currencies(isocode);solrServerConfig(name);solrSearchConfig(description);solrIndexConfig(name);solrIndexedTypes(identifier);enabledLanguageFallbackMechanism;$catalogVersions
+;$eventSearchConfigName;$eventSearchConfigDescription;$searchIndexNamePrefix;$indexLanguages;$indexCurrencies;$serverConfigName;$searchEventConfigName;$indexConfigName;$solrEventSearchIndexedType;true;$contentCatalog:Online,$contentCatalog:Staged
+
+##-------------------------------------------------------------------------------------------------------------
+##PLP/SERP Facet Translation
+
+$lang=es
+$indexedType=siteoneProductType
+UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true,default=$indexedType];name[unique=true];displayName[lang=$lang]
+;siteoneProductType;socode;código
+;siteoneProductType;somanufacturerName;Nombre del Fabricante
+;siteoneProductType;soname;Nombre
+;siteoneProductType;socategory;Muestra resultados por
+;siteoneProductType;soavailableInStores;Disponible en mi sucursal
+;siteoneContentSearchType;socontenttags;Etiquetas de contenido
+;siteoneEventSearchType;sostate;Ubicación
+;siteoneEventSearchType;soeventdate;Fecha
+;siteoneProductType;lndscpAmperageRating;Amperaje
+;siteoneProductType;lndscpAirflow;Flujo de aire
+;siteoneProductType;lndscpAdjustmentType;Tipo de Ajuste
+;siteoneProductType;lndscpAngle;Ángulo
+;siteoneProductType;lghtAverageLife;Promedio de Vida
+;siteoneProductType;irgBackgroundColor;Color de Fondo
+;siteoneProductType;Maintenance_applicationtime;Tiempo de Aplicación
+;siteoneProductType;lndscpBatteryCapacity;Capacidad de Batería
+;siteoneProductType;lndscpBatteryType;Tipo de Batería
+;siteoneProductType;lghtBeamAngle;Ángulo del Haz de Luz
+;siteoneProductType;lndscpBendRadius;Radio de Curva
+;siteoneProductType;lndscpBladeLength;Longitud de Hoja
+;siteoneProductType;lndscpBladeMaterial;Material de la Hoja
+;siteoneProductType;lndscpBladeSize;Tamaño de la Hoja
+;siteoneProductType;lndscpBladeThickness;Espesor de Hoja
+;siteoneProductType;lndscpBladeType;Tipo de Hoja
+;siteoneProductType;soproductBrandNameFacet;Marca
+;siteoneProductType;nrsryBloomColor;Color de Florecimiento
+;siteoneProductType;Maintenance_bloomtime;Florecimiento
+;siteoneProductType;lghtLightColor;Color de Luz
+;siteoneProductType;irgBodyMaterial;Material del Cuerpo
+;siteoneProductType;Maintenance_bulbsize;Tamaño de Bulbo
+;siteoneProductType;lghtBulbSpacing;Bulb Spacing
+;siteoneProductType;lndscpCapacity;Capacidad
+;siteoneProductType;Maintenance_capacity;Capacidad
+;siteoneProductType;lndscpCartridgesIncluded;Cartuchos incluidos
+;siteoneProductType;irgCaseMaterial;Material de Estuche
+;siteoneProductType;lndscpCFM;PCM
+;siteoneProductType;irgHPRating;Tasa HP
+;siteoneProductType;lndscpChargingSystem;Sistema de Carga
+;siteoneProductType;lndscpClosureType;Tipo de Cierre
+;siteoneProductType;lndscpChargingCapacity;Capacidad de Carga
+;siteoneProductType;Maintenance_color;Color
+;siteoneProductType;lndscpColor;Color
+;siteoneProductType;lghtColorTemperature;Temperatura del Color
+;siteoneProductType;irgColor;Color
+;siteoneProductType;lndscpCompactionDepth;Profundidad de Compactación
+;siteoneProductType;Maintenance_compositions;Componentes
+;siteoneProductType;lndscpConnectionSize;Tamaño de Conexión
+;siteoneProductType;irgConnectionSize;Tamaño de Conexión
+;siteoneProductType;irgConnectionType;Tipo de Conexión
+;siteoneProductType;irgConnectorType;Tipo de Conector
+;siteoneProductType;lndscpContainerSize;Tamaño del Contenedor
+;siteoneProductType;Maintenance_containersize;Tamaño del Contenedor
+;siteoneProductType;irgContainerSize;Tamaño del Contenedor
+;siteoneProductType;lndscpContainerType;Tipo de Contenedor
+;siteoneProductType;lndscpCordedBanded;Unidos por Cordón/Banda
+;siteoneProductType;lndscpCoolingCapacity;Capacidad de Enfriamiento
+;siteoneProductType;Maintenance_coveragearea;Área de Cobertura
+;siteoneProductType;lndscpCuff;Brazalete
+;siteoneProductType;lndscpCuttingDepth;Profundidad de Corte
+;siteoneProductType;lndscpCuttingCapacity;Capacidad de Corte
+;siteoneProductType;lndscpDepth;Profundidad
+;siteoneProductType;lndscpCuttingStrippingCapacity;Capacidad de Corte/Pelado
+;siteoneProductType;lndscpDiameter;Diámetro
+;siteoneProductType;lghtDimmable;Regulable
+;siteoneProductType;lndscpDisposableReusable;Desechable/ Reutilizable
+;siteoneProductType;lndscpDisplay;Monitor
+;siteoneProductType;irgDripperSpacing;Espaciamiento de Goteros
+;siteoneProductType;irgDripTubeType;Tipo de Tubo de Goteo
+;siteoneProductType;irgEnclosure;Coberturas
+;siteoneProductType;irgLength;Longitud
+;siteoneProductType;lndscpEyewearSize;Tamaño de Gafa
+;siteoneProductType;lndscpEngineType;Tipo de Motor
+;siteoneProductType;lndscpFabricWeight;Peso de la Tela
+;siteoneProductType;lghtEquivalentWattage;Equivalencia de Vatios
+;siteoneProductType;lndscpFaceWeight;Peso del Césped
+;siteoneProductType;lndscpFacepieceMaterial;Material de Careta
+;siteoneProductType;nrsryFallColor;Color Otoñal
+;siteoneProductType;lndscpFenceMeshSize;CercaTamaño de Malla en Cerca
+;siteoneProductType;lghtFinish;Acabado
+;siteoneProductType;irgFittingType;Tipo de Encaje
+;siteoneProductType;lndscpFitsWaistSize;Se adapta al Tamaño de Cintura
+;siteoneProductType;lndscpFlagSize;Tamaño de la Bandera
+;siteoneProductType;lndscpFlowRate;Flujo Volumétrico
+;siteoneProductType;Maintenance_form;Formulario
+;siteoneProductType;irgFlowRate;Flujo Volumétrico
+;siteoneProductType;lndscpFrameDesign;Diseño de Marco
+;siteoneProductType;lndscpFrameColor;Color del Marco
+;siteoneProductType;lndscpFrameMaterial;Material del Marco
+;siteoneProductType;lndscpGauge;Calibre
+;siteoneProductType;lndscpFuelType;Tipo de Combustible
+;siteoneProductType;lndscpFrameType;Tipo de Marco
+;siteoneProductType;lndscpGender;Género
+;siteoneProductType;lndscpGloveLength;Largo del Guante
+;siteoneProductType;lndscpGrade;Grado
+;siteoneProductType;irgNumberofConductors;Número de Conductores
+;siteoneProductType;lndscpGrateSize;Tamaño de Rejilla
+;siteoneProductType;lndscpGritType;Tipo de Gravilla
+;siteoneProductType;lndscpGroundSpeed;Velocidad en Tierra
+;siteoneProductType;nrsryGrowthRate;Tasa de Crecimiento
+;siteoneProductType;lndscpHandleMaterial;Material del Mango
+;siteoneProductType;lndscpHandleLength;Longitud de Mangoh
+;siteoneProductType;lndscpHandleType;Tipo de Mango
+;siteoneProductType;lndscpHeadSize;Tamaño de Cabeza
+;siteoneProductType;lndscpHeadMaterial;Materiales para la Cabeza
+;siteoneProductType;lndscpHeadgearColor;Color de Protector de Cabeza
+;siteoneProductType;lndscpHeadstrapType;Tipo de Banda para Cabeza
+;siteoneProductType;lndscpHeight;Altura
+;siteoneProductType;lndscpHoseSize;Tamaño de Manguera
+;siteoneProductType;lndscpHoseLength;Longitud de Manguera
+;siteoneProductType;irgHousingMaterial;Material de Construcción
+;siteoneProductType;lghtHousingMaterial;Material de Construcción
+;siteoneProductType;irgIndoorOutdoor;Interior Exterior
+;siteoneProductType;irgWireSize;Tamaño de Cable
+;siteoneProductType;irgInletConnection;Conexión de Entrada
+;siteoneProductType;lndscpInletSize;Tamaño de Entrada
+;siteoneProductType;lndscpInsideDiameter;Diámetro Interno
+;siteoneProductType;lndscpInseam;Tiro
+;siteoneProductType;lndscpInsulated;Aislado
+;siteoneProductType;lghtintgrtddropin;Integrado/Recubierto
+;siteoneProductType;lndscpInvertHeight;Altura Invertida
+;siteoneProductType;hrdscpItem;Artículo
+;siteoneProductType;irgItem;Artículo
+;siteoneProductType;lndscpLegend;Leyenda
+;siteoneProductType;Maintenance_type;Artículo
+;siteoneProductType;irgJacketColor;Color de Cobertura
+;siteoneProductType;lndscpLampBase;Base de Lámpara
+;siteoneProductType;lghtLampBase;Base de Lámpara
+;siteoneProductType;lndscpLampType;Tipo de Lámpara
+;siteoneProductType;lghtLampType;Tipo de Lámpara
+;siteoneProductType;lndscpLampWattage;Potencia de la Lámpara
+;siteoneProductType;nrsryLeafColor;Color de Hoja
+;siteoneProductType;lndscpType;Tipo
+;siteoneProductType;irgLegendBackgroundColor;Leyenda/Color de Fondo
+;siteoneProductType;lndscpLength;Longitud
+;siteoneProductType;irgCoilLength;Longitud de Bobina
+;siteoneProductType;lndscpLensColor;Color de Lente
+;siteoneProductType;lndscpLensCoating;Recubrimiento de Lentes
+;siteoneProductType;lghtLightingTechnology;Tecnología
+;siteoneProductType;lndscpLensMaterial;Material de Lentes
+;siteoneProductType;Maintenance_lightrequirements;Requerimientos de Luz
+;siteoneProductType;lghtLightOutput;Salida de Luz
+;siteoneProductType;lndscpLoadCapacity;Capacidad de Carga
+;siteoneProductType;lndscpLockType;Tipo de Cerradura
+;siteoneProductType;lndscpLumens;Lúmenes
+;siteoneProductType;lndscpMaterial;Material
+;siteoneProductType;irgMaterial;Material
+;siteoneProductType;lndscpMaximumCutDiameter;Diámetro de Corte Máximo
+;siteoneProductType;lndscpMaximumLoadCapacity;Máximo de Capacidad de Carga
+;siteoneProductType;lndscpMaximumTreeSize;Tamaño Máximo de Árbol
+;siteoneProductType;irgMeshSize;Tamaño de la Malla
+;siteoneProductType;lghtMounting;Montaje
+;siteoneProductType;lndscpMountingType;Tipo de Montaje
+;siteoneProductType;irgMountingType;Tipo de Montaje
+;siteoneProductType;lndscpMPH;MPH
+;siteoneProductType;lndscpNoiseReductionRatingNRR;Nivel de Reducción de Ruido (NRR)
+;siteoneProductType;irgNominalSize;Tamaño Nominal
+;siteoneProductType;lndscpNominalSize;Tamaño Nominal
+;siteoneProductType;irgNozzleType;Tipo de Boquilla
+;siteoneProductType;Maintenance_npkratio;Análisis NPK
+;siteoneProductType;irgEmitterSpacing;Espaciamiento de Emisor
+;siteoneProductType;irgNSF;NSF
+;siteoneProductType;lndscpNumberofLamps;Número de Lámparas
+;siteoneProductType;lndscpNumberofOpenings;Número de Aberturas
+;siteoneProductType;lndscpNumberofPockets;Número de Bolsillos
+;siteoneProductType;lndscpNumberofPieces;Número de Piezas
+;siteoneProductType;irgNumberofStations;Número de Estaciones
+;siteoneProductType;lndscpNumberofTeeth;Número de Dientes
+;siteoneProductType;lndscpNumberofTines;Número de Púas
+;siteoneProductType;lndscpNumberofWheels;Número de Ruedas
+;siteoneProductType;lndscpOutletSize;Tamaño de Abertura
+;siteoneProductType;lndscpOutsideDiameter;Diámetro Externo
+;siteoneProductType;lghtOutputVoltage;Voltaje de Salida
+;siteoneProductType;lndscpOverallHeight;Altura Total
+;siteoneProductType;lndscpOverallLength;Longitud Total
+;siteoneProductType;lndscpPileHeight;Altura de Pila
+;siteoneProductType;Maintenance_particlesize;Tamaño de Partícula
+;siteoneProductType;irgPipeSize;Tamaño del Tubo
+;siteoneProductType;irgPipeCategory;Categoría de Tubo
+;siteoneProductType;Maintenance_plantingdepth;Profundidad de Siembra
+;siteoneProductType;lndscpPoleMaterial;Material de Poste
+;siteoneProductType;irgPopUpHeight;Altura de Extensión
+;siteoneProductType;lndscpPowerSource;Fuente de Poder
+;siteoneProductType;lndscpPressureRange;Rango de Presión
+;siteoneProductType;lndscpPressureRating;Clasificación de Presión
+;siteoneProductType;irgPressureRegulating;Regulación de Presión
+;siteoneProductType;lndscpProbeSize;Tamaño de la Sonda
+;siteoneProductType;lndscpProductivity;Productividad
+;siteoneProductType;lndscpPumpSpecification;Especificación de la Bomba
+;siteoneProductType;irgPumpType;Tipo de Bomba
+;siteoneProductType;lndscpPumpType;Tipo de Bomba
+;siteoneProductType;lndscpRunningTime;Tiempo de Ejecución
+;siteoneProductType;lghtRiserHeight;Altura de Plataforma
+;siteoneProductType;lndscpRechargeTime;Tiempo de Recarga
+;siteoneProductType;lndscpSeedingWidth;Anchura de Siembra
+;siteoneProductType;lndscpSensingDistance;Distancia de Detección
+;siteoneProductType;nrsrySaltTolerance;Tolerancia a la Salinidad
+;siteoneProductType;lndscpSensingMethod;Método de Detección
+;siteoneProductType;lndscpSeries;Series
+;siteoneProductType;irgSensorType;Tipo de Sensor
+;siteoneProductType;irgSensorConnection;Conexión del Sensor
+;siteoneProductType;hrdscpSeries;Series
+;siteoneProductType;irgShape;Forma
+;siteoneProductType;lndscpShape;Forma
+;siteoneProductType;lndscpSize;Tamaño
+;siteoneProductType;lndscpSoundPowerLevel;Nivel de Potencia de Sonido
+;siteoneProductType;lghtSocketType;Tipo de Enchufe
+;siteoneProductType;irgSideInlet;Entrada Lateral
+;siteoneProductType;lndscpSpecifications;Especificaciones
+;siteoneProductType;lndscpSpeed;Velocidad
+;siteoneProductType;lndscpSprayDistance;Distancia de Rociado
+;siteoneProductType;lndscpSprayLineWidth;Ancho de Línea del Rociado
+;siteoneProductType;irgSprayPattern;Patrón del Rociado
+;siteoneProductType;irgStationType;Tipo de Estación
+;siteoneProductType;lndscpStorageCapacity;Capacidad de Almacenamiento
+;siteoneProductType;lndscpStrapMaterial;Material de la Correa
+;siteoneProductType;Maintenance_suitableforusewith;Adecuado para usar con
+;siteoneProductType;lndscpItem;Artículo
+;siteoneProductType;lghtBulbShape;Forma de bombillo
+;siteoneProductType;lndscpThickness;Grosor
+;siteoneProductType;lndscpToeType;Tipo de Punta (calzado)
+;siteoneProductType;lndscpTeethperInch;Dientes por Pulgada
+;siteoneProductType;lndscpToothPattern;Patrón de Diente
+;siteoneProductType;lndscpTorqueRating;Clasificación del Torque
+;siteoneProductType;lndscpGloveThickness;Grosor del Guante
+;siteoneProductType;lndscpTraySize;Tamaño de la Bandeja
+;siteoneProductType;hrdscpType;Tipo
+;siteoneProductType;lndscpSuitableForUseWith;Adecuado para usar con
+;siteoneProductType;irgType;Tipo
+;siteoneProductType;lndscpTubingWallThickness;Grosor de Pared para Tubos
+;siteoneProductType;lghtVoltageRating;Rango de Voltaje
+;siteoneProductType;lndscpVisorMaterial;Material para Visera
+;siteoneProductType;lndscpVisorColor;Color de Visera
+;siteoneProductType;lndscpVoltageRating;Rango de Voltaje
+;siteoneProductType;lndscpWaistSize;Talla de Cintura
+;siteoneProductType;lndscpWallThickness;Grosor de Pared
+;siteoneProductType;irgWallThickness;Grosor de Pared
+;siteoneProductType;lndscpWaterTankCapacity;Capacidad del Tanque de Agua
+;siteoneProductType;lndscpWaterproof;A prueba de agua
+;siteoneProductType;lndscpWeightCapacity;Capacidad en Peso
+;siteoneProductType;lghtLampWattage;Vatios
+;siteoneProductType;lndscpWeight;Peso
+;siteoneProductType;lndscpWheelMaterial;Material de Rueda
+;siteoneProductType;lndscpWheelSize;Tamaño de Rueda
+;siteoneProductType;lndscpWheelType;Tipo de Rueda
+;siteoneProductType;lndscpBladeWidth;Ancho de Hoja
+;siteoneProductType;Maintenance_width;Ancho
+;siteoneProductType;lndscpWingWidth;Ancho de Ala
+;siteoneProductType;lghtCableLength;Longitud del Cable
+;siteoneProductType;lndscpTotalWeight;Peso Total
+;siteoneProductType;lghtWireSize;Tamaño de Cable
+;siteoneEventSearchType;soeventtype;Tipo de Evento
+;siteoneProductType;soallPromotions;Promoción
+;siteoneProductType;lndscpWidth;Ancho
+;siteoneProductType;price;Precio
+
+
+

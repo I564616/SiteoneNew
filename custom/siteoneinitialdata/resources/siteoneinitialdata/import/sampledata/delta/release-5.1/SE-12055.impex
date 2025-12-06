@@ -1,0 +1,5 @@
+$catalogVersion=catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Staged'])[unique=true,default='siteoneProductCatalog:Staged'];
+## Rename LANDSCAPE SUPPLY - TOOLS - HAULING
+UPDATE category;code[unique=true];name[lang=en];$catalogVersion
+               ;SH1220102;Hauling & Storage;
+               ;PH1220102;Hauling & Storage;

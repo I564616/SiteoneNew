@@ -1,0 +1,67 @@
+#
+$contentCatalog=siteoneContentCatalog
+$productCatalog=siteoneProductCatalog
+$catalogVersions=catalogVersions(catalog(id),version);
+$serverConfigName=siteoneSolrServerConfig
+$indexConfigName=siteoneSolrIndexConfig
+$searchConfigName=siteonePageSize
+$facetSearchConfigName=siteoneIndex
+$facetSearchConfigDescription=SiteOne Solr Index
+$searchIndexNamePrefix=siteone
+$solrIndexedType=siteoneProductType
+$indexBaseSite=siteone
+$indexLanguages=en
+$indexCurrencies=USD
+
+
+INSERT_UPDATE SolrIndexerQuery;solrIndexedType(identifier)[unique=true];identifier[unique=true];type(code);injectCurrentDate[default=true];injectCurrentTime[default=true];injectLastIndexTime[default=true];query;user(uid)
+                              ;$solrIndexedType;$searchIndexNamePrefix-fullQuery;full;;;false;"
+SELECT {p.pk}
+FROM   {Product! as p
+JOIN   Catalog as c ON {c.pk}={p.catalog}
+JOIN   CatalogVersion as cv ON {cv.pk}={p.catalogversion}
+JOIN   ArticleApprovalStatus as a ON {a.pk}={p.approvalStatus}}
+WHERE  {c.pk} = {cv.catalog}
+AND    {c.id} = 'siteoneProductCatalog'
+AND    {p.isProductOffline} = '0'
+AND    {p.isProductDiscontinued} = '0'
+AND    {a.name} = 'approved'
+AND    {p.code} != '9999999'
+
+";anonymous
+                              ;$solrIndexedType;$searchIndexNamePrefix-updateQuery;update;;;;"
+SELECT * FROM({{
+SELECT {p.pk} as pk
+FROM {Product! as p
+LEFT JOIN StockLevel as sl ON {sl.productcode}={p.code}
+LEFT JOIN PriceRow as pr ON {pr.productid}={p.code}
+JOIN Catalog as c ON {c.pk}={p.catalog}
+JOIN CatalogVersion as cv ON {cv.pk}={p.catalogversion}
+JOIN ArticleApprovalStatus as a ON {a.pk}={p.approvalStatus}}
+WHERE {c.pk} = {cv.catalog}
+AND {c.id} = 'siteoneProductCatalog'
+AND {p.isProductOffline} = '0'
+AND {p.isProductDiscontinued} = '0'
+AND {a.name} = 'approved'
+AND {p.code} != '9999999'
+AND ({p:modifiedTime}>=?lastIndexTime OR {sl:modifiedTime} >= ?lastIndexTime OR {pr:modifiedTime}>= ?lastIndexTime)
+}})
+UNION
+({{
+SELECT distinct {v.baseProduct} as pk
+FROM {GenericVariantProduct as v
+LEFT JOIN StockLevel as sl ON {sl.productcode}={v.code}
+LEFT JOIN PriceRow as pr ON {pr.productid}={v.code}
+JOIN Catalog as c ON {c.pk}={v.catalog}
+JOIN CatalogVersion as cv ON {cv.pk}={v.catalogversion}
+JOIN ArticleApprovalStatus as a ON {a.pk}={v.approvalStatus}}
+WHERE {c.pk} = {cv.catalog}
+AND {c.id} = 'siteoneProductCatalog'
+AND {v.isProductOffline} = '0'
+AND {v.isProductDiscontinued} = '0'
+AND {a.name} = 'approved'
+AND {v.code} != '9999999'
+AND ({v:modifiedTime}>=?lastIndexTime OR {sl:modifiedTime} >= ?lastIndexTime OR {pr:modifiedTime}>= ?lastIndexTime)
+}})
+
+";anonymous

@@ -1,0 +1,27 @@
+##----------------------------------------------------------------------------------------------
+##----------------------------------------SE-12951----------------------------------------------
+##----------------------------------------------------------------------------------------------
+
+$classCatalogVersion=catalogversion(catalog(id[default='siteoneClassification']),version[default='1'])[unique=true,default='siteoneClassification:1']
+$classSystemVersion=systemversion(catalog(id[default='siteoneClassification']),version[default='1'])[unique=true,default='siteoneClassification:1']
+
+
+## Class attribute assignment
+
+INSERT_UPDATE classAttributeAssignment;classificationAttribute(code,$classSystemVersion)[unique=true];attributeType(code);classificationClass(code,$classCatalogVersion)[unique=true];attributeValues(code)[mode=append];multiValued(code);mandatory(code);formatDefinition
+
+## Hardscapes & Outdoor Living>Edging>Edging Accessories - SH1514111
+;hrdscpSellingUnit;string;CH01_1514111;;false;false;30;
+
+## Hardscapes & Outdoor Living>Edging>Paver Restraints - SH1514113
+;hrdscpOverallHeight;string;CH01_1514113;;false;false;30;
+;hrdscpDepth;string;CH01_1514113;;false;false;30;
+
+## Hardscapes & Outdoor Living>Edging>Tree Rings - SH1514110 - No created in stage
+;hrdscpOverallHeight;string;CH01_1514110;;false;false;30;
+;hrdscpDepth;string;CH01_1514110;;false;false;30;
+
+## Hardscapes & Outdoor Living>Outdoor Living>Fireplaces & Fire Pits - SH1513110
+;hrdscpSpecifications;string;CH01_1513110;;false;false;30;
+;hrdscpGrade;string;CH01_1513110;;false;false;30;
+;hrdscpTreatmentType;string;CH01_1513110;;false;false;30;

@@ -1,0 +1,8 @@
+$facetSearchConfigName=siteoneIndex
+$solrIndexedType=siteoneProductType
+$lang=en
+INSERT_UPDATE SolrSynonymConfig;facetSearchConfig(name)[unique=true,default=$facetSearchConfigName];language(isocode)[unique=true,default=$lang];synonymFrom[unique=true];synonymTo
+                               ;;;"Ground Mat";"Track Mat"
+							   ;;;"Protection Mat";"Track Mat"
+                               ;;;"Ground Mats";"Track Mats"
+							   ;;;"Protection Mats";"Track Mats"

@@ -1,0 +1,5 @@
+$supercategories=supercategories( code, catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Staged']));;;;;;;;;
+$catalogVersion=catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Staged'])[unique=true,default='siteoneProductCatalog:Staged'];;;;;;;;;
+;;;;;;;;;
+INSERT_UPDATE Category;code[unique=true];name[lang=es];$supercategories;$catalogVersion;allowedPrincipals(uid)
+;SH15;Materiales duros & Vida al Aire Libre;SH1;siteoneProductCatalog:Staged;admingroup 

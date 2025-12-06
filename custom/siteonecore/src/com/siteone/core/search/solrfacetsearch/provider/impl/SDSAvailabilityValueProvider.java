@@ -1,0 +1,85 @@
+/**
+ *
+ */
+package com.siteone.core.search.solrfacetsearch.provider.impl;
+
+import de.hybris.platform.core.model.media.MediaModel;
+import de.hybris.platform.core.model.product.ProductModel;
+import de.hybris.platform.solrfacetsearch.config.IndexConfig;
+import de.hybris.platform.solrfacetsearch.config.IndexedProperty;
+import de.hybris.platform.solrfacetsearch.config.exceptions.FieldValueProviderException;
+import de.hybris.platform.solrfacetsearch.provider.FieldNameProvider;
+import de.hybris.platform.solrfacetsearch.provider.FieldValue;
+import de.hybris.platform.solrfacetsearch.provider.FieldValueProvider;
+import de.hybris.platform.solrfacetsearch.provider.impl.AbstractPropertyFieldValueProvider;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
+import org.apache.commons.collections4.CollectionUtils;
+
+
+/**
+ * @author 1219341
+ *
+ */
+public class SDSAvailabilityValueProvider extends AbstractPropertyFieldValueProvider implements FieldValueProvider, Serializable
+{
+	private FieldNameProvider fieldNameProvider;
+
+	@Override
+	public Collection<FieldValue> getFieldValues(final IndexConfig indexConfig, final IndexedProperty indexedProperty,
+			final Object model) throws FieldValueProviderException
+	{
+		final ProductModel product = (ProductModel) model;
+		final Collection<FieldValue> fieldValues = new ArrayList<>();
+		final Collection<MediaModel> dataSheets = product.getData_sheet();
+		boolean isSDSAvailable = false;
+		if (CollectionUtils.isNotEmpty(dataSheets))
+		{
+			for (final MediaModel media : dataSheets)
+			{
+				if ((null != media.getSds() && "SDS".equalsIgnoreCase(media.getSds())) || null != media.getLabel())
+				{
+
+					isSDSAvailable = true;
+				}
+			}
+		}
+
+		fieldValues.addAll(createFieldValue(isSDSAvailable, indexedProperty));
+		return fieldValues;
+	}
+
+
+	private List<FieldValue> createFieldValue(final boolean isSDSAvailable, final IndexedProperty indexedProperty)
+	{
+		final List<FieldValue> fieldValues = new ArrayList<>();
+		final Collection<String> fieldNames = fieldNameProvider.getFieldNames(indexedProperty, null);
+		for (final String fieldName : fieldNames)
+		{
+			fieldValues.add(new FieldValue(fieldName, isSDSAvailable));
+		}
+		return fieldValues;
+	}
+
+	/**
+	 * @return the fieldNameProvider
+	 */
+	public FieldNameProvider getFieldNameProvider()
+	{
+		return fieldNameProvider;
+	}
+
+	/**
+	 * @param fieldNameProvider
+	 *           the fieldNameProvider to set
+	 */
+	public void setFieldNameProvider(final FieldNameProvider fieldNameProvider)
+	{
+		this.fieldNameProvider = fieldNameProvider;
+	}
+
+}

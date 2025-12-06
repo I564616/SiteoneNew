@@ -1,0 +1,54 @@
+$supercategories=supercategories( code, catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Staged']));;;;;;;;;
+$catalogVersion=catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Staged'])[unique=true,default='siteoneProductCatalog:Staged'];;;;;;;;;
+;;;;;;;;;
+INSERT_UPDATE Category;code[unique=true];name[lang=es];$supercategories;$catalogVersion;allowedPrincipals(uid)
+;SH1;Primary;;siteoneProductCatalog:Staged;admingroup
+;SH11;Luces;SH1;siteoneProductCatalog:Staged;admingroup 
+;SH1111;Accesorios;SH11;siteoneProductCatalog:Staged;admingroup 
+;SH1112;Dispositivos;SH11;siteoneProductCatalog:Staged;admingroup 
+;SH1113;Días de Fiesta;SH11;siteoneProductCatalog:Staged;admingroup 
+;SH1114;Lámparas;SH11;siteoneProductCatalog:Staged;admingroup 
+;SH1115;Transformadores;SH11;siteoneProductCatalog:Staged;admingroup 
+;SH1111100;Montaje de Dispositivos;SH1111;siteoneProductCatalog:Staged;admingroup 
+;SH1111101;Conectores;SH1111;siteoneProductCatalog:Staged;admingroup 
+;SH1111102;Extensiones y Plataformas;SH1111;siteoneProductCatalog:Staged;admingroup 
+;SH1111103;Lens, Filters, & Optics;SH1111;siteoneProductCatalog:Staged;admingroup 
+;SH1111104;Otros;SH1111;siteoneProductCatalog:Staged;admingroup 
+;SH1111105;Temporizadores y Fotocélulas;SH1111;siteoneProductCatalog:Staged;admingroup 
+;SH1111106;Tools;SH1111;siteoneProductCatalog:Staged;admingroup 
+;SH1111107;Alambre;SH1111;siteoneProductCatalog:Staged;admingroup 
+;SH1112100;Realces y Proyectores de Luz;SH1112;siteoneProductCatalog:Staged;admingroup 
+;SH1112101;Luces para Deck;SH1112;siteoneProductCatalog:Staged;admingroup 
+;SH1112102;Luces que apuntan al Suelo;SH1112;siteoneProductCatalog:Staged;admingroup 
+;SH1112103;Luces para Materiales Duros;SH1112;siteoneProductCatalog:Staged;admingroup 
+;SH1112104;Luces para Suelo y de Empotrar;SH1112;siteoneProductCatalog:Staged;admingroup 
+;SH1112105;Luces para Caminos y Áreas;SH1112;siteoneProductCatalog:Staged;admingroup 
+;SH1112106;Patio, Bistro y Luces Especializadas;SH1112;siteoneProductCatalog:Staged;admingroup 
+;SH1112107;Luces para Escaleras;SH1112;siteoneProductCatalog:Staged;admingroup 
+;SH1112108;Luces para debajo del Agua;SH1112;siteoneProductCatalog:Staged;admingroup 
+;SH1113100;Accesorios;SH1113;siteoneProductCatalog:Staged;admingroup 
+;SH1113101;Bows;SH1113;siteoneProductCatalog:Staged;admingroup 
+;SH1113102;Bombillos;SH1113;siteoneProductCatalog:Staged;admingroup 
+;SH1113103;Luces Decorativas y Redes;SH1113;siteoneProductCatalog:Staged;admingroup 
+;SH1113104;Filamentos de Luz;SH1113;siteoneProductCatalog:Staged;admingroup 
+;SH1113105;Otros;SH1113;siteoneProductCatalog:Staged;admingroup 
+;SH1113106;Cable para Enchufe;SH1113;siteoneProductCatalog:Staged;admingroup 
+;SH1113107;Coronas y Guirnaldas;SH1113;siteoneProductCatalog:Staged;admingroup 
+;SH1114100;Lámparas LED PAR36 de 12V;SH1114;siteoneProductCatalog:Staged;admingroup 
+;SH1114101;Lámparas LED Bi-Pin G4 de 12V;SH1114;siteoneProductCatalog:Staged;admingroup 
+;SH1114102;Lámparas LED MR11 de 12V;SH1114;siteoneProductCatalog:Staged;admingroup 
+;SH1114103;Lámparas de Cuña LED de 12V;SH1114;siteoneProductCatalog:Staged;admingroup 
+;SH1114104;12V LED T5 Wedge Lamps;SH1114;siteoneProductCatalog:Staged;admingroup 
+;SH1114105;Lámparas LED SCB de 12V;SH1114;siteoneProductCatalog:Staged;admingroup 
+;SH1114106;Todas las Lámparas LED de Bajo Voltaje;SH1114;siteoneProductCatalog:Staged;admingroup 
+;SH1114107;Lámparas Halógenas de 12V;SH1114;siteoneProductCatalog:Staged;admingroup 
+;SH1114108;Lámparas LED MR16 de 12V;SH1114;siteoneProductCatalog:Staged;admingroup 
+;SH1115100;<100W;SH1115;siteoneProductCatalog:Staged;admingroup 
+;SH1115101;100W;SH1115;siteoneProductCatalog:Staged;admingroup 
+;SH1115102;120W;SH1115;siteoneProductCatalog:Staged;admingroup 
+;SH1115103;200W;SH1115;siteoneProductCatalog:Staged;admingroup 
+;SH1115104;150W;SH1115;siteoneProductCatalog:Staged;admingroup 
+;SH1115105;300W;SH1115;siteoneProductCatalog:Staged;admingroup 
+;SH1115106;600W+;SH1115;siteoneProductCatalog:Staged;admingroup 
+
+

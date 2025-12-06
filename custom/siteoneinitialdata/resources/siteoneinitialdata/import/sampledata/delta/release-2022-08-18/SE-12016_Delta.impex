@@ -1,0 +1,21 @@
+##### For updating manager email notification template
+
+# Import config properties into impex macros for modulegen
+UPDATE GenericItem[processor=de.hybris.platform.commerceservices.impex.impl.ConfigPropertyImportProcessor];pk[unique=true]
+$emailResource=$config-emailResourceValue
+$emailPackageName=$config-emailContextPackageName
+
+# Language
+$lang=en
+
+UPDATE RendererTemplate;code[unique=true];description[lang=$lang];templateScript[lang=$lang,translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+;siteone_Email_managerEmail_Body;"Manager Email Template";$emailResource/email-managerEmailBody.vm
+;siteone_Email_Request_Account_Body;"Request Account Template";$emailResource/email-requestAccountEmailBody.vm
+
+
+# Language
+$lang=es
+
+UPDATE RendererTemplate;code[unique=true];description[lang=$lang];templateScript[lang=$lang,translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+;siteone_Email_managerEmail_Body;"Manager Email Template";$emailResource/email-managerEmailBody.vm
+;siteone_Email_Request_Account_Body;"Request Account Template";$emailResource/email-requestAccountEmailBody.vm

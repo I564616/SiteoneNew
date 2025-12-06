@@ -1,0 +1,42 @@
+# -----------------------------------------------------------------------
+# [y] hybris Platform
+#
+# Copyright (c) 2017 SAP SE or an SAP affiliate company.  All rights reserved.
+#
+# This software is the confidential and proprietary information of SAP
+# ("Confidential Information"). You shall not disclose such Confidential
+# Information and shall use it only in accordance with the terms of the
+# license agreement you entered into with SAP.
+# -----------------------------------------------------------------------
+$facetSearchConfigName=siteoneIndex
+$contentCatalogName=siteoneContentCatalog
+$solrIndexedType=siteoneProductType
+$productCatalog=siteoneProductCatalog
+$productCatalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+
+#
+# Localization en
+#
+$lang=en
+
+INSERT_UPDATE SolrCategoryRedirect;redirectItem(code,$productCatalogVersion)[unique=true];&redirectRefID
+								  ;SH11	     ;$productCatalog-redirectRefID-Lighting
+								  ;SH1414	     ;$productCatalog-redirectRefID-Controllers
+								  ;SH1425	     ;$productCatalog-redirectRefID-Pumps
+								  ;SH1431112113;$productCatalog-redirectRefID-Quick Coupling Valves
+
+INSERT_UPDATE SolrFacetSearchKeywordRedirect;facetSearchConfig(name)[unique=true,default=$facetSearchConfigName];language(isocode)[unique=true,default=$lang];keyword[unique=true];matchType(code)[unique=true];redirect(&redirectRefID);ignoreCase[default=true]
+											;;;"(lighting|landscape lights|landscape light|landscape lighting|outdoor lighting)";REGEX;$productCatalog-redirectRefID-Lighting
+											;;;"(controller|controllers|irrigation controller|irrigation controllers|sprinkler controller|sprinkler controllers)";REGEX;$productCatalog-redirectRefID-Controllers
+											;;;"(irrigation pump|irrigation pumps|sprinkler pump|sprinkler pumps)";REGEX;$productCatalog-redirectRefID-Pumps
+											;;;"(quick Coupling Valves|quick coupler)";REGEX;$productCatalog-redirectRefID-Quick Coupling Valves
+
+
+# Synonyms (Must use INSERT_UPDATE here)
+INSERT_UPDATE SolrSynonymConfig;facetSearchConfig(name)[unique=true,default=$facetSearchConfigName];language(isocode)[unique=true,default=$lang];synonymFrom[unique=true];synonymTo
+							   ;;;"pathway";"path"
+							   ;;;"light bulb";"light lamp"
+							   ;;;"vista lighting";"vista light"
+							   ;;;"concrete donut";"cement donut"
+							   ;;;"hydrowise ";"hydrawise"
+							   ;;;"15VAN";"R15VAN"

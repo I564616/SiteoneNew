@@ -1,0 +1,38 @@
+INSERT_UPDATE ServicelayerJob; code[unique=true];springid[unique=true]
+;siteOneFeedFileInfoCronJob;siteOneFeedFileInfoCronJob;
+
+INSERT_UPDATE SiteOneFeedFileInfoCronJob; code[unique=true];job(code);singleExecutable;sessionLanguage(isocode);nodeID;
+;FeedFile-Job;siteOneFeedFileInfoCronJob;false;en;0; 
+
+# Language
+$lang=en
+$contentCatalog=siteoneContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$wideContent=CMSImageComponent,BannerComponent
+$jarEmailResource=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/coredata/contentCatalogs/siteoneContentCatalog/emails
+
+# Import modulegen config properties into impex macros
+UPDATE GenericItem[processor=de.hybris.platform.commerceservices.impex.impl.ConfigPropertyImportProcessor];pk[unique=true]
+$jarResourceCms=$config-jarResourceCmsValue
+$emailPackageName=$config-emailContextPackageName
+$emailResource=$config-emailResourceValue
+
+INSERT_UPDATE RendererTemplate;code[unique=true];contextClass;rendererType(code)[default='velocity']
+;SiteOne_Email_FeedFile_Notification_Body;$emailPackageName.FeedFileMonitorNotificationEmailContext
+;SiteOne_Email_FeedFile_Notification_Subject;$emailPackageName.FeedFileMonitorNotificationEmailContext
+
+INSERT_UPDATE RendererTemplate;code[unique=true];description[lang=$lang];templateScript[lang=$lang,translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+;SiteOne_Email_FeedFile_Notification_Subject;"FeedFile Notification Template";$emailResource/email-feedFileNotificationSubject.vm
+;SiteOne_Email_FeedFile_Notification_Body;"FeedFile Notification Template";$emailResource/email-feedFileNotificationBody.vm
+
+INSERT_UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);defaultPage;approvalStatus(code)[default='approved']
+;;FeedFileMonitorNotificationEmail;FeedFile Notification Email;FeedFileMonitorNotificationEmailTemplate;true;
+
+UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];fromEmail[lang=$lang];fromName[lang=$lang]
+;;FeedFileMonitorNotificationEmail;"customersupport@siteone.com";"SiteOne"
+
+INSERT_UPDATE EmailPageTemplate;$contentCV[unique=true];uid[unique=true];name;active;frontendTemplateName;subject(code);htmlTemplate(code);restrictedPageTypes(code)
+;;FeedFileMonitorNotificationEmailTemplate;FeedFileMonitor Notifi Email Template;true;FeedFileMonitorNotificationEmail;SiteOne_Email_FeedFile_Notification_Subject;SiteOne_Email_FeedFile_Notification_Body;EmailPage
+
+
+

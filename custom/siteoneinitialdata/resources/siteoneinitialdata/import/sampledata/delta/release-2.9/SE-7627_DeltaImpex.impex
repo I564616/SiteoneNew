@@ -1,0 +1,32 @@
+$solrIndexedType=siteoneProductType
+
+INSERT_UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true];name[unique=true];customFacetSortProvider;
+;$solrIndexedType; irgHPRating	;facetCountSortProviderDescending
+
+INSERT_UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true];name[unique=true];customFacetSortProvider;
+;$solrIndexedType; irgLength	;facetCountSortProviderDescending
+
+INSERT_UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true];name[unique=true];customFacetSortProvider;
+;$solrIndexedType; irgNumberofConductors	;numericFacetSortProviderAsc
+
+INSERT_UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true];name[unique=true];customFacetSortProvider;
+;$solrIndexedType; irgWireSize	;uomFacetNameSortProviderAscending
+
+INSERT_UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true];name[unique=true];customFacetSortProvider;
+;$solrIndexedType; irgCoilLength	;uomFacetNameSortProviderDescending
+
+INSERT_UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true];name[unique=true];customFacetSortProvider;
+;$solrIndexedType; irgEmitterSpacing	;uomFacetNameSortProviderDescending
+
+INSERT_UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true];name[unique=true];customFacetSortProvider;
+;$solrIndexedType; lndscpGloveThickness	;uomFacetNameSortProviderAscending
+
+INSERT_UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true];name[unique=true];customFacetSortProvider;
+;$solrIndexedType; lndscpBladeWidth	;facetCountSortProviderDescending
+
+INSERT_UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true];name[unique=true];customFacetSortProvider;
+;$solrIndexedType; lndscpTotalWeight	;uomFacetNameSortProviderAscending
+
+INSERT_UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true];name[unique=true];customFacetSortProvider;
+;$solrIndexedType; lndscpWidth	;uomFacetNameSortProviderAscending
+

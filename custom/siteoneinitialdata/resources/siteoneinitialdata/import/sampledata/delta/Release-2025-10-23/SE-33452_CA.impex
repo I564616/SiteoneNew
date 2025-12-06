@@ -1,0 +1,34 @@
+# Online Start
+$productCatalog=siteoneCAProductCatalog
+$productCatalogName=SiteOne CA Product Catalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Online'])[unique=true,default=$productCatalog:Online]
+$contentCatalog=siteoneCAContentCatalog
+$contentCatalogName=SiteOne CA Content Catalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Online])[default=$contentCatalog:Online]
+$siteResource=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/contentCatalogs/$contentCatalog
+$marketingBanner=marketingBanner(code, $contentCV);
+
+INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];mime;realfilename;@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator][forceWrite=true];folder(qualifier)[default='images'];altText
+;;L2_SH1711;text/jpg;L2-Nav-PT-Transformer.jpg;$siteResource/images/category/L2-Nav-PT-Transformer.jpg;;"https://www.siteone.com/en/alwayson?icid=flyout"
+;;L2_SH1712;text/jpg;L2-Nav-Renovation.jpg;$siteResource/images/category/L2-Nav-Renovation.jpg;;"https://www.siteone.com/en/renovationpromo?icid=flyout"
+;;L2_SH1713;text/jpg;L2-Nav-PT-Tools.jpg;$siteResource/images/category/L2-Nav-PT-Tools.jpg;;"https://www.siteone.com/en/myprotrade?icid=flyout"
+
+;;L2_SH1711-es;text/jpg;L2-Nav-PT-Transformer-es.jpg;$siteResource/images/category/L2-Nav-PT-Transformer-es.jpg;;"https://www.siteone.com/es/alwayson?icid=flyout"
+;;L2_SH1712-es;text/jpg;L2-Nav-Renovation-es.jpg;$siteResource/images/category/L2-Nav-Renovation-es.jpg;;"https://www.siteone.com/es/renovationpromo?icid=flyout"
+;;L2_SH1713-es;text/jpg;L2-Nav-PT-Tools-es.jpg;$siteResource/images/category/L2-Nav-PT-Tools-es.jpg;;"https://www.siteone.com/es/myprotrade?icid=flyout"
+
+INSERT_UPDATE SiteOneMarketingBannerComponent;$contentCV[unique=true];uid[unique=true];$marketingBanner[lang=en];$marketingBanner[lang=es];
+;;SH1711;L2_SH1711;L2_SH1711-es;
+;;SH1712;L2_SH1712;L2_SH1712-es;
+;;SH1713;L2_SH1713;L2_SH1713-es;
+
+UPDATE Category;code[unique=true];$catalogVersion;bannerList(uid,$contentCV)
+;SH1711;;"SH1711,SH1712"
+;SH1712;;"SH1712"
+;SH1713;;"SH1713"
+
+# Online End
+
+
+
+

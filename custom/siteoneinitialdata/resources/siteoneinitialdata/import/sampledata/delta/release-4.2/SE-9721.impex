@@ -1,0 +1,8 @@
+INSERT_UPDATE ServicelayerJob; code[unique=true];springid[unique=true]
+;nPSSurveyTriggerCronJob;nPSSurveyTriggerCronJob;
+
+INSERT_UPDATE NPSSurveyTriggerCronJob;code[unique=true];job(code)[default=nPSSurveyTriggerCronJob];sessionLanguage(isoCode)[default=en]
+;nPSSurveyTriggerCronJob;nPSSurveyTriggerCronJob
+  
+INSERT_UPDATE Trigger;cronJob(code)[unique=true];cronExpression;relative;active;maxAcceptableDelay
+;nPSSurveyTriggerCronJob;* */15 * * * ?;false;true;-1 

@@ -1,0 +1,29 @@
+$productCatalog=siteoneProductCatalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+
+$solrIndexedType=siteoneProductType
+
+Update product[batchmode=true];itemtype(code)[unique=true];isTransferrable[default='true'];
+;Product;
+
+INSERT_UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true];name[unique=true];type(code);sortableType(code);currency[default=false];localized[default=false];multiValue[default=false];useForSpellchecking[default=false];useForAutocomplete[default=false];fieldValueProvider;valueProviderParameter;ftsPhraseQuery[default=false];ftsPhraseQueryBoost;ftsQuery[default=false];ftsQueryBoost;ftsFuzzyQuery[default=false];ftsFuzzyQueryBoost;ftsWildcardQuery[default=false];ftsWildcardQueryType(code)[default=POSTFIX];ftsWildcardQueryBoost;ftsWildcardQueryMinTermLength
+;$solrIndexedType;soisTransferrable;boolean;         ;    ;    ;    ;    ;    ;springELValueProvider              ;isTransferrable  ;    ;   ;	;	 ;    ;  ;	;	;	;
+
+INSERT_UPDATE Product;code[unique=true];isTransferrable;$catalogVersion
+;115161;false
+;188551;false
+;296584;false
+;440183;false
+;46213;false
+;48547;false
+;49642;false
+;49768;false
+;52157;false
+;52245;false
+;52250;false
+;56475;false
+;58037;false
+;58994;false
+;61616;false
+;573541;false
+;575266;false

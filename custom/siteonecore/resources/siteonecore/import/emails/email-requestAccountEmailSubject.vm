@@ -1,0 +1,12 @@
+#if(${ctx.dunsResponse} != 'null' && ${ctx.dunsResponse} !='' && ${ctx.dunsResponse} == 3)
+${ctx.messages.getMessage('emailSubject1')}
+
+#elseif(${ctx.dunsResponse} != 'null' && ${ctx.dunsResponse} !='' && ${ctx.dunsResponse} == 4)
+﻿${ctx.messages.getMessage('emailSubject2')}
+
+#elseif(${ctx.dunsResponse} != 'null' && ${ctx.dunsResponse} !='' && ${ctx.dunsResponse} == 5)
+﻿${ctx.messages.getMessage('emailSubject3')}
+
+#else
+﻿${ctx.messages.getMessage('emailSubject')}
+#end

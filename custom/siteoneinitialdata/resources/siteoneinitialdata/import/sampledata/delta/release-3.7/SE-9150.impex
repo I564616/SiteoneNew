@@ -1,0 +1,54 @@
+$contentCatalog=siteoneContentCatalog
+$contentCatalogName=SiteOne Content Catalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$productCatalog=siteoneProductCatalog
+$productCatalogName=SiteOne Product Catalog
+$productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$picture=media(code, $contentCV);
+$image=image(code, $contentCV);
+$media=media(code, $contentCV);
+$page=page(uid, $contentCV);
+$contentPage=contentPage(uid, $contentCV);
+$product=product(code, $productCV)
+$category=category(code, $productCV)
+$siteResource=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/contentCatalogs/$contentCatalog
+$productResource=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/productCatalogs/$productCatalog
+$jarResourceCms=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/cockpits/cmscockpit
+$addonExtensionName=siteoneacceleratoraddon
+$medias=medias(code, $contentCV);
+$articleMedia=articleMedia(code, $contentCV);
+$mediaContainer=media(qualifier, $contentCV);
+$siteUid=siteone
+$lang=en
+
+
+
+
+INSERT_UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);label;defaultPage[default='true'];approvalStatus(code)[default='approved'];homepage[default='false']
+;;promotionSale;Siteone Save Strong Event;SiteOneContentPageTemplate;/promotionsale;
+
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='promotionSale'];contentSlot(uid,$contentCV)[unique=true];;;
+;;Section3-promotionSale;Section3;;Section3Slot-promotionSale;;;
+;;Section1-promotionSale;Section1;;Section1Slot-promotionSale;;;
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef);;;
+;;Section3Slot-promotionSale;Section3 Slot for Hardscapes Lander Page;true;promotionPageTitleBannerComponent01;;;
+;;Section1Slot-promotionSale;Section1 Slot for Hardscapes Lander Page;true;promotionPageTitleBannerComponent02,productPromotionComponent001;;;
+
+INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='image/jpeg'];folder(qualifier)[default='images'];altText
+;;promoproductpic;$siteResource/images/banners/homepage/responsive/large_banner1.jpg;;;""
+
+INSERT_UPDATE SiteOneProductPromotionComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef;buttonLabel
+;;productPromotionComponent001;Product Promotion Component 001;productPromotionComponent001;Learn more
+
+INSERT_UPDATE SiteonePageTitleBannerComponent;$contentCV[unique=true];uid[unique=true];name;headline;$picture[lang=$lang];&componentRef
+;;promotionPageTitleBannerComponent01;Gallery  Page Title Component;;;promotionPageTitleBannerComponent01
+;;promotionPageTitleBannerComponent02;Gallery  Page Title Component;Featured Special;promoproductpic;promotionPageTitleBannerComponent02
+
+
+
+
+INSERT_UPDATE CatalogVersionToRuleEngineContextMapping;context(name)[unique=true];catalogVersion(catalog(id),version)[unique=true]
+;promotions-context;siteoneProductCatalog:Online
+;promotions-context;siteoneProductCatalog:Staged

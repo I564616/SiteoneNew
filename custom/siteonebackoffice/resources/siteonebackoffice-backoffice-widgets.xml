@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?><!--
+  ~ [y] hybris Platform
+  ~
+  ~ Copyright (c) 2000-2015 hybris AG
+  ~ All rights reserved.
+  ~
+  ~ This software is the confidential and proprietary information of hybris
+  ~ ("Confidential Information"). You shall not disclose such Confidential
+  ~ Information and shall use it only in accordance with the terms of the
+  ~ license agreement you entered into with hybris.
+  --><widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.hybris.com/schema/cockpitng/widgets.xsd">
+	
+	<widget-extension widgetId="backofficeMainSlot">
+		<widget id="siteoneDataLoad" widgetDefinitionId="com.siteone.backoffice.widgets.dataload.perspective" slotId="perspectives"
+				  template="false" title="Data Load">
+		 
+			<setting key="filename_delimiter" type="String">-</setting>
+			<setting key="filename_siteonecustomer" type="String">/master/siteonecustomer</setting>
+			<setting key="filename_siteoneinventory" type="String">/master/siteoneinventory</setting>
+			<setting key="filename_siteoneprice" type="String">/master/siteoneprice</setting>
+			<setting key="filename_siteonestore" type="String">/master/siteonestore</setting>
+			<setting key="logfilelocation" type="String">tomcat</setting>
+			<setting key="useHybrisDataDirectory" type="Boolean" >true</setting>
+		</widget>
+	</widget-extension>
+    
+
+    <widget-connection inputId="input" outputId="nodeSelected" sourceWidgetId="siteonebackoffice-explorer-tree" targetWidgetId="siteonebackoffice-tree-node-adapter"/>
+    <widget-connection inputId="genericInput" outputId="true" sourceWidgetId="siteonebackoffice-tree-node-adapter" targetWidgetId="siteonebackoffice-typecode-extractor"/>
+    <widget-connection inputId="genericInput" outputId="true" sourceWidgetId="siteonebackoffice-tree-node-adapter" targetWidgetId="siteonebackoffice-search-enabler"/>
+    <widget-connection inputId="genericInput" outputId="false" sourceWidgetId="siteonebackoffice-tree-node-adapter" targetWidgetId="siteonebackoffice-search-disabler"/>
+    <widget-connection inputId="type" outputId="genericOutput" sourceWidgetId="siteonebackoffice-typecode-extractor" targetWidgetId="siteonebackoffice-search-logic"/>
+    <widget-connection inputId="enabled" outputId="genericOutput" sourceWidgetId="siteonebackoffice-search-enabler" targetWidgetId="siteonebackoffice-text-search"/>
+    <widget-connection inputId="enabled" outputId="genericOutput" sourceWidgetId="siteonebackoffice-search-disabler" targetWidgetId="siteonebackoffice-text-search"/>
+    <widget-connection inputId="searchtext" outputId="query" sourceWidgetId="siteonebackoffice-text-search" targetWidgetId="siteonebackoffice-search-logic"/>
+    <widget-connection inputId="pageable" outputId="pageable" sourceWidgetId="siteonebackoffice-search-logic" targetWidgetId="siteonebackoffice-simple-list"/>
+
+</widgets>

@@ -1,0 +1,42 @@
+
+$contentCatalog=siteoneContentCatalog
+$contentCatalogName=SiteOne Content Catalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Online])[default=$contentCatalog:Online]
+$productCatalog=siteoneProductCatalog
+$productCatalogName=SiteOne Product Catalog
+$productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Online'])[unique=true,default=$productCatalog:Online]
+$picture=media(code, $contentCV);
+$image=image(code, $contentCV);
+$media=media(code, $contentCV);
+$page=page(uid, $contentCV);
+$contentPage=contentPage(uid, $contentCV);
+$product=product(code, $productCV)
+$category=category(code, $productCV)
+$siteResource=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/contentCatalogs/$contentCatalog
+$productResource=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/productCatalogs/$productCatalog
+$jarResourceCms=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/cockpits/cmscockpit
+$addonExtensionName=siteoneacceleratoraddon
+$medias=medias(code, $contentCV);
+$articleMedia=articleMedia(code, $contentCV);
+$mediaContainer=media(qualifier, $contentCV);
+$siteUid=siteone
+$lang=en
+$storeImage=storeImage(qualifier, $contentCV)
+
+
+
+INSERT_UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];name;title[lang=$lang];masterTemplate(uid,$contentCV);label;defaultPage[default='true'];approvalStatus(code)[default='approved'];homepage[default='false']
+;;siteonemobileapphomepage;MobileAppHomePage;siteonemobileapphomepage;SiteOneHomePageTemplate;/mobileapphomepage;
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(uid, $contentCV)
+;;SectionS1Slot-SiteOneMAHomePage;SectionS1 Slot for SiteOneMAHomePage;true;siteoneMobileAppHomePageCarouselComponent1,siteoneMobileAppHomePageCarouselComponent2,siteoneMobileAppHomePageCarouselComponent3A,siteoneMobileAppHomePageCarouselComponent4,siteoneMobileAppHomePageCarouselComponent5,siteoneMobileAppHomePageCarouselComponent6,siteoneMobileAppHomePageCarouselComponent7,siteoneMobileAppHomePageCarouselComponent8,siteoneMobileAppHomePageCarouselComponent9,siteoneMobileAppHomePageCarouselComponent10,siteoneMobileAppHomePageCarouselComponent11
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='siteonemobileapphomepage'];contentSlot(uid,$contentCV)[unique=true]
+;;SectionS1-SiteOneMAHomePage;SectionS1;;SectionS1Slot-SiteOneMAHomePage
+
+INSERT_UPDATE HomePageRotatingBannerComponent;$contentCV[unique=true];uid[unique=true];name;rotatingBanner(uid,$contentCV);&componentRef
+;;siteoneMobileAppHomePageCarouselComponent9;Siteone Mobileapp Homepage Component9;;siteoneMobileAppHomePageCarouselComponent9
+;;siteoneMobileAppHomePageCarouselComponent10;Siteone Mobileapp Homepage Component10;;siteoneMobileAppHomePageCarouselComponent10
+;;siteoneMobileAppHomePageCarouselComponent11;Siteone Mobileapp Homepage Component11;;siteoneMobileAppHomePageCarouselComponent11
+
+

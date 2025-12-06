@@ -1,0 +1,3 @@
+
+INSERT_UPDATE SearchRestriction; code[unique = true]    ; name[lang = en]        ; query   ; principal(UID); restrictedType(code); active; generate
+                  ; store_restriction_hana ; Base Store Restriction Hana ;   {basestore} = ?session.currentBaseStore; customergroup      ; PointOfService               ; true  ; true

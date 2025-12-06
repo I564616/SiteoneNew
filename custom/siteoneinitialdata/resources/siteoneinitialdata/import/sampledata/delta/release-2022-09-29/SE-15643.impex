@@ -1,0 +1,6 @@
+$lang=en
+$indexedType=siteoneProductType
+
+UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true,default=$indexedType];name[unique=true];displayName[lang=$lang]
+ ;;soproductBrandNameFacet;All Brands
+								 

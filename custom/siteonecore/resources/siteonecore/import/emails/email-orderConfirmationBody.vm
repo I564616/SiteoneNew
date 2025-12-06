@@ -1,0 +1,2342 @@
+## messageSource=classpath:/siteonecore/messages/email-orderConfirmation_$lang.properties
+#macro( genHtmlBoldFont $text )
+<font color="#414a4f"><b>$text</b></font>
+#end
+#macro(genHtmlLinkStartTag $url)
+<a href="$url"><font color="#666666">
+#end
+#macro(genHtmlLinkEndTag)
+</font></a>
+#end
+#macro(genHtmlLink $url $textColor $bodyContent)
+<a href="$url"><font color="$textColor">$bodyContent</font></a>
+#end
+#set ($pickupBranch = '')
+#set ($deliveryBranch = '')
+#set ($shippingBranch = '')
+#set ($accountUrl = "${ctx.baseUrl}/my-account/orders")
+		#if ( $ctx.order.guestCustomer )
+			#set ($orderInfoUrl = "${ctx.baseUrl}/guest/order/${ctx.order.guid}")
+		#else
+			#set ($orderInfoUrl = "${ctx.baseUrl}/my-account/order/${ctx.order.code}")
+		#end  
+#if ($ctx.unitId)
+#if(${ctx.shipmentNumber} && ${ctx.shipmentNumber} != '')
+#set ($orderDetailsPage = "${ctx.baseUrl}/my-account/order/${ctx.unitId}/${ctx.shipmentNumber}")
+
+#if ($ctx.branchNumber)
+  #set ($orderDetailsPage = "${orderDetailsPage}?branchNo=${ctx.branchNumber}")
+#end
+
+#if ($ctx.shipmentCount)
+  #if ($ctx.branchNumber)
+    #set ($orderDetailsPage = "${orderDetailsPage}&shipmentCount=${ctx.shipmentCount}")
+  #else
+    #set ($orderDetailsPage = "${orderDetailsPage}?shipmentCount=${ctx.shipmentCount}")
+  #end
+#end
+#else
+#set ($orderDetailsPage = "${ctx.baseUrl}/my-account/orders/${ctx.unitId}")
+#end
+#set ($orderDetail = ${ctx.messages.getMessage('orderDetail', "#genHtmlLinkStartTag($orderDetailsPage)", "#genHtmlLinkEndTag()")} )
+#else
+#set ($requestAccountPage = "${ctx.baseUrl}/request-account/form")
+#set ($requestAccount = ${ctx.messages.getMessage('requestAccount', "#genHtmlLinkStartTag($requestAccountPage)", "#genHtmlLinkEndTag()")} )
+#end
+<table width="600" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#ffffff" style="border: 1px solid #999; min-height: 800px; min-width: 600px; max-width: 600px;font-family: Arial, Helvetica, sans-serif;  word-break: break-word;color: #5a5b5d;font-size: 12px;">
+#if(${ctx.countryCode} == "CA")
+    
+<thead>
+	<tr>
+        <th colspan="3" align="left" style="padding: 24px;">
+            <a style="text-decoration:none;" href="${ctx.baseThemeUrl}">
+                <img title="SiteoneLogo" src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/SiteoneLogo.jpg" alt="SiteoneLogo" width="176" height="67">
+            </a>
+        </th>
+        <th colspan="3" valign="bottom" align="right" style="padding: 24px;">
+            <a style="text-decoration:none; margin-right: 20px;" href="https://www.facebook.com/siteonesupplycanada/">
+                <img src="https://www.siteone.com/_ui/responsive/theme-lambda/images/Footer_Social_Facebook.svg" alt="Facebook" title="Facebook" width="27" height="27">
+            </a>
+            <a style="text-decoration:none; margin-right: 20px;" href="https://www.instagram.com/Siteonesupplycanada/">
+                <img src="https://www.siteone.com/_ui/responsive/theme-lambda/images/Footer_Social_LinkedIn.svg" alt="Instagram" title="Instagram" width="27" height="27">
+            </a>
+            <a style="text-decoration:none;" href="https://x.com/SiteOneCanada">
+                <img src="https://www.siteone.com/_ui/responsive/theme-lambda/images/Footer_Social_Twitter.svg" alt="X" title="X" width="27" height="27">
+            </a>
+        </th>
+    </tr>
+	<tr>
+		<th colspan="6" align="left" style="background-color: #f1f2f2; font-weight: bold; padding: 24px;font-size:16px;">
+			<p style="margin: 0; padding-bottom: 8px;">${ctx.firstName},</p>${ctx.messages.mixedThanksForOrder}.
+		</th>
+	</tr>
+</thead>
+<tbody>
+	<tr>
+		#if ($ctx.pickupConsignments.size() > 0)
+	     <td colspan="6" valign="top" align="left" style="padding: 48px 24px 24px 24px;font-size:16px;line-height: 22px;">${ctx.messages.pickupMessage}. 
+		</td>
+		#elseif(${ctx.pickupConsignments} || ${ctx.deliveryConsignments}  || !${ctx.isShippingFeeBranch})
+		     <td colspan="6" valign="top" align="left" style="padding: 48px 24px 24px 24px;font-size:16px;line-height: 22px;">${ctx.messages.orderMessage}.
+		     </td>
+	    #elseif(${ctx.shippingConsignments} && ${ctx.isShippingFeeBranch})
+		     <td colspan="6" valign="top" align="left" style="padding: 48px 24px 24px 24px;font-size:16px;line-height: 22px;">${ctx.messages.trackingInfoMessage}.
+		     </td>
+		#end
+	</tr>
+	<tr>
+		<td colspan="2"  width="30%" align="left" style="font-weight: bold; padding: 5px 24px;font-size:13px; color: #000000;">${ctx.messages.mixedOrderNumber}</td>
+		<td colspan="4" align="left" style="padding: 5px 24px;font-size:13px; color: #000000;">${ctx.order.code}</td>
+	</tr>	
+	#if(${ctx.requestedDate})
+	<tr>
+		<td colspan="2" width="30%" align="left" style="font-weight: bold; padding: 5px 24px;font-size:13px; color: #000000;">${ctx.messages.mixedOrderDate}</td>
+		<td colspan="4" align="left" style="padding: 5px 24px;font-size:13px; color: #000000;">
+			
+				${ctx.requestedDate}
+				#if(${ctx.order.requestedMeridian} == "AM")
+					${ctx.messages.morning}
+				#end
+				#if(${ctx.order.requestedMeridian} == "PM")
+					${ctx.messages.afternoon}
+				#end			
+		</td>
+	</tr>
+	#end
+	
+	<tr>
+		<td colspan="2" width="30%" align="left" style="font-weight: bold; padding: 5px 24px;font-size:13px; color: #000000;">${ctx.messages.mixedPONumber}</td>
+		<td colspan="4" align="left" style="padding: 5px 24px;font-size:13px; color: #000000;">
+			#if(${ctx.order.purchaseOrderNumber} && ${ctx.order.purchaseOrderNumber} != '')
+				${ctx.order.purchaseOrderNumber}
+			#else
+				${ctx.messages.na}
+			#end
+		</td>
+	</tr>
+	<tr>
+		<td colspan="6" valign="top" align="left" style="padding: 24px 24px 40px 24px;">
+		#if ($ctx.unitId)			
+			<a href="$orderDetailsPage" style="text-decoration:none;color: #fff;line-height: 40px; font-weight: bold; padding: 6px 30px;font-size:16px;  background: #78a22f;height: 36px; border-radius: 6px; display: inline-block;">${ctx.messages.orderDetail}</a>
+		#else
+		    <a href="$requestAccountPage" style="text-decoration:none;color: #fff;line-height: 40px; font-weight: bold; padding: 6px 30px;font-size:16px;  background: #78a22f;height: 36px; border-radius: 6px; display: inline-block;">${ctx.messages.requestAccount}</a>
+		#end    
+		</td>
+	</tr>
+	<!-- PICKUP -->
+	#if ($ctx.pickupConsignments.size() > 0)
+	<tr>
+		<td colspan="6" align="left" style="background-color: #f1f2f2; padding: 10px 24px;">
+			<svg valign="middle" id="ICON_-_Home_Branch" data-name="ICON - Home Branch" xmlns="http://www.w3.org/2000/svg" width="24" height="20" viewBox="0 0 19 15.625" style="padding: 0 10px 0 0;">
+				<path id="Path_99" data-name="Path 99" d="M491.193,155.643a.724.724,0,0,0-.522-.22h-.808v-9.368h.878a.542.542,0,0,0,.474-.809l-2.152-3.783a.544.544,0,0,0-.474-.275H475.151a.543.543,0,0,0-.474.275l-2.152,3.783a.542.542,0,0,0,.474.809h.878v9.368h-.809a.695.695,0,1,0,0,1.389h17.6a.689.689,0,0,0,.7-.695A.633.633,0,0,0,491.193,155.643Zm-15.5-13.062h12.359l1.106,2.083H474.584Zm-.425,12.842c0-1.276,0-6.368,0-9.368h6.106l-4.89,6.662a.107.107,0,0,0-.005.12l1.6,2.586Zm8.576-.042a.1.1,0,0,1-.074.042h-1.095a.1.1,0,0,1-.084-.085l-.4-4.783a.108.108,0,0,0-.107-.094h-.359a.109.109,0,0,0-.088.045l-1.692,2.39a.107.107,0,0,0,0,.117l.244.4a.109.109,0,0,0,.15.036h0l.7-.451a.107.107,0,0,1,.166.1l-.088,2.234a.1.1,0,0,1-.083.087h-1.052a.1.1,0,0,1-.074-.042l-1.493-2.46a.108.108,0,0,1,.005-.119l3.373-4.591a.107.107,0,0,1,.15-.023.1.1,0,0,1,.024.023l3.373,4.591a.107.107,0,0,1,.005.119Zm1.86.042,1.563-2.587a.107.107,0,0,0-.005-.118l-4.89-6.663h6.108v9.368Z" transform="translate(-472.37 -141.187)"></path>
+			</svg>
+            <span valign="top" style="font-weight: bold;font-size:16px; color:#000000; display: inline-block;margin-top: -11px; vertical-align: middle;" >${ctx.messages.mixedPickUpInformation}</span>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="6" align="left" style="padding: 30px 24px;">
+			<p style="font-size: 14px;font-weight: 700;color: #000000;margin-bottom: 18px;">${ctx.messages.mixedPickUpContact}</p>
+			<p>
+				#if($ctx.isGuestCustomer)
+					${ctx.order.guestContactPerson.name}
+					<br />
+					#if($ctx.order.guestContactPerson.contactNumber)
+					${ctx.order.guestContactPerson.contactNumber}
+					#else
+						m:${ctx.messages.na}					
+					#end
+					<br />
+					${ctx.order.guestContactPerson.email}
+				#else
+					${ctx.order.contactPerson.name}
+					<br />
+					#if($ctx.order.contactPerson.contactNumber)
+					${ctx.order.contactPerson.contactNumber}
+					<br />
+					#end
+					${ctx.order.contactPerson.email}
+				#end
+			</p>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="6" align="left" style="padding: 0 24px 24px 24px;">
+			<p style="font-size: 14px;font-weight: 700;color: #000000;margin-bottom: 18px;">${ctx.messages.mixedPickUpInstruction}</p>
+			<p style="font-size: 14px;margin: 0;padding: 0px 15px 15px 0;">
+				#if(${ctx.order.pickupInstruction} && ${ctx.order.pickupInstruction} !='')
+				${ctx.order.pickupInstruction}
+				#else
+					#if(${ctx.order.specialInstruction} && ${ctx.order.specialInstruction} !='')
+						${ctx.order.specialInstruction}
+					#else
+						${ctx.messages.na}
+					#end
+				#end
+			</p>
+		</td>
+	</tr>
+		#set ($isRegulatoryLicenseCheckFailed = false)
+					#foreach( $consignment in ${ctx.pickupConsignments} )
+					#foreach( $consignmentEntry in ${consignment.entries} )
+					
+						#if($consignmentEntry.orderEntry.product.isRegulatoryLicenseCheckFailed)
+					 	#set ($isRegulatoryLicenseCheckFailed = true)
+						
+						#end
+					#end
+					#end
+					#if($isRegulatoryLicenseCheckFailed)
+					<tr>
+					<td colspan="6" style="padding:0 24px 24px 24px;">
+							<p style="font-size: 14px;font-weight:bold; color: #000000;">A valid applicators license is required upon pick-up or delivery.</p>
+						</td>
+						</tr>
+					
+					#end			
+	<tr>
+		<td colspan="6" align="left" style="padding: 0 24px">
+			#foreach( $consignment in ${ctx.pickupConsignments} )
+			#if($pickupBranch == "")
+				#set ($pickupBranch = $consignment.pointOfService)
+			#end
+			<!-- P:Location -->
+			<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#ffffff" style="padding: 40px 0 0 0; border-top: 1px solid #999; font-size: 12px; color: #5a5b5d;">
+				<tbody>
+					<tr>
+						<td>
+							#set ($newIndex = $foreach.index + 1)
+							<p style="font-size: 20px;margin: 0; color: #000000;">${ctx.messages.mixedPickUpLocation} # $newIndex: <b>$consignment.pointOfService.name</b></p>
+							<p style="font-size: 14px;padding: 10px 0px;margin: 0;">$consignment.pointOfService.address.line1 | $consignment.pointOfService.address.town, 
+								$consignment.pointOfService.address.region.isocodeShort $consignment.pointOfService.address.postalCode | $consignment.pointOfService.address.phone</p>
+						</td>
+					</tr>
+					
+					#set ($priceAlertBanner = false)
+					#foreach( $consignment in ${ctx.pickupConsignments} )
+						#foreach( $consignmentEntry in ${consignment.entries} )
+							#if(($consignmentEntry.orderEntry.product.level1Category == "Hardscapes & Outdoor Living"  || $consignmentEntry.orderEntry.product.level1Category == "Materiales duros & Vida al Aire Libre" || $consignmentEntry.orderEntry.product.level2Category == 'Consumables'  || $consignmentEntry.orderEntry.product.level2Category == 'Consumibles') && ($consignmentEntry.orderEntry.uomMeasure.contains("Net Ton") || $consignmentEntry.orderEntry.uomMeasure.contains("Cubic Yard")))
+				   				#set ($priceAlertBanner = true)				
+							#end
+						#end
+					#end
+					
+					#if($priceAlertBanner)
+					<tr style="font-size: 14px; color: #414244; text-align: center;">
+						<td colspan="6" align="left">
+							<div style="background-color:#F9F0E5;padding: 18px 10px;margin-top: 15px;display: inline-flex;align-items: center;width: 96%;">
+							<div style="display: flex; width: 8%;"><img src="https://www.siteone.com/_ui/responsive/theme-lambda/images/Exclamatory-Circle.svg" alt="Exclamatory" title="Exclamation" width="30" height="30">
+							</div>
+							<div valign="top" style="vertical-align: middle;width: 100%;padding-left: 5px;display: block;">
+								${ctx.messages.priceAlertMessage}
+							</div>
+							</div>
+						</td>
+				   	</tr>
+					#end
+					
+					<tr>
+						<td>
+							#foreach( $consignmentEntry in ${consignment.entries} )
+							<!-- P:Product -->
+							<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#ffffff" style="padding: 20px 0px 0px 0px;font-size: 12px; color: #5a5b5d;">
+								<tr>
+									<td colspan="2" width="50%" align="left" bgcolor="#eeeeee" style="font-size: 14px;font-weight: 700;padding: 10px;color: #414244;">${ctx.messages.productInfo}</td>
+									<td width="25%" align="right" bgcolor="#eeeeee" style="font-size: 14px;padding: 10px;">${ctx.messages.mixedQTY}</td>
+									<td width="25%" align="right" bgcolor="#eeeeee" style="font-size: 14px;padding: 10px;">${ctx.messages.total}</td>
+								</tr>
+								#if($consignmentEntry.orderEntry.product.isEligibleForBackorder)
+								<tr>
+									<td colspan="6" align="left" style="padding: 15px 0 0 0; margin: 0px;">
+										 <div
+                                            style="margin-top: 15px; border-radius: 5px; background-color:#F9F0E5;padding: 18px 10px 18px 10px;display: inline-flex;align-items: center;width: 94%;">
+                                            <div style="display: flex; width: 8%;"><img src="https://www.siteone.com/_ui/responsive/theme-lambda/images/Exclamatory-Circle.svg" alt="Exclamatory" title="Exclamation" width="30" height="30">
+                                                    
+                                            </div>
+                                            <div valign="top"
+                                                style="vertical-align: middle;width: 100%;padding-left: 5px;display: block;">
+                                                <span valign="top" style="font-weight: bold; display: inline-block;margin-top: -11px; vertical-align: middle;" >${ctx.messages.backorderMessage}</span>
+                                            </div>
+                                            
+                                        </div>
+									</td>
+								</tr>
+								#end
+								#if($consignmentEntry.orderEntry.product.isRegulatoryLicenseCheckFailed == false)
+									<tr>
+										<td colspan="6" align="left" style="padding: 15px 0 0 0; margin: 0px;">
+											<div style="margin-top: 15px; border-radius: 5px; background-color:#F9F0E5;padding: 18px 10px 18px 10px;display: inline-flex;align-items: center;width: 94%;">
+	                                            <div style="display: flex; width: 8%;"><img src="https://www.siteone.com/_ui/responsive/theme-lambda/images/Exclamatory-Circle.svg" alt="Exclamatory" title="Exclamation" width="30" height="30"></div>
+	                                            <div valign="top" style="vertical-align: middle;width: 100%;padding-left: 5px;display: block;">
+	                                                <span valign="top" style="font-weight: bold; display: inline-block;margin-top: -11px; vertical-align: middle;" >${ctx.messages.regulatoryLicenseCheckFailed}</span>
+	                                            </div>
+                                            </div>
+										</td>
+									</tr>
+								#end
+								#if($consignmentEntry.orderEntry.product.isRUPTrainingSku)
+								<tr>
+									<td colspan="6" align="left" style="padding: 15px 0 0 0; margin: 0px;">
+										 <div
+                                            style="margin-top: 15px; border-radius: 5px; background-color:#F9F0E5;padding: 18px 10px 18px 10px;display: inline-flex;align-items: center;width: 94%;">
+                                            <div style="display: flex; width: 8%;"><img src="https://www.siteone.com/_ui/responsive/theme-lambda/images/Exclamatory-Circle.svg" alt="Exclamatory" title="Exclamation" width="30" height="30">
+                                                    
+                                            </div>
+                                            <div valign="top"
+                                                style="vertical-align: middle;width: 100%;padding-left: 5px;display: block;">
+                                                <span valign="top" style="font-weight: bold; display: inline-block;margin-top: -11px; vertical-align: middle;" >${ctx.messages.rup}</span>
+                                            </div>
+                                            
+                                        </div>
+									</td>
+								</tr>
+								#end
+								
+								#if($consignmentEntry.orderEntry.product.fullfilledStoreType == 'NearByStore' || $consignmentEntry.orderEntry.product.isStockInNearbyBranch)
+								<tr>
+									<td colspan="6" align="left" style="padding: 15px 0 0 0; margin: 0px;">
+										 <div
+                                            style="margin-top: 15px; border-radius: 5px; background-color:#F9F0E5;padding: 18px 10px 18px 10px;display: inline-flex;align-items: center;width: 94%;">
+                                            <div style="display: flex; width: 8%;"><img src="https://www.siteone.com/_ui/responsive/theme-lambda/images/Exclamatory-Circle.svg" alt="Exclamatory" title="Exclamation" width="30" height="30">
+                                                    
+                                            </div>
+                                            <div valign="top"
+                                                style="vertical-align: middle;width: 100%;padding-left: 5px;display: block;">
+                                                <span valign="top" style="font-weight: bold; display: inline-block;margin-top: -11px; vertical-align: middle;" >${ctx.messages.nearbyMessage}</span>
+                                            </div>
+                                            
+                                        </div>
+									</td>
+								</tr>
+								#end
+								<tr>
+									<td><br></td>
+								</tr>
+								#if(($consignmentEntry.orderEntry.product.level1Category == "Hardscapes & Outdoor Living"  || $consignmentEntry.orderEntry.product.level1Category == "Materiales duros & Vida al Aire Libre") && ($consignmentEntry.orderEntry.uomMeasure.contains("Net Ton") || $consignmentEntry.orderEntry.uomMeasure.contains("Pallet")))
+								<tr style="font-size: 14px; color: #414244; text-align: center;">
+									<td colspan="6" align="left">
+										<div
+											style="background-color:#F9F0E5;padding: 10px;display: inline-flex;align-items: center;width: 96%;border-radius: 5px;">
+											
+											<div valign="top"
+												style="vertical-align: middle;width: 100%;display: block;">
+												${ctx.messages.priceRefundAlertMessage}
+											</div>
+											
+										</div>
+									</td>
+								</tr>
+								
+								#end
+								<tr>
+									<td width="20%" align="left" style="padding: 0px" valign="top">
+										<a href="${ctx.baseUrl}$consignmentEntry.orderEntry.product.url" style="text-decoration:none">
+																							
+											#if($consignmentEntry.orderEntry.product.images.isEmpty() != 'false')
+												<img src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/missing_product_EN_300x300.jpg" width="80" style="border: 1px solid #cccccc;padding: 0px; margin: 0;" alt="image not available" >
+											   #else
+											   #foreach($image in $consignmentEntry.orderEntry.product.images) 
+												   #if($image.imageType == "PRIMARY" && $image.format == "thumbnail" )
+												 		<img  src="${ctx.baseThemeUrl}$image.url" alt="" title="$consignmentEntry.orderEntry.product.name" width="80" style="border: 1px solid #cccccc;padding: 0px; margin: 0;"/>
+												   #end 
+											   #end
+										   #end
+										   </a>
+									</td>
+									<td width="30%" align="left" height="100%" valign="top">
+										<p >$consignmentEntry.orderEntry.product.itemNumber</p>
+										<p style="font-size: 14px;font-weight: bold;">
+											<a href="${ctx.baseUrl}$consignmentEntry.orderEntry.product.url" style="text-decoration:none;color:#000000;line-height: 20px;" ><b>$consignmentEntry.orderEntry.product.name</b></a>
+										<br>
+										#if (!$consignmentEntry.orderEntry.product.baseOptions.isEmpty())
+										#foreach ($option in $consignmentEntry.orderEntry.product.baseOptions)
+											#if ($option.selected && ($option.selected.url == $consignmentEntry.orderEntry.product.url))
+												<table width="100%" cellpadding="0" cellspacing="0">
+													#foreach ($selectedOption in $option.selected.variantOptionQualifiers)
+														<tr>
+															<td width="30%" valign="top">
+																<p>
+																	<font color="#666666">$selectedOption.name:</font>
+																</p>
+															</td>
+															<td width="70%" valign="top">
+																<p>
+																	<font color="#666666">$selectedOption.value</font>
+																</p>
+															</td>
+														</tr>
+													#end
+												</table>
+											#end
+										#end
+									#end
+									#if (!$ctx.order.appliedProductPromotions.isEmpty())
+										#foreach( $promotion in $ctx.order.appliedProductPromotions)
+											#set ($displayed = false)
+											#foreach ($consumedEntry in $promotion.consumedEntries)
+												#if (!$displayed && ($consumedEntry.orderEntryNumber == $consignmentEntry.orderEntry.entryNumber))
+													#set ($displayed = true)
+													<p class="promo addPromotionDesc"><font color="#78a22f">${promotion.description}</font>
+													</p>
+												#end
+											#end
+										#end
+									#end</p>
+									</td>
+									<td width="30%" align="right" valign="top">
+										<div style="padding: 0px 10px;font-size: 16px;color:#000000;margin-top: 15px">$consignmentEntry.orderEntry.quantity</div>
+									</td>
+									<td width="20%" align="right" valign="top">
+										<p style="font-size: 14px;font-weight: bold; color:#000000;">
+										#if($consignmentEntry.orderEntry.totalPrice.value > 0) 
+											$consignmentEntry.orderEntry.totalPrice.formattedValue 
+										#else 
+											${ctx.messages.free} 
+										#end
+										</p>
+										<p >
+											#if(!$consignmentEntry.orderEntry.isPromotionApplied && $consignmentEntry.orderEntry.saleprice)
+											<p><font><del>${consignmentEntry.orderEntry.basePrice.formattedValue} / ${consignmentEntry.orderEntry.uomMeasure}</del></font></p>
+											<p style="color:red;font-weight: 600;">$${consignmentEntry.orderEntry.saleprice} / ${consignmentEntry.orderEntry.uomMeasure}</p>
+											#elseif($consignmentEntry.orderEntry.basePrice.value > 0.0)
+										   <p><font>${consignmentEntry.orderEntry.basePrice.formattedValue} / ${consignmentEntry.orderEntry.uomMeasure}</font></p>
+										   #end
+										</p>
+									</td>
+								</tr>
+							</table><!-- ./P:Product -->
+							#end
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<!-- ./P:Location -->
+			#end
+		</td>
+	</tr>
+	<!-- ./PICKUP -->
+	#end
+	#if($ctx.deliveryConsignments.size() > 0)
+    <!-- Delivery -->
+	<tr>
+		<td colspan="6" align="left" style="background-color: #f1f2f2; padding: 10px 24px;">
+			<svg id="ICON_-_Delivery" data-name="ICON - Delivery" xmlns="http://www.w3.org/2000/svg" width="30" height="20" viewBox="0 0 26.398 13" style="padding: 0 10px 0 0;">
+				<g id="Group_539" data-name="Group 539" transform="translate(0 2.954)">
+					<path id="Path_91" data-name="Path 91" d="M370.017,146.8h-1.969a.576.576,0,1,0,0,1.152h1.969a.571.571,0,0,0,.578-.576.519.519,0,0,0-.15-.39A.6.6,0,0,0,370.017,146.8Z" transform="translate(-365.013 -146.805)"></path>
+					<path id="Path_92" data-name="Path 92" d="M368.988,152.122H365.8a.576.576,0,1,0,0,1.152h3.208a.571.571,0,0,0,.578-.576A.588.588,0,0,0,368.988,152.122Z" transform="translate(-363.984 -149.252)"></path>
+					<path id="Path_93" data-name="Path 93" d="M367.942,157.4h-4.425a.576.576,0,1,0,0,1.152h4.425a.571.571,0,0,0,.578-.576.521.521,0,0,0-.146-.394A.6.6,0,0,0,367.942,157.4Z" transform="translate(-362.938 -151.681)"></path>
+				</g>
+				<path id="Path_94" data-name="Path 94" d="M395.069,147.18l-2.117-3.513a1.4,1.4,0,0,0-1.133-.638h-3.256v-.7a1,1,0,0,0-1-.995H377.112a1,1,0,0,0-1,.995v9.316a1,1,0,0,0,1,.994h.771a2.277,2.277,0,0,0,4.4,0h6.9a2.277,2.277,0,0,0,4.4,0h.772a.987.987,0,0,0,1-.992v-3.392A2.309,2.309,0,0,0,395.069,147.18Zm-3.957.931c0-.4,0-1.567,0-2.257.144.005.366.006.694.008l1.129,0,1.147,1.9a1.211,1.211,0,0,1,.119.343Zm-.15-3.388a.992.992,0,0,0-.995.986v2.557a.993.993,0,0,0,1,.987h3.256V151.5c-.133,0-.352,0-.627,0a2.277,2.277,0,0,0-4.4,0h-.627v-7.328h3.256a.3.3,0,0,1,.15.084l.282.468Zm.429,6.224a1.123,1.123,0,1,1-1.128,1.123A1.126,1.126,0,0,1,391.393,150.947Zm-3.976-8.471V151.5H382.29a2.277,2.277,0,0,0-4.4,0h-.624c0-.733,0-4.077,0-6.515v-2.507Zm-7.328,8.471a1.123,1.123,0,1,1-1.128,1.123A1.126,1.126,0,0,1,380.089,150.947Z" transform="translate(-368.97 -141.335)"></path>
+			</svg>
+			<span valign="top" style="font-weight: bold;font-size:16px; color:#000000; display: inline-block;margin-top: -11px; vertical-align: middle;" >${ctx.messages.mixedDeliveryInformation}</span>
+		</td>
+	</tr>
+    <tr>
+		<td colspan="3" valign="top" align="left" style="padding: 30px 24px;">
+			<p style="font-size: 14px;font-weight: 700;color: #000000;margin-bottom: 18px;">${ctx.messages.mixedDeliveryContact}</p>
+			<p>
+				#if($ctx.isGuestCustomer)
+					#if(${ctx.order.guestDeliveryContactPerson})
+						${ctx.order.guestDeliveryContactPerson.name}
+						<br />
+						#if($ctx.order.guestDeliveryContactPerson.contactNumber)
+						${ctx.order.guestDeliveryContactPerson.contactNumber}
+						#else
+							m:${ctx.messages.na}
+						<br />
+						#end
+						${ctx.order.guestDeliveryContactPerson.email}
+					#else
+						${ctx.order.guestContactPerson.name}
+						<br />
+						#if($ctx.order.guestContactPerson.contactNumber)
+						${ctx.order.guestContactPerson.contactNumber}
+						#else
+							m:${ctx.messages.na}					
+						#end
+						<br />
+						${ctx.order.guestContactPerson.email}
+					#end
+				#else
+					#if(${ctx.order.deliveryContactPerson})
+						${ctx.order.deliveryContactPerson.name}
+						<br />
+						#if($ctx.order.deliveryContactPerson.contactNumber)
+						${ctx.order.deliveryContactPerson.contactNumber}
+						#else
+							m:${ctx.messages.na}						
+						#end
+						<br />
+						${ctx.order.deliveryContactPerson.email}
+					#else
+						${ctx.order.contactPerson.name}
+						<br />
+						#if($ctx.order.contactPerson.contactNumber)
+						${ctx.order.contactPerson.contactNumber}
+						#else
+							m:${ctx.messages.na}						
+						#end
+						<br />
+						${ctx.order.contactPerson.email}
+					#end
+				#end
+			</p>
+		</td>
+        <td colspan="3" valign="top" align="left" style="padding: 30px 24px;">
+			<p style="font-size: 14px;font-weight: 700;color: #000000;margin-bottom: 18px;">${ctx.messages.mixedDeliverTo}</p>
+			<p>
+				#if (${ctx.order.deliveryAddress.line1})
+					${ctx.order.deliveryAddress.line1},
+					<br/>
+				#end
+				#if(${ctx.order.deliveryAddress.line2} && !${ctx.order.deliveryAddress.line2.isEmpty()})
+					${ctx.order.deliveryAddress.line2},
+				#end
+				${ctx.order.deliveryAddress.town},&nbsp;${ctx.order.deliveryAddress.region.isocodeShort}
+				${ctx.order.deliveryAddress.postalCode}
+			</p>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="6" align="left" style="padding: 0 24px 24px 24px;">
+			<p style="font-size: 14px;font-weight: 700;color: #000000;margin-bottom: 18px;">${ctx.messages.mixedDeliveryInstruction}</p>
+			<p style="font-size: 14px;margin: 0;padding: 0px 15px 15px 0;">
+				#if(${ctx.order.deliveryInstruction} && ${ctx.order.deliveryInstruction} !='')
+					${ctx.order.deliveryInstruction}
+				#else
+					#if(${ctx.order.specialInstruction} && ${ctx.order.specialInstruction} !='')
+						${ctx.order.specialInstruction}
+					#else
+						${ctx.messages.na}
+					#end
+				#end
+			</p>
+		</td>
+	</tr>
+	 
+					#set ($isRegulatoryLicenseCheckFailed = false)
+					#foreach( $consignment in ${ctx.deliveryConsignments} )
+					#foreach( $consignmentEntry in ${consignment.entries} )
+					
+						#if($consignmentEntry.orderEntry.product.isRegulatoryLicenseCheckFailed)
+					 	#set ($isRegulatoryLicenseCheckFailed = true)
+						
+						#end
+					#end
+					#end
+					#if($isRegulatoryLicenseCheckFailed)
+					<tr>
+					<td colspan="6" style="padding:0 24px 24px 24px;">
+							<p style="font-size: 14px;font-weight:bold; color: #000000;">A valid applicators license is required upon pick-up or delivery.</p>
+						</td>
+						</tr>
+					
+					#end
+    <tr>
+		<td colspan="6" align="left" style="padding: 0 24px">
+			#foreach( $consignment in ${ctx.deliveryConsignments} )
+			#if($deliveryBranch == "")
+				#set ($deliveryBranch = $consignment.pointOfService)
+			#end
+			<!-- D:Location -->
+			
+			<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#ffffff" style="padding: 40px 0 0 0; border-top: 1px solid #999; font-size: 12px; color: #5a5b5d;">
+				<tbody>
+					<tr>
+						<td>
+							<p style="font-size: 20px;margin: 0; color: #000000;">${ctx.messages.mixedDeliveryFrom}: <b>$consignment.pointOfService.name</b></p>
+							<p style="padding: 0px 0px;font-weight: 600;margin: 0;">${ctx.messages.mixedArepresentativefrom} $consignment.pointOfService.name ${ctx.messages.mixedDeliveryDetails}.</p>
+						</td>
+					</tr>
+					
+					#set ($priceAlertBanner = false)
+					#foreach( $consignment in ${ctx.deliveryConsignments} )
+						#foreach( $consignmentEntry in ${consignment.entries} )
+							#if(($consignmentEntry.orderEntry.product.level1Category == "Hardscapes & Outdoor Living"  || $consignmentEntry.orderEntry.product.level1Category == "Materiales duros & Vida al Aire Libre" || $consignmentEntry.orderEntry.product.level2Category == 'Consumables'  || $consignmentEntry.orderEntry.product.level2Category == 'Consumibles') && ($consignmentEntry.orderEntry.uomMeasure.contains("Net Ton") || $consignmentEntry.orderEntry.uomMeasure.contains("Cubic Yard")))
+				   				#set ($priceAlertBanner = true)				
+							#end
+						#end
+					#end
+					
+					#if($priceAlertBanner)
+					<tr style="font-size: 14px; color: #414244; text-align: center;">
+						<td colspan="6" align="left">
+						<div style="background-color:#F9F0E5;padding: 18px 10px;margin-top: 15px;display: inline-flex;align-items: center;width: 96%;">
+						<div style="display: flex; width: 8%;"><img src="https://www.siteone.com/_ui/responsive/theme-lambda/images/Exclamatory-Circle.svg" alt="Exclamatory" title="Exclamation" width="30" height="30">
+						</div>
+						<div valign="top" style="vertical-align: middle;width: 100%;padding-left: 5px;display: block;">
+							${ctx.messages.priceAlertMessage}
+						</div>
+						</div>
+						</td>
+				   		</tr>
+					#end
+					
+					<tr>
+						<td>
+							#foreach( $consignmentEntry in ${consignment.entries} )
+							<!-- D:Product -->
+							<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#ffffff" style="padding: 20px 0px 0px 0px;font-size: 12px; color: #5a5b5d;">
+								<tr>
+									<td colspan="2" width="50%" align="left" bgcolor="#eeeeee" style="font-size: 14px;font-weight: 700;padding: 10px;color: #414244;">${ctx.messages.productInfo}</td>
+									<td width="25%" align="right" bgcolor="#eeeeee" style="font-size: 14px;padding: 10px;">${ctx.messages.mixedQTY}</td>
+									<td width="25%" align="right" bgcolor="#eeeeee" style="font-size: 14px;padding: 10px;">${ctx.messages.total}</td>
+								</tr>
+								#if($consignmentEntry.orderEntry.product.isEligibleForBackorder)
+								<tr>
+									<td colspan="6" align="left" style="padding: 15px 0 0 0; margin: 0px;">
+										 <div
+                                            style="margin-top: 15px; border-radius: 5px; background-color:#F9F0E5;padding: 18px 10px 18px 10px;display: inline-flex;align-items: center;width: 94%;">
+                                            <div style="display: flex; width: 8%;"><img src="https://www.siteone.com/_ui/responsive/theme-lambda/images/Exclamatory-Circle.svg" alt="Exclamatory" title="Exclamation" width="30" height="30">
+                                                    
+                                            </div>
+                                            <div valign="top"
+                                                style="vertical-align: middle;width: 100%;padding-left: 5px;display: block;">
+                                                <span valign="top" style="font-weight: bold; display: inline-block;margin-top: -11px; vertical-align: middle;" >${ctx.messages.backorderMessage}</span>
+                                            </div>
+                                            
+                                        </div>
+									</td>
+								</tr>
+								#end
+								#if($consignmentEntry.orderEntry.product.isRegulatoryLicenseCheckFailed == false)
+									<tr>
+										<td colspan="6" align="left" style="padding: 15px 0 0 0; margin: 0px;">
+											<div style="margin-top: 15px; border-radius: 5px; background-color:#F9F0E5;padding: 18px 10px 18px 10px;display: inline-flex;align-items: center;width: 94%;">
+	                                            <div style="display: flex; width: 8%;"><img src="https://www.siteone.com/_ui/responsive/theme-lambda/images/Exclamatory-Circle.svg" alt="Exclamatory" title="Exclamation" width="30" height="30"></div>
+	                                            <div valign="top" style="vertical-align: middle;width: 100%;padding-left: 5px;display: block;">
+	                                                <span valign="top" style="font-weight: bold; display: inline-block;margin-top: -11px; vertical-align: middle;" >${ctx.messages.regulatoryLicenseCheckFailed}</span>
+	                                            </div>
+                                            </div>
+										</td>
+									</tr>
+								#end
+								#if($consignmentEntry.orderEntry.product.isRUPTrainingSku)
+								<tr>
+									<td colspan="6" align="left" style="padding: 15px 0 0 0; margin: 0px;">
+										 <div
+                                            style="margin-top: 15px; border-radius: 5px; background-color:#F9F0E5;padding: 18px 10px 18px 10px;display: inline-flex;align-items: center;width: 94%;">
+                                            <div style="display: flex; width: 8%;"><img src="https://www.siteone.com/_ui/responsive/theme-lambda/images/Exclamatory-Circle.svg" alt="Exclamatory" title="Exclamation" width="30" height="30">
+                                                    
+                                            </div>
+                                            <div valign="top"
+                                                style="vertical-align: middle;width: 100%;padding-left: 5px;display: block;">
+                                                <span valign="top" style="font-weight: bold; display: inline-block;margin-top: -11px; vertical-align: middle;" >${ctx.messages.rup}</span>
+                                            </div>
+                                            
+                                        </div>
+									</td>
+								</tr>
+								#end
+								
+								#if($consignmentEntry.orderEntry.product.fullfilledStoreType == 'NearByStore' || $consignmentEntry.orderEntry.product.isStockInNearbyBranch)
+								<tr>
+									<td colspan="6" align="left" style="padding: 15px 0 0 0; margin: 0px;">
+										 <div
+                                            style="margin-top: 15px; border-radius: 5px; background-color:#F9F0E5;padding: 18px 10px 18px 10px;display: inline-flex;align-items: center;width: 94%;">
+                                            <div style="display: flex; width: 8%;"><img src="https://www.siteone.com/_ui/responsive/theme-lambda/images/Exclamatory-Circle.svg" alt="Exclamatory" title="Exclamation" width="30" height="30">
+                                                    
+                                            </div>
+                                            <div valign="top"
+                                                style="vertical-align: middle;width: 100%;padding-left: 5px;display: block;">
+                                                <span valign="top" style="font-weight: bold; display: inline-block;margin-top: -11px; vertical-align: middle;" >${ctx.messages.nearbyMessage}</span>
+                                            </div>
+                                            
+                                        </div>
+									</td>
+								</tr>
+								#end
+								<tr>
+									<td><br></td>
+								</tr>
+								#if(($consignmentEntry.orderEntry.product.level1Category == "Hardscapes & Outdoor Living"  || $consignmentEntry.orderEntry.product.level1Category == "Materiales duros & Vida al Aire Libre") && ($consignmentEntry.orderEntry.uomMeasure.contains("Net Ton") || $consignmentEntry.orderEntry.uomMeasure.contains("Pallet")))
+								<tr style="font-size: 14px; color: #414244; text-align: center;">
+									<td colspan="6" align="left">
+										<div
+											style="background-color:#F9F0E5;padding: 10px;display: inline-flex;align-items: center;width: 96%;border-radius: 5px;">
+											
+											<div valign="top"
+												style="vertical-align: middle;width: 100%;display: block;">
+												${ctx.messages.priceRefundAlertMessage}
+											</div>
+											
+										</div>
+									</td>
+								</tr>
+								
+								#end
+								<tr>
+									<td width="20%" align="left" style="padding: 0px" valign="top">
+										<a href="${ctx.baseUrl}$consignmentEntry.orderEntry.product.url" style="text-decoration:none">
+																							
+											#if($consignmentEntry.orderEntry.product.images.isEmpty() != 'false')
+												<img src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/missing_product_EN_300x300.jpg" width="80" style="border: 1px solid #cccccc;padding: 0px; margin: 0;" alt="image not available" >
+											   #else
+											   #foreach($image in $consignmentEntry.orderEntry.product.images) 
+												   #if($image.imageType == "PRIMARY" && $image.format == "thumbnail" )
+													<img  src="${ctx.baseThemeUrl}$image.url" alt="" title="$consignmentEntry.orderEntry.product.name" width="80" style="border: 1px solid #cccccc;padding: 0px; margin: 0;"/>
+												   #end 
+											   #end
+										   #end
+										   </a>
+									</td>
+									<td width="30%" align="left" height="100%" valign="top">
+										<p >$consignmentEntry.orderEntry.product.itemNumber</p>
+										<p style="font-size: 14px;font-weight: bold;">
+											<a href="${ctx.baseUrl}$consignmentEntry.orderEntry.product.url" style="text-decoration:none;color:#000000;line-height: 20px;" ><b>$consignmentEntry.orderEntry.product.name</b></a>
+										<br>
+										#if (!$consignmentEntry.orderEntry.product.baseOptions.isEmpty())
+										#foreach ($option in $consignmentEntry.orderEntry.product.baseOptions)
+											#if ($option.selected && ($option.selected.url == $consignmentEntry.orderEntry.product.url))
+												<table width="100%" cellpadding="0" cellspacing="0">
+													#foreach ($selectedOption in $option.selected.variantOptionQualifiers)
+														<tr>
+															<td width="30%" valign="top">
+																<p>
+																	<font color="#666666">$selectedOption.name:</font>
+																</p>
+															</td>
+															<td width="70%" valign="top">
+																<p>
+																	<font color="#666666">$selectedOption.value</font>
+																</p>
+															</td>
+														</tr>
+													#end
+												</table>
+											#end
+										#end
+									#end
+									#if (!$ctx.order.appliedProductPromotions.isEmpty())
+										#foreach( $promotion in $ctx.order.appliedProductPromotions)
+											#set ($displayed = false)
+											#foreach ($consumedEntry in $promotion.consumedEntries)
+												#if (!$displayed && ($consumedEntry.orderEntryNumber == $consignmentEntry.orderEntry.entryNumber))
+													#set ($displayed = true)
+													<p class="promo addPromotionDesc"><font color="#78a22f">${promotion.description}</font>
+													</p>
+												#end
+											#end
+										#end
+									#end</p>
+									</td>
+									<td width="30%" align="right" valign="top">
+										<div style="padding: 0px 10px;font-size: 16px;color:#000000;margin-top: 15px">$consignmentEntry.orderEntry.quantity</div>
+									</td>
+									<td width="20%" align="right" valign="top">
+										<p style="font-size: 14px;font-weight: bold; color:#000000;">
+										#if($consignmentEntry.orderEntry.totalPrice.value > 0) 
+											$consignmentEntry.orderEntry.totalPrice.formattedValue 
+										#else 
+											${ctx.messages.free} 
+										#end
+										</p>
+										<p >
+											#if(!$consignmentEntry.orderEntry.isPromotionApplied && $consignmentEntry.orderEntry.saleprice)
+											<p><font><del>${consignmentEntry.orderEntry.basePrice.formattedValue} / ${consignmentEntry.orderEntry.uomMeasure}</del></font></p>
+											<p style="color:red;font-weight: 600;">$${consignmentEntry.orderEntry.saleprice} / ${consignmentEntry.orderEntry.uomMeasure}</p>
+											#elseif($consignmentEntry.orderEntry.basePrice.value > 0.0)
+										   <p><font>${consignmentEntry.orderEntry.basePrice.formattedValue} / ${consignmentEntry.orderEntry.uomMeasure}</font></p>
+										   #end
+										</p>
+									</td>
+								</tr>
+							</table><!-- ./D:Product -->
+							#end
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<!-- ./D:Location -->	
+			#end
+		</td>
+	</tr>
+    <!-- ./Delivery -->
+	#end
+	#if($ctx.shippingConsignments.size() > 0)
+    <!-- Shipping -->
+	<tr>
+		<td colspan="6" align="left" style="background-color: #f1f2f2;  padding: 10px 24px;">
+			<svg xmlns="http://www.w3.org/2000/svg" width="29" height="20" viewBox="0 0 29.459 20" style="padding: 0 10px 0 0;">
+				<g id="ICON_-_Shipping" data-name="ICON - Shipping" transform="translate(-2.641 -1.115)">
+					<path id="Path_95" data-name="Path 95" d="M438.478,145a.9.9,0,0,0-.523.817v10.733a.9.9,0,0,0,.524.817l8.254,3.744a1.026,1.026,0,0,0,.759,0l8.245-3.74a.9.9,0,0,0,.523-.817V145.822a.9.9,0,0,0-.524-.817l-8.254-3.744a1.06,1.06,0,0,0-.384-.073.929.929,0,0,0-.368.074Zm7.732,13.88-6.428-2.9v-8.752l6.428,2.9Zm8.223-2.9-6.427,2.9v-8.752l6.427-2.9ZM447.108,143.1l6.048,2.754-6.048,2.754-6.048-2.754Z" transform="translate(-424.16 -140.072)"></path>
+					<g id="Group_541" data-name="Group 541" transform="translate(2.641 5.796)">
+						<path id="Path_96" data-name="Path 96" d="M433.185,146.805h-3.056a.889.889,0,1,0,0,1.778h3.056a.884.884,0,0,0,.9-.889.8.8,0,0,0-.233-.6A.928.928,0,0,0,433.185,146.805Z" transform="translate(-425.418 -146.805)"></path>
+						<path id="Path_97" data-name="Path 97" d="M432.829,152.122h-4.947a.889.889,0,1,0,0,1.778h4.978a.884.884,0,0,0,.9-.889A.91.91,0,0,0,432.829,152.122Z" transform="translate(-425.062 -147.691)"></path>
+						<path id="Path_98" data-name="Path 98" d="M432.467,157.4H425.6a.889.889,0,1,0,0,1.778h6.869a.884.884,0,0,0,.9-.889.807.807,0,0,0-.227-.608A.933.933,0,0,0,432.467,157.4Z" transform="translate(-424.7 -148.571)"></path>
+					</g>
+				</g>
+			</svg>
+			<span valign="top" style="font-weight: bold;font-size:16px; color:#000000; display: inline-block;margin-top: -11px; vertical-align: middle;" >${ctx.messages.shippingInfoHeading}</span>
+		</td>
+	</tr>
+    <tr>
+		<td colspan="3" valign="top" align="left" style="padding: 30px 24px;">
+			<p style="font-size: 14px;font-weight: 700;color: #000000;margin-bottom: 18px;">${ctx.messages.mixedShippingContact}</p>
+			<p>
+				#if($ctx.isGuestCustomer)
+					#if(${ctx.order.guestShippingContactPerson})
+						${ctx.order.guestShippingContactPerson.name}
+						<br />
+						#if($ctx.order.guestShippingContactPerson.contactNumber)
+						${ctx.order.guestShippingContactPerson.contactNumber}
+						#else
+							m:${ctx.messages.na}
+						<br />
+						#end
+						${ctx.order.guestShippingContactPerson.email}
+					#else
+						${ctx.order.guestContactPerson.name}
+						<br />
+						#if($ctx.order.guestContactPerson.contactNumber)
+						${ctx.order.guestContactPerson.contactNumber}
+						#else
+							m:${ctx.messages.na}					
+						#end
+						<br />
+						${ctx.order.guestContactPerson.email}
+					#end
+				#else
+					#if(${ctx.order.shippingContactPerson})
+						${ctx.order.shippingContactPerson.name}
+						<br />
+						#if($ctx.order.shippingContactPerson.contactNumber)
+						${ctx.order.shippingContactPerson.contactNumber}
+						#else
+							m:${ctx.messages.na}					
+						#end
+						<br />
+						${ctx.order.shippingContactPerson.email}
+					#else
+						${ctx.order.contactPerson.name}
+						<br />
+						#if($ctx.order.contactPerson.contactNumber)
+						${ctx.order.contactPerson.contactNumber}
+						#else
+							m:${ctx.messages.na}						
+						#end
+						<br />
+						${ctx.order.contactPerson.email}
+					#end
+				#end
+			</p>
+		</td>
+        <td colspan="3" valign="top" align="left" style="padding: 30px 24px;">
+			<p style="font-size: 14px;font-weight: 700;color: #000000;margin-bottom: 18px;">${ctx.messages.shipToContact}</p>
+			<p>
+				#if (${ctx.order.shippingAddress})
+					#if (${ctx.order.shippingAddress.line1})
+						${ctx.order.shippingAddress.line1},
+						<br/>
+					#end
+					#if(${ctx.order.shippingAddress.line2} && !${ctx.order.shippingAddress.line2.isEmpty()})
+						${ctx.order.shippingAddress.line2},
+					#end
+					${ctx.order.shippingAddress.town},&nbsp;${ctx.order.shippingAddress.region.isocodeShort}
+					${ctx.order.shippingAddress.postalCode}
+				#else
+					#if (${ctx.order.deliveryAddress.line1})
+						${ctx.order.deliveryAddress.line1},
+						<br/>
+					#end
+					#if(${ctx.order.deliveryAddress.line2} && !${ctx.order.deliveryAddress.line2.isEmpty()})
+						${ctx.order.deliveryAddress.line2},
+					#end
+					${ctx.order.deliveryAddress.town},&nbsp;${ctx.order.deliveryAddress.region.isocodeShort}
+					${ctx.order.deliveryAddress.postalCode}
+				#end
+			</p>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="6" align="left" style="padding: 0 24px 24px 24px;">
+			<p style="font-size: 14px;font-weight: 700;color: #000000;margin-bottom: 18px;">${ctx.messages.mixedShippingInstruction}</p>
+			<p style="font-size: 14px;margin: 0;padding: 0px 15px 15px 0;">
+				#if(${ctx.order.shippingInstruction} && ${ctx.order.shippingInstruction} !='')
+				${ctx.order.shippingInstruction}
+				#else
+					#if(${ctx.order.specialInstruction} && ${ctx.order.specialInstruction} !='')
+						${ctx.order.specialInstruction}
+					#else
+						${ctx.messages.na}
+					#end
+				#end
+			</p>
+		</td>
+	</tr>
+    <tr>
+		<td colspan="6" align="left" style="padding: 0px 24px;">
+			<p style="font-weight: bold;margin-bottom: 0px; padding: 10px; background-color: #f1f2f2;">${ctx.messages.mixedShippingDetails}.</p>
+		</td>
+	</tr>
+    <tr>
+		<td colspan="6" align="left" style="padding: 0 24px">
+			#foreach( $consignment in ${ctx.shippingConsignments} )
+			#if($shippingBranch == "")
+				#set ($shippingBranch = $consignment.pointOfService)
+			#end
+			#foreach( $consignmentEntry in ${consignment.entries} )
+            <!-- S:Product -->
+            <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#ffffff" style="padding: 20px 0px 0px 0px;font-size: 12px; color: #5a5b5d;">
+                <tr>
+                    <td colspan="2" width="50%" align="left" bgcolor="#eeeeee" style="font-size: 14px;font-weight: 700;padding: 10px;color: #414244;">${ctx.messages.productInfo}</td>
+                    <td width="25%" align="right" bgcolor="#eeeeee" style="font-size: 14px;padding: 10px;">${ctx.messages.mixedQTY}</td>
+                    <td width="25%" align="right" bgcolor="#eeeeee" style="font-size: 14px;padding: 10px;">${ctx.messages.total}</td>
+                </tr>
+				#if($consignmentEntry.orderEntry.product.isEligibleForBackorder)
+				<tr>
+					<td colspan="6" align="left" style="padding: 15px 0 0 0; margin: 0px;">
+						<p style="background-color:#fef3e5; padding: 6px 10px;">
+							<svg id="Group_1708" data-name="Group 1708" xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 23 23" style="padding: 0 10px 0 0;">
+							<g id="Ellipse_23" data-name="Ellipse 23" fill="none" stroke="#ed8606" stroke-width="3">
+								<circle cx="11.5" cy="11.5" r="11.5" stroke="none"/>
+								<circle cx="11.5" cy="11.5" r="10" fill="none"/>
+							</g>
+							<path id="exclamation" d="M19.125,8.438a1.563,1.563,0,1,1-1.562-1.563A1.564,1.564,0,0,1,19.125,8.438ZM16.181.492,16.446,5.8a.469.469,0,0,0,.468.445h1.3a.469.469,0,0,0,.468-.445L18.944.492A.469.469,0,0,0,18.476,0H16.649A.469.469,0,0,0,16.181.492Z" transform="translate(-6 6.409)" fill="#ef8700"/>
+							</svg>
+							<span valign="top" style="font-weight: bold; display: inline-block;margin-top: -11px; vertical-align: middle;" >${ctx.messages.mixedBackordeed}</span>
+						</p>
+					</td>
+				</tr>
+				#end
+                <tr>
+                    <td><br></td>
+                </tr>
+                <tr>
+                    <td><br></td>
+                </tr>
+                <tr>
+                    <td width="20%" align="left" style="padding: 0px" valign="top">
+                        <a href="${ctx.baseUrl}$consignmentEntry.orderEntry.product.url" style="text-decoration:none">
+                                                                            
+                            #if($consignmentEntry.orderEntry.product.images.isEmpty() != 'false')
+                                <img src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/missing_product_EN_300x300.jpg" width="80" style="border: 1px solid #cccccc;padding: 0px; margin: 0;" alt="image not available" >
+                                #else
+                                #foreach($image in $consignmentEntry.orderEntry.product.images) 
+                                    #if($image.imageType == "PRIMARY" && $image.format == "thumbnail" )
+                                    <img  src="${ctx.baseThemeUrl}$image.url" alt="" title="$consignmentEntry.orderEntry.product.name" width="80" style="border: 1px solid #cccccc;padding: 0px; margin: 0;"/>
+                                    #end 
+                                #end
+                            #end
+                            </a>
+                    </td>
+                    <td width="30%" align="left" height="100%" valign="top">
+                        <p >$consignmentEntry.orderEntry.product.itemNumber</p>
+                        <p style="font-size: 14px;font-weight: bold;">
+                            <a href="${ctx.baseUrl}$consignmentEntry.orderEntry.product.url" style="text-decoration:none;color:#000000;line-height: 20px;" ><b>$consignmentEntry.orderEntry.product.name</b></a>
+                        <br>
+                        #if (!$consignmentEntry.orderEntry.product.baseOptions.isEmpty())
+                        #foreach ($option in $consignmentEntry.orderEntry.product.baseOptions)
+                            #if ($option.selected && ($option.selected.url == $consignmentEntry.orderEntry.product.url))
+                                <table width="100%" cellpadding="0" cellspacing="0">
+                                    #foreach ($selectedOption in $option.selected.variantOptionQualifiers)
+                                        <tr>
+                                            <td width="30%" valign="top">
+                                                <p>
+                                                    <font color="#666666">$selectedOption.name:</font>
+                                                </p>
+                                            </td>
+                                            <td width="70%" valign="top">
+                                                <p>
+                                                    <font color="#666666">$selectedOption.value</font>
+                                                </p>
+                                            </td>
+                                        </tr>
+                                    #end
+                                </table>
+                            #end
+                        #end
+                    #end
+                    #if (!$ctx.order.appliedProductPromotions.isEmpty())
+                        #foreach( $promotion in $ctx.order.appliedProductPromotions)
+                            #set ($displayed = false)
+                            #foreach ($consumedEntry in $promotion.consumedEntries)
+                                #if (!$displayed && ($consumedEntry.orderEntryNumber == $consignmentEntry.orderEntry.entryNumber))
+                                    #set ($displayed = true)
+                                    <p class="promo addPromotionDesc"><font color="#78a22f">${promotion.description}</font>
+                                    </p>
+                                #end
+                            #end
+                        #end
+                    #end</p>
+                    </td>
+                    <td width="30%" align="right" valign="top">
+                        <div style="padding: 0px 10px;font-size: 16px;color:#000000;">$consignmentEntry.orderEntry.quantity</div>
+                    </td>
+                    <td width="20%" align="right" valign="top">
+                        <p style="font-size: 14px;font-weight: bold; color:#000000;">
+                        #if($consignmentEntry.orderEntry.totalPrice.value > 0) 
+                            $consignmentEntry.orderEntry.totalPrice.formattedValue 
+                        #else 
+                            ${ctx.messages.free} 
+                        #end
+                        </p>
+                        <p >
+                            #if(!$consignmentEntry.orderEntry.isPromotionApplied && $consignmentEntry.orderEntry.saleprice)
+                            <p><font><del>${consignmentEntry.orderEntry.basePrice.formattedValue} / ${consignmentEntry.orderEntry.uomMeasure}</del></font></p>
+                            <p style="color:red;font-weight: 600;">$${consignmentEntry.orderEntry.saleprice} / ${consignmentEntry.orderEntry.uomMeasure}</p>
+                            #elseif($consignmentEntry.orderEntry.basePrice.value > 0.0)
+                            <p><font>${consignmentEntry.orderEntry.basePrice.formattedValue} / ${consignmentEntry.orderEntry.uomMeasure}</font></p>
+                            #end
+                        </p>
+                    </td>
+                </tr>
+            </table><!-- ./S:Product -->
+            #end
+			#end
+		</td>
+	</tr>
+    <!-- ./Shipping -->
+	#end
+    <!-- Amount -->
+</tbody>
+<tfoot>
+	<tr>
+		<td colspan="6" style="padding: 20px 0px;">
+			<hr>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="4"></td>
+		<td width="30%" align="left" style="padding: 0px 24px;">${ctx.messages.subtotal}</td>
+		<td width="20%" align="right" style="font-weight: bold; padding: 6px 24px;color:#000000;">${ctx.order.subTotal.formattedValue}</td>
+	</tr>
+	#if (${ctx.discountedValue}  != '0.00')
+	<tr>
+		<td colspan="4"></td>
+		<td width="30%" align="left" style="padding: 0px 24px;">${ctx.messages.totalDiscounts}</td>
+		<td width="20%" align="right" style="font-weight: bold; padding: 6px 24px;color:#000000;">-${ctx.order.totalDiscounts.formattedValue}</td>
+	</tr>
+	#end
+	#if($ctx.order.deliveryFreight && $ctx.order.deliveryFreight != "")
+	<tr>
+		<td colspan="4"></td>
+		<td width="30%" align="left" style="padding: 0px 24px;">${ctx.messages.deliveryFee}</td>
+		<td width="20%" align="right" style="font-weight: bold; padding: 6px 24px;color:#000000;">$${ctx.order.deliveryFreight}</td>
+	</tr>
+	#else
+		#if($ctx.order.freight && $ctx.order.freight != "" && $ctx.deliveryConsignments.size() > 0 && !$ctx.exemptDeliveryFee )
+			<tr>
+				<td colspan="4"></td>
+				<td width="30%" align="left" style="padding: 0px 24px;">${ctx.messages.deliveryFee}</td>
+				<td width="20%" align="right" style="font-weight: bold; padding: 6px 24px;color:#000000;">$${ctx.order.freight}</td>
+			</tr>
+		#end
+		#if($ctx.exemptDeliveryFee && $ctx.deliveryConsignments.size() > 0)
+			<tr>
+				<td colspan="4"></td>
+				<td width="30%" align="left" style="padding: 0px 24px;">${ctx.messages.deliveryFee}</td>
+				<td width="20%" align="right" style="font-weight: bold; padding: 6px 24px;color:#000000;">$0.00</td>
+			</tr>
+		#end
+	#end
+	#if($ctx.order.shippingFreight && $ctx.order.shippingFreight != "" && $ctx.order.shippingFreight != "0.00" && ((!$ctx.order.isNationalShipping) || ($ctx.order.isNationalShipping) && ($ctx.isShippingFeeBranch)))
+	<tr>
+		<td colspan="4"></td>
+		<td width="30%" align="left" style="padding: 0px 24px;">${ctx.messages.mixedShipping}</td>
+		<td width="20%" align="right" style="font-weight: bold; padding: 6px 24px;color:#000000;">$${ctx.order.shippingFreight}</td>
+	</tr>
+	#elseif((!$ctx.isDeliveryConsignment && !$ctx.pickupConsignments) && (!$ctx.order.shippingFreight || $ctx.order.shippingFreight == "" || $ctx.order.shippingFreight == "0.00") && $ctx.isShippingFeeBranch)
+	<tr>
+		<td colspan="4"></td>
+		<td width="30%" align="left" style="padding: 0px 24px;">${ctx.messages.mixedShipping}</td>
+		<td width="20%" align="right" style="font-weight: bold; padding: 6px 24px;color:#000000;">${ctx.messages.free}</td>
+	</tr>
+	#else
+		#if($ctx.order.freight && $ctx.order.freight != "" && $ctx.order.freight != "0.00" && $ctx.shippingConsignments.size() > 0 && (!$ctx.order.isNationalShipping))
+			<tr>
+				<td colspan="4"></td>
+				<td width="30%" align="left" style="padding: 0px 24px;">${ctx.messages.mixedShipping}</td>
+				<td width="20%" align="right" style="font-weight: bold; padding: 6px 24px;color:#000000;">$${ctx.order.freight}</td>
+			</tr>
+		#end
+	#end
+	<tr>
+		<td colspan="4"></td>
+		<td width="30%" align="left" style="padding: 0px 24px;">${ctx.messages.mixedSalesTax}</td>
+		<td width="20%" align="right" style="font-weight: bold; padding: 6px 24px;color:#000000;">${ctx.order.totalTax.formattedValue}</td>
+	</tr>
+	<tr>
+		<td colspan="4"></td>
+		<td width="30%" align="left" style="padding: 0px 24px;">${ctx.messages.mixedOrderTotal}</td>
+		<td width="20%" align="right" style="font-weight: bold; padding: 6px 24px;color:#000000;">${ctx.order.totalPriceWithTax.formattedValue}</td>
+	</tr>
+    <!-- ./Amount -->
+    #if(((!$ctx.showDeliveryFee && !$ctx.exemptDeliveryFee) || ($ctx.baseSite.Uid == "siteone-ca")) && ($ctx.deliveryConsignments.size() > 0))
+    <tr>
+	    <td colspan="6" style="padding:40px 24px 0px 24px;font-size: 12px;text-align: center;"> 
+	    	<p style="background: #f1f6e9;padding: 20px 0px 10px 0px;margin: 0px;font-size: 12px;font-weight: bold;color:#000;">${ctx.messages.deliveryFeeTitle}</p>
+			<p style="background: #f1f6e9;margin: 0px;padding: 0px 20px 20px 20px;text-align: center;line-height: 15px;">	${ctx.messages.deliveryFeeMSg}</p>
+	    </td>
+    </tr>
+    #end
+    #if(${ctx.order.isNationalShipping} && !${ctx.isShippingFeeBranch})
+    <tr>
+        <td colspan="6" align="left" style="color: #999999;padding: 0px 24px;">
+                <div style="background: #f1f6e9;padding: 35px 65px;margin-top: 20px;border-radius: 3px;text-align: center;display: flex;">
+                    <img style="margin-right: 22px;" src="https://www.siteone.com/_ui/responsive/theme-lambda/images/shipping-icon.svg" alt="Icon" title="Icon" width="58" height="40">
+                    <span style="display: inline-block; width: 340px; vertical-align: top; font-size: 14px; text-align: left;">${ctx.messages.shippingFeeMsg}</span>
+                </div>
+           </td>   
+    </tr>
+    #end
+    <!-- Footer -->
+	#if($pickupBranch != '')
+		#set ($showBranch = $pickupBranch.name)
+		#set ($showPhone = $pickupBranch.address.phone)
+		#set ($showTown = $pickupBranch.address.town)
+		#set ($showStoreId = $pickupBranch.storeId)
+	#elseif($deliveryBranch != '')
+		#set ($showBranch = $deliveryBranch.name)
+		#set ($showPhone = $deliveryBranch.address.phone)
+		#set ($showTown = $deliveryBranch.address.town)
+		#set ($showStoreId = $deliveryBranch.storeId)
+	#else
+		#set ($showBranch = $shippingBranch.name)
+		#set ($showPhone = $shippingBranch.address.phone)
+		#set ($showTown = $shippingBranch.address.town)
+		#set ($showStoreId = $shippingBranch.storeId)
+	#end
+	<tr>
+		<td colspan="6" valign="top" align="left" style="padding: 40px 24px;font-size:12px;">
+			#if(($ctx.order.deliveryFreight && $ctx.order.deliveryFreight != "") || ($ctx.order.freight && $ctx.order.freight != "" && $ctx.deliveryConsignments.size() > 0 ))
+				<p style="font-weight: bold; padding: 10px;background-color: #f1f2f2;">${ctx.messages.deliveryAdditionalMsg}</p>
+			#end
+			
+			<p style="font-weight: bold; padding: 10px;background-color: #f1f2f2;">${ctx.messages.mixedPaymentInformation}</p>
+			
+			#if(${ctx.paymentType} == "1")
+				<p style="font-weight: bold; padding: 10px;margin: 0px;color:#000000;">${ctx.messages.payonaccount}</p>
+				<p style="padding: 0 10px 10px 10px;margin: 0px;color:#000000;">${ctx.order.orderingAccount.displayId}</p>
+			#elseif(${ctx.paymentType} == "2")
+				<p style="font-weight: bold; padding: 10px;margin: 0px;color:#000000;">${ctx.messages.payatbranch}</p>
+				<p style="padding: 10px;margin: 0px;color:#000000;"><b>${ctx.messages.branch}: </b> ${showTown}  ${showStoreId}</p>
+				<p style="padding: 10px;margin: 0px;color:#000000;"><b>${ctx.messages.amount}: </b> ${ctx.order.totalPriceWithTax.formattedValue}</p>
+			#elseif(${ctx.paymentType} == "3")
+				<p style="font-weight: bold; padding: 10px;margin: 0px;color:#000000;">${ctx.messages.creditcard}</p>
+				<p style="padding: 10px;margin: 0px;color:#000000;"><b>${ctx.messages.cardNumber}: </b>${ctx.cardNumber}</p>
+				<p style="padding: 10px;margin: 0px;color:#000000;"><b>${ctx.messages.amount}: </b> ${ctx.order.totalPriceWithTax.formattedValue}</p>
+			#else
+				<p style="font-weight: bold; padding: 10px;margin: 0px;color:#000000;">${ctx.messages.payatbranch}</p>
+				<p style="padding: 10px;margin: 0px;color:#000000;"><b>${ctx.messages.branch}: </b> ${showTown}  ${showStoreId}</p>
+				<p style="padding: 10px;margin: 0px;color:#000000;"><b>${ctx.messages.amount}: </b>${ctx.order.totalPriceWithTax.formattedValue}</p>
+			#end
+			
+			<p style="font-weight: bold; padding: 10px;background-color: #f1f2f2;">${ctx.messages.mixedBillingInformation}</p>
+			#if(${ctx.paymentType} == "3")
+				<p style="padding: 10px;margin: 0px;">${ctx.messages.billingCreditCardMsg}</p>
+			#else
+				<p style="padding: 10px;margin: 0px;">${ctx.messages.billingMsg}</p>
+			#end
+			<p style="padding: 10px;margin: 0px;">${ctx.messages.orderGoverned} <a href="${ctx.baseUrl}/salesterms" style="color:#50a0c5">${ctx.messages.siteoneTermsSales}</a>.</p>
+			#if(${ctx.pickupConsignments} || ${ctx.deliveryConsignments}  || !${ctx.isShippingFeeBranch})
+			<p style="padding: 4px 10px; margin: 0px;">${ctx.messages.mixedQuestion}, 
+			
+			<a href="${ctx.baseThemeUrl}/store/${showStoreId}">${showBranch}</a> at <a href="tel:${showPhone}">${showPhone}</a>.
+			</p>
+			#elseif(${ctx.shippingConsignments} && ${ctx.isShippingFeeBranch})
+				<p style="padding: 4px 10px; margin: 0px;">${ctx.messages.mixedQuestion}, 
+				${showBranch} at <a href="tel:${ctx.messages.telephoneHub}">${ctx.messages.telephoneHub}</a>.
+			</p>
+			#end
+			#set ($contactUs = "${ctx.baseUrl}/faq") 
+			#set ( $contactUsMsg = ${ctx.messages.getMessage('contactUsMsg', "#genHtmlLinkStartTag($contactUs)",
+			"#genHtmlLinkEndTag()")} )
+			<p style="padding: 10px;margin: 0px;">${ctx.messages.mixedQuestionSiteOne} <a href="${ctx.baseUrl}" style="color:#50a0c5">${ctx.messages.siteOneCa}</a>? <a href="${ctx.baseUrl}/contactus" style="color:#50a0c5">${ctx.messages.contactyou}</a>.</p>
+			<p style="padding: 4px 10px 0px 10px;margin: 0px;">${ctx.messages.complimentaryClose}</p>
+            <p style="padding: 4px 10px 0px 10px;margin: 0px;font-weight: bold;font-style:italic;">${ctx.messages.signaturename}</p>
+		</td>
+	</tr>
+    <!-- ./Footer -->
+</tfoot>
+#else
+<thead>
+	<tr>
+        <th colspan="3" align="left" style="padding: 24px;">
+            <a style="text-decoration:none;" href="${ctx.baseThemeUrl}">
+                <img title="SiteoneLogo" src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/SiteoneLogo.jpg" alt="SiteoneLogo" width="176" height="67">
+            </a>
+        </th>
+        <th colspan="3" valign="bottom" align="right" style="padding: 24px;">
+            <a style="text-decoration:none; margin-right: 20px;" href="https://www.facebook.com/SiteOneLandscape/">
+                <img src="https://www.siteone.com/_ui/responsive/theme-lambda/images/Footer_Social_Facebook.svg" alt="Facebook" title="Facebook" width="27" height="27">
+            </a>
+            <a style="text-decoration:none; margin-right: 20px;" href="https://www.instagram.com/siteonesupply/">
+                <img src="https://www.siteone.com/_ui/responsive/theme-lambda/images/Footer_Social_LinkedIn.svg" alt="Instagram" title="Instagram" width="27" height="27">
+            </a>
+            <a style="text-decoration:none;" href="https://x.com/SiteOneSupply">
+                <img src="https://www.siteone.com/_ui/responsive/theme-lambda/images/Footer_Social_Twitter.svg" alt="X" title="X" width="27" height="27">
+            </a>
+        </th>
+    </tr>
+	<tr>
+		<th colspan="6" align="left" style="background-color: #f1f2f2; font-weight: bold; padding: 24px;font-size:16px;">
+			<p style="margin: 0; padding-bottom: 8px;">${ctx.firstName},</p>${ctx.messages.mixedThanksForOrder}.
+		</th>
+	</tr>
+</thead>
+<tbody>
+	<tr>
+	    #if(($ctx.shippingConsignments.size() > 0 && $ctx.pickupConsignments.size() > 0) || ($ctx.shippingConsignments.size() > 0 && $ctx.deliveryConsignments.size() > 0))
+	     <td colspan="6" valign="top" align="left" style="padding: 48px 24px 24px 24px;font-size:16px;line-height: 22px;">${ctx.messages.mixedPickUpMessage}.  
+		</td>
+		#elseif ($ctx.pickupConsignments.size() > 0)
+	     <td colspan="6" valign="top" align="left" style="padding: 48px 24px 24px 24px;font-size:16px;line-height: 22px;">${ctx.messages.pickupMessage}. 
+		</td>
+		#elseif(${ctx.pickupConsignments} || ${ctx.deliveryConsignments}  || !${ctx.isShippingFeeBranch})
+		     <td colspan="6" valign="top" align="left" style="padding: 48px 24px 24px 24px;font-size:16px;line-height: 22px;">${ctx.messages.orderMessage}.
+		     </td>
+	    #elseif(${ctx.shippingConsignments} && ${ctx.isShippingFeeBranch})
+		     <td colspan="6" valign="top" align="left" style="padding: 48px 24px 24px 24px;font-size:16px;line-height: 22px;">${ctx.messages.trackingInfoMessage}.
+		     </td>
+		#end
+	</tr>
+	<tr>
+	    #if(($ctx.shippingConsignments.size() > 0 && $ctx.pickupConsignments.size() > 0) || ($ctx.shippingConsignments.size() > 0 && $ctx.deliveryConsignments.size() > 0))
+		<td colspan="2"  width="30%" align="left" style="font-weight: bold; padding: 5px 24px;font-size:13px; color: #000000;">${ctx.messages.mixedOrderContact}</td>
+		<td colspan="4">
+			<p style="font-size: 14px;padding: 10px 15px 10px 24px;margin: 0; color: #000000;">$ctx.order.contactPerson.name | #if($ctx.order.contactPerson.contactNumber) $ctx.order.contactPerson.contactNumber #end | $ctx.order.contactPerson.email</p>
+		</td>
+		#end
+	</tr>
+	<tr>
+		<td colspan="2"  width="30%" align="left" style="font-weight: bold; padding: 5px 24px;font-size:13px; color: #000000;">${ctx.messages.mixedOrderNumber}</td>
+		<td colspan="4" align="left" style="padding: 5px 24px;font-size:13px;">${ctx.order.code}</td>
+	</tr>	
+	#if(${ctx.requestedDate})
+	<tr>
+		<td colspan="2" width="30%" align="left" style="font-weight: bold; padding: 5px 24px;font-size:13px; color: #000000;">${ctx.messages.mixedOrderDate}</td>
+		<td colspan="4" align="left" style="padding: 5px 24px;font-size:13px;">
+			
+				${ctx.requestedDate}
+				#if(${ctx.order.requestedMeridian} == "AM")
+					${ctx.messages.morning}
+				#end
+				#if(${ctx.order.requestedMeridian} == "PM")
+					${ctx.messages.afternoon}
+				#end			
+		</td>
+	</tr>
+	#end
+	
+	<tr>
+		<td colspan="2" width="30%" align="left" style="font-weight: bold; padding: 5px 24px;font-size:13px; color: #000000;">${ctx.messages.mixedPONumber}</td>
+		<td colspan="4" align="left" style="padding: 5px 24px;font-size:13px;">
+			#if(${ctx.order.purchaseOrderNumber} && ${ctx.order.purchaseOrderNumber} != '')
+				${ctx.order.purchaseOrderNumber}
+			#else
+				${ctx.messages.na}
+			#end
+		</td>
+	</tr>
+	<tr>
+	#if(($ctx.shippingConsignments.size() > 0 && $ctx.pickupConsignments.size() > 0) || ($ctx.shippingConsignments.size() > 0 && $ctx.deliveryConsignments.size() > 0))
+    <td colspan="2" width="30%" align="left" style="font-weight: bold; padding: 5px 24px;font-size:13px; color: #000000;">${ctx.messages.mixedAccountNumber}</td>
+    <td colspan="4" align="left" style="padding: 5px 24px;font-size:13px;">
+        #if(${ctx.order.orderingAccount.displayId} && ${ctx.order.orderingAccount.displayId} != '')
+            ${ctx.order.orderingAccount.displayId}
+        #else
+            ${ctx.messages.na}
+        #end
+    </td>
+    #end
+</tr>
+	<tr>
+		<td colspan="6" valign="top" align="left" style="padding: 24px 24px 40px 24px;">
+		#if ($ctx.unitId)			
+			<a href="$orderDetailsPage" style="text-decoration:none;color: #fff;line-height: 40px; font-weight: bold; padding: 6px 30px;font-size:16px;  background: #78a22f;height: 36px; border-radius: 6px; display: inline-block;">${ctx.messages.orderDetail}</a>
+		#else
+		    <a href="$requestAccountPage" style="text-decoration:none;color: #fff;line-height: 40px; font-weight: bold; padding: 6px 30px;font-size:16px;  background: #78a22f;height: 36px; border-radius: 6px; display: inline-block;">${ctx.messages.requestAccount}</a>
+		#end    
+		</td>
+	</tr>
+	<!-- PICKUP -->
+	#if ($ctx.pickupConsignments.size() > 0)
+	<tr>
+		<td colspan="6" align="left" style="background-color: #f1f2f2; padding: 10px 24px;">
+			<svg valign="middle" id="ICON_-_Home_Branch" data-name="ICON - Home Branch" xmlns="http://www.w3.org/2000/svg" width="24" height="20" viewBox="0 0 19 15.625" style="padding: 0 10px 0 0;">
+				<path id="Path_99" data-name="Path 99" d="M491.193,155.643a.724.724,0,0,0-.522-.22h-.808v-9.368h.878a.542.542,0,0,0,.474-.809l-2.152-3.783a.544.544,0,0,0-.474-.275H475.151a.543.543,0,0,0-.474.275l-2.152,3.783a.542.542,0,0,0,.474.809h.878v9.368h-.809a.695.695,0,1,0,0,1.389h17.6a.689.689,0,0,0,.7-.695A.633.633,0,0,0,491.193,155.643Zm-15.5-13.062h12.359l1.106,2.083H474.584Zm-.425,12.842c0-1.276,0-6.368,0-9.368h6.106l-4.89,6.662a.107.107,0,0,0-.005.12l1.6,2.586Zm8.576-.042a.1.1,0,0,1-.074.042h-1.095a.1.1,0,0,1-.084-.085l-.4-4.783a.108.108,0,0,0-.107-.094h-.359a.109.109,0,0,0-.088.045l-1.692,2.39a.107.107,0,0,0,0,.117l.244.4a.109.109,0,0,0,.15.036h0l.7-.451a.107.107,0,0,1,.166.1l-.088,2.234a.1.1,0,0,1-.083.087h-1.052a.1.1,0,0,1-.074-.042l-1.493-2.46a.108.108,0,0,1,.005-.119l3.373-4.591a.107.107,0,0,1,.15-.023.1.1,0,0,1,.024.023l3.373,4.591a.107.107,0,0,1,.005.119Zm1.86.042,1.563-2.587a.107.107,0,0,0-.005-.118l-4.89-6.663h6.108v9.368Z" transform="translate(-472.37 -141.187)"></path>
+			</svg>
+            <span valign="top" style="font-weight: bold;font-size:16px; color:#000000; display: inline-block;margin-top: -11px; vertical-align: middle;" >${ctx.messages.mixedPickUpInformation}</span>
+		</td>
+	</tr>
+	<tr>
+	    #if(!($ctx.shippingConsignments.size() > 0 && $ctx.pickupConsignments.size() > 0))
+		<td colspan="6" align="left" style="padding: 30px 24px;">
+			<p style="font-size: 14px;font-weight: 700;color: #000000;margin-bottom: 18px;">${ctx.messages.mixedPickUpContact}</p>
+			<p>
+				#if($ctx.isGuestCustomer)
+					${ctx.order.guestContactPerson.name}
+					<br />
+					#if($ctx.order.guestContactPerson.contactNumber)
+					${ctx.order.guestContactPerson.contactNumber}
+					#else
+						m:${ctx.messages.na}					
+					#end
+					<br />
+					${ctx.order.guestContactPerson.email}
+				#else
+					${ctx.order.contactPerson.name}
+					<br />
+					#if($ctx.order.contactPerson.contactNumber)
+					${ctx.order.contactPerson.contactNumber}
+					<br />
+					#end
+					${ctx.order.contactPerson.email}
+				#end
+			</p>
+		</td>
+		#end
+	</tr>
+	<tr>
+	    #if(($ctx.shippingConsignments.size() > 0 && $ctx.pickupConsignments.size() > 0))
+	    #foreach( $consignment in ${ctx.pickupConsignments} )
+		<td colspan="6" align="left" style="padding: 0 24px 24px 24px;">
+			#set ($newIndex = $foreach.index + 1)
+			<p style="font-size: 14px;font-weight: 700;color: black;margin-bottom: 18px;">${ctx.messages.mixedPickUpLocation}</p>
+			<p>
+					<span color: #414244> ${consignment.pointOfService.name}</span>
+					<br/>
+					${consignment.pointOfService.address.line1}
+					<br />
+					${consignment.pointOfService.address.town}${consignment.pointOfService.address.region.isocodeShort} ${consignment.pointOfService.address.postalCode}
+					<br />
+					${consignment.pointOfService.address.phone}
+			</p>
+		</td>
+		#end
+		#end
+	</tr>
+	<tr>
+		<td colspan="6" align="left" style="padding: 0 24px 24px 24px;">
+			<p style="font-size: 14px;font-weight: 700;color: #000000;margin-bottom: 18px;">${ctx.messages.mixedPickUpInstruction}</p>
+			<p style="font-size: 14px;margin: 0;padding: 0px 15px 15px 0;">
+				#if(${ctx.order.pickupInstruction} && ${ctx.order.pickupInstruction} !='')
+				${ctx.order.pickupInstruction}
+				#else
+					#if(${ctx.order.specialInstruction} && ${ctx.order.specialInstruction} !='')
+						${ctx.order.specialInstruction}
+					#else
+						${ctx.messages.na}
+					#end
+				#end
+			</p>
+		</td>
+	</tr>
+		#set ($isRegulatoryLicenseCheckFailed = false)
+					#foreach( $consignment in ${ctx.pickupConsignments} )
+					#foreach( $consignmentEntry in ${consignment.entries} )
+					
+						#if($consignmentEntry.orderEntry.product.isRegulatoryLicenseCheckFailed)
+					 	#set ($isRegulatoryLicenseCheckFailed = true)
+						
+						#end
+					#end
+					#end
+					#if($isRegulatoryLicenseCheckFailed)
+					<tr>
+					<td colspan="6" style="padding:0 24px 24px 24px;">
+							<p style="font-size: 14px;font-weight:bold; color: #000000;">A valid applicators license is required upon pick-up or delivery.</p>
+						</td>
+						</tr>
+					
+					#end			
+	<tr>
+		<td colspan="6" align="left" style="padding: 0 24px">
+			#foreach( $consignment in ${ctx.pickupConsignments} )
+			#if($pickupBranch == "")
+				#set ($pickupBranch = $consignment.pointOfService)
+			#end
+			<!-- P:Location -->
+			<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#ffffff" style="padding: 40px 0 0 0; border-top: 1px solid #999; font-size: 12px; color: #5a5b5d;">
+				<tbody>
+				    #if(!($ctx.shippingConsignments.size() > 0 && $ctx.pickupConsignments.size() > 0))
+					<tr>
+						<td>
+							#set ($newIndex = $foreach.index + 1)
+							<p style="font-size: 20px;margin: 0; color: #000000;">${ctx.messages.mixedPickUpLocation} # $newIndex: <b>$consignment.pointOfService.name</b></p>
+							<p style="font-size: 14px;padding: 10px 0px;margin: 0;">$consignment.pointOfService.address.line1 | $consignment.pointOfService.address.town, 
+								$consignment.pointOfService.address.region.isocodeShort $consignment.pointOfService.address.postalCode | $consignment.pointOfService.address.phone</p>
+						</td>
+					</tr>
+					#end
+					
+					#set ($priceAlertBanner = false)
+					#foreach( $consignment in ${ctx.pickupConsignments} )
+						#foreach( $consignmentEntry in ${consignment.entries} )
+							#if(($consignmentEntry.orderEntry.product.level1Category == "Hardscapes & Outdoor Living"  || $consignmentEntry.orderEntry.product.level1Category == "Materiales duros & Vida al Aire Libre" || $consignmentEntry.orderEntry.product.level2Category == 'Consumables'  || $consignmentEntry.orderEntry.product.level2Category == 'Consumibles') && ($consignmentEntry.orderEntry.uomMeasure.contains("Net Ton") || $consignmentEntry.orderEntry.uomMeasure.contains("Cubic Yard")))
+				   				#set ($priceAlertBanner = true)				
+							#end
+						#end
+					#end
+					
+					#if($priceAlertBanner)
+					<tr style="font-size: 14px; color: #414244; text-align: center;">
+						<td colspan="6" align="left">
+							<div style="background-color:#F9F0E5;padding: 18px 10px;margin-top: 15px;display: inline-flex;align-items: center;width: 96%;">
+							<div style="display: flex; width: 8%;"><img src="https://www.siteone.com/_ui/responsive/theme-lambda/images/Exclamatory-Circle.svg" alt="Exclamatory" title="Exclamation" width="30" height="30">
+							</div>
+							<div valign="top" style="vertical-align: middle;width: 100%;padding-left: 5px;display: block;">
+								${ctx.messages.priceAlertMessage}
+							</div>
+							</div>
+						</td>
+				   	</tr>
+					#end
+					
+					<tr>
+						<td>
+							#foreach( $consignmentEntry in ${consignment.entries} )
+							<!-- P:Product -->
+							<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#ffffff" style="padding: 20px 0px 0px 0px;font-size: 12px; color: #5a5b5d;">
+								<tr>
+									<td colspan="2" width="50%" align="left" bgcolor="#eeeeee" style="font-size: 14px;font-weight: 700;padding: 10px;color: #414244;">${ctx.messages.productInfo}</td>
+									<td width="25%" align="right" bgcolor="#eeeeee" style="font-size: 14px;padding: 10px;">${ctx.messages.mixedQTY}</td>
+									<td width="25%" align="right" bgcolor="#eeeeee" style="font-size: 14px;padding: 10px;">${ctx.messages.total}</td>
+								</tr>
+								#if($consignmentEntry.orderEntry.product.isEligibleForBackorder)
+								<tr>
+									<td colspan="6" align="left" style="padding: 15px 0 0 0; margin: 0px;">
+										 <div
+                                            style="margin-top: 15px; border-radius: 5px; background-color:#F9F0E5;padding: 18px 10px 18px 10px;display: inline-flex;align-items: center;width: 94%;">
+                                            <div style="display: flex; width: 8%;"><img src="https://www.siteone.com/_ui/responsive/theme-lambda/images/Exclamatory-Circle.svg" alt="Exclamatory" title="Exclamation" width="30" height="30">
+                                                    
+                                            </div>
+                                            <div valign="top"
+                                                style="vertical-align: middle;width: 100%;padding-left: 5px;display: block;">
+                                                <span valign="top" style="font-weight: bold; display: inline-block;margin-top: -11px; vertical-align: middle;" >${ctx.messages.backorderMessage}</span>
+                                            </div>
+                                            
+                                        </div>
+									</td>
+								</tr>
+								#end
+								#if($consignmentEntry.orderEntry.product.isRegulatoryLicenseCheckFailed == false)
+									<tr>
+										<td colspan="6" align="left" style="padding: 15px 0 0 0; margin: 0px;">
+											<div style="margin-top: 15px; border-radius: 5px; background-color:#F9F0E5;padding: 18px 10px 18px 10px;display: inline-flex;align-items: center;width: 94%;">
+	                                            <div style="display: flex; width: 8%;"><img src="https://www.siteone.com/_ui/responsive/theme-lambda/images/Exclamatory-Circle.svg" alt="Exclamatory" title="Exclamation" width="30" height="30"></div>
+	                                            <div valign="top" style="vertical-align: middle;width: 100%;padding-left: 5px;display: block;">
+	                                                <span valign="top" style="font-weight: bold; display: inline-block;margin-top: -11px; vertical-align: middle;" >${ctx.messages.regulatoryLicenseCheckFailed}</span>
+	                                            </div>
+                                            </div>
+										</td>
+									</tr>
+								#end
+								#if($consignmentEntry.orderEntry.product.isRUPTrainingSku)
+								<tr>
+									<td colspan="6" align="left" style="padding: 15px 0 0 0; margin: 0px;">
+										 <div
+                                            style="margin-top: 15px; border-radius: 5px; background-color:#F9F0E5;padding: 18px 10px 18px 10px;display: inline-flex;align-items: center;width: 94%;">
+                                            <div style="display: flex; width: 8%;"><img src="https://www.siteone.com/_ui/responsive/theme-lambda/images/Exclamatory-Circle.svg" alt="Exclamatory" title="Exclamation" width="30" height="30">
+                                                    
+                                            </div>
+                                            <div valign="top"
+                                                style="vertical-align: middle;width: 100%;padding-left: 5px;display: block;">
+                                                <span valign="top" style="font-weight: bold; display: inline-block;margin-top: -11px; vertical-align: middle;" >${ctx.messages.rup}</span>
+                                            </div>
+                                            
+                                        </div>
+									</td>
+								</tr>
+								#end
+								
+								#if($consignmentEntry.orderEntry.product.fullfilledStoreType == 'NearByStore' || $consignmentEntry.orderEntry.product.isStockInNearbyBranch)
+								<tr>
+									<td colspan="6" align="left" style="padding: 15px 0 0 0; margin: 0px;">
+										 <div
+                                            style="margin-top: 15px; border-radius: 5px; background-color:#F9F0E5;padding: 18px 10px 18px 10px;display: inline-flex;align-items: center;width: 94%;">
+                                            <div style="display: flex; width: 8%;"><img src="https://www.siteone.com/_ui/responsive/theme-lambda/images/Exclamatory-Circle.svg" alt="Exclamatory" title="Exclamation" width="30" height="30">
+                                                    
+                                            </div>
+                                            <div valign="top"
+                                                style="vertical-align: middle;width: 100%;padding-left: 5px;display: block;">
+                                                <span valign="top" style="font-weight: bold; display: inline-block;margin-top: -11px; vertical-align: middle;" >${ctx.messages.nearbyMessage}</span>
+                                            </div>
+                                            
+                                        </div>
+									</td>
+								</tr>
+								#end
+								<tr>
+									<td><br></td>
+								</tr>
+								#if(($consignmentEntry.orderEntry.product.level1Category == "Hardscapes & Outdoor Living"  || $consignmentEntry.orderEntry.product.level1Category == "Materiales duros & Vida al Aire Libre") && ($consignmentEntry.orderEntry.uomMeasure.contains("Net Ton") || $consignmentEntry.orderEntry.uomMeasure.contains("Pallet")))
+								<tr style="font-size: 14px; color: #414244; text-align: center;">
+									<td colspan="6" align="left">
+										<div
+											style="background-color:#F9F0E5;padding: 10px;display: inline-flex;align-items: center;width: 96%;border-radius: 5px;">
+											
+											<div valign="top"
+												style="vertical-align: middle;width: 100%;display: block;">
+												${ctx.messages.priceRefundAlertMessage}
+											</div>
+											
+										</div>
+									</td>
+								</tr>
+								
+								#end
+								<tr>
+									<td width="20%" align="left" style="padding: 0px" valign="top">
+										<a href="${ctx.baseUrl}$consignmentEntry.orderEntry.product.url" style="text-decoration:none">
+																							
+											#if($consignmentEntry.orderEntry.product.images.isEmpty() != 'false')
+												<img src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/missing_product_EN_300x300.jpg" width="80" style="border: 1px solid #cccccc;padding: 0px; margin: 0;" alt="image not available" >
+											   #else
+											   #foreach($image in $consignmentEntry.orderEntry.product.images) 
+												   #if($image.imageType == "PRIMARY" && $image.format == "thumbnail" )
+												 		<img  src="${ctx.baseThemeUrl}$image.url" alt="" title="$consignmentEntry.orderEntry.product.name" width="80" style="border: 1px solid #cccccc;padding: 0px; margin: 0;"/>
+												   #end 
+											   #end
+										   #end
+										   </a>
+									</td>
+									<td width="30%" align="left" height="100%" valign="top">
+										<p >$consignmentEntry.orderEntry.product.itemNumber</p>
+										<p style="font-size: 14px;font-weight: bold;">
+											<a href="${ctx.baseUrl}$consignmentEntry.orderEntry.product.url" style="text-decoration:none;color:#000000;line-height: 20px;" ><b>$consignmentEntry.orderEntry.product.name</b></a>
+										<br>
+										#if (!$consignmentEntry.orderEntry.product.baseOptions.isEmpty())
+										#foreach ($option in $consignmentEntry.orderEntry.product.baseOptions)
+											#if ($option.selected && ($option.selected.url == $consignmentEntry.orderEntry.product.url))
+												<table width="100%" cellpadding="0" cellspacing="0">
+													#foreach ($selectedOption in $option.selected.variantOptionQualifiers)
+														<tr>
+															<td width="30%" valign="top">
+																<p>
+																	<font color="#666666">$selectedOption.name:</font>
+																</p>
+															</td>
+															<td width="70%" valign="top">
+																<p>
+																	<font color="#666666">$selectedOption.value</font>
+																</p>
+															</td>
+														</tr>
+													#end
+												</table>
+											#end
+										#end
+									#end
+									#if (!$ctx.order.appliedProductPromotions.isEmpty())
+										#foreach( $promotion in $ctx.order.appliedProductPromotions)
+											#set ($displayed = false)
+											#foreach ($consumedEntry in $promotion.consumedEntries)
+												#if (!$displayed && ($consumedEntry.orderEntryNumber == $consignmentEntry.orderEntry.entryNumber))
+													#set ($displayed = true)
+													<p class="promo addPromotionDesc"><font color="#78a22f">${promotion.description}</font>
+													</p>
+												#end
+											#end
+										#end
+									#end</p>
+									</td>
+									<td width="30%" align="right" valign="top">
+										<div style="padding: 0px 10px;font-size: 16px;color:#000000;margin-top: 15px">$consignmentEntry.orderEntry.quantity</div>
+									</td>
+									<td width="20%" align="right" valign="top">
+										<p style="font-size: 14px;font-weight: bold; color:#000000;">
+										#if($consignmentEntry.orderEntry.totalPrice.value > 0) 
+											$consignmentEntry.orderEntry.totalPrice.formattedValue 
+										#else 
+											${ctx.messages.free} 
+										#end
+										</p>
+										<p >
+											#if(!$consignmentEntry.orderEntry.isPromotionApplied && $consignmentEntry.orderEntry.saleprice)
+											<p><font><del>${consignmentEntry.orderEntry.basePrice.formattedValue} / ${consignmentEntry.orderEntry.uomMeasure}</del></font></p>
+											<p style="color:red;font-weight: 600;">$${consignmentEntry.orderEntry.saleprice} / ${consignmentEntry.orderEntry.uomMeasure}</p>
+											#elseif($consignmentEntry.orderEntry.basePrice.value > 0.0)
+										   <p><font>${consignmentEntry.orderEntry.basePrice.formattedValue} / ${consignmentEntry.orderEntry.uomMeasure}</font></p>
+										   #end
+										</p>
+									</td>
+								</tr>
+							</table><!-- ./P:Product -->
+							#end
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<!-- ./P:Location -->
+			#end
+		</td>
+	</tr>
+	<!-- ./PICKUP -->
+	#end
+	#if($ctx.deliveryConsignments.size() > 0)
+    <!-- Delivery -->
+	<tr>
+		<td colspan="6" align="left" style="background-color: #f1f2f2; padding: 10px 24px;">
+			<svg id="ICON_-_Delivery" data-name="ICON - Delivery" xmlns="http://www.w3.org/2000/svg" width="30" height="20" viewBox="0 0 26.398 13" style="padding: 0 10px 0 0;">
+				<g id="Group_539" data-name="Group 539" transform="translate(0 2.954)">
+					<path id="Path_91" data-name="Path 91" d="M370.017,146.8h-1.969a.576.576,0,1,0,0,1.152h1.969a.571.571,0,0,0,.578-.576.519.519,0,0,0-.15-.39A.6.6,0,0,0,370.017,146.8Z" transform="translate(-365.013 -146.805)"></path>
+					<path id="Path_92" data-name="Path 92" d="M368.988,152.122H365.8a.576.576,0,1,0,0,1.152h3.208a.571.571,0,0,0,.578-.576A.588.588,0,0,0,368.988,152.122Z" transform="translate(-363.984 -149.252)"></path>
+					<path id="Path_93" data-name="Path 93" d="M367.942,157.4h-4.425a.576.576,0,1,0,0,1.152h4.425a.571.571,0,0,0,.578-.576.521.521,0,0,0-.146-.394A.6.6,0,0,0,367.942,157.4Z" transform="translate(-362.938 -151.681)"></path>
+				</g>
+				<path id="Path_94" data-name="Path 94" d="M395.069,147.18l-2.117-3.513a1.4,1.4,0,0,0-1.133-.638h-3.256v-.7a1,1,0,0,0-1-.995H377.112a1,1,0,0,0-1,.995v9.316a1,1,0,0,0,1,.994h.771a2.277,2.277,0,0,0,4.4,0h6.9a2.277,2.277,0,0,0,4.4,0h.772a.987.987,0,0,0,1-.992v-3.392A2.309,2.309,0,0,0,395.069,147.18Zm-3.957.931c0-.4,0-1.567,0-2.257.144.005.366.006.694.008l1.129,0,1.147,1.9a1.211,1.211,0,0,1,.119.343Zm-.15-3.388a.992.992,0,0,0-.995.986v2.557a.993.993,0,0,0,1,.987h3.256V151.5c-.133,0-.352,0-.627,0a2.277,2.277,0,0,0-4.4,0h-.627v-7.328h3.256a.3.3,0,0,1,.15.084l.282.468Zm.429,6.224a1.123,1.123,0,1,1-1.128,1.123A1.126,1.126,0,0,1,391.393,150.947Zm-3.976-8.471V151.5H382.29a2.277,2.277,0,0,0-4.4,0h-.624c0-.733,0-4.077,0-6.515v-2.507Zm-7.328,8.471a1.123,1.123,0,1,1-1.128,1.123A1.126,1.126,0,0,1,380.089,150.947Z" transform="translate(-368.97 -141.335)"></path>
+			</svg>
+			<span valign="top" style="font-weight: bold;font-size:16px; color:#000000; display: inline-block;margin-top: -11px; vertical-align: middle;" >${ctx.messages.mixedDeliveryInformation}</span>
+		</td>
+	</tr>
+    <tr>
+		<td colspan="3" valign="top" align="left" style="padding: 30px 24px;">
+			<p style="font-size: 14px;font-weight: 700;color: #000000;margin-bottom: 18px;">${ctx.messages.mixedDeliveryContact}</p>
+			<p>
+				#if($ctx.isGuestCustomer)
+					#if(${ctx.order.guestDeliveryContactPerson})
+						${ctx.order.guestDeliveryContactPerson.name}
+						<br />
+						#if($ctx.order.guestDeliveryContactPerson.contactNumber)
+						${ctx.order.guestDeliveryContactPerson.contactNumber}
+						#else
+							m:${ctx.messages.na}
+						<br />
+						#end
+						${ctx.order.guestDeliveryContactPerson.email}
+					#else
+						${ctx.order.guestContactPerson.name}
+						<br />
+						#if($ctx.order.guestContactPerson.contactNumber)
+						${ctx.order.guestContactPerson.contactNumber}
+						#else
+							m:${ctx.messages.na}					
+						#end
+						<br />
+						${ctx.order.guestContactPerson.email}
+					#end
+				#else
+					#if(${ctx.order.deliveryContactPerson})
+						${ctx.order.deliveryContactPerson.name}
+						<br />
+						#if($ctx.order.deliveryContactPerson.contactNumber)
+						${ctx.order.deliveryContactPerson.contactNumber}
+						#else
+							m:${ctx.messages.na}						
+						#end
+						<br />
+						${ctx.order.deliveryContactPerson.email}
+					#else
+						${ctx.order.contactPerson.name}
+						<br />
+						#if($ctx.order.contactPerson.contactNumber)
+						${ctx.order.contactPerson.contactNumber}
+						#else
+							m:${ctx.messages.na}						
+						#end
+						<br />
+						${ctx.order.contactPerson.email}
+					#end
+				#end
+			</p>
+		</td>
+        <td colspan="3" valign="top" align="left" style="padding: 30px 24px;">
+			<p style="font-size: 14px;font-weight: 700;color: #000000;margin-bottom: 18px;">${ctx.messages.mixedDeliverTo}</p>
+			<p>
+				#if (${ctx.order.deliveryAddress.line1})
+					${ctx.order.deliveryAddress.line1},
+					<br/>
+				#end
+				#if(${ctx.order.deliveryAddress.line2} && !${ctx.order.deliveryAddress.line2.isEmpty()})
+					${ctx.order.deliveryAddress.line2},
+				#end
+				${ctx.order.deliveryAddress.town},&nbsp;${ctx.order.deliveryAddress.region.isocodeShort}
+				${ctx.order.deliveryAddress.postalCode}
+			</p>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="6" align="left" style="padding: 0 24px 24px 24px;">
+			<p style="font-size: 14px;font-weight: 700;color: #000000;margin-bottom: 18px;">${ctx.messages.mixedDeliveryInstruction}</p>
+			<p style="font-size: 14px;margin: 0;padding: 0px 15px 15px 0;">
+				#if(${ctx.order.deliveryInstruction} && ${ctx.order.deliveryInstruction} !='')
+					${ctx.order.deliveryInstruction}
+				#else
+					#if(${ctx.order.specialInstruction} && ${ctx.order.specialInstruction} !='')
+						${ctx.order.specialInstruction}
+					#else
+						${ctx.messages.na}
+					#end
+				#end
+			</p>
+		</td>
+	</tr>
+	 
+					#set ($isRegulatoryLicenseCheckFailed = false)
+					#foreach( $consignment in ${ctx.deliveryConsignments} )
+					#foreach( $consignmentEntry in ${consignment.entries} )
+					
+						#if($consignmentEntry.orderEntry.product.isRegulatoryLicenseCheckFailed)
+					 	#set ($isRegulatoryLicenseCheckFailed = true)
+						
+						#end
+					#end
+					#end
+					#if($isRegulatoryLicenseCheckFailed)
+					<tr>
+					<td colspan="6" style="padding:0 24px 24px 24px;">
+							<p style="font-size: 14px;font-weight:bold; color: #000000;">A valid applicators license is required upon pick-up or delivery.</p>
+						</td>
+						</tr>
+					
+					#end
+    <tr>
+		<td colspan="6" align="left" style="padding: 0 24px">
+			#foreach( $consignment in ${ctx.deliveryConsignments} )
+			#if($deliveryBranch == "")
+				#set ($deliveryBranch = $consignment.pointOfService)
+			#end
+			<!-- D:Location -->
+			
+			<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#ffffff" style="padding: 40px 0 0 0; border-top: 1px solid #999; font-size: 12px; color: #5a5b5d;">
+				<tbody>
+					<tr>
+						<td>
+							<p style="font-size: 20px;margin: 0; color: #000000;">${ctx.messages.mixedDeliveryFrom}: <b>$consignment.pointOfService.name</b></p>
+							<p style="padding: 0px 0px;font-weight: 600;margin: 0;">${ctx.messages.mixedArepresentativefrom} $consignment.pointOfService.name ${ctx.messages.mixedDeliveryDetails}.</p>
+						</td>
+					</tr>
+					
+					#set ($priceAlertBanner = false)
+					#foreach( $consignment in ${ctx.deliveryConsignments} )
+						#foreach( $consignmentEntry in ${consignment.entries} )
+							#if(($consignmentEntry.orderEntry.product.level1Category == "Hardscapes & Outdoor Living"  || $consignmentEntry.orderEntry.product.level1Category == "Materiales duros & Vida al Aire Libre" || $consignmentEntry.orderEntry.product.level2Category == 'Consumables'  || $consignmentEntry.orderEntry.product.level2Category == 'Consumibles') && ($consignmentEntry.orderEntry.uomMeasure.contains("Net Ton") || $consignmentEntry.orderEntry.uomMeasure.contains("Cubic Yard")))
+				   				#set ($priceAlertBanner = true)				
+							#end
+						#end
+					#end
+					
+					#if($priceAlertBanner)
+					<tr style="font-size: 14px; color: #414244; text-align: center;">
+						<td colspan="6" align="left">
+						<div style="background-color:#F9F0E5;padding: 18px 10px;margin-top: 15px;display: inline-flex;align-items: center;width: 96%;">
+						<div style="display: flex; width: 8%;"><img src="https://www.siteone.com/_ui/responsive/theme-lambda/images/Exclamatory-Circle.svg" alt="Exclamatory" title="Exclamation" width="30" height="30">
+						</div>
+						<div valign="top" style="vertical-align: middle;width: 100%;padding-left: 5px;display: block;">
+							${ctx.messages.priceAlertMessage}
+						</div>
+						</div>
+						</td>
+				   		</tr>
+					#end
+					
+					<tr>
+						<td>
+							#foreach( $consignmentEntry in ${consignment.entries} )
+							<!-- D:Product -->
+							<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#ffffff" style="padding: 20px 0px 0px 0px;font-size: 12px; color: #5a5b5d;">
+								<tr>
+									<td colspan="2" width="50%" align="left" bgcolor="#eeeeee" style="font-size: 14px;font-weight: 700;padding: 10px;color: #414244;">${ctx.messages.productInfo}</td>
+									<td width="25%" align="right" bgcolor="#eeeeee" style="font-size: 14px;padding: 10px;">${ctx.messages.mixedQTY}</td>
+									<td width="25%" align="right" bgcolor="#eeeeee" style="font-size: 14px;padding: 10px;">${ctx.messages.total}</td>
+								</tr>
+								#if($consignmentEntry.orderEntry.product.isEligibleForBackorder)
+								<tr>
+									<td colspan="6" align="left" style="padding: 15px 0 0 0; margin: 0px;">
+										 <div
+                                            style="margin-top: 15px; border-radius: 5px; background-color:#F9F0E5;padding: 18px 10px 18px 10px;display: inline-flex;align-items: center;width: 94%;">
+                                            <div style="display: flex; width: 8%;"><img src="https://www.siteone.com/_ui/responsive/theme-lambda/images/Exclamatory-Circle.svg" alt="Exclamatory" title="Exclamation" width="30" height="30">
+                                                    
+                                            </div>
+                                            <div valign="top"
+                                                style="vertical-align: middle;width: 100%;padding-left: 5px;display: block;">
+                                                <span valign="top" style="font-weight: bold; display: inline-block;margin-top: -11px; vertical-align: middle;" >${ctx.messages.backorderMessage}</span>
+                                            </div>
+                                            
+                                        </div>
+									</td>
+								</tr>
+								#end
+								#if($consignmentEntry.orderEntry.product.isRegulatoryLicenseCheckFailed == false)
+									<tr>
+										<td colspan="6" align="left" style="padding: 15px 0 0 0; margin: 0px;">
+											<div style="margin-top: 15px; border-radius: 5px; background-color:#F9F0E5;padding: 18px 10px 18px 10px;display: inline-flex;align-items: center;width: 94%;">
+	                                            <div style="display: flex; width: 8%;"><img src="https://www.siteone.com/_ui/responsive/theme-lambda/images/Exclamatory-Circle.svg" alt="Exclamatory" title="Exclamation" width="30" height="30"></div>
+	                                            <div valign="top" style="vertical-align: middle;width: 100%;padding-left: 5px;display: block;">
+	                                                <span valign="top" style="font-weight: bold; display: inline-block;margin-top: -11px; vertical-align: middle;" >${ctx.messages.regulatoryLicenseCheckFailed}</span>
+	                                            </div>
+                                            </div>
+										</td>
+									</tr>
+								#end
+								#if($consignmentEntry.orderEntry.product.isRUPTrainingSku)
+								<tr>
+									<td colspan="6" align="left" style="padding: 15px 0 0 0; margin: 0px;">
+										 <div
+                                            style="margin-top: 15px; border-radius: 5px; background-color:#F9F0E5;padding: 18px 10px 18px 10px;display: inline-flex;align-items: center;width: 94%;">
+                                            <div style="display: flex; width: 8%;"><img src="https://www.siteone.com/_ui/responsive/theme-lambda/images/Exclamatory-Circle.svg" alt="Exclamatory" title="Exclamation" width="30" height="30">
+                                                    
+                                            </div>
+                                            <div valign="top"
+                                                style="vertical-align: middle;width: 100%;padding-left: 5px;display: block;">
+                                                <span valign="top" style="font-weight: bold; display: inline-block;margin-top: -11px; vertical-align: middle;" >${ctx.messages.rup}</span>
+                                            </div>
+                                            
+                                        </div>
+									</td>
+								</tr>
+								#end
+								
+								#if($consignmentEntry.orderEntry.product.fullfilledStoreType == 'NearByStore' || $consignmentEntry.orderEntry.product.isStockInNearbyBranch)
+								<tr>
+									<td colspan="6" align="left" style="padding: 15px 0 0 0; margin: 0px;">
+										 <div
+                                            style="margin-top: 15px; border-radius: 5px; background-color:#F9F0E5;padding: 18px 10px 18px 10px;display: inline-flex;align-items: center;width: 94%;">
+                                            <div style="display: flex; width: 8%;"><img src="https://www.siteone.com/_ui/responsive/theme-lambda/images/Exclamatory-Circle.svg" alt="Exclamatory" title="Exclamation" width="30" height="30">
+                                                    
+                                            </div>
+                                            <div valign="top"
+                                                style="vertical-align: middle;width: 100%;padding-left: 5px;display: block;">
+                                                <span valign="top" style="font-weight: bold; display: inline-block;margin-top: -11px; vertical-align: middle;" >${ctx.messages.nearbyMessage}</span>
+                                            </div>
+                                            
+                                        </div>
+									</td>
+								</tr>
+								#end
+								<tr>
+									<td><br></td>
+								</tr>
+								#if(($consignmentEntry.orderEntry.product.level1Category == "Hardscapes & Outdoor Living"  || $consignmentEntry.orderEntry.product.level1Category == "Materiales duros & Vida al Aire Libre") && ($consignmentEntry.orderEntry.uomMeasure.contains("Net Ton") || $consignmentEntry.orderEntry.uomMeasure.contains("Pallet")))
+								<tr style="font-size: 14px; color: #414244; text-align: center;">
+									<td colspan="6" align="left">
+										<div
+											style="background-color:#F9F0E5;padding: 10px;display: inline-flex;align-items: center;width: 96%;border-radius: 5px;">
+											
+											<div valign="top"
+												style="vertical-align: middle;width: 100%;display: block;">
+												${ctx.messages.priceRefundAlertMessage}
+											</div>
+											
+										</div>
+									</td>
+								</tr>
+								
+								#end
+								<tr>
+									<td width="20%" align="left" style="padding: 0px" valign="top">
+										<a href="${ctx.baseUrl}$consignmentEntry.orderEntry.product.url" style="text-decoration:none">
+																							
+											#if($consignmentEntry.orderEntry.product.images.isEmpty() != 'false')
+												<img src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/missing_product_EN_300x300.jpg" width="80" style="border: 1px solid #cccccc;padding: 0px; margin: 0;" alt="image not available" >
+											   #else
+											   #foreach($image in $consignmentEntry.orderEntry.product.images) 
+												   #if($image.imageType == "PRIMARY" && $image.format == "thumbnail" )
+													<img  src="${ctx.baseThemeUrl}$image.url" alt="" title="$consignmentEntry.orderEntry.product.name" width="80" style="border: 1px solid #cccccc;padding: 0px; margin: 0;"/>
+												   #end 
+											   #end
+										   #end
+										   </a>
+									</td>
+									<td width="30%" align="left" height="100%" valign="top">
+										<p >$consignmentEntry.orderEntry.product.itemNumber</p>
+										<p style="font-size: 14px;font-weight: bold;">
+											<a href="${ctx.baseUrl}$consignmentEntry.orderEntry.product.url" style="text-decoration:none;color:#000000;line-height: 20px;" ><b>$consignmentEntry.orderEntry.product.name</b></a>
+										<br>
+										#if (!$consignmentEntry.orderEntry.product.baseOptions.isEmpty())
+										#foreach ($option in $consignmentEntry.orderEntry.product.baseOptions)
+											#if ($option.selected && ($option.selected.url == $consignmentEntry.orderEntry.product.url))
+												<table width="100%" cellpadding="0" cellspacing="0">
+													#foreach ($selectedOption in $option.selected.variantOptionQualifiers)
+														<tr>
+															<td width="30%" valign="top">
+																<p>
+																	<font color="#666666">$selectedOption.name:</font>
+																</p>
+															</td>
+															<td width="70%" valign="top">
+																<p>
+																	<font color="#666666">$selectedOption.value</font>
+																</p>
+															</td>
+														</tr>
+													#end
+												</table>
+											#end
+										#end
+									#end
+									#if (!$ctx.order.appliedProductPromotions.isEmpty())
+										#foreach( $promotion in $ctx.order.appliedProductPromotions)
+											#set ($displayed = false)
+											#foreach ($consumedEntry in $promotion.consumedEntries)
+												#if (!$displayed && ($consumedEntry.orderEntryNumber == $consignmentEntry.orderEntry.entryNumber))
+													#set ($displayed = true)
+													<p class="promo addPromotionDesc"><font color="#78a22f">${promotion.description}</font>
+													</p>
+												#end
+											#end
+										#end
+									#end</p>
+									</td>
+									<td width="30%" align="right" valign="top">
+										<div style="padding: 0px 10px;font-size: 16px;color:#000000;margin-top: 15px">$consignmentEntry.orderEntry.quantity</div>
+									</td>
+									<td width="20%" align="right" valign="top">
+										<p style="font-size: 14px;font-weight: bold; color:#000000;">
+										#if($consignmentEntry.orderEntry.totalPrice.value > 0) 
+											$consignmentEntry.orderEntry.totalPrice.formattedValue 
+										#else 
+											${ctx.messages.free} 
+										#end
+										</p>
+										<p >
+											#if(!$consignmentEntry.orderEntry.isPromotionApplied && $consignmentEntry.orderEntry.saleprice)
+											<p><font><del>${consignmentEntry.orderEntry.basePrice.formattedValue} / ${consignmentEntry.orderEntry.uomMeasure}</del></font></p>
+											<p style="color:red;font-weight: 600;">$${consignmentEntry.orderEntry.saleprice} / ${consignmentEntry.orderEntry.uomMeasure}</p>
+											#elseif($consignmentEntry.orderEntry.basePrice.value > 0.0)
+										   <p><font>${consignmentEntry.orderEntry.basePrice.formattedValue} / ${consignmentEntry.orderEntry.uomMeasure}</font></p>
+										   #end
+										</p>
+									</td>
+								</tr>
+							</table><!-- ./D:Product -->
+							#end
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<!-- ./D:Location -->	
+			#end
+		</td>
+	</tr>
+    <!-- ./Delivery -->
+	#end
+	#if($ctx.shippingConsignments.size() > 0)
+    <!-- Shipping -->
+	<tr>
+		<td colspan="6" align="left" style="background-color: #f1f2f2;  padding: 10px 24px;">
+			<svg xmlns="http://www.w3.org/2000/svg" width="29" height="20" viewBox="0 0 29.459 20" style="padding: 0 10px 0 0;">
+				<g id="ICON_-_Shipping" data-name="ICON - Shipping" transform="translate(-2.641 -1.115)">
+					<path id="Path_95" data-name="Path 95" d="M438.478,145a.9.9,0,0,0-.523.817v10.733a.9.9,0,0,0,.524.817l8.254,3.744a1.026,1.026,0,0,0,.759,0l8.245-3.74a.9.9,0,0,0,.523-.817V145.822a.9.9,0,0,0-.524-.817l-8.254-3.744a1.06,1.06,0,0,0-.384-.073.929.929,0,0,0-.368.074Zm7.732,13.88-6.428-2.9v-8.752l6.428,2.9Zm8.223-2.9-6.427,2.9v-8.752l6.427-2.9ZM447.108,143.1l6.048,2.754-6.048,2.754-6.048-2.754Z" transform="translate(-424.16 -140.072)"></path>
+					<g id="Group_541" data-name="Group 541" transform="translate(2.641 5.796)">
+						<path id="Path_96" data-name="Path 96" d="M433.185,146.805h-3.056a.889.889,0,1,0,0,1.778h3.056a.884.884,0,0,0,.9-.889.8.8,0,0,0-.233-.6A.928.928,0,0,0,433.185,146.805Z" transform="translate(-425.418 -146.805)"></path>
+						<path id="Path_97" data-name="Path 97" d="M432.829,152.122h-4.947a.889.889,0,1,0,0,1.778h4.978a.884.884,0,0,0,.9-.889A.91.91,0,0,0,432.829,152.122Z" transform="translate(-425.062 -147.691)"></path>
+						<path id="Path_98" data-name="Path 98" d="M432.467,157.4H425.6a.889.889,0,1,0,0,1.778h6.869a.884.884,0,0,0,.9-.889.807.807,0,0,0-.227-.608A.933.933,0,0,0,432.467,157.4Z" transform="translate(-424.7 -148.571)"></path>
+					</g>
+				</g>
+			</svg>
+			<span valign="top" style="font-weight: bold;font-size:16px; color:#000000; display: inline-block;margin-top: -11px; vertical-align: middle;" >${ctx.messages.shippingInfoHeading}</span>
+		</td>
+	</tr>
+    <tr>
+        #if(!($ctx.shippingConsignments.size() > 0 && $ctx.pickupConsignments.size() > 0))
+		#if(!($ctx.shippingConsignments.size() > 0 && $ctx.deliveryConsignments.size() > 0))
+			<td colspan="3" valign="top" align="left" style="padding: 30px 24px;">
+				<p style="font-size: 14px;font-weight: 700;color: #000000;margin-bottom: 18px;">${ctx.messages.mixedShippingContact}</p>
+				<p>
+					#if($ctx.isGuestCustomer)
+						#if(${ctx.order.guestShippingContactPerson})
+							${ctx.order.guestShippingContactPerson.name}
+							<br />
+							#if($ctx.order.guestShippingContactPerson.contactNumber)
+							${ctx.order.guestShippingContactPerson.contactNumber}
+							#else
+								m:${ctx.messages.na}
+							<br />
+							#end
+							${ctx.order.guestShippingContactPerson.email}
+						#else
+							${ctx.order.guestContactPerson.name}
+							<br />
+							#if($ctx.order.guestContactPerson.contactNumber)
+							${ctx.order.guestContactPerson.contactNumber}
+							#else
+								m:${ctx.messages.na}					
+							#end
+							<br />
+							${ctx.order.guestContactPerson.email}
+						#end
+					#else
+						#if(${ctx.order.shippingContactPerson})
+							${ctx.order.shippingContactPerson.name}
+							<br />
+							#if($ctx.order.shippingContactPerson.contactNumber)
+							${ctx.order.shippingContactPerson.contactNumber}
+							#else
+								m:${ctx.messages.na}					
+							#end
+							<br />
+							${ctx.order.shippingContactPerson.email}
+						#else
+							${ctx.order.contactPerson.name}
+							<br />
+							#if($ctx.order.contactPerson.contactNumber)
+							${ctx.order.contactPerson.contactNumber}
+							#else
+								m:${ctx.messages.na}						
+							#end
+							<br />
+							${ctx.order.contactPerson.email}
+						#end
+					#end
+				</p>
+			</td>
+		#end
+        <td colspan="3" valign="top" align="left" style="padding: 30px 24px;">
+			<p style="font-size: 14px;font-weight: 700;color: #000000;margin-bottom: 18px;">${ctx.messages.shipToContact}</p>
+			<p>
+				#if (${ctx.order.shippingAddress})
+					#if (${ctx.order.shippingAddress.line1})
+						${ctx.order.shippingAddress.line1},
+						<br/>
+					#end
+					#if(${ctx.order.shippingAddress.line2} && !${ctx.order.shippingAddress.line2.isEmpty()})
+						${ctx.order.shippingAddress.line2},
+					#end
+					${ctx.order.shippingAddress.town},&nbsp;${ctx.order.shippingAddress.region.isocodeShort}
+					${ctx.order.shippingAddress.postalCode}
+				#else
+					#if (${ctx.order.deliveryAddress.line1})
+						${ctx.order.deliveryAddress.line1},
+						<br/>
+					#end
+					#if(${ctx.order.deliveryAddress.line2} && !${ctx.order.deliveryAddress.line2.isEmpty()})
+						${ctx.order.deliveryAddress.line2},
+					#end
+					${ctx.order.deliveryAddress.town},&nbsp;${ctx.order.deliveryAddress.region.isocodeShort}
+					${ctx.order.deliveryAddress.postalCode}
+				#end
+			</p>
+		</td>
+	</tr>
+	#if(!($ctx.shippingConsignments.size() > 0 && $ctx.deliveryConsignments.size() > 0))
+	<tr>
+		<td colspan="6" align="left" style="padding: 0 24px 24px 24px;">
+			<p style="font-size: 14px;font-weight: 700;color: #000000;margin-bottom: 18px;">${ctx.messages.mixedShippingInstruction}</p>
+			<p style="font-size: 14px;margin: 0;padding: 0px 15px 15px 0;">
+				#if(${ctx.order.shippingInstruction} && ${ctx.order.shippingInstruction} !='')
+				${ctx.order.shippingInstruction}
+				#else
+					#if(${ctx.order.specialInstruction} && ${ctx.order.specialInstruction} !='')
+						${ctx.order.specialInstruction}
+					#else
+						${ctx.messages.na}
+					#end
+				#end
+			</p>
+		</td>
+	</tr>
+	#end
+    <tr>
+		<td colspan="6" align="left" style="padding: 0px 24px;">
+			<p style="font-weight: bold;margin-bottom: 0px; padding: 10px; background-color: #f1f2f2;">${ctx.messages.mixedShippingDetails}.</p>
+		</td>
+	</tr>
+	#else
+	<tr>
+	   <td colspan="3" valign="top" align="left" style="padding: 30px 24px;">
+			<p style="font-size: 14px;font-weight: 700;color: #000000;margin-bottom: 18px;">${ctx.messages.mixedShippingAddress}</p>
+			<p>
+				#if (${ctx.order.shippingAddress})
+					#if (${ctx.order.shippingAddress.line1})
+						${ctx.order.shippingAddress.line1},
+						<br/>
+					#end
+					#if(${ctx.order.shippingAddress.line2} && !${ctx.order.shippingAddress.line2.isEmpty()})
+						${ctx.order.shippingAddress.line2},
+					#end
+					${ctx.order.shippingAddress.town},&nbsp;${ctx.order.shippingAddress.region.isocodeShort}
+					${ctx.order.shippingAddress.postalCode}
+				#else
+					#if (${ctx.order.deliveryAddress.line1})
+						${ctx.order.deliveryAddress.line1},
+						<br/>
+					#end
+					#if(${ctx.order.deliveryAddress.line2} && !${ctx.order.deliveryAddress.line2.isEmpty()})
+						${ctx.order.deliveryAddress.line2},
+					#end
+					${ctx.order.deliveryAddress.town},&nbsp;${ctx.order.deliveryAddress.region.isocodeShort}
+					${ctx.order.deliveryAddress.postalCode}
+				#end
+			</p>
+		</td>
+	</tr>
+	#end
+    <tr>
+		<td colspan="6" align="left" style="padding: 0 24px">
+			#foreach( $consignment in ${ctx.shippingConsignments} )
+			#if($shippingBranch == "")
+				#set ($shippingBranch = $consignment.pointOfService)
+			#end
+			#foreach( $consignmentEntry in ${consignment.entries} )
+            <!-- S:Product -->
+            <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#ffffff" style="padding: 20px 0px 0px 0px;font-size: 12px; color: #5a5b5d;">
+                <tr>
+                    <td colspan="2" width="50%" align="left" bgcolor="#eeeeee" style="font-size: 14px;font-weight: 700;padding: 10px;color: #414244;">${ctx.messages.productInfo}</td>
+                    <td width="25%" align="right" bgcolor="#eeeeee" style="font-size: 14px;padding: 10px;">${ctx.messages.mixedQTY}</td>
+                    <td width="25%" align="right" bgcolor="#eeeeee" style="font-size: 14px;padding: 10px;">${ctx.messages.total}</td>
+                </tr>
+				#if($consignmentEntry.orderEntry.product.isEligibleForBackorder)
+				<tr>
+					<td colspan="6" align="left" style="padding: 15px 0 0 0; margin: 0px;">
+						<p style="background-color:#fef3e5; padding: 6px 10px;">
+							<svg id="Group_1708" data-name="Group 1708" xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 23 23" style="padding: 0 10px 0 0;">
+							<g id="Ellipse_23" data-name="Ellipse 23" fill="none" stroke="#ed8606" stroke-width="3">
+								<circle cx="11.5" cy="11.5" r="11.5" stroke="none"/>
+								<circle cx="11.5" cy="11.5" r="10" fill="none"/>
+							</g>
+							<path id="exclamation" d="M19.125,8.438a1.563,1.563,0,1,1-1.562-1.563A1.564,1.564,0,0,1,19.125,8.438ZM16.181.492,16.446,5.8a.469.469,0,0,0,.468.445h1.3a.469.469,0,0,0,.468-.445L18.944.492A.469.469,0,0,0,18.476,0H16.649A.469.469,0,0,0,16.181.492Z" transform="translate(-6 6.409)" fill="#ef8700"/>
+							</svg>
+							<span valign="top" style="font-weight: bold; display: inline-block;margin-top: -11px; vertical-align: middle;" >${ctx.messages.mixedBackordeed}</span>
+						</p>
+					</td>
+				</tr>
+				#end
+                <tr>
+                    <td><br></td>
+                </tr>
+                <tr>
+                    <td><br></td>
+                </tr>
+                <tr>
+                    <td width="20%" align="left" style="padding: 0px" valign="top">
+                        <a href="${ctx.baseUrl}$consignmentEntry.orderEntry.product.url" style="text-decoration:none">
+                                                                            
+                            #if($consignmentEntry.orderEntry.product.images.isEmpty() != 'false')
+                                <img src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/missing_product_EN_300x300.jpg" width="80" style="border: 1px solid #cccccc;padding: 0px; margin: 0;" alt="image not available" >
+                                #else
+                                #foreach($image in $consignmentEntry.orderEntry.product.images) 
+                                    #if($image.imageType == "PRIMARY" && $image.format == "thumbnail" )
+                                    <img  src="${ctx.baseThemeUrl}$image.url" alt="" title="$consignmentEntry.orderEntry.product.name" width="80" style="border: 1px solid #cccccc;padding: 0px; margin: 0;"/>
+                                    #end 
+                                #end
+                            #end
+                            </a>
+                    </td>
+                    <td width="30%" align="left" height="100%" valign="top">
+                        <p >$consignmentEntry.orderEntry.product.itemNumber</p>
+                        <p style="font-size: 14px;font-weight: bold;">
+                            <a href="${ctx.baseUrl}$consignmentEntry.orderEntry.product.url" style="text-decoration:none;color:#000000;line-height: 20px;" ><b>$consignmentEntry.orderEntry.product.name</b></a>
+                        <br>
+                        #if (!$consignmentEntry.orderEntry.product.baseOptions.isEmpty())
+                        #foreach ($option in $consignmentEntry.orderEntry.product.baseOptions)
+                            #if ($option.selected && ($option.selected.url == $consignmentEntry.orderEntry.product.url))
+                                <table width="100%" cellpadding="0" cellspacing="0">
+                                    #foreach ($selectedOption in $option.selected.variantOptionQualifiers)
+                                        <tr>
+                                            <td width="30%" valign="top">
+                                                <p>
+                                                    <font color="#666666">$selectedOption.name:</font>
+                                                </p>
+                                            </td>
+                                            <td width="70%" valign="top">
+                                                <p>
+                                                    <font color="#666666">$selectedOption.value</font>
+                                                </p>
+                                            </td>
+                                        </tr>
+                                    #end
+                                </table>
+                            #end
+                        #end
+                    #end
+                    #if (!$ctx.order.appliedProductPromotions.isEmpty())
+                        #foreach( $promotion in $ctx.order.appliedProductPromotions)
+                            #set ($displayed = false)
+                            #foreach ($consumedEntry in $promotion.consumedEntries)
+                                #if (!$displayed && ($consumedEntry.orderEntryNumber == $consignmentEntry.orderEntry.entryNumber))
+                                    #set ($displayed = true)
+                                    <p class="promo addPromotionDesc"><font color="#78a22f">${promotion.description}</font>
+                                    </p>
+                                #end
+                            #end
+                        #end
+                    #end</p>
+                    </td>
+                    <td width="30%" align="right" valign="top">
+                        <div style="padding: 0px 10px;font-size: 16px;color:#000000;">$consignmentEntry.orderEntry.quantity</div>
+                    </td>
+                    <td width="20%" align="right" valign="top">
+                        <p style="font-size: 14px;font-weight: bold; color:#000000;">
+                        #if($consignmentEntry.orderEntry.totalPrice.value > 0) 
+                            $consignmentEntry.orderEntry.totalPrice.formattedValue 
+                        #else 
+                            ${ctx.messages.free} 
+                        #end
+                        </p>
+                        <p >
+                            #if(!$consignmentEntry.orderEntry.isPromotionApplied && $consignmentEntry.orderEntry.saleprice)
+                            <p><font><del>${consignmentEntry.orderEntry.basePrice.formattedValue} / ${consignmentEntry.orderEntry.uomMeasure}</del></font></p>
+                            <p style="color:red;font-weight: 600;">$${consignmentEntry.orderEntry.saleprice} / ${consignmentEntry.orderEntry.uomMeasure}</p>
+                            #elseif($consignmentEntry.orderEntry.basePrice.value > 0.0)
+                            <p><font>${consignmentEntry.orderEntry.basePrice.formattedValue} / ${consignmentEntry.orderEntry.uomMeasure}</font></p>
+                            #end
+                        </p>
+                    </td>
+                </tr>
+            </table><!-- ./S:Product -->
+            #end
+			#end
+		</td>
+	</tr>
+    <!-- ./Shipping -->
+	#end
+    <!-- Amount -->
+</tbody>
+<tfoot>
+	<tr>
+		<td colspan="6" style="padding: 20px 0px;">
+			<hr>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="4"></td>
+		<td width="30%" align="left" style="padding: 0px 24px;">${ctx.messages.subtotal}</td>
+		<td width="20%" align="right" style="font-weight: bold; padding: 6px 24px;color:#000000;">${ctx.order.subTotal.formattedValue}</td>
+	</tr>
+	#if (${ctx.discountedValue}  != '0.00')
+	<tr>
+		<td colspan="4"></td>
+		<td width="30%" align="left" style="padding: 0px 24px;">${ctx.messages.totalDiscounts}</td>
+		<td width="20%" align="right" style="font-weight: bold; padding: 6px 24px;color:#000000;">-${ctx.order.totalDiscounts.formattedValue}</td>
+	</tr>
+	#end
+	#if((!$ctx.shippingConsignments && !$ctx.pickupConsignments) || ($ctx.shippingConsignments.size() > 0 && $ctx.deliveryConsignments.size() > 0))
+	#if($ctx.order.deliveryFreight && $ctx.order.deliveryFreight != "")
+	<tr>
+		<td colspan="4"></td>
+		<td width="30%" align="left" style="padding: 0px 24px;">${ctx.messages.deliveryFee}</td>
+		<td width="20%" align="right" style="font-weight: bold; padding: 6px 24px;color:#000000;">$${ctx.order.deliveryFreight}</td>
+	</tr>
+	#else
+		#if($ctx.order.freight && $ctx.order.freight != "" && $ctx.deliveryConsignments.size() > 0 && !$ctx.exemptDeliveryFee )
+			<tr>
+				<td colspan="4"></td>
+				<td width="30%" align="left" style="padding: 0px 24px;">${ctx.messages.deliveryFee}</td>
+				<td width="20%" align="right" style="font-weight: bold; padding: 6px 24px;color:#000000;">$${ctx.order.freight}</td>
+			</tr>
+		#end
+		#if($ctx.exemptDeliveryFee && $ctx.deliveryConsignments.size() > 0)
+			<tr>
+				<td colspan="4"></td>
+				<td width="30%" align="left" style="padding: 0px 24px;">${ctx.messages.deliveryFee}</td>
+				<td width="20%" align="right" style="font-weight: bold; padding: 6px 24px;color:#000000;">$0.00</td>
+			</tr>
+			#end
+		#end
+	#end
+	#if($ctx.order.shippingFreight && $ctx.order.shippingFreight != "" && $ctx.order.shippingFreight != "0.00" && $ctx.order.shippingFreight != "0.0" && ((!$ctx.order.isNationalShipping) || ($ctx.order.isNationalShipping) && ($ctx.isShippingFeeBranch)))
+	<tr>
+		<td colspan="4"></td>
+		<td width="30%" align="left" style="padding: 0px 24px;">${ctx.messages.mixedShipping}</td>
+		<td width="20%" align="right" style="font-weight: bold; padding: 6px 24px;color:#000000;">$${ctx.order.shippingFreight}</td>
+	</tr>
+	#elseif((($ctx.shippingConsignments.size() > 0 && $ctx.pickupConsignments.size() > 0) || ($ctx.shippingConsignments.size() > 0 && $ctx.deliveryConsignments.size() > 0) || ($ctx.shippingConsignments.size() > 0)) && (!$ctx.order.shippingFreight || $ctx.order.shippingFreight == "" || $ctx.order.shippingFreight == "0.00" || $ctx.order.shippingFreight == "0.0") && $ctx.isShippingFeeBranch)
+	<tr>
+		<td colspan="4"></td>
+		<td width="30%" align="left" style="padding: 0px 24px;">${ctx.messages.mixedShipping}</td>
+		<td width="20%" align="right" style="font-weight: bold; padding: 6px 24px;color:#000000;">${ctx.messages.free}</td>
+	</tr>
+	#else
+		#if($ctx.order.freight && $ctx.order.freight != "" && $ctx.order.freight != "0.00" && $ctx.shippingConsignments.size() > 0 && (!$ctx.order.isNationalShipping) && !($ctx.shippingConsignments.size() > 0 && $ctx.deliveryConsignments.size() > 0))
+			<tr>
+				<td colspan="4"></td>
+				<td width="30%" align="left" style="padding: 0px 24px;">${ctx.messages.mixedShipping}</td>
+				<td width="20%" align="right" style="font-weight: bold; padding: 6px 24px;color:#000000;">$${ctx.order.freight}</td>
+			</tr>
+		#end
+	#end
+	<tr>
+		<td colspan="4"></td>
+		<td width="30%" align="left" style="padding: 0px 24px;">${ctx.messages.mixedSalesTax}</td>
+		<td width="20%" align="right" style="font-weight: bold; padding: 6px 24px;color:#000000;">${ctx.order.totalTax.formattedValue}</td>
+	</tr>
+	<tr>
+		<td colspan="4"></td>
+		<td width="30%" align="left" style="padding: 0px 24px;">${ctx.messages.mixedOrderTotal}</td>
+		<td width="20%" align="right" style="font-weight: bold; padding: 6px 24px;color:#000000;">${ctx.order.totalPriceWithTax.formattedValue}</td>
+	</tr>
+    <!-- ./Amount -->
+    #if(((!$ctx.showDeliveryFee && !$ctx.exemptDeliveryFee) || ($ctx.baseSite.Uid == "siteone-ca")) && ($ctx.deliveryConsignments.size() > 0))
+    <tr>
+	    <td colspan="6" style="padding:40px 24px 0px 24px;font-size: 12px;text-align: center;"> 
+	    	<p style="background: #f1f6e9;padding: 20px 0px 10px 0px;margin: 0px;font-size: 12px;font-weight: bold;color:#000;">${ctx.messages.deliveryFeeTitle}</p>
+			<p style="background: #f1f6e9;margin: 0px;padding: 0px 20px 20px 20px;text-align: center;line-height: 15px;">	${ctx.messages.deliveryFeeMSg}</p>
+	    </td>
+    </tr>
+    #end
+    #if(${ctx.order.isNationalShipping} && !${ctx.isShippingFeeBranch})
+    <tr>
+        <td colspan="6" align="left" style="color: #999999;padding: 0px 24px;">
+                <div style="background: #f1f6e9;padding: 35px 65px;margin-top: 20px;border-radius: 3px;text-align: center;display: flex;">
+                    <img style="margin-right: 22px;" src="https://www.siteone.com/_ui/responsive/theme-lambda/images/shipping-icon.svg" alt="Icon" title="Icon" width="58" height="40">
+                    <span style="display: inline-block; width: 340px; vertical-align: top; font-size: 14px; text-align: left;">${ctx.messages.shippingFeeMsg}</span>
+                </div>
+           </td>   
+    </tr>
+    #end
+    <!-- Footer -->
+	#if($pickupBranch != '')
+		#set ($showBranch = $pickupBranch.name)
+		#set ($showPhone = $pickupBranch.address.phone)
+		#set ($showTown = $pickupBranch.address.town)
+		#set ($showStoreId = $pickupBranch.storeId)
+	#elseif($deliveryBranch != '')
+		#set ($showBranch = $deliveryBranch.name)
+		#set ($showPhone = $deliveryBranch.address.phone)
+		#set ($showTown = $deliveryBranch.address.town)
+		#set ($showStoreId = $deliveryBranch.storeId)
+	#else
+		#set ($showBranch = $shippingBranch.name)
+		#set ($showPhone = $shippingBranch.address.phone)
+		#set ($showTown = $shippingBranch.address.town)
+		#set ($showStoreId = $shippingBranch.storeId)
+	#end
+	<tr>
+		<td colspan="6" valign="top" align="left" style="padding: 40px 24px;font-size:12px;">
+			#if(!($ctx.shippingConsignments.size() > 0 && $ctx.pickupConsignments.size() > 0) && ($ctx.order.deliveryFreight && $ctx.order.deliveryFreight != "" && $ctx.order.deliveryFreight > 0) || ($ctx.order.freight && $ctx.order.freight != "" && $ctx.deliveryConsignments.size() > 0 ))
+				<p style="font-weight: bold; padding: 10px;background-color: #f1f2f2;">${ctx.messages.deliveryAdditionalMsg}</p>
+			#end
+			
+			<p style="font-weight: bold; padding: 10px;background-color: #f1f2f2;">${ctx.messages.mixedPaymentInformation}</p>
+			
+			#if(${ctx.paymentType} == "1")
+				<p style="font-weight: bold; padding: 10px;margin: 0px;color:#000000;">${ctx.messages.payonaccount}</p>
+				<p style="padding: 0 10px 10px 10px;margin: 0px;color:#000000;">${ctx.order.orderingAccount.displayId}</p>
+			#elseif(${ctx.paymentType} == "2")
+				<p style="font-weight: bold; padding: 10px;margin: 0px;color:#000000;">${ctx.messages.payatbranch}</p>
+				<p style="padding: 10px;margin: 0px;color:#000000;"><b>${ctx.messages.branch}: </b> ${showTown}  ${showStoreId}</p>
+				<p style="padding: 10px;margin: 0px;color:#000000;"><b>${ctx.messages.amount}: </b> ${ctx.order.totalPriceWithTax.formattedValue}</p>
+			#elseif(${ctx.paymentType} == "3")
+				<p style="font-weight: bold; padding: 10px;margin: 0px;color:#000000;">${ctx.messages.creditcard}</p>
+				<p style="padding: 10px;margin: 0px;color:#000000;"><b>${ctx.messages.cardNumber}: </b>${ctx.cardNumber}</p>
+				<p style="padding: 10px;margin: 0px;color:#000000;"><b>${ctx.messages.amount}: </b> ${ctx.order.totalPriceWithTax.formattedValue}</p>
+			#else
+				<p style="font-weight: bold; padding: 10px;margin: 0px;color:#000000;">${ctx.messages.payatbranch}</p>
+				<p style="padding: 10px;margin: 0px;color:#000000;"><b>${ctx.messages.branch}: </b> ${showTown}  ${showStoreId}</p>
+				<p style="padding: 10px;margin: 0px;color:#000000;"><b>${ctx.messages.amount}: </b>${ctx.order.totalPriceWithTax.formattedValue}</p>
+			#end
+			
+			#if(!($ctx.shippingConsignments.size() > 0 && $ctx.pickupConsignments.size() > 0) && !($ctx.shippingConsignments.size() > 0 && $ctx.deliveryConsignments.size() > 0))
+			<p style="font-weight: bold; padding: 10px;background-color: #f1f2f2;">${ctx.messages.mixedBillingInformation}</p>
+			#end
+			#if(${ctx.paymentType} == "3")
+				<p style="padding: 10px;margin: 0px;">${ctx.messages.billingCreditCardMsg}</p>
+			#else
+				<p style="padding: 10px;margin: 0px;">${ctx.messages.billingMsg}</p>
+			#end
+			<p style="padding: 10px;margin: 0px;">${ctx.messages.orderGoverned} <a href="${ctx.baseUrl}/salesterms" style="color:#50a0c5">${ctx.messages.siteoneTermsSales}</a>.</p>
+			#if(($ctx.shippingConsignments.size() > 0 && $ctx.pickupConsignments.size() > 0) || ($ctx.shippingConsignments.size() > 0 && $ctx.deliveryConsignments.size() > 0))
+			<p style="padding: 4px 10px; margin: 0px;">${ctx.messages.mixedQuestion}, ${showBranch} at ${showPhone}. ${ctx.messages.mixedShippingQuestion}
+			<a href="tel:${ctx.messages.telephoneHub}">${ctx.messages.telephoneHub}</a>.
+			#elseif(${ctx.pickupConsignments} || ${ctx.deliveryConsignments}  || !${ctx.isShippingFeeBranch})
+			<p style="padding: 4px 10px; margin: 0px;">${ctx.messages.mixedQuestion}, 
+			
+			<a href="${ctx.baseThemeUrl}/store/${showStoreId}">${showBranch}</a> at <a href="tel:${showPhone}">${showPhone}</a>.
+			</p>
+			#elseif(${ctx.shippingConsignments} && ${ctx.isShippingFeeBranch})
+				<p style="padding: 4px 10px; margin: 0px;">${ctx.messages.mixedQuestion}, 
+				${showBranch} at <a href="tel:${ctx.messages.telephoneHub}">${ctx.messages.telephoneHub}</a>.
+			</p>
+			#end
+			#set ($contactUs = "${ctx.baseUrl}/faq") 
+			#set ( $contactUsMsg = ${ctx.messages.getMessage('contactUsMsg', "#genHtmlLinkStartTag($contactUs)",
+			"#genHtmlLinkEndTag()")} )
+			<p style="padding: 10px;margin: 0px;">${ctx.messages.mixedQuestionSiteOne} <a href="${ctx.baseUrl}" style="color:#50a0c5">${ctx.messages.siteOneCom}</a>? <a href="${ctx.baseUrl}/contactus" style="color:#50a0c5">${ctx.messages.contactyou}</a>.</p>
+            <p style="padding: 4px 10px 0px 10px;margin: 0px;">${ctx.messages.complimentaryClose}</p>
+            <p style="padding: 4px 10px 0px 10px;margin: 0px;font-weight: bold;font-style:italic;color: black;">${ctx.messages.signaturename}</p>
+		</td>
+	</tr>
+    <!-- ./Footer -->
+#end
+</table>

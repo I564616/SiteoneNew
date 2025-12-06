@@ -1,0 +1,22 @@
+INSERT_UPDATE PointOfService;storeid[unique=true];deliveryorshippingthreshold(key(code),value(code))[map-delimiter=|]
+;30;deliveryThresholdForHomeownerOrGuest -> 500|deliveryThresholdForContractor -> 500
+;31;deliveryThresholdForHomeownerOrGuest -> 500|deliveryThresholdForContractor -> 500
+;231;deliveryThresholdForHomeownerOrGuest -> 500|deliveryThresholdForContractor -> 500
+;268;deliveryThresholdForHomeownerOrGuest -> 500|deliveryThresholdForContractor -> 500
+;296;deliveryThresholdForHomeownerOrGuest -> 500|deliveryThresholdForContractor -> 500
+;373;deliveryThresholdForHomeownerOrGuest -> 500|deliveryThresholdForContractor -> 500
+;378;deliveryThresholdForHomeownerOrGuest -> 500|deliveryThresholdForContractor -> 500
+;390;deliveryThresholdForHomeownerOrGuest -> 100|deliveryThresholdForContractor -> 100
+;395;deliveryThresholdForHomeownerOrGuest -> 500|deliveryThresholdForContractor -> 500
+;398;deliveryThresholdForHomeownerOrGuest -> 500|deliveryThresholdForContractor -> 500
+;399;deliveryThresholdForHomeownerOrGuest -> 500|deliveryThresholdForContractor -> 500
+;482;deliveryThresholdForHomeownerOrGuest -> 500|deliveryThresholdForContractor -> 500
+;585;deliveryThresholdForHomeownerOrGuest -> 500|deliveryThresholdForContractor -> 500
+;1801;deliveryThresholdForHomeownerOrGuest -> 100|deliveryThresholdForContractor -> 100
+;1802;deliveryThresholdForHomeownerOrGuest -> 100|deliveryThresholdForContractor -> 100
+;1803;deliveryThresholdForHomeownerOrGuest -> 100|deliveryThresholdForContractor -> 100
+;1804;deliveryThresholdForHomeownerOrGuest -> 100|deliveryThresholdForContractor -> 100
+;1806;deliveryThresholdForHomeownerOrGuest -> 100|deliveryThresholdForContractor -> 100
+;1807;deliveryThresholdForHomeownerOrGuest -> 100|deliveryThresholdForContractor -> 100
+;1808;deliveryThresholdForHomeownerOrGuest -> 100|deliveryThresholdForContractor -> 100
+;1809;deliveryThresholdForHomeownerOrGuest -> 100|deliveryThresholdForContractor -> 100

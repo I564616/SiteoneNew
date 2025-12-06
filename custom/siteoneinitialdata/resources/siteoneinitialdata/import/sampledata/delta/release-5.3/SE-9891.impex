@@ -1,0 +1,27 @@
+$b2bCustomer=B2BCustomer(uid);
+INSERT_UPDATE PunchOutCredential;code[unique=true]; domain[unique=true]; identity[unique=true]; sharedsecret
+;BG3;BuddGroup;bgcust33;BuddGroup1234
+INSERT_UPDATE PunchOutCredential;code[unique=true]; domain[unique=true]; identity[unique=true]; sharedsecret[translator=com.siteone.punchout.batch.translator.SiteOneEncryptSharedSecretTranslator]
+;BG3;BuddGroup;bgcust33;BuddGroup1234
+INSERT_UPDATE B2BCustomerPunchOutCredentialMapping; $b2bCustomer[unique=true]; credentials(code)
+;wbettis@buddgroup.com;BG3
+
+## CMS User Group Restrictions
+INSERT_UPDATE Usergroup;uid[unique=true];groups(uid);locname[lang=en];
+;buddgrouppunchoutcustomergroup;b2bcustomergroup;
+;buddgrouppunchoutadmingroup;b2badmingroup;
+
+INSERT_UPDATE B2BCostCenter;code[unique=true]; Unit(uid); currency(isocode)[default='USD']
+;Budd Group PunchOut;39526_US;
+
+$contentCatalog=siteoneContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$productCatalog=siteoneProductCatalog
+$productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+
+UPDATE VerticalBarComponent;$contentCV[unique=true];uid[unique=true];name;globalProductNodes(uid,$contentCV);&componentRef;;;
+;;PunchoutVerticalBarComponent;All Products;AgronomicMaintenanceNavNode,Hardscapes&OutdoorLivingNavNode,IrrigationNavNode,LandscapeSupplyNavNode,LightingNavNode,NurseryNavNode,ToolsEquipment&SafetyNavNode;PunchoutVerticalBarComponent;;;
+
+INSERT_UPDATE CMSUserGroupRestriction;$contentCV[unique=true];uid[unique=true];name;userGroups(uid);includeSubgroups;components(uid,$contentCV)
+;;BuddGroupPunchoutCustomerGroupRestriction;BuddGroup Customer Group Restriction;buddgrouppunchoutcustomergroup;false;PunchoutVerticalBarComponent
+;;BuddGroupPunchoutAdminGroupRestriction;BuddGroup Admin Group Restriction;buddgrouppunchoutadmingroup;false;PunchoutVerticalBarComponent

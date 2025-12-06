@@ -1,0 +1,33 @@
+#--------------------------SIMPLE/BASE Product IntegrationObject-----------------------#
+
+INSERT_UPDATE IntegrationObject; code[unique = true]; integrationType(code)
+; SiteOneProduct; INBOUND
+ 
+INSERT_UPDATE IntegrationObjectItem; integrationObject(code)[unique = true]; code[unique = true]; type(code); root[default = false]
+; SiteOneProduct ; Product              ; Product ; true
+;SiteOneProduct;SiteOneProductSpecificationSheet ; SiteOneProductSpecificationSheet
+;SiteOneProduct;SiteOneProductLabelSheet ; SiteOneProductLabelSheet
+;SiteOneProduct;SiteOneProductSafetyDataSheet ; SiteOneProductSafetyDataSheet
+;SiteOneProduct;SiteOneDataSheet ; SiteOneDataSheet;
+
+INSERT_UPDATE IntegrationObjectItemAttribute; integrationObjectItem(integrationObject(code), code)[unique = true]; attributeName[unique = true]; attributeDescriptor(enclosingType(code), qualifier); returnIntegrationObjectItem(integrationObject(code), code); unique[default = false]
+; SiteOneProduct:SiteOneProductSpecificationSheet	; id     ; SiteOneProductSpecificationSheet:id	    ;; true	; 
+; SiteOneProduct:SiteOneProductSpecificationSheet	; mimetype  ; SiteOneProductSpecificationSheet:mimetype	;; true	; 
+; SiteOneProduct:SiteOneProductSpecificationSheet	; fullpath     ; SiteOneProductSpecificationSheet:fullpath	    ;; true	; 
+; SiteOneProduct:SiteOneProductSpecificationSheet	; priority  ; SiteOneProductSpecificationSheet:priority	;; true	; 
+
+; SiteOneProduct:SiteOneProductLabelSheet	; id     ; SiteOneProductLabelSheet:id	    ;; true	; 
+; SiteOneProduct:SiteOneProductLabelSheet	; mimetype  ; SiteOneProductLabelSheet:mimetype	;; true	; 
+; SiteOneProduct:SiteOneProductLabelSheet	; fullpath     ; SiteOneProductLabelSheet:fullpath	    ;; true	; 
+; SiteOneProduct:SiteOneProductLabelSheet	; priority  ; SiteOneProductLabelSheet:priority	;; true	;
+
+; SiteOneProduct:SiteOneProductSafetyDataSheet	; id     ; SiteOneProductSafetyDataSheet:id	    ;; true	; 
+; SiteOneProduct:SiteOneProductSafetyDataSheet	; mimetype  ; SiteOneProductSafetyDataSheet:mimetype	;; true	; 
+; SiteOneProduct:SiteOneProductSafetyDataSheet	; fullpath     ; SiteOneProductSafetyDataSheet:fullpath	    ;; true	; 
+; SiteOneProduct:SiteOneProductSafetyDataSheet	; priority  ; SiteOneProductSafetyDataSheet:priority	;; true	;
+
+; SiteOneProduct:SiteOneDataSheet	; specificationSheet  ; SiteOneDataSheet:specificationSheet	; SiteOneProduct:SiteOneProductSpecificationSheet ;; 
+; SiteOneProduct:SiteOneDataSheet	; labelAsset  ; SiteOneDataSheet:labelAsset	; SiteOneProduct:SiteOneProductLabelSheet ;; 
+; SiteOneProduct:SiteOneDataSheet	; safetyDataSheet  ; SiteOneDataSheet:safetyDataSheet	; SiteOneProduct:SiteOneProductSafetyDataSheet ;; 
+; SiteOneProduct:SiteOneDataSheet	; id  ; SiteOneDataSheet:id	;  ;true; 
+; SiteOneProduct:Product	        ; sheets          ; Product:sheets 	; SiteOneProduct:SiteOneDataSheet ; 

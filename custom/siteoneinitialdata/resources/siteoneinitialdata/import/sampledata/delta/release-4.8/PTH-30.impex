@@ -1,0 +1,2 @@
+INSERT_UPDATE Trigger;Job(code)[unique=true];cronExpression
+;siteone_SyncProducts_StageToOnline;0 0,15,30,45 * ? * * 

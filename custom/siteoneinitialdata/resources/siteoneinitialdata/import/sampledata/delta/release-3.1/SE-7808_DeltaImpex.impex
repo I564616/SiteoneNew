@@ -1,0 +1,136 @@
+$contentCatalog=siteoneContentCatalog
+$contentCatalogName=SiteOne Content Catalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$productCatalog=siteoneProductCatalog
+$productCatalogName=SiteOne Product Catalog
+$productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$picture=media(code, $contentCV);
+$image=image(code, $contentCV);
+$media=media(code, $contentCV);
+$page=page(uid, $contentCV);
+$contentPage=contentPage(uid, $contentCV);
+$product=product(code, $productCV)
+$category=category(code, $productCV)
+$siteResource=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/contentCatalogs/$contentCatalog
+$productResource=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/productCatalogs/$productCatalog
+$jarResourceCms=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/cockpits/cmscockpit
+$addonExtensionName=siteoneacceleratoraddon
+$medias=medias(code, $contentCV);
+$articleMedia=articleMedia(code, $contentCV);
+$mediaContainer=media(qualifier, $contentCV);
+$siteUid=siteone
+$lang=en
+
+
+
+INSERT_UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);label;defaultPage[default='true'];approvalStatus(code)[default='approved'];homepage[default='false']
+;;galleryImageContent;Gallery Page;SiteOneContentPageTemplate;/galleryImage;
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='galleryImageContent'];contentSlot(uid,$contentCV)[unique=true];;;
+;;Section3-galleryImageContent;Section3;;Section3Slot-galleryImageContent;;;
+;;Section5-galleryImageContent;Section5;;Section5Slot-galleryImageContent;;;
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef);;;
+;;Section3Slot-galleryImageContent;Section3 Slot for galleryPage Page;true;galleryPageImageComponent01;;;
+;;Section5Slot-galleryImageContent;Section5 Slot for galleryPage Page;true;GalleryPromoComponent21,GalleryPromoComponent22;;;
+
+INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];mime;label;galleryImages(code,$contentCV);realfilename;@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator][forceWrite=true];folder(qualifier)[default='images']
+;;askexperts2;image/jpeg;Patios;;;$siteResource/images/banners/site/gallery/Callout-Ask-Experts.jpg
+;;projectshowcase2;image/jpeg;Patios;;;$siteResource/images/banners/site/gallery/Callout-Partners-Program.jpg
+
+INSERT_UPDATE SiteOneGalleryParagraphComponent;$contentCV[unique=true];uid[unique=true];name;headline[lang=en];&componentRef;promotionalText;buttonLabel;buttonURL;image(code,$contentCV)
+;;GalleryPromoComponent21;Gallery Banner detail1;Ask the Experts;GalleryPromoComponent21;<p>Have a question about product availability,delivery or pricing? We can help.</p>;Contact us ->;/contactus/hardscapes;askexperts2
+;;GalleryPromoComponent22;Gallery Banner detail2;Join the Partners Program;GalleryPromoComponent22;<p>Have a hardscapes installation you're really proud of? Show the world by submitting photos of your work to our Project Showcase.Follow the link below for details</p>;Learn more->;/partnersprogram;projectshowcase2
+
+INSERT_UPDATE SiteonePageTitleBannerComponent;$contentCV[unique=true];uid[unique=true];name;headline;&componentRef
+;;galleryPageTitleBannerComponent01;Gallery  Page Title Component;Let's Build Something Great;galleryPageTitleBannerComponent01
+
+INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];mime;label;galleryImages(code,$contentCV);realfilename;@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator][forceWrite=true];folder(qualifier)[default='images']
+;;patios1;image/jpeg;Patios;;;$siteResource/images/banners/site/gallery/patios1.jpg
+;;patios2;image/jpeg;Patios;;;$siteResource/images/banners/site/gallery/patios2.jpg
+;;patios3;image/jpeg;Patios;;;$siteResource/images/banners/site/gallery/patios3.jpg
+;;patios4;image/jpeg;Patios;;;$siteResource/images/banners/site/gallery/patios4.jpg
+;;patios5;image/jpeg;Patios;;;$siteResource/images/banners/site/gallery/patios5.jpg
+;;patios6;image/jpeg;Patios;;;$siteResource/images/banners/site/gallery/patios6.jpg
+;;patios7;image/jpeg;Patios;;;$siteResource/images/banners/site/gallery/patios7.jpg
+;;patios8;image/jpeg;Patios;;;$siteResource/images/banners/site/gallery/patios8.jpg
+;;patios9;image/jpeg;Patios;;;$siteResource/images/banners/site/gallery/patios9.jpg
+;;patios10;image/jpeg;Patios;;;$siteResource/images/banners/site/gallery/patios10.jpg
+;;kitchen1;image/jpeg;Outdoor Kitchens;;;$siteResource/images/banners/site/gallery/kitchen1.jpg
+;;kitchen2;image/jpeg;Outdoor Kitchens;;;$siteResource/images/banners/site/gallery/kitchen2.jpg
+;;kitchen3;image/jpeg;Outdoor Kitchens;;;$siteResource/images/banners/site/gallery/kitchen3.jpg
+;;kitchen4;image/jpeg;Outdoor Kitchens;;;$siteResource/images/banners/site/gallery/kitchen4.jpg
+;;kitchen5;image/jpeg;Outdoor Kitchens;;;$siteResource/images/banners/site/gallery/kitchen5.jpg
+;;kitchen6;image/jpeg;Outdoor Kitchens;;;$siteResource/images/banners/site/gallery/kitchen6.jpg
+;;kitchen7;image/jpeg;Outdoor Kitchens;;;$siteResource/images/banners/site/gallery/kitchen7.jpg
+;;kitchen8;image/jpeg;Outdoor Kitchens;;;$siteResource/images/banners/site/gallery/kitchen8.jpg
+;;kitchen9;image/jpeg;Outdoor Kitchens;;;$siteResource/images/banners/site/gallery/kitchen9.jpg
+;;kitchen10;image/jpeg;Outdoor Kitchens;;;$siteResource/images/banners/site/gallery/kitchen10.jpg
+;;kitchen11;image/jpeg;Outdoor Kitchens;;;$siteResource/images/banners/site/gallery/kitchen11.jpg
+;;fire1;image/jpeg;Outdoor Fires;;;$siteResource/images/banners/site/gallery/fire1.jpg
+;;fire2;image/jpeg;Outdoor Fires;;;$siteResource/images/banners/site/gallery/fire2.jpg
+;;fire3;image/jpeg;Outdoor Fires;;;$siteResource/images/banners/site/gallery/fire3.jpg
+;;fire4;image/jpeg;Outdoor Fires;;;$siteResource/images/banners/site/gallery/fire4.jpg
+;;fire5;image/jpeg;Outdoor Fires;;;$siteResource/images/banners/site/gallery/fire5.jpg
+;;fire6;image/jpeg;Outdoor Fires;;;$siteResource/images/banners/site/gallery/fire6.jpg
+;;fire7;image/jpeg;Outdoor Fires;;;$siteResource/images/banners/site/gallery/fire7.jpg
+;;fire8;image/jpeg;Outdoor Fires;;;$siteResource/images/banners/site/gallery/fire8.jpg
+;;fire9;image/jpeg;Outdoor Fires;;;$siteResource/images/banners/site/gallery/fire9.jpg
+;;fire10;image/jpeg;Outdoor Fires;;;$siteResource/images/banners/site/gallery/fire10.jpg
+;;fire11;image/jpeg;Outdoor Fires;;;$siteResource/images/banners/site/gallery/fire11.jpg
+;;fire12;image/jpeg;Outdoor Fires;;;$siteResource/images/banners/site/gallery/fire12.jpg
+;;fire13;image/jpeg;Outdoor Fires;;;$siteResource/images/banners/site/gallery/fire13.jpg
+;;landscape1;image/jpeg;Landscaping;;;$siteResource/images/banners/site/gallery/landscape1.jpg
+;;landscape2;image/jpeg;Landscaping;;;$siteResource/images/banners/site/gallery/landscape2.jpg
+;;landscape3;image/jpeg;Landscaping;;;$siteResource/images/banners/site/gallery/landscape3.jpg
+;;landscape4;image/jpeg;Landscaping;;;$siteResource/images/banners/site/gallery/landscape4.jpg
+;;landscape5;image/jpeg;Landscaping;;;$siteResource/images/banners/site/gallery/landscape5.jpg
+;;pooldeck1;image/jpeg;Pool Decks;;;$siteResource/images/banners/site/gallery/pooldeck1.jpg
+;;pooldeck2;image/jpeg;Pool Decks;;;$siteResource/images/banners/site/gallery/pooldeck2.jpg
+;;pooldeck3;image/jpeg;Pool Decks;;;$siteResource/images/banners/site/gallery/pooldeck3.jpg
+;;pooldeck4;image/jpeg;Pool Decks;;;$siteResource/images/banners/site/gallery/pooldeck4.jpg
+;;pooldeck5;image/jpeg;Pool Decks;;;$siteResource/images/banners/site/gallery/pooldeck5.jpg
+;;pooldeck6;image/jpeg;Pool Decks;;;$siteResource/images/banners/site/gallery/pooldeck6.jpg
+;;pooldeck7;image/jpeg;Pool Decks;;;$siteResource/images/banners/site/gallery/pooldeck7.jpg
+;;pooldeck8;image/jpeg;Pool Decks;;;$siteResource/images/banners/site/gallery/pooldeck8.jpg
+;;pooldeck9;image/jpeg;Pool Decks;;;$siteResource/images/banners/site/gallery/pooldeck9.jpg
+;;pooldeck10;image/jpeg;Pool Decks;;;$siteResource/images/banners/site/gallery/pooldeck10.jpg
+;;pooldeck11;image/jpeg;Pool Decks;;;$siteResource/images/banners/site/gallery/pooldeck11.jpg
+;;driveway1;image/jpeg;Driveways;;;$siteResource/images/banners/site/gallery/driveway1.jpg
+;;driveway2;image/jpeg;Driveways;;;$siteResource/images/banners/site/gallery/driveway2.jpg
+;;driveway3;image/jpeg;Driveways;;;$siteResource/images/banners/site/gallery/driveway3.jpg
+;;driveway4;image/jpeg;Driveways;;;$siteResource/images/banners/site/gallery/driveway4.jpg
+;;driveway5;image/jpeg;Driveways;;;$siteResource/images/banners/site/gallery/driveway5.jpg
+;;driveway6;image/jpeg;Driveways;;;$siteResource/images/banners/site/gallery/driveway6.jpg
+;;driveway7;image/jpeg;Driveways;;;$siteResource/images/banners/site/gallery/driveway7.jpg
+;;driveway8;image/jpeg;Driveways;;;$siteResource/images/banners/site/gallery/driveway8.jpg
+;;driveway9;image/jpeg;Driveways;;;$siteResource/images/banners/site/gallery/driveway9.jpg
+;;driveway10;image/jpeg;Driveways;;;$siteResource/images/banners/site/gallery/driveway10.jpg
+;;driveway11;image/jpeg;Driveways;;;$siteResource/images/banners/site/gallery/driveway11.jpg
+;;driveway12;image/jpeg;Driveways;;;$siteResource/images/banners/site/gallery/driveway12.jpg
+;;driveway13;image/jpeg;Driveways;;;$siteResource/images/banners/site/gallery/driveway13.jpg
+;;retaining1;image/jpeg;retaining;;;$siteResource/images/banners/site/gallery/retaining1.jpg
+;;retaining2;image/jpeg;Retaining walls;;;$siteResource/images/banners/site/gallery/retaining2.jpg
+;;retaining3;image/jpeg;Retaining walls;;;$siteResource/images/banners/site/gallery/retaining3.jpg
+;;retaining4;image/jpeg;Retaining walls;;;$siteResource/images/banners/site/gallery/retaining4.jpg
+;;retaining5;image/jpeg;Retaining walls;;;$siteResource/images/banners/site/gallery/retaining5.jpg
+;;retaining6;image/jpeg;Retaining walls;;;$siteResource/images/banners/site/gallery/retaining6.jpg
+;;retaining7;image/jpeg;Retaining walls;;;$siteResource/images/banners/site/gallery/retaining7.jpg
+;;retaining8;image/jpeg;Retaining walls;;;$siteResource/images/banners/site/gallery/retaining8.jpg
+;;retaining9;image/jpeg;Retaining walls;;;$siteResource/images/banners/site/gallery/retaining9.jpg
+;;gallerypatios21;image/jpeg;Patios;patios1,patios2,patios3,patios4,patios5,patios6,patios7,patios8,patios9,patios10;gallery01;$siteResource/images/banners/site/gallery/Gallery_Patios_960x720.jpg;;
+;;galleryOutdoorLiving22;image/jpeg;Outdoor Kitchens;kitchen1,kitchen2,kitchen3,kitchen4,kitchen5,kitchen6,kitchen7,kitchen8,kitchen9,kitchen10,kitchen11;gallery02;$siteResource/images/banners/site/gallery/Gallery_OutdoorLivingGrills_960x720.jpg
+;;galleryOutdoorFires23;image/jpeg;Outdoor Fires;fire1,fire2,fire3,fire4,fire5,fire6,fire7,fire8,fire9,fire10,fire11,fire12,fire13;gallery03;$siteResource/images/banners/site/gallery/Gallery_Outdoor-Fires_960x720.jpg
+;;galleryPoolDecks24;image/jpeg;Pool Decks;pooldeck1,pooldeck2,pooldeck3,pooldeck4,pooldeck5,pooldeck6,pooldeck7,pooldeck8,pooldeck9;gallery04;$siteResource/images/banners/site/gallery/Gallery_Pool-Decks_960x720.jpg
+;;galleryDriveways25;image/jpeg;Driveways;driveway1,driveway2,driveway3,driveway4,driveway5,driveway6,driveway7,driveway8,driveway9,driveway10,driveway11,driveway12,driveway13;gallery05;$siteResource/images/banners/site/gallery/Gallery_driveways_960x720.jpg
+;;galleryRetainingWalls26;image/jpeg;Retaining walls;retaining1,retaining2,retaining3,retaining4,retaining5,retaining6,retaining7,retaining8,retaining9;gallery06;$siteResource/images/banners/site/gallery/Gallery_Retaining-Walls_960x720.jpg
+;;galleryLandscaping27;image/jpeg;Landscaping;landscape1,landscape2,landscape3,landscape4,landscape5;gallery07;$siteResource/images/banners/site/gallery/Gallery_Landscaping-960x720.jpg
+;;hardscapesbanner;image/jpeg;Landscaping;;;$siteResource/images/banners/site/gallery/Hardscapes_MainImage_710x400.jpg
+;;naturalstone;image/jpeg;Landscaping;;;$siteResource/images/banners/site/gallery/Product-Natural-Stone.jpg
+;;outdoorliving;image/jpeg;Landscaping;;;$siteResource/images/banners/site/gallery/Product-Outdoor_Living.jpg
+;;pavers;image/jpeg;Landscaping;;;$siteResource/images/banners/site/gallery/Product-Pavers.jpg
+;;toolsequipment;image/jpeg;Landscaping;;;$siteResource/images/banners/site/gallery/Product-Tools.jpg
+
+
+INSERT_UPDATE SiteOneGalleryImageComponent;$contentCV[unique=true];uid[unique=true];name;headline;imageList(code,$contentCV);&componentRef
+;;galleryPageImageComponent01;Gallery Page Title Component;PHOTO GALLERY;gallerypatios21,galleryOutdoorLiving22,galleryOutdoorFires23,galleryPoolDecks24,galleryDriveways25,galleryRetainingWalls26,galleryLandscaping27;galleryPageImageComponent01
+

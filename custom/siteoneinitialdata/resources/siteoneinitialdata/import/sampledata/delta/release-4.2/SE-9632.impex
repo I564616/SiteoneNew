@@ -1,0 +1,14 @@
+INSERT_UPDATE SiteOneFeatureSwitch;key[unique=true];value
+;ShippingandDeliveryFeeBranches;5,406,437,754,769,770,739,131,7
+
+INSERT_UPDATE SiteOneFeatureSwitch;key[unique=true];value
+;ShippingandDeliveryFeeStates;NA
+
+INSERT_UPDATE SiteOneFeatureSwitch;key[unique=true];value
+;DeliveryCostThreshold;0.00
+
+INSERT_UPDATE SiteOneFeatureSwitch;key[unique=true];value
+;FreeShippingThreshold;149.00
+
+INSERT_UPDATE SiteOneFeatureSwitch;key[unique=true];value
+;GuestCheckoutFlag;true

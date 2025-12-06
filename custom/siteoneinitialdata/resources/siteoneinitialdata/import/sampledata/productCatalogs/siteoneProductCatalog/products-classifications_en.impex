@@ -1,0 +1,31 @@
+# -----------------------------------------------------------------------
+# [y] hybris Platform
+#
+# Copyright (c) 2017 SAP SE or an SAP affiliate company.  All rights reserved.
+#
+# This software is the confidential and proprietary information of SAP
+# ("Confidential Information"). You shall not disclose such Confidential
+# Information and shall use it only in accordance with the terms of the
+# license agreement you entered into with SAP.
+# -----------------------------------------------------------------------
+# ImpEx for Importing Product Classifications into SiteOne store
+
+# Common (across all languages) data starts here
+
+#% impex.setLocale(Locale.ENGLISH);
+
+# Macros / Replacement Parameter definitions
+$productCatalog=siteoneProductCatalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$clAttrModifiers=system='SiteOneClassification',version='1.0',translator=de.hybris.platform.catalog.jalo.classification.impex.ClassificationAttributeTranslator,lang=EN
+
+# Insert Product Classifications
+
+# Classification: Technical details (4591)
+$feature1=@Source data-sheet, 6617[$clAttrModifiers];  # Source data-sheet
+INSERT_UPDATE Product;code[unique=true];$feature1;$catalogVersion;
+
+
+# Classification: Technical details (4545)
+$feature1=@Source data-sheet, 6617[$clAttrModifiers];  # Source data-sheet
+INSERT_UPDATE Product;code[unique=true];$feature1;$catalogVersion;

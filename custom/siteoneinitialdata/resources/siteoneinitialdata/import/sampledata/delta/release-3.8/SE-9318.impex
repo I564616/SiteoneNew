@@ -1,0 +1,14 @@
+$lang=en
+
+INSERT_UPDATE RuleActionDefinition;id[unique=true];name[lang=$lang];priority;breadcrumb[lang=$lang];translatorId;translatorParameters;categories(id)
+;y_order_entry_maxminthreshold_percentage_discount;Percentage discount on products with MinMax Threshold Limit;1500;Apply {value,number,percent*1} discount on the qualifying products with Min ${min} & Max ${max} Threshold;ruleExecutableActionTranslator;actionId->ruleOrderEntryMaxMinThresholdPercentageDiscountAction;product_discounts
+
+INSERT_UPDATE RuleActionDefinitionParameter;definition(id)[unique=true];id[unique=true];priority;name[lang=$lang];description[lang=$lang];type;value;required[default=true];validators
+;y_order_entry_maxminthreshold_percentage_discount;value;1000;Percentage discount value;Percentage discount that will be applied on the qualifying products;java.math.BigDecimal;;;rulePercentageParameterValidator
+;y_order_entry_maxminthreshold_percentage_discount;max;1000;Max limit threshold for eligible products;Percentage discount that will be applied on the qualifying products;java.lang.Integer;
+;y_order_entry_maxminthreshold_percentage_discount;min;1000;Min limit threshold for eligible products;Percentage discount that will be applied on the qualifying products;java.lang.Integer
+
+
+INSERT_UPDATE RuleActionDefinitionRuleTypeMapping;definition(id)[unique=true];ruleType(code)[default=PromotionSourceRule][unique=true]
+;y_order_entry_maxminthreshold_percentage_discount;
+

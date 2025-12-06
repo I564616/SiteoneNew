@@ -1,0 +1,441 @@
+$solrIndexedType=siteoneCAProductType
+UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true];name[unique=true];topValuesProvider;customFacetSortProvider;priority
+;$solrIndexedType ;lndscpAccuracy;defaultTopValuesProvider	;facetNameSortProviderAscending                                     ;1438
+;$solrIndexedType ;Maintenance_ActiveIngredients;defaultTopValuesProvider	;facetNameSortProviderAscending                     ;1437
+;$solrIndexedType ;hrdscpAdhesionStrength;defaultTopValuesProvider	;facetNameSortProviderAscending                             ;1436
+;$solrIndexedType ;irgAdjustableRotationAngle;defaultTopValuesProvider	;facetNameSortProviderAscending                         ;1435
+;$solrIndexedType ;lndscpAdjustmentType;defaultTopValuesProvider	;facetNameSortProviderAscending                             ;1434
+;$solrIndexedType ;Maintenance_Agitation;defaultTopValuesProvider	;facetNameSortProviderAscending                             ;1433
+;$solrIndexedType ;Maintenance_Airflow;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1432
+;$solrIndexedType ;lndscpAirflow;defaultTopValuesProvider	;facetNameSortProviderAscending	                                    ;1431
+;$solrIndexedType ;lghtAmperageRating;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1430
+;$solrIndexedType ;Maintenance_AmperageRating;defaultTopValuesProvider	;facetNameSortProviderAscending                         ;1429
+;$solrIndexedType ;irgAmperageRating;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1428
+;$solrIndexedType ;irgAngle;defaultTopValuesProvider	;facetNameSortProviderAscending                                         ;1427
+;$solrIndexedType ;lndscpAngle;defaultTopValuesProvider	;facetNameSortProviderAscending                                         ;1426
+;$solrIndexedType ;nrsryAnimalResistance;defaultTopValuesProvider	;facetNameSortProviderAscending                             ;1425
+;$solrIndexedType ;Maintenance_AnimalResistance;defaultTopValuesProvider	;facetNameSortProviderAscending                     ;1424
+;$solrIndexedType ;lndscpANSICertified;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1423
+;$solrIndexedType ;irgApplication;defaultTopValuesProvider	;facetNameSortProviderAscending                                     ;1422
+;$solrIndexedType ;Maintenance_ApplicationMethod;defaultTopValuesProvider	;facetNameSortProviderAscending                     ;1421
+;$solrIndexedType ;Maintenance_ApplicationTimeSeasonUse;defaultTopValuesProvider	;facetNameSortProviderAscending                     ;1420
+;$solrIndexedType ;irgASTMRating;defaultTopValuesProvider	;facetNameSortProviderAscending                                     ;1419
+;$solrIndexedType ;lghtAverageLife;defaultTopValuesProvider	;facetNameSortProviderAscending                                     ;1418
+;$solrIndexedType ;lndscpAverageLife;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1417
+;$solrIndexedType ;lndscpBackgroundColor;defaultTopValuesProvider	;facetNameSortProviderAscending                             ;1416
+;$solrIndexedType ;irgBackgroundColor;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1415
+;$solrIndexedType ;lndscpBallDiameter;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1414
+;$solrIndexedType ;lghtBallastType;defaultTopValuesProvider	;facetNameSortProviderAscending                                     ;1413
+;$solrIndexedType ;irgBandWidth;defaultTopValuesProvider	;facetNameSortProviderAscending                                     ;1412
+;$solrIndexedType ;Maintenance_BarLength;defaultTopValuesProvider	;facetNameSortProviderAscending                             ;1411
+;$solrIndexedType ;Maintenance_BatteryCapacity;defaultTopValuesProvider	;facetNameSortProviderAscending                         ;1410
+;$solrIndexedType ;lndscpBatteryCapacity;defaultTopValuesProvider	;facetNameSortProviderAscending                             ;1409
+;$solrIndexedType ;lndscpBatteryType;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1408
+;$solrIndexedType ;Maintenance_BatteryType;defaultTopValuesProvider	;facetNameSortProviderAscending                             ;1407
+;$solrIndexedType ;lghtBeamAngle;defaultTopValuesProvider	;facetNameSortProviderAscending                                     ;1406
+;$solrIndexedType ;lndscpBendRadius;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1405
+;$solrIndexedType ;lndscpBladeColor;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1404
+;$solrIndexedType ;Maintenance_BladeConfiguration;defaultTopValuesProvider	;facetNameSortProviderAscending                     ;1403
+;$solrIndexedType ;Maintenance_BladeDiameter;defaultTopValuesProvider	;facetNameSortProviderAscending                         ;1402
+;$solrIndexedType ;Maintenance_BladeEnhancements;defaultTopValuesProvider	;facetNameSortProviderAscending                     ;1401
+;$solrIndexedType ;Maintenance_BladeLength;defaultTopValuesProvider	;facetNameSortProviderAscending                             ;1400
+;$solrIndexedType ;lndscpBladeLength;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1399
+;$solrIndexedType ;lndscpBladeMaterial;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1398
+;$solrIndexedType ;Maintenance_BladeMaterial;defaultTopValuesProvider	;facetNameSortProviderAscending                         ;1397
+;$solrIndexedType ;Maintenance_BladeThickness;defaultTopValuesProvider	;facetNameSortProviderAscending	                        ;1396
+;$solrIndexedType ;lndscpBladeThickness;defaultTopValuesProvider	;facetNameSortProviderAscending                             ;1395
+;$solrIndexedType ;lndscpBladeType;defaultTopValuesProvider	;facetNameSortProviderAscending                                     ;1394
+;$solrIndexedType ;lndscpBladeWidth;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1393
+;$solrIndexedType ;Maintenance_BladeWidth;defaultTopValuesProvider	;facetNameSortProviderAscending                             ;1392
+;$solrIndexedType ;Maintenance_BloomTime;defaultTopValuesProvider	;facetNameSortProviderAscending                             ;1391
+;$solrIndexedType ;nrsryBloomTime;defaultTopValuesProvider	;facetNameSortProviderAscending                                     ;1390
+;$solrIndexedType ;irgBody;defaultTopValuesProvider	;facetNameSortProviderAscending                                             ;1389
+;$solrIndexedType ;irgBodyHeight;defaultTopValuesProvider	;facetNameSortProviderAscending                                     ;1388
+;$solrIndexedType ;irgBodyMaterial;defaultTopValuesProvider	;facetNameSortProviderAscending                                     ;1387
+;$solrIndexedType ;lndscpBuckleType;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1386
+;$solrIndexedType ;lghtBulbShape;defaultTopValuesProvider	;facetNameSortProviderAscending                                     ;1385
+;$solrIndexedType ;Maintenance_BulbSize;defaultTopValuesProvider	;facetNameSortProviderAscending                             ;1384
+;$solrIndexedType ;lghtBulbSpacing;defaultTopValuesProvider	;facetNameSortProviderAscending                                     ;1383
+;$solrIndexedType ;hrdscpBurnerBTUs;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1382
+;$solrIndexedType ;irgBurstPressure;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1381
+;$solrIndexedType ;hrdscpCabinetColor;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1380
+;$solrIndexedType ;nrsryCaliperSellable;defaultTopValuesProvider	;facetNameSortProviderAscending                             ;1379
+;$solrIndexedType ;lndscpCapacity;defaultTopValuesProvider	;facetNameSortProviderAscending                                     ;1378
+;$solrIndexedType ;hrdscpCapacity;defaultTopValuesProvider	;facetNameSortProviderAscending                                     ;1377
+;$solrIndexedType ;irgCapacity;defaultTopValuesProvider	;facetNameSortProviderAscending                                         ;1376
+;$solrIndexedType ;Maintenance_Capacity;defaultTopValuesProvider	;facetNameSortProviderAscending                             ;1375
+;$solrIndexedType ;lndscpCartridgeCapacity;defaultTopValuesProvider	;facetNameSortProviderAscending                             ;1374
+;$solrIndexedType ;lndscpCartridgesIncluded;defaultTopValuesProvider	;facetNameSortProviderAscending                         ;1373
+;$solrIndexedType ;lghtCaseHeight;defaultTopValuesProvider	;facetNameSortProviderAscending                                     ;1372
+;$solrIndexedType ;lghtCaseLength;defaultTopValuesProvider	;facetNameSortProviderAscending                                     ;1371
+;$solrIndexedType ;irgCaseMaterial;defaultTopValuesProvider	;facetNameSortProviderAscending                                     ;1370
+;$solrIndexedType ;lghtCaseWidth;defaultTopValuesProvider	;facetNameSortProviderAscending                                     ;1369
+;$solrIndexedType ;lghtCertification;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1368
+;$solrIndexedType ;lndscpCertifiedForPlaygrounds;defaultTopValuesProvider	;facetNameSortProviderAscending                     ;1367
+;$solrIndexedType ;Maintenance_CFM;defaultTopValuesProvider	;facetNameSortProviderAscending                                     ;1366
+;$solrIndexedType ;Maintenance_ChargingCapacity;defaultTopValuesProvider	;facetNameSortProviderAscending                     ;1365
+;$solrIndexedType ;Maintenance_ChargingSystem;defaultTopValuesProvider	;facetNameSortProviderAscending                         ;1364
+;$solrIndexedType ;irgCheckValve;defaultTopValuesProvider	;facetNameSortProviderAscending                                     ;1363
+;$solrIndexedType ;nrsryChillTimeRequirements;defaultTopValuesProvider	;facetNameSortProviderAscending                         ;1362
+;$solrIndexedType ;Maintenance_Class;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1361
+;$solrIndexedType ;lndscpClosureType;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1360
+;$solrIndexedType ;irgCoilLength;defaultTopValuesProvider	;facetNameSortProviderAscending                                     ;1359
+;$solrIndexedType ;lndscpColor;defaultTopValuesProvider	;facetNameSortProviderAscending                                         ;1358
+;$solrIndexedType ;irgColor;defaultTopValuesProvider	;facetNameSortProviderAscending                                         ;1357
+;$solrIndexedType ;Maintenance_Color;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1356
+;$solrIndexedType ;lghtColor;defaultTopValuesProvider	;facetNameSortProviderAscending                                         ;1355
+;$solrIndexedType ;hrdscpColor;defaultTopValuesProvider	;facetNameSortProviderAscending                                         ;1354
+;$solrIndexedType ;lghtColorRenderingIndexCRI;defaultTopValuesProvider	;facetNameSortProviderAscending                         ;1353
+;$solrIndexedType ;lghtColorTemperature;defaultTopValuesProvider	;facetNameSortProviderAscending                             ;1352
+;$solrIndexedType ;Maintenance_CommonName;defaultTopValuesProvider	;facetNameSortProviderAscending                             ;1351
+;$solrIndexedType ;Maintenance_CompactionDepth;defaultTopValuesProvider	;facetNameSortProviderAscending                         ;1350
+;$solrIndexedType ;Maintenance_CompatibleGrassType;defaultTopValuesProvider	;facetNameSortProviderAscending                     ;1349
+;$solrIndexedType ;Maintenance_Compositions;defaultTopValuesProvider	;facetNameSortProviderAscending                         ;1348
+;$solrIndexedType ;Maintenance_ConditionerColor;defaultTopValuesProvider	;facetNameSortProviderAscending                     ;1347
+;$solrIndexedType ;irgConductorSize;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1346
+;$solrIndexedType ;irgConfiguration;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1345
+;$solrIndexedType ;irgConnection2Size;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1344
+;$solrIndexedType ;irgConnection2Type;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1343
+;$solrIndexedType ;irgConnection3Size;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1342
+;$solrIndexedType ;irgConnection3Type;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1341
+;$solrIndexedType ;irgConnection4Size;defaultTopValuesProvider	;facetNameSortProviderAscending	                                ;1340
+;$solrIndexedType ;irgConnectionSize;defaultTopValuesProvider	;facetNameSortProviderAscending	                                ;1339
+;$solrIndexedType ;Maintenance_ConnectionSize;defaultTopValuesProvider	;facetNameSortProviderAscending                         ;1338
+;$solrIndexedType ;lndscpConnectionSize;defaultTopValuesProvider	;facetNameSortProviderAscending                             ;1337
+;$solrIndexedType ;Maintenance_ConnectionStyle;defaultTopValuesProvider	;facetNameSortProviderAscending	                        ;1336
+;$solrIndexedType ;lghtConnectionType;defaultTopValuesProvider	;facetNameSortProviderAscending	                                ;1335
+;$solrIndexedType ;Maintenance_ConnectionType;defaultTopValuesProvider	;facetNameSortProviderAscending                         ;1334
+;$solrIndexedType ;irgConnectionType;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1333
+;$solrIndexedType ;lndscpConnectionType;defaultTopValuesProvider	;facetNameSortProviderAscending                             ;1332
+;$solrIndexedType ;irgConnectorType;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1331
+;$solrIndexedType ;lndscpContainerSize;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1330
+;$solrIndexedType ;hrdscpContainerSize;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1329
+;$solrIndexedType ;irgContainerSize;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1328
+;$solrIndexedType ;Maintenance_ContainerSize;defaultTopValuesProvider	;facetNameSortProviderAscending                         ;1327
+;$solrIndexedType ;Maintenance_ContainerType;defaultTopValuesProvider	;facetNameSortProviderAscending                         ;1326
+;$solrIndexedType ;irgContainerType;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1325
+;$solrIndexedType ;hrdscpContainerType;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1324
+;$solrIndexedType ;lndscpContainerType;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1323
+;$solrIndexedType ;hrdscpCookingGrateMaterial;defaultTopValuesProvider	;facetNameSortProviderAscending                         ;1322
+;$solrIndexedType ;hrdscpCookingSurfaceSize;defaultTopValuesProvider	;facetNameSortProviderAscending                         ;1321
+;$solrIndexedType ;lndscpCoolingCapacity;defaultTopValuesProvider	;facetNameSortProviderAscending                             ;1320
+;$solrIndexedType ;irgCordLength;defaultTopValuesProvider	;facetNameSortProviderAscending                                     ;1319
+;$solrIndexedType ;lndscpCordBandColor;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1318
+;$solrIndexedType ;lndscpCordBandMaterial;defaultTopValuesProvider	;facetNameSortProviderAscending                             ;1317
+;$solrIndexedType ;lndscpCordedBanded;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1316
+;$solrIndexedType ;Maintenance_CoreDepth;defaultTopValuesProvider	;facetNameSortProviderAscending                             ;1315
+;$solrIndexedType ;hrdscpCoverageArea;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1314
+;$solrIndexedType ;Maintenance_CoverageArea;defaultTopValuesProvider	;facetNameSortProviderAscending                         ;1313
+;$solrIndexedType ;lndscpCoverageArea;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1312
+;$solrIndexedType ;lndscpCuff;defaultTopValuesProvider	;facetNameSortProviderAscending                                         ;1311
+;$solrIndexedType ;irgCureTime;defaultTopValuesProvider	;facetNameSortProviderAscending                                         ;1310
+;$solrIndexedType ;hrdscpCureTime;defaultTopValuesProvider	;facetNameSortProviderAscending                                     ;1309
+;$solrIndexedType ;Maintenance_CuttingCapacity;defaultTopValuesProvider	;facetNameSortProviderAscending                         ;1308
+;$solrIndexedType ;lndscpCuttingCapacity;defaultTopValuesProvider	;facetNameSortProviderAscending                             ;1307
+;$solrIndexedType ;Maintenance_CuttingDepth;defaultTopValuesProvider	;facetNameSortProviderAscending                         ;1306
+;$solrIndexedType ;irgCuttingDiameter;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1305
+;$solrIndexedType ;Maintenance_DaystoGerminate;defaultTopValuesProvider	;facetNameSortProviderAscending                         ;1304
+;$solrIndexedType ;Maintenance_DeliveryMethod;defaultTopValuesProvider	;facetNameSortProviderAscending                         ;1303
+;$solrIndexedType ;Maintenance_Depth;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1302
+;$solrIndexedType ;irgDepth;defaultTopValuesProvider	;facetNameSortProviderAscending                                         ;1301
+;$solrIndexedType ;lndscpDepth;defaultTopValuesProvider	;facetNameSortProviderAscending                                         ;1300
+;$solrIndexedType ;lghtDiameter;defaultTopValuesProvider	;facetNameSortProviderAscending                                     ;1299
+;$solrIndexedType ;Maintenance_DiggingDepth  ;defaultTopValuesProvider	;facetNameSortProviderAscending                         ;1298
+;$solrIndexedType ;Maintenance_DiggingWidth  ;defaultTopValuesProvider	;facetNameSortProviderAscending                         ;1297
+;$solrIndexedType ;hrdscpDimensions  ;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1296
+;$solrIndexedType ;Maintenance_Dimensions  ;defaultTopValuesProvider	;facetNameSortProviderAscending                         ;1295
+;$solrIndexedType ;lghtDimensions  ;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1294
+;$solrIndexedType ;irgDimensions  ;defaultTopValuesProvider	;facetNameSortProviderAscending                                     ;1293
+;$solrIndexedType ;lndscpDimensions  ;defaultTopValuesProvider	;facetNameSortProviderAscending	                                ;1292
+;$solrIndexedType ;lghtDimmable  ;defaultTopValuesProvider	;facetNameSortProviderAscending                                     ;1291
+;$solrIndexedType ;Maintenance_DischargeFlow  ;defaultTopValuesProvider	;facetNameSortProviderAscending                         ;1290
+;$solrIndexedType ;lghtDisposableReusable  ;defaultTopValuesProvider	;facetNameSortProviderAscending                         ;1289
+;$solrIndexedType ;lndscpDisposableReusable  ;defaultTopValuesProvider	;facetNameSortProviderAscending                         ;1288
+;$solrIndexedType ;lndscpDripTime  ;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1287
+;$solrIndexedType ;irgDripperSpacing  ;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1286
+;$solrIndexedType ;irgDripTubeType  ;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1285
+;$solrIndexedType ;Maintenance_DroughtTolerant  ;defaultTopValuesProvider	;facetNameSortProviderAscending                     ;1284
+;$solrIndexedType ;nrsryEdible  ;defaultTopValuesProvider	;facetNameSortProviderAscending                                     ;1283
+;$solrIndexedType ;lghtEfficiency  ;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1282
+;$solrIndexedType ;lndscpElongation  ;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1281
+;$solrIndexedType ;irgEmitterSpacing  ;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1280
+;$solrIndexedType ;irgEnclosure  ;defaultTopValuesProvider	;facetNameSortProviderAscending                                     ;1279
+;$solrIndexedType ;Maintenance_EngineType  ;defaultTopValuesProvider	;facetNameSortProviderAscending                         ;1278
+;$solrIndexedType ;lghtEquivalentWattage  ;defaultTopValuesProvider	;facetNameSortProviderAscending                             ;1277
+;$solrIndexedType ;hrdscpEvaporationRate  ;defaultTopValuesProvider	;facetNameSortProviderAscending                             ;1276
+;$solrIndexedType ;irgExpandability  ;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1275
+;$solrIndexedType ;nrsryExposure  ;defaultTopValuesProvider	;facetNameSortProviderAscending                                     ;1274
+;$solrIndexedType ;lndscpFabricWeight  ;defaultTopValuesProvider	;facetNameSortProviderAscending                             ;1273
+;$solrIndexedType ;Maintenance_FabricWeight  ;defaultTopValuesProvider	;facetNameSortProviderAscending                         ;1272
+;$solrIndexedType ;lndscpFaceDiameter  ;defaultTopValuesProvider	;facetNameSortProviderAscending                             ;1271
+;$solrIndexedType ;lndscpFaceMaterial  ;defaultTopValuesProvider	;facetNameSortProviderAscending                             ;1270
+;$solrIndexedType ;lndscpFaceType  ;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1269
+;$solrIndexedType ;lndscpFaceWeight  ;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1268
+;$solrIndexedType ;lndscpFacepieceMaterial  ;defaultTopValuesProvider	;facetNameSortProviderAscending                         ;1267
+;$solrIndexedType ;lndscpFenceMeshSize  ;defaultTopValuesProvider	;facetNameSortProviderAscending                             ;1266
+;$solrIndexedType ;hrdscpFinish  ;defaultTopValuesProvider	;facetNameSortProviderAscending                                     ;1265
+;$solrIndexedType ;Maintenance_Finish  ;defaultTopValuesProvider	;facetNameSortProviderAscending                             ;1264
+;$solrIndexedType ;lghtFinish  ;defaultTopValuesProvider	;facetNameSortProviderAscending                                     ;1263
+;$solrIndexedType ;lndscpFinish  ;defaultTopValuesProvider	;facetNameSortProviderAscending                                     ;1262
+;$solrIndexedType ;lndscpFitsWaistSize  ;defaultTopValuesProvider	;facetNameSortProviderAscending                             ;1261
+;$solrIndexedType ;irgFittingType  ;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1260
+;$solrIndexedType ;hrdscpFlashPoint  ;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1259
+;$solrIndexedType ;irgFlowRate  ;defaultTopValuesProvider	;facetNameSortProviderAscending                                     ;1258
+;$solrIndexedType ;Maintenance_FlowRate  ;defaultTopValuesProvider	;facetNameSortProviderAscending                             ;1257
+;$solrIndexedType ;lndscpFlowRate  ;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1256
+;$solrIndexedType ;nrsryFlowerColor  ;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1255
+;$solrIndexedType ;Maintenance_Force  ;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1254
+;$solrIndexedType ;nrsryForm  ;defaultTopValuesProvider	;facetNameSortProviderAscending                                         ;1253
+;$solrIndexedType ;Maintenance_FormulationAdditives  ;defaultTopValuesProvider	;facetNameSortProviderAscending                 ;1252
+;$solrIndexedType ;lndscpFrameColor  ;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1251
+;$solrIndexedType ;lndscpFrameDesign  ;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1250
+;$solrIndexedType ;lndscpFrameMaterial  ;defaultTopValuesProvider	;facetNameSortProviderAscending                             ;1249
+;$solrIndexedType ;Maintenance_FrameMaterial  ;defaultTopValuesProvider	;facetNameSortProviderAscending                         ;1248
+;$solrIndexedType ;lndscpFrameType  ;defaultTopValuesProvider	;facetNameSortProviderAscending	                                ;1247
+;$solrIndexedType ;lghtFrequencyRating  ;defaultTopValuesProvider	;facetNameSortProviderAscending                             ;1246
+;$solrIndexedType ;nrsryFruit  ;defaultTopValuesProvider	;facetNameSortProviderAscending                                     ;1245
+;$solrIndexedType ;Maintenance_FuelTankCapacity  ;defaultTopValuesProvider	;facetNameSortProviderAscending                     ;1244
+;$solrIndexedType ;Maintenance_FuelType  ;defaultTopValuesProvider	;facetNameSortProviderAscending                             ;1243
+;$solrIndexedType ;hrdscpFuelType  ;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1242
+;$solrIndexedType ;hrdscpFullCure  ;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1241
+;$solrIndexedType ;lghtGauge  ;defaultTopValuesProvider	;facetNameSortProviderAscending                                         ;1240
+;$solrIndexedType ;lndscpGauge  ;defaultTopValuesProvider	;facetNameSortProviderAscending                                     ;1239
+;$solrIndexedType ;lndscpGender  ;defaultTopValuesProvider	;facetNameSortProviderAscending                                     ;1238
+;$solrIndexedType ;lndscpGloveLength  ;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1237
+;$solrIndexedType ;lndscpGloveTextureLocation  ;defaultTopValuesProvider	;facetNameSortProviderAscending                     ;1236
+;$solrIndexedType ;lndscpGloveThickness  ;defaultTopValuesProvider	;facetNameSortProviderAscending                             ;1235
+;$solrIndexedType ;lndscpGrade  ;defaultTopValuesProvider	;facetNameSortProviderAscending                                     ;1234
+;$solrIndexedType ;hrdscpGrade  ;defaultTopValuesProvider	;facetNameSortProviderAscending                                     ;1233
+;$solrIndexedType ;lndscpGraduations  ;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1232
+;$solrIndexedType ;lndscpGrateShape  ;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1231
+;$solrIndexedType ;lndscpGrip  ;defaultTopValuesProvider	;facetNameSortProviderAscending                                     ;1230
+;$solrIndexedType ;nrsryGrowthHeightMax  ;defaultTopValuesProvider	;facetNameSortProviderAscending                             ;1229
+;$solrIndexedType ;nrsryGrowthWidthMax  ;defaultTopValuesProvider	;facetNameSortProviderAscending                             ;1228
+;$solrIndexedType ;lndscpGuaranteedAnalysis  ;defaultTopValuesProvider	;facetNameSortProviderAscending                         ;1227
+;$solrIndexedType ;lndscpHandleColor  ;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1226
+;$solrIndexedType ;lndscpHandleLength  ;defaultTopValuesProvider	;facetNameSortProviderAscending                             ;1225
+;$solrIndexedType ;lndscpHandleMaterial  ;defaultTopValuesProvider	;facetNameSortProviderAscending                             ;1224
+;$solrIndexedType ;lndscpHandleType  ;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1223
+;$solrIndexedType ;Maintenance_HandleType  ;defaultTopValuesProvider	;facetNameSortProviderAscending                         ;1222
+;$solrIndexedType ;nrsryHardinessZoneMax  ;defaultTopValuesProvider	;facetNameSortProviderAscending		                        ;1221
+;$solrIndexedType ;nrsryHardinessZoneMin  ;defaultTopValuesProvider	;facetNameSortProviderAscending                             ;1220
+;$solrIndexedType ;lndscpHeadMaterial  ;defaultTopValuesProvider	;facetNameSortProviderAscending                             ;1219
+;$solrIndexedType ;lndscpHeadSize  ;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1218
+;$solrIndexedType ;lndscpHeadType  ;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1217
+;$solrIndexedType ;lndscpHeadstrapType  ;defaultTopValuesProvider	;facetNameSortProviderAscending                             ;1216
+;$solrIndexedType ;hrdscpHeight  ;defaultTopValuesProvider	;facetNameSortProviderAscending                                     ;1215
+;$solrIndexedType ;lghtHeight  ;defaultTopValuesProvider	;facetNameSortProviderAscending                                     ;1214
+;$solrIndexedType ;irgHeight  ;defaultTopValuesProvider	;facetNameSortProviderAscending                                         ;1213
+;$solrIndexedType ;Maintenance_Height  ;defaultTopValuesProvider	;facetNameSortProviderAscending                             ;1212
+;$solrIndexedType ;lndscpHeight  ;defaultTopValuesProvider	;facetNameSortProviderAscending                                     ;1211
+;$solrIndexedType ;nrsryHeightSellable  ;defaultTopValuesProvider	;facetNameSortProviderAscending                             ;1210
+;$solrIndexedType ;lndscpHookMaterial  ;defaultTopValuesProvider	;facetNameSortProviderAscending                             ;1209
+;$solrIndexedType ;Maintenance_Horsepower  ;defaultTopValuesProvider	;facetNameSortProviderAscending                         ;1208
+;$solrIndexedType ;Maintenance_HoseLength  ;defaultTopValuesProvider	;facetNameSortProviderAscending                         ;1207
+;$solrIndexedType ;Maintenance_HoseSize  ;defaultTopValuesProvider	;facetNameSortProviderAscending                             ;1206
+;$solrIndexedType ;lghtHousingMaterial  ;defaultTopValuesProvider	;facetNameSortProviderAscending                             ;1205
+;$solrIndexedType ;irgHousingMaterial  ;defaultTopValuesProvider	;facetNameSortProviderAscending                             ;1204
+;$solrIndexedType ;irgHPRating  ;defaultTopValuesProvider	;facetNameSortProviderAscending                                     ;1203
+;$solrIndexedType ;hrdscpIgnitionType  ;defaultTopValuesProvider	;facetNameSortProviderAscending                             ;1202
+;$solrIndexedType ;hrdscpIncludes  ;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1201
+;$solrIndexedType ;Maintenance_Includes  ;defaultTopValuesProvider	;facetNameSortProviderAscending                             ;1200
+;$solrIndexedType ;lghtIncludes  ;defaultTopValuesProvider	;facetNameSortProviderAscending                                     ;1199
+;$solrIndexedType ;irgIncludes  ;defaultTopValuesProvider	;facetNameSortProviderAscending                                     ;1198
+;$solrIndexedType ;lndscpIncludes  ;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1197
+;$solrIndexedType ;irgIndoorOutdoor  ;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1196
+;$solrIndexedType ;irgInletConnection  ;defaultTopValuesProvider	;facetNameSortProviderAscending                             ;1195
+;$solrIndexedType ;lndscpInletSize  ;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1194
+;$solrIndexedType ;lghtInputVoltage  ;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1193
+;$solrIndexedType ;lndscpInseam  ;defaultTopValuesProvider	;facetNameSortProviderAscending                                     ;1192
+;$solrIndexedType ;lndscpInsideDiameter  ;defaultTopValuesProvider	;facetNameSortProviderAscending                             ;1191
+;$solrIndexedType ;irgInsideDiameter  ;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1190
+;$solrIndexedType ;lndscpInsulated  ;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1189
+;$solrIndexedType ;lghtInsulation  ;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1188
+;$solrIndexedType ;lghtIntegratedDropin  ;defaultTopValuesProvider	;facetNameSortProviderAscending                             ;1187
+;$solrIndexedType ;lndscpItem  ;defaultTopValuesProvider	;facetNameSortProviderAscending                                     ;1186
+;$solrIndexedType ;irgItem  ;defaultTopValuesProvider	;facetNameSortProviderAscending                                         ;1185
+;$solrIndexedType ;lghtItem  ;defaultTopValuesProvider	;facetNameSortProviderAscending	                                        ;1184
+;$solrIndexedType ;hrdscpItem  ;defaultTopValuesProvider	;facetNameSortProviderAscending                                     ;1183
+;$solrIndexedType ;Maintenance_Item  ;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1182
+;$solrIndexedType ;lghtJacketColor  ;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1181
+;$solrIndexedType ;irgJacketColor  ;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1180
+;$solrIndexedType ;lghtJacketMaterial  ;defaultTopValuesProvider	;facetNameSortProviderAscending                             ;1179
+;$solrIndexedType ;irgJacketMaterial  ;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1178
+;$solrIndexedType ;lndscpLampBase  ;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1177
+;$solrIndexedType ;lghtLampBase  ;defaultTopValuesProvider	;facetNameSortProviderAscending                                     ;1176
+;$solrIndexedType ;lghtLampType  ;defaultTopValuesProvider	;facetNameSortProviderAscending                                     ;1175
+;$solrIndexedType ;lndscpLampType  ;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1174
+;$solrIndexedType ;nrsryLandscapeUse  ;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1173
+;$solrIndexedType ;hrdscpLayersperPallet  ;defaultTopValuesProvider	;facetNameSortProviderAscending                             ;1172
+;$solrIndexedType ;irgLeadFree  ;defaultTopValuesProvider	;facetNameSortProviderAscending                                     ;1171
+;$solrIndexedType ;irgLegend  ;defaultTopValuesProvider	;facetNameSortProviderAscending                                         ;1170
+;$solrIndexedType ;lndscpLegend  ;defaultTopValuesProvider	;facetNameSortProviderAscending                                     ;1169
+;$solrIndexedType ;lndscpLegendColor  ;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1168
+;$solrIndexedType ;irgLegendBackgroundColor  ;defaultTopValuesProvider	;facetNameSortProviderAscending                         ;1167
+;$solrIndexedType ;irgLength  ;defaultTopValuesProvider	;facetNameSortProviderAscending                                         ;1166
+;$solrIndexedType ;lndscpLength  ;defaultTopValuesProvider	;facetNameSortProviderAscending                                     ;1165
+;$solrIndexedType ;hrdscpLength  ;defaultTopValuesProvider	;facetNameSortProviderAscending                                     ;1164
+;$solrIndexedType ;lghtLength  ;defaultTopValuesProvider	;facetNameSortProviderAscending                                     ;1163
+;$solrIndexedType ;lndscpLensCoating  ;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1162
+;$solrIndexedType ;lndscpLensColor  ;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1161
+;$solrIndexedType ;lndscpLensMaterial  ;defaultTopValuesProvider	;facetNameSortProviderAscending                             ;1160
+;$solrIndexedType ;lghtLightColor  ;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1159
+;$solrIndexedType ;lghtLightOutput  ;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1158
+;$solrIndexedType ;Maintenance_LightRequirements  ;defaultTopValuesProvider	;facetNameSortProviderAscending                     ;1157
+;$solrIndexedType ;lghtLightingTechnology  ;defaultTopValuesProvider	;facetNameSortProviderAscending                         ;1156
+;$solrIndexedType ;lndscpLightingTechnology  ;defaultTopValuesProvider	;facetNameSortProviderAscending                         ;1155
+;$solrIndexedType ;lndscpLinerMaterial  ;defaultTopValuesProvider	;facetNameSortProviderAscending                             ;1154
+;$solrIndexedType ;lndscpLoadCapacity  ;defaultTopValuesProvider	;facetNameSortProviderAscending                             ;1153
+;$solrIndexedType ;Maintenance_Longevity  ;defaultTopValuesProvider	;facetNameSortProviderAscending                             ;1152
+;$solrIndexedType ;Maintenance_Lumens  ;defaultTopValuesProvider	;facetNameSortProviderAscending                             ;1151
+;$solrIndexedType ;lndscpLumens  ;defaultTopValuesProvider	;facetNameSortProviderAscending                                     ;1150
+;$solrIndexedType ;nrsryMaintenance  ;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1149
+;$solrIndexedType ;lghtMaterial  ;defaultTopValuesProvider	;facetNameSortProviderAscending                                     ;1148
+;$solrIndexedType ;Maintenance_Material  ;defaultTopValuesProvider	;facetNameSortProviderAscending	                            ;1147
+;$solrIndexedType ;hrdscpMaterial  ;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1146
+;$solrIndexedType ;irgMaterial  ;defaultTopValuesProvider	;facetNameSortProviderAscending	                                    ;1145
+;$solrIndexedType ;lndscpMaterial  ;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1144
+;$solrIndexedType ;irgMaxStationRunTime  ;defaultTopValuesProvider	;facetNameSortProviderAscending		                        ;1143
+;$solrIndexedType ;lndscpMaximumFlowRate  ;defaultTopValuesProvider	;facetNameSortProviderAscending                             ;1142
+;$solrIndexedType ;lndscpMaximumLoadCapacity  ;defaultTopValuesProvider	;facetNameSortProviderAscending                         ;1141
+;$solrIndexedType ;irgMaximumOperatingPressure  ;defaultTopValuesProvider	;facetNameSortProviderAscending                     ;1140
+;$solrIndexedType ;lndscpMaximumPipeSize  ;defaultTopValuesProvider	;facetNameSortProviderAscending                             ;1139
+;$solrIndexedType ;irgMaximumWorkingTemperature  ;defaultTopValuesProvider	;facetNameSortProviderAscending                     ;1138
+;$solrIndexedType ;irgMeshSize  ;defaultTopValuesProvider	;facetNameSortProviderAscending                                     ;1137
+;$solrIndexedType ;lndscpMinimumFlagpoleHeight  ;defaultTopValuesProvider	;facetNameSortProviderAscending                     ;1136
+;$solrIndexedType ;irgMinimumOperatingPressure  ;defaultTopValuesProvider	;facetNameSortProviderAscending                     ;1135
+;$solrIndexedType ;lndscpMinimumPipeSize  ;defaultTopValuesProvider	;facetNameSortProviderAscending                             ;1134
+;$solrIndexedType ;irgMinimumWorkingTemperature  ;defaultTopValuesProvider	;facetNameSortProviderAscending                     ;1133
+;$solrIndexedType ;Maintenance_Model  ;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1132
+;$solrIndexedType ;lghtMounting  ;defaultTopValuesProvider	;facetNameSortProviderAscending                                     ;1131
+;$solrIndexedType ;lndscpNoiseReductionRatingNRR  ;defaultTopValuesProvider	;facetNameSortProviderAscending                     ;1130
+;$solrIndexedType ;lndscpNominalSize  ;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1129
+;$solrIndexedType ;Maintenance_NozzleType  ;defaultTopValuesProvider	;facetNameSortProviderAscending                         ;1128
+;$solrIndexedType ;irgNozzleType  ;defaultTopValuesProvider	;facetNameSortProviderAscending                                     ;1127
+;$solrIndexedType ;Maintenance_NPKRatio  ;defaultTopValuesProvider	;facetNameSortProviderAscending                             ;1126
+;$solrIndexedType ;irgNSF  ;defaultTopValuesProvider	;facetNameSortProviderAscending                                         ;1125
+;$solrIndexedType ;irgNumberofConductors  ;defaultTopValuesProvider	;facetNameSortProviderAscending                             ;1124
+;$solrIndexedType ;lghtNumberofConductors  ;defaultTopValuesProvider	;facetNameSortProviderAscending                         ;1123
+;$solrIndexedType ;lndscpNumberofLamps  ;defaultTopValuesProvider	;facetNameSortProviderAscending                             ;1122
+;$solrIndexedType ;lndscpNumberofOpenings  ;defaultTopValuesProvider	;facetNameSortProviderAscending                         ;1121
+;$solrIndexedType ;lndscpNumberofPieces	         ;defaultTopValuesProvider	;facetNameSortProviderAscending                     ;1120
+;$solrIndexedType ;hrdscpNumberofPieces		         ;defaultTopValuesProvider	;facetNameSortProviderAscending                 ;1119
+;$solrIndexedType ;lndscpNumberofPockets	         ;defaultTopValuesProvider	;facetNameSortProviderAscending                 ;1118
+;$solrIndexedType ;lghtNumberofZones		             ;defaultTopValuesProvider	;facetNameSortProviderAscending             ;1117
+;$solrIndexedType ;lndscpOMRICertified		                 ;defaultTopValuesProvider	;facetNameSortProviderAscending         ;1116
+;$solrIndexedType ;Maintenance_OperatingRadius		                ;defaultTopValuesProvider;facetNameSortProviderAscending    ;1115  
+;$solrIndexedType ;irgOperatingRadius		                ;defaultTopValuesProvider	;facetNameSortProviderAscending         ;1114
+;$solrIndexedType ;irgOperatingType   ;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1113
+;$solrIndexedType ;irgOutletPressure   ;defaultTopValuesProvider	;facetNameSortProviderAscending                             ;1112
+;$solrIndexedType ;lghtOutputVoltage   ;defaultTopValuesProvider	;facetNameSortProviderAscending                             ;1111
+;$solrIndexedType ;lndscpOutsideDiameter   ;defaultTopValuesProvider	;facetNameSortProviderAscending                         ;1110
+;$solrIndexedType ;irgOutsideDiameter   ;defaultTopValuesProvider	;facetNameSortProviderAscending                             ;1109
+;$solrIndexedType ;nrsryPackage   ;defaultTopValuesProvider	;facetNameSortProviderAscending                                     ;1108
+;$solrIndexedType ;Maintenance_PaintColor   ;defaultTopValuesProvider	;facetNameSortProviderAscending                         ;1107
+;$solrIndexedType ;Maintenance_ParticleSize   ;defaultTopValuesProvider	;facetNameSortProviderAscending                         ;1106
+;$solrIndexedType ;irgPattern   ;defaultTopValuesProvider	;facetNameSortProviderAscending                                     ;1105
+;$solrIndexedType ;hrdscpPattern   ;defaultTopValuesProvider	;facetNameSortProviderAscending		                            ;1104
+;$solrIndexedType ;lndscpPattern   ;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1103
+;$solrIndexedType ;Maintenance_PestsTargeted   ;defaultTopValuesProvider	;facetNameSortProviderAscending                     ;1102
+;$solrIndexedType ;lndscppH   ;defaultTopValuesProvider	;facetNameSortProviderAscending                                         ;1101
+;$solrIndexedType ;irgPhase   ;defaultTopValuesProvider	;facetNameSortProviderAscending                                         ;1100
+;$solrIndexedType ;irgPipeCategory   ;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1099
+;$solrIndexedType ;irgPipeSize   ;defaultTopValuesProvider	;facetNameSortProviderAscending                                     ;1098
+;$solrIndexedType ;lndscpPoleMaterial   ;defaultTopValuesProvider	;facetNameSortProviderAscending                             ;1097
+;$solrIndexedType ;irgPopUpHeight   ;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1096
+;$solrIndexedType ;lghtPowerRating   ;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1095
+;$solrIndexedType ;lghtPowerSource   ;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1094
+;$solrIndexedType ;Maintenance_PowerSource   ;defaultTopValuesProvider	;facetNameSortProviderAscending                         ;1093
+;$solrIndexedType ;lndscpPowerSource   ;defaultTopValuesProvider	;facetNameSortProviderAscending                             ;1092
+;$solrIndexedType ;lndscpPressureRating   ;defaultTopValuesProvider	;facetNameSortProviderAscending                             ;1091
+;$solrIndexedType ;hrdscpPressureRating   ;defaultTopValuesProvider	;facetNameSortProviderAscending                             ;1090
+;$solrIndexedType ;irgPressureRating   ;defaultTopValuesProvider	;facetNameSortProviderAscending                             ;1089
+;$solrIndexedType ;lghtPrimaryVoltage   ;defaultTopValuesProvider	;facetNameSortProviderAscending                             ;1088
+;$solrIndexedType ;nrsryProductBrandName   ;defaultTopValuesProvider	;facetNameSortProviderAscending                         ;1087
+;$solrIndexedType ;nrsryProductBrandName   ;defaultTopValuesProvider	;facetNameSortProviderAscending                         ;1086
+;$solrIndexedType ;hrdscpProductBrandName   ;defaultTopValuesProvider	;facetNameSortProviderAscending                         ;1085
+;$solrIndexedType ;Maintenance_ProductBrandName   ;defaultTopValuesProvider	;facetNameSortProviderAscending                     ;1084
+;$solrIndexedType ;Maintenance_ProductBrandName   ;defaultTopValuesProvider	;facetNameSortProviderAscending                     ;1083
+;$solrIndexedType ;lghtProductBrandName   ;defaultTopValuesProvider	;facetNameSortProviderAscending                             ;1082
+;$solrIndexedType ;irgProductBrandName   ;defaultTopValuesProvider	;facetNameSortProviderAscending                             ;1081
+;$solrIndexedType ;lndscpProductBrandName   ;defaultTopValuesProvider	;facetNameSortProviderAscending                         ;1080
+;$solrIndexedType ;Maintenance_RecommendedPlantingSeason   ;defaultTopValuesProvider	;facetNameSortProviderAscending         ;1079
+;$solrIndexedType ;lndscpReplaces   ;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1078
+;$solrIndexedType ;lndscpResists   ;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1077
+;$solrIndexedType ;lghtRunningTime   ;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1076
+;$solrIndexedType ;irgSAESize   ;defaultTopValuesProvider	;facetNameSortProviderAscending                                     ;1075
+;$solrIndexedType ;nrsrySeasonofInterest   ;defaultTopValuesProvider	;facetNameSortProviderAscending                         ;1074
+;$solrIndexedType ;Maintenance_SeasonUse   ;defaultTopValuesProvider	;facetNameSortProviderAscending                         ;1073
+;$solrIndexedType ;irgSellingUnit   ;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1072
+;$solrIndexedType ;lndscpSensingMethod   ;defaultTopValuesProvider	;facetNameSortProviderAscending                             ;1071
+;$solrIndexedType ;irgSensorConnection   ;defaultTopValuesProvider	;facetNameSortProviderAscending                             ;1070
+;$solrIndexedType ;irgSensorType   ;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1069
+;$solrIndexedType ;Maintenance_Series   ;defaultTopValuesProvider	;facetNameSortProviderAscending                             ;1068
+;$solrIndexedType ;hrdscpSeries   ;defaultTopValuesProvider	;facetNameSortProviderAscending                                     ;1067
+;$solrIndexedType ;lghtSeries   ;defaultTopValuesProvider	;facetNameSortProviderAscending                                     ;1066
+;$solrIndexedType ;irgSeries   ;defaultTopValuesProvider	;facetNameSortProviderAscending                                     ;1065
+;$solrIndexedType ;lndscpSeries   ;defaultTopValuesProvider	;facetNameSortProviderAscending                                     ;1064
+;$solrIndexedType ;nrsrySeries   ;defaultTopValuesProvider	;facetNameSortProviderAscending                                     ;1063
+;$solrIndexedType ;lndscpShape   ;defaultTopValuesProvider	;facetNameSortProviderAscending                                     ;1062
+;$solrIndexedType ;hrdscpShape   ;defaultTopValuesProvider	;facetNameSortProviderAscending                                     ;1061
+;$solrIndexedType ;irgShape   ;defaultTopValuesProvider	;facetNameSortProviderAscending                                         ;1060
+;$solrIndexedType ;irgSize   ;defaultTopValuesProvider	;facetNameSortProviderAscending                                         ;1059
+;$solrIndexedType ;hrdscpSize   ;defaultTopValuesProvider	;facetNameSortProviderAscending                                     ;1058
+;$solrIndexedType ;lndscpSize   ;defaultTopValuesProvider	;facetNameSortProviderAscending                                     ;1057
+;$solrIndexedType ;irgSizeRange   ;defaultTopValuesProvider	;facetNameSortProviderAscending                                     ;1056
+;$solrIndexedType ;nrsrySoilMoisture   ;defaultTopValuesProvider;facetNameSortProviderAscending                                 ;1055
+;$solrIndexedType ;hrdscpSolubility   ;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1054
+;$solrIndexedType ;lghtSoundPowerLevel   ;defaultTopValuesProvider	;facetNameSortProviderAscending                             ;1053
+;$solrIndexedType ;lndscpSpecifications   ;defaultTopValuesProvider	;facetNameSortProviderAscending                             ;1052
+;$solrIndexedType ;hrdscpSpecifications   ;defaultTopValuesProvider	;facetNameSortProviderAscending                             ;1051
+;$solrIndexedType ;Maintenance_Specifications   ;defaultTopValuesProvider	;facetNameSortProviderAscending                     ;1050
+;$solrIndexedType ;lghtSpecifications   ;defaultTopValuesProvider	;facetNameSortProviderAscending                             ;1049
+;$solrIndexedType ;irgSpeed   ;defaultTopValuesProvider	;facetNameSortProviderAscending                                         ;1048
+;$solrIndexedType ;Maintenance_SprayPattern   ;defaultTopValuesProvider	;facetNameSortProviderAscending                         ;1047
+;$solrIndexedType ;lghtStrandedSolid   ;defaultTopValuesProvider	;facetNameSortProviderAscending                             ;1046
+;$solrIndexedType ;lndscpStrapMaterial   ;defaultTopValuesProvider	;facetNameSortProviderAscending                             ;1045
+;$solrIndexedType ;lghtSubBrand   ;defaultTopValuesProvider	;facetNameSortProviderAscending                                     ;1044
+;$solrIndexedType ;Maintenance_SubBrand   ;defaultTopValuesProvider	;facetNameSortProviderAscending                             ;1043
+;$solrIndexedType ;hrdscpSubBrand   ;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1042
+;$solrIndexedType ;irgSubBrand   ;defaultTopValuesProvider	;facetNameSortProviderAscending                                     ;1041
+;$solrIndexedType ;lndscpSubBrand   ;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1040
+;$solrIndexedType ;Maintenance_SuitableClimateRegions   ;defaultTopValuesProvider	;facetNameSortProviderAscending             ;1039
+;$solrIndexedType ;hrdscpSuitableForUseWith   ;defaultTopValuesProvider	;facetNameSortProviderAscending                         ;1038
+;$solrIndexedType ;irgSuitableForUseWith   ;defaultTopValuesProvider	;facetNameSortProviderAscending                         ;1037
+;$solrIndexedType ;lndscpSuitableForUseWith   ;defaultTopValuesProvider	;facetNameSortProviderAscending                         ;1036
+;$solrIndexedType ;Maintenance_SuitableForUseWith   ;defaultTopValuesProvider	;facetNameSortProviderAscending                 ;1035
+;$solrIndexedType ;lghtSuitableForUseWith   ;defaultTopValuesProvider	;facetNameSortProviderAscending                         ;1034
+;$solrIndexedType ;Maintenance_TankCapacity   ;defaultTopValuesProvider	;facetNameSortProviderAscending		                    ;1033
+;$solrIndexedType ;lghtTechnology   ;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1032
+;$solrIndexedType ;lndscpTemperatureRange   ;defaultTopValuesProvider	;facetNameSortProviderAscending                         ;1031
+;$solrIndexedType ;lndscpTemperatureRating   ;defaultTopValuesProvider	;facetNameSortProviderAscending                         ;1030
+;$solrIndexedType ;lghtTemperatureRating   ;defaultTopValuesProvider	;facetNameSortProviderAscending                         ;1029
+;$solrIndexedType ;hrdscpTexture   ;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1028
+;$solrIndexedType ;lndscpTextureForm   ;defaultTopValuesProvider	;facetNameSortProviderAscending	                            ;1027
+;$solrIndexedType ;lndscpThickness   ;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1026
+;$solrIndexedType ;hrdscpThickness   ;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1025
+;$solrIndexedType ;nrsryTolerance   ;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1024
+;$solrIndexedType ;hrdscpTotalBTUs   ;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1023
+;$solrIndexedType ;lndscpType   ;defaultTopValuesProvider	;facetNameSortProviderAscending                                     ;1022
+;$solrIndexedType ;irgType   ;defaultTopValuesProvider	;facetNameSortProviderAscending                                         ;1021
+;$solrIndexedType ;Maintenance_Type   ;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1020
+;$solrIndexedType ;hrdscpType   ;defaultTopValuesProvider	;facetNameSortProviderAscending                                     ;1019
+;$solrIndexedType ;nrsryType   ;defaultTopValuesProvider	;facetNameSortProviderAscending                                     ;1018
+;$solrIndexedType ;lghtType   ;defaultTopValuesProvider	;facetNameSortProviderAscending                                         ;1017
+;$solrIndexedType ;irgVoltage   ;defaultTopValuesProvider	;facetNameSortProviderAscending                                     ;1016
+;$solrIndexedType ;lndscpVoltageRating   ;defaultTopValuesProvider	;facetNameSortProviderAscending                             ;1015
+;$solrIndexedType ;Maintenance_VoltageRating   ;defaultTopValuesProvider	;facetNameSortProviderAscending                     ;1014
+;$solrIndexedType ;lghtVoltageRating   ;defaultTopValuesProvider	;facetNameSortProviderAscending                             ;1013
+;$solrIndexedType ;lndscpWaistSize   ;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1012
+;$solrIndexedType ;lghtWaterproof   ;defaultTopValuesProvider	;facetNameSortProviderAscending                                 ;1011
+;$solrIndexedType ;lghtWattage   ;defaultTopValuesProvider	;facetNameSortProviderAscending                                     ;1010
+;$solrIndexedType ;lghtWattageRating   ;defaultTopValuesProvider	;facetNameSortProviderAscending                             ;1009
+;$solrIndexedType ;hrdscpWeight   ;defaultTopValuesProvider	;facetNameSortProviderAscending                                     ;1008
+;$solrIndexedType ;irgWeight   ;defaultTopValuesProvider	;facetNameSortProviderAscending                                     ;1007
+;$solrIndexedType ;lndscpWeight   ;defaultTopValuesProvider	;facetNameSortProviderAscending                                     ;1006
+;$solrIndexedType ;lndscpWidth   ;defaultTopValuesProvider	;facetNameSortProviderAscending                                     ;1005
+;$solrIndexedType ;irgWidth   ;defaultTopValuesProvider	;facetNameSortProviderAscending                                         ;1004
+;$solrIndexedType ;hrdscpWidth   ;defaultTopValuesProvider	;facetNameSortProviderAscending                                     ;1003
+;$solrIndexedType ;nrsryWidthSellable   ;defaultTopValuesProvider	;facetNameSortProviderAscending                             ;1002
+;$solrIndexedType ;irgWireSize   ;defaultTopValuesProvider	;facetNameSortProviderAscending                                     ;1001
+																																

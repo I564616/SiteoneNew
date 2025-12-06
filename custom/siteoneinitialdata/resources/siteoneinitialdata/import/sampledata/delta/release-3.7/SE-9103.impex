@@ -1,0 +1,21 @@
+$lang=en
+
+INSERT_UPDATE RuleActionDefinition;id[unique=true];name[lang=$lang];priority;breadcrumb[lang=$lang];translatorId;translatorParameters;categories(id)
+;y_order_entry_maxmin_percentage_discount;Percentage discount on products with MinMax Limit;1500;Apply {value,number,percent*1} discount on the qualifying products;ruleExecutableActionTranslator;actionId->ruleOrderEntryMaxMinPercentageDiscountAction;product_discounts
+;y_order_entry_maxmin_fixed_discount;Fixed discount on products with MinMax Limit;1600;Apply {value} discount on the qualifying products;ruleExecutableActionTranslator;actionId->ruleOrderEntryMaxMinFixedDiscountAction;product_discounts
+
+INSERT_UPDATE RuleActionDefinitionParameter;definition(id)[unique=true];id[unique=true];priority;name[lang=$lang];description[lang=$lang];type;value;required[default=true];validators
+;y_order_entry_maxmin_percentage_discount;value;1000;Percentage discount value;Percentage discount that will be applied on the qualifying products;java.math.BigDecimal;;;rulePercentageParameterValidator
+;y_order_entry_maxmin_percentage_discount;max;1000;Max limit discount value;Percentage discount that will be applied on the qualifying products;java.lang.Integer;
+;y_order_entry_maxmin_percentage_discount;min;1000;Min limit discount value;Percentage discount that will be applied on the qualifying products;java.lang.Integer
+
+
+;y_order_entry_maxmin_fixed_discount;value;1000;Absolute discount value;Map of currency and absolute discount value that will be applied on the qualifying products;Map(ItemType(Currency),java.math.BigDecimal);;;
+;y_order_entry_maxmin_fixed_discount;max;1000;Max limit discount value;Map of currency and absolute discount value that will be applied on the qualifying products;java.lang.Integer;
+;y_order_entry_maxmin_fixed_discount;min;1000;Min limit discount value;Map of currency and absolute discount value that will be applied on the qualifying products;java.lang.Integer
+
+
+INSERT_UPDATE RuleActionDefinitionRuleTypeMapping;definition(id)[unique=true];ruleType(code)[default=PromotionSourceRule][unique=true]
+;y_order_entry_maxmin_percentage_discount;
+;y_order_entry_maxmin_fixed_discount;
+

@@ -1,0 +1,21 @@
+# Information and shall use it only in accordance with the terms of the
+# license agreement you entered into with SAP.
+# -----------------------------------------------------------------------
+$facetSearchConfigName=siteoneIndex
+$contentCatalogName=siteoneContentCatalog
+$indexedType=siteoneProductType
+$productCatalog=siteoneProductCatalog
+$productCatalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+
+#
+# Localization en
+#
+$lang=en
+
+# Redirect page URL (Must use INSERT_UPDATE here)
+INSERT_UPDATE SolrURIRedirect;url[unique=true];&redirectRefID
+                             ;"/search/?searchtype=product&text=R15VAN";$contentCatalogName-redirectRefID-r5van
+
+# Keyword Redirects (Must use INSERT_UPDATE here)
+INSERT_UPDATE SolrFacetSearchKeywordRedirect;facetSearchConfig(name)[unique=true,default=$facetSearchConfigName];language(isocode)[unique=true,default=$lang];keyword[unique=true];matchType(code)[unique=true];redirect(&redirectRefID);ignoreCase[default=true]
+                                            ;;;"r5van";EXACT;$contentCatalogName-redirectRefID-r5van;

@@ -1,0 +1,4 @@
+$facetSearchConfigName=siteoneIndex
+							
+UPDATE SolrFacetSearchConfig;name[unique=true]     ;listeners
+                            ;$facetSearchConfigName;defaultSiteOneSolrQueryConverter

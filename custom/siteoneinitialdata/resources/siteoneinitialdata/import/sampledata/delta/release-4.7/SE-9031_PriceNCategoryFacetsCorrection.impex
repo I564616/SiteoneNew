@@ -1,0 +1,9 @@
+#Pricing and Category Filter Facets reverting Order changes
+#
+# Import the Solr configuration for the SiteOne store
+#
+$solrIndexedType=siteoneProductType
+
+UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true];name[unique=true];customFacetSortProvider
+;$solrIndexedType       ;socategory             ;facetCountSortProviderDescending
+;$solrIndexedType       ;price                  ;priceRangeFacetNameSortProviderAscending

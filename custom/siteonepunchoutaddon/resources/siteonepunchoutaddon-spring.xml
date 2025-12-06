@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ [y] hybris Platform
+
+ Copyright (c) 2017 SAP SE or an SAP affiliate company.  All rights reserved.
+
+ This software is the confidential and proprietary information of SAP
+ ("Confidential Information"). You shall not disclose such Confidential
+ Information and shall use it only in accordance with the terms of the
+ license agreement you entered into with SAP.
+-->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/util
+           http://www.springframework.org/schema/util/spring-util.xsd
+           http://www.springframework.org/schema/aop
+           http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+
+	<alias name="defaultPunchOutConfigurationService" alias="punchOutConfigurationService"/>
+	<bean id="defaultPunchOutConfigurationService" class="de.hybris.platform.siteonepunchoutaddon.services.impl.DefaultPunchOutConfigurationService">
+		<property name="baseSiteService" ref="baseSiteService"/>
+		<property name="configurationService" ref="configurationService"/>
+		<property name="punchOutSessionService" ref="punchOutSessionService"/>
+		<property name="siteBaseUrlResolutionService" ref="siteBaseUrlResolutionService"/>
+		<property name="punchOutSessionUrlPath" value="${siteonepunchoutaddon.mapping.punchout.session.request}"/>
+	</bean>
+	
+	<alias name="siteonepunchoutaddonSupportedTransactionURLPaths" alias="supportedTransactionURLPaths"/>
+	<util:map id="siteonepunchoutaddonSupportedTransactionURLPaths">
+		<entry key="PunchOutSetUpRequest" value="${siteonepunchoutaddon.mapping.punchout.setup.request}"/>
+		<entry key="OrderRequest" value="${siteonepunchoutaddon.mapping.order.request}"/>
+	</util:map>
+
+	<util:properties id="b2bPunchOutAddOnProps">
+		<prop key="siteonepunchoutaddon.mapping.punchout.session.request">#{configurationService.configuration.getProperty('siteonepunchoutaddon.mapping.punchout.session.request')}</prop>
+		<prop key="siteonepunchoutaddon.mapping.punchout.setup.request">#{configurationService.configuration.getProperty('siteonepunchoutaddon.mapping.punchout.setup.request')}</prop>
+		<prop key="siteonepunchoutaddon.mapping.profile.request">#{configurationService.configuration.getProperty('siteonepunchoutaddon.mapping.profile.request')}</prop>
+		<prop key="siteonepunchoutaddon.mapping.action.placerequisition">#{configurationService.configuration.getProperty('siteonepunchoutaddon.mapping.action.placerequisition')}</prop>
+	</util:properties>
+
+	<bean id="siteonepunchoutaddonSampleDataEventListener" parent="abstractGenericAddOnSampleDataEventListener"  >
+		<property name="extensionName" value="siteonepunchoutaddon" />
+	</bean>
+
+</beans>

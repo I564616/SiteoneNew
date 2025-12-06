@@ -1,0 +1,30 @@
+$contentCatalog=siteoneContentCatalog
+$contentCatalogName=SiteOne Content Catalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$productCatalog=siteoneProductCatalog
+$productCatalogName=SiteOne Product Catalog
+$productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$picture=media(code, $contentCV);
+$image=image(code, $contentCV);
+$media=media(code, $contentCV);
+$page=page(uid, $contentCV);
+$contentPage=contentPage(uid, $contentCV);
+$product=product(code, $productCV)
+$category=category(code, $productCV)
+$siteResource=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/contentCatalogs/$contentCatalog
+$productResource=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/productCatalogs/$productCatalog
+$jarResourceCms=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/cockpits/cmscockpit
+$addonExtensionName=siteoneacceleratoraddon
+$medias=medias(code, $contentCV);
+$articleMedia=articleMedia(code, $contentCV);
+$mediaContainer=media(qualifier, $contentCV);
+$siteUid=siteone
+$lang=en
+
+INSERT_UPDATE SiteOneGalleryHeaderComponent;$contentCV[unique=true];uid[unique=true];name;headline[lang=$lang];$picture[lang=$lang];icon(code, $contentCV);content[lang=$lang];&componentRef
+;;hardscapesHeaderComponent01;Hardscapes Header Component1;BUILD WITH THE BEST;hardscapesbanner;circleIcon;Your customers demand excellance. Why not demand the same from your hardscape supplier? Your nearest SiteOne Stone Center is your source for the finest materials, backed by the most knowledgeable harscape experts in your market. Along with the latest design trends, insights and techniques, you'll find everything from manufactured pavers to exclusive natural stone collections.;hardscapesHeaderComponent01
+
+
+INSERT_UPDATE SiteOneCategoryPromoComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef;urlLink;$picture[lang=$lang];buttonLabel;buttonURL
+;;SiteOneProductPromotionCategorySpotComponent;Store Promo1 Component;SiteOneProductPromotionCategorySpotComponent;;;
+

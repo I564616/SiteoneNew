@@ -1,0 +1,66 @@
+# -----------------------------------------------------------------------
+# [y] hybris Platform
+#
+# Copyright (c) 2017 SAP SE or an SAP affiliate company.  All rights reserved.
+#
+# This software is the confidential and proprietary information of SAP
+# ("Confidential Information"). You shall not disclose such Confidential
+# Information and shall use it only in accordance with the terms of the
+# license agreement you entered into with SAP.
+# -----------------------------------------------------------------------
+$contentCatalog=siteoneCAContentCatalog
+$contentCatalogName=SiteOne CA Content Catalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$productCatalog=siteoneCAProductCatalog
+$productCatalogName=SiteOne CA Product Catalog
+$productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$picture=media(code, $contentCV);
+$image=image(code, $contentCV);
+$media=media(code, $contentCV);
+$page=page(uid, $contentCV);
+$contentPage=contentPage(uid, $contentCV);
+$product=product(code, $productCV)
+$category=category(code, $productCV)
+$siteResource=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/contentCatalogs/$contentCatalog
+$productResource=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/productCatalogs/$productCatalog
+$jarResourceCms=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/cockpits/cmscockpit
+$addonExtensionName=siteoneacceleratoraddon
+$medias=medias(code, $contentCV);
+$articleMedia=articleMedia(code, $contentCV);
+$mediaContainer=media(qualifier, $contentCV);
+$siteUid=siteone-ca
+$lang=en
+
+# CMS Site Settings
+UPDATE CMSSite;uid[unique=true];defaultPreviewCategory(code, $productCV);defaultPreviewProduct(code, $productCV);theme(code)
+;$siteUid;SH1;;lambda
+
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;children(uid,$contentCV)[mode=append]
+;root;;root;;
+
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&componentRef);&nodeRef
+;SiteRootNode;;SiteRootNode;root;;SiteRootNode
+
+INSERT_UPDATE GlobalProductNavigationNode;$contentCV[unique=true];uid[unique=true];name;parent(uid, $contentCV);category(code, $productCV);&nodeRef;;
+;;CategoriesNavNode;Categories Nav;SiteRootNode;SH1;CategoriesNavNode;;
+
+
+###Level 1 ####
+INSERT_UPDATE GlobalProductNavigationNode;$contentCV[unique=true];uid[unique=true];name;parent(uid, $contentCV);category(code, $productCV);&nodeRef;sequenceNumber;
+;;LightingNavNode;Lighting Nav Node;CategoriesNavNode;SH11;LightingNavNode;4;
+;;LandscapeSupplyNavNode;LandscapeSupplyNavNode;CategoriesNavNode;SH12;LandscapeSupplyNavNode;3;
+;;AgronomicMaintenanceNavNode;AgronomicMaintenanceNavNode;CategoriesNavNode;SH13;AgronomicMaintenanceNavNode;1;
+;;IrrigationNavNode;Irrigation Nav Node;CategoriesNavNode;SH14;IrrigationNavNode;2;
+;;Hardscapes&OutdoorLivingNavNode;Hardscapes&OutdoorLivingNavNode;CategoriesNavNode;SH15;Hardscapes&OutdoorLivingNavNode;7;
+;;NurseryNavNode;NurseryNavNode;CategoriesNavNode;SH16;NurseryNavNode;5;
+;;ToolsEquipment&SafetyNavNode;ToolsEquipment&SafetyNavNode;CategoriesNavNode;SH17;ToolsEquipment&SafetyNavNode;6;
+
+
+INSERT_UPDATE VerticalBarComponent;$contentCV[unique=true];uid[unique=true];name;globalProductNodes(&nodeRef);&componentRef;;;
+;;VerticalBarComponent;All Products;AgronomicMaintenanceNavNode,Hardscapes&OutdoorLivingNavNode,IrrigationNavNode,LandscapeSupplyNavNode,LightingNavNode,NurseryNavNode,ToolsEquipment&SafetyNavNode;VerticalBarComponent;;;
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents(&componentRef)
+;;VerticalNavigationSlot;VerticalBarComponent
+

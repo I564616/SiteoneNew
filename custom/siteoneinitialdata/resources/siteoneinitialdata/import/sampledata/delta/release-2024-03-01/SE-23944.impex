@@ -1,0 +1,2 @@
+UPDATE WeekdayOpeningDay[batchmode=true];itemtype(code)[unique=true];startDate;endDate
+;WeekdayOpeningDay;JAN 1, 2024, 12:00:00 AM;DEC 31, 2024, 12:00:00 AM

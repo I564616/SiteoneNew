@@ -1,0 +1,121 @@
+
+#----------Primary Hierarchy----------
+$supercategories=supercategories( code, catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Staged']));;;;;;;;;
+$catalogVersion=catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Staged'])[unique=true,default='siteoneProductCatalog:Staged'];;;;;;;;;
+;;;;;;;;;
+INSERT_UPDATE Category;code[unique=true];name[lang=en];$supercategories;$catalogVersion;allowedPrincipals(uid)
+;PH1116;Lighting Wire;PH11;siteoneProductCatalog:Staged;admingroup 
+;PH1116100;Low Voltage Wire;PH1116;siteoneProductCatalog:Staged;admingroup
+
+
+#----------Sales Hierarchy---------
+
+
+$supercategories=supercategories( code, catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Staged']));;;;;;;;;
+$catalogVersion=catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Staged'])[unique=true,default='siteoneProductCatalog:Staged'];;;;;;;;;
+;;;;;;;;;
+INSERT_UPDATE Category;code[unique=true];name[lang=en];$supercategories;$catalogVersion;allowedPrincipals(uid)
+;SH1116;Lighting Wire;SH11;siteoneProductCatalog:Staged;admingroup 
+;SH1116100;Low Voltage Wire;SH1116;siteoneProductCatalog:Staged;admingroup 
+
+##----------------------------------------------------------------------------------------------
+
+##primary hierarchy - sales hierarchy mapping
+$productCatalog=siteoneProductCatalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+INSERT_UPDATE category;code[unique=true];salescategorymapping;$catalogVersion;
+;PH1116;SH1116;
+;PH1116100;SH1116100;
+
+
+#------Classificatoin class---------c-----
+
+INSERT_UPDATE classificationclass;code[unique=true];name[lang=en];catalogVersion(catalog(id),version);;;;;
+;CH01_1116;Product Details;siteoneClassification:1;;;;;
+;CH01_1116100;Product Details;siteoneClassification:1;;;;;
+
+
+#----------Attribute assignment-------d---
+$classCatalogVersion=catalogversion(catalog(id[default='siteoneClassification']),version[default='1'])[unique=true,default='siteoneClassification:1']
+$classSystemVersion=systemversion(catalog(id[default='siteoneClassification']),version[default='1'])[unique=true,default='siteoneClassification:1']
+INSERT_UPDATE classAttributeAssignment;classificationAttribute(code,$classSystemVersion)[unique=true];attributeType(code);classificationClass(code,$classCatalogVersion)[unique=true];attributeValues(code)[mode=append];multiValued(code);mandatory(code);formatDefinition
+
+
+;lghtVoltageRating;string;CH01_1116100;;true;false;20;
+;lghtWireSize;string;CH01_1116100;;false;false;20;
+;lghtAmperageRating;string;CH01_1116100;;false;false;20;
+;lghtPowerRating;string;CH01_1116100;;false;false;30;
+;lghtFinish;string;CH01_1116100;;false;false;50;
+;lghtLength;string;CH01_1116100;;false;false;50;
+;lghtLampWattage;string;CH01_1116100;;false;false;30;
+;lghtHeight;string;CH01_1116100;;false;false;50;
+;lghtType;string;CH01_1116100;;false;false;50;
+
+#---------category and classification class assignment---e---
+$productCatalog=siteoneProductCatalog
+$catalogVersion=catalogversion(catalog(id[default='siteoneProductCatalog']),version[default='Staged'])[unique=true,default='siteoneProductCatalog:Staged']
+$classCatalogVersion=catalogversion(catalog(id[default='siteoneClassification']),version[default='1'])[unique=true,default='siteoneClassification:1']
+$supercategories=source(code, $classCatalogVersion)[unique=true]
+$categories=target(code, $catalogVersion)[unique=true]
+INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories
+;PH1116;CH01_1116;
+;PH1116100;CH01_1116100;
+
+
+##-------------------------------------
+##--e with online catalog version 
+$productCatalog=siteoneProductCatalog
+$catalogVersion=catalogversion(catalog(id[default='siteoneProductCatalog']),version[default='Online'])[unique=true,default='siteoneProductCatalog:Online']
+$classCatalogVersion=catalogversion(catalog(id[default='siteoneClassification']),version[default='1'])[unique=true,default='siteoneClassification:1']
+$supercategories=source(code, $classCatalogVersion)[unique=true]
+$categories=target(code, $catalogVersion)[unique=true]
+INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories
+;PH1116;CH01_1116;
+;PH1116100;CH01_1116100;
+
+
+#--classification class - classification class relation---f--
+$classCatalogVersion=catalogversion(catalog(id[default='siteoneClassification']),version[default='1'])[unique=true,default='siteoneClassification:1']
+$supercategories=source(code, $classCatalogVersion)[unique=true]
+$categories=target(code, $classCatalogVersion)[unique=true]
+INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories
+;CH01_1116100;CH01_1116;
+;CH01_1116;CH01_11;
+
+#--navigation nodes-------------------------------
+
+#CMS Impexes for category nav nodes in header-------------------------
+
+$contentCatalog=siteoneContentCatalog
+$contentCatalogName=SiteOne Content Catalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$productCatalog=siteoneProductCatalog
+$productCatalogName=SiteOne Product Catalog
+$productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$picture=media(code, $contentCV);
+$image=image(code, $contentCV);
+$media=media(code, $contentCV);
+$page=page(uid, $contentCV);
+$contentPage=contentPage(uid, $contentCV);
+$product=product(code, $productCV)
+$category=category(code, $productCV)
+$siteResource=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/contentCatalogs/$contentCatalog
+$productResource=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/productCatalogs/$productCatalog
+$jarResourceCms=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/cockpits/cmscockpit
+$addonExtensionName=siteoneacceleratoraddon
+$medias=medias(code, $contentCV);
+$articleMedia=articleMedia(code, $contentCV);
+$mediaContainer=media(qualifier, $contentCV);
+$siteUid=siteone
+$lang=en
+
+
+###av Node Level 2 Lighting####
+INSERT_UPDATE GlobalProductNavigationNode;$contentCV[unique=true];uid[unique=true];name;parent(uid, $contentCV);category(code, $productCV);&nodeRef;sequenceNumber;
+;;LightingLightingWireNavNode;LightingLightingWireNavNode;LightingNavNode;SH1116;LightingLightingWireNavNode;6;
+;;LightingLowVoltageWireNavNode;LightingLowVoltageWireNavNode;LightingLightingWireNavNode;SH1116100;LightingLowVoltageWireNavNode;1;
+
+
+ ##impexes to disable existing categories
+UPDATE GlobalProductNavigationNode;$contentCV[unique=true];uid[unique=true];name;parent(uid, $contentCV);category(code, $productCV);&nodeRef;sequenceNumber;visible
+;;WireNavNode      ;WireNavNode      ;LightingAccessoriesNavNode;SH1111107;WireNavNode      ;5;false

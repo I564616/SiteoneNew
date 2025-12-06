@@ -1,0 +1,45 @@
+# -----------------------------------------------------------------------
+# [y] hybris Platform
+#
+# Copyright (c) 2017 SAP SE or an SAP affiliate company.  All rights reserved.
+#
+# This software is the confidential and proprietary information of SAP
+# ("Confidential Information"). You shall not disclose such Confidential
+# Information and shall use it only in accordance with the terms of the
+# license agreement you entered into with SAP.
+# -----------------------------------------------------------------------
+#
+# Import the Solr configuration for the SiteOne Articles
+#
+$contentCatalog=siteoneContentCatalog
+$catalogVersions=catalogVersions(catalog(id),version);
+$indexConfigName=siteoneSolrIndexConfig
+$facetSearchConfigDescription=SiteOne Solr Index
+$searchIndexNamePrefix=siteone
+$solrContentSearchIndexedType=siteoneContentSearchType
+$contentSearchConfigName=contentSearchIndex
+$contentSearchConfigDescription=Content Search Solr Index
+
+
+
+# Non-facet properties for content page
+INSERT_UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true];name[unique=true];type(code);sortableType(code);currency[default=false];localized[default=false];multiValue[default=false];useForSpellchecking[default=false];useForAutocomplete[default=false];fieldValueProvider;valueProviderParameter;ftsPhraseQuery[default=false];ftsPhraseQueryBoost;ftsQuery[default=false];ftsQueryBoost;ftsFuzzyQuery[default=false];ftsFuzzyQueryBoost;ftsWildcardQuery[default=false];ftsWildcardQueryType(code)[default=POSTFIX];ftsWildcardQueryBoost;ftsWildcardQueryMinTermLength
+				 				 ;$solrContentSearchIndexedType 		  ; sopagemodifiedtime 		   ;long ; ; ; ; ; ; ;contentPageModifiedDateValueProvider ; ;false ; ;false ; ;false ; ;false ; ; ;
+				 				 ;$solrContentSearchIndexedType           ; soPreviewImageUrl		   ;text      ;      ;                       ;                        ;                         ;true                              ;                            ;contentPageMediaValueProvider                   ;   ;true                         ;90                 ;true                   ;70           ;true                        ;35                ;true                           ;POSTFIX                                    ;45                   ;3
+				 				 ;$solrContentSearchIndexedType           ; soPreviewTitle    	       ;text      ;      ;                       ; true                       ;                         ;true                              ;                            ;springELValueProvider                   ;getPreviewTitle(#lang)   ;true                         ;90                 ;true                   ;70           ;true                        ;35                ;true                           ;POSTFIX                                    ;45                   ;3
+				 				 ;$solrContentSearchIndexedType			  ; soContentType  			   ;string      ;       ; ;  ;   ; ;   																															;contentTypeValueProvider;        ;false   ;100     ;false        ;90;false  ;45     ;false     ;          ;          ;
+                                 ;$solrContentSearchIndexedType           ; soContentTags			   ;text   ;                  ;                       ;                        ;true                         ;                                  ;               ;contentTagsValueProvider                ;        ;                             ;                   ;                       ;             ;                            ;                  ;                               ;                                           ;                     ;
+				 				 ;$solrContentSearchIndexedType           ; soArticleCategory		   ;string     ;                  ;                       ;                        ;false                         ;                                  ;          ;contentPageCategoryValueProvider                ;        ;                             ;                   ;                       ;             ;                            ;                  ;                               ;                                           ;                     ;
+				 				 ;$solrContentSearchIndexedType           ; soCategoryName		       ;text     ;                  ;                       ; true                   ;false                         ;                                  ;          ;contentPageCategoryNameProvider                ;        ;                             ;                   ;                       ;             ;                            ;                  ;                               ;                                           ;                     ;
+				 				 ;$solrContentSearchIndexedType           ; sopagedescription    	   ;text      ;      ;                       ; true                       ;                         ;true                              ;                        ;springELValueProvider                   ;getDescription(#lang)   ;true                         ;90                 ;true                   ;70           ;true                        ;35                ;true                           ;POSTFIX                                    ;45                   ;3
+				 				 
+				 				 
+				 				 
+# Other facet properties
+INSERT_UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true];name[unique=true];type(code);multiValue[default=true];facet[default=true];facetType(code);facetSort(code);priority;visible;fieldValueProvider;facetDisplayNameProvider;topValuesProvider
+								 ;$solrContentSearchIndexedType           ; soArticleCategories   ;string    ;true                    ; true              ;MultiSelectOr  ;Alpha          ;4000    ;true   ;contentPageCategoryValueProvider;articleCategoryFacetDisplayNameProvider;;				 				 
+				 				 
+				 				 
+				 				 
+
+

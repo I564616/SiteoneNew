@@ -1,0 +1,41 @@
+# -----------------------------------------------------------------------
+# [y] hybris Platform
+#
+# Copyright (c) 2017 SAP SE or an SAP affiliate company.  All rights reserved.
+#
+# This software is the confidential and proprietary information of SAP
+# ("Confidential Information"). You shall not disclose such Confidential
+# Information and shall use it only in accordance with the terms of the
+# license agreement you entered into with SAP.
+# -----------------------------------------------------------------------
+#
+# Import the Solr configuration for the SiteOne store
+#
+$solrIndexedType=siteoneProductType
+$lang=en
+
+UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true];name[unique=true]           ;fieldValueProvider
+                          ;$solrIndexedType	                       ;lghtItem                    ;siteOneItemTypeSeriesCachingPropertyValueProvider
+                          ;$solrIndexedType	                       ;lghtType                    ;siteOneItemTypeSeriesCachingPropertyValueProvider
+                          ;$solrIndexedType	                       ;lghtSeries                  ;siteOneItemTypeSeriesCachingPropertyValueProvider
+                          ;$solrIndexedType                        ;irgItem                     ;siteOneItemTypeSeriesCachingPropertyValueProvider
+                          ;$solrIndexedType                        ;irgType                     ;siteOneItemTypeSeriesCachingPropertyValueProvider
+                          ;$solrIndexedType	                       ;irgSeries                   ;siteOneItemTypeSeriesCachingPropertyValueProvider
+                          ;$solrIndexedType	                       ;Maintenance_item            ;siteOneItemTypeSeriesCachingPropertyValueProvider
+                          ;$solrIndexedType                        ;Maintenance_type            ;siteOneItemTypeSeriesCachingPropertyValueProvider
+                          ;$solrIndexedType	                       ;Maintenance_series          ;siteOneItemTypeSeriesCachingPropertyValueProvider
+                          ;$solrIndexedType                        ;nrsryType                   ;siteOneItemTypeSeriesCachingPropertyValueProvider
+                          ;$solrIndexedType                        ;lndscpItem                  ;siteOneItemTypeSeriesCachingPropertyValueProvider
+                          ;$solrIndexedType                        ;lndscpType                  ;siteOneItemTypeSeriesCachingPropertyValueProvider
+                          ;$solrIndexedType                        ;lndscpSeries                ;siteOneItemTypeSeriesCachingPropertyValueProvider
+                          ;$solrIndexedType                        ;hrdscpItem                  ;siteOneItemTypeSeriesCachingPropertyValueProvider
+                          ;$solrIndexedType                        ;hrdscpType                  ;siteOneItemTypeSeriesCachingPropertyValueProvider
+                          ;$solrIndexedType                        ;hrdscpSeries                ;siteOneItemTypeSeriesCachingPropertyValueProvider
+                          ;$solrIndexedType                        ;Maintenance_item_str        ;siteOneItemTypeSeriesCachingPropertyValueProvider
+                          ;$solrIndexedType                        ;irgItem_str                 ;siteOneItemTypeSeriesCachingPropertyValueProvider
+                          ;$solrIndexedType                        ;lghtItem_str                ;siteOneItemTypeSeriesCachingPropertyValueProvider
+                          ;$solrIndexedType                        ;lndscpItem_str              ;siteOneItemTypeSeriesCachingPropertyValueProvider
+                          ;$solrIndexedType                        ;hrdscpItem_str              ;siteOneItemTypeSeriesCachingPropertyValueProvider
+                          ;$solrIndexedType                        ;soproductBrandName          ;productBrandNameValueProvider
+                          ;$solrIndexedType                        ;soLowerCaseProductBrandName ;productBrandNameValueProvider
+                          ;$solrIndexedType                        ;soproductBrandNameFacet     ;productBrandNameValueProvider

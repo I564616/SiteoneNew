@@ -1,0 +1,15 @@
+$solrIndexedType=siteoneProductType
+INSERT_UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true];name[unique=true];visible[default=false];includeInResponse[default=false]
+;siteoneProductType;socode;;true
+;siteoneProductType;sodeal;;
+;siteoneProductType;soLastYtdSales;;
+;siteoneProductType;soYtdSales;
+;siteoneProductType;sovariantsku;;
+;siteoneProductType;sokeywords;;
+;siteoneProductType;soLowerCaseVendorPartNumber;;
+;siteoneProductType;soproductShortDescForSuggestion;;
+;siteoneProductType;soinventoryUomId;;true
+;siteoneProductType;soCreationDate;;
+;siteoneProductType;sovendorPartNumber;;
+;siteoneProductType;somultidimensional;;
+

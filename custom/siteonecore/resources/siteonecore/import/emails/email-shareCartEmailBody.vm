@@ -1,0 +1,412 @@
+## messageSource=classpath:/siteonecore/messages/email-shareCart_$lang.properties
+#if(${ctx.countryBaseSiteID} == "siteone-ca")
+ <table width="100%" cellpadding="0" cellspacing="0" border="0" align="center"
+    style="max-width: 600px; min-width: 400px; font-size: 12px; font-family: Arial, Helvetica, sans-serif; color: #000000; border: 1px solid #ccc;">
+    <tbody>
+        <tr>
+            <td colspan="6" valign="left" align="left" style="padding: 20px;"><a style="text-decoration:none;"
+                    href="${ctx.baseThemeUrl}"><img title="SiteoneLogo"
+                        src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/SiteoneLogo.jpg" alt="SiteoneLogo"
+                        width="200"></a>
+            </td>
+            <td colspan="6" valign="right" align="right" style="padding: 15px;">
+                <a style="text-decoration:none; padding-right: 15px;"
+                    href="https://www.facebook.com/siteonesupplycanada/"><img
+                        src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/Print_facebook_color.png"
+                        alt="Facebook" title="Facebook" width="24"></a>
+                <a style="text-decoration:none; padding-right: 15px;"
+                    href="https://www.instagram.com/Siteonesupplycanada/"><img
+                        src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/Print_instagram_color.png"
+                        alt="Instagram" title="Instagram" width="24"></a>
+                <a style="text-decoration:none;" href="https://x.com/SiteOneCanada"><img
+                        src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/Print_twitter_color.png"
+                        alt="X" title="X" width="24"></a>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="12" valign="left" style="padding: 15px; border-top: 5px solid #78a22f;"></td>
+        </tr>
+        <tr>
+            <td colspan="6" valign="top" align="left" style="padding: 10px 0px 20px 20px; font-size:14px;">
+                #if((${ctx.accountName} && ${ctx.accountName} != '') && (${ctx.accountNumber} && ${ctx.accountNumber} !=
+                '' ))
+                <p style="padding: 10px 0px 0px 0px;margin: 0px;">
+                    ${ctx.accountName}&nbsp; - ${ctx.accountNumber}
+                </p>
+                #end
+                #if(${ctx.customerName} && ${ctx.customerName} != '')
+                <p style="padding: 8px 0px 5px 0;margin: 0px;">${ctx.customerName}</p>
+                #end
+                #if(${ctx.customerEmail} && ${ctx.customerEmail} != '')
+                <p style="margin: 0px;">${ctx.customerEmail}</p>
+                #end
+        </tr>
+        <tr>
+            <td valign="top" colspan="12" style="padding: 0px 20px 30px 20px;">
+                <p style="font-weight:bold; font-size: 15px; margin: 0; padding-top: 10px;">
+                    #if($ctx.firstName!="Anonymous")
+                    ${ctx.messages.getMessage('shareCartEmailMessage',${ctx.firstName})}
+                    #else
+                    ${ctx.messages.getMessage('siteoneShareCartEmailMessage',"Siteone")}
+                    #end
+                </p>
+                <p style="font-size: 14px;">For real time pricing and inventory refer to your siteone.com shopping cart.
+                </p>
+            </td>
+        </tr>
+        <tr>
+            <td valign="top" colspan="12" style="padding: 20px; background-color: #f1f2f2; color:#000000; font-weight:bold; font-size: 16px;">
+                <p>
+                    ${ctx.messages.cartheader}
+                </p>
+            </td>
+        </tr>
+        <tr style="text-transform: uppercase; color: #666;">
+            <td colspan="6" style="padding-top: 30px; padding-left: 20px;">${ctx.messages.productinfo}</td>
+            <td colspan="1" style="text-align: center; padding-top: 30px;">QTY</td>
+            <td style="text-align: right; padding-top: 30px; padding-right: 20px;" colspan="4">${ctx.messages.total}
+            </td>
+        </tr>
+        <tr>
+            <td colspan="12" style="padding: 5px 20px;">
+                <hr>
+            </td>
+        </tr>
+        #set ($hideList = false)
+        #foreach($entry in $ctx.cart.entries)
+        #if($entry.product.hideList == true)
+        #set ($hideList = true)
+        #end
+        #end
+        #foreach( $entry in $ctx.cart.entries )
+        <tr>
+            <td rowspan="2" colspan="3" valign="top" style="padding:25px 10px 0px 20px;">
+                <a href="${ctx.baseUrl}$entry.product.url?cid=$entry.product.code"
+                    style="text-decoration:none !important; text-decoration:none;">
+                    #if($entry.product.images.isEmpty() != 'false')
+                    <img src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/missing_product_EN_300x300.jpg"
+                        width="110" height="110" alt="image not available" style="border:none;" />
+                    #else
+                    #foreach($image in $entry.product.images)
+                    #if($image.imageType == "PRIMARY" && $image.format == "thumbnail")
+                    <img src="${ctx.baseThemeUrl}$image.url" alt="" width="110" height="110" style="border:none;" />
+                    #end
+                    #end
+                    #end
+                </a>
+            </td>
+            <td rowspan="1" colspan="9" valign="top" style="padding-top:25px;">
+                <p style="color: #5a5b5d; text-transform: uppercase;">$entry.product.itemNumber
+                    #if (!$entry.product.baseOptions.isEmpty())
+                    #foreach ($option in $entry.product.baseOptions)
+                    #if ($option.selected && ($option.selected.url == $entry.product.url))
+                <table style="color: #666666;" width="100%" cellpadding="0" cellspacing="0">
+                    #foreach ($selectedOption in $option.selected.variantOptionQualifiers)
+                    <tr>
+                        <td width="30%" valign="top">$selectedOption.name:</td>
+                        <td width="70%" valign="top">$selectedOption.value</td>
+                    </tr>
+                    #end
+                </table>
+                #end
+                #end
+                #end
+                #if (!$ctx.cart.appliedProductPromotions.isEmpty())
+                #foreach( $promotion in $ctx.cart.appliedProductPromotions)
+                #set ($displayed = false)
+                #foreach ($consumedEntry in $promotion.consumedEntries)
+                #if (!$displayed && ($consumedEntry.orderEntryNumber == $entry.entryNumber))
+                #set ($displayed = true)
+                <p style="color: #78a22f;">${promotion.description}</p>
+                #end
+                #end
+                #end
+                #end
+                </p>
+            </td>
+        </tr>
+        <tr>
+            <td rowspan="1" colspan="3" valign="top"><a href="${ctx.baseUrl}$entry.product.url?cid=$entry.product.code"
+                    style="text-decoration:none !important; text-decoration:none; color: #78a22f; font-size: 14px; font-weight: bold;">$entry.product.name</a>
+            </td>
+            <td rowspan="1" colspan="1" valign="top" align="center" style="font-size:15px; color: #5a5b5d;">
+                #if($entry.quantity > 0)$entry.quantity#end</td>
+            <td rowspan="1" colspan="5" valign="top" align="right" style="padding-right:20px;">
+                <span style="font-size:15px; font-weight: bold;">
+                    #if($entry.totalPrice.value > 0.0)
+                    $entry.totalPrice.formattedValue
+                    #elseif($entry.totalPrice.value == 0.0 && $entry.basePrice.value != 0.0)
+                    FREE
+                    #end
+                </span>
+                <p style="color: #5a5b5d; margin: 0; padding: 10px 0 20px 0;">
+                    #if(!$entry.isPromotionApplied && $entry.saleprice)
+                    <del>$${ctx.numberTool.format(${ctx.unitpriceFormat}, $entry.basePrice.value)}
+                        #if($entry.uomMeasure) / $entry.uomMeasure #end </del>
+                    <span style="color:red; font-weight: 600;">$${ctx.numberTool.format(${ctx.unitpriceFormat},
+                        ${entry.saleprice})}#if($entry.uomMeasure) / $entry.uomMeasure #end</span>
+                    #elseif($entry.basePrice.value > 0.0)
+                    $${ctx.numberTool.format(${ctx.unitpriceFormat}, ${entry.basePrice.value})}#if($entry.uomMeasure) /
+                    $entry.uomMeasure #end
+                    #end
+                </p>
+            </td>
+        </tr>
+        #if (!$ctx.cart.appliedOrderPromotions.isEmpty())
+        <tr>
+            <td style="font-size: 14px;font-weight: bold;" colspan="12" align="right">
+                <p>${ctx.messages.receivedPromotions}</p>
+                #foreach( $promotion in $ctx.cart.appliedOrderPromotions)
+                <p style="color: #00a651;">${promotion.description}</p>
+                #end
+            </td>
+        </tr>
+        #end
+        #end
+        <tr>
+            <td colspan="12" style="padding: 20px 0px;">
+                <hr>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="6" align="left">&nbsp;</td>
+            <td colspan="2" align="left" style="padding:5px; font-size: 15px; color: #414244;">${ctx.messages.subtotal}
+            </td>
+            <td colspan="4" align="right" style="padding-right:20px; font-size: 16px;">
+                #if($ctx.cart.subTotal.formattedValue != $0.00)
+                $ctx.cart.subTotal.formattedValue
+                #else
+                $0.0
+                #end
+            </td>
+        </tr>
+        #if(${ctx.cart.totalDiscounts.value} > 0.0)
+        <tr>
+            <td colspan="6" align="left">&nbsp;</td>
+            <td colspan="2" align="left" style="padding:5px; font-size: 15px; color: #414244;">${ctx.messages.discount}
+            </td>
+            <td colspan="4" align="right" style="padding-right:20px; font-size: 16px; font-weight: bold;">
+                -${ctx.cart.totalDiscounts.formattedValue}</td>
+        </tr>
+        #end
+        <tr>
+            <td colspan="12" align="right" style="padding-right:20px; font-size: 10px; color: #414244;">
+                <p>Taxes Calculated at Checkout</p>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="12" style="padding-top: 20px;">
+                <hr>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="12" style="padding:30px; font-size: 14px; line-height: 25px;">${ctx.messages.fromemail}</td>
+        </tr>
+    </tbody>
+</table>
+#else
+<table width="100%" cellpadding="0" cellspacing="0" border="0" align="center"
+    style="max-width: 600px; min-width: 400px; font-size: 12px; font-family: Arial, Helvetica, sans-serif; color: #000000; border: 1px solid #ccc;">
+    <tbody>
+        <tr>
+            <td colspan="6" valign="left" align="left" style="padding: 20px;"><a style="text-decoration:none;"
+                    href="${ctx.baseThemeUrl}"><img title="SiteoneLogo"
+                        src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/SiteoneLogo.jpg" alt="SiteoneLogo"
+                        width="200"></a>
+            </td>
+            <td colspan="6" valign="right" align="right" style="padding: 15px;">
+                <a style="text-decoration:none; padding-right: 15px;"
+                    href="https://www.facebook.com/SiteOneLandscape/"><img
+                        src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/Print_facebook_color.png"
+                        alt="Facebook" title="Facebook" width="24"></a>
+                <a style="text-decoration:none; padding-right: 15px;"
+                    href="https://www.instagram.com/siteonesupply/"><img
+                        src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/Print_instagram_color.png"
+                        alt="Instagram" title="Instagram" width="24"></a>
+                <a style="text-decoration:none;" href="https://x.com/SiteOneSupply"><img
+                        src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/Print_twitter_color.png"
+                        alt="X" title="X" width="24"></a>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="12" valign="left" style="padding: 15px; border-top: 5px solid #78a22f;"></td>
+        </tr>
+        <tr>
+            <td colspan="6" valign="top" align="left" style="padding: 10px 0px 20px 20px; font-size:14px;">
+                #if((${ctx.accountName} && ${ctx.accountName} != '') && (${ctx.accountNumber} && ${ctx.accountNumber} !=
+                '' ))
+                <p style="padding: 10px 0px 0px 0px;margin: 0px;">
+                    ${ctx.accountName}&nbsp; - ${ctx.accountNumber}
+                </p>
+                #end
+                #if(${ctx.customerName} && ${ctx.customerName} != '')
+                <p style="padding: 8px 0px 5px 0;margin: 0px;">${ctx.customerName}</p>
+                #end
+                #if(${ctx.customerEmail} && ${ctx.customerEmail} != '')
+                <p style="margin: 0px;">${ctx.customerEmail}</p>
+                #end
+        </tr>
+        <tr>
+            <td valign="top" colspan="12" style="padding: 0px 20px 30px 20px;">
+                <p style="font-weight:bold; font-size: 15px; margin: 0; padding-top: 10px;">
+                    #if($ctx.firstName!="Anonymous")
+                    ${ctx.messages.getMessage('shareCartEmailMessage',${ctx.firstName})}
+                    #else
+                    ${ctx.messages.getMessage('siteoneShareCartEmailMessage',"Siteone")}
+                    #end
+                </p>
+                <p style="font-size: 14px;">For real time pricing and inventory refer to your siteone.com shopping cart.
+                </p>
+            </td>
+        </tr>
+        <tr>
+            <td valign="top" colspan="12" style="padding: 20px; background-color: #f1f2f2; color:#000000; font-weight:bold; font-size: 16px;">
+                <p>
+                    ${ctx.messages.cartheader}
+                </p>
+            </td>
+        </tr>
+        <tr style="text-transform: uppercase; color: #666;">
+            <td colspan="6" style="padding-top: 30px; padding-left: 20px;">${ctx.messages.productinfo}</td>
+            <td colspan="1" style="text-align: center; padding-top: 30px;">QTY</td>
+            <td style="text-align: right; padding-top: 30px; padding-right: 20px;" colspan="4">${ctx.messages.total}
+            </td>
+        </tr>
+        <tr>
+            <td colspan="12" style="padding: 5px 20px;">
+                <hr>
+            </td>
+        </tr>
+        #set ($hideList = false)
+        #foreach($entry in $ctx.cart.entries)
+        #if($entry.product.hideList == true)
+        #set ($hideList = true)
+        #end
+        #end
+        #foreach( $entry in $ctx.cart.entries )
+        <tr>
+            <td rowspan="2" colspan="3" valign="top" style="padding:25px 10px 0px 20px;">
+                <a href="${ctx.baseUrl}$entry.product.url?cid=$entry.product.code"
+                    style="text-decoration:none !important; text-decoration:none;">
+                    #if($entry.product.images.isEmpty() != 'false')
+                    <img src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/missing_product_EN_300x300.jpg"
+                        width="110" height="110" alt="image not available" style="border:none;" />
+                    #else
+                    #foreach($image in $entry.product.images)
+                    #if($image.imageType == "PRIMARY" && $image.format == "thumbnail")
+                    <img src="${ctx.baseThemeUrl}$image.url" alt="" width="110" height="110" style="border:none;" />
+                    #end
+                    #end
+                    #end
+                </a>
+            </td>
+            <td rowspan="1" colspan="9" valign="top" style="padding-top:25px;">
+                <p style="color: #5a5b5d; text-transform: uppercase;">$entry.product.itemNumber
+                    #if (!$entry.product.baseOptions.isEmpty())
+                    #foreach ($option in $entry.product.baseOptions)
+                    #if ($option.selected && ($option.selected.url == $entry.product.url))
+                <table style="color: #666666;" width="100%" cellpadding="0" cellspacing="0">
+                    #foreach ($selectedOption in $option.selected.variantOptionQualifiers)
+                    <tr>
+                        <td width="30%" valign="top">$selectedOption.name:</td>
+                        <td width="70%" valign="top">$selectedOption.value</td>
+                    </tr>
+                    #end
+                </table>
+                #end
+                #end
+                #end
+                #if (!$ctx.cart.appliedProductPromotions.isEmpty())
+                #foreach( $promotion in $ctx.cart.appliedProductPromotions)
+                #set ($displayed = false)
+                #foreach ($consumedEntry in $promotion.consumedEntries)
+                #if (!$displayed && ($consumedEntry.orderEntryNumber == $entry.entryNumber))
+                #set ($displayed = true)
+                <p style="color: #78a22f;">${promotion.description}</p>
+                #end
+                #end
+                #end
+                #end
+                </p>
+            </td>
+        </tr>
+        <tr>
+            <td rowspan="1" colspan="3" valign="top"><a href="${ctx.baseUrl}$entry.product.url?cid=$entry.product.code"
+                    style="text-decoration:none !important; text-decoration:none; color: #78a22f; font-size: 14px; font-weight: bold;">$entry.product.name</a>
+            </td>
+            <td rowspan="1" colspan="1" valign="top" align="center" style="font-size:15px; color: #5a5b5d;">
+                #if($entry.quantity > 0)$entry.quantity#end</td>
+            <td rowspan="1" colspan="5" valign="top" align="right" style="padding-right:20px;">
+                <span style="font-size:15px; font-weight: bold;">
+                    #if($entry.totalPrice.value > 0.0)
+                    $entry.totalPrice.formattedValue
+                    #elseif($entry.totalPrice.value == 0.0 && $entry.basePrice.value != 0.0)
+                    FREE
+                    #end
+                </span>
+                <p style="color: #5a5b5d; margin: 0; padding: 10px 0 20px 0;">
+                    #if(!$entry.isPromotionApplied && $entry.saleprice)
+                    <del>$${ctx.numberTool.format(${ctx.unitpriceFormat}, $entry.basePrice.value)}
+                        #if($entry.uomMeasure) / $entry.uomMeasure #end </del>
+                    <span style="color:red; font-weight: 600;">$${ctx.numberTool.format(${ctx.unitpriceFormat},
+                        ${entry.saleprice})}#if($entry.uomMeasure) / $entry.uomMeasure #end</span>
+                    #elseif($entry.basePrice.value > 0.0)
+                    $${ctx.numberTool.format(${ctx.unitpriceFormat}, ${entry.basePrice.value})}#if($entry.uomMeasure) /
+                    $entry.uomMeasure #end
+                    #end
+                </p>
+            </td>
+        </tr>
+        #if (!$ctx.cart.appliedOrderPromotions.isEmpty())
+        <tr>
+            <td style="font-size: 14px;font-weight: bold;" colspan="12" align="right">
+                <p>${ctx.messages.receivedPromotions}</p>
+                #foreach( $promotion in $ctx.cart.appliedOrderPromotions)
+                <p style="color: #00a651;">${promotion.description}</p>
+                #end
+            </td>
+        </tr>
+        #end
+        #end
+        <tr>
+            <td colspan="12" style="padding: 20px 0px;">
+                <hr>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="6" align="left">&nbsp;</td>
+            <td colspan="2" align="left" style="padding:5px; font-size: 15px; color: #414244;">${ctx.messages.subtotal}
+            </td>
+            <td colspan="4" align="right" style="padding-right:20px; font-size: 16px;">
+                #if($ctx.cart.subTotal.formattedValue != $0.00)
+                $ctx.cart.subTotal.formattedValue
+                #else
+                $0.0
+                #end
+            </td>
+        </tr>
+        #if(${ctx.cart.totalDiscounts.value} > 0.0)
+        <tr>
+            <td colspan="6" align="left">&nbsp;</td>
+            <td colspan="2" align="left" style="padding:5px; font-size: 15px; color: #414244;">${ctx.messages.discount}
+            </td>
+            <td colspan="4" align="right" style="padding-right:20px; font-size: 16px; font-weight: bold;">
+                -${ctx.cart.totalDiscounts.formattedValue}</td>
+        </tr>
+        #end
+        <tr>
+            <td colspan="12" align="right" style="padding-right:20px; font-size: 10px; color: #414244;">
+                <p>Taxes Calculated at Checkout</p>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="12" style="padding-top: 20px;">
+                <hr>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="12" style="padding:30px; font-size: 14px; line-height: 25px;">${ctx.messages.fromemail}</td>
+        </tr>
+    </tbody>
+</table>
+#end

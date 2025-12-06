@@ -1,0 +1,5 @@
+INSERT_UPDATE OAuthClientDetails;clientId[unique=true]    		    ;registeredRedirectUri
+                                ;mobile_android  					;https://qa1-api.sapv2.siteone.com/authorizationserver/oauth2_callback
+                                ;mobile_android  					;https://qa2-api.sapv2.siteone.com/authorizationserver/oauth2_callback
+                                ;mobile_android  					;https://dev-api.sapv2.siteone.com/authorizationserver/oauth2_callback
+                                

@@ -1,0 +1,66 @@
+
+$contentCatalog=siteoneContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$productCatalog=siteoneProductCatalog
+$productCatalogName=SiteOne Product Catalog
+$productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Online'])[unique=true,default=$productCatalog:Online]
+# Import modulegen config properties into impex macros
+UPDATE GenericItem[processor=de.hybris.platform.commerceservices.impex.impl.ConfigPropertyImportProcessor];pk[unique=true]
+$jarResourceCms=$config-jarResourceCmsValue
+INSERT_UPDATE PageTemplate;$contentCV[unique=true];uid[unique=true];name;frontendTemplateName;restrictedPageTypes(code);active[default=true]
+;;SiteOneCuratedPlpPageTemplate;SiteOne Curated PLP Page  Template;layout/siteOneCuratedPlpLayout;ContentPage
+
+# Add Velocity templates that are in the CMS Cockpit. These give a better layout for editing pages
+# The FileLoaderValueTranslator loads a File into a String property. The templates could also be inserted in-line in this file.
+UPDATE PageTemplate;$contentCV[unique=true];uid[unique=true];velocityTemplate[translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+;;SiteOneCuratedPlpPageTemplate ;$jarResourceCms/structure-view/siteonestructure_curatedPlpPageTemplate.vm
+
+
+# Simple Content Page Templates
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='SiteOneCuratedPlpPageTemplate'];validComponentTypes(code);compTypeGroup(code)
+;SiteLogo;;;logo
+;HeaderLinks;;;headerlinks
+;SearchBox;;;searchbox
+;MiniCart;;;minicart
+;NavigationBar;;;navigation
+;Section1;;;wide
+;Section1A;;;wide
+;Section2;;SiteOneCuratedPLPPromoComponent;wide
+;Section21;;SiteOneCuratedPLPPromoComponent;wide
+;Section2A;;SiteOneCuratedPLPComponent;wide
+;Section2B;;SiteOneCuratedPLPStoreComponent;wide
+;Section2A1;;SiteOneCuratedPLPComponent;wide
+;Section2B1;;SiteOneCuratedPLPStoreComponent;wide
+;Section3;;;wide
+;Section3A;;;wide
+;Section4;;;wide
+;Section4A;;;wide
+;Section5;;;wide
+;Section5A;;;wide
+;Section7A;;;wide
+;Section7B;;;wide
+;Section7A1;;;wide
+;Section7B2;;;wide
+;Footer;;;footer
+;TopHeaderSlot;;;wide
+;BottomHeaderSlot;;;wide
+;PlaceholderContentSlot;;;
+;GlobalMessage;;GlobalMessageCMSComponent
+;VerticalNavigation;;VerticalBarComponent
+
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='SiteOneCuratedPlpPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;SiteLogo-SiteoneCuratedPlpPage;SiteLogo;;SiteLogoSlot;true
+;;NavigationBar-SiteoneCuratedPlpPage;NavigationBar;;NavigationBarSlot;true
+;;MiniCart-SiteoneCuratedPlpPage;MiniCart;;MiniCartSlot;true
+;;Footer-SiteoneCuratedPlpPage;Footer;;FooterSlot;true
+;;HeaderLinks-SiteoneCuratedPlpPage;HeaderLinks;;HeaderLinksSlot;true
+;;SearchBox-SiteoneCuratedPlpPage;SearchBox;;SearchBoxSlot;true
+;;TopHeaderSlot-SiteoneCuratedPlpPage;TopHeaderSlot;;TopHeaderSlot;true
+;;BottomHeaderSlot-SiteoneCuratedPlpPage;BottomHeaderSlot;;BottomHeaderSlot;true
+;;PlaceholderContentSlot-SiteoneCuratedPlpPage;PlaceholderContentSlot;;PlaceholderContentSlot;true
+;;GlobalMessage-SiteoneCuratedPlpPage;GlobalMessage;;GlobalMessageSlot;true
+;;VerticalNavigation-SiteoneCuratedPlpPage;VerticalNavigation;;VerticalNavigationSlot;true
+
+############################SITEONECONTENTPAGE{END}########################################################
+

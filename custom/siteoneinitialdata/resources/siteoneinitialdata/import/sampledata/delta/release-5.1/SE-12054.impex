@@ -1,0 +1,98 @@
+
+##------------------ NEW CATEGORY
+
+## --- Primary Hierarchy ---
+## Define supercategories and catalogVersion 
+$supercategories=supercategories(code, catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Staged']));;;;;;;;;
+$catalogVersion=catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Staged'])[unique=true,default='siteoneProductCatalog:Staged'];;;;;;;;;;;;;;;;;;
+
+## Landscape Supply - Tools - Long Handled Tools - Parts & Accessories - Create Level 4 category
+INSERT_UPDATE Category;code[unique=true];name[lang=en];$supercategories;$catalogVersion;allowedPrincipals(uid)
+;PH1220105108;Parts & Accessories;PH1220105;siteoneProductCatalog:Staged;admingroup
+
+
+## --- Sales Hierarchy ---
+## Define supercategories and catalogVersion 
+$supercategories=supercategories(code, catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Staged']));;;;;;;;;
+$catalogVersion=catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Staged'])[unique=true,default='siteoneProductCatalog:Staged'];;;;;;;;;;;;;;;;;;
+
+## Landscape Supply - Tools - Long Handled Tools - Parts & Accessories - Create Level 4 category
+INSERT_UPDATE Category;code[unique=true];name[lang=en];$supercategories;$catalogVersion;allowedPrincipals(uid)
+;SH1220105108;Parts & Accessories;SH1220105;siteoneProductCatalog:Staged;admingroup
+
+
+##----------------------------------------------------------------------------------------------
+
+## Primary hierarchy - Sales hierarchy Mapping
+$productCatalog=siteoneProductCatalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+INSERT_UPDATE category;code[unique=true];salescategorymapping;$catalogVersion;
+;PH1220105108;SH1220105108;
+
+
+##----------------------------------------------------------------------------------------------
+
+## Classifying Class creation
+INSERT_UPDATE classificationclass;code[unique=true];name[lang=en];catalogVersion(catalog(id),version);;;;;
+;CH01_1220105108;Product Details;siteoneClassification:1;;;;;
+
+
+##----------------------------------------------------------------------------------------------
+
+## Class attribute assignment
+$productCatalog=siteoneProductCatalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$classCatalogVersion=catalogversion(catalog(id[default='siteoneClassification']),version[default='1'])[unique=true,default='siteoneClassification:1']
+$classSystemVersion=systemversion(catalog(id[default='siteoneClassification']),version[default='1'])[unique=true,default='siteoneClassification:1']
+
+INSERT_UPDATE classAttributeAssignment;classificationAttribute(code,$classSystemVersion)[unique=true];attributeType(code);classificationClass(code,$classCatalogVersion)[unique=true];attributeValues(code)[mode=append];multiValued(code);mandatory(code);formatDefinition
+## Landscape Supply - Tools - Long Handled Tools - Parts & Accessories
+;lndscpColor;string;CH01_1220105108;;false;false;30;
+;lndscpFinish;string;CH01_1220105108;;false;false;30;
+;lndscpSuitableForUseWith;string;CH01_1220105108;;false;false;30;
+;lndscpToothSpacing;string;CH01_1220105108;;false;false;30;
+;lndscpGrade;string;CH01_1220105108;;false;false;30;
+;lndscpCuttingCapacity;string;CH01_1220105108;;false;false;30;
+;lndscpBladeMaterial;string;CH01_1220105108;;false;false;30;
+;lndscpBladeWidth;string;CH01_1220105108;;false;false;30;
+;lndscpGauge;string;CH01_1220105108;;false;false;30;
+;lndscpPattern;string;CH01_1220105108;;false;false;30;
+;lndscpNumberofTines;string;CH01_1220105108;;false;false;30;
+;lndscpTineWidth;string;CH01_1220105108;;false;false;30;
+;lndscpTineLength;string;CH01_1220105108;;false;false;30;
+;lndscpNumberofTeeth;string;CH01_1220105108;;false;false;30;
+
+
+##----------------------------------------------------------------------------------------------
+
+##--e with Staged catalog version 
+$productCatalog=siteoneProductCatalog
+$catalogVersion=catalogversion(catalog(id[default='siteoneProductCatalog']),version[default='Staged'])[unique=true,default='siteoneProductCatalog:Staged']
+$classCatalogVersion=catalogversion(catalog(id[default='siteoneClassification']),version[default='1'])[unique=true,default='siteoneClassification:1']
+$supercategories=source(code, $classCatalogVersion)[unique=true]
+$categories=target(code, $catalogVersion)[unique=true]
+INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories
+;PH1220105108;CH01_1220105108;
+
+
+##----------------------------------------------------------------------------------------------
+
+##------------------------------------- OK
+##--e with online catalog version 
+$productCatalog=siteoneProductCatalog
+$catalogVersion=catalogversion(catalog(id[default='siteoneProductCatalog']),version[default='Online'])[unique=true,default='siteoneProductCatalog:Online']
+$classCatalogVersion=catalogversion(catalog(id[default='siteoneClassification']),version[default='1'])[unique=true,default='siteoneClassification:1']
+$supercategories=source(code, $classCatalogVersion)[unique=true]
+$categories=target(code, $catalogVersion)[unique=true]
+INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories
+;PH1220105108;CH01_1220105108;
+
+
+##-----------------------------------------------------------------------------------
+##--f
+
+$classCatalogVersion=catalogversion(catalog(id[default='siteoneClassification']),version[default='1'])[unique=true,default='siteoneClassification:1']
+$supercategories=source(code, $classCatalogVersion)[unique=true]
+$categories=target(code, $classCatalogVersion)[unique=true]
+INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories
+;CH01_1220105108;CH01_1220105;

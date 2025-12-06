@@ -1,0 +1,2217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ [y] hybris Platform
+ Copyright (c) 2017 SAP SE or an SAP affiliate company.  All rights reserved.
+ This software is the confidential and proprietary information of SAP
+ ("Confidential Information"). You shall not disclose such Confidential
+ Information and shall use it only in accordance with the terms of the
+ license agreement you entered into with SAP.
+-->
+
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xmlns:util="http://www.springframework.org/schema/util"
+	   xmlns:aop="http://www.springframework.org/schema/aop"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+		
+	<context:annotation-config/> 
+
+	<alias alias="simpleSuggestionFacade" name="defaultSimpleSuggestionFacade"/>
+	<bean id="defaultSimpleSuggestionFacade" class="com.siteone.facades.suggestion.impl.DefaultSimpleSuggestionFacade" >
+		<property name="simpleSuggestionService" ref="simpleSuggestionService"/>
+		<property name="userService" ref="userService"/>
+		<property name="categoryService" ref="categoryService"/>
+		<property name="productService" ref="productService"/>
+		<property name="productConverter" ref="carouselProductConverter"/>
+		<property name="cartService" ref="cartService"/>
+	</bean>
+	
+	<bean id="carouselProductConverter" parent="defaultProductConverter">
+		<property name="populators">
+			<list merge="true">
+				<ref bean="productPricePopulator"/>
+			</list>
+		</property>
+	</bean>
+
+
+	<!-- accelerator Image Format Mappings -->
+	<alias name="acceleratorImageFormatMapping" alias="imageFormatMapping"/>
+	<bean id="acceleratorImageFormatMapping" parent="defaultImageFormatMapping">
+		<property name="mapping">
+			<map>
+				<entry key="superZoom" value="1200Wx1200H"/>
+				<entry key="zoom" value="1200Wx1200H"/>
+				<entry key="store" value="365Wx246H"/>
+				<entry key="product" value="300Wx300H"/>
+				<entry key="thumbnail" value="96Wx96H"/>
+				<entry key="cartIcon" value="65Wx65H"/>
+				<entry key="styleSwatch" value="30Wx30H"/>
+				<entry key="pdpIcon" value="515Wx515H"/>
+				<entry key="youtube" value="youtube"/>
+			</map>
+		</property>
+	</bean>
+
+	<alias name="acceleratorProductPrimaryImagePopulator" alias="productPrimaryImagePopulator" />
+	<bean id="acceleratorProductPrimaryImagePopulator" parent="defaultProductPrimaryImagePopulator">
+		<property name="imageFormats">
+			<list>
+				<value>zoom</value>
+				<value>product</value>
+				<value>thumbnail</value>
+				<value>cartIcon</value>
+			</list>
+		</property>
+	</bean>
+
+	<alias name="acceleratorProductGalleryImagesPopulator" alias="productGalleryImagesPopulator" />
+	<bean id="acceleratorProductGalleryImagesPopulator" parent="defaultProductGalleryImagesPopulator">
+		<property name="imageFormats">
+			<list>
+				<value>superZoom</value>
+				<value>zoom</value>
+				<value>product</value>
+				<value>thumbnail</value>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="batchNotificationEmailContext" class="com.siteone.facades.process.email.context.BatchNotificationEmailContext" parent="abstractEmailContext" scope="prototype" >
+	</bean>
+	
+	<bean id="pimBatchFailureEmailContext" class="com.siteone.facades.process.email.context.PimBatchFailureEmailContext" parent="abstractEmailContext" scope="prototype" >
+	</bean>
+	
+	<bean id="pimBatchFailureReportNotificationEmailContext" class="com.siteone.facades.process.email.context.PIMBatchFailureReportNotificationEmailContext" parent="abstractEmailContext" scope="prototype" >
+	</bean>
+
+	<bean id="siteoneJobsStatusEmailContext" class="com.siteone.facades.process.email.context.SiteoneJobsStatusEmailContext" parent="abstractEmailContext" scope="prototype" >
+    </bean>
+    
+	<bean id="feedFileMonitorNotificationEmailContext" class="com.siteone.facades.process.email.context.FeedFileMonitorNotificationEmailContext" parent="abstractEmailContext" scope="prototype" >
+	</bean>
+
+	<bean id="customerEmailContext" class="com.siteone.facades.process.email.context.CustomerEmailContext" parent="abstractEmailContext" scope="prototype" >
+		<property name="customerConverter" ref="customerConverter"/>
+	</bean>
+
+	<bean id="forgottenPasswordEmailContext" class="com.siteone.facades.process.email.context.ForgottenPasswordEmailContext" parent="customerEmailContext" scope="prototype" >
+		<property name="customerConverter" ref="customerConverter"/>
+	</bean>
+	<bean id="homeOwnerEmailContext" class="com.siteone.facades.process.email.context.HomeOwnerEmailContext" parent="customerEmailContext" scope="prototype" >
+		<property name="customerConverter" ref="customerConverter" />
+	</bean>
+	
+    <bean id="orderNotificationEmailContext" class="com.siteone.facades.process.email.context.OrderNotificationEmailContext" parent="abstractEmailContext" scope="prototype" >
+		<property name="orderConverter" ref="orderConverter"/>
+	</bean>
+	
+	<bean id="orderScheduledForDeliveryEmailContext" class="com.siteone.facades.process.email.context.OrderScheduledForDeliveryEmailContext" parent="abstractEmailContext" scope="prototype" >
+	<property name="orderConverter" ref="orderConverter"/>
+	<property name="consignmentConverter" ref="consignmentConverter"/>
+	</bean>
+	
+	<bean id="orderReadyToPickUpEmailContext" class="com.siteone.facades.process.email.context.OrderReadyToPickUpEmailContext" parent="abstractEmailContext" scope="prototype" >
+	<property name="orderConverter" ref="orderConverter"/>
+	<property name="consignmentConverter" ref="consignmentConverter"/>
+	</bean>
+	
+	<bean id="orderTrackingLinkEmailContext" class="com.siteone.facades.process.email.context.OrderTrackingLinkEmailContext" parent="abstractEmailContext" scope="prototype" >
+	<property name="orderConverter" ref="orderConverter"/>
+	<property name="consignmentConverter" ref="consignmentConverter"/>
+	</bean>
+	
+	<bean id="deliverySentEmailContext" class="com.siteone.facades.process.email.context.DeliverySentEmailContext" parent="abstractEmailContext" scope="prototype" >
+		<property name="consignmentConverter" ref="consignmentConverter"/>
+	</bean>
+	
+	<bean id="readyForPickupEmailContext" class="com.siteone.facades.process.email.context.ReadyForPickupEmailContext" parent="abstractEmailContext" scope="prototype" >
+		<property name="consignmentConverter" ref="consignmentConverter"/>
+	</bean>
+	
+	<bean id="orderCancelledEmailContext" class="com.siteone.facades.process.email.context.OrderCancelledEmailContext" parent="abstractEmailContext" scope="prototype" >
+		<property name="orderConverter" ref="orderConverter"/>
+	</bean>
+	
+	<bean id="orderRefundEmailContext" class="com.siteone.facades.process.email.context.OrderRefundEmailContext" parent="abstractEmailContext" scope="prototype" >
+		<property name="orderConverter" ref="orderConverter"/>
+	</bean>
+	<bean id="consignmentCollectionReminderEmailContext" class="com.siteone.facades.process.email.context.ConsignmentCollectionReminderEmailContext" parent="abstractEmailContext" scope="prototype">
+        <property name="consignmentConverter" ref="consignmentConverter"/>
+        <property name="formatFactory" ref="formatFactory"/>
+        <property name="customerServiceUncollectedConsignmentStrategy" ref="customerServiceUncollectedConsignmentStrategy" />
+        <property name="orderConverter" ref="orderConverter"/>
+    </bean>
+
+	<bean id="orderPartiallyModifiedEmailContext" class="com.siteone.facades.process.email.context.OrderPartiallyModifiedEmailContext" parent="abstractEmailContext" scope="prototype" >
+		<property name="orderConverter" ref="orderConverter"/>
+		<property name="orderEntryConverter" ref="orderEntryConverter"/>
+		<property name="priceDataFactory" ref="priceDataFactory"/>		
+	</bean>
+
+	<bean id="orderPartiallyCanceledEmailContext" class="com.siteone.facades.process.email.context.OrderPartiallyCanceledEmailContext" parent="orderPartiallyModifiedEmailContext" scope="prototype" >
+	</bean>
+
+	<bean id="orderPartiallyRefundedEmailContext" class="com.siteone.facades.process.email.context.OrderPartiallyRefundedEmailContext" parent="orderPartiallyModifiedEmailContext" scope="prototype" >
+	</bean>
+
+	<bean id="notPickedUpConsignmentCanceledEmailContext" class="com.siteone.facades.process.email.context.NotPickedUpConsignmentCanceledEmailContext" parent="abstractEmailContext" scope="prototype" >
+		<property name="consignmentConverter" ref="consignmentConverter"/>
+		<property name="priceDataFactory" ref="priceDataFactory"/>
+	</bean>
+
+	<alias name="yacceleratorSearchPagePointOfServiceDistancePopulator" alias="searchPagePointOfServiceDistancePopulator" />
+	<bean id="yacceleratorSearchPagePointOfServiceDistancePopulator" class="com.siteone.facades.storefinder.populators.SearchPagePointOfServiceDistancePopulator" >
+		<property name="pointOfServiceDistanceConverter" ref="pointOfServiceDistanceConverter"/>
+	</bean>
+
+	<bean id="genderData" class="com.siteone.facades.product.data.GenderData" scope="prototype"/>
+	
+	<alias name="defaultSiteOneStoreSessionFacade" alias="storeSessionFacade"/>
+	<bean id="defaultSiteOneStoreSessionFacade" class="com.siteone.facades.storesession.impl.DefaultSiteOneStoreSessionFacade" parent="defaultStoreSessionFacade">
+	</bean>
+	
+	<alias name="defaultSiteOneStoreFinderFacade" alias="storeFinderFacade"/>
+	<bean id="defaultSiteOneStoreFinderFacade" class="com.siteone.facades.neareststore.impl.DefaultSiteOneStoreFinderFacade" parent="defaultStoreFinderFacade">
+		<property name="storeSessionFacade" ref="storeSessionFacade"></property>
+		<property name="siteOnePointOfServiceConverter" ref="pointOfServiceSiteOneConverter"/>
+		<property name="regionPopulator" ref="regionPopulator"></property>
+		<property name="siteOneStoreFinderService" ref="defaultSiteOneStoreFinderService"/>
+	</bean>
+	
+	<alias alias="geoServiceWrapper" name="defaultGoogleMapsGeoServiceWrapper"/>
+	<bean id="defaultGoogleMapsGeoServiceWrapper" class="de.hybris.platform.storelocator.impl.GoogleMapsServiceWrapper">
+		<property name="googleMapTools" ref="googleMapTools"/>
+	</bean>
+		
+  <alias name="defaultSiteOneCustomerFacade" alias="customerFacade"/>
+	<bean id="defaultSiteOneCustomerFacade" class="com.siteone.facades.customer.impl.DefaultSiteOneCustomerFacade" parent="defaultCustomerFacade">
+	    <property name="siteOneAddressVerificationWebService" ref="siteOneAddressVerificationWebService"></property>	
+	    <property name="siteOneAddressVerificationResponseConverter" ref="siteOneAddressVerificationResponseConverter"></property>
+	    <property name="siteonecustomerConverter" ref="siteonecustomerConverter"/>
+	    <property name="oktaAPI" ref="oktaAPI"></property>
+	    <property name="siteOneContactWebService" ref="siteOneContactWebService"></property>
+	    <property name="sessionService" ref="sessionService"/>
+	</bean>
+	
+	<bean id="siteOneAddressVerificationResponseConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="com.siteone.facades.address.data.SiteOneAddressVerificationData"/>
+			<property name="populators">
+				<list>
+					<ref bean="SiteOneWsAddressVerificationReversePopulator"/>
+				</list>
+			</property>
+	</bean>
+	<bean id="SiteOneWsAddressVerificationReversePopulator" class="com.siteone.facades.populators.SiteOneWsAddressVerificationReversePopulator" >
+  </bean>	
+	
+	<bean id="defaultSiteOnePointOfServicePopulator"
+			class="com.siteone.facades.populators.SiteOnePointOfServicePopulator" parent="defaultPointOfServicePopulator">
+			<property name="customerAccountService" ref="customerAccountService"></property>
+	</bean>
+	
+	 <alias name="defaultSiteOneOpeningSchedulePopulator" alias="openingSchedulePopulator"/>
+	<bean id="defaultSiteOneOpeningSchedulePopulator"
+			class="com.siteone.facades.storefinder.populators.SiteOneOpeningSchedulePopulator" parent="defaultOpeningSchedulePopulator">
+			 <property name="timeService" ref="timeService"/>
+        <property name="specialDayConverter" ref="specialOpeningDayConverter"/>
+        <property name="weekDaysConverter" ref="weekdayOpeningDayListConverter"/>
+	</bean>
+	
+	 <alias name="defaultSiteOneSpecialOpeningDayPopulator" alias="specialOpeningDayPopulator"/>
+ <bean id="defaultSiteOneSpecialOpeningDayPopulator"
+          class="com.siteone.facades.storefinder.populators.SiteOneSpecialOpeningDayPopulator"
+          parent="defaultSpecialOpeningDayPopulator"/>
+	
+	
+	<alias name="defaultDeliveryModeAndBranchOrderEntryGroupPopulator" alias="deliveryModeAndBranchOrderEntryGroupPopulator"/>
+    <bean id="defaultDeliveryModeAndBranchOrderEntryGroupPopulator"
+          class="com.siteone.facades.order.converters.populator.DeliveryModeAndBranchOrderEntryGroupPopulator"
+          parent="defaultOrderEntryGroupPopulator">
+        <property name="deliveryModeConverter" ref="deliveryModeConverter"/>
+        <property name="pointOfServiceSiteOneConverter" ref="pointOfServiceSiteOneConverter"/>
+    </bean>
+
+	<bean parent="modifyPopulatorList">
+		<property name="list" ref="pointOfServiceConverter" />
+		<property name="add" ref="pointOfServiceDetailsSiteOneStoreStatusPopulator" />
+	</bean>
+
+	<alias name="defaultSiteOneTimeDataPopulator" alias="timeDataPopulator"/>
+	<bean id="defaultSiteOneTimeDataPopulator"
+			class="com.siteone.facades.populators.SiteOneTimeDataPopulator" parent="defaultTimeDataPopulator">
+	</bean>
+	
+	<alias name="defaultSiteOneProductFacade" alias="siteOneProductFacade"/>
+	<bean id="defaultSiteOneProductFacade" class="com.siteone.facades.product.impl.DefaultSiteOneProductFacade" parent="defaultProductFacade">
+	<property name="siteOneProductService" ref="siteOneProductService"></property>
+	<property name="siteOnePriceWebService" ref="siteOnePriceWebService"></property>
+	<property name="priceDataFactory" ref="priceDataFactory"/>
+	<property name="storeSessionFacade" ref="storeSessionFacade"/>
+	<property name="commonI18NService" ref="commonI18NService"/>
+	<property name="promotionsConverter" ref="promotionsConverter"/>
+	<property name="userFacade" ref="userFacade"/>
+	<property name="sessionService" ref="sessionService"/>
+	<property name="productSellableAndMessagePopulator" ref="productSellableAndMessagePopulator"/>
+	<property name="productPromotionsPopulator" ref="productPromotionsPopulator"/>
+	<property name="commercePriceService" ref="commercePriceService"/>
+	<property name="siteOneStockLevelService" ref="siteOneStockLevelService"/>
+	<property name="messageSource" ref="siteOneFacadeMessageSource" />
+	<property name="productPriceRangePopulator" ref="productPriceRangePopulator"/>
+	<property name="productBasicPopulator" ref="productBasicPopulator"/>
+	<property name="productPrimaryImagePopulator" ref="productPrimaryImagePopulator"/>
+	<property name="productGalleryImagesPopulator" ref="productGalleryImagesPopulator"/>
+	</bean>
+	
+	<alias name="defaultSiteOneStoreDetailsFacade" alias="siteOnestoreDetailsFacade"/>
+	<bean id="defaultSiteOneStoreDetailsFacade"
+			class="com.siteone.facades.store.impl.DefaultSiteOneStoreDetailsFacade">
+		<property name="baseStoreService" ref="baseStoreService"/>
+		<property name="pointOfServiceSiteOneConverter" ref="pointOfServiceSiteOneConverter"/>
+		<property name="storeFinderService" ref="storeFinderService"/>
+	</bean>
+	
+<!--  Quotes -->
+	<alias name="defaultSiteoneQuotesFacade" alias="siteoneQuotesFacade"/>
+	<bean id="defaultSiteoneQuotesFacade"
+			class="com.siteone.facade.order.impl.DefaultSiteoneQuotesFacade">	
+			<property name = "siteonecustomerConverter" ref="siteonecustomerConverter"/>
+			<property name="productService" ref="productService"/>
+	</bean>
+	
+<!-- Project Services -->
+	<alias name="defaultSiteOneProjectServicesFacade" alias="siteOneProjectServicesFacade"/>
+	<bean id="defaultSiteOneProjectServicesFacade"
+			class="com.siteone.facade.order.impl.DefaultSiteOneProjectServicesFacade">
+	</bean>	
+				
+	<alias name="siteOnePointOfServiceConverter" alias="pointOfServiceSiteOneConverter"/>
+	<bean id="siteOnePointOfServiceConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="de.hybris.platform.commercefacades.storelocator.data.PointOfServiceData"/>
+		<property name="populators">
+			<list>
+				<ref bean="defaultSiteOnePointOfServicePopulator" />
+				<ref bean="pointOfServiceDetailsSiteOnePopulator"/>
+				<ref bean="pointOfServiceDetailsSiteOneStoreStatusPopulator"/>
+				<ref bean="siteOnePointOfServiceStoreFeaturePopulator"/>
+			</list>
+		</property>
+	</bean>
+	
+	
+	<alias name="defaultSiteOneDetailsPointOfServicePopulator" alias="pointOfServiceDetailsSiteOnePopulator" />
+	<bean id="defaultSiteOneDetailsPointOfServicePopulator"
+		class="com.siteone.facades.storefinder.populators.SiteOnePointOfServiceDetailsPopulator"
+		parent="defaultPointOfServicePopulator">
+		<property name="configurationService" ref="configurationService"/>
+		<property name="customerAccountService" ref="customerAccountService"></property>
+		<property name="distanceHelper" ref="distanceHelper"/>
+		<property name="customerLocationService" ref="customerLocationService"/>
+	</bean>
+	
+	<alias name="defaultSiteOneDetailsPointOfServiceStoreStatusPopulator" alias="pointOfServiceDetailsSiteOneStoreStatusPopulator" />
+	<bean id="defaultSiteOneDetailsPointOfServiceStoreStatusPopulator"
+		  class="com.siteone.facades.storefinder.populators.SiteOnePointOfServiceStoreStatusPopulator">
+		<property name="messageSource" ref="siteOneFacadeMessageSource" />
+	</bean>
+
+	<bean id="emailSubscriptionsReversePopulator" class="com.siteone.facades.populators.EmailSubscriptionsReversePopulator"/>
+  
+	<bean id="defaultEmailSubscriptionFacade" class="com.siteone.facades.emailsubscription.impl.DefaultEmailSubscriptionFacade">
+		<property name="emailSubscriptionsService" ref="defaultEmailSubscriptionsService"/>
+		<property name="emailSubscriptionReversePopulator" ref="emailSubscriptionsReversePopulator"/>
+		<property name="modelService" ref="modelService"/>
+		
+	</bean>
+     
+    <alias name="defaultSiteOneSolrQueryConverter" alias="solrSearchQueryConverter" />
+	<alias name="defaultSiteOneSolrQueryConverter" alias="solrQueryConverter" />
+	<bean id="defaultSiteOneSolrQueryConverter" class="com.siteone.facades.storeboost.converter.DefaultSiteOneSolrQueryConverter" parent="defaultSolrQueryConverter">
+		<property name="sessionService" ref="sessionService"/>
+		<property name="storeSessionFacade" ref="storeSessionFacade"/>
+	</bean>
+	
+	<alias name="defaultSiteOneCategoryFacade" alias="siteOnecategoryFacade"/>
+	<bean id="defaultSiteOneCategoryFacade"
+			class="com.siteone.facades.category.impl.DefaultSiteOneCategoryFacade">
+		<property name="siteOneCategoryConverter" ref="siteOneCategoryConverter"/>
+		<property name="categoryNavigationConverter" ref="categoryNavigationConverter"/>
+		<property name="defaultGlobalProductNavigationNodeConverter" ref="defaultGlobalProductNavigationNodeConverter"/>
+		<property name="commerceCategoryService" ref="commerceCategoryService"/>
+	</bean>
+	
+	<alias name="siteOneCategoryConverter" alias="siteOneCategoryLandingConverter"/>
+	<bean id="siteOneCategoryConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="de.hybris.platform.commercefacades.product.data.CategoryData"/>
+		<property name="populators">
+			<list>
+				<ref bean="siteOneCategoryPopulator"/>
+			</list>
+		</property>
+	</bean>
+	
+	<alias name="defaultGlobalProductNavigationNodePopulator" alias="globalProductNavigationNodePopulator"/>
+	<bean id="defaultGlobalProductNavigationNodePopulator"
+			class="com.siteone.facades.category.populators.GlobalProductNavigationNodePopulator"/>
+
+	<alias name="defaultGlobalProductNavigationNodeConverter" alias="globalProductNavigationNodeConverter"/>
+	<bean id="defaultGlobalProductNavigationNodeConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="com.siteone.core.dto.navigation.GlobalProductNavigationNodeData"/>
+		<property name="populators">
+			<list>
+				<ref bean="globalProductNavigationNodePopulator"/>
+			</list>
+		</property>
+	</bean> 
+	
+	<alias name="defaultSiteOneCategoryPopulator" alias="siteOneCategoryPopulator" />
+	<bean id="defaultSiteOneCategoryPopulator"
+		class="com.siteone.facades.category.populators.SiteOneCategoryPopulator">
+		<property name="categoryModelUrlResolver" ref="categoryModelUrlResolver"/>
+	</bean>
+	
+	<alias name="siteoneProductConverter" alias="siteOneProductConverter"/>
+	<bean id="SiteOneProductConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="de.hybris.platform.commercefacades.product.data.ProductData"/>
+		<property name="populators">
+		<list>
+			<ref bean="productPopulator"/>
+			<ref bean="productPricePopulator"/>
+		</list>
+		</property>
+		</bean>
+		
+			<alias name="defaultCategoryNavigationConverter" alias="categoryNavigationConverter"/>
+	<bean id="defaultCategoryNavigationConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="de.hybris.platform.commercefacades.product.data.CategoryData"/>
+		<property name="populators">
+			<list>
+				<ref bean="categoryUrlPopulator"/>
+			</list>
+		</property>
+	</bean>
+
+<alias name="defaultSiteOneNavigationCacheValueLoader" alias="siteOneNavigationCacheValueLoader"/>
+	<bean id="defaultSiteOneNavigationCacheValueLoader" class="com.siteone.facades.navigation.cache.SiteOneNavigationCacheValueLoader" scope="tenant">
+		<property name="siteOneCategoryFacade" ref="siteOnecategoryFacade"/>
+	</bean>	
+
+	<alias name="defaultSiteOneCityCacheValueLoader" alias="siteOneCityCacheValueLoader"/>
+	<bean id="defaultSiteOneCityCacheValueLoader" class="com.siteone.facades.storedirectory.cache.SiteOneCityCacheValueLoader" scope="tenant">
+		<property name="siteOneStoreFinderFacade" ref="storeFinderFacade"/>
+	</bean>
+	<alias name="defaultSiteOneStateCacheValueLoader" alias="siteOneStateCacheValueLoader"/>
+	<bean id="defaultSiteOneStateCacheValueLoader" class="com.siteone.facades.storedirectory.cache.SiteOneStateCacheValueLoader" scope="tenant">
+		<property name="siteOneStoreFinderFacade" ref="storeFinderFacade"/>
+	</bean>
+
+	
+	<!-- <alias name="b2bCustomerPopulator" alias="B2BCustomerPopulator"/>
+	<bean id="b2bCustomerPopulator" class="de.hybris.platform.b2bcommercefacades.company.converters.populators.B2BCustomerPopulator" >
+		<property name="b2bUnitService" ref="b2bUnitService"/>
+		<property name="commonI18NService" ref="commonI18NService"/>
+		<property name="currencyConverter" ref="currencyConverter"/>
+		<property name="b2BUserGroupsLookUpStrategy" ref="b2bUserGroupsLookUpStrategy"/>
+	</bean> -->
+	
+	<alias name="DefaultSiteOneB2BUserFacade" alias="b2bUserFacade" />
+	<bean id="DefaultSiteOneB2BUserFacade" class="com.siteone.facades.company.impl.DefaultSiteOneB2BUserFacade" parent="defaultB2BUserFacade">
+		<property name="b2BUserConverter" ref="b2bUserConverter" />
+		<property name="siteOneContactWebService" ref="siteOneContactWebService"/>
+		<property name="oktaAPI" ref="oktaAPI"/>
+		<property name="customerAccountService" ref="customerAccountService"/>
+		<property name="b2bUnitService" ref="b2bUnitService"/>
+		<property name="languageDao" ref="languageDao" />
+	</bean>
+	
+	<alias name="defaultSiteOneB2BCustomerConverter" alias="b2BCustomerConverter" />												   
+	<bean id="defaultSiteOneB2BCustomerConverter" parent="defaultCustomerConverter">
+	</bean>
+
+	<bean parent="modifyPopulatorList">
+		<property name="list" ref="customerConverter"/>
+		<property name="add" ref="siteOneB2BCustomerPopulator"/>
+	</bean>
+	
+	<alias name="defaultSiteOneB2BCustomerPopulator" alias="siteOneB2BCustomerPopulator"/>
+	<bean id="defaultSiteOneB2BCustomerPopulator" class="com.siteone.facades.populators.SiteOneB2BCustomerPopulator" parent="b2bCustomerPopulator">
+		<property name="b2bUnitService" ref="b2bUnitService"/>
+		<property name="commonI18NService" ref="commonI18NService"/>
+		<property name="currencyConverter" ref="currencyConverter"/>
+		<property name="b2BUserGroupsLookUpStrategy" ref="b2bUserGroupsLookUpStrategy"/>	
+		<property name="imagePopulator" ref="imagePopulator"/>
+	</bean>
+	
+	<alias name="defaultSiteOneB2BCustomerReverseConverter" alias="b2BCustomerReverseConverter"/>
+	<bean id="defaultSiteOneB2BCustomerReverseConverter" parent="abstractPopulatingConverter" >
+		<property name="targetClass" value="de.hybris.platform.b2b.model.B2BCustomerModel"/>
+		<property name="populators">
+			<list>
+			    <ref bean="b2BCustomerReversePopulator"/>
+			</list>
+		</property>
+	</bean>
+	
+	<alias name="defaultSiteOneB2BCustomerReversePopulator" alias="b2BCustomerReversePopulator"/>
+	<bean id="defaultSiteOneB2BCustomerReversePopulator" class="com.siteone.facades.populators.SiteOneB2BCustomerReversePopulator" parent="defaultB2BCustomerReversePopulator">
+	</bean>
+
+	<alias name="defaultSiteOneAddressReversePopulator" alias="addressReversePopulator"/>
+	<bean id="defaultSiteOneAddressReversePopulator" class="com.siteone.facades.populators.SiteOneAddressReversePopulator" parent="defaultAddressReversePopulator">
+	</bean>
+	
+	<alias name="defaultSiteOneAddressPopulator" alias="addressPopulator"/>
+	<bean id="defaultSiteOneAddressPopulator" class="com.siteone.facades.populators.SiteOneAddressPopulator" parent="defaultAddressPopulator">
+	</bean>
+	
+	<alias name="SiteOneB2BUnitPopulator" alias="b2bUnitPopulator" />
+	<bean id="SiteOneB2BUnitPopulator" class="com.siteone.facades.populators.SiteOneB2BUnitPopulator" parent="defaultB2BUnitPopulator" >
+	</bean>
+	
+	<alias name="defaultSiteOneSearchResultProductPopulator" alias="commerceSearchResultProductPopulator"/>
+    <bean id="defaultSiteOneSearchResultProductPopulator"
+          class="com.siteone.facades.populators.SiteOneSearchResultProductPopulator"
+          parent="variantCommerceSearchResultProductPopulator">
+    </bean>
+
+	<bean id="defaultSiteOneGetItFastCountsPopulator"
+		  class="com.siteone.facades.populators.SiteOneGetItFastCountsPopulator">
+	</bean>
+
+	<!--<alias name="defaultCommerceSolrSearchResponseConverter" alias="commerceSolrSearchResponseConverter"/>
+	<bean id="defaultCommerceSolrSearchResponseConverter" parent="abstractPopulatingConverter">
+		<property name="populators">
+			<list merge="true">
+				<ref bean="defaultSiteOneGetItFastCountsPopulator"/>
+			</list>
+		</property>
+	</bean>-->
+
+	<alias name="defaultCommerceSolrSearchResponseConverter" alias="commerceSolrSearchResponseConverter" />
+	<bean id="defaultCommerceSolrSearchResponseConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="de.hybris.platform.commerceservices.search.facetdata.ProductCategorySearchPageData" />
+		<property name="populators">
+			<list>
+				<ref bean="commerceSearchResponseQueryPopulator" />
+				<ref bean="commerceSearchResponsePaginationPopulator" />
+				<ref bean="commerceSearchResponseResultsPopulator" />
+				<ref bean="commerceSearchResponseFacetsPopulator" />
+				<ref bean="commerceSearchResponseFacetFilterPopulator" />
+				<ref bean="commerceSearchResponseBreadcrumbsPopulator" />
+				<ref bean="commerceSearchResponseSortsPopulator" />
+				<ref bean="commerceSearchResponseFreeTextSearchPopulator" />
+				<ref bean="commerceSearchResponseCategoryCodePopulator" />
+				<ref bean="commerceSearchResponseSubCategoriesPopulator" />
+				<ref bean="commerceSearchResponseSpellingSuggestionPopulator" />
+				<ref bean="commerceSearchResponseKeywordRedirectPopulator" />
+				<ref bean="defaultSiteOneGetItFastCountsPopulator"/>
+			</list>
+		</property>
+	</bean>
+
+    <alias name="defaultSiteOneB2BUnitBasicPopulator" alias="siteOneB2BUnitBasicPopulator" />
+	<bean id="defaultSiteOneB2BUnitBasicPopulator" class="com.siteone.facades.populators.SiteOneB2BUnitBasicPopulator">
+	<property name="imagePopulator" ref="imagePopulator"/>
+	<property name="b2BUnitService" ref="b2bUnitService"/>
+	</bean>
+	
+	<alias name="defaultSiteOneB2BUnitFacade" alias="b2bUnitFacade" />
+	<bean id="defaultSiteOneB2BUnitFacade" class="com.siteone.facades.customer.impl.DefaultSiteOneB2BUnitFacade" parent="defaultB2BUnitFacade">
+		<property name="unitB2BService" ref="b2bUnitService"/>
+	</bean>
+	
+	 <alias name="defaultSiteOnePurchProdPopulator" alias="siteOnePurchProdPopulator" />
+	<bean id="defaultSiteOnePurchProdPopulator" class="com.siteone.facades.populators.SiteOnePurchProdPopulator">
+	   <property name="siteOneOrderEntriesProductConverter" ref="siteOneOrderEntriesProductConverter"/>
+		<property name="productService" ref="productService"/>
+	</bean>
+	
+	<alias name="defaultSiteOnePurchProdConverter" alias="siteonePurchProdConverter"/>
+	<bean id="defaultSiteOnePurchProdConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="de.hybris.platform.commercefacades.product.data.ProductData"/>
+		<property name="populators">
+			<list>
+				<ref bean="siteOnePurchProdPopulator"/>
+			</list>
+		</property>
+	</bean>
+	
+	<alias name="defaultSiteOneSearchSolrQueryPopulator" alias="commerceSearchSolrQueryPopulator"/>
+    <bean id="defaultSiteOneSearchSolrQueryPopulator"
+          class="com.siteone.facades.populators.SiteOneSearchSolrQueryPopulator"
+          parent="defaultCommerceSearchSolrQueryPopulator">
+        <property name="storeSessionFacade" ref="storeSessionFacade"/>
+    </bean>
+    
+    <alias name="defaultContentSearchFacade" alias="contentSearchFacade"/>
+	<bean id="defaultContentSearchFacade" class="com.siteone.facades.content.search.facade.impl.DefaultContentSearchFacade">
+		<property name="solrContentSearchService" ref="solrContentSearchService"/>
+		<property name="autocompleteService" ref="commerceAutocompleteService"/>
+		<property name="contentSearchPageConverter" ref="contentSearchPageConverter"/>
+		<property name="searchQueryDecoder" ref="solrSearchQueryDecoder"/>
+		<property name="autocompleteSuggestionConverter" ref="autocompleteSuggestionConverter"/>
+		<property name="threadContextService" ref="threadContextService"/>
+	</bean>
+	
+	<alias name="defaultContentSearchPageConverter" alias="contentSearchPageConverter"/>
+	<bean id="defaultContentSearchPageConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="com.siteone.contentsearch.ContentSearchPageData"/>
+		<property name="populators">
+			<list>
+				<ref bean="contentSearchPagePopulator"/>
+			</list>
+		</property>
+	</bean>
+	
+	<alias name="contentSearchPagePopulator" alias="contentSearchPagePopulator"/>
+	<bean id="contentSearchPagePopulator" class="com.siteone.facades.content.search.populator.ContentSearchPagePopulator">
+		<property name="breadcrumbConverter" ref="breadcrumbConverter"/>
+		<property name="facetConverter" ref="facetConverter"/>
+		<property name="searchResultContentConverter" ref="commerceSearchResultContentConverter"/>
+		<property name="searchStateConverter" ref="solrSearchStateConverter"/>
+		<property name="categoryConverter" ref="categoryConverter"/>
+		<property name="spellingSuggestionConverter" ref="spellingSuggestionConverter"/>
+	</bean>
+	
+	<alias name="defaultCommerceSearchResultContentConverter" alias="commerceSearchResultContentConverter"/>
+	<bean id="defaultCommerceSearchResultContentConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="com.siteone.contentsearch.ContentData"/>
+		<property name="populators">
+			<list>
+				<ref bean="searchResultContentPopulator"/>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="searchResultContentPopulator" class="com.siteone.facades.content.search.populator.SearchResultContentPopulator">
+	</bean>
+	
+	<alias name="defaultCommerceContentSearchQueryPageableConverter" alias="contentSearchQueryPageableConverter" />
+	<bean id="defaultCommerceContentSearchQueryPageableConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="de.hybris.platform.commerceservices.search.solrfacetsearch.data.SolrSearchRequest" />
+		<property name="populators">
+			<list>
+				<ref bean="commerceContentSearchSolrQueryPopulator" />
+				<ref bean="commerceSearchPagePopulator" />
+				<ref bean="commerceSearchSortPopulator" />
+				<ref bean="commerceContentSearchTextPopulator" />
+				<ref bean="commerceSearchFiltersPopulator" />
+			</list>
+		</property>
+	</bean>
+	
+	<alias name="defaultCommerceContentSearchSolrQueryPopulator" alias="commerceContentSearchSolrQueryPopulator" />
+	<bean id="defaultCommerceContentSearchSolrQueryPopulator" class="com.siteone.facades.content.search.populator.ContentSearchSolrQueryPopulator">
+		<property name="catalogVersionService" ref="catalogVersionService" />
+		<property name="baseSiteService" ref="baseSiteService" />
+		<property name="commonI18NService" ref="commonI18NService" />
+		<property name="baseStoreService" ref="baseStoreService" />
+		<property name="facetSearchService" ref="facetSearchService" />
+		<property name="facetSearchConfigService" ref="facetSearchConfigService" />
+		<property name="solrFacetSearchConfigSelectionStrategy" ref="solrFacetSearchConfigSelectionStrategy" />
+		<property name="searchQueryTemplateNameResolver" ref="searchQueryTemplateNameResolver"/>
+		<property name="storeSessionFacade" ref="storeSessionFacade"/>
+	</bean>
+	
+	<alias name="defaultCommerceContentSearchTextPopulator" alias="commerceContentSearchTextPopulator" />
+	<bean id="defaultCommerceContentSearchTextPopulator" class="com.siteone.facades.content.search.populator.ContentSearchTextPopulator">
+		<property name="freeTextQueryBuilders">
+			<list>
+				<bean class="com.siteone.core.solrfacetsearch.querybuilder.impl.DefaultSiteOneFreeTextQueryBuilder">
+					<property name="propertyName" value="sopagecontent" />
+					<property name="boost" value="100" />
+				</bean>
+				<bean class="com.siteone.core.solrfacetsearch.querybuilder.impl.DefaultSiteOneFreeTextQueryBuilder">
+					<property name="propertyName" value="sopagetitle" />
+					<property name="boost" value="90" />
+				</bean>
+				<bean class="com.siteone.core.solrfacetsearch.querybuilder.impl.DefaultSiteOneFreeTextQueryBuilder">
+					<property name="propertyName" value="sopagename" />
+					<property name="boost" value="80" />
+				</bean>
+				<bean class="com.siteone.core.solrfacetsearch.querybuilder.impl.DefaultSiteOneFreeTextQueryBuilder">
+					<property name="propertyName" value="sopagecode" />
+					<property name="boost" value="70" />
+				</bean>
+				<bean class="com.siteone.core.solrfacetsearch.querybuilder.impl.DefaultSiteOneFreeTextQueryBuilder">
+					<property name="propertyName" value="sopageurl" />
+					<property name="boost" value="60" />
+				</bean>
+				<bean class="com.siteone.core.solrfacetsearch.querybuilder.impl.DefaultSiteOneFreeTextQueryBuilder">
+					<property name="propertyName" value="sopagedescription" />
+					<property name="boost" value="95" />
+				</bean>
+				<bean class="com.siteone.core.solrfacetsearch.querybuilder.impl.DefaultSiteOneFreeTextQueryBuilder">
+					<property name="propertyName" value="sosearchcontenttags" />
+					<property name="boost" value="85" />
+				</bean>
+				<!-- <bean class="com.siteone.facades.content.search.populator.DefaultContentFreeTextQueryBuilder">
+					<property name="propertyName" value="sopage" />
+					<property name="boost" value="100" />
+					<property name="attributes" ref="attributeList"/>
+				</bean> -->
+			</list>
+		</property>
+	</bean>
+	
+	<util:list id="attributeList" value-type="java.lang.String">
+        <value>name</value>
+        <value>uid</value>
+        <value>content</value>
+        <value>label</value>
+        <value>title</value>
+    </util:list>
+	
+	<alias name="defaultCommerceSolrContentSearchResponseConverter" alias="commerceSolrContentSearchResponseConverter" />
+	<bean id="defaultCommerceSolrContentSearchResponseConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="com.siteone.contentsearch.ContentSearchPageData" />
+		<property name="populators">
+			<list>
+				<ref bean="commerceSearchResponseQueryPopulator" />
+				<ref bean="commerceSearchResponsePaginationPopulator" />
+				<ref bean="commerceSearchResponseResultsPopulator" />
+				<ref bean="commerceSearchResponseFacetsPopulator" />
+				<ref bean="commerceSearchResponseFacetFilterPopulator" />
+				<ref bean="commerceSearchResponseBreadcrumbsPopulator" />
+				<ref bean="commerceSearchResponseSortsPopulator" />
+				<ref bean="commerceContentSearchResponseFreeTextSearchPopulator" />
+				<ref bean="commerceContentSearchResponseSpellingSuggestionPopulator" />
+				<!-- <ref bean="commerceSearchResponseKeywordRedirectPopulator" /> -->
+			</list>
+		</property>
+	</bean>
+	
+	<alias name="defaultCommerceContentSearchResponseFreeTextSearchPopulator" alias="commerceContentSearchResponseFreeTextSearchPopulator" />
+	<bean id="defaultCommerceContentSearchResponseFreeTextSearchPopulator" class="com.siteone.facades.content.search.populator.ContentSearchResponseFreeTextSearchPopulator" />
+	
+	<alias name="defaultCommerceContentSearchResponseSpellingSuggestionPopulator" alias="commerceContentSearchResponseSpellingSuggestionPopulator" />
+	<bean id="defaultCommerceContentSearchResponseSpellingSuggestionPopulator" class="com.siteone.facades.content.search.populator.ContentSearchResponseSpellingSuggestionPopulator"/>
+
+    <alias name="defaultSiteOneCommerceIndexedTypePopulator" alias="commerceIndexedPropertyPopulator" />
+	<bean id="defaultSiteOneCommerceIndexedTypePopulator" class="com.siteone.facades.populators.SiteOneCommerceIndexedTypePropertyPopulator" parent="defaultCommerceIndexedPropertyPopulator">
+	</bean>
+	 <alias name="defaultSiteOneCompareProductFacade" alias="siteOneCompareProductFacade" />
+     <bean id="defaultSiteOneCompareProductFacade" class="com.siteone.facades.product.impl.DefaultSiteOneCompareProductFacade" >
+   </bean>
+   <alias name="defaultSiteOneSDSProductSearchFacade" alias="siteOneSDSProductSearchFacade"/>
+    <bean id="defaultSiteOneSDSProductSearchFacade" class="com.siteone.facades.sds.impl.DefaultSiteOneSDSProductSearchFacade" parent="defaultSolrProductSearchFacade" >
+    <property name="siteOneSDSProductSearchService" ref="defaultSiteOneSDSProductSearchService"></property>
+    <property name="sdsProductCategorySearchPageConverter" ref="defaultSDSProductCategorySearchPageConverter" ></property>
+	<property name="siteoneProductSearchService" ref="commerceProductSearchService"/>
+    <property name="siteoneProductCategorySearchPageConverter" ref="productCategorySearchPageConverter"/>
+        
+	</bean>
+	
+	
+	<bean id="defaultSDSSearchQueryPageableConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="de.hybris.platform.commerceservices.search.solrfacetsearch.data.SolrSearchRequest" />
+		<property name="populators">
+			<list>
+				<ref bean="sdsSearchSolrQueryPopulator" />
+				<ref bean="commerceSearchPagePopulator" />
+				<ref bean="commerceSearchTextPopulator" />
+				<ref bean="commerceSearchFiltersPopulator" />
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="sdsSearchSolrQueryPopulator" class="com.siteone.facades.sds.populator.SDSSearchSolrQueryPopulator" parent="defaultCommerceSearchSolrQueryPopulator">
+	</bean>
+	
+	<bean id="defaultSDSSearchRequestConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="de.hybris.platform.commerceservices.search.solrfacetsearch.data.SolrSearchResponse" />
+		<property name="populators">
+			<list>
+				<ref bean="sdsSearchRequestResponsePopulator" />
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="sdsSearchRequestResponsePopulator" class="com.siteone.facades.sds.populator.SDSSearchRequestResponsePopulator">
+	<property name="solrFacetSearchService" ref="solrFacetSearchService"/>
+	</bean>
+	
+	<bean id="defaultSDSSearchResponseConverter" parent="abstractPopulatingConverter">
+	<property name="targetClass" value="de.hybris.platform.commerceservices.search.facetdata.ProductCategorySearchPageData" />
+		<property name="populators">
+			<list>
+				<ref bean="sdsSearchResponseQueryPopulator" />
+				<ref bean="sdsSearchResponsePaginationPopulator" />
+				<ref bean="sdsSearchResponseResultsPopulator" />
+				<ref bean="commerceSearchResponseFacetsPopulator" />
+				<ref bean="commerceSearchResponseFacetFilterPopulator" />
+			</list>
+		</property>
+	</bean>
+	
+	<alias name="defaultSDSSearchResponseQueryPopulator" alias="sdsSearchResponseQueryPopulator" />
+	<bean id="defaultSDSSearchResponseQueryPopulator" class="com.siteone.facades.sds.populator.SDSSearchResponseQueryPopulator" />
+
+	<alias name="defaultSDSSearchResponsePaginationPopulator" alias="sdsSearchResponsePaginationPopulator" />
+	<bean id="defaultSDSSearchResponsePaginationPopulator" class="com.siteone.facades.sds.populator.SDSSearchResponsePaginationPopulator" />
+	
+	
+	<alias name="defaultSDSSearchResponseResultsPopulator" alias="sdsSearchResponseResultsPopulator" />
+	<bean id="defaultSDSSearchResponseResultsPopulator" class="com.siteone.facades.sds.populator.SDSSearchResponseResultsPopulator" >
+	<property name="searchResultConverter" ref="documentSearchResultConverter"></property>
+	</bean>
+	
+	<bean id="defaultSDSProductCategorySearchPageConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass"
+					 value="de.hybris.platform.commerceservices.search.facetdata.ProductCategorySearchPageData"/>
+		<property name="populators">
+			<list>
+				<ref bean="sdsProductCategorySearchPagePopulator"/>
+			</list>
+		</property>
+	</bean>
+	<alias name="defaultSDSProductCategorySearchPagePopulator" alias="sdsProductCategorySearchPagePopulator"/>
+	<bean id="defaultSDSProductCategorySearchPagePopulator"
+			class="com.siteone.facades.sds.populator.SDSProductCategorySearchPagePopulator">
+		<property name="sdsSearchResultProductConverter" ref="sdsSearchResultProductConverter"/>
+	</bean>
+
+  <alias name="defaultSDSSearchResultProductConverter" alias="sdsSearchResultProductConverter"/>
+	<bean id="defaultSDSSearchResultProductConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="de.hybris.platform.commercefacades.product.data.ProductData"/>
+		<property name="populators">
+			<list>
+				<ref bean="sdsSearchResultProductPopulator"/>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="sdsSearchResultProductPopulator" class="com.siteone.facades.sds.populator.SDSSearchResultProductPopulator">
+	</bean>
+	
+	<alias name="defaultSiteOneCustomerConverter" alias="siteonecustomerConverter"/>
+	<bean id="defaultSiteOneCustomerConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="de.hybris.platform.commercefacades.user.data.CustomerData"/>
+		<property name="populators">
+			<list>
+				<ref bean="siteOnecustomerPopulator"/>
+			</list>
+		</property>
+	</bean>
+
+	<alias name="defaultSiteOneCustomerPopulator" alias="siteOnecustomerPopulator"/>
+	<bean id="defaultSiteOneCustomerPopulator" class="com.siteone.facades.customer.populator.SiteOneCustomerDetailPopulator">
+		<property name="userService" ref="userService"/>
+	</bean>
+	
+	<alias name="defaultSiteOneEventFacade" alias="siteOneEventFacade"/>
+	<bean id="defaultSiteOneEventFacade" class="com.siteone.facades.events.impl.DefaultSiteOneEventFacade">
+	</bean>
+	
+	<alias name="defaultSiteOneEventConverter" alias="siteoneEventConverter"/>
+	<bean id="defaultSiteOneEventConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="com.siteone.facade.EventData"/>
+		<property name="populators">
+			<list>
+				<ref bean="siteOneEventPopulator"/>
+			</list>
+		</property>
+	</bean>
+	
+	<alias name="defaultSiteOneEventPopulator" alias="siteOneEventPopulator"/>
+	<bean id="defaultSiteOneEventPopulator"
+			class="com.siteone.facades.events.populator.SiteOneEventPopulator">
+		<property name="imagePopulator" ref="imagePopulator"/>
+	</bean>
+	
+	<!-- <alias name="defaultSiteOneCSPRequestConverter" alias="siteOneCSPRequestConverter"/>
+	<bean id="defaultSiteOneCSPRequestConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="com.siteone.integration.product.price.data.SiteOneCSPRequestData"/>
+		<property name="populators">
+			<list>
+				<ref bean="siteOneCSPRequestPopulator"/>
+			</list>
+		</property>
+	</bean>
+	
+	<alias name="defaultSiteOneCSPProductRequestConverter" alias="siteOneCSPProductRequestConverter"/>
+	<bean id="defaultSiteOneCSPProductRequestConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="com.siteone.integration.product.price.data.SiteOneCSPProductRequestData"/>
+		<property name="populators">
+			<list>
+				<ref bean="siteOneCSPProductRequestPopulator"/>
+     </list>
+     </property>
+	</bean> -->
+	
+	<alias name="defaultSiteOneProductBasicPopulator" alias="productBasicPopulator"/>
+	<bean id="defaultSiteOneProductBasicPopulator" class="com.siteone.facades.populators.SiteOneProductBasicPopulator" parent="defaultProductBasicPopulator">
+		<property name="enumerationService" ref="enumerationService"/>
+		<property name="messageSource" ref="siteOneFacadeMessageSource" />
+		<property name="siteOneProductUOMService" ref="siteOneProductUOMService"></property>
+	</bean>
+	
+	<alias name="defaultSiteOneStockPopulator" alias="stockPopulator"/>
+	<bean id="defaultSiteOneStockPopulator" parent="defaultStockPopulator" class="com.siteone.facades.populators.SiteOneStockPopulator">
+		<property name="siteOneStoreFinderService" ref="defaultSiteOneStoreFinderService"/>
+		<property name="sessionService" ref="sessionService"/>
+		<property name="stockService" ref="stockService"/>
+    <property name="storeSessionFacade" ref="storeSessionFacade"/>
+		<property name="siteOneStockLevelService" ref="siteOneStockLevelService"/>
+	</bean>
+
+	<!-- <alias name="defaultSiteOneCSPRequestPopulator" alias="siteOneCSPRequestPopulator"/>
+	<bean id="defaultSiteOneCSPRequestPopulator" class="com.siteone.facades.customer.price.populator.SiteOneCSPRequestPopulator">
+		<property name="userService" ref="userService"/>
+		<property name="storeSessionFacade" ref="storeSessionFacade"></property>
+	</bean>
+	
+	<alias name="defaultSiteOneCSPProductRequestPopulator" alias="siteOneCSPProductRequestPopulator"/>
+	<bean id="defaultSiteOneCSPProductRequestPopulator"
+			class="com.siteone.facades.customer.price.populator.SiteOneCSPProductRequestPopulator">
+	</bean> -->
+
+	<alias name="defaultSiteOneProductDataSheetPopulator" alias="productDataSheetPopulator"/>
+	<bean id="defaultSiteOneProductDataSheetPopulator" class="com.siteone.facades.populators.SiteOneProductDataSheetPopulator">
+	</bean>
+	
+	<alias name="defaultSiteOneProductDataForPopupPopulator" alias="productDataForPopupPopulatorr"/>
+	<bean id="defaultSiteOneProductDataForPopupPopulator" class="com.siteone.facades.populators.SiteOneProductDataForPopupPopulator">
+	</bean>
+	
+	<alias name="siteoneSavedListFacade" alias="siteoneSavedListFacade"/>
+	<bean id="siteoneSavedListFacade" class="com.siteone.facade.savedList.impl.DefaultSiteoneSavedListFacade"/>
+	
+	<alias name="listSearchFacade" alias="listSearchFacade"/>
+	<bean id="listSearchFacade" class="com.siteone.facades.events.impl.DefaultListSearchFacade">
+	<property name="solrListSearchService" ref="solrListSearchService"/>
+		<property name="listSearchPageConverter" ref="listSearchPageConverter"/>
+		<property name="searchQueryDecoder" ref="solrSearchQueryDecoder"/>
+		<property name="threadContextService" ref="threadContextService"/>
+	</bean>
+	<alias name="defaultsiteoneSavedListConverter" alias="siteoneSavedListConverter"/>
+	<bean id="defaultsiteoneSavedListConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="com.siteone.facades.savedList.data.SavedListData"/>
+		<property name="populators">
+		<list>
+				<ref bean="siteoneSavedListPopulator"/>
+		</list>
+		</property>
+	</bean>
+	
+	<bean id="siteoneSavedListPopulator" class="com.siteone.facades.savedList.populator.SiteoneSavedListPopulator">
+	<property name="messageSource" ref="siteOneFacadeMessageSource" />
+	</bean>
+	
+	<alias name="defaultsiteoneAllSavedListConverter" alias="siteoneAllSavedListConverter"/>
+	<bean id="defaultsiteoneAllSavedListConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="com.siteone.facades.savedList.data.SavedListData"/>
+		<property name="populators">
+		<list>
+				<ref bean="siteoneAllSavedListPopulator"/>
+		</list>
+		</property>
+	</bean>
+	
+	<bean id="siteoneAllSavedListPopulator" class="com.siteone.facades.savedList.populator.SiteoneAllSavedListPopulator">
+	<property name="messageSource" ref="siteOneFacadeMessageSource" />
+	</bean>
+	
+	<alias name="defaultsiteoneHeaderListConverter" alias="siteoneHeaderListConverter"/>
+	<bean id="defaultsiteoneHeaderListConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="com.siteone.facades.savedList.data.ListHeaderData"/>
+		<property name="populators">
+			<list>
+				<ref bean="siteoneHeaderListPopulator"/>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="siteoneHeaderListPopulator" class="com.siteone.facades.savedList.populator.SiteoneHeaderListPopulator">
+	</bean>
+	
+	<alias name="defaultSavedListReversePopulator" alias="savedListReversePopulator"/>
+	<bean id="defaultSavedListReversePopulator" class="com.siteone.facades.savedList.populator.SavedListReversePopulator"/>
+	
+	
+	<alias name="defaultsiteoneSavedListEntryConverter" alias="siteoneSavedListEntryConverter"/>
+	<bean id="defaultsiteoneSavedListEntryConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="com.siteone.facades.savedList.data.SavedListEntryData"/>
+		<property name="populators">
+		<list>
+				<ref bean="siteoneSavedListEntryPopulator"/>
+		</list>
+		</property>
+	</bean>
+	
+	<bean id="siteoneSavedListEntryPopulator" class="com.siteone.facades.savedList.populator.SiteoneSavedListEntryPopulator"/>
+	
+	<alias name="defaultProductSellableAndMessagePopulator" alias="productSellableAndMessagePopulator"/>
+	<bean id="defaultProductSellableAndMessagePopulator" class="com.siteone.facades.populators.ProductSellableAndMessagePopulator">
+		<property name="storeSessionFacade" ref="storeSessionFacade"/>
+		<property name="messageSource" ref="siteOneFacadeMessageSource" />
+		<property name="productService" ref="productService"/>
+	</bean>
+	
+	<alias name="defaultSiteOneProductCSPPopulator" alias="productCSPPopulator"/>
+	<bean id="defaultSiteOneProductCSPPopulator" class="com.siteone.facades.populators.SiteOneProductCSPPopulator">
+		<property name="userFacade" ref="userFacade"/>
+		<property name="siteOneProductFacade" ref="siteOneProductFacade"/>
+		<property name="storeSessionFacade" ref="storeSessionFacade"/>
+		<property name="userService" ref="userService"/>
+		<property name="cartService" ref="cartService"/>
+	</bean>
+	
+	<alias name="defaultProductConfiguredPopulator" alias="productConfiguredPopulator"/>
+	<bean id="defaultProductConfiguredPopulator" class="de.hybris.platform.commercefacades.converter.impl.DefaultConfigurablePopulator" >
+		<property name="populators">
+			<map key-type="de.hybris.platform.commercefacades.product.ProductOption">
+				<entry key="BASIC" value-ref="productBasicPopulatorList"/>
+				<entry key="PRICE" value-ref="productPricePopulatorList"/>
+                <entry key="PRICE_RANGE" value-ref="productPriceRangePopulator"/>
+				<entry key="GALLERY" value-ref="productGalleryPopulatorList"/>
+				<entry key="SUMMARY" value-ref="productSummaryPopulatorList"/>
+				<entry key="DESCRIPTION" value-ref="productDescriptionPopulatorList"/>
+				<entry key="CATEGORIES" value-ref="productCategoriesPopulatorList"/>
+				<entry key="PROMOTIONS" value-ref="productPromotionsPopulatorList"/>
+				<entry key="STOCK" value-ref="productStockPopulatorList"/>
+				<entry key="REVIEW" value-ref="productReviewPopulatorList"/>
+				<entry key="CLASSIFICATION" value-ref="productClassificationPopulatorList"/>
+				<entry key="VARIANT_FULL" value-ref="productVariantFullPopulatorList"/>
+				<entry key="REFERENCES" value-ref="productReferencesPopulator"/>
+				<entry key="DELIVERY_MODE_AVAILABILITY" value-ref="productDeliveryModeAvailabilityPopulator"/>
+				<entry key="AVAILABILITY_MESSAGE" value-ref="productSellableAndMessagePopulator"/>
+				<entry key="DATA_SHEET" value-ref="productDataSheetPopulator"/>
+				<entry key="STORE_POPUP" value-ref="productDataForPopupPopulatorr"/>
+				<entry key="CUSTOMER_PRICE" value-ref="productCSPPopulator"></entry>
+				<entry key="URL" value-ref="productUrlPopulator"/>
+				<entry key="VARIANT_MATRIX_BASE" value-ref="productVariantMatrixPopulator"/>
+				<entry key="VARIANT_MATRIX_URL" value-ref="configVariantOptionDataUrlPopulator"/>
+				<entry key="VARIANT_MATRIX_MEDIA" value-ref="configVariantOptionDataMediaPopulator"/>
+			</map>
+		</property>
+	</bean>
+	
+	<alias name="defaultSiteOneCartFacade" alias="cartFacade"/>
+	<bean id="defaultSiteOneCartFacade" class="com.siteone.facades.cart.DefaultSiteOneCartFacade" parent="defaultCartFacade">
+		<property name="messageSource" ref="siteOneFacadeMessageSource" />
+	</bean>
+	
+	<alias name="DefaultSiteOneB2BCheckoutFacade" alias="b2bCheckoutFacade"/>
+    <bean id="DefaultSiteOneB2BCheckoutFacade" class="com.siteone.facades.checkout.impl.DefaultSiteOneB2BCheckoutFacade" parent="defaultB2BCheckoutFacade">
+    	<property name="siteOneCheckoutRequestedDateUtils" ref="siteOneCheckoutRequestedDateUtils"/>
+    	<property name="messageSource" ref="siteOneFacadeMessageSource" />
+        <property name="userFacade" ref="userFacade"/>
+        <property name="cartService" ref="cartService"/>
+    </bean>
+    
+    <alias name="siteOneCheckoutRequestedDateUtils" alias="siteOneCheckoutRequestedDateUtils"/>
+    <bean id="siteOneCheckoutRequestedDateUtils" class="com.siteone.checkout.facades.utils.SiteOneCheckoutRequestedDateUtils">
+    </bean>
+    
+    <alias name="defaultSiteOneCartPopulator" alias="cartPopulator"/>
+	<bean id="defaultSiteOneCartPopulator" class="com.siteone.facades.populators.SiteOneCartPopulator"  parent="defaultCartPopulator">
+		<property name="pointOfServiceSiteOneConverter" ref="pointOfServiceSiteOneConverter"/>
+		<property name="siteonecustomerConverter" ref="siteonecustomerConverter"/>
+		<property name="siteOneStockLevelService" ref="siteOneStockLevelService"/>
+		<property name="storeSessionFacade" ref="storeSessionFacade"/>
+		<property name="messageSource" ref="siteOneFacadeMessageSource" />
+	</bean>
+
+	<alias alias="siteOneRegionFacade" name="defaultSiteOneRegionFacade" />
+	<bean id="defaultSiteOneRegionFacade" class="com.siteone.facade.location.impl.DefaultSiteOneRegionFacade">
+	  <property name="siteOneRegionService" ref="siteOneRegionService"></property>
+	  <property name="regionPopulator" ref="regionPopulator"></property>
+	</bean>
+
+	<bean parent="modifyPopulatorList">
+		<property name="list" ref="cartConverter"/>
+		<!--  <property name="remove" ref="groupOrderEntryPopulator"/> -->
+		<property name="add" ref="deliveryModeAndBranchOrderEntryGroupPopulator"/>
+		
+	</bean>
+	
+	<bean parent="modifyPopulatorList">
+		<property name="list" ref="orderConverter"/>
+		<!--  <property name="remove" ref="groupOrderEntryPopulator"/>-->
+		<property name="add" ref="deliveryModeAndBranchOrderEntryGroupPopulator"/>
+	</bean>
+	
+	<bean parent="modifyPopulatorList">
+		<property name="list" ref="customerConverter"/>
+		<property name="remove" ref="b2bCustomerApproverPopulator"/>
+	</bean>
+	
+	<bean parent="modifyPopulatorList">
+		<property name="list" ref="customerConverter"/>
+		<property name="remove" ref="b2bCustomerPermissionPopulator"/>
+	</bean>
+
+	<alias name="defaultSiteOneProductUrlPopulator" alias="productUrlPopulator"/>
+	<bean id="defaultSiteOneProductUrlPopulator"
+			class="com.siteone.facades.populators.SiteOneProductUrlPopulator" parent="defaultProductUrlPopulator">
+	</bean>
+	
+	<alias name="defaultSiteOneOrderEntryProductConverter" alias="orderEntryProductConverter"/>
+	<bean id="defaultSiteOneOrderEntryProductConverter" parent="defaultOrderEntryProductConverter">
+		<property name="populators">
+			<list merge="true">
+				<ref bean="productDeliveryModeAvailabilityPopulator"/>
+				<ref bean="productStockPopulator"/>
+				<ref bean="productCategoriesPopulator"/>
+				<ref bean="productUrlPopulator"/>
+				<ref bean="siteOneProductCategoriesPopulator"/>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="siteOneOktaFacade" class="com.siteone.facades.customer.impl.DefaultSiteOneOktaFacade"/>
+	
+	<bean id="requestAccountCustomerEmailContext" class="com.siteone.facades.process.email.context.RequestAccountCustomerEmailContext" parent="abstractEmailContext" scope="prototype" >
+	</bean>
+	
+	<!--  Request account -->
+	<alias name="defaultSiteoneContrPrimaryBusinessMapFacade" alias="siteoneContrPrimaryBusinessMapFacade"/>
+	<bean id="defaultSiteoneContrPrimaryBusinessMapFacade" class="com.siteone.facade.requestaccount.impl.DefaultSiteoneContrPrimaryBusinessMapFacade">
+	</bean>
+	
+	<alias name="defaultSiteoneRequestAccountFacade" alias="siteoneRequestAccountFacade"/>
+	<bean id="defaultSiteoneRequestAccountFacade" class="com.siteone.facade.requestaccount.impl.DefaultSiteoneRequestAccountFacade">
+	<property name="oktaAPI" ref="oktaAPI"/>
+	<property name="customerAccountService" ref="customerAccountService"/>
+	</bean>
+	
+	<bean id="siteoneRequestAccountReverseConverter" parent="abstractPopulatingConverter" >
+	<property name="targetClass" value="com.siteone.core.model.SiteoneRequestAccountModel"/>
+	<property name="populators">
+		<list>
+		    <ref bean="siteoneRequestAccountReversePopulator"/>
+		</list>
+	</property>
+	</bean>
+
+	<bean id="siteoneRequestAccountReversePopulator" class="com.siteone.facades.populators.SiteoneRequestAccountReversePopulator">
+	</bean>
+
+	<alias name="defaultSiteOneProductPromotionsPopulator" alias="productPromotionsPopulator"/>
+	<bean id="defaultSiteOneProductPromotionsPopulator"
+			class="com.siteone.facades.populators.SiteOneProductPromotionsPopulator" parent="defaultProductPromotionsPopulator">
+		<property name="siteOnePromotionSourceRuleService" ref="siteOnePromotionSourceRuleService"/>
+	</bean>
+	 
+	<alias name="defaultEventSearchFacade" alias="eventSearchFacade"/>
+	<bean id="defaultEventSearchFacade" class="com.siteone.facades.events.impl.DefaultEventSearchFacade">
+		<property name="solrEventSearchService" ref="solrEventSearchService"/>
+		<property name="eventSearchPageConverter" ref="eventSearchPageConverter"/>
+		<property name="searchQueryDecoder" ref="solrSearchQueryDecoder"/>
+		<property name="threadContextService" ref="threadContextService"/>
+	</bean>
+	
+	<alias name="defaultEventSearchPageConverter" alias="eventSearchPageConverter"/>
+	<bean id="defaultEventSearchPageConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="com.siteone.facade.EventSearchPageData"/>
+		<property name="populators">
+			<list>
+				<ref bean="eventSearchPagePopulator"/>
+			</list>
+		</property>
+	</bean>
+	
+	<alias name="eventSearchPagePopulator" alias="eventSearchPagePopulator"/>
+	<bean id="eventSearchPagePopulator" class="com.siteone.facades.events.populators.EventSearchPagePopulator">
+		<property name="breadcrumbConverter" ref="breadcrumbConverter"/>
+		<property name="facetConverter" ref="facetConverter"/>
+		<property name="searchResultContentConverter" ref="commerceSearchResultEventConverter"/>
+		<property name="searchStateConverter" ref="solrSearchStateConverter"/>
+	</bean>
+	
+	<alias name="defaultcommerceSearchResultEventConverter" alias="commerceSearchResultEventConverter"/>
+	<bean id="defaultcommerceSearchResultEventConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="com.siteone.facade.EventData"/>
+		<property name="populators">
+			<list>
+				<ref bean="searchResultEventPopulator"/>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="searchResultEventPopulator" class="com.siteone.facades.events.populators.SearchResultEventPopulator">
+	</bean>
+	
+	<alias name="defaultCommerceEventSearchQueryPageableConverter" alias="eventSearchQueryPageableConverter" />
+	<bean id="defaultCommerceEventSearchQueryPageableConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="de.hybris.platform.commerceservices.search.solrfacetsearch.data.SolrSearchRequest" />
+		<property name="populators">
+			<list>
+				<ref bean="commerceEventSearchSolrQueryPopulator" />
+				<ref bean="commerceSearchPagePopulator" />
+				<ref bean="commerceEventSearchTextPopulator" />
+				<ref bean="commerceSearchFiltersPopulator" />
+				<ref bean="commerceSearchSortPopulator" />
+			</list>
+		</property>
+	</bean>
+	
+	<alias name="defaultCommerceEventSearchSolrQueryPopulator" alias="commerceEventSearchSolrQueryPopulator" />
+	<bean id="defaultCommerceEventSearchSolrQueryPopulator" class="com.siteone.facades.events.populators.EventSearchSolrQueryPopulator" parent="defaultCommerceSearchSolrQueryPopulator">
+	</bean>
+	
+	<alias name="defaultCommerceEventSearchTextPopulator" alias="commerceEventSearchTextPopulator" />
+	<bean id="defaultCommerceEventSearchTextPopulator" class="com.siteone.facades.events.populators.EventSearchTextPopulator">
+		<property name="freeTextQueryBuilders">
+			<list>
+				<bean class="com.siteone.core.solrfacetsearch.querybuilder.impl.DefaultSiteOneFreeTextQueryBuilder">
+					<property name="propertyName" value="sotitle" />
+					<property name="boost" value="100" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+				
+	<alias name="defaultCommerceSolrEventSearchResponseConverter" alias="commerceSolrEventSearchResponseConverter" />
+	<bean id="defaultCommerceSolrEventSearchResponseConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="com.siteone.facade.EventSearchPageData" />
+		<property name="populators">
+			<list>
+				<ref bean="commerceSearchResponseQueryPopulator" />
+				<ref bean="commerceSearchResponsePaginationPopulator" />
+				<ref bean="commerceSearchResponseResultsPopulator" />
+				<ref bean="commerceSearchResponseFacetsPopulator" />
+				<ref bean="commerceSearchResponseFacetFilterPopulator" />
+				<ref bean="commerceSearchResponseBreadcrumbsPopulator" />
+				<ref bean="commerceEventSearchResponseFreeTextSearchPopulator" />
+			</list>
+		</property>
+	</bean>
+	
+	<alias name="defaultCommerceEventSearchResponseFreeTextSearchPopulator" alias="commerceEventSearchResponseFreeTextSearchPopulator" />
+	<bean id="defaultCommerceEventSearchResponseFreeTextSearchPopulator" class="com.siteone.facades.events.populators.EventSearchResponseFreeTextSearchPopulator" />
+	
+	<alias name="defaultListSearchPageConverter" alias="listSearchPageConverter"/>
+	<bean id="defaultListSearchPageConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="com.siteone.facade.ListSearchPageData"/>
+		<property name="populators">
+			<list>
+				<ref bean="listSearchPagePopulator"/>
+			</list>
+		</property>
+	</bean>
+	
+		<alias name="listSearchPagePopulator" alias="listSearchPagePopulator"/>
+	<bean id="listSearchPagePopulator" class="com.siteone.facades.lists.populators.ListSearchPagePopulator">
+		<property name="breadcrumbConverter" ref="breadcrumbConverter"/>
+		<property name="facetConverter" ref="facetConverter"/>
+		<property name="searchResultContentConverter" ref="commerceSearchResultListConverter"/>
+		<property name="searchStateConverter" ref="solrSearchStateConverter"/>
+	</bean>
+	
+				<alias name="defaultCommerceListSearchQueryPageableConverter" alias="listSearchQueryPageableConverter" />
+	<bean id="defaultCommerceListSearchQueryPageableConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="de.hybris.platform.commerceservices.search.solrfacetsearch.data.SolrSearchRequest" />
+		<property name="populators">
+			<list>
+				<ref bean="commerceListSearchSolrQueryPopulator" />
+				<ref bean="commerceListSearchTextPopulator" />
+				<ref bean="commerceSearchPagePopulator" />
+				<ref bean="commerceSearchFiltersPopulator" />
+				<ref bean="commerceSearchSortPopulator" />
+			</list>
+		</property>
+	</bean>
+	
+		<alias name="defaultCommerceListSearchSolrQueryPopulator" alias="commerceListSearchSolrQueryPopulator" />
+	<bean id="defaultCommerceListSearchSolrQueryPopulator" class="com.siteone.facades.lists.populators.ListSearchSolrQueryPopulator" parent="defaultCommerceSearchSolrQueryPopulator">
+	</bean>
+	
+	<alias name="defaultCommerceListSearchTextPopulator" alias="commerceListSearchTextPopulator" />
+	<bean id="defaultCommerceListSearchTextPopulator" class="com.siteone.facades.lists.populators.ListSearchTextPopulator">
+		<property name="freeTextQueryBuilders">
+			<list>
+				<bean class="com.siteone.core.solrfacetsearch.querybuilder.impl.DefaultSiteOneFreeTextQueryBuilder">
+					<property name="propertyName" value="soitemnumber" />
+					<property name="boost" value="100" />
+				</bean>
+				<bean class="com.siteone.core.solrfacetsearch.querybuilder.impl.DefaultSiteOneFreeTextQueryBuilder">
+					<property name="propertyName" value="soproductshortdesc"/>
+					<property name="boost" value="100" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+			<alias name="defaultCommerceSolrListSearchResponseConverter" alias="commerceSolrListSearchResponseConverter" />
+	<bean id="defaultCommerceSolrListSearchResponseConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="com.siteone.facade.ListSearchPageData" />
+		<property name="populators">
+			<list>
+			<ref bean="commerceSearchResponseQueryPopulator" />
+				<ref bean="commerceSearchResponsePaginationPopulator" />
+				<ref bean="commerceSearchResponseResultsPopulator" />
+				<ref bean="commerceSearchResponseFacetsPopulator" />
+				<ref bean="commerceSearchResponseFacetFilterPopulator" />
+				<ref bean="commerceSearchResponseBreadcrumbsPopulator" />
+				<ref bean="commerceListSearchResponseFreeTextSearchPopulator" />
+			</list>
+		</property>
+	</bean>
+	
+		<alias name="defaultCommerceListSearchResponseFreeTextSearchPopulator" alias="commerceListSearchResponseFreeTextSearchPopulator" />
+	<bean id="defaultCommerceListSearchResponseFreeTextSearchPopulator" class="com.siteone.facades.lists.populators.ListSearchResponseFreeTextSearchPopulator" />
+	
+	<alias name="defaultcommerceSearchResultListConverter" alias="commerceSearchResultListConverter"/>
+	<bean id="defaultcommerceSearchResultListConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="com.siteone.facades.savedList.data.SavedListEntryData"/>
+		<property name="populators">
+			<list>
+				<ref bean="searchResultListPopulator"/>
+			</list>
+		</property>
+	</bean> 
+	
+	<bean id="searchResultListPopulator" class="com.siteone.facades.lists.populators.SearchResultListPopulator">
+	</bean>
+	
+	<alias name="defaultSiteOnePromotionsPopulator" alias="promotionsPopulator"/>
+	<bean id="defaultSiteOnePromotionsPopulator" class="com.siteone.facades.promotion.populator.SiteOnePromotionPopulator" parent="defaultPromotionsPopulator">
+		<property name="imagePopulator" ref="imagePopulator"/>
+	</bean>
+  
+  <alias name="defaultNearbyStoreSearchFacade" alias="nearbyStoreSearchFacade"/>
+	<bean id="defaultNearbyStoreSearchFacade" class="com.siteone.facades.store.impl.DefaultNearbyStoreSearchFacade">
+		<property name="solrNearbyStoreSearchService" ref="solrNearbyStoreSearchService"/>
+		<property name="nearbyStoreSearchPageConverter" ref="nearbyStoreSearchPageConverter"/>
+		<property name="searchQueryDecoder" ref="solrSearchQueryDecoder"/>
+		<property name="threadContextService" ref="threadContextService"/>
+		<property name="storeSessionFacade" ref="storeSessionFacade"/>
+	</bean>
+
+	<alias name="defaultNearbyStoreSearchPageConverter" alias="nearbyStoreSearchPageConverter"/>
+	<bean id="defaultNearbyStoreSearchPageConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="com.siteone.facade.NearbyStoreSearchPageData"/>
+		<property name="populators">
+			<list>
+				<ref bean="nearbyStoreSearchPagePopulator"/>
+			</list>
+		</property>
+	</bean>
+
+	<alias name="nearbyStoreSearchPagePopulator" alias="nearbyStoreSearchPagePopulator"/>
+	<bean id="nearbyStoreSearchPagePopulator" class="com.siteone.facades.store.populators.NearbyStoreSearchPagePopulator">
+		<property name="breadcrumbConverter" ref="breadcrumbConverter"/>
+		<property name="facetConverter" ref="facetConverter"/>
+		<property name="searchResultContentConverter" ref="commerceSearchResultNearbyStoreConverter"/>
+		<property name="searchStateConverter" ref="solrSearchStateConverter"/>
+	</bean>
+	<alias name="defaultcommerceSearchResultNearbyStoreConverter" alias="commerceSearchResultNearbyStoreConverter"/>
+	<bean  id="defaultcommerceSearchResultNearbyStoreConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="de.hybris.platform.commercefacades.storelocator.data.PointOfServiceData"/>
+		<property name="populators">
+			<list>
+				<ref bean="searchResultNearbyStorePopulator"/>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="searchResultNearbyStorePopulator" class="com.siteone.facades.store.populators.SearchResultNearbyStorePopulator">
+	</bean>
+
+	<alias name="defaultCommerceNearbyStoreSearchQueryPageableConverter" alias="nearbyStoreSearchQueryPageableConverter" />
+	<bean id="defaultCommerceNearbyStoreSearchQueryPageableConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="de.hybris.platform.commerceservices.search.solrfacetsearch.data.SolrSearchRequest" />
+		<property name="populators">
+			<list>
+				<ref bean="commerceNearbyStoreSearchSolrQueryPopulator" />
+				<ref bean="commerceSearchPagePopulator" />
+				<ref bean="commerceNearbyStoreSearchTextPopulator" />
+				<ref bean="commerceSearchFiltersPopulator" />
+				<ref bean="commerceSearchSortPopulator" />
+			</list>
+		</property>
+	</bean>
+
+	<alias name="defaultCommerceNearbyStoreSearchSolrQueryPopulator" alias="commerceNearbyStoreSearchSolrQueryPopulator" />
+	<bean id="defaultCommerceNearbyStoreSearchSolrQueryPopulator" class="com.siteone.facades.store.populators.NearbyStoreSearchSolrQueryPopulator" parent="defaultCommerceSearchSolrQueryPopulator">
+	</bean>
+
+	<alias name="defaultCommerceNearbyStoreSearchTextPopulator" alias="commerceNearbyStoreSearchTextPopulator" />
+	<bean id="defaultCommerceNearbyStoreSearchTextPopulator" class="com.siteone.facades.store.populators.NearbyStoreSearchTextPopulator">
+		<property name="freeTextQueryBuilders">
+			<list>
+				<bean class="com.siteone.core.solrfacetsearch.querybuilder.impl.DefaultSiteOneFreeTextQueryBuilder">
+					<property name="propertyName" value="soStoreId" />
+					<property name="boost" value="100" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<alias name="defaultCommerceSolrNearbyStoreSearchResponseConverter" alias="commerceSolrNearbyStoreSearchResponseConverter" />
+	<bean id="defaultCommerceSolrNearbyStoreSearchResponseConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="com.siteone.facade.NearbyStoreSearchPageData" />
+		<property name="populators">
+			<list>
+				<ref bean="commerceSearchResponseQueryPopulator" />
+				<ref bean="commerceSearchResponsePaginationPopulator" />
+				<ref bean="commerceSearchResponseResultsPopulator" />
+				<ref bean="commerceSearchResponseFacetsPopulator" />
+				<ref bean="commerceSearchResponseFacetFilterPopulator" />
+				<ref bean="commerceSearchResponseBreadcrumbsPopulator" />
+				<ref bean="commerceNearbyStoreSearchResponseFreeTextSearchPopulator" />
+			</list>
+		</property>
+	</bean>
+
+	<alias name="defaultCommerceNearbyStoreSearchResponseFreeTextSearchPopulator" alias="commerceNearbyStoreSearchResponseFreeTextSearchPopulator" />
+	<bean id="defaultCommerceNearbyStoreSearchResponseFreeTextSearchPopulator" class="com.siteone.facades.store.populators.NearbyStoreSearchResponseFreeTextSearchPopulator" />
+
+
+	<!-- Create Password -->
+	<bean id="createPasswordEmailContext" class="com.siteone.facades.process.email.context.CreatePasswordEmailContext" parent="customerEmailContext" scope="prototype" >
+		<property name="customerConverter" ref="customerConverter"/>
+	</bean>
+	
+	<!-- Change Email -->
+	<bean id="customerEmailChangeOldEmailContext" class="com.siteone.facades.process.email.context.CustomerUpdateOldEmailContext" parent="customerEmailContext" scope="prototype" >
+		<property name="customerConverter" ref="customerConverter"/>
+	</bean>
+
+	<bean id="customerEmailChangeNewEmailContext" class="com.siteone.facades.process.email.context.CustomerUpdateNewEmailContext" parent="customerEmailContext" scope="prototype" >
+		<property name="customerConverter" ref="customerConverter"/>
+	</bean>
+	
+	
+	<alias name="defaultSiteOneB2BCommercePlaceOrderStrategy" alias="b2bCommercePlaceOrderStrategy"/>
+	<bean name="defaultSiteOneB2BCommercePlaceOrderStrategy" parent="defaultCommercePlaceOrderStrategy">
+		<property name="orderService" ref="b2bOrderService"/>
+		<property name="commercePlaceOrderMethodHooks" ref="siteOneCommercePlaceOrderMethodHooks"/>
+	</bean>
+	
+	<util:list id="siteOneCommercePlaceOrderMethodHooks" value-type="de.hybris.platform.commerceservices.order.hook.CommercePlaceOrderMethodHook">
+		<ref bean="couponRedemptionMethodHook"/>
+	</util:list>
+	
+	<!-- <bean id="reserveStockPlaceOrderMethodHooksMergeDirective" depends-on="siteOneCommercePlaceOrderMethodHooks" parent="listMergeDirective">
+		<property name="add" ref="reserveStockPlaceOrderHook"/>
+	</bean> -->
+	
+	<!-- <bean id="reserveStockPlaceOrderHook" class="com.siteone.core.order.hook.ReserveStockPlaceOrderHook">
+		<property name="stockService" ref="stockService" />
+		<property name="warehouseService" ref="warehouseService" />
+		<property name="sessionService" ref="sessionService" />
+	</bean>
+	 -->
+	<alias name="defaultSiteOneOrderFacade" alias="orderFacade"/>
+	<bean id="defaultSiteOneOrderFacade" class="com.siteone.facade.order.impl.DefaultSiteOneOrderFacade" parent="defaultOrderFacade">
+		<property name="purchasedProductConverter" ref="purchasedProductConverter"/>
+		<property name="orderHistoryConverter" ref="orderHistoryConverter"/>
+		<property name="b2bWorkflowIntegrationService" ref="b2bWorkflowIntegrationService"/>
+		<property name="b2bOrderApprovalDataConverter" ref="b2bOrderApprovalDataConverter"/>
+	</bean>
+	<alias name="defaultSiteOneB2BOrderFacade" alias="b2bOrderFacade"/>
+	<bean id="defaultSiteOneB2BOrderFacade" class="com.siteone.facade.order.impl.DefaultSiteOneB2BOrderFacade" parent="defaultB2BOrderFacade">
+	</bean>
+
+	<alias name="defaultSiteOneOrderHistoryPopulator" alias="orderHistoryPopulator"/>
+	<bean id="defaultSiteOneOrderHistoryPopulator" class="com.siteone.facades.populators.SiteOneOrderHistoryPopulator" parent="defaultOrderHistoryPopulator">
+	<property name="consignmentConverter" ref="consignmentConverter"/>
+	</bean>
+	
+	<alias name="defaultSiteOneOrderPopulator" alias="orderPopulator"/>
+	<bean id="defaultSiteOneOrderPopulator" class="com.siteone.facades.populators.SiteOneOrderPopulator" parent="defaultOrderPopulator">
+		<property name="pointOfServiceSiteOneConverter" ref="pointOfServiceSiteOneConverter"/>
+		<property name="siteonecustomerConverter" ref="siteonecustomerConverter"/>
+		<property name="siteOneCheckoutRequestedDateUtils" ref="siteOneCheckoutRequestedDateUtils"/>
+		<property name="storeSessionFacade" ref="storeSessionFacade" />
+	</bean>
+	
+	<alias name="defaultSiteOnePromotionsFacade" alias="siteOnePromotionsFacade"/>
+	<bean id="defaultSiteOnePromotionsFacade" class="com.siteone.facades.promotion.impl.DefaultSiteOnePromotionsFacade">
+		<property name="commercePromotionService" ref="commercePromotionService"/>
+		<property name="promotionsConverter" ref="promotionsConverter"/>
+	</bean>
+	
+	<alias name="defaultInvoiceFacade" alias="invoiceFacade"/>
+	<bean id="defaultInvoiceFacade" class="com.siteone.facade.invoice.DefaultInvoiceFacade">
+		<property name="baseStoreService" ref="baseStoreService"/>
+		<property name="siteOneInvoiceConverter" ref="siteOneInvoiceConverter"/>
+		<property name="customerAccountService" ref="customerAccountService"/>
+		<property name="siteOneStoreFinderService" ref="defaultSiteOneStoreFinderService"></property>
+	</bean>
+	
+	<alias name="defaultSiteOneInvoiceListPopulator" alias="siteOneInvoiceListPopulator"/>
+	<bean id="defaultSiteOneInvoiceListPopulator"
+			class="com.siteone.facades.populators.SiteOneInvoiceListPopulator">
+	</bean>
+	
+	<alias name="defaultSiteOneInvoiceDetailsPopulator" alias="siteOneInvoiceDetailsPopulator"/>
+	<bean id="defaultSiteOneInvoiceDetailsPopulator" class="com.siteone.facades.populators.SiteOneInvoiceDetailsPopulator">
+			<property name="addressConverter" ref="addressConverter"/>
+			<property name="siteOneInvoiceEntryConverter" ref="siteOneInvoiceEntryConverter"/>
+			<property name="siteOneStoreFinderService" ref="defaultSiteOneStoreFinderService"></property>
+	</bean>
+	
+	<alias name="defaultSiteOneInvoiceEntryPopulator" alias="siteOneInvoiceEntryPopulator"/>
+	<bean id="defaultSiteOneInvoiceEntryPopulator" class="com.siteone.facades.populators.SiteOneInvoiceEntryPopulator">
+	</bean>
+	
+	<alias name="defaultSiteOneInvoiceConverter" alias="siteOneInvoiceConverter"/>
+	<bean id="defaultSiteOneInvoiceConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="com.siteone.facade.InvoiceData"/>
+		<property name="populators">
+			<list>
+				<ref bean="siteOneInvoiceListPopulator"/>
+				<ref bean="siteOneInvoiceDetailsPopulator"/>
+			</list>
+		</property>
+	</bean>
+	
+	<alias name="defaultSiteOneInvoiceEntryConverter" alias="siteOneInvoiceEntryConverter"/>
+	<bean id="defaultSiteOneInvoiceEntryConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="com.siteone.facade.InvoiceEntryData"/>
+		<property name="populators">
+			<list>
+				<ref bean="siteOneInvoiceEntryPopulator"/>
+			</list>
+		</property>
+	</bean>
+	
+	<alias name="defaultPurchasedProductConveter" alias="purchasedProductConverter"/>
+	<bean id="defaultPurchasedProductConveter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="de.hybris.platform.commercefacades.product.data.ProductData"/>
+		<property name="populators">
+			<list>
+				<ref bean="purchasedProductPopulator"/>
+			</list>
+		</property>
+	</bean>
+	
+		<!-- Unlock User -->
+	<bean id="unlockUserEmailContext" class="com.siteone.facades.process.email.context.UnlockUserEmailContext" parent="customerEmailContext" scope="prototype" >
+		<property name="customerConverter" ref="customerConverter"/>
+	</bean>
+	<!--Points For Equipment  -->
+	<bean id="pointsForEquipmentEmailContext" class="com.siteone.facades.process.email.context.PointsForEquipmentEmailContext" parent="abstractEmailContext" scope="prototype" >
+	</bean>
+	
+
+	<!--Contact US  -->
+	<bean id="contactUsEmailContext" class="com.siteone.facades.process.email.context.ContactUsContext" parent="abstractEmailContext" scope="prototype" >
+	</bean>
+	
+
+	<bean id="ccpaEmailContext" class="com.siteone.facades.process.email.context.CCPAContext" parent="abstractEmailContext" scope="prototype" >
+	</bean>
+	
+	<alias name="defaultSiteOneNewsConverter" alias="siteoneNewsConverter"/>
+	<bean id="defaultSiteOneNewsConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="com.siteone.facade.NewsData"/>
+		<property name="populators">
+			<list>
+				<ref bean="siteOneNewsPopulator"/>
+			</list>
+		</property>
+	</bean>
+	
+	<alias name="defaultSiteOneNewsPopulator" alias="siteOneNewsPopulator"/>
+	<bean id="defaultSiteOneNewsPopulator" class="com.siteone.facades.populators.SiteOneNewsPopulator">
+		<property name="imagePopulator" ref="imagePopulator"/>
+	</bean>
+	
+	<alias name="defaultSiteOneNewsFacade" alias="siteOneNewsFacade"/>
+	<bean id="defaultSiteOneNewsFacade" class="com.siteone.facades.news.impl.DefaultSiteOneNewsFacade">
+	</bean>
+	
+	<bean id="sendOrderDetailEmailContext" class="com.siteone.facades.process.email.context.SendOrderDetailEmailContext" parent="abstractEmailContext" scope="prototype" >
+	<property name="orderConverter" ref="orderConverter"/>
+	</bean>
+
+	
+	<alias name="defaultSiteOneWeekdayOpeningDayPopulator" alias="weekdayOpeningDayPopulator"/>
+
+	<bean id="defaultSiteOneWeekdayOpeningDayPopulator"
+			class="com.siteone.facades.populators.SiteOneWeekdayOpeningDayPopulator"
+			parent="defaultWeekdayOpeningDayPopulator"/>
+
+
+	<bean id="siteOneSessionAttributeRequestAspect" class="com.siteone.facades.aspect.SiteOneSessionAttributeRequestAspect"/>
+	<!--<aop:aspectj-autoproxy />-->
+	
+
+	<!-- Cart Abandonment -->
+	<bean id="cartAbandonmentEmailContext" class="com.siteone.facades.process.email.context.CartAbandonmentEmailContext" parent="abstractEmailContext" scope="prototype" >
+		<property name="cartConverter" ref="cartConverter"/>
+	</bean>
+
+	<bean id="invoiceDetailsContext" class="com.siteone.facades.process.email.context.InvoiceDetailsContext" parent="abstractEmailContext" scope="prototype" >
+		<property name="siteOneStoreFinderService" ref="defaultSiteOneStoreFinderService"/>
+	</bean>
+	
+	<bean id="sharedProductEmailContext" class="com.siteone.facades.process.email.context.SharedProductEmailContext" parent="abstractEmailContext" scope="prototype" >
+	</bean>
+	
+	<alias name="defaultSiteOneOrderEntryPopulator" alias="orderEntryPopulator"/>
+
+	<bean id="defaultSiteOneOrderEntryPopulator" class="com.siteone.facades.populators.SiteOneOrderEntryPopulator" parent="defaultOrderEntryPopulator">
+		<property name="siteOneOrderEntriesProductConverter" ref="siteOneOrderEntriesProductConverter"/>	
+		<property name="sessionService" ref="sessionService"/>
+    </bean>
+    
+	<alias name="defaultSiteOneOrderEntriesProductConverter" alias="siteOneOrderEntriesProductConverter"/>
+	<bean id="defaultSiteOneOrderEntriesProductConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="de.hybris.platform.commercefacades.product.data.ProductData"/>
+		<property name="populators">
+			<list>
+				<ref bean="productBasicPopulator"/>
+				<ref bean="productPrimaryImagePopulator"/>
+				<ref bean="productCategoriesPopulator"/>
+				<ref bean="productStockPopulator"/>
+				<ref bean="productUrlPopulator"/>
+				<ref bean="productPricePopulator"/>
+				<ref bean="siteOneProductCategoriesPopulator"/>
+				<ref bean="productSellableAndMessagePopulator"/>
+				<ref bean="productPromotionsPopulator"/> 
+				
+			</list>
+		</property>
+	</bean> 
+    
+
+
+    
+    <!-- Account overview customer information -->
+  			  	
+ 	<bean id="siteOneCustInfoDataConverter" parent="abstractPopulatingConverter">
+ 		<property name="targetClass" value="com.siteone.facade.customer.info.SiteOneCustInfoData"/>
+ 		<property name="populators">
+ 			<list>
+ 				<ref bean="siteOneCustInfoDataPopulator"/>
+ 			</list>
+ 		</property>
+ 	</bean>
+ 	
+ 	<bean id="siteOneCustInfoDataPopulator"
+ 		class="com.siteone.facades.populators.SiteOneCustInfoDataPopulator">
+ 	</bean>
+ 	
+ 				  	
+ 	<bean id="siteOneJobsStatusDataConverter" parent="abstractPopulatingConverter">
+ 		<property name="targetClass" value="com.siteone.facade.reports.SiteOneJobsStatusData"/>
+ 		<property name="populators">
+ 			<list>
+ 				<ref bean="siteOneJobsStatusDataPopulator"/>
+ 			</list>
+ 		</property>
+ 	</bean>
+ 	
+ 	<bean id="siteOneJobsStatusDataPopulator"
+ 		class="com.siteone.facades.populators.SiteOneJobsStatusDataPopulator">
+ 	</bean>
+
+
+
+	<!-- Password Changed -->
+	<bean id="passwordChangedEmailContext" class="com.siteone.facades.process.email.context.PasswordChangedEmailContext" parent="customerEmailContext" scope="prototype" >
+		<property name="customerConverter" ref="customerConverter"/>
+	</bean>
+	
+
+	
+	<bean id="shareCartEmailContext" class="com.siteone.facades.process.email.context.ShareCartEmailContext" parent="abstractEmailContext" scope="prototype">
+		<property name="cartConverter" ref="cartConverter"/>
+	</bean>
+	
+	<alias name="defaultSiteOneInspirationFacade" alias="siteOneInspirationFacade"/>
+	<bean id="defaultSiteOneInspirationFacade" class="com.siteone.facades.inspire.impl.DefaultSiteOneInspirationFacade">
+	</bean> 
+	
+		 <alias name="defaultSiteOneInspirationPopulator" alias="siteOneInspirationPopulator"/>
+	<bean id="defaultSiteOneInspirationPopulator"
+			class="com.siteone.facades.populators.SiteOneInspirationPopulator">
+		<property name="imagePopulator" ref="imagePopulator"/>
+	</bean>
+	
+	<alias name="defaultSiteOneInspirationConverter" alias="siteoneInspirationConverter"/>
+	<bean id="defaultSiteOneInspirationConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="com.siteone.facade.InspirationData"/>
+		<property name="populators">
+			<list>
+				<ref bean="siteOneInspirationPopulator"/>
+			</list>
+		</property>
+	</bean>
+
+    <alias name="siteOneFacetSearchResultDocumentsPopulator" alias="facetSearchResultDocumentsPopulator"/>
+	<bean id="siteOneFacetSearchResultDocumentsPopulator" class="com.siteone.facades.populators.SiteOneFacetSerachResultDocumentsPopulator">
+	<property name="fieldNameTranslator" ref="fieldNameTranslator" />
+	</bean>
+	
+	<alias name="defaultPurchasedProductPopulator" alias="purchasedProductPopulator"/>
+	<bean id="defaultPurchasedProductPopulator" class="com.siteone.facades.populators.PurchasedProductPopulator">
+		<property name="siteOneOrderEntriesProductConverter" ref="siteOneOrderEntriesProductConverter"/>
+		<property name="productService" ref="productService"/>
+    </bean>
+    
+    <alias name="defaultSiteOneWeekdayOpeningDayListPopulator" alias="weekdayOpeningDayListPopulator"/>
+	<bean id="defaultSiteOneWeekdayOpeningDayListPopulator" class="com.siteone.facades.populators.SiteOneWeekdayOpeningDayListPopulator" parent="defaultWeekdayOpeningDayListPopulator"/>
+    
+	<alias name="defaultSiteOneSearchResponseSortsPopulator" alias="commerceSearchResponseSortsPopulator" />
+	<bean id="defaultSiteOneSearchResponseSortsPopulator" class="com.siteone.facade.populator.DefaultSiteOneSearchResponseSortsPopulator">
+	<property name="storeSessionFacade" ref="storeSessionFacade"/>
+	</bean>
+	
+	<alias name="customGoogleMapTools" alias="googleMapTools"/>
+	<bean id="customGoogleMapTools" parent="defaultGoogleMapTools" class="de.hybris.platform.storelocator.impl.GoogleMapTools" scope="prototype">
+	<property name="googleKey" value="${googleApiKey:#{null}}"/>
+    </bean>
+    
+    <!--ListEdit   -->
+	<bean id="listEditEmailContext" class="com.siteone.facades.process.email.context.ListEditEmailContext" parent="abstractEmailContext" scope="prototype" >
+	</bean>
+	
+	<!--Share List  -->
+	<bean id="shareListEmailContext" class="com.siteone.facades.process.email.context.ShareListEmailContext" parent="abstractEmailContext" scope="prototype" >
+	</bean>
+	
+	<!--Share Assembly  -->
+	<bean id="shareAssemblyEmailContext" class="com.siteone.facades.process.email.context.ShareAssemblyEmailContext" parent="abstractEmailContext" scope="prototype" >
+	</bean>
+
+	<!--Contact US  -->
+	<bean id="contactUsCustomerEmailContext" class="com.siteone.facades.process.email.context.ContactUsCustomerContext" parent="abstractEmailContext" scope="prototype" >
+	</bean>
+	
+	<bean id="ccpaCustomerEmailContext" class="com.siteone.facades.process.email.context.CCPACustomerContext" parent="abstractEmailContext" scope="prototype" >
+	</bean>
+	
+	<bean id="baseProductImagePopulator" abstract="true" parent="baseProductPopulator"
+			class="de.hybris.platform.commercefacades.product.converters.populator.AbstractProductImagePopulator">
+		<property name="mediaContainerService" ref="mediaContainerService"/>
+		<property name="mediaService" ref="mediaService"/>
+		<property name="imageConverter" ref="imageConverter"/>
+		<property name="imageFormatMapping" ref="imageFormatMapping"/>
+		<property name="imageFormats">
+			<list>
+				<value>zoom</value>
+				<value>superZoom</value>
+				<value>product</value>
+				<value>thumbnail</value>
+				<value>cartIcon</value>
+				<value>pdpIcon</value>
+				<value>youtube</value>
+			</list>
+		</property>
+	</bean>
+	
+	<alias name="defaultSiteOneProductPrimaryImagePopulator" alias="productPrimaryImagePopulator"/>
+	<bean id="defaultSiteOneProductPrimaryImagePopulator" parent="baseProductImagePopulator" class="com.siteone.facades.populators.SiteOneProductPrimaryImagePopulator"/>
+	
+	<alias name="defaultSiteOneProductGalleryImagesPopulator" alias="productGalleryImagesPopulator"/>
+	<bean id="defaultSiteOneProductGalleryImagesPopulator" parent="baseProductImagePopulator" class="com.siteone.facades.populators.SiteOneProductGalleryImagesPopulator"/> 
+    
+    
+    <bean id="requestAccountEmailContext" class="com.siteone.facades.process.email.context.RequestAccountEmailContext" parent="abstractEmailContext" scope="prototype" >
+	</bean>
+	
+	<bean id="kountDeclineEmailContext" class="com.siteone.facades.process.email.context.KountDeclineEmailContext" parent="abstractEmailContext" scope="prototype" >
+	</bean>
+	
+	<bean id="orderFailureEmailContext" class="com.siteone.facades.process.email.context.OrderFailureEmailContext" parent="abstractEmailContext" scope="prototype" >
+		<property name="configurationService" ref="configurationService"/>
+	</bean>
+	
+	<alias name="defaultSiteOneProductVariantMatrixPopulator" alias="productVariantMatrixPopulator"/>
+	<bean id="defaultSiteOneProductVariantMatrixPopulator" class="com.siteone.facades.populators.SiteOneProductVariantMatrixPopulator" parent="defaultProductVariantMatrixPopulator">
+	</bean>
+	
+	<alias name="defaultSiteOneProductPricePopulator" alias="productPricePopulator"/>
+	<bean id="defaultSiteOneProductPricePopulator"
+			class="com.siteone.facades.populators.SiteOneProductPricePopulator" parent="defaultProductPricePopulator">
+			<property name="siteOnePriceWebService" ref="siteOnePriceWebService"></property>
+			<property name="productService" ref="productService"/>
+			<property name="sessionService" ref="sessionService"/>
+	</bean>
+	
+	<alias name="siteoneSiteMapContext" alias="siteMapContext"/>
+	<bean id="siteoneSiteMapContext" class="com.siteone.facades.sitemap.renderer.SiteOneSiteMapContext" scope="prototype">
+		<property name="baseSiteService" ref="baseSiteService"/>
+		<property name="siteBaseUrlResolutionService" ref="siteBaseUrlResolutionService"/>
+		<property name="urlEncoderService" ref="urlEncoderService"/>
+	</bean>
+	
+	<alias name="siteoneOrderRaoToCurrencyConverter" alias="abstractOrderRaoToCurrencyConverter"/>
+	<bean id="siteoneOrderRaoToCurrencyConverter" class="com.siteone.ruleengineservices.converters.AbstractSiteOneOrderRaoToCurrencyConverter" parent="defaultAbstractOrderRaoToCurrencyConverter">
+	   <property name="baseStoreService" ref="baseStoreService"/>
+	</bean>
+
+	<alias name="defaultSiteoneSuperCategoryPopulator" alias="categoryPopulator" />
+	<bean id="defaultSiteoneSuperCategoryPopulator"	class="com.siteone.facades.populators.SiteoneSuperCategoryPopulator" parent="defaultCategoryPopulator" />
+	
+	<bean id="siteOneShareEmailFacade"	class="com.siteone.facade.email.impl.DefaultSiteOneShareEmailFacade" />
+	
+	<alias name="defaultSiteOneProductPriceRangePopulator" alias="productPriceRangePopulator"/>
+    <bean id="defaultSiteOneProductPriceRangePopulator"  parent="defaultProductPriceRangePopulator" class="com.siteone.facades.populators.SiteOneProductPriceRangePopulator">
+      <property name="sessionService" ref="sessionService"/>
+      <property name="userFacade" ref="userFacade"/>
+    </bean>
+    
+    <alias name="defaultSiteOneVariantOptionDataPopulator" alias="variantOptionDataPopulator"/>
+    <bean id="defaultSiteOneVariantOptionDataPopulator" parent="defaultVariantOptionDataPopulator" class="com.siteone.facades.populators.SiteOneVariantOptionDataPopulator"/>
+    
+     <alias name="defaultSiteOneVariantFullPopulator" alias="variantFullPopulator"/>
+    <bean id="defaultSiteOneVariantFullPopulator" parent="defaultVariantFullPopulator" class="com.siteone.facades.populators.SiteOneVariantFullPopulator"/>
+        
+    <alias name="defaultProductCategoriesPopulatorList" alias="productCategoriesPopulatorList"/>
+	<bean id="defaultProductCategoriesPopulatorList" parent="abstractPopulatorList">
+		<property name="populators">
+			<list>
+				<ref bean="productCategoriesPopulator"/>
+				<ref bean="siteOneProductCategoriesPopulator"/>
+			</list>
+		</property>
+	</bean>	
+
+	<alias name="defaultSiteOneProductCategoriesPopulator" alias="siteOneProductCategoriesPopulator" />
+	<bean id="defaultSiteOneProductCategoriesPopulator"	class="com.siteone.facades.populators.SiteOneProductCategoriesPopulator" parent="defaultProductCategoriesPopulator"/>
+    
+    <alias name="defaultSdsPdfFacade" alias="sdsPdfFacade"/>
+	<bean id="defaultSdsPdfFacade" class="com.siteone.facades.sds.impl.DefaultSdsPDFFacade">
+	</bean>
+
+	<alias name="defaultBriteVerifyFacade" alias="briteVerifyFacade"/>
+	<bean id="defaultBriteVerifyFacade" class="com.siteone.facade.email.impl.DefaultBriteVerifyFacade">
+	</bean>
+
+	<!--
+		Custom implementation of FacetSearchQueryFacetsPopulator to set facet limit from properties file
+		This bean can be removed once SAP fix bug ECP-3211 (https://github.com/SiteOneLandscapeSupply/hybris/pull/4153)
+	-->
+	<alias name="siteoneFacetSearchQueryFacetsPopulator" alias="facetSearchQueryFacetsPopulator" />
+	<bean id="siteoneFacetSearchQueryFacetsPopulator" class="com.siteone.facades.populators.SiteOneFacetSearchQueryFacetsPopulator" parent="abstractFacetSearchQueryPopulator">
+		<property name="configurationService" ref="configurationService" />
+		<property name="defaultFacetSort" value="count" />
+		<property name="defaultLimit" value="${facet.limit.default}" />
+	</bean>
+	<!-- Message Source -->
+	<bean id="siteOneFacadeMessageSource"
+		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<property name="basenames">
+			<list>
+				<value>classpath:localization/siteonefacade-base</value>
+			</list>
+		</property>
+	</bean>
+	
+		<alias name="siteOneSearchResultCSPPopulator" alias="productCategorySearchPagePopulator"/>
+	<bean id="siteOneSearchResultCSPPopulator" class="com.siteone.facades.content.search.populator.SiteOneSearchResultCSPPopulator" parent="defaultProductCategorySearchPagePopulator">
+		<property name="siteOneCSPListingConverter" ref="siteOneCSPListingConverter"/>
+		 <property name="userService" ref="userService"/>
+		 <property name="priceDataFactory" ref="priceDataFactory" />
+	</bean>
+	<bean id="siteOneCSPListingConverter" parent="abstractPopulatingConverter">
+	<property name="targetClass" value="java.util.ArrayList" />
+	<property name="populators">
+		<list>
+			<ref bean="siteOneCSPListingPopulator" />
+		</list>
+	</property>
+</bean>
+
+<bean id="siteOneCSPListingPopulator"
+	class="com.siteone.facades.content.search.populator.SiteOneCSPListingPopulator">
+	<property name="searchResultProductConverter" ref="commerceSearchResultProductConverter" />
+	<property name="priceDataFactory" ref="priceDataFactory" />
+	<property name="storeSessionFacade" ref="storeSessionFacade" />
+	 <property name="siteOneProductFacade" ref="siteOneProductFacade"/> 
+	 <property name="userService" ref="userService"/>
+</bean>
+	
+<alias name="DefaultSiteOneCayanPaymentFacade" alias="siteOneCayanPaymentFacade" />
+	<bean id="DefaultSiteOneCayanPaymentFacade"	class="com.siteone.facade.payment.cayan.impl.DefaultSiteOneCayanPaymentFacade">
+</bean>
+
+<alias name="DefaultSiteOneCayanPaymentWebService"	alias="siteOneCayanPaymentWebService" />
+	<bean id="DefaultSiteOneCayanPaymentWebService" class="com.siteone.integration.services.cayanclient.impl.DefaultSiteOneCayanPaymentWebService">
+</bean>		
+
+<alias name="DefaultSiteOneCayanTransportFacade" alias="siteOneCayanTransportFacade" />
+	<bean id="DefaultSiteOneCayanTransportFacade"	class="com.siteone.facade.payment.cayan.impl.DefaultSiteOneCayanTransportFacade">
+</bean>
+
+<alias name="DefaultSiteOneCayanTransportWebService"	alias="siteOneCayanTransportWebService" />
+	<bean id="DefaultSiteOneCayanTransportWebService" class="com.siteone.integration.services.cayanclient.impl.DefaultSiteOneCayanTransportWebService">
+</bean>	
+
+<bean id="siteOneCayanPaymentFacade" class="com.siteone.facade.payment.cayan.impl.DefaultSiteOneCayanPaymentFacade">
+		
+</bean>
+
+<bean id="ewalletService" class="com.siteone.core.ewallet.service.impl.DefaultSiteOneEwalletService"></bean>
+	
+<bean id="siteOneEwalletFacade" class="com.siteone.facades.ewallet.impl.DefaultSiteOneEwalletFacadeImpl">
+	<property name="modelService" ref="modelService"/>
+	<property name="sessionService" ref="sessionService"/>
+</bean>
+
+<bean id="siteOneEwalletReverseConverter" parent="abstractPopulatingConverter" >
+	<property name="targetClass" value="com.siteone.core.model.SiteoneEwalletCreditCardModel"/>
+	<property name="populators">
+		<list>
+		    <ref bean="siteOneEwalletReversePopulator"/>
+		</list>
+	</property>
+</bean>
+
+<bean id="siteOneEwalletReversePopulator" class="com.siteone.facades.populators.SiteOneEwalletReversePopulator">
+</bean>
+
+<bean id="creditCardNameMapping" class="com.siteone.facades.constants.CreditCardNameMapping">
+<property name="cardTypeName">
+<util:map map-class="java.util.HashMap">
+<entry key="0" value="Unknown"/>
+<entry key="1" value="American Express"/>
+<entry key="2" value="Discover"/>
+<entry key="3" value="Mastercard"/>
+<entry key="4" value="Visa"/>
+<entry key="5" value="Debit"/>
+<entry key="6" value="EBT"/>
+<entry key="7" value="Giftcard"/>
+<entry key="8" value="Wright Express (Fleet Card)"/>
+<entry key="9" value="Voyager (Fleet Card / USBank Issued)"/>
+<entry key="10" value="JCB"/>
+<entry key="11" value="China Union Pay"/>
+<entry key="12" value="LevelUp"/>
+</util:map>
+</property>
+<property name="cardTypeShortName">
+  <util:map map-class="java.util.HashMap">
+    	<entry key="0" value="Unknown"/>
+		<entry key="1" value="AX"/>
+		<entry key="2" value="DS"/>
+		<entry key="3" value="MC"/>
+		<entry key="4" value="VS"/>
+		<entry key="5" value="DB"/>
+		<entry key="6" value="EBT"/>
+		<entry key="7" value="GF"/>
+		<entry key="8" value="Wright Express"/>
+		<entry key="9" value="Voyager"/>
+		<entry key="10" value="JCB"/>
+		<entry key="11" value="China Union Pay"/>
+		<entry key="12" value="LevelUp"/>
+  </util:map>
+</property>
+</bean>
+
+<bean id="siteOneEwalletCreditCardConverter" parent="abstractPopulatingConverter" >
+	<property name="targetClass" value="de.hybris.platform.commercefacades.ewallet.data.SiteOneEwalletData"/>
+	<property name="populators">
+		<list>
+		    <ref bean="siteOneEwalletCreditCardPopulator"/>
+		</list>
+	</property>
+</bean>
+
+<bean id="siteOneEwalletCreditCardPopulator" class="com.siteone.facades.populators.SiteOneEwalletCreditCardPopulator">
+</bean>
+
+<bean id="siteOnePaymentInfoDataReverseConverter" parent="abstractPopulatingConverter">
+	<property name="targetClass" value="de.hybris.platform.core.model.order.payment.SiteoneCreditCardPaymentInfoModel"/>
+	<property name="populators">
+		<list>
+			<ref bean="siteOnePaymentInfoDataReversePopulator"/>
+		</list>
+	</property>
+</bean>
+<bean id="siteOnePaymentInfoDataReversePopulator" class="com.siteone.facades.populators.SiteOnePaymentInfoDataReversePopulator">
+</bean>
+
+<bean id="siteOnePaymentInfoDataConverter" parent="abstractPopulatingConverter">
+	<property name="targetClass" value="de.hybris.platform.commercefacades.user.data.SiteOnePaymentInfoData"/>
+	<property name="populators">
+		<list>
+			<ref bean="siteOnePaymentInfoDataPopulator"/>
+		</list>
+	</property>
+</bean>
+<bean id="siteOnePaymentInfoDataPopulator" class="com.siteone.facades.populators.SiteOnePaymentInfoDataPopulator">
+</bean>
+
+<bean id="siteOnePOAPaymentInfoDataReverseConverter" parent="abstractPopulatingConverter">
+	<property name="targetClass" value="de.hybris.platform.core.model.order.payment.SiteonePOAPaymentInfoModel"/>
+	<property name="populators">
+		<list>
+			<ref bean="siteOnePOAPaymentInfoDataReversePopulator"/>
+		</list>
+	</property>
+</bean>
+<bean id="siteOnePOAPaymentInfoDataReversePopulator" class="com.siteone.facades.populators.SiteOnePOAPaymentInfoDataReversePopulator">
+</bean>
+
+<bean id="siteOnePOAPaymentInfoDataConverter" parent="abstractPopulatingConverter">
+	<property name="targetClass" value="de.hybris.platform.commercefacades.user.data.SiteOnePOAPaymentInfoData"/>
+	<property name="populators">
+		<list>
+			<ref bean="siteOnePOAPaymentInfoDataPopulator"/>
+		</list>
+	</property>
+</bean>
+<bean id="siteOnePOAPaymentInfoDataPopulator" class="com.siteone.facades.populators.SiteOnePOAPaymentInfoDataPopulator">
+</bean>
+	<alias name="defaultBuyItAgainSearchFacade" alias="buyItAgainSearchFacade"/>
+	<bean id="defaultBuyItAgainSearchFacade" class="com.siteone.facades.buyitagain.search.facade.impl.DefaultBuyItAgainSearchFacade">
+		<property name="solrBuyItAgainSearchService" ref="solrBuyItAgainSearchService"/>
+		<property name="buyItAgainSearchPageConverter" ref="buyItAgainSearchPageConverter"/>
+		<property name="searchQueryDecoder" ref="solrSearchQueryDecoder"/>
+		<property name="threadContextService" ref="threadContextService"/>
+	</bean>
+	
+	<alias name="defaultBuyItAgainSearchPageConverter" alias="buyItAgainSearchPageConverter"/>
+	<bean id="defaultBuyItAgainSearchPageConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="com.siteone.facade.BuyItAgainSearchPageData"/>
+		<property name="populators">
+			<list>
+				<ref bean="buyItAgainSearchPagePopulator"/>
+			</list>
+		</property>
+	</bean>
+	
+	<alias name="buyItAgainSearchPagePopulator" alias="buyItAgainSearchPagePopulator"/>
+	<bean id="buyItAgainSearchPagePopulator" class="com.siteone.facades.buyitagain.search.populator.BuyItAgainSearchPagePopulator">
+		<property name="breadcrumbConverter" ref="breadcrumbConverter"/>
+		<property name="facetConverter" ref="facetConverter"/>
+		<property name="searchResultContentConverter" ref="commerceSearchResultBuyItAgainConverter"/>
+		<property name="searchStateConverter" ref="solrSearchStateConverter"/>
+	</bean>
+	
+	<alias name="defaultcommerceSearchResultBuyItAgainConverter" alias="commerceSearchResultBuyItAgainConverter"/>
+	<bean id="defaultcommerceSearchResultBuyItAgainConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="com.siteone.facade.BuyItAgainData"/>
+		<property name="populators">
+			<list>
+				<ref bean="SearchResultBuyItAgainPopulator"/>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="SearchResultBuyItAgainPopulator" class="com.siteone.facades.buyitagain.search.populator.SearchResultBuyItAgainPopulator">
+	</bean>
+	
+	<alias name="defaultCommerceBuyItAgainSearchQueryPageableConverter" alias="buyItAgainSearchQueryPageableConverter" />
+	<bean id="defaultCommerceBuyItAgainSearchQueryPageableConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="de.hybris.platform.commerceservices.search.solrfacetsearch.data.SolrSearchRequest" />
+		<property name="populators">
+			<list>
+				<ref bean="commerceBuyItAgainSearchSolrQueryPopulator" />
+				<ref bean="commerceSearchPagePopulator" />
+				<ref bean="commerceBuyItAgainSearchTextPopulator" />
+				<ref bean="commerceSearchFiltersPopulator" />
+				<ref bean="commerceSearchSortPopulator" />
+				<ref bean="buyagaintextPopulator"/>
+			</list>
+		</property>
+	</bean>
+	
+	<alias name="defaultCommerceBuyItAgainSearchSolrQueryPopulator" alias="commerceBuyItAgainSearchSolrQueryPopulator" />
+	<bean id="defaultCommerceBuyItAgainSearchSolrQueryPopulator" class="com.siteone.facades.buyitagain.search.populator.BuyItAgainSearchSolrQueryPopulator" parent="defaultCommerceSearchSolrQueryPopulator">
+		<property name="b2bUnitFacade" ref="b2bUnitFacade" />
+	</bean>
+	<alias name="defaultCommerceBuyItAgaintextPopulator" alias="buyagaintextPopulator" />
+	<bean id="defaultCommerceBuyItAgaintextPopulator" class="com.siteone.facades.buyitagain.search.populator.BuyItAgainTextPopulator">
+	</bean> 
+	
+	<alias name="defaultCommerceBuyItAgainSearchTextPopulator" alias="commerceBuyItAgainSearchTextPopulator" />
+	<bean id="defaultCommerceBuyItAgainSearchTextPopulator" class="com.siteone.facades.buyitagain.search.populator.BuyItAgainSearchTextPopulator">
+		<property name="freeTextQueryBuilders">
+			<list>
+				<bean class="com.siteone.core.solrfacetsearch.querybuilder.impl.DefaultSiteOneFreeTextQueryBuilder">
+					<property name="propertyName" value="soproductcode" />
+					<property name="boost" value="100" />
+				</bean>
+				<bean class="com.siteone.core.solrfacetsearch.querybuilder.impl.DefaultSiteOneFreeTextQueryBuilder">
+					<property name="propertyName" value="soProductDescription" />
+					<property name="boost" value="90" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+				
+	<alias name="defaultCommerceSolrBuyItAgainSearchResponseConverter" alias="commerceSolrBuyItAgainSearchResponseConverter" />
+	<bean id="defaultCommerceSolrBuyItAgainSearchResponseConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="com.siteone.facade.BuyItAgainSearchPageData" />
+		<property name="populators">
+			<list>
+				<ref bean="commerceSearchResponseQueryPopulator" />
+				<ref bean="commerceSearchResponsePaginationPopulator" />
+				<ref bean="commerceSearchResponseResultsPopulator" />
+				<ref bean="commerceSearchResponseFacetsPopulator" />
+				<ref bean="commerceSearchResponseFacetFilterPopulator" />
+				<ref bean="commerceSearchResponseBreadcrumbsPopulator" />
+				<ref bean="commerceBuyItAgainSearchResponseFreeTextSearchPopulator" />
+			</list>
+		</property>
+	</bean>
+	
+	<alias name="defaultCommerceBuyItAgainSearchResponseFreeTextSearchPopulator" alias="commerceBuyItAgainSearchResponseFreeTextSearchPopulator" />
+	<bean id="defaultCommerceBuyItAgainSearchResponseFreeTextSearchPopulator" class="com.siteone.facades.buyitagain.search.populator.BuyItAgainSearchResponseFreeTextSearchPopulator" />
+
+	<alias name="siteoneCmsStructureTypeBlacklistAttributeMap" alias="siteoneStructureTypeBlacklistAttributeMap"/>
+	<bean id="defaultCmsStructureTypeBlacklistAttributeMap" class="org.springframework.beans.factory.config.MapFactoryBean" scope="singleton">
+		<property name="sourceMap">
+			<map key-type="java.lang.String" value-type="java.lang.String">
+				<entry key="AbstractPage" value="approvalStatus, masterTemplate, defaultPage, onlyOneRestrictionMustApply, contentSlots, type, typeCode, missingContentSlots, availableContentSlots, view, navigationNodeList, lockedBy, copyToCatalogsDisabled, localizedPages, originalPage, pageStatus, template, displayStatus"/>
+				<entry key="ContentPage" value="homepage, labelOrId, navigationNodes, linkComponents, bannerComponets, flashComponents"/>
+				<entry key="SimpleCMSComponent" value="containers"/>
+				<entry key="AbstractCMSComponent" value="uid, onlyOneRestrictionMustApply, type, typeCode, container, restricted, slots, actions"/>
+				<entry key="CMSItem" value="catalogVersion"/>
+				<entry key="AbstractRestriction" value="uid, type, typeCode, pages, components, inverseRestrictions"/>
+				<entry key="CMSCategoryRestriction" value="categoryCodes"/>
+				<entry key="ProductCarouselComponent" value="productCodes, categoryCodes, searchQuery, categoryCode, popup"/>
+				<entry key="NavigationComponent" value="styleClass"/>
+				<entry key="FooterNavigationComponent" value="showLanguageCurrency, notice"/>
+				<entry key="CMSProductRestriction" value="productCodes"/>
+				<entry key="CMSTimeRestriction" value="useStoreTimeZone" />
+				<entry key="CMSNavigationNode" value="children, links, pages, parent, visible" />
+				<entry key="CMSNavigationEntry" value="navigationNode" />
+				<entry key="AbstractBannerComponent" value="urlLink" />
+			</map>
+		</property>
+	</bean>
+	<bean id="eWalletNotificationEmailContext" class="com.siteone.facades.process.email.context.EwalletNotificationEmailContext" parent="abstractEmailContext" scope="prototype" >
+	</bean>
+	<bean id="siteOneEwalletEmailNotificationService" class="com.siteone.facades.ewallet.impl.SiteOneEwalletEmailNotificationServiceImpl"></bean>
+	<alias name="defaultSiteOneKountService" alias="siteOneKountService"/>
+	<bean id="defaultSiteOneKountService" class="com.siteone.core.kount.service.impl.DefaultSiteOneKountService" />
+	
+	<alias name="defaultSiteOneOrderConsignmentPopulator" alias="orderConsignmentPopulator"/>
+	<bean id="defaultSiteOneOrderConsignmentPopulator" class="com.siteone.facades.consignment.populator.SiteOneOrderConsignmentPopulator" parent="defaultOrderConsignmentPopulator">
+		<property name="priceDataFactory" ref="priceDataFactory" />
+		<property name="addressConverter" ref="addressConverter"/>
+	</bean>
+	
+
+<!-- 	<alias name="defaultPromotionCategoryRaoConverter" alias="promotionCategoryRaoConverter" />
+	<bean id="defaultPromotionCategoryRaoConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="de.hybris.platform.ruleengineservices.rao.PromotionCategoryRAO" />
+		<property name="populators">
+			<list>
+				<ref bean="promotionCategoryRaoPopulator"/>
+			</list>
+		</property>
+	</bean>
+	
+	<alias name="defaultPromotionCategoryRaoPopulator" alias="promotionCategoryRaoPopulator" />
+	<bean id="defaultPromotionCategoryRaoPopulator"
+		class="com.siteone.facades.populators.PromotionCategoryRaoPopulator">
+		<property name="productConverter" ref="productRaoConverter" />
+	</bean> -->
+	
+	<alias name="defaultSiteOneArticleCategoryPopulator" alias="siteoneArticleCategoryPopulator"/>
+	<bean id="defaultSiteOneArticleCategoryPopulator" class="com.siteone.facades.article.populators.SiteOneArticleCategoryPopulator">
+	</bean>
+	
+	<bean id="siteOneGuestUserConverter" parent="abstractPopulatingConverter" >
+	<property name="targetClass" value="de.hybris.platform.commercefacades.user.data.CustomerData"/>
+	<property name="populators">
+		<list>
+		    <ref bean="siteOneGuestUserPopulator"/>
+		</list>
+	</property>
+</bean>
+
+<bean id="siteOneGuestUserPopulator" class="com.siteone.facades.populators.SiteOneGuestUserPopulator">
+</bean>
+
+<bean id="siteOnePageFacade" class="com.siteone.facade.cmspage.DefaultSiteOnePageFacade">
+</bean>
+<bean id="siteOneContrPrimaryBusinessDataConverter" parent="abstractPopulatingConverter">
+ 		<property name="targetClass" value="com.siteone.facade.customer.info.SiteOneContrPrimaryBusinessData"/>
+ 		<property name="populators">
+ 			<list>
+ 				<ref bean="siteOneContrPrimaryBusinessDataPopulator"/>
+ 			</list>
+ 		</property>
+ 	</bean>
+ 	
+ 	<bean id="siteOneContrPrimaryBusinessDataPopulator"
+ 		class="com.siteone.facades.populators.SiteOneContrPrimaryBusinessDataPopulator">
+ 	</bean>
+ 	
+ 	<alias name="defaultPointOfServicePopulatorList" alias="pointOfServicePopulator"/>
+	<bean id="defaultPointOfServicePopulatorList" parent="abstractPopulatorList">
+		<property name="populators">
+			<list>
+				<ref bean="defaultSiteOnePointOfServicePopulator"/>
+				<ref bean="siteOnePointOfServiceStoreFeaturePopulator"/>
+			</list>
+		</property>
+	</bean>	
+	
+	<bean id="siteOnePointOfServiceStoreFeaturePopulator" class="com.siteone.facades.populators.SiteOnePointOfServiceStoreFeaturePopulator">
+	</bean>
+		 <bean id="linkToPayEmailContext" class="com.siteone.facades.process.email.context.LinkToPayEmailContext" parent="abstractEmailContext" scope="prototype" >
+	</bean>
+	
+		 <bean id="linkToPayEmailPaymentContext" class="com.siteone.facades.process.email.context.LinkToPayEmailPaymentContext" parent="abstractEmailContext" scope="prototype" >
+	</bean>
+
+		 <bean id="quoteApprovalEmailContext" class="com.siteone.facades.process.email.context.QuoteApprovalEmailContext" parent="abstractEmailContext" scope="prototype" >
+	</bean>
+	<bean id="contactSellerEmailContext" class="com.siteone.facades.process.email.context.ContactSellerEmailContext" parent="abstractEmailContext" scope="prototype" >
+	</bean>
+	<bean id="expiredQuoteUpdEmailContext" class="com.siteone.facades.process.email.context.ExpiredQuoteUpdEmailContext" parent="abstractEmailContext" scope="prototype" >
+	</bean>
+	<bean id="requestQuoteEmailContext" class="com.siteone.facades.process.email.context.RequestQuoteEmailContext" parent="abstractEmailContext" scope="prototype" >
+	</bean>
+	
+	<bean id="siteOneB2BUnitAdministratorPopulator" class="com.siteone.facades.populators.SiteOneB2BUnitAdministratorPopulator">
+		<property name="b2BUnitService" ref="b2bUnitService"/>
+		<property name="b2BCustomerConverter" ref="b2BCustomerConverter"/>
+	</bean>
+	
+	<bean id="siteOneB2BUnitWithAdministratorConvertor" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="de.hybris.platform.b2bcommercefacades.company.data.B2BUnitData"/>
+		<property name="populators">
+			<list>
+			    <ref bean="siteOneB2BUnitBasicPopulator"/>
+				<ref bean="siteOneB2BUnitAdministratorPopulator"/>
+			</list>
+		</property>
+	</bean>
+	<bean id="orderAdminApprovalEmailContext" class="com.siteone.facades.process.email.context.OrderAdminApprovalEmailContext" parent="abstractEmailContext" scope="prototype" >
+	  <property name="orderConverter" ref="orderConverter"/>
+	</bean>
+	
+	<bean id="noVisibleUomEmailContext" class="com.siteone.facades.process.email.context.NoVisibleUomEmailContext" parent="abstractEmailContext" scope="prototype" >
+	</bean>
+	
+	<bean id="notifyQuoteStatusEmailContext" class="com.siteone.facades.process.email.context.NotifyQuoteStatusEmailContext" parent="abstractEmailContext" scope="prototype" >
+	</bean>
+	
+	<bean id="quoteToOrderStatusEmailContext" class="com.siteone.facades.process.email.context.QuoteToOrderStatusEmailContext" parent="abstractEmailContext" scope="prototype" >
+	 </bean>
+	
+	<alias name="defaultSiteOneCommercePlaceOrderStrategy" alias="defaultCommercePlaceOrderStrategy"/>
+    <bean id="defaultSiteOneCommercePlaceOrderStrategy" class="com.siteone.facades.checkout.impl.DefaultSiteOneCommercePlaceOrderStrategy">
+         <property name="paymentService" ref="paymentService"/>
+        <property name="modelService" ref="modelService"/>
+        <property name="commonI18NService" ref="commonI18NService"/>
+        <property name="deliveryService" ref="deliveryService"/>
+        <property name="orderService" ref="orderService"/>
+        <property name="baseSiteService" ref="baseSiteService"/>
+        <property name="baseStoreService" ref="baseStoreService"/>
+        <property name="promotionsService" ref="promotionsService"/>
+        <property name="calculationService" ref="calculationService"/>
+        <property name="externalTaxesService" ref="externalTaxesService"/>
+        <property name="commercePlaceOrderMethodHooks" ref="commercePlaceOrderMethodHooks"/>
+        <property name="configurationService" ref="configurationService"/>
+        <property name="timeService" ref="timeService"/>
+    </bean>
+    
+    <bean id="siteOnePaymentUtil" class="com.siteone.checkout.facades.utils.SiteOnePaymentUtil" />
+    
+     <bean id="declinedCardAttemptEmailContext" class="com.siteone.facades.process.email.context.DeclinedCardAttemptEmailContext" parent="abstractEmailContext" scope="prototype" >
+	</bean>
+	
+</beans>

@@ -1,0 +1,8 @@
+INSERT_UPDATE ComponentTypeGroups2ComponentType;source(code)[unique=true];target(code)[unique=true]
+;narrow;SiteoneGreenButtonComponent
+;wide;SiteoneGreenButtonComponent
+
+##### Removes old component from the list - Impex #####
+Remove ComponentTypeGroups2ComponentType;source(code)[unique=true];target(code)[unique=true]
+;narrow;SiteoneGreenTechButtonComponent
+;wide;SiteoneGreenTechButtonComponent

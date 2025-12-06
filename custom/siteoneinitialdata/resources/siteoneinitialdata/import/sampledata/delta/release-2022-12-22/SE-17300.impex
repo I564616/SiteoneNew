@@ -1,0 +1,15 @@
+INSERT_UPDATE ServicelayerJob; code[unique=true];springid[unique=true]
+;productFeedCronJob;productFeedCronJob;
+;inventoryFeedCronJob;inventoryFeedCronJob;
+
+INSERT_UPDATE ProductFeedCronJob;code[unique=true];job(code)[default=productFeedCronJob];sessionLanguage(isoCode)[default=en]
+;productFeedCronJob
+
+INSERT_UPDATE InventoryFeedCronJob;code[unique=true];job(code)[default=inventoryFeedCronJob];sessionLanguage(isoCode)[default=en]
+;inventoryFeedCronJob
+
+INSERT_UPDATE Trigger;cronjob(code)[unique=true];active;cronExpression
+#Fires at 10:15 AM everyday
+;productFeedCronJob;true;0 15 10 * * ?
+;inventoryFeedCronJob;true;0 15 10 * * ?
+

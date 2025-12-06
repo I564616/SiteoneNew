@@ -1,0 +1,3 @@
+INSERT_UPDATE PointOfService;storeId[unique=true];supportProductScanner
+;329;true
+;434;true

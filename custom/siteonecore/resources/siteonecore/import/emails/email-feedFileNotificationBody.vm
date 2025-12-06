@@ -1,0 +1,111 @@
+ #macro( genHtmlBoldFont $text )
+<font color="#414a4f" size="2" face="Arial, Helvetica, sans-serif"><b>$text</b></font> #end #macro(genHtmlLinkStartTag $url)
+<a href="$url"><font color="#666666">
+#end
+#macro(genHtmlLinkEndTag)
+</font></a> #end #macro(genHtmlLink $url $textColor $bodyContent)
+<a href="$url"><font color="$textColor">$bodyContent</font></a> #end
+
+<html>
+
+<head>
+</head>
+
+<body bgcolor="#ffffff">
+
+    <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#ffffff">
+        <tr>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td align="center" valign="top">
+                <table width="610" border="0" align="center" cellpadding="0" cellspacing="0" bordercolor="#fff">
+                    <tr>
+                        <td align="center" valign="top" bgcolor="#FFFFFF">
+
+                            <table style="border: 1px solid #000000;" width="570" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#ffffff">
+                                
+                                <tr>
+			                    <br> <td style="margin:5px;"><p><font style="font-family:Arial;font-weight:regular;font-size:16px;color:#565656;">Environment - ${ctx.environment} </font></p></td>
+		                        </tr>
+
+                                <tr>
+                                    <td colspan="2" align="left" valign="top">
+
+                                        <table style="padding: 15px 15px;" width="100%" border="0" align="center" cellpadding="0" cellspacing="0" bordercolor="#51585c" class="products">
+                                            <tr>
+                                                <td>
+                                                    <table width="100%" cellpadding="0" cellspacing="0">
+
+                                                        <tr bgcolor="#e0e0e0">
+                                                            <td width="50%"><font color="#000000" size="2" face="Arial, Helvetica, sans-serif">Feed Name</font></td>
+                                                            <td align="center" width="17%" height="30px"><font color="#000000" size="2" face="Arial, Helvetica, sans-serif">Date</font></td>
+                                                            <td align="center" width="17%" height="30px"><font color="#000000" size="2" face="Arial, Helvetica, sans-serif">Missed Schedule Timings</font></td>
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td style="padding: 15px 0px;">
+                                                                #foreach( $entry in ${ctx.fileNames} )
+                                                                <tr>
+                                                                    <td valign="top">
+                                                                    
+                                                                       <a style="text-decoration:none;">
+                                                                        
+                                                                         #if ($entry.get("fileName")=='siteoneprice')
+                                                                            <font color="#000000">SiteOne Price Feed </font>                                                                       
+                                                                         #elseif ($entry.get("fileName")=='siteonecustomer')
+                                                                            <font color="#000000">SiteOne Customer Feed </font>
+                                                                         #elseif ($entry.get("fileName")=='siteoneinventoryChanges')
+                                                                            <font color="#000000">SiteOne Inventory Feed </font>                                                                        
+                                                                         #elseif ($entry.get("fileName")=='siteoneinvoice')
+                                                                            <font color="#000000">SiteOne Invoice Feed </font>                                                                         
+                                                                         #elseif ($entry.get("fileName")=='siteonestore')
+                                                                            <font color="#000000">SiteOne Store Feed </font>                                                                        
+                                                                         #elseif ($entry.get("fileName")=='siteoneorder')
+                                                                            <font color="#000000">SiteOne Order Feed </font>
+																		 #elseif ($entry.get("fileName")=='sobaseproduct')
+                                                                            <font color="#000000">SiteOne BaseProduct Feed </font> 																			
+																		 #else
+                                                                            <font color="#000000">$entry.get("fileName") </font>
+                                                                         #end
+                                                                         
+                                                                       </a>
+
+                                                                    </td>
+                                                                    <td height="30px" valign="top">
+                                                                        <p><font color="#000000" size="2" face="Arial, Helvetica, sans-serif">
+
+																$entry.get("fileDate")</font>
+
+                                                                        </p>
+                                                                    </td>
+                                                                    <td height="30px" valign="top">
+                                                                        <p><font color="#000000" size="2" face="Arial, Helvetica, sans-serif">
+
+																$entry.get("fileTime"):00</font>
+
+                                                                        </p>
+                                                                    </td>
+
+                                                                </tr>
+                                                                #end
+                                                            </td>
+
+                                                        </tr>
+
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <br/>
+
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+
+                </table>
+</body>
+
+</html>

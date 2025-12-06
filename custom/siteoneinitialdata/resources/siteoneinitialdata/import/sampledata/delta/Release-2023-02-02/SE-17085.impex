@@ -1,0 +1,4 @@
+$solrIndexedType=siteoneProductType
+
+REMOVE SolrIndexedProperty;solrIndexedType(identifier)[unique=true];name[unique=true]
+;$solrIndexedType; sopriorityBrandNameFacet 

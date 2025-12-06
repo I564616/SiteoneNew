@@ -1,0 +1,59 @@
+.page-purchasedProductPage {
+	.main-container {
+		.pagination-bar {
+			.pagination-prev {
+				@media(max-width: @screen-sm-max) {
+					line-height: 27pt;
+				}
+			}
+			
+			.pagination > li > a, .pagination > li > span {
+				@media(max-width: @screen-sm-max) {
+					line-height: 27pt;
+				}
+			}
+			
+			.pagination-next {
+				@media(max-width: @screen-sm-max) {
+					line-height: 27pt;
+				}
+			}
+		}
+		
+		.purchased-pagination .sortSelect {
+			@media(min-device-width: 481px) and (max-device-width:700px) {
+				padding-top:7px !important;
+    			width:55px !important;
+   				margin-left:25px !important;
+   				margin-top:2px !important; 
+			}
+			
+			@media(min-width: 700px) and (max-width:768px){
+			    padding-top: 8px;
+    			width: 55px !important;
+   				margin-left: 25px;
+			
+			}
+			
+			@media(min-width: 770px) and (max-width:820px){
+			    padding-top: 8px;
+			    width: 55px !important;
+			    margin-top: 12px;
+			    margin-left: 20px; 
+			}  
+		}
+		
+		.purchased-pagination .pagination-bar.bottom .sort-refine-bar{
+			@media(max-width: @screen-sm-max) {
+				overflow: unset;
+			}
+		}
+		
+		.displayResultsCount, .pagination-wrap.product-page-wrap {
+			@media(max-width: @screen-sm-max) {
+				padding-top: 13px;
+				float:right;
+			}
+		}
+	}
+}

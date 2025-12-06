@@ -1,0 +1,631 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<!--
+	ATTENTION: This is just an example file. You have to edit it according to your needs.
+-->
+
+<items 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+			xsi:noNamespaceSchemaLocation="items.xsd">
+<collectiontypes>
+	<collectiontype code="SiteOneProductSpecificationAttributeList"
+		elementtype="SiteOneProductSpecificationAttribute" autocreate="true"
+		generate="true" type="list" />
+		<collectiontype code="SiteOneCategoryLevelList"
+		elementtype="SiteOneCategoryLevel" autocreate="true"
+		generate="true" type="list" />
+	<collectiontype code="ItemImageList" 
+		elementtype="SiteOneProductItemImages" autocreate="true"
+		generate="true" type="list" />	
+	<collectiontype code="TransformCollection"
+		elementtype="SiteOneProductTransformation" autocreate="true"
+		generate="true" type="list" />
+     <collectiontype code="SDSCollection"
+		elementtype="SiteOneProductSafetyDataSheet" autocreate="true"
+		generate="true" type="list" />
+		 <collectiontype code="LabelCollection"
+		elementtype="SiteOneProductLabelSheet" autocreate="true"
+		generate="true" type="list" />
+		 <collectiontype code="SpecificationCollection"
+		elementtype="SiteOneProductSpecificationSheet" autocreate="true"
+		generate="true" type="list" />
+		 <collectiontype code="ownersManualCollection"
+		elementtype="SiteOneOwnersManual" autocreate="true"
+		generate="true" type="list" />
+		 <collectiontype code="installationInstructionsCollection"
+		elementtype="SiteOneInstallationInstructions" autocreate="true"
+		generate="true" type="list" />
+		 <collectiontype code="technicalDrawingCollection"
+		elementtype="SiteOneTechnicalDrawing" autocreate="true"
+		generate="true" type="list" />
+		 <collectiontype code="partsDiagramCollection"
+		elementtype="SiteOnePartsDiagram" autocreate="true"
+		generate="true" type="list" />
+		 <collectiontype code="warrantyInformationCollection"
+		elementtype="SiteOneWarrantyInformation" autocreate="true"
+		generate="true" type="list" />
+		<collectiontype code="brochuresCollection"
+		elementtype="SiteOneBrochures" autocreate="true"
+		generate="true" type="list" />
+		<collectiontype code="SiteOneCategoryAttributeList" elementtype="SiteOneCategoryAttributes" autocreate="true" generate="true" type="list" />
+		<collectiontype code="SiteOneProductSavingsCenterAttributeList"
+					elementtype="SiteOneProductSavingsCenterAttribute" autocreate="true"
+					generate="true" type="list" />
+</collectiontypes>
+
+	<itemtypes>
+		<itemtype code="SiteOneProductSpecificationAttribute"
+			autocreate="true" generate="true" extends="GenericItem"
+			jaloclass="com.siteone.pimintegration.jalo.SiteOneProductSpecificationAttribute">
+			<deployment table="SiteOneProductSpecAttr" typecode="28383" />
+			<attributes>
+				<attribute type="java.lang.String" qualifier="name">
+					<modifiers read="true" write="true"/>
+					<persistence type="property" />
+				</attribute>
+				<attribute type="java.lang.String" qualifier="text">
+					<modifiers read="true" write="true" />
+					<persistence type="property" />
+				</attribute>
+			</attributes>
+			 <indexes>
+					<index name="siteoneproductspecattr_dev_007">  
+						<key attribute="creationtime" />
+						<key attribute="modifiedtime" />
+						<key attribute="name" />
+						<key attribute="text" />
+					</index>					
+				</indexes>
+		</itemtype>
+				
+<itemtype code="SiteOneProductSafetyDataSheet"
+		    autocreate="true" generate="true" extends="GenericItem"
+		    jaloclass="com.siteone.pimintegration.jalo.SiteOneProductSafetyDataSheet">
+		    <deployment table="SiteOneProdSDS" typecode="32203"/>
+		      <attributes>
+		         <attribute type="java.lang.String" qualifier="id">
+		            <modifiers read="true" write="true"/>
+		            <persistence type='property'/>
+		         </attribute>
+		         <attribute type="java.lang.String" qualifier="mimetype">
+		            <modifiers read="true" write="true"/>
+		            <persistence type='property'/>
+		         </attribute>
+		         <attribute type="java.lang.String" qualifier="fullpath">
+		            <modifiers read="true" write="true"/>
+		            <persistence type='property'/>		            
+		         </attribute>
+		         <attribute type="java.lang.String" qualifier="priority">
+		            <modifiers read="true" write="true"/>
+		            <persistence type='property'/>
+		         </attribute>
+		         <attribute type="java.lang.String" qualifier="code">
+		        <modifiers read="true" write="true"/>
+		        <persistence type="property"/>
+		        </attribute>
+		    </attributes>
+		</itemtype>
+		
+		<itemtype code="SiteOneProductLabelSheet"
+		    autocreate="true" generate="true" extends="GenericItem"
+		    jaloclass="com.siteone.pimintegration.jalo.SiteOneProductLabelSheet">
+		    <deployment table="SiteOneProdLabel" typecode="32202"/>
+		      <attributes>
+		         <attribute type="java.lang.String" qualifier="id">
+		            <modifiers read="true" write="true"/>
+		            <persistence type='property'/>
+		         </attribute>
+		         <attribute type="java.lang.String" qualifier="mimetype">
+		            <modifiers read="true" write="true"/>
+		            <persistence type='property'/>
+		         </attribute>
+		         <attribute type="java.lang.String" qualifier="fullpath">
+		            <modifiers read="true" write="true"/>
+		            <persistence type='property'/>		            
+		         </attribute>
+		         <attribute type="java.lang.String" qualifier="priority">
+		            <modifiers read="true" write="true"/>
+		            <persistence type='property'/>
+		         </attribute>
+		         <attribute type="java.lang.String" qualifier="code">
+		        <modifiers read="true" write="true"/>
+		        <persistence type="property"/>
+		        </attribute>
+		    </attributes>
+		</itemtype>
+		
+		<itemtype code="SiteOneProductSpecificationSheet"
+		    autocreate="true" generate="true" extends="GenericItem"
+		    jaloclass="com.siteone.pimintegration.jalo.SiteOneProductSpecificationSheet">
+		    <deployment table="SiteOneProdSpecificSheet" typecode="32201"/>
+		      <attributes>
+		         <attribute type="java.lang.String" qualifier="id">
+		            <modifiers read="true" write="true"/>
+		            <persistence type='property'/>
+		         </attribute>
+		         <attribute type="java.lang.String" qualifier="mimetype">
+		            <modifiers read="true" write="true"/>
+		            <persistence type='property'/>
+		         </attribute>
+		         <attribute type="java.lang.String" qualifier="fullpath">
+		            <modifiers read="true" write="true"/>
+		            <persistence type='property'/>		            
+		         </attribute>
+		         <attribute type="java.lang.String" qualifier="priority">
+		            <modifiers read="true" write="true"/>
+		            <persistence type='property'/>
+		         </attribute>
+		         <attribute type="java.lang.String" qualifier="code">
+		        <modifiers read="true" write="true"/>
+		        <persistence type="property"/>
+		        </attribute>
+		    </attributes>
+		</itemtype>
+		
+		<itemtype code="SiteOneOwnersManual"
+		    autocreate="true" generate="true" extends="GenericItem"
+		    jaloclass="com.siteone.pimintegration.jalo.SiteOneOwnersManual">
+		    <deployment table="SiteOneOwnersManual" typecode="32204"/>
+		      <attributes>
+		         <attribute type="java.lang.String" qualifier="id">
+		            <modifiers read="true" write="true"/>
+		            <persistence type='property'/>
+		         </attribute>
+		         <attribute type="java.lang.String" qualifier="mimetype">
+		            <modifiers read="true" write="true"/>
+		            <persistence type='property'/>
+		         </attribute>
+		         <attribute type="java.lang.String" qualifier="fullpath">
+		            <modifiers read="true" write="true"/>
+		            <persistence type='property'/>		            
+		         </attribute>
+		         <attribute type="java.lang.String" qualifier="priority">
+		            <modifiers read="true" write="true"/>
+		            <persistence type='property'/>
+		         </attribute>
+		         <attribute type="java.lang.String" qualifier="code">
+		        <modifiers read="true" write="true"/>
+		        <persistence type="property"/>
+		        </attribute>
+		    </attributes>
+		</itemtype>
+		
+		<itemtype code="SiteOneInstallationInstructions"
+		    autocreate="true" generate="true" extends="GenericItem"
+		    jaloclass="com.siteone.pimintegration.jalo.SiteOneInstallationInstructions">
+		    <deployment table="SiteOneInstallationSheet" typecode="32205"/>
+		      <attributes>
+		         <attribute type="java.lang.String" qualifier="id">
+		            <modifiers read="true" write="true"/>
+		            <persistence type='property'/>
+		         </attribute>
+		         <attribute type="java.lang.String" qualifier="mimetype">
+		            <modifiers read="true" write="true"/>
+		            <persistence type='property'/>
+		         </attribute>
+		         <attribute type="java.lang.String" qualifier="fullpath">
+		            <modifiers read="true" write="true"/>
+		            <persistence type='property'/>		            
+		         </attribute>
+		         <attribute type="java.lang.String" qualifier="priority">
+		            <modifiers read="true" write="true"/>
+		            <persistence type='property'/>
+		         </attribute>
+		         <attribute type="java.lang.String" qualifier="code">
+		        <modifiers read="true" write="true"/>
+		        <persistence type="property"/>
+		        </attribute>
+		    </attributes>
+		</itemtype>
+		
+		<itemtype code="SiteOneTechnicalDrawing"
+		    autocreate="true" generate="true" extends="GenericItem"
+		    jaloclass="com.siteone.pimintegration.jalo.SiteOneTechnicalDrawing">
+		    <deployment table="SiteOneTechnicalDrawing" typecode="32206"/>
+		      <attributes>
+		         <attribute type="java.lang.String" qualifier="id">
+		            <modifiers read="true" write="true"/>
+		            <persistence type='property'/>
+		         </attribute>
+		         <attribute type="java.lang.String" qualifier="mimetype">
+		            <modifiers read="true" write="true"/>
+		            <persistence type='property'/>
+		         </attribute>
+		         <attribute type="java.lang.String" qualifier="fullpath">
+		            <modifiers read="true" write="true"/>
+		            <persistence type='property'/>		            
+		         </attribute>
+		         <attribute type="java.lang.String" qualifier="priority">
+		            <modifiers read="true" write="true"/>
+		            <persistence type='property'/>
+		         </attribute>
+		         <attribute type="java.lang.String" qualifier="code">
+		        <modifiers read="true" write="true"/>
+		        <persistence type="property"/>
+		        </attribute>
+		    </attributes>
+		</itemtype>
+		
+		<itemtype code="SiteOnePartsDiagram"
+		    autocreate="true" generate="true" extends="GenericItem"
+		    jaloclass="com.siteone.pimintegration.jalo.SiteOnePartsDiagram">
+		    <deployment table="SiteOnePartsDiagram" typecode="32207"/>
+		      <attributes>
+		         <attribute type="java.lang.String" qualifier="id">
+		            <modifiers read="true" write="true"/>
+		            <persistence type='property'/>
+		         </attribute>
+		         <attribute type="java.lang.String" qualifier="mimetype">
+		            <modifiers read="true" write="true"/>
+		            <persistence type='property'/>
+		         </attribute>
+		         <attribute type="java.lang.String" qualifier="fullpath">
+		            <modifiers read="true" write="true"/>
+		            <persistence type='property'/>		            
+		         </attribute>
+		         <attribute type="java.lang.String" qualifier="priority">
+		            <modifiers read="true" write="true"/>
+		            <persistence type='property'/>
+		         </attribute>
+		         <attribute type="java.lang.String" qualifier="code">
+		        <modifiers read="true" write="true"/>
+		        <persistence type="property"/>
+		        </attribute>
+		    </attributes>
+		</itemtype>
+		
+		<itemtype code="SiteOneWarrantyInformation"
+		    autocreate="true" generate="true" extends="GenericItem"
+		    jaloclass="com.siteone.pimintegration.jalo.SiteOneWarrantyInformation">
+		    <deployment table="SiteOneWarrantySheet" typecode="32208"/>
+		      <attributes>
+		         <attribute type="java.lang.String" qualifier="id">
+		            <modifiers read="true" write="true"/>
+		            <persistence type='property'/>
+		         </attribute>
+		         <attribute type="java.lang.String" qualifier="mimetype">
+		            <modifiers read="true" write="true"/>
+		            <persistence type='property'/>
+		         </attribute>
+		         <attribute type="java.lang.String" qualifier="fullpath">
+		            <modifiers read="true" write="true"/>
+		            <persistence type='property'/>		            
+		         </attribute>
+		         <attribute type="java.lang.String" qualifier="priority">
+		            <modifiers read="true" write="true"/>
+		            <persistence type='property'/>
+		         </attribute>
+		         <attribute type="java.lang.String" qualifier="code">
+		        <modifiers read="true" write="true"/>
+		        <persistence type="property"/>
+		        </attribute>
+		    </attributes>
+		</itemtype>
+		
+		<itemtype code="SiteOneBrochures"
+		    autocreate="true" generate="true" extends="GenericItem"
+		    jaloclass="com.siteone.pimintegration.jalo.SiteOneBrochures">
+		    <deployment table="SiteOneBrochures" typecode="32209"/>
+		      <attributes>
+		         <attribute type="java.lang.String" qualifier="id">
+		            <modifiers read="true" write="true"/>
+		            <persistence type='property'/>
+		         </attribute>
+		         <attribute type="java.lang.String" qualifier="mimetype">
+		            <modifiers read="true" write="true"/>
+		            <persistence type='property'/>
+		         </attribute>
+		         <attribute type="java.lang.String" qualifier="fullpath">
+		            <modifiers read="true" write="true"/>
+		            <persistence type='property'/>		            
+		         </attribute>
+		         <attribute type="java.lang.String" qualifier="priority">
+		            <modifiers read="true" write="true"/>
+		            <persistence type='property'/>
+		         </attribute>
+		         <attribute type="java.lang.String" qualifier="code">
+		        <modifiers read="true" write="true"/>
+		        <persistence type="property"/>
+		        </attribute>
+		    </attributes>
+		</itemtype>
+		
+		<itemtype code="SiteOneDataSheet" 
+		    autocreate="true" generate="true"  extends="GenericItem"
+		    jaloclass="com.siteone.pimintegration.jalo.SiteOneDataSheet">
+		    <deployment table="SiteOneDataSheet" typecode="32200"/>
+		    <attributes>
+		    	<attribute type="java.lang.String" qualifier="id">
+		            <modifiers read="true" write="true"/>
+		           <persistence type='property'/>
+		        </attribute>
+		        <attribute qualifier="specificationSheet" type="SpecificationCollection">
+					<modifiers partof="true" read="true" write="true" />
+					<persistence type='property'/>
+				</attribute>
+				<attribute qualifier="safetyDataSheet" type="SDSCollection">
+					<modifiers partof="true" read="true" write="true" />
+					<persistence type='property'/>
+				</attribute>
+				<attribute qualifier="labelAsset" type="LabelCollection">
+					<modifiers partof="true" read="true" write="true" />
+					<persistence type='property'/>
+				</attribute>
+				<attribute qualifier="ownersManual" type="ownersManualCollection">
+					<modifiers partof="true" read="true" write="true" />
+					<persistence type='property'/>
+				</attribute>
+				<attribute qualifier="installationInstructions" type="installationInstructionsCollection">
+					<modifiers partof="true" read="true" write="true" />
+					<persistence type='property'/>
+				</attribute>
+				<attribute qualifier="technicalDrawing" type="technicalDrawingCollection">
+					<modifiers partof="true" read="true" write="true" />
+					<persistence type='property'/>
+				</attribute>
+				<attribute qualifier="partsDiagram" type="partsDiagramCollection">
+					<modifiers partof="true" read="true" write="true" />
+					<persistence type='property'/>
+				</attribute>
+				<attribute qualifier="warrantyInformation" type="warrantyInformationCollection">
+					<modifiers partof="true" read="true" write="true" />
+					<persistence type='property'/>
+				</attribute>
+				<attribute qualifier="brochures" type="brochuresCollection">
+					<modifiers partof="true" read="true" write="true" />
+					<persistence type='property'/>
+				</attribute>
+		    </attributes>
+		</itemtype>
+
+		<itemtype code="SiteOneProductTransformation" 
+		    autocreate="true" generate="true"  extends="GenericItem"
+		    jaloclass="com.siteone.pimintegration.jalo.SiteOneProductTransformation">
+		    <deployment table="SiteOneProductTrans" typecode="32102" />
+		    <attributes>
+		         <attribute type="java.lang.String" qualifier="url">
+		            <modifiers read="true" write="true"/>
+		           	<persistence type='property'/>
+		        </attribute>
+		         <attribute type="java.lang.String" qualifier="format">
+		            <modifiers read="true" write="true"/>
+		            <persistence type='property'/>
+		        </attribute>
+		        <attribute type="java.lang.String" qualifier="code">
+		        <modifiers read="true" write="true"/>
+		        <persistence type="property"/>
+		        </attribute>
+		    </attributes>
+		</itemtype>	
+		<itemtype code="SiteOneProductImage" 
+		    autocreate="true" generate="true"  extends="GenericItem"
+		    jaloclass="com.siteone.pimintegration.jalo.SiteOneProductImage">
+		    <deployment table="SiteOneImageTable" typecode="32108"/>
+		    <attributes>		    	 
+		        <attribute type="java.lang.String" qualifier="id">
+		            <modifiers read="true" write="true"/>
+		           <persistence type='property'/>
+		        </attribute>
+		        <attribute type="java.lang.String" qualifier="mimetype">
+		            <modifiers read="true" write="true"/>
+		           <persistence type='property'/>
+		        </attribute>
+		        <attribute type="java.lang.Integer" qualifier="priority">
+		            <modifiers read="true" write="true"/>
+		            <persistence type='property'/>
+		        </attribute>
+		        <attribute type="java.lang.String" qualifier="fullpath">
+		            <modifiers read="true" write="true"/>
+		            <persistence type='property'/>
+		        </attribute>
+		        <attribute type="java.lang.String" qualifier="videoId">
+		            <modifiers read="true" write="true"/>
+		            <persistence type='property'/>
+		        </attribute>
+		        <attribute qualifier="transformations" type="TransformCollection">
+					<modifiers partof="true" read="true" write="true" />
+					<persistence type='property'/>
+				</attribute>
+				<attribute type="java.lang.String" qualifier="code">
+					<modifiers read="true" write="true"/>
+					<persistence type="property" />
+				</attribute>
+		    </attributes>
+		</itemtype>
+		<itemtype code="SiteOneProductItemImages" 
+		    autocreate="true" generate="true"  extends="GenericItem"
+		    jaloclass="com.siteone.pimintegration.jalo.SiteOneProductItemImages">
+		    <deployment table="SiteOneImageGall" typecode="32103"/>
+		    <attributes>
+		        <attribute qualifier="image" type="SiteOneProductImage">
+					<modifiers partof="true" read="true" write="true" />
+					<persistence type='property'/>
+				</attribute>
+		    </attributes>
+		</itemtype>
+
+		<itemtype code="SiteOneProductSavingsCenterAttribute"
+				  autocreate="true" generate="true" extends="GenericItem"
+				  jaloclass="com.siteone.pimintegration.jalo.SiteOneProductSavingsCenterAttribute">
+			<deployment table="SiteOneProductSavCtrAttr" typecode="28385" />
+			<attributes>
+				<attribute type="java.lang.String" qualifier="id">
+					<modifiers read="true" write="true" />
+					<persistence type="property" />
+				</attribute>
+				<attribute type="java.lang.String" qualifier="text">
+					<modifiers read="true" write="true" />
+					<persistence type="property" />
+				</attribute>
+			</attributes>
+		</itemtype>
+		
+		<itemtype code="SiteOneCategoryAttributes"
+			autocreate="true" generate="true" extends="GenericItem"
+			jaloclass="com.siteone.pimintegration.jalo.SiteOneCategoryAttributes">
+			<deployment table="SiteOneCategoryAttr" typecode="32211" />
+			<attributes>
+				<attribute type="java.lang.String" qualifier="id">
+					<modifiers read="true" write="true" />
+					<persistence type="property" />
+				</attribute>
+				<attribute type="java.lang.String" qualifier="attributeCode">
+					<modifiers read="true" write="true"/>
+					<persistence type="property" />
+				</attribute>
+				
+				<attribute type="java.lang.String" qualifier="attributeName">
+					<modifiers read="true" write="true" />
+					<persistence type="property" />
+				</attribute>
+				<attribute type="java.lang.Boolean" qualifier="baseVariantAttribute">
+					<modifiers read="true" write="true" />
+					<persistence type="property" />
+				</attribute>
+				<attribute type="java.lang.Boolean" qualifier="facetAttribute">
+					<modifiers read="true" write="true" />
+					<persistence type="property" />
+				</attribute>
+				<attribute type="java.lang.Boolean" qualifier="highlightAttribute">
+					<modifiers read="true" write="true" />
+					<persistence type="property" />
+				</attribute>
+			</attributes>
+		</itemtype>
+		
+		<itemtype code="SiteOneCategoryPayload"   autocreate="true" generate="true"  extends="GenericItem"
+		    jaloclass="com.siteone.pimintegration.jalo.SiteOneCategoryPayload">
+		    <deployment table="SiteOneCatPayload" typecode="32210"/>
+			<attributes>
+					<attribute type="java.lang.String" qualifier="code">
+					<modifiers read="true" write="true"/>
+					<persistence type="property" />
+				</attribute>
+					<attribute type="CatalogVersion" qualifier="catalogVersion">
+					<modifiers read="true" write="true"/>
+					<persistence type="property" />
+				</attribute>
+				<attribute qualifier="categoryLevel"
+					type="SiteOneCategoryLevelList">
+					<persistence type="property" />
+					<modifiers partof="true" read="true" write="true" />
+				</attribute>
+				<attribute qualifier="attributeValues"
+					type="SiteOneCategoryAttributeList">
+					<persistence type="property" />
+					<modifiers partof="true" read="true" write="true" />
+				</attribute>
+				<attribute qualifier="newCategory"
+					type="Category">
+					<persistence type="property" />
+					<modifiers partof="true" read="true" write="true" />
+				</attribute>
+					<attribute qualifier="newCatalog"
+					type="Catalog">
+					<persistence type="property" />
+					<modifiers partof="true" read="true" write="true" />
+				</attribute>	
+				<attribute qualifier="newCategoryCA"
+					type="Category">
+					<persistence type="property" />
+					<modifiers partof="true" read="true" write="true" />
+				</attribute>
+				</attributes>
+				</itemtype>
+
+		<itemtype code="Product" autocreate="false" generate="false">
+			<attributes>
+				<attribute qualifier="specificationAttribute"
+					type="SiteOneProductSpecificationAttributeList">
+					<persistence type="property" />
+					<modifiers partof="true" read="true" write="true" />
+				</attribute>
+				<attribute qualifier="inventoryUPCID" type="java.lang.String">
+					<description></description>
+					<modifiers read="true" write="true" optional="true"
+						search="true" unique="false" />
+					<persistence type='property'/>
+				</attribute>
+				<attribute qualifier="baseUPCCode" type="java.lang.String">
+					<modifiers read="true" write="true" optional="true"
+						search="true" unique="false" />
+					<persistence type='property'/>
+				</attribute>
+				<attribute qualifier="productKind" type="java.lang.String">
+					<modifiers read="true" write="true" optional="true"
+						search="true" unique="false" />
+					<persistence type='property'/>
+				</attribute>
+				<attribute qualifier="itemImage" type="ItemImageList">
+					<modifiers partof="true" read="true" write="true" />
+					<persistence type='property'/>
+				</attribute>
+				<attribute qualifier="lifeStyle" type="ItemImageList">
+					<modifiers partof="true" read="true" write="true" />
+					<persistence type='property'/>
+				</attribute>
+				<attribute qualifier="swatchImage" type="ItemImageList">
+					<modifiers partof="true" read="true" write="true" />
+					<persistence type='property'/>
+				</attribute>
+				<attribute qualifier="brandLogo" type="ItemImageList">
+					<modifiers partof="true" read="true" write="true" />
+					<persistence type='property'/>
+				</attribute>
+				<attribute qualifier="specialImageType" type="ItemImageList">
+					<modifiers partof="true" read="true" write="true" />
+					<persistence type='property'/>
+				</attribute>
+				<attribute qualifier="sheets" type="SiteOneDataSheet">
+					<modifiers partof="true" read="true" write="true" />
+					<persistence type='property'/>
+				</attribute>
+				<attribute qualifier="savingsCenterAttribute"
+						   type="SiteOneProductSavingsCenterAttributeList">
+					<persistence type="property" />
+					<modifiers partof="true" read="true" write="true" />
+				</attribute>
+			</attributes>
+		</itemtype>
+		
+		<itemtype code="InboundRequest" autocreate="false" generate="false">
+            <attributes>
+                <attribute qualifier="batchPayload" type="java.lang.String">
+					<persistence type="property">
+							<columntype database="sap">
+								<value>NCLOB</value>
+							</columntype>
+							<columntype>
+								<value>HYBRIS.LONG_STRING</value>
+							</columntype>
+						</persistence>
+					</attribute>
+            </attributes>
+        </itemtype>
+       
+     <itemtype code="SiteOneCategoryLevel"
+			autocreate="true" generate="true" extends="GenericItem"
+			jaloclass="com.siteone.pimintegration.jalo.SiteOneCategoryLevel">
+			<deployment table="SiteOneCategoryLevel" typecode="28384" />
+			<attributes>
+			<attribute type="java.lang.String" qualifier="code">
+					<modifiers read="true" write="true"/>
+					<persistence type="property" />
+				</attribute>
+				<attribute type="java.lang.String" qualifier="name">
+					<modifiers read="true" write="true"/>
+					<persistence type="property" />
+				</attribute>
+				<attribute type="java.lang.String" qualifier="type">
+					<modifiers read="true" write="true" />
+					<persistence type="property" />
+				</attribute>
+				<attribute type="java.lang.String" qualifier="id">
+					<modifiers read="true" write="true" />
+					<persistence type="property" />
+				</attribute>
+			</attributes>
+			</itemtype>
+	</itemtypes>
+</items>

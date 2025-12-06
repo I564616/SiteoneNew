@@ -1,0 +1,30 @@
+$contentCatalog=siteoneContentCatalog
+$productCatalog=siteoneProductCatalog
+$catalogVersions=catalogVersions(catalog(id),version);
+$serverConfigName=siteoneSolrServerConfig
+$indexConfigName=siteoneSolrIndexConfig
+$searchConfigName=siteonePageSize
+$facetSearchConfigName=siteoneIndex
+$facetSearchConfigDescription=SiteOne Solr Index
+$searchIndexNamePrefix=siteone
+$solrIndexedType=siteoneProductType
+$indexBaseSite=siteone
+$indexLanguages=en
+$indexCurrencies=USD
+
+
+$solrBuyItAgainSearchIndexedType=siteoneBuyItAgainSearchType
+$buyItAgainSearchConfigName=buyItAgainSearchIndex
+$buyItAgainSearchConfigDescription=Buy It Again Search Solr Index
+
+INSERT_UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true];name[unique=true];type(code);sortableType(code);currency[default=false];localized[default=false];multiValue[default=false];useForSpellchecking[default=false];useForAutocomplete[default=false];fieldValueProvider;valueProviderParameter;ftsPhraseQuery[default=false];ftsPhraseQueryBoost;ftsQuery[default=false];ftsQueryBoost;ftsFuzzyQuery[default=false];ftsFuzzyQueryBoost;ftsWildcardQuery[default=false];ftsWildcardQueryType(code)[default=POSTFIX];ftsWildcardQueryBoost;ftsWildcardQueryMinTermLength
+
+;$solrBuyItAgainSearchIndexedType; soCategoryName            ;string;         ;    ;    ;    ;    ;    ;buyItAgainCategoryNameValueProvider             ;   ;    ;   ;	;	 ;    ;  ;	;	;	;
+
+;$solrBuyItAgainSearchIndexedType; soPurchasedCount            ;int;         ;    ;    ;    ;    ;    ;buyItAgainPurchasedCountValueProvider              ;   ;    ;   ;	;	 ;    ;  ;	;	;	;
+
+;$solrBuyItAgainSearchIndexedType; soPurchasedQuantity           ;int;             ;    ;    ;    ;    ;     ;buyItAgainPurchasedQuantityValueProvider              ;   ;    ;   ;	;	 ;    ;  ;	;	;	;
+
+# Other facet properties
+INSERT_UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true];name[unique=true];type(code);multiValue[default=false];facet[default=true];facetType(code);facetSort(code);priority;visible;fieldValueProvider;facetDisplayNameProvider;topValuesProvider;valueProviderParameter
+								 ;$solrBuyItAgainSearchIndexedType     ; soCategoryName  ;string      ;false                    ; true              ;Refine         ;Alpha          ;3000    ;true   ;buyItAgainCategoryNameValueProvider  ;                       ;

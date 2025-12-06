@@ -1,0 +1,212 @@
+$supercategories=supercategories( code, catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Staged']));;;;;;;;;
+$catalogVersion=catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Staged'])[unique=true,default='siteoneProductCatalog:Staged'];;;;;;;;;
+;;;;;;;;;
+INSERT_UPDATE Category;code[unique=true];name[lang=es];$supercategories;$catalogVersion;allowedPrincipals(uid)
+;SH1;Primary;;siteoneProductCatalog:Staged;admingroup
+;SH12;Material de Jardinería;SH1;siteoneProductCatalog:Staged;admingroup 
+;SH1211;Consumibles;SH12;siteoneProductCatalog:Staged;admingroup 
+;SH1212;Equipos;SH12;siteoneProductCatalog:Staged;admingroup 
+;SH1213;Control de Erosión;SH12;siteoneProductCatalog:Staged;admingroup 
+;SH1214;Golf, Deportes y Céspedes;SH12;siteoneProductCatalog:Staged;admingroup 
+;SH1215;Sistemas de Inyección;SH12;siteoneProductCatalog:Staged;admingroup 
+;SH1216;Accesorios para Paisajismo;SH12;siteoneProductCatalog:Staged;admingroup 
+;SH1217;Pastos;SH12;siteoneProductCatalog:Staged;admingroup 
+;SH1218;Aguas pluviales;SH12;siteoneProductCatalog:Staged;admingroup 
+;SH1219;Seguridad;SH12;siteoneProductCatalog:Staged;admingroup 
+;SH1220;Herramientas;SH12;siteoneProductCatalog:Staged;admingroup 
+;SH1211110;Mantillo;SH1211;siteoneProductCatalog:Staged;admingroup 
+;SH1211111;Otros Consumibles;SH1211;siteoneProductCatalog:Staged;admingroup 
+;SH1211112;Mejoras del Suelo;SH1211;siteoneProductCatalog:Staged;admingroup 
+;SH1211113;Suelo;SH1211;siteoneProductCatalog:Staged;admingroup 
+;SH1211114;Paja;SH1211;siteoneProductCatalog:Staged;admingroup 
+;SH1212110;Pulverizador/Esparcidor a Motor;SH1212;siteoneProductCatalog:Staged;admingroup 
+;SH1212111;Equipos de Mano Motorizados;SH1212;siteoneProductCatalog:Staged;admingroup 
+;SH1212112;Materiales Duros;SH1212;siteoneProductCatalog:Staged;admingroup 
+;SH1212113;Partes;SH1212;siteoneProductCatalog:Staged;admingroup 
+;SH1212114;Renovación;SH1212;siteoneProductCatalog:Staged;admingroup 
+;SH1212115;Nieve y Hielo;SH1212;siteoneProductCatalog:Staged;admingroup 
+;SH1212116;Equipo Especializadot;SH1212;siteoneProductCatalog:Staged;admingroup 
+;SH1212117;Pulverizadores;SH1212;siteoneProductCatalog:Staged;admingroup 
+;SH1212118;Esparcidores;SH1212;siteoneProductCatalog:Staged;admingroup 
+;SH1213100;Telas y Geotextiles;SH1213;siteoneProductCatalog:Staged;admingroup 
+;SH1213101;Control de Sedimentos y Erosión;SH1213;siteoneProductCatalog:Staged;admingroup 
+;SH1213102;Productos de Especificación;SH1213;siteoneProductCatalog:Staged;admingroup 
+;SH1214100;Suministros para Golf;SH1214;siteoneProductCatalog:Staged;admingroup 
+;SH1214101;Deportes y Céspedes;SH1214;siteoneProductCatalog:Staged;admingroup 
+;SH1215100;Equipos;SH1215;siteoneProductCatalog:Staged;admingroup 
+;SH1215101;Tratamientos;SH1215;siteoneProductCatalog:Staged;admingroup 
+;SH1216100;Productos para Cenador;SH1216;siteoneProductCatalog:Staged;admingroup 
+;SH1216101;Limpieza;SH1216;siteoneProductCatalog:Staged;admingroup 
+;SH1216102;Cubiertas;SH1216;siteoneProductCatalog:Staged;admingroup 
+;SH1216103;Lonas;SH1216;siteoneProductCatalog:Staged;admingroup 
+;SH1216104;Imprescindibles en el Lugar de Trabajo;SH1216;siteoneProductCatalog:Staged;admingroup 
+;SH1217100;Césped Artificial;SH1217;siteoneProductCatalog:Staged;admingroup 
+;SH1217101;Pastos de Temporada Fría;SH1217;siteoneProductCatalog:Staged;admingroup 
+;SH1217102;Pastos de Temporada Cálida;SH1217;siteoneProductCatalog:Staged;admingroup 
+;SH1218100;Tazones y Rejillas;SH1218;siteoneProductCatalog:Staged;admingroup 
+;SH1218101;Tubo de Desagüe;SH1218;siteoneProductCatalog:Staged;admingroup 
+;SH1218102;Bajo Superficie;SH1218;siteoneProductCatalog:Staged;admingroup 
+;SH1218103;Desagües para Zanjas;SH1218;siteoneProductCatalog:Staged;admingroup 
+;SH1219100;Seguridad Personal;SH1219;siteoneProductCatalog:Staged;admingroup 
+;SH1219101;Guantes;SH1219;siteoneProductCatalog:Staged;admingroup 
+;SH1219102;Protección para Rostro y Cabeza;SH1219;siteoneProductCatalog:Staged;admingroup 
+;SH1219103;Protección para Oídos;SH1219;siteoneProductCatalog:Staged;admingroup 
+;SH1219104;Protección para Oídos;SH1219;siteoneProductCatalog:Staged;admingroup 
+;SH1219105;Más Seguridad;SH1219;siteoneProductCatalog:Staged;admingroup 
+;SH1219106;Ropa Protectora;SH1219;siteoneProductCatalog:Staged;admingroup 
+;SH1219107;Impermeables;SH1219;siteoneProductCatalog:Staged;admingroup 
+;SH1219108;Respiradores;SH1219;siteoneProductCatalog:Staged;admingroup 
+;SH1219109;Protector Solar;SH1219;siteoneProductCatalog:Staged;admingroup 
+;SH1219110;Conos de Tráfico;SH1219;siteoneProductCatalog:Staged;admingroup 
+;SH1220100;Herramientas de Mano;SH1220;siteoneProductCatalog:Staged;admingroup 
+;SH1220101;Herramientas para Materiales Duros;SH1220;siteoneProductCatalog:Staged;admingroup 
+;SH1220102;Transporte;SH1220;siteoneProductCatalog:Staged;admingroup 
+;SH1220103;Herramientas de Irrigación;SH1220;siteoneProductCatalog:Staged;admingroup 
+;SH1220104;Escaleras;SH1220;siteoneProductCatalog:Staged;admingroup 
+;SH1220105;Herramientas Largas de Mano;SH1220;siteoneProductCatalog:Staged;admingroup 
+;SH1220106;Herramientas de Medición;SH1220;siteoneProductCatalog:Staged;admingroup 
+;SH1211110100;Bagged Mulch;SH1211110;siteoneProductCatalog:Staged;admingroup 
+;SH1211110101;Bulk Mulch;SH1211110;siteoneProductCatalog:Staged;admingroup 
+;SH1211112100;Bagged Soil Amendments;SH1211112;siteoneProductCatalog:Staged;admingroup 
+;SH1211112101;Bulk Soil Amendments;SH1211112;siteoneProductCatalog:Staged;admingroup 
+;SH1211113100;Bagged Soil;SH1211113;siteoneProductCatalog:Staged;admingroup 
+;SH1211113101;Bulk Soil;SH1211113;siteoneProductCatalog:Staged;admingroup 
+;SH1211114100;Pine Straw;SH1211114;siteoneProductCatalog:Staged;admingroup 
+;SH1211114101;Synthetic Straw;SH1211114;siteoneProductCatalog:Staged;admingroup 
+;SH1211114102;Wheat Straw;SH1211114;siteoneProductCatalog:Staged;admingroup 
+;SH1212110100;Multipurpose;SH1212110;siteoneProductCatalog:Staged;admingroup 
+;SH1212110101;Single Purpose;SH1212110;siteoneProductCatalog:Staged;admingroup 
+;SH1212110102;Spreader / Sprayer Accessories;SH1212110;siteoneProductCatalog:Staged;admingroup 
+;SH1212111100;Handheld Battery Powered Accessories;SH1212111;siteoneProductCatalog:Staged;admingroup 
+;SH1212111101;Handheld Battery Powered Equipment;SH1212111;siteoneProductCatalog:Staged;admingroup 
+;SH1212111102;Handheld Gas Powered Accessories;SH1212111;siteoneProductCatalog:Staged;admingroup 
+;SH1212111103;Handheld Gas Powered Equipment;SH1212111;siteoneProductCatalog:Staged;admingroup 
+;SH1212112100;Hardscapes Accessories;SH1212112;siteoneProductCatalog:Staged;admingroup 
+;SH1212113100;Backpack & Handheld Sprayer;SH1212113;siteoneProductCatalog:Staged;admingroup 
+;SH1212113101;Engine ;SH1212113;siteoneProductCatalog:Staged;admingroup 
+;SH1212113102;Engine Sprayer;SH1212113;siteoneProductCatalog:Staged;admingroup 
+;SH1212113103;Equipos de Mano Motorizados;SH1212113;siteoneProductCatalog:Staged;admingroup 
+;SH1212113104;Lubrication & Fuel Treatment;SH1212113;siteoneProductCatalog:Staged;admingroup 
+;SH1212113105;Misceláneos;SH1212113;siteoneProductCatalog:Staged;admingroup 
+;SH1212113106;Renovation Equipment;SH1212113;siteoneProductCatalog:Staged;admingroup 
+;SH1212113107;Sports & Turf Equipment;SH1212113;siteoneProductCatalog:Staged;admingroup 
+;SH1212113108;Esparcidor;SH1212113;siteoneProductCatalog:Staged;admingroup 
+;SH1212113109;Pulverizador/Esparcidor;SH1212113;siteoneProductCatalog:Staged;admingroup 
+;SH1212114100;Aerating Accessories;SH1212114;siteoneProductCatalog:Staged;admingroup 
+;SH1212114101;Aerating Equipment;SH1212114;siteoneProductCatalog:Staged;admingroup 
+;SH1212114102;Renovation Accessories;SH1212114;siteoneProductCatalog:Staged;admingroup 
+;SH1212114103;Renovation Equipment;SH1212114;siteoneProductCatalog:Staged;admingroup 
+;SH1212115100;Plows;SH1212115;siteoneProductCatalog:Staged;admingroup 
+;SH1212115101;Pulverizadores;SH1212115;siteoneProductCatalog:Staged;admingroup 
+;SH1212115102;Esparcidores;SH1212115;siteoneProductCatalog:Staged;admingroup 
+;SH1212115103;Partes;SH1212115;siteoneProductCatalog:Staged;admingroup 
+;SH1212116100;Hardscapes Equipment;SH1212116;siteoneProductCatalog:Staged;admingroup 
+;SH1212116101;Irrigation Equipment;SH1212116;siteoneProductCatalog:Staged;admingroup 
+;SH1212116102;Misceláneos;SH1212116;siteoneProductCatalog:Staged;admingroup 
+;SH1212116103;Power Takeoff;SH1212116;siteoneProductCatalog:Staged;admingroup 
+;SH1212116104;Sports & Turf Accessories;SH1212116;siteoneProductCatalog:Staged;admingroup 
+;SH1212116105;Sports & Turf Equipment;SH1212116;siteoneProductCatalog:Staged;admingroup 
+;SH1212117100;Accesorios;SH1212117;siteoneProductCatalog:Staged;admingroup 
+;SH1212117101;Backpack & Handheld Sprayer;SH1212117;siteoneProductCatalog:Staged;admingroup 
+;SH1212117102;Electric Sprayer;SH1212117;siteoneProductCatalog:Staged;admingroup 
+;SH1212117103;Tank Sprayer;SH1212117;siteoneProductCatalog:Staged;admingroup 
+;SH1212118100;Electric Spreader;SH1212118;siteoneProductCatalog:Staged;admingroup 
+;SH1212118101;Handheld Spreader;SH1212118;siteoneProductCatalog:Staged;admingroup 
+;SH1212118102;Hydro Spreader;SH1212118;siteoneProductCatalog:Staged;admingroup 
+;SH1212118103;Push Spreader;SH1212118;siteoneProductCatalog:Staged;admingroup 
+;SH1212118104;Accesorios;SH1212118;siteoneProductCatalog:Staged;admingroup 
+;SH1213100100;Geogrid;SH1213100;siteoneProductCatalog:Staged;admingroup 
+;SH1213100101;Soil Separation;SH1213100;siteoneProductCatalog:Staged;admingroup 
+;SH1213100102;Weed Barrier;SH1213100;siteoneProductCatalog:Staged;admingroup 
+;SH1213101100;Excelsior Blankets;SH1213101;siteoneProductCatalog:Staged;admingroup 
+;SH1213101101;Straw Blankets;SH1213101;siteoneProductCatalog:Staged;admingroup 
+;SH1213101102;Inlet Protection;SH1213101;siteoneProductCatalog:Staged;admingroup 
+;SH1213101103;Jute Mesh;SH1213101;siteoneProductCatalog:Staged;admingroup 
+;SH1213101104;Other Blankets;SH1213101;siteoneProductCatalog:Staged;admingroup 
+;SH1213101105;Other Fencing Products;SH1213101;siteoneProductCatalog:Staged;admingroup 
+;SH1213101106;Silt Fabric;SH1213101;siteoneProductCatalog:Staged;admingroup 
+;SH1213101107;Silt Fence Kits;SH1213101;siteoneProductCatalog:Staged;admingroup 
+;SH1213101108;Stakes & Posts;SH1213101;siteoneProductCatalog:Staged;admingroup 
+;SH1213101109;Staples;SH1213101;siteoneProductCatalog:Staged;admingroup 
+;SH1213101110;Turf Reinforcement Mats;SH1213101;siteoneProductCatalog:Staged;admingroup 
+;SH1213101111;Wattles;SH1213101;siteoneProductCatalog:Staged;admingroup 
+;SH1213102100;Grass Pavers;SH1213102;siteoneProductCatalog:Staged;admingroup 
+;SH1213102101;Root Barrier;SH1213102;siteoneProductCatalog:Staged;admingroup 
+;SH1214100100;Bunkers;SH1214100;siteoneProductCatalog:Staged;admingroup 
+;SH1214100101;Course Marking;SH1214100;siteoneProductCatalog:Staged;admingroup 
+;SH1214100102;Fairways;SH1214100;siteoneProductCatalog:Staged;admingroup 
+;SH1214100103;Golf Course Accessories;SH1214100;siteoneProductCatalog:Staged;admingroup 
+;SH1214100104;Greens;SH1214100;siteoneProductCatalog:Staged;admingroup 
+;SH1214100105;Partes;SH1214100;siteoneProductCatalog:Staged;admingroup 
+;SH1214100106;Sensor & Measuring Devices;SH1214100;siteoneProductCatalog:Staged;admingroup 
+;SH1214100107;Tees;SH1214100;siteoneProductCatalog:Staged;admingroup 
+;SH1214100108;Herramientas;SH1214100;siteoneProductCatalog:Staged;admingroup 
+;SH1214101100;Athletic Field;SH1214101;siteoneProductCatalog:Staged;admingroup 
+;SH1214101101;Other Sports & Turf;SH1214101;siteoneProductCatalog:Staged;admingroup 
+;SH1214101102;Parks & Recreation;SH1214101;siteoneProductCatalog:Staged;admingroup 
+;SH1214101103;Playground;SH1214101;siteoneProductCatalog:Staged;admingroup 
+;SH1214101104;Track & Field;SH1214101;siteoneProductCatalog:Staged;admingroup 
+;SH1216100100;Flagging;SH1216100;siteoneProductCatalog:Staged;admingroup 
+;SH1216100101;Tree Bracing;SH1216100;siteoneProductCatalog:Staged;admingroup 
+;SH1216100102;Watering Bags;SH1216100;siteoneProductCatalog:Staged;admingroup 
+;SH1216101100;Liners;SH1216101;siteoneProductCatalog:Staged;admingroup 
+;SH1216101101;Especializado ;SH1216101;siteoneProductCatalog:Staged;admingroup 
+;SH1216101102;Trash Cans;SH1216101;siteoneProductCatalog:Staged;admingroup 
+;SH1216102100;Meter Boxes;SH1216102;siteoneProductCatalog:Staged;admingroup 
+;SH1216102101;Valve Boxes;SH1216102;siteoneProductCatalog:Staged;admingroup 
+;SH1216102102;Vaults;SH1216102;siteoneProductCatalog:Staged;admingroup 
+;SH1216103100;Poly Tarps;SH1216103;siteoneProductCatalog:Staged;admingroup 
+;SH1216103101;Shade Tarps;SH1216103;siteoneProductCatalog:Staged;admingroup 
+;SH1216103102;Straps, Ropes & Chains;SH1216103;siteoneProductCatalog:Staged;admingroup 
+;SH1216104100;Coolers;SH1216104;siteoneProductCatalog:Staged;admingroup 
+;SH1216104101;Degreasers;SH1216104;siteoneProductCatalog:Staged;admingroup 
+;SH1216104102;Flashlights;SH1216104;siteoneProductCatalog:Staged;admingroup 
+;SH1216104103;Gas Cans;SH1216104;siteoneProductCatalog:Staged;admingroup 
+;SH1216104104;Other Job Site Essentials;SH1216104;siteoneProductCatalog:Staged;admingroup 
+;SH1216104105;Spill Kits;SH1216104;siteoneProductCatalog:Staged;admingroup 
+;SH1216104106;Water;SH1216104;siteoneProductCatalog:Staged;admingroup 
+;SH1217100100;Turf;SH1217100;siteoneProductCatalog:Staged;admingroup 
+;SH1217100101;Accessories;SH1217100;siteoneProductCatalog:Staged;admingroup 
+;SH1218100100;Basins;SH1218100;siteoneProductCatalog:Staged;admingroup 
+;SH1218100101;Basin & Grate Accessories;SH1218100;siteoneProductCatalog:Staged;admingroup 
+;SH1218100102;Grates;SH1218100;siteoneProductCatalog:Staged;admingroup 
+;SH1218100103;Kits;SH1218100;siteoneProductCatalog:Staged;admingroup 
+;SH1218101100;Perforated;SH1218101;siteoneProductCatalog:Staged;admingroup 
+;SH1218101101;Solid;SH1218101;siteoneProductCatalog:Staged;admingroup 
+;SH1218101102;Corrugated;SH1218101;siteoneProductCatalog:Staged;admingroup 
+;SH1218101103;PVC;SH1218101;siteoneProductCatalog:Staged;admingroup 
+;SH1218102100;Chambers;SH1218102;siteoneProductCatalog:Staged;admingroup 
+;SH1218102101;Crates;SH1218102;siteoneProductCatalog:Staged;admingroup 
+;SH1218102102;EZ Flow;SH1218102;siteoneProductCatalog:Staged;admingroup 
+;SH1218102103;Tanks;SH1218102;siteoneProductCatalog:Staged;admingroup 
+;SH1218103100;Grates;SH1218103;siteoneProductCatalog:Staged;admingroup 
+;SH1218103101;Trench;SH1218103;siteoneProductCatalog:Staged;admingroup 
+;SH1218103102;Trench Drain Accessories;SH1218103;siteoneProductCatalog:Staged;admingroup 
+;SH1219100100;Ergonomics;SH1219100;siteoneProductCatalog:Staged;admingroup 
+;SH1219100101;Eye Protection;SH1219100;siteoneProductCatalog:Staged;admingroup 
+;SH1219100102;Fall Protection;SH1219100;siteoneProductCatalog:Staged;admingroup 
+;SH1219100103;First Aid;SH1219100;siteoneProductCatalog:Staged;admingroup 
+;SH1219100104;Foot Wear;SH1219100;siteoneProductCatalog:Staged;admingroup 
+;SH1220100100;Hand Pruners;SH1220100;siteoneProductCatalog:Staged;admingroup 
+;SH1220100101;Loppers;SH1220100;siteoneProductCatalog:Staged;admingroup 
+;SH1220100102;Parts & Accessories;SH1220100;siteoneProductCatalog:Staged;admingroup 
+;SH1220100103;Pruners & Shears;SH1220100;siteoneProductCatalog:Staged;admingroup 
+;SH1220100104;Pruning Saws;SH1220100;siteoneProductCatalog:Staged;admingroup 
+;SH1220100105;Striking Tools;SH1220100;siteoneProductCatalog:Staged;admingroup 
+;SH1220101100;Masonry Tools;SH1220101;siteoneProductCatalog:Staged;admingroup 
+;SH1220101101;Miscellaneous;SH1220101;siteoneProductCatalog:Staged;admingroup 
+;SH1220101102;Paver & Wall;SH1220101;siteoneProductCatalog:Staged;admingroup 
+;SH1220102100;Ball & Hand Carts;SH1220102;siteoneProductCatalog:Staged;admingroup 
+;SH1220102101;Wheelbarrows;SH1220102;siteoneProductCatalog:Staged;admingroup 
+;SH1220103100;Other Irrigation Tools;SH1220103;siteoneProductCatalog:Staged;admingroup 
+;SH1220103101;Pipe Cutters;SH1220103;siteoneProductCatalog:Staged;admingroup 
+;SH1220103102;Pipe Saws;SH1220103;siteoneProductCatalog:Staged;admingroup 
+;SH1220105100;Brooms;SH1220105;siteoneProductCatalog:Staged;admingroup 
+;SH1220105101;Hoes & Forks;SH1220105;siteoneProductCatalog:Staged;admingroup 
+;SH1220105102;Miscellaneous;SH1220105;siteoneProductCatalog:Staged;admingroup 
+;SH1220105103;Picks;SH1220105;siteoneProductCatalog:Staged;admingroup 
+;SH1220105104;Rakes;SH1220105;siteoneProductCatalog:Staged;admingroup 
+;SH1220105105;Shovels;SH1220105;siteoneProductCatalog:Staged;admingroup 
+;SH1220105106;Nieve y Hielo;SH1220105;siteoneProductCatalog:Staged;admingroup 
+
+

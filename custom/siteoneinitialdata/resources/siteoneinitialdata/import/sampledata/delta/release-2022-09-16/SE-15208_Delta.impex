@@ -1,0 +1,24 @@
+##### For updating manager email notification template
+
+# Import config properties into impex macros for modulegen
+UPDATE GenericItem[processor=de.hybris.platform.commerceservices.impex.impl.ConfigPropertyImportProcessor];pk[unique=true]
+$emailResource=$config-emailResourceValue
+$emailPackageName=$config-emailContextPackageName
+
+# Language
+$lang=en
+
+UPDATE RendererTemplate;code[unique=true];description[lang=$lang];templateScript[lang=$lang,translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+;siteone_Email_Request_Account_Body;"Request Account Template";$emailResource/email-requestAccountEmailBody.vm
+
+
+# Language
+$lang=es
+
+UPDATE RendererTemplate;code[unique=true];description[lang=$lang];templateScript[lang=$lang,translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+;siteone_Email_Request_Account_Body;"Request Account Template";$emailResource/email-requestAccountEmailBody.vm
+
+
+#Updating Partner's point feature switch with branches
+INSERT_UPDATE SiteOneFeatureSwitch;key[unique=true];longValue
+;PartnerPointsBranchesAllowed;19,50,57,107,171,172,173,176,177,209,454,471,555,612,673,742,1012,1019,1020,1021,1041,1042,1043,1044,1045

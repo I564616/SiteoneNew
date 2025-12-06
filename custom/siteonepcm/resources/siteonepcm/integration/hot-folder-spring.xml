@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<!--
+   [y] hybris Platform
+
+   Copyright (c) 2000-2015 hybris AG
+   All rights reserved.
+
+   This software is the confidential and proprietary information of hybris
+   ("Confidential Information"). You shall not disclose such Confidential
+   Information and shall use it only in accordance with the terms of the
+   license agreement you entered into with hybris.
+  -->
+
+	<beans xmlns="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xmlns:aop="http://www.springframework.org/schema/aop"
+		xmlns:int="http://www.springframework.org/schema/integration"
+		xmlns:file="http://www.springframework.org/schema/integration/file"
+		xmlns:context="http://www.springframework.org/schema/context"
+		xmlns:p="http://www.springframework.org/schema/p"
+		xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/spring-integration.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context.xsd">
+
+		<context:annotation-config/>
+
+		<!-- General setup -->
+		<int:channel id="errorChannel" />
+		<int:service-activator input-channel="errorChannel" ref="errorHandler" method="onError" />
+		<bean id="errorHandler" class="de.hybris.platform.acceleratorservices.dataimport.batch.task.ErrorHandler">
+			<property name="cleanupHelper" ref="cleanupHelper" />
+		</bean>
+		<bean id="cleanupHelper" class="de.hybris.platform.acceleratorservices.dataimport.batch.task.CleanupHelper">
+			<property name="timeStampFormat" value="yyyyMMddHHmmssSSS" />
+		</bean>
+
+	<!--	<bean id="fileOrderComparator" class="de.hybris.platform.acceleratorservices.dataimport.batch.FileOrderComparator">
+			<property name="prefixPriority">
+				<map>
+					&lt;!&ndash; default priority is 0 &ndash;&gt;
+					<entry key="baseproduct" value="1" />
+					<entry key="productfeatures" value="2"/>
+				</map>
+			</property>
+		</bean>-->
+
+
+	<int:service-activator input-channel="batchFilesHeaderInit" output-channel="batchFilesHeader" ref="headerInitTask"
+		method="execute" />
+	<bean id="headerInitTask" class="de.hybris.platform.acceleratorservices.dataimport.batch.task.HeaderInitTask">
+		<property name="sequenceIdParser" ref="batchSequenceIdParser"/>
+		<property name="languageParser" ref="batchLanguageParser"/>
+		<property name="fallbackLanguage" value="en" />
+	</bean>
+
+
+		<bean id="batchSequenceIdParser" class="de.hybris.platform.acceleratorservices.dataimport.batch.util.SequenceIdParser">
+			<property name="parser">
+				<bean class="de.hybris.platform.acceleratorservices.util.RegexParser">
+					<property name="regex" value=".(\d+)\.(txt|csv|impex)" />
+				</bean>
+			</property>
+		</bean>
+		<bean id="batchLanguageParser" class="de.hybris.platform.acceleratorservices.util.RegexParser">
+			<property name="regex" value="-(\w{2}).(\d+)\.(txt|csv|impex)" />
+		</bean>
+
+		<!-- 3) transform csv to impex file -->
+		<int:service-activator input-channel="batchFilesHeader" output-channel="batchFilesTran" ref="batchTransformerTask"
+			method="execute" />
+
+		<bean id="batchTransformerTask"
+			class="de.hybris.platform.acceleratorservices.dataimport.batch.task.ImpexTransformerTask"
+			init-method="initConvertersMap">
+			<property name="fieldSeparator" value="|" />
+			<property name="encoding" value="UTF-8" />
+			<property name="linesToSkip" value="0"/>
+			<property name="cleanupHelper" ref="cleanupHelper" />
+		</bean>
+
+
+		<!-- 4) run impex import -->
+		<int:service-activator input-channel="batchFilesTran" output-channel="batchFilesImp" ref="batchRunnerTask"
+			method="execute" />
+
+		<bean id="batchRunnerTask" class="de.hybris.platform.acceleratorservices.dataimport.batch.task.AbstractImpexRunnerTask">
+			<property name="sessionService" ref="sessionService" />
+			<property name="importService" ref="importService" />
+			<lookup-method name="getImportConfig" bean="importConfig" />
+		</bean>
+
+
+		<bean id="importConfig" class="de.hybris.platform.servicelayer.impex.ImportConfig" scope="prototype">
+			<property name="removeOnSuccess" value="true" />
+			<property name="failOnError" value="false" />
+			<property name="synchronous" value="true" />
+			<property name="legacyMode" value="false" />
+			<property name="maxThreads" value="#{configurationService.configuration.getProperty('acceleratorservices.batch.impex.max-threads')}" />
+			<property name="locale" value="en"/>
+		</bean>
+
+
+		<!-- 5) Cleanup AOP -->
+		<aop:config proxy-target-class="false">
+			<aop:pointcut id="taskPointcut" expression="execution(* de.hybris.platform.acceleratorservices.dataimport.batch.HeaderTask.*(..))" />
+			<aop:aspect ref="timeMeasurementAspect">
+				<aop:around pointcut-ref="taskPointcut" method="measure" />
+			</aop:aspect>
+			<aop:aspect ref="tenantActivationAspect">
+				<aop:around pointcut-ref="taskPointcut" method="execute" />
+			</aop:aspect>
+			<aop:aspect ref="exceptionHandlerAspect">
+				<aop:around pointcut-ref="taskPointcut" method="execute" />
+			</aop:aspect>
+			<aop:aspect ref="batchHeaderAspectBean">
+				<aop:around method="aroundTransform"
+					pointcut="execution(* com.siteone.core.impex.transformer.SiteOneImpexTransformerTask.execute(..)) and args(header)"/>
+			</aop:aspect>
+
+		</aop:config>
+		<bean id="timeMeasurementAspect" class="de.hybris.platform.acceleratorservices.dataimport.batch.aop.TimeMeasurementAspect" />
+		<bean id="tenantActivationAspect" class="de.hybris.platform.acceleratorservices.dataimport.batch.aop.TenantActivationAspect" />
+		<bean id="exceptionHandlerAspect" class="de.hybris.platform.acceleratorservices.dataimport.batch.aop.ExceptionHandlerAspect" />
+
+
+
+	</beans>

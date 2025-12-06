@@ -1,0 +1,44 @@
+$contentCatalog=siteoneContentCatalog
+$contentCatalogName=SiteOne Content Catalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$supercategories=supercategories(code, catalogVersion(catalog(id[default='siteoneContentCatalog']),version[default='Staged']))
+$catalogVersion=catalogVersion(catalog(id[default='siteoneContentCatalog']),version[default='Staged'])[unique=true,default='siteoneContentCatalog:Staged']
+$picture=media(code, $contentCV);
+$image=image(code, $contentCV);
+$media=media(code, $contentCV);
+$page=page(uid, $contentCV);
+$contentPage=contentPage(uid, $contentCV);
+$lang=es
+
+#agronomic maintenance
+INSERT_UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];previewTitle[lang=$lang];description[lang=$lang];masterTemplate(uid,$contentCV)[default='ArticleLandingPageTemplate'];
+;;Treating-Large-Patch-in-Central-Florida;Tratamiento de las Manchas Grandes y Marrones en Florida Central;"Con un programa adecuado de cuidado del césped y la aplicación rutinaria de productos de control puedes evitar un brote de manchas grandes y marrones.";
+;;Selecting-The-Right-Herbicide-In-Central-Florida;La Selección del Herbicida Correcto para Florida Central;"La pamplina, el canutillo de Cuba, la murdannia nudiflora, el coquillo, la diodia virginiana, los tréboles y las ocas son predominantes en Florida central pero el herbicida correcto  –y un programa de césped sano– puede controlar estas molestas malezas.";
+;;Selecting-The-Right-Fungicide-In-Central-Florida;Seleccionando el Fungicida Correcto en Florida Central;"Las manchas grandes, las manchas grises en las hojas y la enfermedad de la mancha del dólar generan estragos en los céspedes del área de Tampa.";
+;;Slow-Release-Fertilizers;Fertilizantes de Liberación Lenta;"Al soltar gradualmente nutrientes en el suelo, los fertilizantes de liberación lenta mantienen el césped verde con un requerimiento menor de aplicaciones.";
+;;Central-Florida-Turf-Maintenance-Calendar;Calendario de Mantenimiento del Césped en Florida Central;"";
+
+#irrigation
+;;Two-Wire-Technology;Tecnología de Dos Cables;"Más cables, más problemas. Pero con el controlador de dos cables correcto puedes instalar un sistema completo de válvulas usando sólo un camino de dos cables.";
+;;Upgrading-Wireless-Controllers;Actualización a Controladores Inalámbricos;"Ayuda a tus clientes a subir de nivel con un mundo nuevo de control de riego inteligente.";
+
+##Article Paragraph Creation##
+
+INSERT_UPDATE SiteoneParagaraphComponent;$contentCV[unique=true];uid[unique=true];content[lang=$lang]
+;;Central-Florida-Turf-Maintenance-Calendar-ParagraphComponent;"<div class=""col-md-7 row article-detail-content""><p>Como muchas cosas en la vida, la clave para una nutrici&oacute;n del c&eacute;sped apropiada y el control de problemas es el tiempo. Estos planes te dan la gu&iacute;a experta que necesitas para perfeccionar tu plan de cuidado del c&eacute;sped, desde la semilla y el pre-emergente hasta los herbicidas, pesticidas y m&aacute;s.</p>
+<p><a href=""/medias/sys_master/documents/documents/he4/h53/9046031794206/2021-Agro-Calendar-Tampa.pdf"" target=""_blank"">Descarga un calendario profesional agron&oacute;mico para Florida central</a>.</p></div>"
+;;Selecting-The-Right-Fungicide-In-Central-Florida-ParagraphComponent;"<div class=""col-md-7 row article-detail-content""><p>Las manchas grandes, las manchas grises en las hojas y la enfermedad de la mancha del d&oacute;lar generan estragos en los c&eacute;spedes del &aacute;rea de Tampa. Seleccionar el fungicida correcto es clave para evitar las enfermedades por hongos y establecer un buen programa de mantenimiento del c&eacute;sped. Mira este video en ingl&eacute;s de nuestra <a href=""https://www.youtube.com/playlist?list=PLzQddBAMbKdz7Vf_cXWE7AY7AtbNXjDbX"" target=""_blank"">serie Site-101</a> y aprende qu&eacute; fungicidas y qu&eacute; pr&aacute;cticas de mantenimiento funcionan mejor en Florida central.<br />
+<br />
+<a href=""https://www.youtube.com/watch?v=0txVLIcdDyo&amp;list=PLzQddBAMbKdz7Vf_cXWE7AY7AtbNXjDbX&amp;index=2"" target=""_blank"">Ver video</a></p></div>"
+;;Selecting-The-Right-Herbicide-In-Central-Florida-ParagraphComponent;"<div class=""col-md-7 row article-detail-content""><p>La pamplina, el canutillo de Cuba, la murdannia nudiflora, el coquillo, la diodia virginiana, los tréboles y las ocas son predominantes en Florida central pero el herbicida correcto  –y un programa de césped sano– puede controlar estas molestas malezas. Mira <a href=""https://youtu.be/SVXhSyzJ9dU"" target=""_blank"">este video</a> en inglés de nuestra <a href=""https://www.youtube.com/playlist?list=PLzQddBAMbKdz7Vf_cXWE7AY7AtbNXjDbX"" target=""_blank"">serie Site-101</a> para ver cómo.&nbsp;<br />
+<br />
+<a href=""https://youtu.be/SVXhSyzJ9dU"" target=""_blank"">Ver video&nbsp;</a></p></div>"
+;;Slow-Release-Fertilizers-ParagraphComponent;"<div class=""col-md-7 row article-detail-content""><p>Al soltar gradualmente nutrientes en el suelo, los fertilizantes de liberación lenta mantienen el césped verde con un requerimiento menor de aplicaciones. Mira <a href=""https://www.youtube.com/watch?v=7QbQaxYMfTA&amp;feature=youtu.be"" target=""_blank"">este video</a> en inglés de nuestra serie <a href=""https://www.youtube.com/playlist?list=PLzQddBAMbKdwNW0z8l0xQFgVUgd-5yJXC"" target=""_blank"">Stronger in :60</a> para aprovechar los beneficios comerciales de los fertilizantes de liberación lenta.</p>
+<p><a href=""https://youtu.be/7QbQaxYMfTA"" target=""_blank"">Ver video</a>&nbsp;</p></div>"
+;;Treating-Large-Patch-In-Central-Florida-ParagraphComponent;"<div class=""col-md-7 row article-detail-content""><p>No dejes que las manchas grandes y marrones afecten la grama en Florida central. Mira <a href=""https://youtu.be/xCgUGzH_NJk"" target=""_blank"">este video</a> en inglés de nuestra serie Site-101 para que aprendas cómo el cuidado apropiado del césped y la aplicación rutinaria de productos de control te pueden ayudar a evitar el brote de manchas grandes y marrones.<br />
+<br />
+<a href=""https://youtu.be/xCgUGzH_NJk"" target=""_blank"">Ver video&nbsp;</a></p></div>"
+;;Two-Wire-Technology-ParagraphComponent;"<div class=""col-md-7 row article-detail-content""><p>Más cables, más problemas. Pero con el controlador de dos cables correcto puedes instalar un sistema completo de válvulas usando sólo un camino de dos cables. Mira <a href=""https://youtu.be/WRPdoWLdd0A"" target=""_blank"">este video</a> en inglés de nuestra serie <a href=""https://www.youtube.com/playlist?list=PLzQddBAMbKdwNW0z8l0xQFgVUgd-5yJXC"" target=""_blank"">Stronger in :60</a> para recablear tu acercamiento a la creación de unas instalaciones de riego más eficientes.</p>
+<p><a href=""https://youtu.be/WRPdoWLdd0A"" target=""_blank"">Ver video</a></p></div>"
+;;Upgrading-Wireless-Controllers-ParagraphComponent;"<div class=""col-md-7 row article-detail-content""><p>Ayuda a tus clientes a subir de nivel con un mundo nuevo de control de riego inteligente. Ahora es más fácil que nunca añadir controladores inteligentes, inalámbricos y funcionales a través de una app para tus nuevas instalaciones o actualizaciones del sistema. Mira <a href=""https://youtu.be/caCb45kCMnI"" target=""_blank"">este video</a> en inglés de nuestra serie <a href=""https://www.youtube.com/playlist?list=PLzQddBAMbKdwNW0z8l0xQFgVUgd-5yJXC"" target=""_blank"">Stronger in :60</a> para reconfigurar tu flujo de ingresos.</p>
+<p><a href=""https://youtu.be/caCb45kCMnI"" target=""_blank"">Ver video</a></p></div>"

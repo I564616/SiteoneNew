@@ -1,0 +1,55 @@
+#Impex for Recommended List Details Page
+$contentCatalog=siteoneContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+INSERT_UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);label;defaultPage[default='true'];approvalStatus(code)[default='approved'];homepage[default='false']
+;;detailsRecommendedListPage;Recommended List Details Page;SiteOneContentPageTemplate;/detailsRecommendedListPage;
+
+$contentCatalog=siteoneContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Online])[default=$contentCatalog:Online]
+INSERT_UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);label;defaultPage[default='true'];approvalStatus(code)[default='approved'];homepage[default='false']
+;;detailsRecommendedListPage;Recommended List Details Page;SiteOneContentPageTemplate;/detailsRecommendedListPage;
+
+#Impex for Recommended List Details Page End
+
+#Impex for Recommended List Sorting
+
+$contentCatalog=siteoneContentCatalog
+$productCatalog=siteoneProductCatalog
+$catalogVersions=catalogVersions(catalog(id),version);
+$serverConfigName=siteoneSolrServerConfig
+$indexConfigName=siteoneSolrIndexConfig
+$searchConfigName=siteonePageSize
+$facetSearchConfigName=siteoneIndex
+$facetSearchConfigDescription=SiteOne Solr Index
+$searchIndexNamePrefix=siteone
+$solrIndexedType=siteoneProductType
+$indexBaseSite=siteone
+$indexLanguages=en
+$indexCurrencies=USD
+
+
+$solrBuyItAgainSearchIndexedType=siteoneBuyItAgainSearchType
+$buyItAgainSearchConfigName=buyItAgainSearchIndex
+$buyItAgainSearchConfigDescription=Buy It Again Search Solr Index
+
+# Declare the indexed type Buy Again
+INSERT_UPDATE SolrIndexedType;identifier[unique=true];indexName;type(code);variant;sorts(&sortRefID)
+;$solrBuyItAgainSearchIndexedType;$buyItAgainSearchConfigName;OrderEntry;false;sortRef12,sortRef2
+
+# Define the available sorts for Buy Again
+INSERT_UPDATE SolrSort;&sortRefID;indexedType(identifier)[unique=true];code[unique=true];useBoost
+;sortRef2;$solrBuyItAgainSearchIndexedType;soPurchasedCount-desc;false
+
+# Define the available sorts for Buy Again
+INSERT_UPDATE SolrSortField;sort(indexedType(identifier),code)[unique=true];fieldName[unique=true];ascending[unique=true]
+;$solrBuyItAgainSearchIndexedType:soPurchasedCount-desc;soPurchasedCount;false
+
+# Define the available sorts for Buy Again
+INSERT_UPDATE SolrSort;&sortRefID;indexedType(identifier)[unique=true];code[unique=true];useBoost
+;sortRef12;$solrBuyItAgainSearchIndexedType;lastpurchaseddate-desc;false
+
+# Define the available sorts for Buy Again
+INSERT_UPDATE SolrSortField;sort(indexedType(identifier),code)[unique=true];fieldName[unique=true];ascending[unique=true]
+;$solrBuyItAgainSearchIndexedType:lastpurchaseddate-desc;soLastPurchasedDate;false
+
+#Impex for Recommended List Sorting End

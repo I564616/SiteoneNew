@@ -1,0 +1,17 @@
+$contentCatalog=siteoneContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$productCatalog=siteoneProductCatalog
+$productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+
+UPDATE VerticalBarComponent;$contentCV[unique=true];uid[unique=true];name;globalProductNodes(uid,$contentCV);&componentRef;;;
+;;PunchoutVerticalBarComponent;All Products;Hardscapes&OutdoorLivingNavNode,IrrigationNavNode,LandscapeSupplyNavNode,LightingNavNode,NurseryNavNode,ToolsEquipment&SafetyNavNode;PunchoutVerticalBarComponent;;;
+
+INSERT_UPDATE CMSUserGroupRestriction;$contentCV[unique=true];uid[unique=true];name;userGroups(uid);includeSubgroups;components(uid,$contentCV)
+;;TrueGreenPunchoutCustomerGroupRestriction;TrueGreen Admin Group Restriction;truegreenpunchoutcustomergroup;false;PunchoutVerticalBarComponent
+;;TrueGreenPunchoutAdminGroupRestriction;TrueGreen Customer Group Restriction;truegreenpunchoutadmingroup;false;PunchoutVerticalBarComponent
+;;B2BAdminGroupRestriction;B2B Admin Group Restriction;b2badmingroup;false;VerticalBarComponent
+;;B2BCustomerGroupRestriction;B2B Customer Group Restriction;b2bcustomergroup;false;VerticalBarComponent
+;;CustomerGroupRestriction;Customer Restriction;customergroup;false;VerticalBarComponent
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents(uid,$contentCV)
+;;VerticalNavigationSlot;VerticalBarComponent,PunchoutVerticalBarComponent

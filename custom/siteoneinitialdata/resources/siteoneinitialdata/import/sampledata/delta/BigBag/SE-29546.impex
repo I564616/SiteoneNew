@@ -1,0 +1,17 @@
+####Staged Start####
+
+$productCatalog=siteoneProductCatalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default=’Staged’])[unique=true,default=$productCatalog:Staged]
+INSERT_UPDATE Product;code[unique=true];weighAndPayEnabled;$catalogVersion
+;658261;true
+
+####Staged END####
+
+####Online Start####
+
+$productCatalog=siteoneProductCatalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Online'])[unique=true,default=$productCatalog:Online]
+INSERT_UPDATE Product;code[unique=true];weighAndPayEnabled;$catalogVersion
+;658261;true
+
+####Online END####

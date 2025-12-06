@@ -1,0 +1,276 @@
+INSERT_UPDATE SiteOneFeatureSwitch;key[unique=true];longValue
+;SiteoneDeliveryFeeFeatureSwitch;1,4,23,34,99,123,124,575,670,2,39,58,384,534,579,658,737,757,12,61,170,236,468,492,504,556,645,661,782,106,109,125,126,129,145,146,154,318,323,326,327,388,130,135,140,274,313,314,316,331,363,382,403,404,405,466,14,138,291,521,3,20,22,24,677,678,180,669,672,105,431,498,515,523,536,674,795,6,33,114,133,139,553,589,723,5,7,131,406,437,739,754,769,770,8,9,26,55,158,238,409,445,692,21,73,128,465,637,731,738,75,103,221,402,407,470,489,494,506,507,549,566,617,727,730,740,10,15,17,18,70,272,516,726,728,729,741,1046
+
+Insert_Update SiteoneDeliveryFees; branchId[unique=true]; lineOfBusiness[unique=true]; retailFee; proFee
+;5;Irrigation;50.05;25.05
+;5;Agronomics;50.05;25.05
+;5;Nursery;50.05;25.05
+;5;Hardscape;50.05;25.05
+;5;Landscape Supply;50.05;25.05
+;5;Outdoor Lighting;50.05;25.05
+;7;Irrigation;50.05;25.05
+;7;Agronomics;50.05;25.05
+;7;Nursery;50.05;25.05
+;7;Hardscape;50.05;25.05
+;7;Landscape Supply;50.05;25.05
+;7;Outdoor Lighting;50.05;25.05
+;131;Irrigation;50.05;25.05
+;131;Agronomics;50.05;25.05
+;131;Nursery;50.05;25.05
+;131;Hardscape;50.05;25.05
+;131;Landscape Supply;50.05;25.05
+;131;Outdoor Lighting;50.05;25.05
+;406;Irrigation;50.05;25.05
+;406;Agronomics;50.05;25.05
+;406;Nursery;50.05;25.05
+;406;Hardscape;50.05;25.05
+;406;Landscape Supply;50.05;25.05
+;406;Outdoor Lighting;50.05;25.05
+;437;Irrigation;50.05;25.05
+;437;Agronomics;50.05;25.05
+;437;Nursery;50.05;25.05
+;437;Hardscape;50.05;25.05
+;437;Landscape Supply;50.05;25.05
+;437;Outdoor Lighting;50.05;25.05
+;739;Irrigation;50.05;25.05
+;739;Agronomics;50.05;25.05
+;739;Nursery;50.05;25.05
+;739;Hardscape;50.05;25.05
+;739;Landscape Supply;50.05;25.05
+;739;Outdoor Lighting;50.05;25.05
+;754;Irrigation;50.05;25.05
+;754;Agronomics;50.05;25.05
+;754;Nursery;50.05;25.05
+;754;Hardscape;50.05;25.05
+;754;Landscape Supply;50.05;25.05
+;754;Outdoor Lighting;50.05;25.05
+;769;Irrigation;50.05;25.05
+;769;Agronomics;50.05;25.05
+;769;Nursery;50.05;25.05
+;769;Hardscape;50.05;25.05
+;769;Landscape Supply;50.05;25.05
+;769;Outdoor Lighting;50.05;25.05
+;770;Irrigation;50.05;25.05
+;770;Agronomics;50.05;25.05
+;770;Nursery;50.05;25.05
+;770;Hardscape;50.05;25.05
+;770;Landscape Supply;50.05;25.05
+;770;Outdoor Lighting;50.05;25.05
+;8;Irrigation;10.05;10.05
+;8;Agronomics;10.05;10.05
+;8;Nursery;10.05;10.05
+;8;Hardscape;10.05;10.05
+;8;Landscape Supply;10.05;10.05
+;8;Outdoor Lighting;10.05;10.05
+;9;Irrigation;10.05;10.05
+;9;Agronomics;10.05;10.05
+;9;Nursery;10.05;10.05
+;9;Hardscape;10.05;10.05
+;9;Landscape Supply;10.05;10.05
+;9;Outdoor Lighting;10.05;10.05
+;26;Irrigation;10.05;10.05
+;26;Agronomics;10.05;10.05
+;26;Nursery;10.05;10.05
+;26;Hardscape;10.05;10.05
+;26;Landscape Supply;10.05;10.05
+;26;Outdoor Lighting;10.05;10.05
+;55;Irrigation;75;75
+;55;Agronomics;75;75
+;55;Nursery;75;75
+;55;Hardscape;75;75
+;55;Landscape Supply;75;75
+;55;Outdoor Lighting;75;75
+;158;Irrigation;10.05;10.05
+;158;Agronomics;10.05;10.05
+;158;Nursery;10.05;10.05
+;158;Hardscape;10.05;10.05
+;158;Landscape Supply;10.05;10.05
+;158;Outdoor Lighting;10.05;10.05
+;238;Irrigation;10.05;10.05
+;238;Agronomics;10.05;10.05
+;238;Nursery;10.05;10.05
+;238;Hardscape;10.05;10.05
+;238;Landscape Supply;10.05;10.05
+;238;Outdoor Lighting;10.05;10.05
+;409;Irrigation;10.05;10.05
+;409;Agronomics;10.05;10.05
+;409;Nursery;10.05;10.05
+;409;Hardscape;10.05;10.05
+;409;Landscape Supply;10.05;10.05
+;409;Outdoor Lighting;10.05;10.05
+;445;Irrigation;10.05;10.05
+;445;Agronomics;10.05;10.05
+;445;Nursery;10.05;10.05
+;445;Hardscape;10.05;10.05
+;445;Landscape Supply;10.05;10.05
+;445;Outdoor Lighting;10.05;10.05
+;692;Irrigation;10.05;10.05
+;692;Agronomics;10.05;10.05
+;692;Nursery;10.05;10.05
+;692;Hardscape;10.05;10.05
+;692;Landscape Supply;10.05;10.05
+;692;Outdoor Lighting;10.05;10.05
+;21;Irrigation;50.05;10.05
+;21;Agronomics;50.05;10.05
+;21;Nursery;50.05;10.05
+;21;Outdoor Lighting;50.05;10.05
+;73;Irrigation;50.05;10.05
+;73;Agronomics;50.05;10.05
+;73;Nursery;50.05;10.05
+;73;Outdoor Lighting;50.05;10.05
+;128;Irrigation;50.05;10.05
+;128;Agronomics;50.05;10.05
+;128;Nursery;50.05;10.05
+;128;Outdoor Lighting;50.05;10.05
+;465;Irrigation;50.05;10.05
+;465;Agronomics;50.05;10.05
+;465;Nursery;50.05;10.05
+;465;Outdoor Lighting;50.05;10.05
+;637;Irrigation;50.05;10.05
+;637;Agronomics;50.05;10.05
+;637;Nursery;50.05;10.05
+;637;Outdoor Lighting;50.05;10.05
+;731;Irrigation;50.05;10.05
+;731;Agronomics;50.05;10.05
+;731;Nursery;50.05;10.05
+;731;Outdoor Lighting;50.05;10.05
+;738;Irrigation;50.05;10.05
+;738;Agronomics;50.05;10.05
+;738;Nursery;50.05;10.05
+;738;Outdoor Lighting;50.05;10.05
+;75;Irrigation;10.05;10.05
+;75;Agronomics;10.05;10.05
+;75;Nursery;10.05;10.05
+;75;Outdoor Lighting;10.05;10.05
+;103;Irrigation;10.05;10.05
+;103;Agronomics;10.05;10.05
+;103;Nursery;10.05;10.05
+;103;Outdoor Lighting;10.05;10.05
+;221;Irrigation;10.05;10.05
+;221;Agronomics;10.05;10.05
+;221;Nursery;10.05;10.05
+;221;Outdoor Lighting;10.05;10.05
+;402;Irrigation;10.05;10.05
+;402;Agronomics;10.05;10.05
+;402;Nursery;10.05;10.05
+;402;Outdoor Lighting;10.05;10.05
+;407;Irrigation;10.05;10.05
+;407;Agronomics;10.05;10.05
+;407;Nursery;10.05;10.05
+;407;Outdoor Lighting;10.05;10.05
+;470;Irrigation;10.05;10.05
+;470;Agronomics;10.05;10.05
+;470;Nursery;10.05;10.05
+;470;Outdoor Lighting;10.05;10.05
+;489;Irrigation;10.05;10.05
+;489;Agronomics;10.05;10.05
+;489;Nursery;10.05;10.05
+;489;Outdoor Lighting;10.05;10.05
+;494;Irrigation;10.05;10.05
+;494;Agronomics;10.05;10.05
+;494;Nursery;10.05;10.05
+;494;Outdoor Lighting;10.05;10.05
+;506;Irrigation;10.05;10.05
+;506;Agronomics;10.05;10.05
+;506;Nursery;10.05;10.05
+;506;Outdoor Lighting;10.05;10.05
+;507;Irrigation;10.05;10.05
+;507;Agronomics;10.05;10.05
+;507;Nursery;10.05;10.05
+;507;Outdoor Lighting;10.05;10.05
+;549;Irrigation;10.05;10.05
+;549;Agronomics;10.05;10.05
+;549;Nursery;10.05;10.05
+;549;Outdoor Lighting;10.05;10.05
+;566;Irrigation;10.05;10.05
+;566;Agronomics;10.05;10.05
+;566;Nursery;10.05;10.05
+;566;Outdoor Lighting;10.05;10.05
+;617;Irrigation;10.05;10.05
+;617;Agronomics;10.05;10.05
+;617;Nursery;10.05;10.05
+;617;Outdoor Lighting;10.05;10.05
+;727;Irrigation;10.05;10.05
+;727;Agronomics;10.05;10.05
+;727;Nursery;10.05;10.05
+;727;Outdoor Lighting;10.05;10.05
+;730;Irrigation;10.05;10.05
+;730;Agronomics;10.05;10.05
+;730;Nursery;10.05;10.05
+;730;Outdoor Lighting;10.05;10.05
+;740;Irrigation;10.05;10.05
+;740;Agronomics;10.05;10.05
+;740;Nursery;10.05;10.05
+;740;Outdoor Lighting;10.05;10.05
+;10;Irrigation;50.05;25.05
+;10;Agronomics;50.05;25.05
+;10;Nursery;50.05;25.05
+;10;Hardscape;50.05;25.05
+;10;Landscape Supply;50.05;25.05
+;10;Outdoor Lighting;50.05;25.05
+;15;Irrigation;50.05;25.05
+;15;Agronomics;50.05;25.05
+;15;Nursery;50.05;25.05
+;15;Hardscape;50.05;25.05
+;15;Landscape Supply;50.05;25.05
+;15;Outdoor Lighting;50.05;25.05
+;17;Irrigation;50.05;25.05
+;17;Agronomics;50.05;25.05
+;17;Nursery;50.05;25.05
+;17;Hardscape;50.05;25.05
+;17;Landscape Supply;50.05;25.05
+;17;Outdoor Lighting;50.05;25.05
+;18;Irrigation;50.05;25.05
+;18;Agronomics;75;75
+;18;Nursery;75;75
+;18;Hardscape;75;75
+;18;Landscape Supply;75;75
+;18;Outdoor Lighting;75;75
+;70;Irrigation;50.05;25.05
+;70;Agronomics;50.05;25.05
+;70;Nursery;50.05;25.05
+;70;Hardscape;50.05;25.05
+;70;Landscape Supply;50.05;25.05
+;70;Outdoor Lighting;50.05;25.05
+;272;Irrigation;50.05;25.05
+;272;Agronomics;50.05;25.05
+;272;Nursery;50.05;25.05
+;272;Hardscape;50.05;25.05
+;272;Landscape Supply;50.05;25.05
+;272;Outdoor Lighting;50.05;25.05
+;516;Irrigation;50.05;25.05
+;516;Agronomics;50.05;25.05
+;516;Nursery;50.05;25.05
+;516;Hardscape;50.05;25.05
+;516;Landscape Supply;50.05;25.05
+;516;Outdoor Lighting;50.05;25.05
+;726;Irrigation;50.05;25.05
+;726;Agronomics;50.05;25.05
+;726;Nursery;50.05;25.05
+;726;Hardscape;50.05;25.05
+;726;Landscape Supply;50.05;25.05
+;726;Outdoor Lighting;50.05;25.05
+;728;Irrigation;50.05;25.05
+;728;Agronomics;50.05;25.05
+;728;Nursery;50.05;25.05
+;728;Hardscape;50.05;25.05
+;728;Landscape Supply;50.05;25.05
+;728;Outdoor Lighting;50.05;25.05
+;729;Irrigation;50.05;25.05
+;729;Agronomics;50.05;25.05
+;729;Nursery;50.05;25.05
+;729;Hardscape;50.05;25.05
+;729;Landscape Supply;50.05;25.05
+;729;Outdoor Lighting;50.05;25.05
+;741;Irrigation;50.05;25.05
+;741;Agronomics;50.05;25.05
+;741;Nursery;50.05;25.05
+;741;Hardscape;50.05;25.05
+;741;Landscape Supply;50.05;25.05
+;741;Outdoor Lighting;50.05;25.05
+;1046;Irrigation;50.05;25.05
+;1046;Agronomics;50.05;25.05
+;1046;Nursery;50.05;25.05
+;1046;Hardscape;50.05;25.05
+;1046;Landscape Supply;50.05;25.05
+;1046;Outdoor Lighting;50.05;25.05

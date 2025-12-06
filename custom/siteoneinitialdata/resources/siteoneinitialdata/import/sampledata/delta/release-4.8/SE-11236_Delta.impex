@@ -1,0 +1,5 @@
+$contentCatalog=siteoneContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+
+INSERT_UPDATE CxCustomization;code[unique=true];$contentCV[unique=true];group(code,$contentCV)[unique=true];modifiedRank
+;C000001JK;;siteoneCustomization;0

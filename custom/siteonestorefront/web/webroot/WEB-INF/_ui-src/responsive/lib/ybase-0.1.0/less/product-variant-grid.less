@@ -1,0 +1,343 @@
+.card-variant-item{
+//Variant Dropdown - PLP Card Section Start
+.variantdropdown-plp{
+	.variant-wrapper-plp{
+		min-height: 35px;
+		border: 1px solid rgba(217, 217, 217, 1);
+		border-radius: 3px;
+		background: rgba(255, 255, 255, 1);
+		/* box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.1); */
+	}
+	.btn-dark-gray {
+		color: #999999;
+		background-color: #FFF;
+		min-height: 44px;
+		border: none;
+    	background: rgba(255, 255, 255, 1);
+	}
+	.popup-box-variant{
+		position: absolute;
+		left: 6.5%;
+		bottom: 101%;
+		width: 100%;
+		display: none;
+		z-index: 1002;
+		background: #fff;
+		border-radius: 3px;
+    	box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.1);
+		@media (max-width: @screen-xs-max) {
+			left: 4%;
+		}
+	}
+	.variant-mesg-wrapper{
+		font-size: 10px;
+		font-weight: 700;
+		color: #999999;
+		min-height: 35px;
+		padding: 0;
+		text-align: center;
+		justify-content: center;
+	}
+	.variant-text-wrapper{
+		font-size: 14px;
+		color: #414244;
+		font-weight: 400;
+		border-left: 1px solid rgba(217, 217, 217, 1);
+		border-bottom: none;
+		border-top: none;
+		border-right: none;
+		min-height: 35px;
+		padding: 0;
+		padding-left: 10px;
+	}
+	.variant-dropdown-option{
+		color: #5A5B5D;
+		min-height: 40px;
+		padding: 0;
+		padding-left: 5px;
+		padding-top: 15px;
+		font-size: 14px;
+		font-weight: 400;
+		line-height: 14px;
+		display: flex;
+		cursor: pointer;
+		.span-text{
+			margin-top: -10px;
+		}
+		.vdropdownInStock{
+			color: #77a12e;
+		}
+		.vdropdownNotAvailable, .vdropdownMoreOnTheWay, .vdropdownInStockNearby{
+			color: #ef8700;
+		}
+		.vdropdownBackorder{
+			color: #5A5B5D;
+		}
+		.vdropdownForShippingOnly{
+			color: #999999;
+		}
+		&:hover{
+			background-color: #F1F2F2;
+		}
+		&.selected{
+			background-color: #F1F6E9;
+		}
+	.variant-dropdown-option-stocksection{
+		    margin-top: 5px;
+		    margin-left: 4%;
+		    position: absolute;
+		    z-index: 1;
+		    font-family: Arial;
+    		font-size: 11px;
+    		@media (max-width: @screen-xs-max) {
+   			 	 margin-left: 3%;
+   			}
+	  }
+	}
+	.option-flex-reverse{
+		display: flex;
+    	flex-direction: column-reverse;
+	}
+	
+	.custom-dropdown-button {
+		&:after {
+			margin-top: -5px;
+    		font-size: 10px;
+		}
+	}
+	.span-text{
+		width: 90%;
+	    overflow: hidden;
+	    text-overflow: ellipsis;
+	    white-space: nowrap;
+		text-align: left;
+	}
+}
+//Variant Dropdown - PLP Card Section End
+//Pricing 
+.cardview-variant-pricing-section {
+            /* width: 10%; */
+            margin: 10px 0 6px 0;
+			display:flex;
+			align-items: center;
+            font-family: Geogrotesque-Medium,sans-serif;
+            font-weight: 600;
+            font-size: 14px;
+            span.list-price-format {
+                span.black-title {
+                    color: #5A5B5D;
+                }
+            }
+ .variantprice{
+	.variantPriceWrapper {
+		h5 {
+			margin-top: 0px;
+    		font-size: 10px;
+			line-height: 14px;
+    		font-weight: 700;
+    		color: #999;
+    		margin-bottom: 0px;
+    		font-family: Arial, Helvetica, sans-serif;
+		}
+		.list-price-format {
+			font-weight: 600;
+			font-size: 18px;
+			span.black-title {
+				color: #5A5B5D;
+			}
+		}
+		.csp-price-format {
+			font-weight: 600;
+			font-size: 18px;
+			.check_price {
+				line-height: 20px;
+			}
+		}
+	}
+}
+
+
+	.variantPriceWrapper-slash{
+		    text-align: right;
+		    margin-top: 8%;
+		    @media (max-width: @screen-xs-max) {
+   			 margin-top: -3%;
+   			 }
+		.variantPriceWrapper {			
+			color:#999999;
+			.list-price-format{
+				text-decoration: line-through;
+				font-size:12px;
+				border-radius: 40px;
+				padding:5px;
+				sup {
+					color: #999999;
+					font-size: 9px;
+					display: none;
+					//text-transform: lowercase;
+				}
+			}
+		}
+	}
+	
+	.variantprice1{
+		.logInToSeeYourPrice{
+			display: ruby;
+		}
+	}
+}
+
+.variantstock{
+	margin-top:5px;
+	margin-bottom: 5px;
+	@media (max-width: @screen-xs-max) {
+	.stock-section-notavailableonline{
+		.margin-left{
+			width: 60%;
+		}
+		.check-other-branch{
+			    width: 40%;
+		}
+	}
+	}
+}
+
+
+.cardviewvariant-qty-section {
+                /* margin-left: -6%;
+			    width: 60%;
+			    margin-right: -6%;
+			    @media (max-width: @screen-xs-max) {
+					margin-left: -4%;
+    				width: 55%;
+				} */
+            button {
+                border: 1px solid #D9D9D9;
+                color: #5A5B5D !important;
+                background-color: #FFF;
+                margin: 0 !important;
+                height: 35px !important;
+                padding: 0 10px !important;
+                &:hover {
+                    background-color: #F1F2F2;
+                }
+            }
+            .minusQty {
+                border-right: none;
+            }
+            .plusQty {
+                border-left: none;
+            }
+            input {
+				font-size: 12px;
+				font-weight: 400;
+                height: 35px;
+                padding: 0px 5px;
+                border-radius: 0px;
+                color: #5A5B5D;
+                border-left: none;
+                border-right: none;
+                -webkit-box-shadow: none;
+                box-shadow: none;
+                &:focus {
+                    border-color: #D9D9D9;
+                }
+            }
+        }
+
+		.callBranchForPrice{
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: 700;
+            font-size: 12px;
+            background-color: #F1F2F2;
+            color: #77A12E;
+            border-radius: 3px;
+            text-align: center;
+			height: 35px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+        }
+		.changeBranchSection{
+			font-family: Arial, Helvetica, sans-serif;
+			font-weight: 700;
+			font-size: 12px;
+			background-color: #f1f2f2;
+			color: #77a12e;
+			border-radius: 3px;
+			text-align: center;
+			height: 35px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+        .cardviewvariant-login_to_buy-section {
+            button {
+                font-family: Arial, Helvetica, sans-serif;
+                font-weight: 700;
+                font-size: 12px;
+                padding: 5px 0px;
+                color: #FFF;
+                width: 106%;
+            }
+        }
+        
+        .cardviewvariant-atc-wrapper-section {
+            /* width: 10%; */
+            form {
+                text-align: right;
+                button {
+                    font-family: Arial, Helvetica, sans-serif;
+                    font-weight: 700;
+                    font-size: 12px;
+                    padding: 5px 0px;
+                    @media (max-width: @screen-xs-max) {
+						height: 35px !important;
+						padding: 5px 0px !important;
+						width: 100% !important;
+					}
+                    height: 35px;
+                    color: #FFF;
+                    width: 100%;
+                }
+            }
+
+			.getAQuoteSection {
+				button {
+					width: 100%;
+					font-family: Arial, Helvetica, sans-serif;
+					font-weight: 700;
+					font-size: 12px;
+					color: #FFF;
+					height: 35px !important;
+				}
+			}
+        }
+        
+        .carviewvariant-row{
+			    /* margin-left: -5%;
+			    margin-right: -5%;
+			    width: 110%; */
+			    @media (max-width: @screen-xs-max) {
+					margin-top: 5px;
+				}
+		}
+		
+		.plp-commonerror-section{
+			    margin-left: -6%;
+   			    width: 112%;
+   			     @media (max-width: @screen-xs-max) {
+						 margin-left: 0%;
+   						 width: 100%;
+				}
+		}
+		.plp-commonshippingonlyqtyerror{
+			    margin-left: -6%;
+   			    width: 112%;
+   			     @media (max-width: @screen-xs-max) {
+						 margin-left: 0%;
+   						 width: 100%;
+				}
+		}
+}
+

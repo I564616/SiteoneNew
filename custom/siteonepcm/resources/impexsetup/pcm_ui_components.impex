@@ -1,0 +1,10 @@
+INSERT_UPDATE CockpitUIConfigurationMedia;code[unique=true];mime;realfilename;@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator][forceWrite=true];
+;editor_product_productmanagergroup_ui_config;text/xml;Editor_Product_ProductManager.xml;jar:com.siteone.pcm.jalo.SiteonepcmManager&/siteonepcm/ProductCockpit/import/Editor_Product_ProductManager.xml;
+;editor_genericvariantproduct_productmanagergroup_ui_config;text/xml;Editor_Product_ProductManager.xml;jar:com.siteone.pcm.jalo.SiteonepcmManager&/siteonepcm/ProductCockpit/import/Editor_GenericVariantProduct_ProductManager.xml;;
+
+INSERT_UPDATE CockpitUIComponentConfiguration;code[unique=true];factoryBean;objectTemplateCode[unique=true];principal(uid)[unique=true];media(code);
+;editorArea;editorConfigurationFactory;Product;admingroup;editor_product_productmanagergroup_ui_config;
+;editorArea;editorConfigurationFactory;Product;employeegroup;editor_product_productmanagergroup_ui_config; 
+;editorArea;editorConfigurationFactory;GenericVariantProduct;admingroup;editor_genericvariantproduct_productmanagergroup_ui_config;
+;editorArea;editorConfigurationFactory;GenericVariantProduct;employeegroup;editor_genericvariantproduct_productmanagergroup_ui_config;
+

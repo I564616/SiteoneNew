@@ -1,0 +1,12 @@
+INSERT_UPDATE ServicelayerJob; code[unique=true];springid[unique=true]
+;importOnHandProductStoresCronJob;importOnHandProductStoresCronJob;
+
+INSERT_UPDATE ImportOnHandProductStoresCronJob;code[unique=true];job(code);sessionLanguage(isoCode)[default=en]
+;importOnHandProductStoresCronJob;importOnHandProductStoresCronJob
+
+INSERT_UPDATE Trigger;cronJob(code)[unique=true];cronExpression;relative;active;maxAcceptableDelay
+;importOnHandProductStoresCronJob;0 30 1,5,9,13,17,21 * * ? *;false;true;-1
+;ImportProductStoresCronJob;0 15 1,5,9,13,17,21 * * ? *;false;true;-1
+
+
+

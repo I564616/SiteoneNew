@@ -1,0 +1,62 @@
+#Impex for updating solr query and creating new solr attributes
+
+$contentCatalog=siteoneContentCatalog
+$productCatalog=siteoneProductCatalog
+$catalogVersions=catalogVersions(catalog(id),version);
+$serverConfigName=siteoneSolrServerConfig
+$indexConfigName=siteoneSolrIndexConfig
+$searchConfigName=siteonePageSize
+$facetSearchConfigName=siteoneIndex
+$facetSearchConfigDescription=SiteOne Solr Index
+$searchIndexNamePrefix=siteone
+$solrIndexedType=siteoneProductType
+$indexBaseSite=siteone
+$indexLanguages=en
+$indexCurrencies=USD
+
+
+INSERT_UPDATE SolrIndexerQuery;solrIndexedType(identifier)[unique=true];identifier[unique=true];type(code);injectCurrentDate[default=true];injectCurrentTime[default=true];injectLastIndexTime[default=true];query;user(uid)
+                              ;$solrIndexedType;$searchIndexNamePrefix-fullQuery;full;;;false;"
+SELECT {p.pk}
+FROM   {Product as p
+JOIN   Catalog as c ON {c.pk}={p.catalog}
+JOIN   CatalogVersion as cv ON {cv.pk}={p.catalogversion}
+JOIN   ArticleApprovalStatus as a ON {a.pk}={p.approvalStatus}}
+WHERE  {c.pk} = {cv.catalog}
+AND    {c.id} = 'siteoneProductCatalog'
+AND    {p.isProductOffline} = '0'
+AND    {p.isProductDiscontinued} = '0'
+AND    {a.name} = 'approved'
+AND    {p.code} != '9999999'
+
+";anonymous
+                              ;$solrIndexedType;$searchIndexNamePrefix-updateQuery;update;;;;"
+SELECT uniontable.pk FROM (
+ ({{
+   SELECT pk
+   FROM ({{ SELECT DISTINCT {p.pk} AS pk
+			FROM   {StockLevel AS sl},{Product AS p}
+			WHERE  {p.code} = {sl.productCode}
+			AND    {p.isProductDiscontinued} = '0'
+			AND    {p.code} != '9999999'
+			AND    ({p:modifiedtime} >= ?lastIndexTime OR {sl:modifiedtime} >= ?lastIndexTime)
+		}}) temptable 
+ }})
+ UNION 
+ ({{
+		   SELECT DISTINCT {p:pk} AS pk 
+		   FROM   {Product AS p}, {PriceRow AS pr} 
+		   WHERE  {p.code} = {pr.productId} 
+		   AND    {p.isProductDiscontinued} = '0' 
+		   AND    {p.code} != '9999999' 
+		   AND    {pr:modifiedtime} >= ?lastIndexTime 
+	}})
+	
+) uniontable
+
+";anonymous
+
+
+INSERT_UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true];name[unique=true];type(code);sortableType(code);currency[default=false];localized[default=false];multiValue[default=false];useForSpellchecking[default=false];useForAutocomplete[default=false];fieldValueProvider;valueProviderParameter;ftsPhraseQuery[default=false];ftsPhraseQueryBoost;ftsQuery[default=false];ftsQueryBoost;ftsFuzzyQuery[default=false];ftsFuzzyQueryBoost;ftsWildcardQuery[default=false];ftsWildcardQueryType(code)[default=POSTFIX];ftsWildcardQueryBoost;ftsWildcardQueryMinTermLength
+;$solrIndexedType; soVariantItemNumber ;string ; ; ; ; ; ;true;variantItemNumberValueProvider ;itemNumber ; ; ;true;90 ; ; ;true;POSTFIX;45;3
+;$solrIndexedType; soisVariantProduct  ;boolean; ; ; ; ; ;    ;isVariantProductValueProvider ;   ;    ;   ;	;	 ;    ;  ;	;	;	;

@@ -1,0 +1,3 @@
+## order_restriction_hana new
+INSERT_UPDATE SearchRestriction; code[unique = true]    ; name[lang = en]        ; query   ; principal(UID); restrictedType(code); active; generate
+			      ; order_restriction_hana ; Order Restriction Hana ; (DATEDIFF (YEAR,CONVERT (datetime,{creationtime}), SYSDATETIME()) <= 2) AND EXISTS({{SELECT {unit:pk} FROM {B2BUnit as unit} WHERE {unit:pk} = {item:unit} AND {unit:path} LIKE CONCAT((?session.user.defaultb2bunit.path),'%')}}) ; b2bgroup      ; Order               ; true  ; true

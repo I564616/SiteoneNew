@@ -1,0 +1,18 @@
+#--------------------------Variant Product IntegrationObject-----------------------#
+
+INSERT_UPDATE IntegrationObject; code[unique = true]; integrationType(code)
+; SiteOneGenericVariantProduct; INBOUND
+
+INSERT_UPDATE IntegrationObjectItem; integrationObject(code)[unique = true]; code[unique = true]; type(code)
+; SiteOneGenericVariantProduct  ; GenericVariantProduct              ; GenericVariantProduct
+;SiteOneGenericVariantProduct;SiteOneBrochures ; SiteOneBrochures
+
+INSERT_UPDATE IntegrationObjectItemAttribute; integrationObjectItem(integrationObject(code), code)[unique = true]; attributeName[unique = true]; attributeDescriptor(enclosingType(code), qualifier); returnIntegrationObjectItem(integrationObject(code), code); unique[default = false]
+; SiteOneGenericVariantProduct:SiteOneBrochures	; id     ; SiteOneBrochures:id	    ;; true	; 
+; SiteOneGenericVariantProduct:SiteOneBrochures	; mimetype  ; SiteOneBrochures:mimetype	;; true	; 
+; SiteOneGenericVariantProduct:SiteOneBrochures	; fullpath     ; SiteOneBrochures:fullpath	    ;; true	; 
+; SiteOneGenericVariantProduct:SiteOneBrochures	; priority  ; SiteOneBrochures:priority	;; true	; 
+
+; SiteOneGenericVariantProduct:SiteOneDataSheet	; brochures  ; SiteOneDataSheet:brochures	; SiteOneGenericVariantProduct:SiteOneBrochures ;; 
+; SiteOneGenericVariantProduct:SiteOneDataSheet	; id  ; SiteOneDataSheet:id	;  ;true; 
+; SiteOneGenericVariantProduct:GenericVariantProduct        ; sheets          ; GenericVariantProduct:sheets 	; SiteOneGenericVariantProduct:SiteOneDataSheet ; 

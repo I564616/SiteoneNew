@@ -1,0 +1,33 @@
+# -----------------------------------------------------------------------
+# [y] hybris Platform
+#
+# Copyright (c) 2000-2016 SAP SE or an SAP affiliate company.
+# All rights reserved.
+#
+# This software is the confidential and proprietary information of SAP
+# ("Confidential Information"). You shall not disclose such Confidential
+# Information and shall use it only in accordance with the terms of the
+# license agreement you entered into with SAP.
+# -----------------------------------------------------------------------
+
+# you can put key/value pairs here.
+# Use Config.getParameter(..) to retrieve the values during runtime.
+
+siteonepunchoutaddon.javascript.paths.responsive=/responsive/common/js/acc.punchout.js
+
+siteonepunchoutaddon.mapping.cxml.pattern=/punchout/cxml/**
+siteonepunchoutaddon.mapping.punchout.session.request=/punchout/cxml/session
+siteonepunchoutaddon.mapping.punchout.setup.request=/punchout/cxml/setup
+siteonepunchoutaddon.mapping.profile.request=/punchout/cxml/profile
+siteonepunchoutaddon.mapping.order.request=/punchout/cxml/order
+siteonepunchoutaddon.mapping.action.placerequisition=/punchout/cxml/requisition
+
+siteonepunchoutaddon.checkout.costcenter.default=PunchOut Organization
+
+siteonepunchoutaddon.redirect.create=/
+siteonepunchoutaddon.redirect.edit=/cart
+siteonepunchoutaddon.redirect.inspect=/punchout/cxml/inspect
+
+# Specifies the location of the spring context file put automatically to the global platform application context.
+siteonepunchoutaddon.application-context=siteonepunchoutaddon-spring.xml
+yacceleratorstorefront.additionalWebSpringConfigs.siteonepunchoutaddon=classpath:/siteonepunchoutaddon/web/spring/siteonepunchoutaddon-web-spring.xml,classpath:/siteonepunchoutaddon/web/spring/siteonepunchoutaddon-spring-security-config.xml

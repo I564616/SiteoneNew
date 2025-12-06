@@ -1,0 +1,32 @@
+INSERT_UPDATE SiteOneFeatureSwitch;key[unique=true];value;longValue
+;StandardShippingandDeliveryFeeBranches;205,57,222,183,193,445,707,5,40,706,36,3,85,21,26,437,739,566,489,119,679,14,41,2,198;205,57,222,183,193,445,707,5,40,706,36,3,85,21,26,437,739,566,489,119,679,14,41,2,198
+
+INSERT_UPDATE SiteOneFeatureSwitch;key[unique=true];value
+;NewFlatRateShippingCharges;6.99
+
+INSERT_UPDATE PointOfService;StoreId[unique=true];shippingHubBranches(storeId)
+;205;8201
+;57;8201
+;222;8201
+;183;8201
+;193;8201
+;445;8201
+;707;8201
+;5;8201
+;40;8201
+;706;8201
+;36;8201
+;3;8201
+;85;8201
+;21;8201
+;26;8201
+;437;8201
+;739;8201
+;566;8201
+;489;8201
+;119;8201
+;679;8201
+;14;8201
+;41;8201
+;2;8201
+;198;8201

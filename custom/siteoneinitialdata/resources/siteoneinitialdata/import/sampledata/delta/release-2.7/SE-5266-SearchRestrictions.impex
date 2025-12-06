@@ -1,0 +1,52 @@
+## New cron job for b2b unit path generation
+
+INSERT_UPDATE ServicelayerJob; code[unique = true]     ; springId[unique = true]
+                             ; generateB2BUnitPathsJob ; generateB2BUnitPathsJob
+
+INSERT_UPDATE CronJob; code[unique = true]         ; job(code)               ; sessionLanguage(isocode)[default = en]
+                     ; generateB2BUnitPathsCronJob ; generateB2BUnitPathsJob ;
+
+INSERT_UPDATE Trigger; cronJob(code)[unique = true]; cronExpression; relative; active; maxAcceptableDelay
+                     ; generateB2BUnitPathsCronJob ; 0 30 1 * * ?  ; false   ; true  ; -1
+
+
+## invoice_restriction_hana
+#INSERT_UPDATE SearchRestriction; code[unique = true]      ; name[lang = en]          ; query                                                                                                                                                                                                                                                                                                                                       ; principal(UID); restrictedType(code); active; generate
+                               #; invoice_restriction_hana ; Invoice Restriction Hana ; (DAYS_BETWEEN (TO_TIMESTAMP ({invoicedDate}), TO_TIMESTAMP (NOW())) <= 730 or {amountdue} not like '0')  AND EXISTS({{SELECT {unit:pk} FROM {B2BUnit as unit} WHERE {unit:uid} = {item:accountNumber} AND {unit:path} LIKE CONCAT('/', CONCAT(substr_regexpr ('[^/]+' IN (?session.user.defaultb2bunit.path) FROM 1 OCCURRENCE 1), '%'))}}) ; b2bgroup      ; SiteOneInvoice      ; true  ; true
+
+## branch_rstriction
+#INSERT_UPDATE SearchRestriction; code[unique = true]; name[lang = en]    ; query                                                                                                                                                  ; principal(UID); restrictedType(code); active; generate
+                              # ; branch_restriction ; branch_restriction ; ({item:active} = 1 AND {item:path} LIKE CONCAT('/', CONCAT(substr_regexpr ('[^/]+' IN (?session.user.defaultb2bunit.path) FROM 1 OCCURRENCE 1), '%'))) ; b2bgroup      ; B2BUnit             ; true  ; true
+
+## customer_restriction
+#INSERT_UPDATE SearchRestriction; code[unique = true]  ; name[lang = en]               ; query                                                                                                                                                                                                                                                  ; principal(UID); restrictedType(code); active; generate
+                              # ; customer_restriction ; Restrict customers visibility ; ({item:active} = 1 AND EXISTS({{SELECT {unit:pk} FROM {B2BUnit as unit} WHERE {unit:pk} = {item:defaultb2bunit} AND {unit:path} LIKE CONCAT('/', CONCAT(substr_regexpr ('[^/]+' IN (?session.user.defaultb2bunit.path) FROM 1 OCCURRENCE 1), '%'))}})) ; b2bgroup      ; B2BCustomer         ; true  ; true
+
+## order_restriction_hana
+#INSERT_UPDATE SearchRestriction; code[unique = true]    ; name[lang = en]        ; query                                                                                                                                                                                                                                                                                                ; principal(UID); restrictedType(code); active; generate
+                              # ; order_restriction_hana ; Order Restriction Hana ; (DAYS_BETWEEN (TO_TIMESTAMP ({creationtime}), TO_TIMESTAMP (NOW())) <= 730) AND EXISTS({{SELECT {unit:pk} FROM {B2BUnit as unit} WHERE {unit:pk} = {item:unit} AND {unit:path} LIKE CONCAT('/', CONCAT(substr_regexpr ('[^/]+' IN (?session.user.defaultb2bunit.path) FROM 1 OCCURRENCE 1), '%'))}}) ; b2bgroup      ; Order               ; true  ; true
+
+## purchased_products_restriction
+#INSERT_UPDATE SearchRestriction; code[unique = true]            ; name[lang = en]               ; query                                                                                                                                                                                                                                                                                                        ; principal(UID); restrictedType(code)  ; active; generate
+#                               ; purchased_products_restriction ; Purchased Product Restriction ; EXISTS({{ SELECT {unit:pk} FROM {PurchProductAndOrders as p join AbstractOrder AS o on {p.orderId}={o.code} join B2BUnit as unit on {o.orderingAccount} = {unit.pk}} WHERE {unit:path} LIKE CONCAT('/', CONCAT(substr_regexpr ('[^/]+' IN (?session.user.defaultb2bunit.path) FROM 1 OCCURRENCE 1), '%'))}}) ; b2bgroup      ; PurchProductAndOrders ; true  ; true
+
+#Migration : Query Change
+## invoice_restriction_hana
+INSERT_UPDATE SearchRestriction; code[unique = true]      ; name[lang = en]          ; query                                                                                                                                                                                                                                                                                                                                       ; principal(UID); restrictedType(code); active; generate
+                               ; invoice_restriction_hana ; Invoice Restriction Hana ; (DATEDIFF (DAY,CONVERT (datetime,{invoicedDate}), SYSDATETIME()) <= 730 or {amountdue} not like '0')  AND EXISTS({{SELECT {unit:pk} FROM {B2BUnit as unit} WHERE {unit:uid} = {item:accountNumber} AND {unit:path} LIKE CONCAT(SUBSTRING(?session.user.defaultb2bunit.path,1, CASE when CHARINDEX('/',?session.user.defaultb2bunit.path,2)=0 then len(?session.user.defaultb2bunit.path) else CHARINDEX('/',?session.user.defaultb2bunit.path,2)-1 end),'%')}}) ; b2bgroup      ; SiteOneInvoice      ; true  ; true
+
+## branch_rstriction
+INSERT_UPDATE SearchRestriction; code[unique = true]; name[lang = en]    ; query                                                                                                                                                  ; principal(UID); restrictedType(code); active; generate
+                               ; branch_restriction ; branch_restriction ; ({item:active} = 1 AND {item:path} LIKE CONCAT(SUBSTRING(?session.user.defaultb2bunit.path,1, CASE when CHARINDEX('/',?session.user.defaultb2bunit.path,2)=0 then len(?session.user.defaultb2bunit.path) else CHARINDEX('/',?session.user.defaultb2bunit.path,2)-1 end),'%')) ; b2bgroup      ; B2BUnit             ; true  ; true
+
+## customer_restriction
+INSERT_UPDATE SearchRestriction; code[unique = true]  ; name[lang = en]               ; query                                                                                                                                                                                                                                                  ; principal(UID); restrictedType(code); active; generate
+                               ; customer_restriction ; Restrict customers visibility ; ({item:active} = 1 AND EXISTS({{SELECT {unit:pk} FROM {B2BUnit as unit} WHERE {unit:pk} = {item:defaultb2bunit} AND {unit:path} LIKE CONCAT(SUBSTRING(?session.user.defaultb2bunit.path,1, CASE when CHARINDEX('/',?session.user.defaultb2bunit.path,2)=0 then len(?session.user.defaultb2bunit.path) else CHARINDEX('/',?session.user.defaultb2bunit.path,2)-1 end),'%')}})) ; b2bgroup      ; B2BCustomer         ; true  ; true
+
+## order_restriction_hana
+INSERT_UPDATE SearchRestriction; code[unique = true]    ; name[lang = en]        ; query                                                                                                                                                                                                                                                                                                ; principal(UID); restrictedType(code); active; generate
+                               ; order_restriction_hana ; Order Restriction Hana ; (DATEDIFF (DAY,CONVERT (datetime,{creationtime}), SYSDATETIME()) <= 730) AND EXISTS({{SELECT {unit:pk} FROM {B2BUnit as unit} WHERE {unit:pk} = {item:unit} AND {unit:path} LIKE CONCAT(SUBSTRING(?session.user.defaultb2bunit.path,1, CASE when CHARINDEX('/',?session.user.defaultb2bunit.path,2)=0 then len(?session.user.defaultb2bunit.path) else CHARINDEX('/',?session.user.defaultb2bunit.path,2)-1 end),'%')}}) ; b2bgroup      ; Order               ; true  ; true
+
+## purchased_products_restriction
+INSERT_UPDATE SearchRestriction; code[unique = true]            ; name[lang = en]               ; query                                                                                                                                                                                                                                                                                                        ; principal(UID); restrictedType(code)  ; active; generate
+                               ; purchased_products_restriction ; Purchased Product Restriction ; EXISTS({{ SELECT {unit:pk} FROM {PurchProductAndOrders as p join AbstractOrder AS o on {p.orderId}={o.code} join B2BUnit as unit on {o.orderingAccount} = {unit.pk}} WHERE {unit:path} LIKE CONCAT(SUBSTRING(?session.user.defaultb2bunit.path,1, CASE when CHARINDEX('/',?session.user.defaultb2bunit.path,2)=0 then len(?session.user.defaultb2bunit.path) else CHARINDEX('/',?session.user.defaultb2bunit.path,2)-1 end),'%')}}) ; b2bgroup      ; PurchProductAndOrders ; true  ; true

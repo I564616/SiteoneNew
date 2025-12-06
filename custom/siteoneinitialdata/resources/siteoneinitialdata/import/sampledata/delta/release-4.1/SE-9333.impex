@@ -1,0 +1,47 @@
+$contentCatalog=siteoneContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='SiteOneHomePageTemplate'];validComponentTypes(code);compTypeGroup(code)
+;VerticalNavigation;;VerticalBarComponent
+;GlobalMessage;;GlobalMessageCMSComponent
+
+INSERT_UPDATE CxCustomizationsGroup; code; $contentCV[unique = true];
+                                   ;siteoneCustomization;
+
+INSERT_UPDATE CxConfig; code[unique = true]; minAffinity; actionResultMaxRepeat; userChangedActions; ignoreRecalcForAnonymous[default = false]; anonymousUserDefaultActions; anonymousUserActions; anonymousUserMinRequestNumber; anonymousUserMinTime; anonymousUserIgnoreOtherActions;
+; siteone_Personalization ; 0.5 ; 1 ; RECALCULATE,ASYNC_PROCESS ; ; RECALCULATE ; ; 10 ; 60000 ; false ; ;
+
+INSERT_UPDATE CxConfig; code[unique = true]; baseSites(uid)
+; siteone_Personalization ; siteone
+
+INSERT_UPDATE SiteOneTradeClassSegment;code[unique=true];subTradeClassCode
+;FullService_Agro;22002;
+;FullService_Irrigation;22003;
+;Maintenance_Agro;21001;
+;Installation_Irrigation;20002;
+
+INSERT_UPDATE SiteOneRegionSegment;code[unique=true];isAnonymousCustomer;region
+;TampaAnonymousCustomer;true;406,7,5,769,437,131,238,770,9
+;Tampa;false;7,5,9,131,238,406,437,770,769
+
+INSERT_UPDATE CxCustomization;code[unique=true];name;$contentCV[unique=true];group(code,$contentCV)[unique=true];status(code)[default=ENABLED]
+;FullService_Agro;FullService_Agro;;siteoneCustomization;;
+;FullService_Irrigation;FullService_Irrigation;;siteoneCustomization;;
+;Maintenance_Agro;Maintenance_Agro;;siteoneCustomization;;
+;Installation_Irrigation;Installation_Irrigation;;siteoneCustomization;;
+
+ 
+INSERT_UPDATE CxVariation;code[unique=true];name;$contentCV[unique=true];enabled[default=true];customization(code,$contentCV)[unique=true];&variationRef
+;FullService_Agro;FullService_Agro;;;FullService_Agro;FullService_Agro
+;FullService_Irrigation;FullService_Irrigation;;;FullService_Irrigation;FullService_Irrigation
+;Maintenance_Agro;Maintenance_Agro;;;Maintenance_Agro;Maintenance_Agro
+;Installation_Irrigation;Installation_Irrigation;;;Installation_Irrigation;Installation_Irrigation
+
+INSERT_UPDATE CxCustomization;code[unique=true];name;$contentCV[unique=true];group(code,$contentCV)[unique=true];status(code)[default=ENABLED]
+;Anonymous;Anonymous;;siteoneCustomization;;
+
+INSERT_UPDATE CxVariation;code[unique=true];name;$contentCV[unique=true];enabled[default=true];customization(code,$contentCV)[unique=true];&variationRef
+;anonymousVariation;Anonymous Variation;;;Anonymous;anonymousVariation
+
+INSERT_UPDATE CatalogVersionSyncJob;code[unique=true];rootTypes(code)[mode=append];
+;sync siteoneContentCatalog:Staged->Online;CxCustomization,CxCustomizationsGroup

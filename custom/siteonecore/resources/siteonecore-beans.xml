@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- [y] hybris Platform Copyright (c) 2017 SAP SE or an SAP affiliate company. 
+	All rights reserved. This software is the confidential and proprietary information 
+	of SAP ("Confidential Information"). You shall not disclose such Confidential 
+	Information and shall use it only in accordance with the terms of the license 
+	agreement you entered into with SAP. -->
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="beans.xsd">
+
+	<bean
+		class="com.siteone.core.search.solrfacetsearch.provider.util.IndexProductPriceData">
+		<property name="productId" type="String" />
+		<property name="price" type="Double" />
+		<property name="currencyIsoCode" type="String" />
+		<property name="storeId" type="String" />
+	</bean>
+
+	<bean
+		class="com.siteone.core.search.solrfacetsearch.provider.util.IndexProductPosInventoryData">
+		<property name="productCode" type="String" />
+		<property name="storeId" type="String" />
+		<property name="stockLevel" type="Long" />
+		<property name="inventoryHitCount" type="Integer" />
+		<property name="inventoryHitCountFlag" type="Boolean" />
+		<property name="stockLevelFlag" type="Boolean" />
+		<property name="inventoryCheckFlag" type="Boolean" />
+		<property name="forceInStock" type="Boolean" />
+	</bean>
+	
+	<bean class="com.siteone.core.dto.navigation.GlobalProductNavigationNodeData">
+		<description>POJO containing the Navigation Node Data.</description>
+		<property name="uid" type="String" />
+		<property name="uuid" type="String" />
+		<property name="name" type="String" />
+		<property name="title" type="String" />
+		<property name="localizedTitle" type="String" />
+		<property name="visible" type="boolean" />
+		<property name="url" type="String" />
+		<property name="imageUrl" type="String" />
+		<property name="categoryCode" type="String" />
+		<property name="categoryName" type="String" />
+		<property name="categoryProductCount" type="Integer" />
+		<property name="sequenceNumber" type="Integer" />
+		<property name="children" type="java.util.List&lt;com.siteone.core.dto.navigation.GlobalProductNavigationNodeData>" />
+	</bean>
+	
+	<bean class="com.siteone.core.search.solrfacetsearch.provider.util.IndexPurchasedProductCountData">
+		<property name="productCode" type="String" />
+		<property name="b2bUnit" type="String" />
+		<property name="count" type="Integer" />
+	</bean>
+	
+		<bean class="com.siteone.core.search.solrfacetsearch.provider.util.IndexPurchasedProductQuantityData">
+		<property name="productCode" type="String" />
+		<property name="b2bUnit" type="String" />
+		<property name="count" type="Integer" />
+	</bean>
+
+</beans>

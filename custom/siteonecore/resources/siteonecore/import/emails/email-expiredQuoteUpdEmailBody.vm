@@ -1,0 +1,222 @@
+## messageSource=classpath:/siteonecore/messages/email-expiredQuoteUpd_$lang.properties
+#macro( genHtmlBoldFont $text )
+<font color="#414a4f"><b>$text</b></font>
+#end
+#macro(genHtmlLinkStartTag $url)
+<a href="$url"><font color="#666666">
+#end
+#macro(genHtmlLinkEndTag)
+</font></a>
+#end
+#macro(genHtmlLink $url $textColor $bodyContent)
+<a href="$url"><font color="$textColor">$bodyContent</font></a>
+#end
+#if(${ctx.countryBaseSiteID} == "siteone-ca")
+<table width="100%" cellpadding="0" cellspacing="0" border="0" align="center" style="max-width: 600px; min-width: 400px; font-size: 15px; font-family: Arial, Helvetica, sans-serif; color: #000000; border: 1px solid #ccc;">
+	<thead>
+		<tr>
+			<th colspan="6" valign="left" align="left">
+				<a style="text-decoration:none;" href="${ctx.baseThemeUrl}">
+					<img title="SiteoneLogo" src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/SiteoneLogo.jpg" alt="SiteoneLogo" width="200">
+				</a>
+			</th>
+			<th colspan="6" valign="right" align="right" style="padding: 15px;">
+                #if(${ctx.countryBaseSiteID} == "siteone-ca")
+                    <a style="text-decoration:none; padding-right: 15px;" href="https://www.facebook.com/SiteOneLandscape/">
+					<img src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/Print_facebook_color.png" alt="Facebook" title="Facebook" width="24">
+                    </a>
+                    <a style="text-decoration:none; padding-right: 15px;" href="https://www.instagram.com/siteonesupply/">
+                        <img src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/Print_instagram_color.png" alt="Instagram" title="Instagram" width="24">
+                    </a>
+                    <a style="text-decoration:none;" href="https://twitter.com/SiteOneSupply">
+                        <img src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/Print_twitter_color.png" alt="Twitter" title="Twitter" width="24">
+                    </a>
+                #else
+                    <a style="text-decoration:none; padding-right: 15px;" href="https://www.facebook.com/SiteOneLandscape/">
+                        <img src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/Print_facebook_color.png" alt="Facebook" title="Facebook" width="24">
+                    </a>
+                    <a style="text-decoration:none; padding-right: 15px;" href="https://www.instagram.com/siteonesupply/">
+                        <img src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/Print_instagram_color.png" alt="Instagram" title="Instagram" width="24">
+                    </a>
+                    <a style="text-decoration:none;" href="https://twitter.com/SiteOneSupply">
+                        <img src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/Print_twitter_color.png" alt="Twitter" title="Twitter" width="24">
+                    </a>
+                #end
+			</th>
+		</tr>
+	</thead>
+	<tbody style="padding:25px;" cellpadding="20" cellspacing="20">
+		<tr>
+			<td colspan="12">
+				<p style="padding: 20px; background-color: #f1f2f2; color:#414244; font-weight:bold;">You have an update on the quote from ${ctx.customerName}.</p>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="12" style="padding: 0 25px 15px 25px; color: #5a5b5d; line-height: 25px;">
+				<p style="font-weight: bold;">${ctx.customerName} has requested a new quote to be created from the currently expired <a href="${ctx.baseThemeUrl}/my-account/my-quotes/${ctx.quoteNumber}" style="color: #78A22F; text-decoration:none !important; text-decoration:none;" target="_blank">quote # ${ctx.quoteNumber}</a>.</p>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="12" style="padding: 10px 25px 15px 25px;">
+				<table width="100%" cellpadding="0" cellspacing="0" border="0" align="center" style="max-width: 600px; min-width: 400px; font-size: 14px; font-family: Arial, Helvetica, sans-serif; color: #000000;">
+					<tbody>
+					    #if(${ctx.jobName} && ${ctx.jobName} != '')
+						<tr>
+							<td colspan="3" style="font-weight: 700;">Job Name:</td>
+							<td colspan="9" style="line-height: 25px; padding-left: 15px;">${ctx.jobName}</td>
+						</tr>
+						#end
+						#if(${ctx.expDate} && ${ctx.expDate} != '')
+						<tr>
+							<td colspan="3" style="font-weight: 700;">Current Expiration Date:</td>
+							<td colspan="9" style="line-height: 25px; padding-left: 15px;">${ctx.expDate}</td>
+						</tr>
+						#end
+						#if(${ctx.quoteTotal} && ${ctx.quoteTotal} != '')
+						<tr>
+							<td colspan="3" style="font-weight: 700;">Quote Total:</td>
+							<td colspan="9" style="line-height: 25px; padding-left: 15px;">${ctx.quoteTotal}</td>
+						</tr>
+						#end
+						#if(${ctx.notes} && ${ctx.notes} != '')
+						<tr>
+							<td colspan="3" style="font-weight: 700;">Notes:</td>
+							<td colspan="9" style="line-height: 25px; padding-left: 15px;">${ctx.notes}</td>
+						</tr>
+						#end
+					</tbody>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td valign="top" colspan="12">
+				<p style="padding: 20px; font-size: 16px; color: #414244; background-color: #f1f2f2; font-weight:bold; margin-top: 15px;">Customer Contact Information</p>
+			</td>
+		</tr>
+	</tbody>
+	<tfoot>
+		<tr>
+			<td colspan="12" style="padding: 0 25px 15px 25px; font-size: 14px; line-height: 20px;">
+				<p style="color: #5a5b5d;">
+					#if((${ctx.accountName} && ${ctx.accountName} != '') && (${ctx.accountId} && ${ctx.accountId} != '' ))
+                    	${ctx.accountName}&nbsp;${ctx.accountId}</br>
+					#end
+					#if(${ctx.customerName} && ${ctx.customerName} != '')
+						${ctx.customerName}</br>
+					#end
+					#if(${ctx.phoneNumber} && ${ctx.phoneNumber} != '')
+						${ctx.phoneNumber}</br>
+					#end
+					#if(${ctx.customerEmailAddress} && ${ctx.customerEmailAddress} != '')
+						${ctx.customerEmailAddress}
+					#end
+				</p>
+			</td>
+		</tr>
+	</tfoot>
+</table>
+#else
+<table width="100%" cellpadding="0" cellspacing="0" border="0" align="center" style="max-width: 600px; min-width: 400px; font-size: 15px; font-family: Arial, Helvetica, sans-serif; color: #000000; border: 1px solid #ccc;">
+	<thead>
+		<tr>
+			<th colspan="6" valign="left" align="left">
+				<a style="text-decoration:none;" href="${ctx.baseThemeUrl}">
+					<img title="SiteoneLogo" src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/SiteoneLogo.jpg" alt="SiteoneLogo" width="200">
+				</a>
+			</th>
+			<th colspan="6" valign="right" align="right" style="padding: 15px;">
+                #if(${ctx.countryBaseSiteID} == "siteone-ca")
+                    <a style="text-decoration:none; padding-right: 15px;" href="https://www.facebook.com/SiteOneLandscape/">
+					<img src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/Print_facebook_color.png" alt="Facebook" title="Facebook" width="24">
+                    </a>
+                    <a style="text-decoration:none; padding-right: 15px;" href="https://www.instagram.com/siteonesupply/">
+                        <img src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/Print_instagram_color.png" alt="Instagram" title="Instagram" width="24">
+                    </a>
+                    <a style="text-decoration:none;" href="https://twitter.com/SiteOneSupply">
+                        <img src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/Print_twitter_color.png" alt="Twitter" title="Twitter" width="24">
+                    </a>
+                #else
+                    <a style="text-decoration:none; padding-right: 15px;" href="https://www.facebook.com/SiteOneLandscape/">
+                        <img src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/Print_facebook_color.png" alt="Facebook" title="Facebook" width="24">
+                    </a>
+                    <a style="text-decoration:none; padding-right: 15px;" href="https://www.instagram.com/siteonesupply/">
+                        <img src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/Print_instagram_color.png" alt="Instagram" title="Instagram" width="24">
+                    </a>
+                    <a style="text-decoration:none;" href="https://twitter.com/SiteOneSupply">
+                        <img src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/Print_twitter_color.png" alt="Twitter" title="Twitter" width="24">
+                    </a>
+                #end
+			</th>
+		</tr>
+	</thead>
+	<tbody style="padding:25px;" cellpadding="20" cellspacing="20">
+		<tr>
+			<td colspan="12">
+				<p style="padding: 20px; background-color: #f1f2f2; color:#414244; font-weight:bold;">You have an update on the quote from ${ctx.customerName}.</p>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="12" style="padding: 0 25px 15px 25px; color: #5a5b5d; line-height: 25px;">
+				<p style="font-weight: bold;">${ctx.customerName} has requested a new quote to be created from the currently expired <a href="${ctx.baseThemeUrl}/my-account/my-quotes/${ctx.quoteNumber}" style="color: #78A22F; text-decoration:none !important; text-decoration:none;" target="_blank">quote # ${ctx.quoteNumber}</a>.</p>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="12" style="padding: 10px 25px 15px 25px;">
+				<table width="100%" cellpadding="0" cellspacing="0" border="0" align="center" style="max-width: 600px; min-width: 400px; font-size: 14px; font-family: Arial, Helvetica, sans-serif; color: #000000;">
+					<tbody>
+					    #if(${ctx.jobName} && ${ctx.jobName} != '')
+						<tr>
+							<td colspan="3" style="font-weight: 700;">Job Name:</td>
+							<td colspan="9" style="line-height: 25px; padding-left: 15px;">${ctx.jobName}</td>
+						</tr>
+						#end
+						#if(${ctx.expDate} && ${ctx.expDate} != '')
+						<tr>
+							<td colspan="3" style="font-weight: 700;">Current Expiration Date:</td>
+							<td colspan="9" style="line-height: 25px; padding-left: 15px;">${ctx.expDate}</td>
+						</tr>
+						#end
+						#if(${ctx.quoteTotal} && ${ctx.quoteTotal} != '')
+						<tr>
+							<td colspan="3" style="font-weight: 700;">Quote Total:</td>
+							<td colspan="9" style="line-height: 25px; padding-left: 15px;">${ctx.quoteTotal}</td>
+						</tr>
+						#end
+						#if(${ctx.notes} && ${ctx.notes} != '')
+						<tr>
+							<td colspan="3" style="font-weight: 700;">Notes:</td>
+							<td colspan="9" style="line-height: 25px; padding-left: 15px;">${ctx.notes}</td>
+						</tr>
+						#end
+					</tbody>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td valign="top" colspan="12">
+				<p style="padding: 20px; font-size: 16px; color: #414244; background-color: #f1f2f2; font-weight:bold; margin-top: 15px;">Customer Contact Information</p>
+			</td>
+		</tr>
+	</tbody>
+	<tfoot>
+		<tr>
+			<td colspan="12" style="padding: 0 25px 15px 25px; font-size: 14px; line-height: 20px;">
+				<p style="color: #5a5b5d;">
+					#if((${ctx.accountName} && ${ctx.accountName} != '') && (${ctx.accountId} && ${ctx.accountId} != '' ))
+                    	${ctx.accountName}&nbsp;${ctx.accountId}</br>
+					#end
+					#if(${ctx.customerName} && ${ctx.customerName} != '')
+						${ctx.customerName}</br>
+					#end
+					#if(${ctx.phoneNumber} && ${ctx.phoneNumber} != '')
+						${ctx.phoneNumber}</br>
+					#end
+					#if(${ctx.customerEmailAddress} && ${ctx.customerEmailAddress} != '')
+						${ctx.customerEmailAddress}
+					#end
+				</p>
+			</td>
+		</tr>
+	</tfoot>
+</table>
+#end		

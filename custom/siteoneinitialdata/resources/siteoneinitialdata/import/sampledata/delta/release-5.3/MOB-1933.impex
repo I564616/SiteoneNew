@@ -1,0 +1,16 @@
+# Information and shall use it only in accordance with the terms of the
+# license agreement you entered into with SAP.
+# -----------------------------------------------------------------------
+# ImpEx for Importing thumbnail for Hardscape L1 Category
+
+# Macros / Replacement Parameter definitions
+$productCatalog=siteoneProductCatalog
+$productCatalogName=SiteOne Product Catalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$contentCatalog=siteoneContentCatalog
+$contentCatalogName=SiteOne Content Catalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$thumbnail=thumbnail(code, $contentCV);
+
+UPDATE Category;$catalogVersion;code[unique=true];$thumbnail;
+;;SH15;L1_Mobile_Hardscapes

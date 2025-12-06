@@ -1,0 +1,8 @@
+INSERT_UPDATE ServicelayerJob; code[unique=true];springid[unique=true]
+;quoteToOrderStatusEmailCronJob;quoteToOrderStatusEmailCronJob;
+
+INSERT_UPDATE QuoteToOrderStatusEmailCronJob;code[unique=true];job(code)[default=quoteToOrderStatusEmailCronJob];sessionLanguage(isoCode)[default=en]
+;quoteToOrderStatusEmailCronJob
+
+INSERT_UPDATE Trigger;cronJob(code)[unique=true];cronExpression;relative;active;maxAcceptableDelay
+;quoteToOrderStatusEmailCronJob;0 0/15 * * * ?;false;true;-1

@@ -1,0 +1,3 @@
+#update attributetype from number to string for classificationattributes#
+
+Update cat2attrrel set p_attributetype='8796093612123' where p_attributetype='8796100001883'

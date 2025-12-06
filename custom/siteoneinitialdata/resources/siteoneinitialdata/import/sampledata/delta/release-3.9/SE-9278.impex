@@ -1,0 +1,27 @@
+# -----------------------------------------------------------------------
+# [y] hybris Platform
+#
+# Copyright (c) 2017 SAP SE or an SAP affiliate company.  All rights reserved.
+#
+# This software is the confidential and proprietary information of SAP
+# ("Confidential Information"). You shall not disclose such Confidential
+# Information and shall use it only in accordance with the terms of the
+# license agreement you entered into with SAP.
+# -----------------------------------------------------------------------
+$classCatalogVersion=catalogversion(catalog(id[default='siteoneClassification']),version[default='1'])[unique=true,default='siteoneClassification:1']
+$classSystemVersion=systemversion(catalog(id[default='siteoneClassification']),version[default='1'])[unique=true,default='siteoneClassification:1']
+$classAttribute=classificationAttribute(code,$classSystemVersion)
+$classClass=classificationClass(code,$classCatalogVersion)
+$classAttributeAssignment=classAttributeAssignments($classClass,$classAttribute,$classSystemVersion)
+
+
+#
+# Add additional indexed properties for the classification features that we want to index
+#
+
+INSERT_UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true];name[unique=true]       ;type(code);facet[default=false]
+                                 ;siteoneProductType	                  ;Maintenance_form        ;text      ;
+                                 ;siteoneProductType	                  ;Maintenance_compositions;text	  ;
+
+INSERT_UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true];name[unique=true]           ;type(code);sortableType(code);currency[default=false];localized[default=false];multiValue[default=false];facet[default=false];facetType(code);facetSort(code);priority;visible;fieldValueProvider                               ;$classAttributeAssignment                                                              ;topValuesProvider;
+                                 ;siteoneProductType	                  ;Maintenance_activeingredient;text      ;		             ;		                 ;true                    ;true                     ;                    ;MultiSelectOr  ;Alpha          ;1000    ;true   ;siteOneClassificationCachingPropertyValueProvider;CH01_1311110:::Maintenance_activeingredient,CH01_1321114:::Maintenance_activeingredient;defaultTopValuesProvider

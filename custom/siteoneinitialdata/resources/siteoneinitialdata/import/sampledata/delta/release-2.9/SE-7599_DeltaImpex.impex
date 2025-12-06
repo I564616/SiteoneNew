@@ -1,0 +1,4 @@
+$solrIndexedType=siteoneProductType
+
+INSERT_UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true];name[unique=true];customFacetSortProvider;
+;$solrIndexedType; price	;priceRangeFacetNameSortProviderAscending

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<editor>
+
+
+	<group qualifier="ProductInfo" visible="true" initially-opened="true">
+		<label lang="en">General Product Information</label>
+		<property qualifier="product.code" />
+		<property qualifier="product.name" />
+		<property qualifier="product.itemNumber" />
+		<property qualifier="product.productType" />
+		<property qualifier="product.description" />
+    </group>
+    
+	<group qualifier="Media" visible="true" initially-opened="false">
+		<label lang="en">Media</label>
+		<property qualifier="product.galleryImages" />
+		<property qualifier="product.data_sheet" />
+		<property qualifier="product.internalURL" />
+	</group>
+	
+	<group qualifier="Category" visible="true" initially-opened="false">
+		<label lang="en">Variant Values</label>
+		<property qualifier="product.catalogVersion" />
+		<property qualifier="product.supercategories" />
+	</group>
+	
+	<group qualifier="CustomAttributes" visible="true"
+		initially-opened="false">
+		<label lang="en">Core Attributes Extended</label>
+				<property qualifier="product.corpRank"/>
+		<property qualifier="product.manufacturerAID" />
+		<property qualifier="product.manufacturerName" />
+		<property qualifier="product.titleDescription" />
+		<property qualifier="product.case" />
+		<property qualifier="product.purchPkg" />
+		<property qualifier="product.weight" />
+		<property qualifier="product.uom" />
+		<property qualifier="product.form" />
+		<property qualifier="product.isLescoBranded" />
+		<property qualifier="product.vendorEDINumber" />
+		<property qualifier="product.productBrandName" />
+		<property qualifier="product.subBrand" />
+		<property qualifier="product.vendorPartNumber" />
+		<property qualifier="product.upcCode" />
+		<property qualifier="product.productShortDesc31Char" />
+		<property qualifier="product.productShortDesc" />
+		<property qualifier="product.productLongDesc" editor="wysiwyg"/>
+		<property qualifier="product.unspsc" />
+		<property qualifier="product.isSdsRequired" />
+		<property qualifier="product.hazmat" />
+		<property qualifier="product.ifHazmatWhatisUNCode" />
+		<property qualifier="product.isRegulatedItem" />
+		<property qualifier="product.isProductDiscontinued" />
+		<property qualifier="product.productState" />
+		<property qualifier="product.sds" />
+		<property qualifier="product.unitWeightNumeric" />
+		<property qualifier="product.unitWeightMeasurement" />
+		<property qualifier="product.cubicFeerPerUnit" />
+		<property qualifier="product.unitLenghtInches" />
+		<property qualifier="product.unitWidthInches" />
+		<property qualifier="product.unitHeigthInches" />
+		<property qualifier="product.masterPckQtyinUnits" />
+		<property qualifier="product.singleCaseQtyinUnits" />
+		<property qualifier="product.caseWeightLBS" />
+		<property qualifier="product.isProductSoldbyUom" />
+		<property qualifier="product.isUomPerPalletorPerUnit" />
+		<property qualifier="product.palletQtyinUnits" />
+		<property qualifier="product.palletQtyinCases" />
+		<property qualifier="product.minimumOrderQty" />
+		<property qualifier="product.isDirectShippedProduct" />
+		<property qualifier="product.marketingDescription" editor="wysiwyg"/>
+		<property qualifier="product.featureBullets" editor="wysiwyg"/>
+		<property qualifier="product.applications" />
+		<property qualifier="product.standardsApprovals" />
+	</group>
+
+	<custom-group
+		class="de.hybris.platform.cockpit.services.config.impl.ClassAttrEditorSectionConfiguration"
+		qualifier="classification" initially-opened="false" show-if-empty="false">
+		<label lang="en">Classification Attributes</label>
+	</custom-group>
+
+</editor>
+

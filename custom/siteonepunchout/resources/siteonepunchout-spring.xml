@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ [y] hybris Platform
+
+ Copyright (c) 2017 SAP SE or an SAP affiliate company.  All rights reserved.
+
+ This software is the confidential and proprietary information of SAP
+ ("Confidential Information"). You shall not disclose such Confidential
+ Information and shall use it only in accordance with the terms of the
+ license agreement you entered into with SAP.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/aop
+           http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+	<alias name="siteonePunchOutSessionService" alias="punchOutSessionService"/>
+	<bean id="siteonePunchOutSessionService" class="com.siteone.punchout.services.impl.DefaultSiteOnePunchOutSessionService" >
+		<property name="configurationService" ref="configurationService"/>
+		<property name="sessionService" ref="sessionService"/>
+		<property name="flexibleSearchService" ref="flexibleSearchService"/>
+		<property name="punchOutCredentialService" ref="punchOutCredentialService"/>
+		<property name="cartService" ref="cartService"/>
+		<property name="modelService" ref="modelService"/>
+		<property name="punchOutSessionPopulator" ref="punchOutSessionPopulator"/>
+		<property name="b2bCustomerService" ref="b2bCustomerService"/>
+		<property name="oauthClientDetails" ref="oauthClientDetails"/>
+		<property name="oauthTokenServices" ref="oauthTokenServices"/>
+		<property name="oAuth2RequestFactory" ref="oAuth2RequestFactory"/>
+	</bean>
+	
+	<alias name="defaultSiteOneOrderRequestCartPopulator" alias="orderRequestCartPopulator"/>
+	<bean id="defaultSiteOneOrderRequestCartPopulator" class="com.siteone.punchout.populators.impl.DefaultSiteOneOrderRequestCartPopulator">
+		<property name="addressModelConverter" ref="addressModelConverter"/>
+		<property name="commonI18NService" ref="commonI18NService"/>
+		<property name="cXmlDateUtil" ref="cXmlDateUtil"/>
+		<property name="taxValuePopulator" ref="taxValuePopulator"/>
+		<property name="siteOnePunchoutAddressPopulator" ref="siteOnePunchoutAddressPopulator"/>
+	</bean>
+	
+	<alias name="defaultSiteOnePunchOutSessionPopulator" alias="punchOutSessionPopulator"/>
+	<bean id="defaultSiteOnePunchOutSessionPopulator" class="com.siteone.punchout.populators.impl.DefaultSiteOnePunchOutSessionPopulator"/>
+	
+	<alias name="defaultSiteOnePunchOutService" alias="punchOutService"/>
+	<bean id="defaultSiteOnePunchOutService" class="com.siteone.punchout.services.impl.DefaultSiteOnePunchOutService">
+		<property name="punchOutCredentialService" ref="punchOutCredentialService"/>
+		<property name="punchOutProfileRequestProcessor" ref="punchOutProfileRequestProcessor"/>
+		<property name="punchOutOrderMessageProcessor" ref="punchOutOrderMessageProcessor"/>
+		<property name="punchOutCancelOrderMessageProcessor" ref="punchOutCancelOrderMessageProcessor"/>
+		<property name="punchOutSetupRequestProcessor" ref="punchOutSetupRequestProcessor"/>
+		<property name="punchOutOrderRequestProcessor" ref="punchOutOrderRequestProcessor"/>
+	</bean>
+	
+	<alias name="defaulSiteOnetPunchOutCredentialService" alias="punchOutCredentialService"/>
+	<bean id="defaulSiteOnetPunchOutCredentialService" class="com.siteone.punchout.services.impl.DefaultSiteOnePunchOutCredentialService">
+		<property name="credentialDao" ref="punchOutCredentialDao"/>
+	</bean>
+	<alias name="defaultSiteOnePrepareCartPurchaseOrderProcessing" alias="prepareCartPurchaseOrderProcessing"/>
+	<bean id="defaultSiteOnePrepareCartPurchaseOrderProcessing" class="com.siteone.punchout.actions.SiteOnePrepareCartPurchaseOrderProcessing">
+		<property name="cartFacade" ref="b2bCartFacade" />
+		<property name="punchOutConfigurationService" ref="punchOutConfigurationService"/>
+	</bean>
+	
+	<alias name="defaultSiteOnePunchOutItemInPopulator" alias="punchOutItemInPopulator"/>
+	<bean id="defaultSiteOnePunchOutItemInPopulator" class="com.siteone.punchout.populators.impl.DefaultSiteOnePunchOutItemInPopulator" >
+		<property name="commonI18NService" ref="commonI18NService"/>
+	</bean>
+	
+	<bean id="siteOnePunchOutAuditLogService" class="com.siteone.punchout.services.impl.DefaultSiteOnePunchOutAuditLogService">
+         <property name="modelService" ref="modelService"/>
+    </bean>
+
+	<alias name="defaultSiteOnePunchOutSetupRequestCartProcessing" alias="punchOutSetupRequestCartProcessing"/>
+	<bean id="defaultSiteOnePunchOutSetupRequestCartProcessing" class="com.siteone.punchout.actions.SiteOnePunchOutSetupRequestCartProcessing">
+		<property name="cartFacade" ref="b2bCartFacade" />
+		<property name="itemOutConverter" ref="itemOutConverter"/>
+		<property name="modelService" ref="modelService" />
+	</bean>
+
+	<alias name="defaultSiteOnePunchOutSetupRequestProcessor" alias="punchOutSetupRequestProcessor"/>
+	<bean id="defaultSiteOnePunchOutSetupRequestProcessor" class="com.siteone.punchout.actions.DefaultSiteOnePunchOutSetupRequestProcessor">
+		<property name="punchOutAuthenticationVerifier" ref="punchOutAuthenticationVerifier"/>
+		<property name="punchOutSessionService" ref="punchOutSessionService"/>
+		<property name="punchOutSetupRequestCartProcessing" ref="punchOutSetupRequestCartProcessing"/>
+		<property name="populateSetupResponsePunchOutProcessing" ref="populateSetupResponsePunchOutProcessing"/>
+	</bean>
+	<alias name="defaultSiteOneItemOutConverter" alias="itemOutConverter"/>
+	<bean id="defaultSiteOneItemOutConverter" class="de.hybris.platform.siteonepunchoutaddon.converter.DefaultSiteOneItemOutConverter">
+		<property name="cartService" ref="cartService"/>
+		<property name="productService" ref="productService"/>
+	</bean>
+   			
+   	<alias name="defaultSiteOnePunchOutOrderRequestProcessor" alias="punchOutOrderRequestProcessor"/>
+	<bean id="defaultSiteOnePunchOutOrderRequestProcessor" class="com.siteone.punchout.actions.DefaultSiteOnePunchOutOrderRequestProcessor">
+		<property name="prepareCartPurchaseOrderProcessing" ref="prepareCartPurchaseOrderProcessing"/>
+		<property name="populateCartPurchaseOrderProcessing" ref="populateCartPurchaseOrderProcessing"/>
+		<property name="placePurchaseOrderProcessing" ref="placePurchaseOrderProcessing"/>
+		<property name="cartService" ref="cartService"/>
+		<property name="commerceCartService" ref="commerceCartService"/>
+		<property name="userService" ref="userService"/>
+		<property name="punchOutSessionService" ref="punchOutSessionService"/>
+		<property name="punchOutConfigurationService" ref="punchOutConfigurationService"/>
+	</bean>
+	
+	<bean id="siteOnePunchoutAddressPopulator" class="com.siteone.punchout.populators.impl.DefaultSiteOnePunchoutAddressPopulator">
+		<property name="commonI18NService" ref="commonI18NService"/>
+	</bean>
+	
+</beans>

@@ -1,0 +1,865 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--
+ [y] hybris Platform
+
+ Copyright (c) 2017 SAP SE or an SAP affiliate company.  All rights reserved.
+
+ This software is the confidential and proprietary information of SAP
+ ("Confidential Information"). You shall not disclose such Confidential
+ Information and shall use it only in accordance with the terms of the
+ license agreement you entered into with SAP.
+-->
+<config xmlns="http://www.hybris.com/cockpit/config">
+
+	<!-- siteonebackoffice UI configuration should be provided here -->
+
+	<!--<context component="component-code" module="siteonebackoffice">-->
+		<!--Please check documentation for code snippets for specific components-->
+	<!--</context>-->
+	<context component="explorer-tree" merge-by="module">
+	  <n:explorer-tree xmlns:n="http://www.hybris.com/cockpitng/config/explorertree">
+	        <n:navigation-node id="SiteOne">
+	            <n:type-node id="SiteOneEvent" code="SiteOneEvent" />
+	            <n:type-node id="SiteOneEventType" code="SiteOneEventType" />
+	            <n:type-node id="SiteOneEventTypeGroup" code="SiteOneEventTypeGroup" />
+	            <n:type-node id="SiteOnePromotion" code="AbstractPromotion" />
+	            <n:type-node id="SiteOneArticleCategory" code="SiteOneArticleCategory"/>
+	            <n:type-node id="SiteOneArticle" code="SiteOneArticle"/>
+	            <n:type-node id="SiteOneInvoice" code="SiteOneInvoice"/>
+	            <n:type-node id="WebserviceAuditLog" code="WebserviceAuditLog"/>
+		    <n:type-node id="PunchOutAuditLog" code="PunchOutAuditLog"/>
+		      <n:type-node id="SiteOneFeatureSwitch" code="SiteOneFeatureSwitch"/>
+		      <n:type-node id="SiteoneDeliveryFees" code="SiteoneDeliveryFees"/>
+		      <n:type-node id="SiteoneCADeliveryFees" code="SiteoneCADeliveryFees"/>
+		      <n:type-node id="PIMReportMessage" code="PIMReportMessage"/>
+		    <n:type-node id="SiteOneNews" code="SiteOneNews" />
+	            <n:type-node id="SiteOneArticleContent" code="SiteOneArticleContent" />
+	            <n:type-node id="SiteOneDeal" code="SiteOneDeal" />
+	            <n:type-node id="RegulatoryStates" code="RegulatoryStates"/>
+	            <n:type-node id="InboundRequestError" code="InboundRequestError"/>
+	            <n:type-node id="LinkToPayAuditLog" code="LinkToPayAuditLog"/>
+	            <n:type-node id="RecentScanProducts" code="RecentScanProducts"/>
+	            <n:type-node id="CustomPushNotification" code="CustomPushNotification"/>
+	        </n:navigation-node>
+	    </n:explorer-tree>
+	</context>
+	
+	
+	<context type="RegulatoryStates" component="listview">
+	    <list:list-view xmlns:list="http://www.hybris.com/cockpitng/component/listView">
+	        <list:column qualifier="sku"/>
+	        <list:column qualifier="state"/>
+	        <list:column qualifier="rup"/>
+	        <list:column qualifier="expirationDate"/>
+	        <list:column qualifier="modifiedtime"/>
+	        <list:column qualifier="isRup"/>
+	    </list:list-view>
+	</context>
+	<context type="SiteOneDeal" component="listview">
+	    <list:list-view xmlns:list="http://www.hybris.com/cockpitng/component/listView">
+	        <list:column qualifier="dealCode"/>
+	        <list:column qualifier="dealName"/>
+	    </list:list-view>
+	</context>
+	 
+	<context type="PIMReportMessage" component="listview">
+	    <list:list-view xmlns:list="http://www.hybris.com/cockpitng/component/listView">
+	        <list:column qualifier="generatedErrorMessage"/>
+	        <list:column qualifier="userFriendlyErrorMessage"/>
+	    </list:list-view>
+	</context>
+	
+	<context type="SiteoneDeliveryFees" component="listview">
+	    <list:list-view xmlns:list="http://www.hybris.com/cockpitng/component/listView">
+	        <list:column qualifier="branchId"/>
+	        <list:column qualifier="lineOfBusiness"/>
+	        <list:column qualifier="retailFee"/>
+	        <list:column qualifier="proFee"/>
+	    </list:list-view>
+	</context>
+	
+	<context type="SiteoneCADeliveryFees" component="listview">
+	    <list:list-view xmlns:list="http://www.hybris.com/cockpitng/component/listView">
+	        <list:column qualifier="branchId"/>
+	        <list:column qualifier="minQtyThreshold"/>
+	        <list:column qualifier="maxQtyThreshold"/>
+	        <list:column qualifier="uom"/>
+	        <list:column qualifier="fee"/>
+	    </list:list-view>
+	</context>
+	
+	<context type="SiteOneEvent" component="listview">
+	    <list:list-view xmlns:list="http://www.hybris.com/cockpitng/component/listView">
+	        <list:column qualifier="code"/>
+	        <list:column qualifier="name"/>
+	        <list:column qualifier="shortDescription"/>
+	        <list:column qualifier="modifiedtime"/>
+	    </list:list-view>
+	</context>
+	 
+	<context type="SiteOneEventType" component="listview">
+	    <list:list-view xmlns:list="http://www.hybris.com/cockpitng/component/listView">
+	        <list:column qualifier="name"/>
+	        <list:column qualifier="modifiedtime"/>
+	    </list:list-view>
+	</context>
+	
+	<context type="SiteOneEventTypeGroup" component="listview">
+	    <list:list-view xmlns:list="http://www.hybris.com/cockpitng/component/listView">
+	        <list:column qualifier="name"/>
+	        <list:column qualifier="modifiedtime"/>
+	        <list:column qualifier="description"/>
+	    </list:list-view>
+	</context>
+	 
+	 <context type="SiteOneArticle" component="listview">
+	    <list:list-view xmlns:list="http://www.hybris.com/cockpitng/component/listView">
+	        <list:column qualifier="articleCode"/>
+	        <list:column qualifier="articleName"/>
+	        <list:column qualifier="creationtime"/>
+	    </list:list-view>
+	</context>
+	
+	 <context type="SiteOneArticleCategory" component="listview">
+	    <list:list-view xmlns:list="http://www.hybris.com/cockpitng/component/listView">
+	        <list:column qualifier="articleCategoryCode"/>
+	        <list:column qualifier="articleCategoryName"/>
+	        <list:column qualifier="creationtime"/>
+	    </list:list-view>
+	</context>
+	
+	<context type="SiteOneInvoice" component="listview">
+	    <list:list-view xmlns:list="http://www.hybris.com/cockpitng/component/listView">
+	        <list:column qualifier="invoiceNumber"/>
+	        <list:column qualifier="orderNumber"/>
+	        <list:column qualifier="status"/>
+	        <list:column qualifier="invoicedDate"/>
+	        <list:column qualifier="user"/>
+	    </list:list-view>
+	</context>
+	<context type="WebserviceAuditLog" component="listview">
+	    <list:list-view xmlns:list="http://www.hybris.com/cockpitng/component/listView">
+	        <list:column qualifier="correlationId"/>
+	        <list:column qualifier="serviceName"/>
+	        <list:column qualifier="endPointUrl"/>
+	        <list:column qualifier="requestLog"/>
+	        <list:column qualifier="responseLog"/>
+	    </list:list-view>
+	</context>
+	<context type="PunchOutAuditLog" component="listview">
+	    <list:list-view xmlns:list="http://www.hybris.com/cockpitng/component/listView">
+	        <list:column qualifier="sessionId"/>
+	        <list:column qualifier="operationName"/>
+	        <list:column qualifier="emailId"/>
+	        <list:column qualifier="requestTimeStamp"/>
+	        <list:column qualifier="requestLog"/>
+	        <list:column qualifier="responseLog"/>
+	    </list:list-view>
+	</context>
+	
+	<context type="InboundRequestError" component="listview">
+	    <list:list-view xmlns:list="http://www.hybris.com/cockpitng/component/listView">
+	        <list:column qualifier="inboundRequest"/>
+	        <list:column qualifier="code"/>
+	        <list:column qualifier="message"/>
+	    </list:list-view>
+	</context>
+	
+	<context type="SiteOneFeatureSwitch" component="listview">
+	    <list:list-view xmlns:list="http://www.hybris.com/cockpitng/component/listView">
+	        <list:column qualifier="key"/>
+	        <list:column qualifier="value"/>
+	        <list:column qualifier="longValue"/>
+	    </list:list-view>
+	</context>
+	<context type="SiteOneNews" component="listview">
+	    <list:list-view xmlns:list="http://www.hybris.com/cockpitng/component/listView">
+	        <list:column qualifier="newsCode"/>
+	          <list:column qualifier="title"/>
+	        <list:column qualifier="newsPublishDate"/>
+	         <list:column qualifier="creationtime"/>
+	         <list:column qualifier="modifiedtime"/>
+	          </list:list-view>
+	</context>
+	
+	<context type="SiteOneArticleContent" component="listview">
+		<list:list-view xmlns:list="http://www.hybris.com/cockpitng/component/listView">
+		<list:column qualifier="code" />
+		<list:column qualifier="articleParagraphNew" />
+		<list:column qualifier="contentNew" />
+
+	</list:list-view>
+</context>
+
+<context type="LinkToPayAuditLog" component="listview">
+	    <list:list-view xmlns:list="http://www.hybris.com/cockpitng/component/listView">
+	        <list:column qualifier="timestamp"/>
+	        <list:column qualifier="tokenReceived"/>
+	        <list:column qualifier="orderNumber"/>
+	        <list:column qualifier="orderTotal"/>
+	        <list:column qualifier="paymentInformation"/>
+	        <list:column qualifier="kountStatus"/>
+	    </list:list-view>
+	</context>	
+	
+	<context type="RecentScanProducts" component="listview">
+		<list:list-view xmlns:list="http://www.hybris.com/cockpitng/component/listView">
+			<list:column qualifier="productCode" />
+			<list:column qualifier="accountNumber" />
+			<list:column qualifier="scanDate" />
+		</list:list-view>
+	</context>	
+	
+	<context type="CustomPushNotification" component="listview">
+		<list:list-view xmlns:list="http://www.hybris.com/cockpitng/component/listView">
+			<list:column qualifier="identifier" />
+			<list:column qualifier="pageId" />
+			<list:column qualifier="message" />
+		</list:list-view>
+	</context>
+	
+	<context type="SiteOneNews" component="simple-search">
+	    <yss:simple-search xmlns:yss="http://www.hybris.com/cockpitng/config/simplesearch">
+	        <yss:field name="newsCode"/>
+	        <yss:field name="title"/>
+	    </yss:simple-search>
+	</context>
+	
+	<context type="SiteOneArticleContent" component="simple-search">
+	    <yss:simple-search xmlns:yss="http://www.hybris.com/cockpitng/config/simplesearch">
+	        <yss:field name="code"/>
+	        <yss:field name="articleParagraphNew"/>
+	         <yss:field name="contentNew"/>
+	    </yss:simple-search>
+	</context>
+	 
+	 
+	
+	<context type="SiteOneEvent" component="simple-search">
+	    <yss:simple-search xmlns:yss="http://www.hybris.com/cockpitng/config/simplesearch">
+	        <yss:field name="code"/>
+	    </yss:simple-search>
+	</context>
+	
+	<context type="SiteOneArticle" component="simple-search">
+	    <yss:simple-search xmlns:yss="http://www.hybris.com/cockpitng/config/simplesearch">
+	        <yss:field name="articleCode"/>
+	    </yss:simple-search>
+	</context>
+	
+	<context type="SiteOneArticleCategory" component="simple-search">
+	    <yss:simple-search xmlns:yss="http://www.hybris.com/cockpitng/config/simplesearch">
+	        <yss:field name="articleCategoryCode"/>
+	    </yss:simple-search>
+	</context>
+	
+	<context type="SiteOneInvoice" component="simple-search">
+	    <yss:simple-search xmlns:yss="http://www.hybris.com/cockpitng/config/simplesearch">
+	        <yss:field name="invoiceNumber"/>
+	    </yss:simple-search>
+	</context>
+	
+	<context type="WebserviceAuditLog" component="simple-search">
+	    <yss:simple-search xmlns:yss="http://www.hybris.com/cockpitng/config/simplesearch">
+	        <yss:field name="correlationId"/>
+	    </yss:simple-search>
+	</context>
+	 <context type="PunchOutAuditLog" component="simple-search">
+	    <yss:simple-search xmlns:yss="http://www.hybris.com/cockpitng/config/simplesearch">
+	        <yss:field name="sessionId"/>
+	        <yss:field name="emailId"/>
+	    </yss:simple-search>
+	</context>
+	
+	 <context type="InboundRequestError" component="simple-search">
+	    <yss:simple-search xmlns:yss="http://www.hybris.com/cockpitng/config/simplesearch">
+	        <yss:field name="code"/>
+	        <yss:field name="message"/>
+	    </yss:simple-search>
+	</context>
+	
+	
+	<context type="SiteOneFeatureSwitch" component="simple-search">
+	    <yss:simple-search xmlns:yss="http://www.hybris.com/cockpitng/config/simplesearch">
+	        <yss:field name="key"/>
+	    </yss:simple-search>
+	</context>
+	
+	<context type="LinkToPayAuditLog" component="simple-search">
+	    <yss:simple-search xmlns:yss="http://www.hybris.com/cockpitng/config/simplesearch">
+	        <yss:field name="orderNumber"/>
+	        <yss:field name="orderTotal"/>
+	    </yss:simple-search>
+	</context>	
+	
+	<context type="RecentScanProducts" component="simple-search">
+	    <yss:simple-search xmlns:yss="http://www.hybris.com/cockpitng/config/simplesearch">
+	        <yss:field name="accountNumber"/>
+	    </yss:simple-search>
+	</context>
+	<context type="CustomPushNotification" component="simple-search">
+	    <yss:simple-search xmlns:yss="http://www.hybris.com/cockpitng/config/simplesearch">
+	        <yss:field name="identifier"/>
+	    </yss:simple-search>
+	</context>
+	<context type="SiteOneEvent" component="advanced-search">
+	    <as:advanced-search xmlns:as="http://www.hybris.com/cockpitng/config/advancedsearch" connection-operator="AND">
+	        <as:field-list>
+	            <as:field name="code" operator="contains" selected="true"/>
+	            <as:field name="name" operator="contains"/>
+	        </as:field-list>
+	    </as:advanced-search>
+	</context>
+		<context type="SiteOneArticle" component="advanced-search">
+	    <as:advanced-search xmlns:as="http://www.hybris.com/cockpitng/config/advancedsearch" connection-operator="AND">
+	        <as:field-list>
+	            <as:field name="articleCode" operator="contains" selected="true"/>
+	            <as:field name="articleName" operator="contains"/>
+	        </as:field-list>
+	    </as:advanced-search>
+	</context>
+	
+	<context type="SiteOneArticleCategory" component="advanced-search">
+	    <as:advanced-search xmlns:as="http://www.hybris.com/cockpitng/config/advancedsearch" connection-operator="AND">
+	        <as:field-list>
+	            <as:field name="articleCategoryCode" operator="contains" selected="true"/>
+	            <as:field name="articleCategoryName" operator="contains"/>
+	        </as:field-list>
+	    </as:advanced-search>
+	</context>​
+	
+	<context type="SiteOneInvoice" component="advanced-search">
+	    <as:advanced-search xmlns:as="http://www.hybris.com/cockpitng/config/advancedsearch" connection-operator="AND">
+	        <as:field-list>
+	            <as:field name="invoiceNumber" operator="contains" selected="true"/>
+	            <as:field name="orderNumber" operator="contains"/>
+	        </as:field-list>
+	    </as:advanced-search>
+	</context>
+	
+	<context type="WebserviceAuditLog" component="advanced-search">
+	    <as:advanced-search xmlns:as="http://www.hybris.com/cockpitng/config/advancedsearch" connection-operator="AND">
+	        <as:field-list>
+	            <as:field name="correlationId" operator="contains" selected="true"/>
+	            <as:field name="serviceName" operator="contains"/>
+	            <as:field name="requestLog" operator="contains"/>
+	        </as:field-list>
+	    </as:advanced-search>
+	</context>
+	<context type="PunchOutAuditLog" component="advanced-search">
+	    <as:advanced-search xmlns:as="http://www.hybris.com/cockpitng/config/advancedsearch" connection-operator="AND">
+	        <as:field-list>
+	            <as:field name="sessionId" operator="contains" selected="true"/>
+	            <as:field name="operationName" operator="contains"/>
+	            <as:field name="emailId" operator="contains"/>
+	            <as:field name="requestLog" operator="contains"/>
+	        </as:field-list>
+	    </as:advanced-search>
+	</context>
+	
+	<context type="InboundRequestError" component="advanced-search">
+	    <as:advanced-search xmlns:as="http://www.hybris.com/cockpitng/config/advancedsearch" connection-operator="AND">
+	        <as:field-list>
+	            <as:field name="code" operator="contains" selected="true"/>
+	            <as:field name="message" operator="contains"/>
+	        </as:field-list>
+	    </as:advanced-search>
+	</context>
+	
+	<context type="LinkToPayAuditLog" component="advanced-search">
+	    <as:advanced-search xmlns:as="http://www.hybris.com/cockpitng/config/advancedsearch" connection-operator="AND">
+	        <as:field-list>
+	            <as:field name="timestamp" operator="contains" selected="true"/>
+	            <as:field name="tokenReceived" operator="contains"/>
+	            <as:field name="orderNumber" operator="contains"/>
+	            <as:field name="kountStatus" operator="contains"/>
+	        </as:field-list>
+	    </as:advanced-search>
+	</context>
+	
+	
+	<context component="explorer-tree" merge-by="module">
+  <n:explorer-tree xmlns:n="http://www.hybris.com/cockpitng/config/explorertree">
+        <n:navigation-node id="SiteOne">
+            <n:type-node id="SiteOneEvent" code="SiteOneEvent" />
+            <n:type-node id="SiteOneEventType" code="SiteOneEventType" />
+            <n:type-node id="SiteOnePromotion" code="AbstractPromotion" />
+            <n:type-node id="SiteOneArticle" code="SiteOneArticle"/>
+        </n:navigation-node>
+    </n:explorer-tree>
+</context>
+ 
+<context type="SiteOneEvent" component="listview">
+    <list:list-view xmlns:list="http://www.hybris.com/cockpitng/component/listView">
+        <list:column qualifier="code"/>
+        <list:column qualifier="name"/>
+        <list:column qualifier="shortDescription"/>
+        <list:column qualifier="modifiedtime"/>
+    </list:list-view>
+</context>
+ 
+<context type="SiteOneEventType" component="listview">
+    <list:list-view xmlns:list="http://www.hybris.com/cockpitng/component/listView">
+        <list:column qualifier="name"/>
+        <list:column qualifier="modifiedtime"/>
+    </list:list-view>
+</context>
+
+ <context type="SiteOneEventType" component="base" merge-by="module">
+        <y:base xmlns:y="http://www.hybris.com/cockpit/config/hybris">
+            <y:labels>
+                <y:label>name</y:label>
+            </y:labels>
+        </y:base>
+    </context>
+
+ 
+<context type="SiteOneEvent" component="simple-search">
+    <yss:simple-search xmlns:yss="http://www.hybris.com/cockpitng/config/simplesearch">
+        <yss:field name="code"/>
+    </yss:simple-search>
+</context>
+ 
+<context type="SiteOneEvent" component="advanced-search">
+    <as:advanced-search xmlns:as="http://www.hybris.com/cockpitng/config/advancedsearch" connection-operator="AND">
+        <as:field-list>
+            <as:field name="code" operator="contains" selected="true"/>
+            <as:field name="name" operator="contains"/>
+        </as:field-list>
+    </as:advanced-search>
+</context>
+
+<context type="SiteOneArticle" component="simple-search">
+	    <yss:simple-search xmlns:yss="http://www.hybris.com/cockpitng/config/simplesearch">
+	        <yss:field name="articleCode"/>
+	    </yss:simple-search>
+	</context>
+	
+	<context type="SiteOneArticle" component="advanced-search">
+	    <as:advanced-search xmlns:as="http://www.hybris.com/cockpitng/config/advancedsearch" connection-operator="AND">
+	        <as:field-list>
+	            <as:field name="articleCode" operator="contains" selected="true"/>
+	            <as:field name="articleName" operator="contains"/>
+	        </as:field-list>
+	    </as:advanced-search>
+	</context>
+	
+	<context type="SiteOneArticleCategory" component="simple-search">
+	    <yss:simple-search xmlns:yss="http://www.hybris.com/cockpitng/config/simplesearch">
+	        <yss:field name="articleCategoryCode"/>
+	    </yss:simple-search>
+	</context>
+	
+	<context type="SiteOneArticleCategory" component="advanced-search">
+	    <as:advanced-search xmlns:as="http://www.hybris.com/cockpitng/config/advancedsearch" connection-operator="AND">
+	        <as:field-list>
+	            <as:field name="articleCategoryCode" operator="contains" selected="true"/>
+	            <as:field name="articleCategoryName" operator="contains"/>
+	        </as:field-list>
+	    </as:advanced-search>
+	</context>
+	
+		<context type="PIMReportMessage" component="simple-search">
+	    <yss:simple-search xmlns:yss="http://www.hybris.com/cockpitng/config/simplesearch">
+	        <yss:field name="generatedErrorMessage"/>
+	        <yss:field name="userFriendlyErrorMessage"/>
+	    </yss:simple-search>
+	</context>
+	
+	<context type="PIMReportMessage" component="advanced-search">
+	    <as:advanced-search xmlns:as="http://www.hybris.com/cockpitng/config/advancedsearch" connection-operator="AND">
+	        <as:field-list>
+	            <as:field name="generatedErrorMessage" operator="contains" selected="true"/>
+	            <as:field name="userFriendlyErrorMessage" operator="contains" selected="true"/>
+	        </as:field-list>
+	    </as:advanced-search>
+	</context>
+	
+	<context type="SiteoneDeliveryFees" component="simple-search">
+	    <yss:simple-search xmlns:yss="http://www.hybris.com/cockpitng/config/simplesearch">
+	        <yss:field name="branchId"/>
+	        <yss:field name="lineOfBusiness"/>
+	    </yss:simple-search>
+	</context>
+	
+	<context type="SiteoneDeliveryFees" component="advanced-search">
+	    <as:advanced-search xmlns:as="http://www.hybris.com/cockpitng/config/advancedsearch" connection-operator="AND">
+	        <as:field-list>
+	            <as:field name="branchId" operator="contains" selected="true"/>
+	            <as:field name="lineOfBusiness" operator="contains" selected="true"/>
+	            <as:field name="retailFee" operator="contains" selected="true"/>
+	            <as:field name="proFee" operator="contains" selected="true"/>
+	        </as:field-list>
+	    </as:advanced-search>
+	</context>
+	
+	<context type="SiteoneCADeliveryFees" component="simple-search">
+	    <yss:simple-search xmlns:yss="http://www.hybris.com/cockpitng/config/simplesearch">
+	        <yss:field name="branchId"/>
+	        <yss:field name="uom"/>
+	    </yss:simple-search>
+	</context>
+	
+	<context type="SiteoneCADeliveryFees" component="advanced-search">
+	    <as:advanced-search xmlns:as="http://www.hybris.com/cockpitng/config/advancedsearch" connection-operator="AND">
+	        <as:field-list>
+	            <as:field name="branchId" operator="contains" selected="true"/>
+	            <as:field name="minQtyThreshold" operator="contains" selected="true"/>
+	            <as:field name="maxQtyThreshold" operator="contains" selected="true"/>
+	            <as:field name="uom" operator="contains" selected="true"/>
+	            <as:field name="fee" operator="contains" selected="true"/>
+	        </as:field-list>
+	    </as:advanced-search>
+	</context>
+	
+	
+	<context type="SiteOneNews" component="advanced-search">
+	    <as:advanced-search xmlns:as="http://www.hybris.com/cockpitng/config/advancedsearch" connection-operator="AND">
+	        <as:field-list>
+	            <as:field name="newsCode" operator="contains" selected="true"/>
+	            <as:field name="title" operator="contains"/>
+	        </as:field-list>
+	    </as:advanced-search>
+	</context>
+	
+	<context type="SiteOneArticleContent" component="advanced-search">
+	    <as:advanced-search xmlns:as="http://www.hybris.com/cockpitng/config/advancedsearch" connection-operator="AND">
+	        <as:field-list>
+	            <as:field name="code" operator="contains" selected="true"/>
+	            <as:field name="articleParagraphNew" operator="contains"/>
+	            <as:field name="contentNew" operator="contains"/>
+	        </as:field-list>
+	    </as:advanced-search>
+	</context>
+	
+	<context type="RecentScanProducts" component="advanced-search">
+        <as:advanced-search xmlns:as="http://www.hybris.com/cockpitng/config/advancedsearch" connection-operator="AND">
+            <as:field-list>
+                <as:field name="productCode" operator="contains" selected="true"/>
+                <as:field name="accountNumber" operator="contains"/>
+            </as:field-list>
+        </as:advanced-search>
+    </context>
+	
+	<context type="CustomPushNotification" component="advanced-search">
+	    <as:advanced-search xmlns:as="http://www.hybris.com/cockpitng/config/advancedsearch" connection-operator="AND">
+	        <as:field-list>
+	            <as:field name="identifier" operator="contains" selected="true"/>
+	            <as:field name="pageId" operator="contains"/>
+	        </as:field-list>
+	    </as:advanced-search>
+	</context>
+
+<context component="editor-area"  merge-by="module"  type="AbstractRule" parent="ruleenginebackoffice">
+<editorArea:editorArea xmlns:editorArea="http://www.hybris.com/cockpitng/component/editorArea">
+				<editorArea:tab name="tab.configuration.abstractrule">
+				    <editorArea:section name="sec.configuration.abstractrule.details">
+					<editorArea:attribute xmlns="http://www.hybris.com/cockpitng/component/editorArea" qualifier="couponCode"/>
+				    </editorArea:section>
+				</editorArea:tab>
+</editorArea:editorArea>
+</context>
+
+
+<context merge-by="type" parent="GenericItem" type="SiteOneEvent" component="editor-area">
+		<editorArea:editorArea xmlns:editorArea="http://www.hybris.com/cockpitng/component/editorArea">
+			<editorArea:essentials>
+				<editorArea:essentialSection name="hmc.essential">
+				    <editorArea:attribute qualifier="code"/>
+				    <editorArea:attribute qualifier="name"/>
+				    <editorArea:attribute qualifier="eventStartDate"/>
+				    <editorArea:attribute qualifier="eventEndDate"/>
+				    <editorArea:attribute qualifier="time"/>
+				    <editorArea:attribute qualifier="location"/>
+				    <editorArea:attribute qualifier="venue"/>
+				    <editorArea:attribute qualifier="document"/>
+					<editorArea:attribute qualifier="eventRegistrationUrl"/>
+				    <editorArea:attribute qualifier="image"/>
+				    <editorArea:attribute qualifier="registrationMessage"/>
+				    <editorArea:attribute qualifier="registrationStartDate"/>
+				    <editorArea:attribute qualifier="registrationEndDate"/>
+				    <editorArea:attribute qualifier="learnMoreUrl"/>
+				    <editorArea:attribute qualifier="state"/>
+				    <editorArea:attribute qualifier="isPartnerProgramEvent"/>
+				    <editorArea:attribute qualifier="type"/>
+					<editorArea:attribute editor="com.hybris.cockpitng.editor.localized(com.hybris.cockpitng.editor.wysiwyg)" qualifier="shortDescription"/>
+					<editorArea:attribute editor="com.hybris.cockpitng.editor.localized(com.hybris.cockpitng.editor.wysiwyg)" qualifier="longDescription"/>
+					
+				</editorArea:essentialSection>
+			</editorArea:essentials>
+		</editorArea:editorArea>
+</context>
+<context merge-by="type" parent="GenericItem" type="SiteOneArticleCategory" component="editor-area">
+<editorArea:editorArea xmlns:editorArea="http://www.hybris.com/cockpitng/component/editorArea">
+			<editorArea:essentials>
+				<editorArea:essentialSection name="hmc.essential">
+				<editorArea:attribute qualifier="articleCategoryCode"/>
+				<editorArea:attribute qualifier="articleCategoryName"/>
+				<editorArea:attribute qualifier="descriptionHeading"/>
+				<editorArea:attribute editor="com.hybris.cockpitng.editor.localized(com.hybris.cockpitng.editor.wysiwyg)" qualifier="articleCategoryContent"/>
+				<editorArea:attribute qualifier="numberOfArticles"/>
+				<editorArea:attribute qualifier="heroBanner"/>
+				<editorArea:attribute qualifier="featuredArticle"/>				
+				</editorArea:essentialSection>
+				</editorArea:essentials>
+				</editorArea:editorArea>		
+</context>
+
+<context merge-by="type" parent="GenericItem" type="SiteOneArticle" component="editor-area">
+<editorArea:editorArea xmlns:editorArea="http://www.hybris.com/cockpitng/component/editorArea">
+			<editorArea:essentials>
+				<editorArea:essentialSection name="hmc.essential">
+				<editorArea:attribute qualifier="articleCode"/>
+				<editorArea:attribute qualifier="articleName"/>
+				<editorArea:attribute editor="com.hybris.cockpitng.editor.localized(com.hybris.cockpitng.editor.wysiwyg)" qualifier="shortDesc"/>
+				<editorArea:attribute qualifier="articleMedia"/>
+				<editorArea:attribute qualifier="publisherName"/>
+				<editorArea:attribute qualifier="articleContents"/>
+				<editorArea:attribute qualifier="articleTags"/>
+				<editorArea:attribute qualifier="prevArticle"/>
+				<editorArea:attribute qualifier="nextArticle"/>	
+				<editorArea:attribute qualifier="title"/>				
+				</editorArea:essentialSection>
+				</editorArea:essentials>
+				</editorArea:editorArea>		
+</context>
+​
+<context merge-by="type" parent="GenericItem" type="SiteOneArticleContent" component="editor-area">
+<editorArea:editorArea xmlns:editorArea="http://www.hybris.com/cockpitng/component/editorArea">
+			<editorArea:essentials>
+				<editorArea:essentialSection name="hmc.essential">
+				<editorArea:attribute qualifier="code"/>
+				<editorArea:attribute qualifier="image"/>
+				<editorArea:attribute editor="com.hybris.cockpitng.editor.localized(com.hybris.cockpitng.editor.wysiwyg)" qualifier="contentNew"/>
+				<editorArea:attribute qualifier="alignment"/>
+				<editorArea:attribute qualifier="pullQuote"/>
+				<editorArea:attribute editor="com.hybris.cockpitng.editor.localized(com.hybris.cockpitng.editor.wysiwyg)" qualifier="articleParagraphNew"/>
+				<editorArea:attribute qualifier="headLine"/>
+				<editorArea:attribute qualifier="headLineType"/>	
+				</editorArea:essentialSection>
+				</editorArea:essentials>
+				</editorArea:editorArea>		
+</context>
+
+<context merge-by="type" parent="GenericItem" type="SiteOneNews" component="editor-area">
+<editorArea:editorArea xmlns:editorArea="http://www.hybris.com/cockpitng/component/editorArea">
+			<editorArea:essentials>
+				<editorArea:essentialSection name="hmc.essential">
+				<editorArea:attribute qualifier="newsCode"/>
+				<editorArea:attribute qualifier="newsMedia"/>
+				<editorArea:attribute qualifier="newsURL"/>
+				<editorArea:attribute qualifier="targetWindow"/>
+				<editorArea:attribute qualifier="title"/>
+			    <editorArea:attribute editor="com.hybris.cockpitng.editor.localized(com.hybris.cockpitng.editor.wysiwyg)" qualifier="shortDesc"/>
+				<editorArea:attribute qualifier="newsBrief"/>
+				<editorArea:attribute qualifier="newsPublishDate"/>
+				<editorArea:attribute editor="com.hybris.cockpitng.editor.localized(com.hybris.cockpitng.editor.wysiwyg)" qualifier="longDescription"/>
+				<editorArea:attribute qualifier="prevNews"/>
+				<editorArea:attribute qualifier="nextNews"/>					
+				</editorArea:essentialSection>
+				</editorArea:essentials>
+				</editorArea:editorArea>		
+</context>
+
+
+<context merge-by="type" parent="GenericItem" type="Inspiration" component="editor-area">
+<editorArea:editorArea xmlns:editorArea="http://www.hybris.com/cockpitng/component/editorArea">
+			<editorArea:essentials>
+				<editorArea:essentialSection name="hmc.essential">
+				<editorArea:attribute qualifier="inspirationCode"/>
+				<editorArea:attribute qualifier="inspirationMedia"/>
+				<editorArea:attribute qualifier="title"/>
+				<editorArea:attribute qualifier="location"/>
+				<editorArea:attribute qualifier="designedBy"/>
+			    <editorArea:attribute editor="com.hybris.cockpitng.editor.wysiwyg" qualifier="snippetOfTheStoryNew"/>
+				<editorArea:attribute qualifier="snippetOfTheStory"/>				
+				</editorArea:essentialSection>
+				</editorArea:essentials>
+				</editorArea:editorArea>		
+</context>
+​<context merge-by="type" parent="GenericItem" type="SiteOneDeal" component="editor-area">
+<editorArea:editorArea xmlns:editorArea="http://www.hybris.com/cockpitng/component/editorArea">
+			<editorArea:essentials>
+				<editorArea:essentialSection name="hmc.essential">
+				<editorArea:attribute qualifier="dealCode"/>
+				<editorArea:attribute qualifier="dealName"/>
+				<editorArea:attribute qualifier="products"/>
+				</editorArea:essentialSection>
+				</editorArea:essentials>
+				</editorArea:editorArea>		
+</context>
+<context merge-by="type" parent="GenericItem" type="PunchOutAuditLog" component="editor-area">
+        <editorArea:editorArea xmlns:editorArea="http://www.hybris.com/cockpitng/component/editorArea">
+            <editorArea:essentials>
+            <editorArea:essentialSection name="hmc.essential">
+            <editorArea:attribute qualifier="sessionId"/>
+	       <editorArea:attribute qualifier="operationName"/>
+	        <editorArea:attribute qualifier="emailId"/>
+	        <editorArea:attribute qualifier="requestTimeStamp"/>
+	        <editorArea:attribute qualifier="requestLog"/>
+	        <editorArea:attribute qualifier="responseLog"/>
+            </editorArea:essentialSection>
+            </editorArea:essentials>
+            <editorArea:tab name="hmc.administration">
+          <editorArea:section name="hmc.unbound" spring-bean="unboundSectionRenderer" merge-mode="REMOVE">
+              <editorArea:attribute qualifier="request" merge-mode="REMOVE"/>
+			   <editorArea:attribute qualifier="response" merge-mode="REMOVE"/>
+  		 </editorArea:section>
+      </editorArea:tab>
+        </editorArea:editorArea>
+    </context>	
+    
+    <context merge-by="type" parent="GenericItem" type="InboundRequestError" component="editor-area">
+        <editorArea:editorArea xmlns:editorArea="http://www.hybris.com/cockpitng/component/editorArea">
+            <editorArea:essentials>
+            <editorArea:essentialSection name="hmc.essential">
+            <editorArea:attribute qualifier="inboundRequest"/>
+	       <editorArea:attribute qualifier="code"/>
+	        <editorArea:attribute qualifier="message"/>
+            </editorArea:essentialSection>
+            </editorArea:essentials>
+           
+        </editorArea:editorArea>
+    </context>
+    
+      <context merge-by="type" parent="GenericItem" type="SiteOneFeatureSwitch" component="editor-area">
+        <editorArea:editorArea xmlns:editorArea="http://www.hybris.com/cockpitng/component/editorArea">
+            <editorArea:essentials>
+            <editorArea:essentialSection name="hmc.essential">
+            <editorArea:attribute qualifier="key"/>
+	       <editorArea:attribute qualifier="value"/>
+	       <editorArea:attribute qualifier="longValue"/>
+            </editorArea:essentialSection>
+            </editorArea:essentials>
+             <editorArea:tab name="hmc.administration">
+          <editorArea:section name="hmc.unbound" spring-bean="unboundSectionRenderer" merge-mode="REMOVE">
+              <editorArea:attribute qualifier="key" merge-mode="REMOVE"/>
+  		 </editorArea:section>
+      </editorArea:tab>
+        </editorArea:editorArea>
+    </context>	
+    
+        <context merge-by="type" parent="GenericItem" type="PIMReportMessage" component="editor-area">
+        <editorArea:editorArea xmlns:editorArea="http://www.hybris.com/cockpitng/component/editorArea">
+            <editorArea:essentials>
+            <editorArea:essentialSection name="hmc.essential">
+	       <editorArea:attribute qualifier="generatedErrorMessage"/>
+	        <editorArea:attribute qualifier="userFriendlyErrorMessage"/>
+            </editorArea:essentialSection>
+            </editorArea:essentials>
+        </editorArea:editorArea>
+    </context>
+    
+   <!--  <context merge-by="type" parent="CouponRedemption" component="editor-area">
+        <editorArea:editorArea xmlns:editorArea="http://www.hybris.com/cockpitng/component/editorArea">
+            <editorArea:essentials>
+            <editorArea:essentialSection name="hmc.essential">
+	        <editorArea:attribute qualifier="accountName"/>
+	        <editorArea:attribute qualifier="orderDate"/>
+	        <editorArea:attribute qualifier="orderNumber"/>
+	        <editorArea:attribute qualifier="poNumber"/>
+	        <editorArea:attribute qualifier="branchNumber"/>
+            </editorArea:essentialSection>
+            </editorArea:essentials>
+        </editorArea:editorArea>
+    </context> -->
+    
+    <context type="CouponRedemption">
+	   	<context merge-by="type" parent="GenericItem" component="listview">
+			<list-view:list-view xmlns:list-view="http://www.hybris.com/cockpitng/component/listView">
+				<list-view:column qualifier="accountName" label="type.CouponRedemption.accountName.name"/>
+				<list-view:column qualifier="orderDate" label="type.CouponRedemption.orderDate.name"/>
+				<list-view:column qualifier="orderNumber" label="type.CouponRedemption.orderNumber.name"/>
+				<list-view:column qualifier="poNumber" label="type.CouponRedemption.poNumber.name"/>
+				<list-view:column qualifier="branchNumber" label="type.CouponRedemption.branchNumber.name"/>
+			</list-view:list-view>
+		</context>
+	</context>
+
+	<context merge-by="type" parent="GenericItem" type="CouponRedemption" component="editor-area">
+		<editorArea:editorArea xmlns:editorArea="http://www.hybris.com/cockpitng/component/editorArea">
+			<editorArea:tab name="hmc.administration">
+				<editorArea:section name="hmc.administration">
+					<editorArea:attribute qualifier="accountName"/>
+					<editorArea:attribute qualifier="orderDate"/>
+					<editorArea:attribute qualifier="orderNumber"/>
+					<editorArea:attribute qualifier="poNumber"/>
+					<editorArea:attribute qualifier="branchNumber"/>
+				</editorArea:section>
+			</editorArea:tab>
+		</editorArea:editorArea>
+	</context>
+    
+    <context merge-by="type" parent="GenericItem" type="SiteoneDeliveryFees" component="editor-area">
+        <editorArea:editorArea xmlns:editorArea="http://www.hybris.com/cockpitng/component/editorArea">
+            <editorArea:essentials>
+            <editorArea:essentialSection name="hmc.essential">
+		       	<editorArea:attribute qualifier="branchId"/>
+		        <editorArea:attribute qualifier="lineOfBusiness"/>
+		        <editorArea:attribute qualifier="retailFee"/>
+		        <editorArea:attribute qualifier="proFee"/>
+            </editorArea:essentialSection>
+            </editorArea:essentials>
+        </editorArea:editorArea>
+    </context>
+    
+    <context merge-by="type" parent="GenericItem" type="SiteoneCADeliveryFees" component="editor-area">
+        <editorArea:editorArea xmlns:editorArea="http://www.hybris.com/cockpitng/component/editorArea">
+            <editorArea:essentials>
+            <editorArea:essentialSection name="hmc.essential">
+		       	<editorArea:attribute qualifier="branchId"/>
+		        <editorArea:attribute qualifier="minQtyThreshold"/>
+		        <editorArea:attribute qualifier="maxQtyThreshold"/>
+		        <editorArea:attribute qualifier="uom"/>
+		        <editorArea:attribute qualifier="fee"/>
+		    </editorArea:essentialSection>
+            </editorArea:essentials>
+        </editorArea:editorArea>
+    </context>
+    
+    <context merge-by="type" parent="GenericItem" type="LinkToPayAuditLog" component="editor-area">
+        <editorArea:editorArea xmlns:editorArea="http://www.hybris.com/cockpitng/component/editorArea">
+            <editorArea:essentials>
+            <editorArea:essentialSection name="hmc.essential">
+            <editorArea:attribute qualifier="timestamp"/>
+	       <editorArea:attribute qualifier="tokenReceived"/>
+	        <editorArea:attribute qualifier="orderNumber"/>
+	        <editorArea:attribute qualifier="orderTotal"/>
+	        <editorArea:attribute qualifier="paymentInformation"/>
+	        <editorArea:attribute qualifier="kountStatus"/>
+            </editorArea:essentialSection>
+            </editorArea:essentials>
+            <editorArea:tab name="hmc.administration">
+          <editorArea:section name="hmc.unbound" spring-bean="unboundSectionRenderer" merge-mode="REMOVE">
+              <editorArea:attribute qualifier="request" merge-mode="REMOVE"/>
+			   <editorArea:attribute qualifier="response" merge-mode="REMOVE"/>
+  		 </editorArea:section>
+      </editorArea:tab>
+        </editorArea:editorArea>
+    </context>
+    
+    <context merge-by="type" parent="GenericItem" type="RecentScanProducts" component="editor-area">
+        <editorArea:editorArea xmlns:editorArea="http://www.hybris.com/cockpitng/component/editorArea">
+            <editorArea:essentials>
+            <editorArea:essentialSection name="hmc.essential">
+		       	<editorArea:attribute qualifier="accountNumber"/>
+		        <editorArea:attribute qualifier="productCode"/>
+		        <editorArea:attribute qualifier="scanDate"/>
+            </editorArea:essentialSection>
+            </editorArea:essentials>
+        </editorArea:editorArea>
+    </context>
+    
+    <context merge-by="type" parent="GenericItem" type="CustomPushNotification" component="editor-area">
+        <editorArea:editorArea xmlns:editorArea="http://www.hybris.com/cockpitng/component/editorArea">
+            <editorArea:essentials>
+            <editorArea:essentialSection name="hmc.essential">
+		       	<editorArea:attribute qualifier="pageId"/>
+		        <editorArea:attribute qualifier="identifier"/>
+		        <editorArea:attribute qualifier="message"/>
+            </editorArea:essentialSection>
+            </editorArea:essentials>
+        </editorArea:editorArea>
+    </context>
+    
+</config>

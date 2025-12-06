@@ -1,0 +1,26 @@
+$productCatalog=siteoneProductCatalog
+$catalogVersion=catalogversion(catalog(id[default='siteoneProductCatalog']),version[default='Staged'])[unique=true,default='siteoneProductCatalog:Staged']
+$classCatalogVersion=catalogversion(catalog(id[default='siteoneClassification']),version[default='1'])[unique=true,default='siteoneClassification:1']
+$supercategories=source(code, $classCatalogVersion)[unique=true]
+$categories=target(code, $catalogVersion)[unique=true]
+INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories
+;PH1611111;CH01_1611111;
+;PH1611112;CH01_1611112;
+;PH1611114;CH01_1611114;
+;PH1611116;CH01_1611116;
+;PH1611117;CH01_1611117;
+;PH1611118;CH01_1611118;
+;PH1613;CH01_1613;
+;PH1614;CH01_1614;
+;PH1615;CH01_1615;
+;PH1612;CH01_1612;
+;PH1611113;CH01_1611113;
+;PH1615110;CH01_1615110;
+;PH1615111;CH01_1615111;
+;PH1615112;CH01_1615112;
+;PH1615114;CH01_1615114;
+;PH1615115;CH01_1615115;
+;PH1611110;CH01_1611110;
+;PH1612111;CH01_1612111;
+
+

@@ -1,0 +1,40 @@
+/**
+ *
+ */
+package com.siteone.core.generators;
+
+
+import de.hybris.platform.acceleratorservices.sitemap.data.SiteMapUrlData;
+import de.hybris.platform.acceleratorservices.sitemap.generator.impl.AbstractSiteMapGenerator;
+import de.hybris.platform.cms2.model.site.CMSSiteModel;
+import de.hybris.platform.converters.Converters;
+import de.hybris.platform.store.BaseStoreModel;
+import de.hybris.platform.storelocator.model.PointOfServiceModel;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+
+/**
+ * @author BS
+ *
+ */
+public class SiteOnePointOfServiceSiteMapGenerator extends AbstractSiteMapGenerator<PointOfServiceModel>
+{
+	@Override
+	public List<SiteMapUrlData> getSiteMapUrlData(final List<PointOfServiceModel> models)
+	{
+		return Converters.convertAll(models, getSiteMapUrlDataConverter());
+	}
+
+	@Override
+	protected List<PointOfServiceModel> getDataInternal(final CMSSiteModel siteModel)
+	{
+		final List<BaseStoreModel> stores = siteModel.getStores();
+		final String query = "SELECT {ps.pk} FROM {PointOfService as ps} WHERE {ps.isActive}= '1' AND {ps.BaseStore} in (?stores)";
+		final Map<String, Object> params = new HashMap<String, Object>();
+		params.put("stores", stores);
+		return doSearch(query, params, PointOfServiceModel.class);
+	}
+}

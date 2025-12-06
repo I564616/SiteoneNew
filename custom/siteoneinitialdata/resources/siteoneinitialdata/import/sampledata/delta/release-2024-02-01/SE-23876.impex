@@ -1,0 +1,8 @@
+INSERT_UPDATE ServicelayerJob; code[unique=true];springid[unique=true]
+                             ;findDuplicateSequenceCronJob;findDuplicateSequenceCronJob;
+
+INSERT_UPDATE FindDuplicateSequenceCronJob;code[unique=true];job(code)[default=findDuplicateSequenceCronJob];sessionLanguage(isoCode)[default=en]
+                                       ;findDuplicateSequenceCronJob
+									   
+INSERT_UPDATE Trigger;cronJob(code)[unique=true];cronExpression
+;findDuplicateSequenceCronJob;0 0,5,10,15,20,25,30,35,40,45,50,55 * ? * *

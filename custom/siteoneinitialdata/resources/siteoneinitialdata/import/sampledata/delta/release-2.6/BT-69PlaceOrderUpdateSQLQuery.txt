@@ -1,0 +1,3 @@
+#update placeorder flag to true for B2Bcustomers 
+
+update users set p_placeOrder = 1 WHERE TypePkString='8796096954450' and p_placeOrder is null

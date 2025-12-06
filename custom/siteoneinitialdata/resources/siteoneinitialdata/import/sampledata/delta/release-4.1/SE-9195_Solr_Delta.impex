@@ -1,0 +1,139 @@
+#
+$contentCatalog=siteoneContentCatalog
+$productCatalog=siteoneProductCatalog
+$catalogVersions=catalogVersions(catalog(id),version);
+$serverConfigName=siteoneSolrServerConfig
+$indexConfigName=siteoneSolrIndexConfig
+$searchConfigName=siteonePageSize
+$facetSearchConfigName=siteoneIndex
+$facetSearchConfigDescription=SiteOne Solr Index
+$searchIndexNamePrefix=siteone
+$solrIndexedType=siteoneProductType
+$indexBaseSite=siteone
+$indexLanguages=en
+$indexCurrencies=USD
+
+
+INSERT_UPDATE SolrIndexerQuery;solrIndexedType(identifier)[unique=true];identifier[unique=true];type(code);injectCurrentDate[default=true];injectCurrentTime[default=true];injectLastIndexTime[default=true];query;user(uid)
+;$solrIndexedType;$searchIndexNamePrefix-fullQuery;full;;;false;"
+SELECT *
+FROM
+({{
+SELECT {Base.PK}
+FROM {Product! as Base}
+WHERE {Base.PK} IN ({{ SELECT basePK
+FROM ({{ SELECT DISTINCT {Vars.baseProduct} AS basePK
+FROM {StockLevel AS SL},
+{GenericVariantProduct as Vars}
+WHERE (({SL.available} - {SL.reserved} + {SL.overSelling}) > '0'
+OR (({SL.available} - {SL.reserved} + {SL.overSelling}) <= '0'
+AND {inventoryHit} > '4'))
+AND {Vars.isProductDiscontinued} = '1'
+AND {Vars.code} = {SL.productCode}
+
+}} UNION ({{
+SELECT {Variant.baseProduct} AS basePK
+FROM {GenericVariantProduct as Variant}
+WHERE {Variant.isProductDiscontinued} = '0'
+}}))
+}}) and {Base.isProductOffline} = '0'
+}} UNION ({{
+SELECT {PK} FROM {Product!} where {PK} IN ({{
+SELECT DISTINCT {PK}
+FROM {Product}
+WHERE {code} NOT IN ({{ SELECT {code} FROM {Product}
+WHERE {isProductDiscontinued} = '1' AND ({code}
+NOT IN({{ SELECT DISTINCT {productCode}
+FROM {StockLevel} WHERE (({available} - {reserved} + {overSelling}) > '0'
+OR (({available} - {reserved} + {overSelling}) <= '0'
+AND {inventoryHit} > '4'))}}))
+
+}})AND {variantType} IS NULL
+AND {CODE} != '9999999' AND {isProductOffline} = '0'
+}})
+}}))
+
+
+";anonymous
+;$solrIndexedType;$searchIndexNamePrefix-updateQuery;update;;;;"
+SELECT *
+FROM
+({{
+SELECT {Base.PK}
+FROM {Product! as Base}
+WHERE {Base.PK} IN ({{ SELECT basePK
+FROM ({{ SELECT DISTINCT {Vars.baseProduct} AS basePK
+FROM {StockLevel AS SL},
+{GenericVariantProduct as Vars}
+WHERE (({SL.available} - {SL.reserved} + {SL.overSelling}) > '0'
+OR (({SL.available} - {SL.reserved} + {SL.overSelling}) <= '0'
+AND {SL.inventoryHit} > '4'))
+AND {Vars.isProductDiscontinued} = '1'
+AND {Vars.code} = {SL.productCode}
+AND ({Vars:modifiedtime}>=?lastIndexTime
+)
+}} UNION ({{
+SELECT {Variant.baseProduct} AS basePK
+FROM {GenericVariantProduct as Variant}
+WHERE {Variant.isProductDiscontinued} = '0'
+AND {Variant:modifiedtime}>=?lastIndexTime}})
+
+}})
+}})
+UNION
+({{
+SELECT {PK} FROM {Product!} where {PK} IN ({{
+SELECT {p:PK} AS pk FROM {Product AS p} WHERE {p:code} IN (
+{{
+SELECT DISTINCT {pr:ProductId} FROM {PriceRow AS pr} WHERE {pr:modifiedtime} >= ?lastIndexTime
+}}
+)AND {p:code} NOT IN (
+{{
+SELECT {code} FROM {Product} WHERE {isProductDiscontinued} = '1'
+AND ({code} NOT IN({{ SELECT DISTINCT {productCode} FROM {StockLevel}
+WHERE (({available} - {reserved} + {overSelling}) > '0'
+OR (({available} - {reserved} + {overSelling}) <= '0'
+AND {inventoryHit} > '4'))}}))
+}}
+)
+}})
+}})
+
+UNION
+({{
+SELECT {PK} FROM {Product!} where {PK} IN ({{
+SELECT {p:PK} AS pk FROM {Product AS p} WHERE {p:code}IN (
+{{
+SELECT DISTINCT {sl:productCode} FROM {StockLevel AS sl} WHERE {sl:modifiedtime} >= ?lastIndexTime
+}}
+) AND {p:code} NOT IN (
+{{
+SELECT {code} FROM {Product} WHERE {isProductDiscontinued} = '1'
+AND ({code} NOT IN({{ SELECT DISTINCT {productCode} FROM {StockLevel}
+WHERE (({available} - {reserved} + {overSelling}) > '0'
+OR (({available} - {reserved} + {overSelling}) <= '0'
+AND {inventoryHit} > '4'))}}))
+}}
+)
+AND {variantType} IS NULL
+AND {CODE} != '9999999' AND {isProductOffline} = '1'
+}})
+}})
+UNION
+({{
+SELECT {PK} FROM {Product!} where {PK} IN ({{
+SELECT DISTINCT {p:PK} AS pk
+FROM {Product AS p} WHERE ({p:modifiedtime} >= ?lastIndexTime)
+AND {p:code} NOT IN (
+{{
+SELECT {code} FROM {Product} WHERE {isProductDiscontinued} = '1'
+AND ({code} NOT IN({{ SELECT DISTINCT {productCode} FROM {StockLevel}
+WHERE (({available} - {reserved} + {overSelling}) > '0'
+OR (({available} - {reserved} + {overSelling}) <= '0'
+AND {inventoryHit} > '4'))}}))
+}})
+}})
+}})
+)
+
+";anonymous

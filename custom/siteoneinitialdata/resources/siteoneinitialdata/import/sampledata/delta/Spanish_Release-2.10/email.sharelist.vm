@@ -1,0 +1,122 @@
+## messageSource=classpath:/siteonecore/messages/email-shareListEmail_$lang.properties
+#macro( genHtmlBoldFont $text )
+<font color="#414a4f"><b>$text</b></font>
+#end
+#macro(genHtmlLinkStartTag $url)
+<a href="$url"><font color="#666666">
+#end
+#macro(genHtmlLinkEndTag)
+</font></a>
+#end
+#macro(genHtmlLink $url $textColor $bodyContent)
+<a href="$url"><font color="$textColor">$bodyContent</font></a>
+#end
+
+<div style="display:none !important;
+            visibility:hidden;
+            mso-hide:all;
+            color:#ffffff;
+            line-height:1px;
+            max-height:0px;
+            max-width:0px;
+            opacity:0;
+            overflow:hidden;">${ctx.messages.preHeader}</div>
+<html>
+   <head>
+      <style>
+    td {
+    font-family: Arial;
+    font-size: 12pt;
+    }
+   </style>
+	</head>
+	    <body bgcolor="#ffffff">
+	       	<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#ffffff">
+				<tr>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td align="center" valign="top">
+						<table width="610" border="0" align="center" cellpadding="0" cellspacing="0" bordercolor="#fff" style="border:1px solid #51585c;">
+							<tr>
+								<td align="center" valign="top" bgcolor="#FFFFFF">
+									<table width="100%" cellpadding="0" cellspacing="0" border="0" align="center">
+									
+										<tr>
+											<td width="50%" style="padding:15px;">
+												<a href="${ctx.baseThemeUrl}"  style="text-decoration:none;" >
+													<img title="SiteoneLogo" src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/SiteoneLogo.jpg" style="border: none;" alt="SiteoneLogo">
+												</a>
+											</td>
+											<td  width="50%" align="right" style="padding:15px;">
+													<span class="col-xs-6 col-md-12">
+														<a href="https://www.facebook.com/SiteOneLandscape/"  style="text-decoration:none;">
+		<img src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/Print_facebook_color.png" alt="Facebook" title="Facebook" style="outline:0;border: none;" width="30" height="30"/>
+															</a>&nbsp;
+															<a href="https://www.instagram.com/siteonesupply/"   style="text-decoration:none;">
+	<img src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/Print_instagram_color.png" alt="Instagram" title="Instagram"  style="outline:0;border: none;" width="30" height="30"/>
+																</a>&nbsp;
+																<a href="https://twitter.com/SiteOneSupply"   style="text-decoration:none;">
+	<img src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/Print_twitter_color.png" alt="Twitter" title="Twitter" style="outline:0;border: none;" width="30" height="30"/>
+																</a>&nbsp;
+	          								       </span>
+											</td>
+										</tr>
+										
+										<tr>
+											<td colspan="2">
+												<table width="100%" cellspacing="0">
+													<tr>
+														<td width="100%" colspan="4" height="20" align="left" bgcolor="#CCCCCC" style="padding:0px 10px">
+															<font color="#000000"></font>
+														</td>
+													</tr>
+													<tr>
+														<td>
+															<table width="100%">
+																<tr>
+																	<td valign="top" style="padding: 0 10px;">
+																		<br/>													 
+																		<font color="#333" style="font-weight:normal;">${ctx.username} ${ctx.messages.hasshared} ${ctx.listName}${ctx.messages.submessage} <a href="${ctx.baseurl}/login">${ctx.messages.clickhere}</a> ${ctx.messages.toview}</font>
+																		<p style="margin:3px 0"></p>
+																	</td>
+																</tr>
+																<tr>
+																	<td  valign="top" style="padding: 10px 10px;">
+																		<table>
+																			<tr>
+																				<td align="center" style="background: #78a22f;height: 40px;width: 150px;">
+																					<a href="${ctx.baseurl}/savedList/listDetails?code=${ctx.listCode}" style="text-decoration:none;color: #fff;display: block;width: 100%;height: 100%;line-height: 38px;">${ctx.messages.viewList}</a>
+																				</td>
+																			</tr>
+																		</table>
+																	</td>
+																</tr>
+																<tr>
+																	<td><hr color="black" align="center" width="97%"></td>
+																</tr>
+																<tr>
+																	<td style="padding-left: 11px;padding-bottom: 12px;padding-top: 10px;">
+																		${ctx.messages.commonsubMessage} <a  href="${ctx.baseThemeUrl}/${ctx.messages.contactus}">${ctx.messages.contactyou}</a>.
+																	</td> 
+																</tr>
+																<tr>
+																	<td style="padding-left: 11px;padding-bottom: 45px;">
+																		<p><font color="#666666" style="color:#000;">${ctx.messages.complimentaryClose}<br><b><i>${ctx.messages.signaturename}</i></b></font></p>
+																	</td>
+																</tr>
+															</table>
+														</td>
+													</tr>
+												</table>
+											</td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+		</body>
+</html>

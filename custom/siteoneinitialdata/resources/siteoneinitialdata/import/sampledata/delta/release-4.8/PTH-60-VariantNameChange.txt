@@ -1,0 +1,23 @@
+##Queries should be executed one by one for proper data setup##
+
+##Classification:
+
+Update classificationattrs set p_code='nrsryContainerSizeOld' where p_code='nrsryContainerSize'
+Update classificationattrs set p_code='nrsryContainerSize' where p_code='nrsrySize'
+
+  
+##VariantCategory:
+
+Update categories set p_code='nrsryContainerSize' where p_code='nrsrySize'
+
+
+##VariantValueCategory:
+
+
+Update categories set p_code = REPLACE( p_code , 'nrsrySize', 'nrsryContainerSize') WHERE p_code like 'nrsrySize%'
+
+##Product/GenericVariantProduct:
+
+Update products set p_internalvariantattribute = REPLACE( p_internalvariantattribute , 'nrsrySize', 'nrsryContainerSize') WHERE p_internalvariantattribute like '%nrsrySize%'
+
+

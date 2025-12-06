@@ -1,0 +1,8 @@
+INSERT_UPDATE UserGroup;UID[unique=true];groups(uid)[mode=append];locname[lang=en];description
+                       ;asagentgroup;;"Common Assisted Service Agent Group";
+                       ;asagentsalesgroup;asagentgroup;"Assited Service Customer Support Agent"; "The ASM CS Support Agent can provide sales and service support to a customer, but may be restricted, so that they cannot checkout a customer's cart, or authorise a customer's quote request for example."
+                       ;asagentsalesmanagergroup;asagentsalesgroup;"Assited Service Customer Support Manager";"The ASM CS Support Manager can do everything an 'ASM CS Support Agent' can do, and more, such as authorising a customer's quote request for example."
+
+
+INSERT_UPDATE CustomerList;uid[unique=true];implementationType;priority;members(uid)[mode=append];
+                          ;myRecentCustomerSessions;"ASM_RECENT_SESSIONS";1;asagentgroup;

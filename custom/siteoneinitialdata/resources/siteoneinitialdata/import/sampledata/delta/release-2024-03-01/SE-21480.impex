@@ -1,0 +1,33 @@
+# -----------------------------------------------------------------------
+# [y] hybris Platform
+#
+# Copyright (c) 2017 SAP SE or an SAP affiliate company.  All rights reserved.
+#
+# This software is the confidential and proprietary information of SAP
+# ("Confidential Information"). You shall not disclose such Confidential
+# Information and shall use it only in accordance with the terms of the
+# license agreement you entered into with SAP.
+# -----------------------------------------------------------------------
+#
+# Import the Solr configuration for the SiteOne store
+#
+$contentCatalog=siteoneContentCatalog
+$productCatalog=siteoneProductCatalog
+$catalogVersions=catalogVersions(catalog(id),version);
+$serverConfigName=siteoneSolrServerConfig
+$indexConfigName=siteoneSolrIndexConfig
+$searchConfigName=siteoneStorePageSize
+$searchIndexNamePrefix=siteone
+$solrIndexedType=siteoneStoreType
+$indexBaseSite=siteone
+$indexLanguages=en
+$indexCurrencies=USD
+
+$solrStoreSearchIndexedType=siteoneStoreSearchType
+$storeSearchConfigName=storeSearchIndex
+$storeSearchConfigDescription=Store Search Solr Index
+
+
+# Non-facet properties
+INSERT_UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true];name[unique=true] ;type(code);sortableType(code);currency[default=false];localized[default=false];multiValue[default=false];useForSpellchecking[default=false];useForAutocomplete[default=false];fieldValueProvider   ;valueProviderParameter;ftsPhraseQuery[default=false];ftsPhraseQueryBoost;ftsQuery[default=false];ftsQueryBoost;ftsFuzzyQuery[default=false];ftsFuzzyQueryBoost;ftsWildcardQuery[default=false];ftsWildcardQueryType(code)[default=POSTFIX];ftsWildcardQueryBoost;ftsWildcardQueryMinTermLength
+                                 ;$solrStoreSearchIndexedType             ;soExcludeBranches;string    ;                  ;                       ;                        ;                         ;false                             ;false                            ;springELValueProvider;excludeBranches           ;true                         ;                   ;true                   ;             ;true                        ;                  ;                               ;                                           ;                     ;

@@ -1,0 +1,779 @@
+$contentCatalog=siteoneCAContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Online])[default=$contentCatalog:Online]
+$productCatalog=siteoneCAProductCatalog
+$productCatalogName=SiteOne CA Product Catalog
+$productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Online'])[unique=true,default=$productCatalog:Online]
+$picture=media(code, $contentCV);
+$lang=en,es
+$siteResource=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/contentCatalogs/$contentCatalog
+$medias=medias(code, $contentCV);
+$mediaContainer=media(qualifier, $contentCV)[lang=$lang];
+
+UPDATE GenericItem[processor=de.hybris.platform.commerceservices.impex.impl.ConfigPropertyImportProcessor];pk[unique=true]
+$jarResourceCms=$config-jarResourceCmsValue
+
+
+INSERT_UPDATE PageTemplate;$contentCV[unique=true];uid[unique=true];name;frontendTemplateName;restrictedPageTypes(code);active[default=true]
+;;SiteOneCAContentPageTemplate;SiteOne CA Content Page  Template;layout/siteoneCAContentLayout;ContentPage
+
+# Add Velocity templates that are in the CMS Cockpit. These give a better layout for editing pages
+# The FileLoaderValueTranslator loads a File into a String property. The templates could also be inserted in-line in this file.
+UPDATE PageTemplate;$contentCV[unique=true];uid[unique=true];velocityTemplate[translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+;;SiteOneCAContentPageTemplate ;$jarResourceCms/structure-view/siteonestructure_siteonecaContentPageTemplate.vm
+
+
+# Simple Content Page Templates
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='SiteOneCAContentPageTemplate'];validComponentTypes(code);compTypeGroup(code)
+;SiteLogo;;;logo
+;HeaderLinks;;;headerlinks
+;SearchBox;;;searchbox
+;MiniCart;;;minicart
+;NavigationBar;;;navigation
+;Section1;;;wide
+;Section4;;;wide
+;Section2A;;;narrow
+;Section2B;;;wide
+;Section7A;;;wide
+;Section7B;;;wide
+;Section3;;;wide
+;Section5;;;wide
+;Footer;;;footer
+;TopHeaderSlot;;;wide
+;BottomHeaderSlot;;;wide
+;PlaceholderContentSlot;;;
+;GlobalMessage;;GlobalMessageCMSComponent
+;VerticalNavigation;;VerticalBarComponent
+
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='SiteOneCAContentPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;SiteLogo-SiteOneCAContentPage;SiteLogo;;SiteLogoSlot;true
+;;NavigationBar-SiteOneCAContentPage;NavigationBar;;NavigationBarSlot;true
+;;MiniCart-SiteOneCAContentPage;MiniCart;;MiniCartSlot;true
+;;Footer-SiteOneCAContentPage;Footer;;FooterSlot;true
+;;HeaderLinks-SiteOneCAContentPage;HeaderLinks;;HeaderLinksSlot;true
+;;SearchBox-SiteOneCAContentPage;SearchBox;;SearchBoxSlot;true
+;;TopHeaderSlot-SiteOneCAContentPage;TopHeaderSlot;;TopHeaderSlot;true
+;;BottomHeaderSlot-SiteOneCAContentPage;BottomHeaderSlot;;BottomHeaderSlot;true
+;;PlaceholderContentSlot-SiteOneCAContentPage;PlaceholderContentSlot;;PlaceholderContentSlot;true
+;;GlobalMessage-SiteOneCAContentPage;GlobalMessage;;GlobalMessageSlot;true
+;;VerticalNavigation-SiteOneCAContentPage;VerticalNavigation;;VerticalNavigationSlot;true
+
+### Privacy Policy START ###
+
+INSERT_UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];name;title[lang=$lang];masterTemplate(uid,$contentCV);label;defaultPage[default='true'];approvalStatus(code)[default='approved'];homepage[default='false']
+;;privacyPolicy;Privacy Policy;Privacy Policy;SiteOneCAContentPageTemplate;/privacypolicy;
+
+INSERT_UPDATE SiteoneParagaraphComponent;$contentCV[unique=true];uid[unique=true];name;headline;content;&componentRef
+;;privacyPolicyNewContentComponent;Privacy Policy Paragraph Component1;SiteOne Landscape Supply Privacy Policy;"<p>Last Updated: June 25, 2025</p><p>SiteOne Landscape Supply, Limited (""SiteOne,"" ""Company"" ""we,"" ""us,"" or ""our""), respects the privacy of its customers and of users of and visitors to its website. This Privacy Policy is designed to help you understand how we collect, use, process, and share your personal information, and to help you understand and exercise your privacy rights. </p><h3><br />1. SCOPE AND UPDATES TO THIS PRIVACY POLICY</h3><p>Changes to our Privacy Policy. </p><p><strong>Changes to our Privacy Policy. </strong>We may revise this Privacy Policy from time to time in our sole discretion. If there are any material changes to this Privacy Policy, we will notify you as required by applicable law. You understand and agree that you will be deemed to have accepted the updated Privacy Policy if you continue to use our Services after the new Privacy Policy takes effect.</p><h3><br />2.    PERSONAL INFORMATION WE COLLECT</h3><p>The categories of personal information we collect depend on how you interact with us, our Services, and the requirements of applicable law. We collect information that you provide to us, information we obtain automatically when you use our Services, and information from other sources such as third-party services and organizations, as described below. For residents of certain states, additional disclosures about the information we collect is available in our supplemental disclosure below.</p><p><strong>A. Personal Information You Provide to Us Directly</strong></p><p>We may collect personal information that you provide to us.</p><ul><li><strong>Account Creation</strong>. We may collect personal information when you create an account, such as name, email address, and address.<br /> </li><li><strong>Purchases</strong>. We may collect personal information and details associated with your purchases, including payment information. Any payments made via our Services are processed by third-party payment processors. We do not directly collect or store any payment card information entered through our Services, but we may receive information associated with your payment card information (e.g., your billing details).<br /> </li><li><strong>Your Communications with Us</strong>. We may collect personal information, such as email address, phone number, or mailing address when you request information about our Services, register for our newsletter or Partners Program, request customer or technical support, seek training from us, or otherwise communicate with us.<br /> </li><li><strong>Surveys</strong>. We may contact you to participate in surveys. If you decide to participate, we may collect personal information from you in connection with the survey.<br /> </li><li><strong>Interactive Features</strong>. We and others who use our Services may collect personal information that you submit or make available through our interactive features (e.g., messaging and chat features, commenting functionalities, forums, blogs, and social media pages). We record and store telephone calls and chat transcripts when you interact with our customer or technical support. Any information you provide using the public sharing features of the Services will be considered ""public,"" unless otherwise required by applicable law, and is not subject to the privacy protections referenced herein. <br /> </li><li><strong>Sweepstakes or Contests</strong>. We may collect personal information you provide for any sweepstakes or contests that we offer. In some jurisdictions, we are required to publicly share information of sweepstakes and contest winners.<br /> </li><li><strong>Conferences, Trade Shows, and Other Events</strong>. We may collect personal information from individuals when we attend or host conferences, trade shows, and other events. <br /> </li><li><strong>Business Development and Strategic Partnerships</strong>. We may collect personal information from individuals and third parties to assess and pursue potential business opportunities. </li></ul><p><br /><strong>B. Personal Information Collected Automatically </strong></p><p>We may collect personal information automatically when you use our Services, including when you use our online Services and when you visit our locations. Some of our locations use cameras in and around the facility to capture video and images. We may use these videos and images for security, fraud, loss prevention, law enforcement or incident reporting, or other operational purposes, such as analyzing traffic patterns.</p><ul><li><strong>Automatic Collection of Personal Information</strong>. We may collect certain information automatically when you use our Services, such as your Internet protocol (IP) address, user settings, MAC address, cookie identifiers, mobile carrier, mobile advertising and other unique identifiers, browser or device information, location information (including approximate location derived from IP address), and Internet service provider. We may also automatically collect information regarding your use of our Services, such as pages that you visit before, during and after using our Services, information about the links you click, the types of content you interact with, the frequency and duration of your activities, and other information about how you use our Services. <br /> <ul><li><strong>Location Information</strong>. We may collect location information, such as your preferred store or otherwise in connection with your use of our Services. <br /> </li></ul></li><li><strong>Cookie Policy (and Other Technologies)</strong>. We, as well as third parties that provide content, advertising, or other functionality on our Services, may use cookies, pixel tags, and other technologies (""Technologies"") to automatically collect information through your use of our Services. <br /> <ul><li><strong>Cookies</strong>. Cookies are small text files placed in device browsers that store preferences and facilitate and enhance your experience.<br /> </li><li><strong>Pixel Tags/Web Beacons</strong>. A pixel tag (also known as a web beacon) is a piece of code embedded in our Services that collects information about engagement on our Services. The use of a pixel tag allows us to record, for example, that a user has visited a particular web page or clicked on a particular advertisement. We may also include web beacons in e-mails to understand whether messages have been opened, acted on, or forwarded.<br /> </li></ul></li></ul><p>OOur uses of these Technologies fall into the following general categories: </p><ul><li><strong>Operationally Necessary</strong>. This includes Technologies that allow you access to our Services, applications, and tools that are required to identify irregular website behavior, prevent fraudulent activity, improve security, or allow you to make use of our functionality;<br /> </li><li><strong>Performance-Related.</strong> We may use Technologies to assess the performance of our Services, including as part of our analytic practices to help us understand how individuals use our Services (see Analytics below);<br /> </li><li><strong>Functionality-Related</strong>. We may use Technologies that allow us to offer you enhanced functionality when accessing or using our Services. This may include identifying you when you sign into our Services or keeping track of your specified preferences, interests, or past items viewed;<br /> </li><li><strong>Advertising- or Targeting-Related</strong>. We may use first party or third-party Technologies, including cross-device tracking, to deliver content, including ads relevant to your interests, on our Services or on third-party digital properties. <br /><br />Some of the advertising Technologies we use include: <br /> <ul><li><strong>Facebook Connect</strong>. For more information about Facebook’s use of your personal information, please visit Facebook’s <a href=""https://www.facebook.com/policy.php"" target=""_blank"">Data Policy</a>. To learn more about how to opt-out of Facebook’s use of your information, please click <a href=""https://www.facebook.com/settings?tab=ads"">here</a> while logged in to your Facebook account.<br /> </li><li><strong>AppNexus</strong>. For more information about AppNexus’ use of your personal information, please visit the Xandr <a href=""https://monetize.xandr.com/privacy-center/"" target=""_blank"">privacy center</a>. To learn more about how to opt-out of AppNexus’ use of your information, please click <a href=""https://monetize.xandr.com/privacy-center/opt_out"" target=""_blank"">here</a>.<br /> </li><li><strong>TradeDesk</strong>. For more information about theTradeDesk’s use of your personal information, please visit The Trade Desk <a href=""https://www.thetradedesk.com/us/privacy"" target=""_blank"">privacy policy</a>. To learn more about how to opt-out of theTradeDesk’s use of your information, please click <a href=""https://www.adsrvr.org/?AspxAutoDetectCookieSupport=1"" target=""_blank"">here</a>.<br /> </li><li><strong>Nexxen</strong>. For more information about Nexxen’s use of your personal information, please visit Nexxen’s <a href=""https://www.nexxen.com/privacy-policy/"" target=""_blank"">privacy policy</a>. To learn more about how to opt-out of Nexxen’s use of your information, please <a href=""https://www.amobee.com/trust/consumer-opt-out/"" target=""_blank"">click here</a>.<br /> </li><li><strong>X Advertising</strong>. For more information about X’s use of your personal information including how to opt-out, please visit X’s <a href=""https://help.twitter.com/en/safety-and-security/privacy-controls-for-tailored-ads"" target=""_blank"">privacy policy</a>.<br /> </li><li><strong>LiveRamp</strong>. For more information about LiveRamp’s use of your personal information, please visit LiveRamp’s <a href=""https://www.liveramp.com/privacy/"" target=""_blank"">privacy policy</a>.  To learn more about how to opt-out of LiveRamp’s use of your information, please <a href=""https://www.liveramp.com/opt_out/"" target=""_blank"">click here</a>. <br /> </li><li><strong>Podium</strong>. For more information about Podium’s use of your personal information, please visit Podium’s <a href=""https://legal.podium.com/"" target=""_blank"">privacy policy</a>.  To learn more about how to opt-out of Podium’s use of your information, please <a href=""https://privacy-podium.us.fides.ethyca.com/"" target=""_blank"">click here</a>. <br /><br /><em>See ""Your Privacy Choices and Rights"" below to understand your choices regarding these Technologies.</em><br /> </li></ul></li><li><strong>Analytics</strong>. We may use Technologies and other third-party tools to process analytics information on our Services. These Technologies allow us to better understand how our digital Services are used and to continually improve and personalize our Services. Some of our analytics partners include:<br /> <ul><li><strong>Google Analytics</strong>. For more information about how Google uses your personal information (including for its own purposes, e.g., for profiling or linking it to other data), please visit <a href=""http://www.google.com/policies/privacy/partners/"" target=""_blank"">Google Analytics’ Privacy Policy</a>. To learn more about how to opt-out of Google Analytics’ use of your information, please click <a href=""http://tools.google.com/dlpage/gaoptout"" target=""_blank"">here</a>.<br /> </li><li><strong>LinkedIn Analytics</strong>. For more information about how LinkedIn uses your personal information, please visit <a href=""https://www.linkedin.com/legal/privacy-policy"" target=""_blank"">LinkedIn Analytics’ Privacy Policy</a>. To learn more about how to opt-out of LinkedIn’s use of your information, please click <a href=""https://www.linkedin.com/help/linkedin/answer/62931?trk=microsites-frontend_legal_privacy-policy&amp;lang=en"" target=""_blank"">here</a>.<br /> </li><li><strong>FullStory (Session Replay Analytics)</strong>. We use FullStory’s session replay analytics services. This allows us to record and replay an individual’s interaction with the Services. For more information about how FullStory uses your personal information, please visit FullStory’s <a href=""https://www.fullstory.com/legal/privacy-policy"" target=""_blank"">Privacy Policy</a>. To learn more about how to opt out of FullStory’s use of your information, please click <a href=""https://www.fullstory.com/optout/"" target=""_blank"">here</a>.<br /> </li><li><strong>SOASTA mPulse</strong>. For more information about how mPulse uses your personal information, please visit mPulse’s <a href=""https://help.twitter.com/en/safety-and-security/privacy-controls-for-tailored-ads"" target=""_blank"">FAQ</a>.<br /> </li><li><strong>Adobe Experience Cloud</strong>. To learn more about how Adobe uses your personal information and how to opt out of Adobe’s use of your information, please visit Adobe’s <a href=""https://www.adobe.com/privacy.html"" target=""_blank"">Privacy Policy</a>. <br /> </li><li><strong>Qualtrics</strong>. To learn more about how Qualtrics uses your personal information, please visit Qualtric’s <a href=""https://www.qualtrics.com/privacy-statement/"" target=""_blank"">Privacy Policy</a>.<br /> </li></ul></li><li><strong>Social Media Platforms</strong>. Our Services may contain social media buttons, such as Facebook, X, YouTube, LinkedIn, and Instagram, which might include widgets such as the ""share this"" button or other interactive mini programs). These features may collect personal information such as your IP address and which page you are visiting on our Services and may set a cookie to enable the feature to function properly. Your interactions with these platforms are governed by the privacy policy of the company providing it.</li></ul><p><br /><strong>C. Personal Information Collected from Other Sources</strong></p><ul><li><strong>Third-Party Services and Sources</strong>. We may obtain personal information about you from other sources, including through third-party services and organizations. For example, if you access our Services through a third-party application, such as an app store, a third-party login service, or a social networking site, we may collect personal information about you from that third-party application that you have made available via your privacy settings. <br /> </li><li><strong>Other Parties You Engage With</strong>. We receive information from parties with which you engage and who offer their products and services to you. These companies may share some information with us about you or your experience with them, such as the items or services you purchased and your contact information.<br /> </li><li><strong>Vendors, Product Suppliers, or Service Providers</strong>. We receive information, including identification information, contact information, demographic information and purchase information from our vendors, product suppliers, and service providers.</li></ul><p><strong>Referrals and Sharing Features</strong>. Our Services may offer various tools and functionalities that allow you to provide personal information about your friends through our referral service. Our referral services may also allow you to forward or share certain content with a friend or colleague, such as an email inviting your friend to use our Services. Please only share with us contact information of people with whom you have a relationship (e.g., relative, friend, neighbor, or co-worker).</p><h3><br />3. HOW WE USE YOUR PERSONAL INFORMATION</h3><p>We use your personal information for a variety of business purposes, including to provide our Services, for administrative purposes, and to market our products and Services, as described below.</p><p><strong>A. Provide Our Services</strong></p><p>We use your information to fulfil our contract with you and provide you with our Services, such as:</p><ul><li>Managing your information and accounts.</li><li>Providing access to certain areas, functionalities, and features of our Services.</li><li>Answering requests for customer or technical support. </li><li>Communicating with you about your account, activities on our Services, and policy changes.</li><li>Processing your financial information and other payment methods for products or Services purchased, including providing the credit services that you sign up for.</li><li>Providing technical support and training. </li><li>Delivering information to you about products, including product safety and recall information. </li><li>Providing our rewards and incentive programs. </li><li>Providing you with opportunities to participate in supplier and manufacturer rebate programs. </li><li>Determining if you are eligible for certain products, services, and offerings. </li><li>Personalizing our Services based on your preferences, and, </li><li>Allowing you to register for events.</li></ul><p><br /><strong>B.  Administrative Purposes</strong></p><p>We use your information for various administrative purposes, such as:</p><ul><li>Pursuing our legitimate interests such as direct marketing, research and development (including marketing research), network and information security, and fraud prevention;</li><li>Operating sweepstakes, contests, and other promotional events; </li><li>Detecting security incidents, protecting against malicious, deceptive, fraudulent or illegal activity, and prosecuting those responsible for that activity;</li><li>Measuring interest and engagement in our Services, including by conducting surveys and polls; </li><li>Short-term, transient use, such as contextual customization of ads;</li><li>Improving, upgrading, or enhancing our Services; </li><li>Developing new products and services;</li><li>Ensuring internal quality control and safety;</li><li>Authenticating and verifying individual identities, including requests to exercise your rights under this Privacy Policy;</li><li>Debugging to identify and repair errors with our Services;</li><li>Auditing relating to interactions, transactions, and other compliance activities;</li><li>Sharing personal information with third parties as needed to provide the Services;</li><li>Enforcing our agreements and policies; and</li><li>Carrying out activities that are required to comply with our legal obligations.</li><li>We may use your information for other legitimate business purposes as permitted by law.</li></ul><p><br /><strong>C. Marketing and Advertising our Products and Services</strong></p><p>We may use personal information to tailor and provide you with content and advertisements. We may provide you with these materials as permitted by applicable law. </p><p>Some of the ways we market to you include email campaigns, text messages, custom audiences advertising, and ""interest-based"" or ""personalized advertising,"" including through cross-device tracking.</p><p>If you have any questions about our marketing practices or if you would like to opt out of the use of your personal information for marketing purposes, you may contact us at any time as set forth in ""Contact Us"" below. </p><p><br /><strong>D. With Your Consent</strong></p><p>We may use personal information for other purposes that are clearly disclosed to you at the time you provide personal information or otherwise with your consent.</p><p><br /><strong>E. Other Purposes</strong></p><p>We also use your personal information for other purposes as requested by you or as permitted by applicable law.</p><ul><li><strong>De-identified and Aggregated Information</strong>. We may use personal information to create de-identified and/or aggregated information, such as demographic information, information about the device from which you access our Services, or other analyses we create. </li></ul><h3><br />4. HOW WE DISCLOSE YOUR PERSONAL INFORMATION</h3><p>We disclose your personal information to third parties for a variety of business purposes, including to provide our Services, to protect us or others, or in the event of a major business transaction such as a merger, sale, or asset transfer, as described below.</p><p><br /><strong>A. Disclosures to Provide our Services</strong></p><p>The categories of third parties with whom we may share your personal information are described below. </p><ul><li><strong>Primary Accountholder or Administrator</strong>. If you designate an administrator to manage your account, we may share contact information for accounts with that administrator.<br /> </li><li><strong>Service Providers</strong>. We may share your personal information with our third-party service providers and vendors that assist us with the provision of our Services. This includes service providers and vendors that provide us with IT support, hosting, payment processing, customer service, and related services.<br /> </li><li><strong>Business Partners</strong>. We may share your personal information with business partners to provide you with a product or service you have requested, including to provide you with rebate opportunities. We may also share your personal information with business partners with whom we jointly offer products or services.<br /> </li><li><strong>Affiliates</strong>. . We may share your personal information with our company affiliates for example: for our administrative purposes, IT management, or for them to provide services to you or support and supplement the Services we provide. <br /> </li><li><strong>Other Users or Third Parties You Share or Interact With</strong>. As described above in ""Personal Information We Collect,"" our Services may allow you to share personal information or interact with other users and third parties (including individuals and third parties who do not use our Services and the general public) such as if you designate an administrator to manage your account.<br /> </li><li><strong>Advertising Partners</strong>. Through our Services, we may share your personal information with third-party advertising partners. These third-party advertising partners may set Technologies and other tracking tools on our Services to collect information regarding your activities and your device (e.g., your IP address, cookie identifiers, page(s) visited, location, time of day). These advertising partners may use this information (and similar information collected from other services) for purposes of delivering personalized advertisements to you when you visit digital properties within their networks. This practice is commonly referred to as ""interest-based advertising,"" ""cross-context behavioral advertising,"" or ""personalized advertising."" <br /> </li><li><strong>APIs/SDKs</strong>. We may use third-party application program interfaces (""<strong>APIs</strong>"") and software development kits (""<strong>SDKs</strong>"") as part of the functionality of our Services. For more information about our use of APIs and SDKs, please contact us as set forth in ""Contact Us"" below.</li></ul><p>We may also share your information with third parties as appropriate and permitted by law. The privacy choices you may have about your personal information are determined by applicable law and are described in Section 5 below.</p><p><br /><strong>B. Disclosures to Protect Us or Others</strong></p><p>We may access, preserve, and disclose any information we store associated with you to external parties if we, in good faith, believe doing so is required or appropriate to: comply with law enforcement or national security requests and legal process, such as a court order or subpoena; protect your, our, or others’ rights, property, security, or safety; enforce our policies or contracts; collect amounts owed to us; or assist with an investigation or prosecution of suspected or actual illegal activity.</p><p><br /><strong>C. Disclosure in the Event of Merger, Sale, or Other Asset Transfers</strong></p><p>If we are involved in a merger, acquisition, financing due diligence, reorganization, bankruptcy, receivership, purchase or sale of assets, or transition of service to another provider, your information may be sold or transferred as part of such a transaction, as permitted by law and/or contract.</p><h3><br />5. YOUR PRIVACY CHOICES AND RIGHTS</h3><p>Your Privacy Choices. The privacy choices you may have about your personal information are determined by applicable law and are described below. </p><ul><li><strong>Email Communications</strong>. If you receive an unwanted email from us, you can use the unsubscribe link found at the bottom of the email to opt out of receiving future emails. Note that you will continue to receive transaction-related emails regarding products or Services you have requested. We may also send you certain non-promotional communications regarding us and our Services, and you will not be able to opt out of those communications (e.g., communications regarding our Services or updates to our Terms or this Privacy Policy). <br /> </li><li><strong>Text Messages</strong>. If you receive an unwanted text message from us, you may opt out of receiving future text messages from us by following the instructions in the text message you have received from us or by otherwise contacting us as set forth in ""Contact Us"" below.<br /> </li><li><strong>Mobile Devices</strong>. We may send you push notifications through our mobile application. You may opt out from receiving these push notifications by changing the settings on your mobile device. With your consent, we may also collect precise location-based information via our mobile application. You may opt out of this collection by changing the settings on your mobile device.<br /> </li><li><strong>Phone calls</strong>. If you receive an unwanted phone call from us, you may opt out of receiving future phone calls from us by following the instructions which may be available on the call or by otherwise contacting us as set forth in ""Contact Us"" below. <br /> </li><li><strong>""Do Not Track.""</strong> Do Not Track (""DNT"") is a privacy preference that users can set in certain web browsers. Please note that we do not respond to or honor DNT signals or similar mechanisms transmitted by web browsers.<br /> </li><li><strong>Cookies and Personalized Advertising</strong>. You may stop or restrict the placement of Technologies on your device or remove them by adjusting your preferences as your browser or device permits. However, if you adjust your preferences, our Services may not work properly. Please note that cookie-based opt-outs are not effective on mobile applications. However, you may opt-out of personalized advertisements on some mobile applications by following the instructions for <a href=""https://support.google.com/googleplay/android-developer/answer/6048248?hl=en"" target=""_blank"">Android</a>, <a href=""https://support.apple.com/en-us/HT202074"" target=""_blank"">iOS</a>, and <a href=""https://www.networkadvertising.org/mobile-choice/"" target=""_blank"">others</a>.</li></ul><p>The online advertising industry also provides websites from which you may opt out of receiving targeted ads from data partners and other advertising partners that participate in self-regulatory programs. You can access these and learn more about targeted advertising and consumer choice and privacy by visiting the <a href=""http://www.networkadvertising.org/managing/opt_out.asp"" target=""_blank"">Network Advertising Initiative</a>, the <a href=""http://www.aboutads.info/choices/"" target=""_blank"">Digital Advertising Alliance</a>, the <a href=""https://www.youronlinechoices.eu/"" target=""_blank"">European Digital Advertising Alliance</a>, and the <a href=""https://youradchoices.ca/choices/"" target=""_blank"">Digital Advertising Alliance of Canada</a>.</p><p>Please note you must separately opt out in each browser and on each device. </p><p><strong>Your Privacy Rights</strong>. In accordance with applicable law, you may have the right to:</p><ul><li><strong>Access to and Portability of Your Personal Information</strong>, including: (i) confirming whether we are processing your personal information; (ii) obtaining access to or a copy of your personal information; and (iii) receiving an electronic copy of personal information that you have provided to us, or asking us to send that information to another company in a structured, commonly used, and machine readable format (also known as the ""right of data portability"");<br /> </li><li><strong>Request Correction of your personal information where it is inaccurate or incomplete</strong>. In some cases, we may provide self-service tools that enable you to update your personal information;<br /> </li><li><strong>Request Deletion of your personal information</strong>; <br /> </li><li><strong>Request Restriction of or Opt-out</strong> of our processing of your personal information where the processing involves (i) the sale of your personal information; (ii) the sharing of your personal information for purposes of cross-contextual or targeted advertising;  (iii) certain uses of your sensitive personal information, including the right to opt-out of the sharing of sensitive personal information, and (iii) the processing of your personal information for purposes of profiling in furtherance of decisions that produce legal or similarly significant effects concerning you; and<br /> </li><li><strong>Withdraw your Consent</strong> to our processing of your personal information for certain purposes. Please note that your withdrawal will only take effect for future processing and will not affect the lawfulness of processing before the withdrawal.</li></ul><p>If you would like to exercise any of these rights, please contact us as set forth in ""Contact Us"" below or submit our online privacy request form found here. We will process such requests in accordance with applicable laws.</p><h3><br />6. SECURITY OF YOUR INFORMATION</h3><p>We take steps to ensure that your information is treated securely and in accordance with this Privacy Policy. Unfortunately, no system is 100% secure, and we cannot ensure or warrant the security of any information you provide to us. To the fullest extent permitted by applicable law, we do not accept liability for unauthorized access, use, disclosure, or loss of personal information.</p><p>By using our Services or providing personal information to us, you agree that we may communicate with you electronically regarding security, privacy, and administrative issues relating to your use of our Services. If we learn of a security system’s breach, we may attempt to notify you electronically by posting a notice on our Services, by mail, or by sending an email to you.</p><h3><br />7. INTERNATIONAL DATA TRANSFERS</h3><p>All information processed by us may be transferred, processed, and stored anywhere in the world, including, but not limited to, the United States or other countries, which may have data protection laws that are different from the laws where you live. Law enforcement, courts and security agencies outside of your jurisdiction may be able to lawfully obtain your information stored in their jurisdiction. We endeavor to safeguard your information consistent with the requirements of applicable laws.</p><h3><br />8. RETENTION OF PERSONAL INFORMATION </h3><p>We store the personal information we collect as described in this Privacy Policy for as long as you use our Services, or as necessary to fulfill the purpose(s) for which it was collected, provide our Services, resolve disputes, establish legal defenses, conduct audits, pursue legitimate business purposes, enforce our agreements, and comply with applicable laws, or based upon other criteria, including, but not limited to, the sensitivity and volume of such data. Additionally, we endeavor to retain all such personal information in accordance with legal requirements.</p><h3><br />9. CHILDREN’S INFORMATION</h3><p><strong>If service would not be appealing to users under 13</strong>: The Services are not directed to children under 13 (or other age as required by local law), and we do not knowingly collect personal information from children. Protecting children’s privacy online is very important to us. If you are a parent or guardian and believe your child has uploaded personal information to our site without your consent, you may contact us as described in ""Contact Us"" below. If we become aware that a child has provided us with personal information in violation of applicable law, we will delete any personal information we have collected, unless we have a legal obligation to keep it, and terminate the child’s account.</p><h3></br />10. OTHER PROVISIONS</h3><p><strong>Third-Party Websites/Applications</strong>. The Services may contain links to other websites/applications and other websites/applications may reference or link to our Services. These third-party services are not controlled by us. We encourage our users to read the privacy policies of each website and application with which they interact. We do not endorse, screen, or approve, and are not responsible for, the privacy practices or content of such other websites or applications. Providing personal information to third-party websites or applications is at your own risk.</p><h3><br />11. CONTACT US </h3><p>SiteOne is the controller of the personal information we process under this Privacy Policy. </p><p>If you have any questions about our privacy practices or this Privacy Policy, or to exercise your rights as detailed in this Privacy Policy, please contact us at:</p><p>SiteOne Landscape Supply, Limited</p><p>Chief ISO</p><p>300 Colonial Center Parkway, Suite 600</p><p>Roswell, GA</p><p>30076</p><p>1-800-748-3663</p><p>privacyrequest@siteone.com</p>";privacyPolicyNewContentComponent  
+
+INSERT_UPDATE SiteoneLeftNavigationComponent;$contentCV[unique=true];uid[unique=true];name;linkName[lang=$lang];linkUrl;&componentRef
+;;siteoneLeftNavigationComponent1;Site one Left Navigation Privacy Policy;Privacy Policy;/privacypolicy;siteoneLeftNavigationComponent1
+;;siteoneLeftNavigationComponent2;Site one Left Navigation Terms;Website Terms & Conditions;/termsandconditions;siteoneLeftNavigationComponent2
+;;siteoneLeftNavigationComponent3;Terms and Conditions of Sale;Terms and Conditions of Sale;/salesterms;siteoneLeftNavigationComponent3
+;;siteoneLeftNavigationComponent4;Site one Left Navigation SMS;SMS Terms & Conditions;/sms-terms;siteoneLeftNavigationComponent4
+;;siteoneLeftNavigationComponent5;Site one Left Navigation Privacy;Do Not Sell My Personal Information;/privacyrequest;siteoneLeftNavigationComponent5
+
+INSERT_UPDATE SiteonePageTitleBannerComponent;$contentCV[unique=true];uid[unique=true];name;headline;&componentRef
+;;privacyPolicyPageTitleBannerComponent;Privacy Policy Page Title Component;Privacy and Data;privacyPolicyPageTitleBannerComponent
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='privacyPolicy'];contentSlot(uid,$contentCV)[unique=true];;;
+;;Section2A-PrivacyPolicy;Section2A;;Section2ASlot-PrivacyPolicy;;;
+;;Section2B-PrivacyPolicy;Section2B;;Section2BSlot-PrivacyPolicy;;;
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef);;;
+;;Section2ASlot-PrivacyPolicy;Section2A Slot for PrivacyPolicy Page;true;privacyPolicyPageTitleBannerComponent,siteoneLeftNavigationComponent1,siteoneLeftNavigationComponent2,siteoneLeftNavigationComponent3,siteoneLeftNavigationComponent4,siteoneLeftNavigationComponent5;;;
+;;Section2BSlot-PrivacyPolicy;Section2B Slot for PrivacyPolicyPage;true;privacyPolicyNewContentComponent;;;
+
+### Privacy Policy END ###
+
+### Terms and Conditions START ###
+
+
+INSERT_UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];name;title[lang=$lang];masterTemplate(uid,$contentCV);label;defaultPage[default='true'];approvalStatus(code)[default='approved'];homepage[default='false']
+;;termsAndCondition;Terms and Conditions;Terms and Conditions;SiteOneCAContentPageTemplate;/termsandconditions;
+
+INSERT_UPDATE SiteoneParagaraphComponent;$contentCV[unique=true];uid[unique=true];name;headline;content;&componentRef
+;;termsAndConditionNewContentComponent;termsAndCondition Paragraph Component1;SiteOne Landscape Supply Privacy Policy;"<h2><strong>SiteOne Landscape Supply, Ltd. Website Terms of Use</strong></h2><p><br /><span style=""font-size:11pt""><span style=""line-height:normal""><span style=""tab-stops:list .5in""><span style=""font-family:Calibri,sans-serif""><span style=""font-size:12.0pt""><span style=""font-family:&quot;Arial&quot;,sans-serif"">Last updated on October 24, 2024</span></span></span></span></span></span></p><p><span style=""font-size:11pt""><span style=""line-height:normal""><span style=""tab-stops:list .5in""><span style=""font-family:Calibri,sans-serif""><span style=""font-size:12.0pt""><span style=""font-family:&quot;Arial&quot;,sans-serif"">SiteOne Landscape Supply, Ltd., SiteOne.com, and its suppliers, agents and affiliates (collectively, ""SiteOne"", ""our"", ""us"" or ""we"") grants you access to our online services and websites, including without limitation, our websites located at <a href=""https://www.siteone.com/"" target=""_blank"">www.SiteOne.com</a> and <a href=""/en/projectservices"" target=""_blank"">p</a><a href=""https://projectservices.siteone.com/"">rojectservices.siteone.com</a>, and any content, functionality, and products and services offered on or through our online services, including without limitation SiteOne User Experience and SiteOne Bids and websites (collectively, the ""Website""), conditioned upon your acceptance of these terms of use (""Terms of Use""). </span></span></span></span></span></span></p><p><span style=""font-size:11pt""><span style=""line-height:normal""><span style=""tab-stops:list .5in""><span style=""font-family:Calibri,sans-serif""><span style=""font-size:12.0pt""><span style=""font-family:&quot;Arial&quot;,sans-serif"">PLEASE READ THESE TERMS OF USE CAREFULLY.  THESE TERMS OF USE CONSTITUTE A LEGALLY BINDING AGREEMENT BETWEEN YOU AND US, AND BY USING THE WEBSITE, YOU AGREE TO BE BOUND AND ABIDE BY THESE TERMS OF USE.  IF YOU DO NOT AGREE TO THESE TERMS OF USE, YOU MUST CEASE USING THE WEBSITE IMMEDIATELY.  </span></span></span></span></span></span></p><p><br /><span style=""font-size:11pt""><span style=""line-height:normal""><span style=""tab-stops:list .5in""><span style=""font-family:Calibri,sans-serif""><span style=""font-size:12.0pt""><span style=""font-family:&quot;Arial&quot;,sans-serif""><strong>Modifications to these Terms of Use.</strong>  We reserve the right, in our sole discretion, to modify these Terms of Use at any time without notice to you.  We will post all modifications to these Terms of Use on the Website, and they will become effective immediately upon being posted to the Website.  Your continued use of the Website following the posting of such modifications constitutes your acceptance of them.  Therefore, you should check the date of the last update, as identified at the top of these Terms of Use, each time that you visit the Website and review any modifications made since the last time that you visited it. </span></span></span></span></span></span></p><p><br /><span style=""font-size:11pt""><span style=""line-height:normal""><span style=""tab-stops:list .5in""><span style=""font-family:Calibri,sans-serif""><span style=""font-size:12.0pt""><span style=""font-family:&quot;Arial&quot;,sans-serif""><strong>Privacy Policy.</strong>  We will treat all personal information in accordance with our privacy policy, (the ""Privacy Policy"").  By using the Website, you consent to the privacy practices set forth in the Privacy Policy, which are incorporated by reference into these Terms of Use.</span></span></span></span></span></span></p><p><br /><span style=""font-size:11pt""><span style=""line-height:normal""><span style=""tab-stops:list .5in""><span style=""font-family:Calibri,sans-serif""><span style=""font-size:12.0pt""><span style=""font-family:&quot;Arial&quot;,sans-serif""><strong>Intellectual Property. </strong> The Website contains forms, content, information, trademarks, and other proprietary information and materials that belong to SiteOne and our licensors and that are protected by copyright, trademark and other intellectual property laws (collectively, ""Proprietary Materials"").  SiteOne retains ownership of all right, title and interest in all Proprietary Materials in all documents, text, images, interactive media, and software owned by SiteOne and/or its suppliers.</span></span></span></span></span></span></p><p><span style=""font-size:11pt""><span style=""line-height:normal""><span style=""tab-stops:list .5in""><span style=""font-family:Calibri,sans-serif""><span style=""font-size:12.0pt""><span style=""font-family:&quot;Arial&quot;,sans-serif"">SiteOne’s green and gray color scheme, the pentagonal number one, and ""SiteOne Landscape Supply"" are trademarks of SiteOne.</span></span></span></span></span></span></p><p><span style=""font-size:11pt""><span style=""line-height:normal""><span style=""tab-stops:list .5in""><span style=""font-family:Calibri,sans-serif""><span style=""font-size:12.0pt""><span style=""font-family:&quot;Arial&quot;,sans-serif"">You should assume that everything on the Website constitutes Proprietary Materials.  Unless otherwise expressly permitted by us in writing, you shall not copy, download, reproduce, distribute, publicly display, publicly perform, prepare derivative works of, or otherwise use or exploit Proprietary Materials.  Any commercial use of Proprietary Materials is strictly prohibited.  All rights not expressly granted herein are reserved to us and our licensors.  You shall be solely liable for, and fully indemnify us from, any modification, alteration, editing or other use of the Proprietary Materials in violation of these Terms of Use.    </span></span></span></span></span></span></p><p><br /><span style=""font-size:11pt""><span style=""line-height:normal""><span style=""tab-stops:list .5in""><span style=""font-family:Calibri,sans-serif""><span style=""font-size:12.0pt""><span style=""font-family:&quot;Arial&quot;,sans-serif""><strong>Use License. </strong> This Website has been established primarily for the benefit and use of SiteOne branches, customers and potential customers.  Not all products or services referred to may be available, and SiteOne may change the products or services described by this Website at any time.  This Website may include inaccuracies, and the information in this Website may be changed periodically.  Check with your local SiteOne branch before relying on any product-related information found in this Website.</span></span></span></span></span></span></p><p><span style=""font-size:11pt""><span style=""line-height:normal""><span style=""tab-stops:list .5in""><span style=""font-family:Calibri,sans-serif""><span style=""font-size:12.0pt""><span style=""font-family:&quot;Arial&quot;,sans-serif"">Individuals are permitted to view or electronically copy material published on this Website and to make print-outs thereof, solely for their personal information, provided that both the copyright notice and the permission notice appear thereon and provided that the materials are not modified.  SiteOne branches are permitted to electronically copy material published on this Website and to make print-outs thereof for the benefit and use by their customers and potential customers, provided that both the copyright notice and the permission notice appear thereon and provided that the materials are not modified.  Without the express written permission from SiteOne, you may not retransmit any files from this Website, or any modified versions thereof.</span></span></span></span></span></span></p><p><span style=""font-size:11pt""><span style=""line-height:normal""><span style=""tab-stops:list .5in""><span style=""font-family:Calibri,sans-serif""><span style=""font-size:12.0pt""><span style=""font-family:&quot;Arial&quot;,sans-serif"">You may not create a mirror version of this Website.  Except as expressly provided herein, the transmission of this Website material shall not be construed to grant a license of any type to any Proprietary Material.<br /><br />SiteOne in its sole discretion may restrict the Website to selected users.</span></span></span></span></span></span></p><p><br /><span style=""font-size:11pt""><span style=""line-height:normal""><span style=""tab-stops:list .5in""><span style=""font-family:Calibri,sans-serif""><span style=""font-size:12.0pt""><span style=""font-family:&quot;Arial&quot;,sans-serif""><strong>NO WARRANTIES.  TO THE FULLEST EXTENT PERMITTED BY LAW, SITEONE MAKE NO REPRESENTATION ABOUT THE SUITABILITY OF THE MATERIALS ON THIS WEBSITE FOR ANY PURPOSE.  ALL SUCH MATERIALS ARE PROVIDED ""AS IS"" AND ""AS AVAILABLE"" BASIS WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED.  SITEONE SPECIFICALLY DISCLAIMS ALL WARRANTIES AND CONDITIONS OF ANY KIND, WHETHER EXPRESS OR IMPLIED, STATUTORY, OR OTHERWISE, INCLUDING, WITHOUT LIMITATION, ALL WARRANTIES AND CONDITIONS OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE AND NON-INFRINGEMENT.  SITEONE, NOR ANY PERSON ASSOCIATION WITH US, MAKES ANY WARRANTY OR REPRESENTATION WITH RESPECT TO THE COMPLETENESS, SECURITY, RELIABILITY, QUALITY, ACCURACY, OR AVAILABILITY OF THE WEBSITE.  WITHOUT LIMITING THE FOREGOING, WE DO NOT REPRESENT OR WARRANT THAT THE WEBSITE, OR ITS CONTENT, OR ANY SERVICES OR ITEMS OBTAINED THROUGH THE WEBSITE WILL BE ACCURATE, RELIABLE, ERROR-FREE, OR UNINTERRUPTED, THAT DEFECTS WILL BE CORRECTED, THAT OUR SITE OR THE SERVER THAT MAKES IT AVAILABLE ARE FREE OF VIRUSES OR OTHER HARMFUL COMPONENTS, OR THAT THE WEBSITE OR ANY SERVICES OR ITEMS OBTAINED THROUGH THE WEBSITE WILL OTHERWISE MEET YOUR NEEDS OR EXPECTATIONS.  YOUR USE OF THIS WEBSITE, INCLUDING WITHOUT LIMITATION ANY PROPRIETARY MATERIALS CONTAINED THEREIN, IS SOLELY AT YOUR OWN RISK.    </strong></span></span></span></span></span></span></p><p><br /><span style=""font-size:11pt""><span style=""line-height:normal""><span style=""tab-stops:list .5in""><span style=""font-family:Calibri,sans-serif""><span style=""font-size:12.0pt""><span style=""font-family:&quot;Arial&quot;,sans-serif""><strong>EXCLUSION OF LIABILITY.  TO THE FULLEST EXTENT PERMITTED BY LAW, IN NO EVENT SHALL SITEONE AND ITS SUBSIDIARIES AND AFFILIATES, AND THEIR LICENSORS, SERVICE PROVIDERS, EMPLOYEES, AGENTS, OFFICERS, AND DIRECTORS BE LIABLE FOR DAMAGES OF ANY KIND, WHETHER BASED ON CONTRACT, TORT, STRICT LIABILITY OR OTHERWISE, EVEN IF ADVISED OF THE POSSIBILITY OF ANY SUCH DAMAGES, INCLUDING WITHOUT LIMITATION, DIRECT, INDIRECT, PUNITIVE, INCIDENTAL, SPECIAL OR CONSEQUENTIAL DAMAGES, UNDER ANY LEGAL THEORY ARISING OUT OF OR IN CONNECTION WITH YOUR ACTION OR INACTION IN CONNECTION WITH THE WEBSITE, INABILITY TO USE THE WEBSITE, ANY WEBSITES LINKED TO IT, ANY CONTENT, INCLUDING WITHOUT LIMITATION THE PROPRIETARY MATERIALS, ANY ERRORS OR OMISSIONS IN THE CONTENT OF THIS WEBSITE, ANY DAMAGE TO YOUR COMPUTER OR DATA OR ANY OTHER DAMAGE YOU MAY INCUR IN CONNECTION WITH THIS WEBSITE.  ANY CONTENT DOWNLOADED, UPLOADED OR OTHERWISE OBTAINED THROUGH THE USE OF OUR WEBSITE OR SOFTWARE IS DONE AT YOUR OWN DISCRETION AND RISK AND YOU WILL BE SOLELY LIABLE AND RESPONSIBLE FOR ANY DAMAGE TO YOUR COMPUTER SYSTEM OR BUSINESS OR LOSS OF DATA THAT RESULTS FROM THE DOWNLOAD OR UPLOAD OF ANY SUCH MATERIAL OR THE USE OF OUR WEBSITE OR SOFTWARE.</strong></span></span></span></span></span></span></p><p><span style=""font-size:11pt""><span style=""line-height:normal""><span style=""tab-stops:list .5in""><span style=""font-family:Calibri,sans-serif""><span style=""font-size:12.0pt""><span style=""font-family:&quot;Arial&quot;,sans-serif""><strong>SOME STATES AND/OR JURISDICTIONS DO NOT ALLOW THE EXCLUSION OR LIMITATION OF DIRECT, INDIRECT, INCIDENTAL, SPECIAL AND/OR CONSEQUENTIAL DAMAGES, SO THE ABOVE EXCLUSION MAY NOT APPLY TO YOU. </strong></span></span></span></span></span></span></p><p><br /><span style=""font-size:11pt""><span style=""line-height:normal""><span style=""tab-stops:list .5in""><span style=""font-family:Calibri,sans-serif""><span style=""font-size:12.0pt""><span style=""font-family:&quot;Arial&quot;,sans-serif""><strong>Links to Third Party Sites.</strong>  This Website may contain links to sites owned or operated by parties other than SiteOne.  Such links are provided for your reference only.  SiteOne does not control outside sites and is not responsible for their content.  SiteOne’s inclusion of links to an outside site does not imply any endorsement of the material on the site or, unless expressly disclosed otherwise, any sponsorship, affiliation or association with its owner, operator or sponsor, nor does SiteOne’s inclusion of the links imply that SiteOne is authorized to use any trade name, trademark, logo, legal or official seal or copyrighted symbol that may be reflected in the linked site. </span></span></span></span></span></span></p><p><br /><span style=""font-size:11pt""><span style=""line-height:normal""><span style=""tab-stops:list .5in""><span style=""font-family:Calibri,sans-serif""><span style=""font-size:12.0pt""><span style=""font-family:&quot;Arial&quot;,sans-serif""><strong>Uploaded Content. </strong> By submitting any content to SiteOne (including photos), via this Website or otherwise, you represent and warrant that: (i) you are the sole author and owner of the intellectual property rights thereto; (ii) all ""moral rights"" that you may have in such content have been voluntarily waived by you; and (iii) use of the content you supply does not violate these Terms of Use and will not cause injury to any person or entity.  You further agree and warrant that you shall not submit any content: (i) that is known by you to be false, inaccurate or misleading; (ii) that infringes any third party’s copyright, patent, trademark, trade secret or other proprietary rights or rights of publicity or privacy; (iii) that violates any law, statute, ordinance or regulation (including, but not limited to, those governing export control, consumer protection, unfair competition, anti-discrimination or false advertising); (iv) that is, or may reasonably be considered to be, defamatory, libelous, hateful, racially or religiously biased or offensive, unlawfully threatening or unlawfully harassing to any individual, partnership or corporation; (v) for which you were compensated or granted any consideration by any third party; or (vi) that contains any computer viruses, worms or other potentially damaging computer programs or files. </span></span></span></span></span></span></p><p><span style=""font-size:11pt""><span style=""line-height:normal""><span style=""tab-stops:list .5in""><span style=""font-family:Calibri,sans-serif""><span style=""font-size:12.0pt""><span style=""font-family:&quot;Arial&quot;,sans-serif"">You agree to indemnify and hold SiteOne (and its officers, directors, agents, subsidiaries, joint ventures, employees and third-party service providers), harmless from all claims, demands, and damages of every kind and nature, known and unknown including reasonable attorneys’ fees, arising out of a breach of your representations and warranties set forth in these Terms of Use, your violation of any law or the rights of a third party, and/or your use of the Website and any content, including without limitation any Proprietary Materials.  For any content that you submit, you grant SiteOne and its authorized third-party service providers a perpetual, irrevocable, royalty-free, transferable right and license to use, copy, modify, delete in its entirety, adapt, publish, translate, create derivative works from and/or sell and/or distribute such content and/or incorporate such content into any form, medium or technology throughout the world without compensation to you.</span></span></span></span></span></span></p><p><span style=""font-size:11pt""><span style=""line-height:normal""><span style=""tab-stops:list .5in""><span style=""font-family:Calibri,sans-serif""><span style=""font-size:12.0pt""><span style=""font-family:&quot;Arial&quot;,sans-serif"">All content (including photos and all data contained or appended to the computer file of such photos) that you submit may be used and shared with authorized third-parties at SiteOne’s sole discretion.  SiteOne reserves the right to change, condense or delete any content on this Website that SiteOne deems, in its sole discretion, to violate these Terms of Use.  SiteOne does not guarantee that you will have any recourse through SiteOne to edit or delete any content you have submitted.  You acknowledge that you, not SiteOne, are responsible for the contents of your submission.  None of the content that you submit shall be subject to any obligation of confidence on the part of SiteOne or third party service providers and their respective directors, officers and employees.</span></span></span></span></span></span></p><p><span style=""font-size:11pt""><span style=""line-height:normal""><span style=""tab-stops:list .5in""><span style=""font-family:Calibri,sans-serif""><span style=""font-size:12.0pt""><span style=""font-family:&quot;Arial&quot;,sans-serif"">SiteOne’s performance of these Terms of Use is subject to existing laws and legal process and nothing contained in these Terms of Use is in derogation of SiteOne’s right to comply with law enforcement requests or requirements relating to your use of this Website or information provided to or gathered by SiteOne with respect to such use.</span></span></span></span></span></span></p><p><br /><span style=""font-size:11pt""><span style=""line-height:normal""><span style=""tab-stops:list .5in""><span style=""font-family:Calibri,sans-serif""><span style=""font-size:12.0pt""><span style=""font-family:&quot;Arial&quot;,sans-serif""><strong>Employment Content.</strong>  SiteOne also may make employment information available through this Website. SiteOne is an equal opportunity employer. SiteOne provides  equal treatment with respect to employment without discrimination on the basis of any prohibited grounds set out in applicable human rights legislation. SiteOne’s policy relates to all phases of employment including recruitment, placement, promotion, training, demotion, transfer, layoff, recall and termination, rates of pay and participation in all company-sponsored employee activities.</span></span></span></span></span></span></p><p><br /><span style=""font-size:11pt""><span style=""line-height:normal""><span style=""tab-stops:list .5in""><span style=""font-family:Calibri,sans-serif""><span style=""font-size:12.0pt""><span style=""font-family:&quot;Arial&quot;,sans-serif""><strong>Product Orders. </strong> To access the Website or some of the resources it offers, you may be asked to provide certain registration details or other information.  It is a condition of your use of the Website that all the information you provide on the Website is correct, current, and complete.  </span></span></span></span></span></span></p><p><span style=""font-size:11pt""><span style=""line-height:normal""><span style=""tab-stops:list .5in""><span style=""font-family:Calibri,sans-serif""><span style=""font-size:12.0pt""><span style=""font-family:&quot;Arial&quot;,sans-serif"">If you wish to use any interactive tools provided on the Website or purchase products or services described on the Website, you will be asked to supply certain information applicable to your purchase, including, without limitation, credit card and other information; the Website may provide you a location to store your information and allow you to make a future purchase without re-entering information (a ""Account"").  You agree to pay all charges incurred by you and any users of your Account and your credit card (or other applicable payment mechanism) at the price(s) in effect when such charges are incurred.  You acknowledge that we may place a hold on your credit card for the purchase price of the charges incurred.  Submitting inaccurate, incomplete or incorrect information constitutes a breach of the Terms of Use.  By confirming your purchase at the end of the checkout process, you agree to accept and pay for the items, products and/or services that you have requested.  By using any of the interactive tools provided on the Website you expressly agree to comply with these Terms of Use.  </span></span></span></span></span></span></p><p><span style=""font-size:11pt""><span style=""line-height:normal""><span style=""tab-stops:list .5in""><span style=""font-family:Calibri,sans-serif""><span style=""font-size:12.0pt""><span style=""font-family:&quot;Arial&quot;,sans-serif"">SiteOne shall have no liability for any unauthorized access or use of your Account or payment method in connection with products purchased on this Website.  Acknowledgment of an order signifies that we received your order request, but it does not constitute acceptance of your order or a promise to fulfill your order.  The risk of loss and title for such titles pass to you upon SiteOne’s delivery of the items or products to the carrier.</span></span></span></span></span></span></p><p><span style=""font-size:11pt""><span style=""line-height:normal""><span style=""tab-stops:list .5in""><span style=""font-family:Calibri,sans-serif""><span style=""font-size:12.0pt""><span style=""font-family:&quot;Arial&quot;,sans-serif"">SiteOne cannot guarantee the availability of any particular product displayed on this Website.  SiteOne reserves the right, at its sole discretion, to: (i) refuse service and to terminate Accounts if SiteOne believes that customer conduct violates applicable law or these Terms of Use, is harmful to the interests of SiteOne, or for any other reason; (ii) limit the quantity of items purchased per person, per Account, per household and per order; and (iii) refuse or cancel any order you place.  These restrictions may be applied to the same Account, same credit card and/or the same billing and/or shipping address.</span></span></span></span></span></span></p><p><span style=""font-size:11pt""><span style=""line-height:normal""><span style=""tab-stops:list .5in""><span style=""font-family:Calibri,sans-serif""><span style=""font-size:12.0pt""><span style=""font-family:&quot;Arial&quot;,sans-serif"">Product prices offered on this Website may vary from other advertised prices due to varying conditions in different geographic markets.  The prices displayed on this Website are generally quoted in U.S. dollars and are valid and effective only within the United States, and such prices may not include shipping and handling or sales taxes, if applicable, which may be added to your total invoice price at checkout.  You are responsible for the payment of any shipping and handling charges and state and local sales or use taxes that may apply to your order.  SiteOne cannot guarantee that any content is accurate or complete, including price information and product specifications.  SiteOne reserves the right to revoke any stated offer and to correct any errors, inaccuracies or omissions (including after an order has been submitted and accepted).</span></span></span></span></span></span></p><p><br /><span style=""font-size:11pt""><span style=""line-height:normal""><span style=""tab-stops:list .5in""><span style=""font-family:Calibri,sans-serif""><span style=""font-size:12.0pt""><span style=""font-family:&quot;Arial&quot;,sans-serif""><strong>Account Security. </strong></span></span></span></span></span></span></p><p><span style=""font-size:11pt""><span style=""line-height:normal""><span style=""tab-stops:list .5in""><span style=""font-family:Calibri,sans-serif""><span style=""font-size:12.0pt""><span style=""font-family:&quot;Arial&quot;,sans-serif"">If you choose, or are provided with, a username, password, or any other piece of information as part of our security procedures, you must treat such information as confidential, and you must not disclose it to any other person or entity.</span></span></span></span></span></span></p><p><span style=""font-size:11pt""><span style=""line-height:normal""><span style=""tab-stops:list .5in""><span style=""font-family:Calibri,sans-serif""><span style=""font-size:12.0pt""><span style=""font-family:&quot;Arial&quot;,sans-serif"">You also acknowledge that your Account is personal to you and agree not to provide any other person with access to the Site or portions of it using your username, password, or other security information.  You agree to notify us immediately of any unauthorized access to or use of your username or password or any other breach of security.  You also agree to ensure that you exit from your account at the end of each session.  You should use particular caution when accessing your Account from a public or shared computer so that others are not able to view or record your password or other personal information.</span></span></span></span></span></span></p><p><span style=""font-size:11pt""><span style=""line-height:normal""><span style=""tab-stops:list .5in""><span style=""font-family:Calibri,sans-serif""><span style=""font-size:12.0pt""><span style=""font-family:&quot;Arial&quot;,sans-serif"">We have the right to disable any username, password, or other identifier, whether chosen by you or provided by us, at any time in our sole discretion for any or no reason, including if, in our opinion, you have violated any provision of these Terms of Use.</span></span></span></span></span></span></p><p><br /><span style=""font-size:11pt""><span style=""line-height:normal""><span style=""tab-stops:list .5in""><span style=""font-family:Calibri,sans-serif""><span style=""font-size:12.0pt""><span style=""font-family:&quot;Arial&quot;,sans-serif""><strong>Governing Law. Not applicable in Quebec:</strong>  You agree that these Terms of Use and your use of this Website are governed by the laws of the <strong>[Province of Ontario]</strong> and the federal laws of Canada applicable therein. You hereby consent to the exclusive jurisdiction and venue of the courts of the Province of Ontario in all disputes: (i) arising out of, relating to, or concerning this Website and/or these Terms of Use; (ii) in which this Website and/or these Terms of Use is an issue or a material fact; or (iii) in which this Website and/or these Terms of Use is referenced in a paper filed in a court, tribunal, agency or other dispute resolution organization. Use of this Website is unauthorized in any jurisdiction that does not give full effect to all provisions of these Terms of Use, including without limitation this paragraph and the warranty disclaimers and liability exclusions above.<p>SiteOne makes no representation that materials on this Website are appropriate or available for use in any particular jurisdiction. Use of this Website is unauthorized in any jurisdiction where all or any portion of this Website may violate any legal requirements, and you agree not to access this Website in any such jurisdiction. You are responsible for compliance with applicable laws. </p> </span></span></span></span></span></span></p><p><br /><span style=""font-size:11pt""><span style=""line-height:normal""><span style=""tab-stops:list .5in""><span style=""font-family:Calibri,sans-serif""><span style=""font-size:12.0pt""><span style=""font-family:&quot;Arial&quot;,sans-serif""><strong>ARBITRATION. NOT APPLICABLE IN QUEBEC: </strong> WITH THE PRIOR AGREEMENT OF SITEONE, ANY CLAIM, DISPUTE OR CONTROVERSY ARISING OUT OF, RELATING TO OR CONCERNING THIS WEBSITE AND/OR THESE TERMS OF USE SHALL BE DECIDED BY BINDING ARBITRATION IN ACCORDANCE WITH THE RULES OF THE AMERICAN ARBITRATION ASSOCIATION AND ANY SUCH ARBITRATION PROCEEDINGS SHALL BE BROUGHT AND HELD IN ATLANTA, GEORGIA, USA.  CLAIMS MAY ONLY BE BROUGHT IN YOUR INDIVIDUAL CAPACITY AND NOT AS A PURPORTED REPRESENTATIVE OF ANY CLASS.  THE DECISIONS OF THE ARBITRATORS SHALL BE BINDING AND CONCLUSIVE UPON ALL PARTIES INVOLVED AND JUDGMENT UPON ANY AWARD OF THE ARBITRATORS MAY BE ENTERED BY ANY COURT HAVING COMPETENT JURISDICTION.  THIS PROVISION SHALL BE SPECIFICALLY ENFORCEABLE IN ANY COURT OF COMPETENT JURISDICTION.</span></span></span></span></span></span></p><p><br /><span style=""font-size:11pt""><span style=""line-height:normal""><span style=""tab-stops:list .5in""><span style=""font-family:Calibri,sans-serif""><span style=""font-size:12.0pt""><span style=""font-family:&quot;Arial&quot;,sans-serif"">1<strong>Severability.</strong>  Any use of the Website in contravention of any provision of these Terms of Use is at your own risk and, if any part of these Terms of Use is invalid or unenforceable under applicable law, the invalid or unenforceable provision will be deemed superseded by a valid, enforceable provision that most closely matches the intent of the original provision and the remainder of the Terms of Use shall govern such use.</span></span></span></span></span></span></p><p><br /><span style=""font-size:11pt""><span style=""line-height:normal""><span style=""tab-stops:list .5in""><span style=""font-family:Calibri,sans-serif""><span style=""font-size:12.0pt""><span style=""font-family:&quot;Arial&quot;,sans-serif""><strong>Relationship of the Parties.</strong>  Neither these Terms of Use nor your use of the Website shall be construed to constitute either us or you as a partner, joint venture, employee or agent of the other party, nor shall either party hold itself out as such.  You do not have any right or authority to incur, assume or create, in writing or otherwise, any warranty, liability or other obligation of any kind, express or implied, in the name of or on behalf of us.</span></span></span></span></span></span></p><p><br /><span style=""font-size:11pt""><span style=""line-height:normal""><span style=""tab-stops:list .5in""><span style=""font-family:Calibri,sans-serif""><span style=""font-size:12.0pt""><span style=""font-family:&quot;Arial&quot;,sans-serif""><strong>Complete Agreement.</strong>  These Terms of Use and the Privacy Policy constitute the entire agreement between you and SiteOne with respect to this Website.  These Terms of Use supersedes all prior or contemporaneous communications and proposals, whether electronic, oral or written, between you and SiteOne with respect to this Website.  No modification of these Terms of Use shall be effective unless it is authored by SiteOne.  A printed version of these Terms of Use and/or of any notice given by SiteOne in electronic form shall be admissible in judicial or administrative proceedings based upon or relating to these Terms of Use or your use of this Website to the same extent and subject to the same conditions as other business documents and records originally generated and maintained by SiteOne in printed form.</span></span></span></span></span></span></p><p><br /><span style=""font-size:11pt""><span style=""line-height:normal""><span style=""tab-stops:list .5in""><span style=""font-family:Calibri,sans-serif""><span style=""font-size:12.0pt""><span style=""font-family:&quot;Arial&quot;,sans-serif""><strong>Waiver. </strong> The failure of SiteOne to exercise or enforce any right or provision of these Terms of Use shall not operate as a waiver of such right or provision.  Any waiver of these Terms of Use by SiteOne must be in writing and signed by an authorized representative of SiteOne.</span></span></span></span></span></span></p><p><br /><span style=""font-size:11pt""><span style=""line-height:normal""><span style=""tab-stops:list .5in""><span style=""font-family:Calibri,sans-serif""><span style=""font-size:12.0pt""><span style=""font-family:&quot;Arial&quot;,sans-serif""><strong>Contacting Us.</strong>  You may send to SiteOne comments, questions, suggestions or ideas relating to this Website at <a href=""https://www.siteone.com/contactus"">www.siteone.com/contactus</a>.  If you do, you agree that such information sent to SiteOne is not given in confidence, that SiteOne is not obligated to keep such information secret and that SiteOne is not obligated to respond.  SiteOne shall be free to use the information you send to SiteOne in any manner, including but not limited to developing, manufacturing, and marketing products based on such information.  SiteOne may also reproduce, disclose and distribute the information in your communication to others without limitation.</span></span></span></span></span></span></p>";termsAndConditionNewContentComponent  
+
+INSERT_UPDATE SiteoneLeftNavigationComponent;$contentCV[unique=true];uid[unique=true];name;linkName[lang=$lang];linkUrl;&componentRef
+;;siteoneLeftNavigationComponent1;Site one Left Navigation Privacy Policy;Privacy Policy;/privacypolicy;siteoneLeftNavigationComponent1
+;;siteoneLeftNavigationComponent2;Site one Left Navigation Terms;Website Terms & Conditions;/termsandconditions;siteoneLeftNavigationComponent2
+;;siteoneLeftNavigationComponent3;Terms and Conditions of Sale;Terms and Conditions of Sale;/salesterms;siteoneLeftNavigationComponent3
+;;siteoneLeftNavigationComponent4;Site one Left Navigation SMS;SMS Terms & Conditions;/sms-terms;siteoneLeftNavigationComponent4
+;;siteoneLeftNavigationComponent5;Site one Left Navigation Privacy;Do Not Sell My Personal Information;/privacyrequest;siteoneLeftNavigationComponent5
+
+INSERT_UPDATE SiteonePageTitleBannerComponent;$contentCV[unique=true];uid[unique=true];name;headline;&componentRef
+;;termsAndConditionPageTitleBannerComponent;termsAndCondition Page Title Component;Our Company;termsAndConditionPageTitleBannerComponent
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='termsAndCondition'];contentSlot(uid,$contentCV)[unique=true];;;
+;;Section2A-termsAndCondition;Section2A;;Section2ASlot-termsAndCondition;;;
+;;Section2B-termsAndCondition;Section2B;;Section2BSlot-termsAndCondition;;;
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef);;;
+;;Section2ASlot-termsAndCondition;Section2A Slot for termsAndCondition Page;true;termsAndConditionPageTitleBannerComponent,siteoneLeftNavigationComponent1,siteoneLeftNavigationComponent2,siteoneLeftNavigationComponent3,siteoneLeftNavigationComponent4,siteoneLeftNavigationComponent5;;;
+;;Section2BSlot-termsAndCondition;Section2B Slot for termsAndCondition Page;true;termsAndConditionNewContentComponent;;;
+
+### Terms and Conditions END ###
+
+### Terms of sale START ###
+
+INSERT_UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];name;title[lang=$lang];masterTemplate(uid,$contentCV);label;defaultPage[default='true'];approvalStatus(code)[default='approved'];homepage[default='false']
+;;salesterms;Terms and Conditions of Sale;Terms and Conditions of Sale;SiteOneCAContentPageTemplate;/salesterms;
+
+INSERT_UPDATE SiteoneParagaraphComponent;$contentCV[unique=true];uid[unique=true];name;headline;content;&componentRef
+;;salestermsNewContentComponent;salesterms Paragraph Component1;;"<h2><strong>Terms and Conditions of Sale</strong></h2><p><br /><span style=""font-size:11pt""><span style=""line-height:normal""><span style=""tab-stops:list .5in""><span style=""font-family:Calibri,sans-serif""><span style=""font-size:12.0pt""><span style=""font-family:&quot;Arial&quot;,sans-serif""><strong>1. GENERAL</strong></span></span></span></span></span></span></p><p><span style=""font-size:11pt""><span style=""line-height:normal""><span style=""tab-stops:list .5in""><span style=""font-family:Calibri,sans-serif""><span style=""font-size:12.0pt""><span style=""font-family:&quot;Arial&quot;,sans-serif"">All orders for products and services (“Product(s)”) received by SiteOne Landscape Supply Limited or any of its subsidiaries or affiliates (“SiteOne”) as submitted by the customer agreeing to these terms (the “Customer””), are subject to these Terms and Conditions of Sale (“Terms”), the terms and conditions on the SiteOne Order Acknowledgment (as defined herein), and any special terms and conditions specified on Product price sheets, each of the foregoing as provided in the unmodified form from SiteOne.</span></span></span></span></span></span></p><p><br /><span style=""font-size:11pt""><span style=""line-height:normal""><span style=""tab-stops:list .5in""><span style=""font-family:Calibri,sans-serif""><span style=""font-size:12.0pt""><span style=""font-family:&quot;Arial&quot;,sans-serif""><strong>2. ACCEPTANCE AND SUBMISSION</strong></span></span></span></span></span></span></p><p><span style=""font-size:11pt""><span style=""line-height:normal""><span style=""tab-stops:list .5in""><span style=""font-family:Calibri,sans-serif""><span style=""font-size:12.0pt""><span style=""font-family:&quot;Arial&quot;,sans-serif"">Orders are deemed accepted by SiteOne when SiteOne provides an acknowledgement of such order after Customer has placed the respective order (the “Order Acknowledgement”). The Order Acknowledgement will be provided by SiteOne upon receipt of the Customer’s purchase order or response to SiteOne’s quote if SiteOne accepts the respective order. Customer will also receive an email order confirmation, receipt, and “ready for pick-up/delivery” email when the respective order is ready. Once an Order Acknowledgement has been provided by SiteOne, all such accepted orders are non-cancellable and non-refundable. Prices and delivery dates stated on any Order Acknowledgment shall prevail in the event of a discrepancy between it and the Customer’s written order; provided that, Customer acknowledges and agrees that any such delivery dates are estimates only and will not be binding upon SiteOne. Customer acknowledges and agrees that some orders may require a deposit or downpayment before SiteOne will process the order. The respective deposit amount will be collected at the time of order submission. If the Customer cancels the respective order, SiteOne may elect, in its sole discretion, to retain the deposit amount in its entirety, and Customer acknowledges and agrees that, if SiteOne elects to retain the deposit, the respective deposit amount will be forfeited and non-refundable. If SiteOne cancels the order, SiteOne will refund the deposit amount to Customer. SiteOne determines the amount of the deposit at the time of purchase, which may range from ten percent (10%) to one hundred percent (100%) of the respective order total. Orders may be placed through SiteOne’s customer account portal (the “Portal”), whereby Customer may be required to create a login and password to access such Portal and place orders therein. Customer represents and warrants that Customer will use a unique username and password to access the Portal. Customer is responsible for keeping its username and password confidential and is responsible for all uses of Customer’s account. To maintain account security, SiteOne recommends that Customer changes its password regularly and whenever Customer reasonably believes that its password may have been compromised. Customer must immediately notify SiteOne of any unauthorized access to Customer’s account, or if Customer suspects that its account has been compromised. SiteOne will not manage or have access to Customer’s password, so SiteOne is unable to retrieve the password if misplaced. Customer agrees that it is responsible for any misuse of its account, even if Customer is unaware of the misuse. Customer may also be liable to us or third parties for any misuse of the Portal through its account. Customer may not use anyone else’s account unless Customer has obtained such party or individual’s prior, written consent. For the sake of clarity, Customer may also place orders as a guest without creating an account. </span></span></span></span></span></span></p><p><br /><span style=""font-size:11pt""><span style=""line-height:normal""><span style=""tab-stops:list .5in""><span style=""font-family:Calibri,sans-serif""><span style=""font-size:12.0pt""><span style=""font-family:&quot;Arial&quot;,sans-serif""><strong>3. PROMOTIONAL OFFERINGS </strong></span></span></span></span></span></span></p><p><span style=""font-size:11pt""><span style=""line-height:normal""><span style=""tab-stops:list .5in""><span style=""font-family:Calibri,sans-serif""><span style=""font-size:12.0pt""><span style=""font-family:&quot;Arial&quot;,sans-serif"">From time to time, SiteOne may offer certain promotional purchases, flash sales or holiday sales (the “Promotional Offerings”). Customer acknowledges and agrees that any such Promotional Offerings are offers only and are not considered a sale or completed transaction unless customer pays for such Promotional Offerings at the time the order is placed by using a valid credit card. Promotional Offerings are subject to a close-by date, to be selected by SiteOne in its sole discretion, which is the date by which the Promotional Offerings must be paid for in full by customer, otherwise customer will be responsible for remitting the full, non-discounted purchase price for the respective Products. For example, if a Black Friday sale offers a 25% discount and has a close-by date of December 15th, all Promotional Offerings must be paid for in full by customer by December 15th, or the customer will forfeit the respective 25% discount and customer will be responsible for the entire purchase price of the respective Products and the Promotional Offering will be removed and void. Promotional Offerings are available for online purchase only. SiteOne may discontinue or revise Promotional Offerings at any time without notice. </span></span></span></span></span></span></p><p><br /><span style=""font-size:11pt""><span style=""line-height:normal""><span style=""tab-stops:list .5in""><span style=""font-family:Calibri,sans-serif""><span style=""font-size:12.0pt""><span style=""font-family:&quot;Arial&quot;,sans-serif""><strong>4. PRICES</strong></span></span></span></span></span></span></p><p><span style=""font-size:11pt""><span style=""line-height:normal""><span style=""tab-stops:list .5in""><span style=""font-family:Calibri,sans-serif""><span style=""font-size:12.0pt""><span style=""font-family:&quot;Arial&quot;,sans-serif"">The Customer shall pay the prices quoted by SiteOne or associated with the listed Product, plus (i) applicable taxes (including, without limiting the foregoing, GST/HST, Quebec sales tax and provincial sales tax), (ii) other charges stated in any special terms and conditions for a specific Product, and (iii) where applicable, all charges for Customer-requested special packaging, design and specifications. Prices are subject to adjustment without notice to conform to prices in effect on the date of order shipment and apply only to the specific Products ordered. All the pricing provided in SiteOne’s quote and/or Order Acknowledgment is based on the assumption that SiteOne’s raw material (including compounds), energy, labor, and transportation costs (including tariffs/duties) will remain relatively stable for the duration of the shipments. SiteOne reserves the right to modify prices for accepted purchase orders upon a material increase in any of such costs and the parties agree to negotiate in good faith any such price increases.</span></span></span></span></span></span></p><p><br /><strong><span style=""font-size:11pt""><span style=""line-height:normal""><span style=""tab-stops:list .5in""><span style=""font-family:Calibri,sans-serif""><span style=""font-size:12.0pt""><span style=""font-family:&quot;Arial&quot;,sans-serif"">5. PAYMENT</span></span></span></span></span></span></strong></p><p><span style=""font-size:11pt""><span style=""line-height:normal""><span style=""tab-stops:list .5in""><span style=""font-family:Calibri,sans-serif""><span style=""font-size:12.0pt""><span style=""font-family:&quot;Arial&quot;,sans-serif"">Unless specific credit terms are approved by SiteOne, all payments by credit card must be made in advance of shipment of the Products. If credit terms are approved, unless otherwise specified in the Order Acknowledgment, payment shall be due thirty (30) days from the date of invoice. A FINANCE CHARGE OF THE LESSER OF 1.5% PER MONTH OR THAT WHICH IS PERMITTED BY APPLICABLE LAW WILL BE ADDED TO THE UNPAID BALANCE ON ALL ACCOUNTS NOT PAID IN FULL ON OR BEFORE THE DUE DATE. THE MAXIMUM FINANCE CHARGE IS EQUIVALENT TO AN ANNUAL PERCENTAGE RATE OF 18%. Accounts not paid according to established credit or payment terms shall be considered in default, whereupon the entire account shall become immediately due and payable without notice or demand.</span></span></span></span></span></span></p><p><span style=""font-size:11pt""><span style=""line-height:normal""><span style=""tab-stops:list .5in""><span style=""font-family:Calibri,sans-serif""><span style=""font-size:12.0pt""><span style=""font-family:&quot;Arial&quot;,sans-serif"">Credit approval is subject to revocation in SiteOne’s sole discretion, including upon discovery of changes in the Customer’s financial condition, previously undisclosed information, or other reasons which SiteOne, in good faith, feels adversely affect the credit agreement. Stoppage of the product’s delivery while in transit is authorized in the event of a revocation of credit.</span></span></span></span></span></span></p><p><br /><span style=""font-size:11pt""><span style=""line-height:normal""><span style=""tab-stops:list .5in""><span style=""font-family:Calibri,sans-serif""><span style=""font-size:12.0pt""><span style=""font-family:&quot;Arial&quot;,sans-serif""><strong>6. DELIVERY AND SHIPMENT</strong></span></span></span></span></span></span></p><p><span style=""font-size:11pt""><span style=""line-height:normal""><span style=""tab-stops:list .5in""><span style=""font-family:Calibri,sans-serif""><span style=""font-size:12.0pt""><span style=""font-family:&quot;Arial&quot;,sans-serif"">Transportation terms and charges shall be according to the special terms and conditions stated on price sheets or SiteOne quotes provided in writing by SiteOne for each particular Product. Delivery dates specified on the Order Acknowledgment are approximate only. SiteOne’s responsibility for transportation shall be limited to shipping Products to Customer. All costs of delivery are the responsibility of Customer and are in addition to the fees due for the Product. Customer is responsible for making independent arrangements and for contacting Customer’s sales representative for a delivery quotation. Due to circumstances beyond SiteOne’s control, many jobsite deliveries are not able to be serviced directly by SiteOne, and LTL orders on fragile items may not be accepted. Any excess costs for transportation, including special handling costs, will be charged to the Customer, in addition to above-mentioned prices. Risk of loss, damage, and title transfers pursuant to the INCOTERMS (2010) or shipping terms applicable for each Product shipment, which may be set forth in the Order Acknowledgement; provided, if the foregoing are not determinable, then risk of loss, damage, and title transfer once tendered by SiteOne to the applicable carrier. Other than any express, limited warranty claims, where applicable and offered, Customer may have related to a Product, all Customer acceptance claims must be received by SiteOne in writing, within five (5) days from date of delivery. To the extent permitted by applicable law, delay or refusal to accept delivery without just cause is deemed a default by the Customer of these Terms.  </span></span></span></span></span></span></p><p><br /><span style=""font-size:11pt""><span style=""line-height:normal""><span style=""tab-stops:list .5in""><span style=""font-family:Calibri,sans-serif""><span style=""font-size:12.0pt""><span style=""font-family:&quot;Arial&quot;,sans-serif""><strong>7. QUANTITY TOLERANCE</strong></span></span></span></span></span></span></p><p><span style=""font-size:11pt""><span style=""line-height:normal""><span style=""tab-stops:list .5in""><span style=""font-family:Calibri,sans-serif""><span style=""font-size:12.0pt""><span style=""font-family:&quot;Arial&quot;,sans-serif"">Quantities shall be subject to standard industry shipping tolerances or other special terms and conditions of sale for that Product. The quantity stated on invoice will be final quantity shipped. Customer must state any shortage in writing on the carrier’s freight receipt at time of delivery. Customer claims for shipping shortages must be received by SiteOne in writing, within ten (10) business days from date of invoice.</span></span></span></span></span></span></p><p><br /><span style=""font-size:11pt""><span style=""line-height:normal""><span style=""tab-stops:list .5in""><span style=""font-family:Calibri,sans-serif""><span style=""font-size:12.0pt""><span style=""font-family:&quot;Arial&quot;,sans-serif""><strong>8. CANCELLATION</strong></span></span></span></span></span></span></p><p><span style=""font-size:11pt""><span style=""line-height:normal""><span style=""tab-stops:list .5in""><span style=""font-family:Calibri,sans-serif""><span style=""font-size:12.0pt""><span style=""font-family:&quot;Arial&quot;,sans-serif"">Except as otherwise approved by SiteOne in its sole discretion, all orders for Products are non-cancellable, non-refundable. Customer shall pay a restocking and cancellation fee as a percentage of the order price for each Product. Products completed or in process at time of requested cancellation are subject to a cancellation charge of 100% minus the scrap value of the Products as solely determined by SiteOne.</span></span></span></span></span></span></p><p><br /><span style=""font-size:11pt""><span style=""line-height:normal""><span style=""tab-stops:list .5in""><span style=""font-family:Calibri,sans-serif""><span style=""font-size:12.0pt""><span style=""font-family:&quot;Arial&quot;,sans-serif""><strong>9. RETURNS</strong></span></span></span></span></span></span></p><p><span style=""font-size:11pt""><span style=""line-height:normal""><span style=""tab-stops:list .5in""><span style=""font-family:Calibri,sans-serif""><span style=""font-size:12.0pt""><span style=""font-family:&quot;Arial&quot;,sans-serif"">SiteOne’s return policy is available at https://www.siteone.com/en/returns and is incorporated herein by reference. Please review the linked-to return policy for all information on in-store and online returns. </span></span></span></span></span></span></p><p><br /><strong><span style=""font-size:11pt""><span style=""line-height:normal""><span style=""tab-stops:list .5in""><span style=""font-family:Calibri,sans-serif""><span style=""font-size:12.0pt""><span style=""font-family:&quot;Arial&quot;,sans-serif"">10. ERROR, CONTRADICTION OF TERMS, ADJUDICATION</span></span></span></span></span></span></strong></p><p><span style=""font-size:11pt""><span style=""line-height:normal""><span style=""tab-stops:list .5in""><span style=""font-family:Calibri,sans-serif""><span style=""font-size:12.0pt""><span style=""font-family:&quot;Arial&quot;,sans-serif"">SiteOne reserves the right to correct any clerical or stenographic error made in the preparation of Order Acknowledgments and/or invoices. In the event any of these Terms are declared invalid by a court of competent jurisdiction, all other terms and conditions contained herein shall remain in full force and effect.</span></span></span></span></span></span></p><p><br /><span style=""font-size:11pt""><span style=""line-height:normal""><span style=""tab-stops:list .5in""><span style=""font-family:Calibri,sans-serif""><span style=""font-size:12.0pt""><span style=""font-family:&quot;Arial&quot;,sans-serif""><strong>11. DISCLAIMERS</strong></span></span></span></span></span></span></p><p><span style=""font-size:11pt""><span style=""line-height:normal""><span style=""tab-stops:list .5in""><span style=""font-family:Calibri,sans-serif""><span style=""font-size:12.0pt""><span style=""font-family:&quot;Arial&quot;,sans-serif"">(a) Customer understands and acknowledges that, except with respect to SiteOne private labeled products, SiteOne only sells third party manufactured Products and that SiteOne does not manufacture any of the Products provided hereunder. Any warranties offered by SiteOne with respect to the private labeled products will be included within the documentation for the respective private labeled products and such warranties are, to the extent permitted by applicable law, the sole and exclusive warranties offered by SiteOne with respect to such private labeled products. Accordingly, SiteOne does not make any warranties regarding, and shall have no obligation with respect to, any Products purchased by Customer hereunder, including without limitation, those Products that: (i) are not manufactured by SiteOne; (ii) have been repaired or altered by someone other than SiteOne; (iii) have been subject to misuse, abuse, neglect, intentional misconduct, accident, Customer or third party negligence, unauthorized modification or alteration, use beyond rated capacity, a force majeure event, or improper, or a lack of, maintenance; (iii) are comprised of materials provided by, or designed pursuant to instructions from, Customer; (iv) have failed due to ordinary wear and tear; or (v) have been exposed to adverse operating or environmental conditions. Third-party Products are warranted only to the extent of the original manufacturer’s warranty, if any, and to the extent such manufacturer permits SiteOne to pass any third-party warranty through to Customer.</span></span></span></span></span></span></p><p><span style=""font-size:11pt""><span style=""line-height:normal""><span style=""tab-stops:list .5in""><span style=""font-family:Calibri,sans-serif""><span style=""font-size:12.0pt""><span style=""font-family:&quot;Arial&quot;,sans-serif"">(b) Customer is solely responsible for determining the fitness and suitability of Products for the use contemplated by Customer. Customer shall ensure that (i) the Products are used only for the purposes and in the manner for which they were designed and supplied, (ii) all persons likely to use or come into contact with the Products receive appropriate training and copies of applicable instructions and documentation supplied by SiteOne, (iii) all third parties who use or may be affected by or rely upon the Products are given full and clear warning of any hazards associated with them or limitations of their effectiveness and that safe working practices are adopted and complied with, (iv) any warning notices displayed on the Products are not removed or obscured, (v) any third party to whom the Products are supplied agrees not to remove or obscure such warning notices. Customer assumes all responsibility for any loss, damage, or injury to persons or property arising out of, connected with, or resulting from the use of Products, either alone or in combination with other Products or components.</span></span></span></span></span></span></p><p><span style=""font-size:11pt""><span style=""line-height:normal""><span style=""tab-stops:list .5in""><span style=""font-family:Calibri,sans-serif""><span style=""font-size:12.0pt""><span style=""font-family:&quot;Arial&quot;,sans-serif"">(c) Some jurisdictions (such as the province of Quebec) do not allow limitations or restrictions on implied or statutory warranty, so the below limitation may not apply to Customer if prohibited by applicable law. THE WARRANTIES OFFERED BY SITEONE FOR THE PRIVATE LABELED PRODUCTS AND THE WARRANTIES OFFERED BY THE APPLICABLE THIRD PARTY MANUFACTURER FOR ALL OTHER PRODUCTS, WHERE APPLICABLE, ARE THE SOLE AND EXCLUSIVE WARRANTIES WITH RESPECT TO PRODUCTS, AND ARE IN LIEU OF AND EXCLUDE ALL OTHER WARRANTIES OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING, WITHOUT LIMITATION, ANY WARRANTY AGAINST INFRINGEMENT, AND ALL IMPLIED WARRANTIES OF MERCHANTABILITY, USAGE OF TRADE, AND FITNESS FOR A PARTICULAR PURPOSE.  THE REMEDIES PROVIDED IN THIS SECTION 11 ARE CUSTOMER’S SOLE REMEDIES FOR ANY AND ALL CLAIMS ARISING FROM OR RELATED TO PRODUCTS AND MUST BE MADE BY CUSTOMER DIRECTLY WITH THE THIRD-PARTY MANUFACTURER, AND NOT SITEONE. </span></span></span></span></span></span></p><p><span style=""font-size:11pt""><span style=""line-height:normal""><span style=""tab-stops:list .5in""><span style=""font-family:Calibri,sans-serif""><span style=""font-size:12.0pt""><span style=""font-family:&quot;Arial&quot;,sans-serif"">(d) CUSTOMER ACKNOWLEDGES AND AGREES THAT FOR HARDSCAPE SALES, INCLUDING WITHOUT LIMITATION, PRODUCTS CONTAINING NATURAL STONE, SUCH PRODUCTS VARY AND MAY BE DIFFERENT IN SIZE, SHAPE, COLOR AND OTHER AESTHETIC FEATURES, INCLUDING DEVIATING FROM THE PRODUCT IMAGE FEATURED. CUSTOMER ACKNOWLEDGES AND AGREES THAT SITEONE IS UNABLE TO CONTROL ANY DISCREPANCIES IN HARDSCAPE PRODUCTS AND THAT ALL SUCH PRODUCTS ARE PROVIDED AS-IS, AND MAY VARY FROM THE PRODUCT IMAGE FEATURED IN THE STORE AND/OR ON SITEONE’S WEBSITE. FURTHER, CUSTOMER ACKNOWLEDGES AND AGREES THAT NATURAL STONE IS A RELATIVELY HARD, NATURALLY FORMED MINERAL OR PETRIFIED MATTER, PRODUCED IN NATURE. THEREFORE, CONSIDERABLE VARIATIONS INCLUDING, BUT NOT LIMITED TO, COLOR, TEXTURE, SIZE, AND CLEFT WILL OCCUR IN NATURAL STONE. SAMPLES, SAMPLE PANELS, BROCHURES, PHOTOGRAPHS, COMPUTER-GENERATED PICTURES, AND ITEMS VIEWED ON THE INTERNET ARE PROVIDED FOR CONVENIENCE ONLY, AND MAY BE, IN SOME MEASURE, DIFFERENT FROM THE STONE THAT CUSTOMER ACTUALLY RECEIVES. LABORATORY TESTS, IF CONDUCTED, ARE PERFORMED ON SMALL SAMPLES AND CANNOT BE TOTALLY ACCURATE BECAUSE OF THE LIMITED SCALE OF THE TESTS. CUSTOMER MAY NOT RETURN THE HARDSCAPE PRODUCTS DUE TO ANY DEVIATION IN SIZE, COLOR AND/OR SHAPE. NATURAL STONE PRODUCTS ARE PROVIDED TO CUSTOMER “AS-IS,” WITH ALL FAULTS, AND WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS, STATUTORY OR IMPLIED, INCLUDING, BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE. ALL NATURAL STONE IS SOLD AS A RAW MATERIAL AND IS NOT SOLD AS AN INSTALLED PRODUCT. LICENSED INSTALLERS AND COMPANIES THAT DESIGN INSTALLATION SYSTEMS WILL WARRANTY INSTALLATIONS AS THEY SEE FIT AND CUSTOMER ACKNOWLEDGES AND AGREES THAT SITEONE DOES NOT MAKE ANY WARRANTIES REGARDING INSTALLATION OF SUCH PRODUCTS. SITEONE SHALL NOT BE LIABLE OR RESPONSIBLE FOR ANY LOSS RESULTING FROM OR ARISING OUT OF ANY THIRD-PARTY INSTALLATION PROVIDERS. ACID AND/OR CHEMICAL SEALERS AND CLEANERS ARE NOT RECOMMENDED BECAUSE OF THE INABILITY OF THE CUSTOMER TO CONTROL USE. CUSTOMER ACCEPTS ALL RISKS RESULTING THEREFROM. CUSTOMER ACKNOWLEDGES AND AGREES THAT CUSTOMER WILL CONSULT THE APPLICABLE MANUFACTURER FOR DETAILS ON THE USE OF SUCH A PRODUCT. THIS DISCLAIMER INCLUDES WITHOUT LIMITATION, ALL ICE MELT PRODUCTS. CUSTOMER ACKNOWLEDGES AND AGREES THAT CUSTOMER WILL USE SAFETY GLASSES AND GLOVES TO PROTECT CUSTOMER’S EYES HANDS WHEN CUTTING AND TRIMMING STONE. CUSTOMER ACKNOWLEDGES AND AGREES THAT CLOTHING THAT COVERS ALL EXPOSED SKIN SHOULD BE WORN WHEN WORKING WITH SUCH PRODUCTS. CUSTOMER FURTHER ACKNOWLEDGES AND AGREES THAT DRY SAWING NATURAL STONE IS NOT RECOMMENDED SINCE THE DUST MAY CONTAIN CRYSTALLINE SILICA WHICH MAY BE A POTENTIAL HEALTH HAZARD AND THAT AS SUCH, USE OF A WET SAW IS RECOMMENDED.</span></span></span></span></span></span></p><p><br /><span style=""font-size:11pt""><span style=""line-height:normal""><span style=""tab-stops:list .5in""><span style=""font-family:Calibri,sans-serif""><span style=""font-size:12.0pt""><span style=""font-family:&quot;Arial&quot;,sans-serif""><strong>12. INDEMNITY AND LIMITATION OF DAMAGES</strong></span></span></span></span></span></span></p><p><span style=""font-size:11pt""><span style=""line-height:normal""><span style=""tab-stops:list .5in""><span style=""font-family:Calibri,sans-serif""><span style=""font-size:12.0pt""><span style=""font-family:&quot;Arial&quot;,sans-serif"">(a) Not applicable in Quebec: Customer shall defend, indemnify and hold harmless SiteOne, its third-party suppliers, and their respective officers, directors, employees, subcontractors and agents (each individually, an ""Indemnified Party"") from and against any and all claims, suits, liabilities, damages, settlements, charges, taxes and any other losses or expenses (including reasonable attorneys’ fees) (collectively ""Claims"") for physical injury to, illness or death of, any third party regardless of status and damage to or destruction of any tangible property which the third party may sustain or incur, to the extent such Claims relate to or arise out of the Products; except for such Claims relating to or arising out of a final judgment of gross negligence or willful misconduct of the Indemnified Party. In any action, suit or proceeding brought against an Indemnified Party by reason of any such claim as specified above, Customer will defend such action, suit or proceeding by counsel of its choice, at the sole expense of Customer. Indemnified Party will provide Customer with written notice of the claim. Customer will not settle any Claims without Indemnified Party’s prior, written consent to settlement. </span></span></span></span></span></span></p><p><span style=""font-size:11pt""><span style=""line-height:normal""><span style=""tab-stops:list .5in""><span style=""font-family:Calibri,sans-serif""><span style=""font-size:12.0pt""><span style=""font-family:&quot;Arial&quot;,sans-serif"">(B) TO THE FULLEST EXTENT PERMITTED BY LAW, SITEONE SHALL NOT BE LIABLE FOR ANY INDIRECT, SPECIAL, PUNITIVE, DELAY/LIQUIDATED, INCIDENTAL, OR CONSEQUENTIAL DAMAGES, INCLUDING BUT NOT LIMITED TO, THE LOSS OF PROFITS OR REVENUE, LOSS OF USE OF ANY EQUIPMENT, PRODUCT VARIATIONS, INABILITY TO INSTALL PRODUCTS AS INTENDED, DOWN TIME COSTS, LOSS OF OPPORTUNITY, LOSS OF GOODWILL, COST OF PURCHASED OR REPLACEMENT PRODUCTS, OR CLAIMS OF CUSTOMERS OF ANY THIRD PARTY FOR SUCH DAMAGES.</span></span></span></span></span></span></p><p><span style=""font-size:11pt""><span style=""line-height:normal""><span style=""tab-stops:list .5in""><span style=""font-family:Calibri,sans-serif""><span style=""font-size:12.0pt""><span style=""font-family:&quot;Arial&quot;,sans-serif"">(C) TO THE FULLEST EXTENT PERMITTED BY LAW, IN NO EVENT SHALL SITEONE’S TOTAL, AGGREGATE LIABILITY ARISING OUT OF OR RELATED TO THESE TERMS AND/OR PRODUCTS, WHETHER ARISING OUT OF OR RELATED TO BREACH OF CONTRACT, TORT (INCLUDING NEGLIGENCE) OR OTHERWISE, EXCEED THE TOTAL OF THE AMOUNT PAID BY CUSTOMER FOR THE APPLICABLE PRODUCTS UNDER THE APPLICABLE ORDER SUBJECT TO THE CLAIM AND PURCHASED IN THREE (3) MONTHS PRECEDING THE EVENT GIVING RISE TO THE CLAIM.</span></span></span></span></span></span></p><p><br /><span style=""font-size:11pt""><span style=""line-height:normal""><span style=""tab-stops:list .5in""><span style=""font-family:Calibri,sans-serif""><span style=""font-size:12.0pt""><span style=""font-family:&quot;Arial&quot;,sans-serif""><strong>13. CHOICE OF LAW; VENUE</strong></span></span></span></span></span></span></p><p><span style=""font-size:11pt""><span style=""line-height:normal""><span style=""tab-stops:list .5in""><span style=""font-family:Calibri,sans-serif""><span style=""font-size:12.0pt""><span style=""font-family:&quot;Arial&quot;,sans-serif"">Not applicable to Quebec residents: These Terms and the sale of Products are governed and interpreted by the laws and regulations of the Province of <Strong>[Ontario]</Strong>and the federal laws of Canada applicable therein. The courts of the Province of Ontario shall have the exclusive jurisdiction and venue over all disputes arising under these Terms. The application of the United Nations Convention on Contracts for the International Sale of Goods does not apply.</span></span></span></span></span></span></p><p><br /><span style=""font-size:11pt""><span style=""line-height:normal""><span style=""tab-stops:list .5in""><span style=""font-family:Calibri,sans-serif""><span style=""font-size:12.0pt""><span style=""font-family:&quot;Arial&quot;,sans-serif""><strong>14. MISCELLANEOUS</strong></span></span></span></span></span></span></p><p><span style=""font-size:11pt""><span style=""line-height:normal""><span style=""tab-stops:list .5in""><span style=""font-family:Calibri,sans-serif""><span style=""font-size:12.0pt""><span style=""font-family:&quot;Arial&quot;,sans-serif"">(a) SiteOne shall not be liable for failure to meet its obligations set forth in the Terms if such failure is a result of circumstances beyond SiteOne’s control.</span></span></span></span></span></span></p><p><span style=""font-size:11pt""><span style=""line-height:normal""><span style=""tab-stops:list .5in""><span style=""font-family:Calibri,sans-serif""><span style=""font-size:12.0pt""><span style=""font-family:&quot;Arial&quot;,sans-serif"">(b) Any designs, manufacturing drawings or other information submitted to Customer remain the exclusive property of SiteOne or the applicable third-party manufacturer. Customer shall not, without SiteOne’s prior written consent, copy such information or disclose such information to a third party.</span></span></span></span></span></span></p><p><span style=""font-size:11pt""><span style=""line-height:normal""><span style=""tab-stops:list .5in""><span style=""font-family:Calibri,sans-serif""><span style=""font-size:12.0pt""><span style=""font-family:&quot;Arial&quot;,sans-serif"">(c) These Terms and the Order Acknowledgement constitute the entire agreement between the parties and supersede all other communications between the parties relating to the subject matter of these Terms. SiteOne’s quotations are offers that may only be accepted in full. No conditions, usage or trade, course of dealing or performance, understanding or agreement purporting to modify, vary, explain, reject or supplement these Terms or Order Acknowledgement shall be binding unless made in writing and signed by both parties, expressly and specifically referencing these Terms, and no modification or objection shall be caused by SiteOne’s receipt, acknowledgment or acceptance of purchase orders, shipping instruction forms, or other documentation containing different or additional terms to those set forth herein.</span></span></span></span></span></span></p><p><span style=""font-size:11pt""><span style=""line-height:normal""><span style=""tab-stops:list .5in""><span style=""font-family:Calibri,sans-serif""><span style=""font-size:12.0pt""><span style=""font-family:&quot;Arial&quot;,sans-serif"">((d) Customer represents and warrants that it is entering into and accepting these Terms and receiving the Products for business purposes only and it (i) does not operate as a sole proprietor that would be considered a consumer in Quebec, (ii) is not in the principal business of fishing and farming operations in Alberta, Saskatchewan or Prince Edward Island, and (iii) does not engage in retail hire-purchase arrangements in Manitoba.</span></span></span></span></span></span></p><p><span style=""font-size:11pt""><span style=""line-height:normal""><span style=""tab-stops:list .5in""><span style=""font-family:Calibri,sans-serif""><span style=""font-size:12.0pt""><span style=""font-family:&quot;Arial&quot;,sans-serif"">(e) Customer shall comply with applicable laws and regulations relating to anti-corruption, including, without limitation, (i) the United States Foreign Corrupt Practices Act (FCPA) (15 U.S.C. §§78dd-1, et. seq.) irrespective of the place of performance, and (ii) laws and regulations implementing the Organization for Economic Cooperation and Development’s Convention on Combating Bribery of Foreign Public Officials in International Business Transactions, the U.N. Convention Against Corruption, and the Inter-American Convention Against Corruption in Customer’s country or any country where delivery of Products will occur.</span></span></span></span></span></span></p><p><span style=""font-size:11pt""><span style=""line-height:normal""><span style=""tab-stops:list .5in""><span style=""font-family:Calibri,sans-serif""><span style=""font-size:12.0pt""><span style=""font-family:&quot;Arial&quot;,sans-serif"">(f) Customer acknowledges that this order and the performance thereof are subject to compliance with any and all applicable Canadian laws, regulations, or orders. Customer agrees to comply with all such laws, regulations, and orders. Customer further agrees that if the export laws are applicable, it will not disclose or re-export any technical data received under this order to any countries for which the United States government requires an export license or other supporting documentation at the time of export or transfer, unless Customer has obtained prior written authorization from the United States Office of Export Control or other authority responsible for such matters. </span></span></span></span></span></span></p><p><span style=""font-size:11pt""><span style=""line-height:normal""><span style=""tab-stops:list .5in""><span style=""font-family:Calibri,sans-serif""><span style=""font-size:12.0pt""><span style=""font-family:&quot;Arial&quot;,sans-serif"">(g) No waiver by either party with respect to any breach or default or of any right or remedy and no course of dealing, shall be deemed to constitute a continuing waiver of any other breach or default or of any other right or remedy, unless such waiver is expressed in a writing signed by both parties, specifically referencing these Terms.</span></span></span></span></span></span></p><p><span style=""font-size:11pt""><span style=""line-height:normal""><span style=""tab-stops:list .5in""><span style=""font-family:Calibri,sans-serif""><span style=""font-size:12.0pt""><span style=""font-family:&quot;Arial&quot;,sans-serif"">(h) Nothing in these Terms confers upon any person other than SiteOne and Customer any right or remedy under or by reason of these Terms. Nothing in these Terms shall be deemed to convey to Customer any title to or ownership in any of the intellectual property contained within Products and/or the Portal, in whole or in part, which are reserved and retained exclusively by SiteOne and its licensors.</span></span></span></span></span></span><br /> </p><p><span style=""font-size:11pt""><span style=""line-height:normal""><span style=""tab-stops:list .5in""><span style=""font-family:Calibri,sans-serif""><span style=""font-size:12.0pt""><span style=""font-family:&quot;Arial&quot;,sans-serif"">(i) Customer acknowledges and agrees that these Terms may be executed electronically. Accordingly, Customer agrees that by signing these Terms electronically, all electronic signatures are the legal equivalent of Customer’s manual/handwritten signature and Customer consents to be legally bound to these Terms.</span></span></span></span></span></span><br /> </p>";salestermsNewContentComponent  
+
+INSERT_UPDATE SiteoneLeftNavigationComponent;$contentCV[unique=true];uid[unique=true];name;linkName[lang=$lang];linkUrl;&componentRef
+;;siteoneLeftNavigationComponent1;Site one Left Navigation Privacy Policy;Privacy Policy;/privacypolicy;siteoneLeftNavigationComponent1
+;;siteoneLeftNavigationComponent2;Site one Left Navigation Terms;Website Terms & Conditions;/termsandconditions;siteoneLeftNavigationComponent2
+;;siteoneLeftNavigationComponent3;Terms and Conditions of Sale;Terms and Conditions of Sale;/salesterms;siteoneLeftNavigationComponent3
+;;siteoneLeftNavigationComponent4;Site one Left Navigation SMS;SMS Terms & Conditions;/sms-terms;siteoneLeftNavigationComponent4
+;;siteoneLeftNavigationComponent5;Site one Left Navigation Privacy;Do Not Sell My Personal Information;/privacyrequest;siteoneLeftNavigationComponent5
+
+INSERT_UPDATE SiteonePageTitleBannerComponent;$contentCV[unique=true];uid[unique=true];name;headline;&componentRef
+;;salestermsPageTitleBannerComponent;salesterms Page Title Component;Our Company;salestermsPageTitleBannerComponent
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='salesterms'];contentSlot(uid,$contentCV)[unique=true];;;
+;;Section2A-salesterms;Section2A;;Section2ASlot-salesterms;;;
+;;Section2B-salesterms;Section2B;;Section2BSlot-salesterms;;;
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef);;;
+;;Section2ASlot-salesterms;Section2A Slot for salesterms Page;true;salestermsPageTitleBannerComponent,siteoneLeftNavigationComponent1,siteoneLeftNavigationComponent2,siteoneLeftNavigationComponent3,siteoneLeftNavigationComponent4,siteoneLeftNavigationComponent5;;;
+;;Section2BSlot-salesterms;Section2B Slot for salesterms Page;true;salestermsNewContentComponent;;;
+
+### Terms of sale END ###
+
+### Request Online Account START ###
+
+INSERT_UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];name;title[lang=$lang];masterTemplate(uid,$contentCV);label;defaultPage[default='true'];approvalStatus(code)[default='approved'];homepage[default='false']
+;;requestonlineaccount;Create A SiteOne.ca Account;Create A SiteOne.ca Account;SiteOneCAContentPageTemplate;/online;
+
+INSERT_UPDATE SiteonePageTitleBannerComponent;$contentCV[unique=true];uid[unique=true];name;headline[lang=$lang];content[lang=$lang];$picture[lang=$lang];&componentRef
+;;onlineaccounttitlebannercomponent;Online Account Title Banner Component;;;;onlineaccounttitlebannercomponent
+
+INSERT_UPDATE SiteoneParagaraphComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef;headline[lang=$lang];content[lang=$lang];
+;;onlineaccountcomponent1;online account Paragraph Component1;onlineaccountcomponent1;Create an Account Today;By signing up for a free SiteOne.ca account, you can get unlimited access to online ordering, personalized pricing and more—all from any smart phone or tablet. It’s a great option for growing your business, and it’s one more reason the industry’s top pros choose SiteOne. Create an account today for exclusive benefits.;
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='requestonlineaccount'];contentSlot(uid,$contentCV)[unique=true];;;
+;;Section3-requestonlineaccount;Section3;;Section3Slot-requestonlineaccount;;;
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef);;;
+;;Section3Slot-requestonlineaccount;Section3 Slot for requestonlineaccountPage;true;onlineaccounttitlebannercomponent,onlineaccountcomponent1,RequestOnlineAccountMasthead,RequestOnlineAccountCSS;;;
+
+INSERT_UPDATE CMSParagraphComponent;$contentCV[unique=true];uid[unique=true];name;content[lang=$lang];&componentRef
+;;RequestOnlineAccountMasthead;Request Online Account Masthead;"<p>
+<style type=""text/css"">
+
+.column33 {
+    float: left;
+    width: 33.33%;
+    padding: 0px;
+}
+
+.row:after {
+  content: """";
+  display: table;
+  clear: both;
+}
+
+@media screen and (max-width: 600px) {
+  .column33 {
+    width: 100%;
+  }
+}
+</style></p>
+<div class=""wrap"">
+<div class=""row"">
+<div class=""column100"" style=""padding-top: 15px;"">
+<h1 class=""gray-heading"" style=""text-align: center;"">
+<p class=""section-title"" style=""text-align: center;"">
+Increase Efficiency in Seconds with SiteOne.ca
+</p>
+</h1>
+</div>
+</div>
+</div>
+<div class=""wrap"">
+<div class=""row"">
+<div class=""column33"" style=""padding: 30px 65px 30px 65px;"">
+<center>
+<img src=""/medias/sys_master/root/h7c/hff/9179547729950/arborgold-icon-sales/arborgold-icon-sales.png"" style=""padding-bottom: 10px;"" width=""90px;"" />
+<p class=""support"">Check pricing and inventory</p>
+<p>See your personalized price and what your local branch has in stock.</p>
+</center>
+</div>
+
+<div class=""column33"" style=""padding: 30px 65px 30px 65px;"">
+<center>
+<img src=""/medias/sys_master/root/h10/hd2/9091706257438/bopis-cart.png"" style=""padding-bottom: 10px;"" width=""90px;"" />
+<p class=""support"">Shop 50,000+ items anytime</p>
+<p>Access our full catalog of products from any device 24/7.</p>
+</center>
+</div>
+
+<div class=""column33"" style=""padding: 30px 65px 30px 65px;"">
+<center>
+<img src=""/medias/sys_master/root/hda/h55/9055427657758/BOL-eWallet-icon.png"" style=""padding-bottom: 10px;"" width=""90px;"" />
+<p class=""support"">Place orders from anywhere</p>
+<p>Order online for in-store pickup or job site delivery.</p>
+</center>
+</div>
+
+</div>
+</div>";RequestOnlineAccountMasthead;
+;;RequestOnlineAccountCSS;Request Online Account CSS;"<div class=""wrap"">
+<div class=""row"">
+<div style=""padding: 0px 20px;"">
+<p style=""font-size: 10pt; line-height: 13pt; color: #999999; width: 100%;"">
+*Prices may vary from branch to branch and online. Branch is not responsible for the errors or omissions in pricing and quantity. Suppliers of the products listed on this website are subject to change at any time. While the individuals and entities responsible for this catalog attempt to provide accurate supplier information, for these reasons and others, the suppliers noted may not be the supplier of the product ultimately sold by SiteOne or distributors of products.</p>
+</div>
+</div>
+</div>";RequestOnlineAccountCSS;
+
+### Request Online Account END ###
+
+### Pick up in branch START ###
+
+INSERT_UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];name;title[lang=$lang];masterTemplate(uid,$contentCV);label;defaultPage[default='true'];approvalStatus(code)[default='approved'];homepage[default='false']
+;;pickup-in-branch;Pick Up In Branch;Pick Up In Branch;SiteOneCAContentPageTemplate;/pick-up-in-branch;
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='pickup-in-branch'];contentSlot(uid,$contentCV)[unique=true];;;
+;;Section3-pickupinbranch;Section3;;Section3Slot-pickupinbranch;;;
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef);;;
+;;Section3Slot-pickupinbranch;Section3 Slot for pickup-in-branch Page;true;pickupinbranchcomponent1,pickupinbranchcomponent2,BOPISCA-FAQ-Collection,pickupinbranchcomponent3;;;
+
+INSERT_UPDATE CMSParagraphComponent;$contentCV[unique=true];uid[unique=true];name;content[lang=$lang];&componentRef
+;;pickupinbranchcomponent1;pick up in branch component 1;"<p>
+<style type=""text/css"">
+
+.column33 {
+    float: left;
+    width: 33.33%;
+    padding: 0px;
+}
+
+.row:after {
+  content: """";
+  display: table;
+  clear: both;
+}
+
+@media screen and (max-width: 600px) {
+  .column33 {
+    width: 100%;
+  }
+}
+</style></p>
+<div class=""wrap"">
+<div class=""row"">
+<div class=""column100"" style=""padding-top: 15px;"">
+<h1 class=""gray-heading"" style=""text-align: center;"">
+Pick Up in Branch
+</h1>
+</div>
+</div>
+</div>
+<div class=""wrap"">
+<div class=""row"">
+<div class=""column33"" style=""padding: 30px 65px 30px 65px;"">
+<center>
+<img src=""/medias/sys_master/root/h10/hd2/9091706257438/bopis-cart.png"" style=""padding-bottom: 0px;"" width=""100px;"" />
+<h2 class=""gray-subhead"">Place Your Order Online</h2>
+<p>Order online and select Branch Pick Up at checkout.</p>
+</center>
+</div>
+<div class=""column33"" style=""padding: 30px 65px 30px 65px;"">
+<center>
+<img src=""/medias/sys_master/root/h2a/hb3/9091706191902/bopis-alert.png"" style=""padding-bottom: 0px;"" width=""100px;"" />
+<h2 class=""gray-subhead"">Receive Pick Up Notification</h2>
+<p>Once your order has been processed, you’ll receive an email or text notifying you that your order is ready for pick up.</p>
+</center>
+</div>
+<div class=""column33"" style=""padding: 30px 65px 30px 65px;"">
+<center>
+<img src=""/medias/sys_master/root/he8/h99/9091706388510/bopis-pickup.png"" style=""padding-bottom: 0px;"" width=""100px;"" />
+<h2 class=""gray-subhead"">Pick Up Your Order at the Branch</h2>
+<p>Bring your email or text notification to your chosen branch’s service desk and have your ID and order number ready. An associate will assist you with your order.</p>
+</center>
+</div>
+</div>
+</div>";pickupinbranchcomponent1;
+;;pickupinbranchcomponent2;pick up in branch component2;"<div class=""wrap"" style=""margin-bottom: 0px; padding-bottom: 0px;"">
+<div class=""row"">
+<div class=""column100"">
+<h2 class=""gray-subhead"">Frequently Asked Questions</h2>
+<!--<hr class=""green"" style=""margin-bottom: 20px;""></hr>-->
+<div style=""padding-right: 40px;"">
+<p>Branch pick up is available in select branches during branch hours. Valid only at the specific branch selected by the customer when placing order and only for orders confirmed as ready for pick up via email or text. Most orders are ready same day, however, please allow for extra processing time on large orders and items requiring assembly.</p>
+</div>
+</div>
+</div>
+</div>";pickupinbranchcomponent2;
+;;pickupinbranchcomponent3;pick up in branch component3;"<p style=""font-size: 9pt; line-height: 11pt; text-align: left; color: #666666; margin: 0px 40px 0px 0px;"">Some exclusions apply. See product details for parcel eligibility. We reserve the right to change or end this offer at any time. Please allow 3-7 business days for parcel delivery, based on item availability. A SiteOne associate will call you to schedule a store delivery. All returns are subject to SiteOne’s standard return policy. Void where prohibited.</p>";pickupinbranchcomponent3;
+
+INSERT_UPDATE SiteoneFAQ;$contentCV[unique=true];uid[unique=true];name;question;answer;image;&componentRef
+;;BOPISCA-00;BOPISCA-QA11;How does the Buy Online, Pick Up in Branch process work?;When ordering online, select a SiteOne branch location for Pick Up. You’ll get an Order Confirmation email acknowledging receipt of your order, and an Order Ready notification when your order is ready to be picked up.;;BOPISCA-00
+;;BOPISCA-01;BOPISCA-QA12;How will I know my order is ready for pick up?;When your order is ready for pick up, you will receive an Order Ready notification email, which will include instructions for picking up your order.;;BOPISCA-01
+;;BOPISCA-02;BOPISCA-QA13;Where should I go to pick up my order once I arrive at the branch?;Once you arrive at the branch, please approach a branch associate for assistance with your order.;;BOPISCA-02
+;;BOPISCA-03;BOPISCA-QA14;Once my order is ready, how long will it be available for pick up?;Your order will remain available for a maximum of seven days from the first time you receive an Order Ready notification email. Orders not claimed after seven days may be subject to cancellation.;;BOPISCA-03
+;;BOPISCA-04;BOPISCA-QA15;What do I need to bring with me to pick up my order?;For pick up, please bring a government-issued photo ID and your order number or the Order Ready notification email.;;BOPISCA-04
+;;BOPISCA-05;BOPISCA-QA16;What if I can’t pick up my order at the branch and need to send someone to pick up my order for me?;During online checkout, select a pre-authorized person from the dropdown by clicking “Change Contact” or you can provide the name and email of the person in the “Message for branch" section at checkout. They will need a photo ID and order number.;;BOPISCA-05
+;;BOPISCA-06;BOPISCA-QA17;What if I need to cancel my order?;Contact the SiteOne branch that received your order to cancel or make changes to your order.;;BOPISCA-06
+;;BOPISCA-07;BOPISCA-QA18;What if I need to return an item that I ordered?;To return any items, bring your order receipt with you to the SiteOne branch location where you picked up your order. Please refer to SiteOne’s <a href="/en/returns">current return policy</a> for details.;;BOPISCA-07
+;;BOPISCA-08;BOPISCA-QA21;Does SiteOne offer parcel delivery for online orders?;SiteOne offers parcel delivery in select markets. Contact a branch associate for more details. **;;BOPISCA-08
+
+INSERT_UPDATE SiteoneFAQCollectionComponent;$contentCV[unique=true];uid[unique=true];name;heading;faq(uid);&componentRef
+;;BOPISCA-FAQ-Collection;BOPISCA FAQs;;BOPISCA-00,BOPISCA-01,BOPISCA-02,BOPISCA-03,BOPISCA-04,BOPISCA-05,BOPISCA-06,BOPISCA-07,BOPISCA-08;BOPISCA-FAQ-Collection
+
+### Pick up in branch END ###
+
+### Returns START ###
+
+INSERT_UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];name;title[lang=$lang];masterTemplate(uid,$contentCV);label;defaultPage[default='true'];approvalStatus(code)[default='approved'];homepage[default='false']
+;;returns;Returns;Returns;SiteOneCAContentPageTemplate;/returns;
+
+INSERT_UPDATE SiteonePageTitleBannerComponent;$contentCV[unique=true];uid[unique=true];name;headline[lang=$lang];content[lang=$lang];$picture[lang=$lang];&componentRef
+;;returnstitlebannercomponent;Returns Title Banner Component;;;;returnstitlebannercomponent
+
+INSERT_UPDATE SiteoneParagaraphComponent;$contentCV[unique=true];uid[unique=true];name;headline[lang=en];headline[lang=es];content[lang=$lang];&componentRef
+;;returnsParagraphComponent1;Returns Paragraph Component1;Easy Branch Returns;Easy Branch Returns;"<p><div>Online purchases may be returned to any SiteOne branch within 30 days of purchase, with payment receipt. If your item arrives damaged, doesn't match the listing description or you’ve changed your mind and no longer need the item, you may return it to any SiteOne branch for a full refund. The return must be unused and in sellable condition, with the exception of carrier damage. Special Order items may incur a 25% restocking fee.<br /> <br />Please contact Customer Support at <a class=""tel-phone"" href=""tel:8007483663"">1-800-SITEONE</a> to learn more.</div></p>";returnsParagraphComponent1
+;;returnsParagraphComponent2;Returns Disclaimer CSS;;;"<p>
+<style type=""text/css"">
+.wrap {
+	width: 98%;
+	margin: auto;
+}
+
+.column100 {
+  float: left;
+  width: 100%;
+  padding: 0px;
+}
+
+.row:after {
+  content: """";
+  display: table;
+  clear: both;
+}
+
+@media screen and (max-width: 600px) {
+  .column100 {
+    width: 100%;
+  }
+}
+
+.column20 {
+  float: left;
+  width: 20%;
+  padding: 0px;
+}
+
+.row:after {
+  content: """";
+  display: table;
+  clear: both;
+}
+
+@media screen and (max-width: 600px) {
+  .column20 {
+    width: 100%;
+  }
+}
+
+.column25 {
+  float: left;
+  width: 25%;
+  padding: 0px;
+}
+
+.row:after {
+  content: """";
+  display: table;
+  clear: both;
+}
+
+@media screen and (max-width: 600px) {
+  .column25 {
+    width: 100%;
+  }
+}
+
+.column30 {
+  float: left;
+  width: 30%;
+  padding: 0px;
+}
+
+.row:after {
+  content: """";
+  display: table;
+  clear: both;
+}
+
+@media screen and (max-width: 600px) {
+  .column30 {
+    width: 100%;
+  }
+}
+
+.column33 {
+  float: left;
+  width: 33.33%;
+  padding: 0px;
+}
+
+.row:after {
+  content: """";
+  display: table;
+  clear: both;
+}
+
+@media screen and (max-width: 600px) {
+  .column33 {
+    width: 100%;
+  }
+}
+
+.column40 {
+  float: left;
+  width: 40%;
+  padding: 0px;
+}
+
+.row:after {
+  content: """";
+  display: table;
+  clear: both;
+}
+
+@media screen and (max-width: 600px) {
+  .column40 {
+    width: 100%;
+  }
+}
+
+.column50 {
+  float: left;
+  width: 50%;
+  padding: 0px;
+}
+
+.row:after {
+  content: """";
+  display: table;
+  clear: both;
+}
+
+@media screen and (max-width: 600px) {
+  .column50 {
+    width: 100%;
+  }
+}
+
+.column60 {
+  float: left;
+  width: 60%;
+  padding: 0px;
+}
+
+.row:after {
+  content: """";
+  display: table;
+  clear: both;
+}
+
+@media screen and (max-width: 600px) {
+  .column60 {
+    width: 100%;
+  }
+}
+
+.column70 {
+  float: left;
+  width: 70%;
+  padding: 0px;
+}
+
+.row:after {
+  content: """";
+  display: table;
+  clear: both;
+}
+
+@media screen and (max-width: 600px) {
+  .column70 {
+    width: 100%;
+  }
+}
+
+.column80 {
+  float: left;
+  width: 80%;
+  padding: 0px;
+}
+
+.row:after {
+  content: """";
+  display: table;
+  clear: both;
+}
+
+@media screen and (max-width: 600px) {
+  .column80 {
+    width: 100%;
+  }
+}
+
+
+.columnimage {
+  float: left;
+  width: 100%;
+  min-height: 500px;
+  padding-top: 0px;
+  background-image: url('/medias/sys_master/root/h51/hba/9055832703006/BMS-LMN-Hero.jpg');
+  background-repeat: no-repeat;
+  background-position: center left;
+  background-size: 1415px;
+}
+
+@media screen and (max-width: 950px) {
+  .columnimage {
+    width: 100%;
+  }
+}
+
+.hero-image {
+  float: left;
+  width: 100%;
+  min-height: 500px;
+  padding-top: 0px;
+  background-repeat: no-repeat;
+  background-size: 1415px;
+}
+
+@media screen and (max-width: 950px) {
+  .hero-image {
+    width: 100%;
+  }
+}
+
+.video-responsive{
+    overflow:hidden;
+    padding-bottom: 56.25%;
+    position: relative;
+    height: 0;
+}
+
+.video-responsive iframe{
+    border: 0;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+}
+
+   hr.new {
+    border: 1px solid white;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+hr.green {
+  border: 4px solid #799f37;
+  padding: 0px;
+  color: #799f37;
+  margin: 0px 0px 10px 0px;
+ }
+
+.visible-mobile {
+  display: none !important;
+}
+
+@media (max-width: 600px) {
+  .visible-mobile {
+    display: inline !important;
+  }
+
+  .hidden-mobile {
+    display: none !important;
+  }
+}
+
+
+.custombutton {
+  background-color: #799f37;
+  border: 0px solid #799f37;
+  border-radius: 3px;
+  color: white;
+  padding: 10px 24px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 20px 0px 0px 0px;
+  cursor: pointer;
+}
+.custombutton:hover {
+  background-color: #8eb947;
+  color: white;
+  border: 0px solid #8eb947;
+}
+
+.graybutton {
+  background-color: #414243;
+  border: 0px solid #799f37;
+  border-radius: 3px;
+  color: #ffffff;
+  padding: 10px 24px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 20px 0px 0px 20px;
+  cursor: pointer;
+}
+.graybutton:hover {
+  background-color: #000000;
+  color: #ffffff;
+  border: 0px solid #799f37;
+}
+
+.nobutton {
+  background-color: #ffffff;
+  border: 1px solid #a6a6a6;
+  border-radius: 3px;
+  color: #a6a6a6;
+  padding: 10px 24px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 15px 0px 0px 0px;
+  cursor: not-allowed;
+}
+
+.gray-heading {
+   font-family: 'Geogrotesque-Medium';
+   font-size: 24pt;
+   color: #414243;
+   margin-top: 5px;
+   margin-bottom: 20px;
+   line-height: 28pt;
+ }
+
+@media (max-width: 600px) {
+  .gray-heading {
+   font-size: 18pt;
+   line-height: 22pt;
+  }
+}
+
+p.content {
+   font-size: 14pt;
+   line-height: 1.65;
+   color: #414243;
+   margin-top: 15px;
+   margin-bottom: 10px;
+   margin-right: 0px;
+   margin-left: 0px;
+ }
+
+a.whitelink:link {color: #ffffff; text-decoration: underline;}
+a.whitelink:hover {text-decoration: none;}
+
+.vertical-center {
+  margin: 0;
+  position: left;
+  padding: 0px;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+</style>
+</p>
+<div style=""border-bottom: 1px solid #cccccc; width: 100%; margin-bottom: 40px;""></div>
+<p style=""font-size: 9pt; line-height: 11pt; text-align: left; color: #666666; margin: 0px 40px 0px 0px;"">Prices may vary from branch to branch and online. Branch is not responsible for the errors or omissions in pricing and quantity. Suppliers of the products listed on this website are subject to change at any time. While the individuals and entities responsible for this catalog attempt to provide accurate supplier information, for these reasons and others, the suppliers noted may not be the supplier of the product ultimately sold by SiteOne or distributors of products.</p>";returnsParagraphComponent2
+
+
+
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='returns'];contentSlot(uid,$contentCV)[unique=true];;;
+;;Section3-returns;Section3;returns;Section3Slot-returns;;;
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef)
+;;Section3Slot-returns;Section 3 Accessibility Statement Slot;true;returnstitlebannercomponent,returnsParagraphComponent1,returnsParagraphComponent2
+
+### Returns END ###
+
+### HomeOwner page START ###
+
+INSERT_UPDATE  ContentPage;$contentCV[unique=true];uid[unique=true];name;title[lang=$lang];masterTemplate(uid,$contentCV);label;defaultPage[default='true'];approvalStatus(code)[default='approved'];homepage[default='false']
+;;homeOwnerPageForCanada;Home Owner Page;Home Owners;HomeOwnerPageTemplate;homeOwnerPageForCanada;
+;;homeOwnerSuccess;Home Owner Success Page;Home Owner Success;HomeOwnerPageTemplate;homeOwnerSuccess;
+
+INSERT_UPDATE HomeOwnerComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef
+;;homeOwnerComponent;Home Owner Component;homeOwnerComponent
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef)
+;;StaticContent-homeOwnerPageForCanada;Home Owners static slot;true;bluePrintComp,importantConComp,questionsToAskComp
+;;CustInfo-homeOwnerPageForCanada;Customer info slot;true;homeOwnerComponent,componentOfSpace,otherMessageComp
+;;StaticContent-HomeOwnerSuccessful;Home Owners Request Sent slot;true;mailSussessfulSentComp
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='homeOwnerPageForCanada'];contentSlot(uid,$contentCV)[unique=true]
+;;StaticContent-homeOwnerPageForCanada;BodyContent;;StaticContent-homeOwnerPageForCanada
+;;CustInfo-homeOwnerPageForCanada;CustInfo;;CustInfo-homeOwnerPageForCanada
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='homeOwnerSuccess'];contentSlot(uid,$contentCV)[unique=true]
+;;StaticContent-HomeOwnerSuccessful;BodyContent;;StaticContent-HomeOwnerSuccessful
+
+INSERT_UPDATE SiteoneParagaraphComponent;$contentCV[unique=true];uid[unique=true];name;headline;content;&componentRef
+;;bluePrintComp;Blue print component;Your Blueprint for Building a Great Landscape;"If you are considering landscape improvements or renovations, the first person you should talk to is a professional landscape contractor. Licensed and trained, the contractor is knowledgeable about local electrical and plumbing codes, and the installation of backflow prevention devices to protect your drinking water supply. They know and install professional-grade products, and can help you decide which irrigation, lighting or drainage system will work best on your site.";bluePrintComp
+;;importantConComp;Important Consideration;Important Considerations;"Before making recommendations, a professional contractor will review important factors such as water source and pressure, soil type, planting materials, weather conditions and safety and security issues. The landscape contractor will also ensure projects are installed quickly, and with minimum disruption to existing plantings. They will explain any new systems to you and show you how everything works. Professionally installed, your new landscape features should operate efficiently.";importantConComp
+;;questionsToAskComp;Questions to Ask;Questions to Ask a Professional Contractor;"Professional contractors are glad to provide you with a list of satisfied homeowners they have worked for. The contractor will also encourage you to ask questions. Most homeowners want to know exactly what they will be getting. Here's some of what you should ask:<ul><li>Do you have a valid license/certification for <insert service name>?</li><li>Do you have proof of liability insurance?</li><li>What permits will be required?</li><li>What type of products will be used and why?</li><li>Is after-sale service provided?</li><li>What is the product or workmanship warranties?</li></ul>";questionsToAskComp
+;;componentOfSpace;Component of Space;;<div><br /><br /></div>;componentOfSpace
+;;otherMessageComp;Other Message Component;Other:;"<p><div>Ready to find a professional contractor in your area?</div><div>&nbsp</div><div>SiteOne works with the best professional contractors in your area every day. <a href=""/en/contactus"">Contact us</a> to request a referral.</div></p>";otherMessageComp
+;;mailSussessfulSentComp;mailSussessfulSentComp;;Thank you for your requesting assistance with selecting a contractor. We will be in touch with you shortly;mailSussessfulSentComp
+
+### HomeOwner page END ###
+
+### Irrigation Design START ###
+
+INSERT_UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];name;title[lang=$lang];masterTemplate(uid,$contentCV);label;defaultPage[default='true'];approvalStatus(code)[default='approved'];homepage[default='false']
+;;irrigationDesign;Irrigation Design;Irrigation Design;SiteOneCAContentPageTemplate;/irrigationdesign;
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='irrigationDesign'];contentSlot(uid,$contentCV)[unique=true];;;
+;;Section3-irrigationDesign;Section3;;Section3Slot-irrigationDesign;;;
+;;Section7A-irrigationDesign;Section7A;;Section7ASlot-irrigationDesign;;;
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef);;;
+;;Section3Slot-irrigationDesign;Section3 Slot for irrigationDesign Page;true;irrigationDesigntitlebannercomponent;;;
+;;Section7ASlot-irrigationDesign;Section7A Slot for irrigationDesign Page;true;irrigationDesigncomponent;;;
+
+INSERT_UPDATE SiteonePageTitleBannerComponent;$contentCV[unique=true];uid[unique=true];name;headline[lang=$lang];content[lang=$lang];$picture[lang=$lang];&componentRef
+;;irrigationDesigntitlebannercomponent;Irrigation Design Title Banner Component;Irrigation Design;;;irrigationDesigntitlebannercomponent
+
+INSERT_UPDATE SiteoneParagaraphComponent;$contentCV[unique=true];uid[unique=true];name;headline[lang=en];headline[lang=es];content[lang=$lang];&componentRef
+;;irrigationDesigncomponent;Irrigation Design Paragraph;The Irrigation Expertise You Need;The Irrigation Expertise You Need;"<p><div>Not only do we offer the irrigation components you need, but we also offer expertise to put them together into a complete system. Our irrigation design services can save you time, money and energy.</div><div></div> <div>AutoCad compliant, with certified irrigation designers on staff, SiteOne can work from your base drawings. We can provide you with an irrigation design created specifically for your clients` needs, and your requests.</div><div></div> <div>Are you a landscape architect with customers all over? We&#39ve got local site knowledge, plus a nationwide network of branch locations, and our contractor contacts can help you streamline requirements for your projects.</div><div></div> <div>To get started, simply contact our irrigation design team. Please include any specific questions you may have regarding our services, your contact information and any details about your project that you&#39d like to share.</div><div></div> <div>Our irrigation design services are only available to SiteOne Partners Program members. To learn more about our Partners Program, <a _fcksavedurl=""/en/partnersprogram"" href=""/en/partnersprogram"">click here</a>.</div></p>";irrigationDesigncomponent
+
+### Irrigation Design END ###
+
+### Accessibility Statement START ###
+
+INSERT_UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];name;title[lang=$lang];masterTemplate(uid,$contentCV);label;defaultPage[default='true'];approvalStatus(code)[default='approved'];homepage[default='false']
+;;accessibilityStatement;Accessibility Statement;Accessibility Statement;SiteOneCAContentPageTemplate;/accessibilityStatement;
+
+INSERT_UPDATE SiteonePageTitleBannerComponent;$contentCV[unique=true];uid[unique=true];name;headline[lang=$lang];content[lang=$lang];$picture[lang=$lang];&componentRef
+;;AccessibilityStatementtitlebannercomponent;Accessibility Statement Title Banner Component;Web Accessibility Statement;;;AccessibilityStatementtitlebannercomponent
+
+INSERT_UPDATE SiteoneParagaraphComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef;content[lang=$lang];
+;;AccessibilityStatementParagraphComponent1;Accessibility Statement Paragraph Component1;AccessibilityStatementParagraphComponent1;"<p><div><h3>General</h3></div><div>SiteOne cares about all our customers and is committed to facilitating and improving the accessibility and usability of its website, www.siteone.ca, ensuring that our website services and content are accessible to people with disabilities including, but not limited to users of screen-reader technology. To accomplish this, SiteOne has partnered with UsableNet, a leading web accessibility consultant, by implementing its technology that will enable and maintain accessibility in-line with the Web Content Accessibility Guidelines (WCAG) 2.0 Level AA, which also brings the website into conformance with similar regulations in the United States, United Kingdom, the European Union and elsewhere around the world.</div><div></div><div>Testing has been conducted using automated accessibility testing tools and by users of screen readers, and issues discovered have been remediated. To activate accessibility for all features and functions on the website, please use the easy-to-find ""Enable Accessibility"" link in the top-left corner.</div><div><h3>Disclaimer</h3></div><div>Please be aware that our efforts to maintain accessibility and usability are ongoing with UsableNet monitoring the website and making accessibility updates when needed. While we strive to make the website as accessible as possible, some issues may be encountered by different assistive technology as the range of assistive technology is wide and varied. We appreciate your understanding.</div><div><h3>Contact Us</h3></div><div>If you have specific questions or concerns about the accessibility of any web page on the website, please contact us by email at customersupport@ec.siteone.com or by phone at +1-800-748-3663. If you do encounter an accessibility issue, please be sure to specify the web page and nature of the issue, and we will make all reasonable efforts to make that page, or the information contained therein accessible for you. Thanks for visiting.</div></p>";
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='accessibilityStatement'];contentSlot(uid,$contentCV)[unique=true];;;
+;;Section1-accessibilityStatement;Section1;accessibilityStatement;Section1Slot-accessibilityStatement;;;
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef)
+;;Section1Slot-accessibilityStatement;Section 1 Accessibility Statement Slot;true;AccessibilityStatementtitlebannercomponent,AccessibilityStatementParagraphComponent1
+
+### Accessibility Statement END ###

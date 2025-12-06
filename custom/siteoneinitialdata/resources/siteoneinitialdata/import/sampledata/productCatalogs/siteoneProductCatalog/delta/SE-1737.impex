@@ -1,0 +1,27 @@
+# -----------------------------------------------------------------------
+# [y] hybris Platform
+#
+# Copyright (c) 2017 SAP SE or an SAP affiliate company.  All rights reserved.
+#
+# This software is the confidential and proprietary information of SAP
+# ("Confidential Information"). You shall not disclose such Confidential
+# Information and shall use it only in accordance with the terms of the
+# license agreement you entered into with SAP.
+# -----------------------------------------------------------------------
+$facetSearchConfigName=siteoneIndex
+$contentCatalogName=siteoneContentCatalog
+$indexedType=siteoneProductType
+$productCatalog=siteoneProductCatalog
+$productCatalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+
+#
+# Localization en
+#
+$lang=en
+
+
+UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true,default=$indexedType];name[unique=true];displayName[lang=$lang] ;priority
+;;  lghtLightingTechnology    ;  "Technology ";1231
+;;  lghtLightColor            ;  "Light Color         ";1133
+;;  lghtBulbShape             ;  "Bulb Shape          ";1121
+;;  lghtLampBase              ;  "Lamp Base           ";1042

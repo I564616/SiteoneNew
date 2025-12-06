@@ -1,0 +1,425 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ [y] hybris Platform
+
+ Copyright (c) 2000-2016 SAP SE or an SAP affiliate company.
+ All rights reserved.
+
+ This software is the confidential and proprietary information of SAP
+ ("Confidential Information"). You shall not disclose such Confidential
+ Information and shall use it only in accordance with the terms of the
+ license agreement you entered into with SAP.
+-->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:int="http://www.springframework.org/schema/integration"
+	xmlns:file="http://www.springframework.org/schema/integration/file"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/integration
+	http://www.springframework.org/schema/integration/spring-integration.xsd
+	http://www.springframework.org/schema/integration/file
+	http://www.springframework.org/schema/integration/file/spring-integration-file.xsd
+	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+	http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<context:annotation-config/>
+
+	<bean id="azureHotfolderInvoiceRemotePath" class="java.lang.String">
+		<constructor-arg name="value"
+			value="${azure.hotfolder.storage.container.hotfolder}/siteoneinvoice"/>
+	</bean>
+
+	<bean id="azureLocalInvoiceErrorRegexPatternFileListFilter"
+		class="org.springframework.integration.file.filters.RegexPatternFileListFilter">
+		<constructor-arg name="pattern" value="^error_siteoneinvoice.*$"/>
+	</bean>
+
+	<bean id="azureHotfolderInvoiceLocalPath" class="java.lang.String">
+		<constructor-arg name="value"
+			value="#{azureHotfolderLocalDirectoryBase}/#{azureHotfolderInvoiceRemotePath}"/>
+	</bean>
+
+	<bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+		<property name="targetObject" ref="hotfolderInboundFileChannelMappings"/>
+		<property name="targetMethod" value="put"/>
+		<property name="arguments">
+			<list>
+				<bean class="java.util.regex.Pattern" factory-method="compile">
+					<constructor-arg value="^(siteoneinvoice)_(\d+)(\S+)_(\d+)(\S+)\.(?i)txt"/>
+				</bean>
+				<ref bean="SiteOneInvoiceBatchFilesCloudHotFolderProc"/>
+			</list>
+		</property>
+	</bean>
+
+	<int:channel id="SiteOneInvoiceBatchFilesCloudHotFolderProc"/>
+
+	<int:service-activator input-channel="SiteOneInvoiceBatchFilesCloudHotFolderProc" output-channel="batchSiteOneFilesHeaderInit"
+		ref="SiteOneInvoiceCloudHotFolderHeaderSetupTask" method="execute">
+	</int:service-activator>
+
+	<!--  Azure Inbound File Synchronizer and Channel Adapter -->
+	<bean id="SiteOneInvoiceAzureBlobInboundSynchronizer"
+		class="de.hybris.platform.cloud.azure.hotfolder.remote.inbound.AzureBlobInboundSynchronizer">
+		<constructor-arg name="sessionFactory" ref="azureBlobSessionFactory"/>
+		<property name="remoteDirectory" value="#{azureHotfolderInvoiceRemotePath}"/>
+		<property name="moveToRemoteDirectory" value="#{azureHotfolderInvoiceRemotePath}/processing"/>
+		<property name="deleteRemoteFiles" value="${azure.hotfolder.storage.delete.remote.files}"/>
+		<property name="preserveTimestamp" value="true"/>
+		<property name="filter" ref="azureHotfolderFileFilter"/>
+		<property name="comparator" ref="azureHotFolderFileComparator"/>
+	</bean>
+
+	<bean id="SiteOneInvoiceAzureBlobSynchronizingMessageSource"
+		class="de.hybris.platform.cloud.azure.hotfolder.remote.inbound.AzureBlobSynchronizingMessageSource">
+		<constructor-arg name="synchronizer" ref="SiteOneInvoiceAzureBlobInboundSynchronizer"/>
+		<property name="autoCreateLocalDirectory" value="true"/>
+		<property name="localDirectory" value="#{azureHotfolderInvoiceLocalPath}/processing/"/>
+		<property name="maxFetchSize" value="${azure.hotfolder.storage.polling.fetch.batch-size}"/>
+	</bean>
+
+	<bean id="azureInvoiceChannelAdapterTaskExecutor"
+		class="de.hybris.platform.cloud.commons.scheduling.HybrisAwareThreadPoolTaskExecutor">
+		<property name="waitForTasksToCompleteOnShutdown" value="true"/>
+		<property name="threadNamePrefix" value="AzureInvoiceIntegrationTaskExecutorThread-${tenantId}-"/>
+		<property name="threadGroupName" value="AzureInvoiceIntegrationTaskExecutorThread-${tenantId}"/>
+		<property name="corePoolSize" value="${azure.hotfolder.storage.polling.core-pool-size}"/>
+		<property name="maxPoolSize" value="${azure.hotfolder.storage.polling.max-pool-size}"/>
+		<property name="queueCapacity" value="-1"/>
+		<property name="keepAliveSeconds" value="60"/>
+		<property name="rejectedExecutionHandler">
+			<bean class="java.util.concurrent.ThreadPoolExecutor$DiscardPolicy"/>
+		</property>
+		<property name="role" value="integration"/>
+		<property name="autoStartup" value="false"/>
+		<property name="phase" value="10"/>
+		<property name="awaitTerminationSeconds" value="60"/>
+	</bean>
+
+
+	<bean id="SiteOneInvoiceCloudHotFolderHeaderSetupTask" class="de.hybris.platform.acceleratorservices.dataimport.batch.task.HeaderSetupTask">
+		<property name="catalog" value="${cloud.hotfolder.default.mapping.header.catalog}"/>
+		<property name="net" value="${cloud.hotfolder.default.mapping.header.net}" />
+		<property name="storeBaseDirectory" value="#{azureHotfolderInvoiceRemotePath}/processing" />
+	</bean>
+
+	<int:inbound-channel-adapter id="SiteOneInvoiceAzureInboundChannelAdapter"
+		auto-startup="false"
+		role="${cloud.hotfolder.storage.services.role}"
+		phase="50"
+		ref="SiteOneInvoiceAzureBlobSynchronizingMessageSource"
+		channel="siteOneInvoiceCloudHotFolderInboundFileHeaderEnricherChannel">
+		<int:poller fixed-rate="${azure.hotfolder.storage.polling.fixed.rate}"
+			task-executor="azureInvoiceChannelAdapterTaskExecutor"
+			max-messages-per-poll="${azure.hotfolder.storage.polling.fetch.batch-size}">
+		</int:poller>
+	</int:inbound-channel-adapter>
+	
+	<int:channel id="siteOneInvoiceCloudHotFolderInboundFileHeaderEnricherChannel">
+        <int:interceptors>
+           <ref bean="siteOneInvoiceHotFolderRoutingChannelInterceptor"/>
+        </int:interceptors>
+    </int:channel>
+
+
+    <bean id="siteOneInvoiceHotFolderRoutingChannelInterceptor" class="de.hybris.platform.cloud.hotfolder.interceptor.HotFolderRouterChannelInterceptor">
+      <property name="successChannel" ref="SiteOneInvoiceAzureArchiveOutboundChannelAdapter"/>
+      <property name="failureChannel" ref="SiteOneInvoiceAzureErrorOutboundChannelAdapter"/>
+    </bean>
+
+    <int:header-enricher id="siteOneInvoiceCloudHotFolderInboundFileNameHeaderEnricherChannel"
+                input-channel="siteOneInvoiceCloudHotFolderInboundFileHeaderEnricherChannel"
+                output-channel="hotfolderInboundFileChannel">
+        <int:header name="#{fileNameHeaderKey}" expression="payload.getName()"/>
+        <int:header name="#{fileLastModifiedHeaderKey}" expression="payload.lastModified()"/>
+   </int:header-enricher>
+
+	<!-- Invoice :: Azure Outbound Channel adapters for moving remote files into archive/error folders -->
+	<bean id="SiteOneInvoiceAzureArchiveMessageHandler" parent="abstractAzureMoveMessageHandler">
+		<property name="remoteDirectory" value="#{azureHotfolderInvoiceRemotePath}/archive"/>
+	</bean>
+
+	<bean id="SiteOneInvoiceAzureErrorMessageHandler" parent="abstractAzureMoveMessageHandler">
+		<property name="remoteDirectory" value="#{azureHotfolderInvoiceRemotePath}/error"/>
+	</bean>
+
+	<int:outbound-channel-adapter id="SiteOneInvoiceAzureArchiveOutboundChannelAdapter"
+		ref="SiteOneInvoiceAzureArchiveMessageHandler">
+	</int:outbound-channel-adapter>
+
+	<int:outbound-channel-adapter id="SiteOneInvoiceAzureErrorOutboundChannelAdapter"
+		ref="SiteOneInvoiceAzureErrorMessageHandler" >
+	</int:outbound-channel-adapter>
+
+
+	<!--Start-->
+	<file:inbound-channel-adapter id="azureLocalInvoiceErrorInboundChannelAdapter"
+		directory="#{azureHotfolderInvoiceLocalPath}/error"
+		filter="azureLocalInvoiceErrorHotFolderFileFilter">
+		<int:poller fixed-rate="10000"/>
+	</file:inbound-channel-adapter>
+
+	<bean id="azureLocalInvoiceErrorHotFolderFileFilter"
+		class="de.hybris.platform.cloud.commons.spring.integration.file.filters.ChainFileListFilter">
+		<constructor-arg name="fileFilters" ref="azureLocalInvoiceErrorFolderFileListFilter"/>
+	</bean>
+
+	<util:list id="azureLocalInvoiceErrorFolderFileListFilter">
+		<ref bean="azureLocalInvoiceErrorRegexPatternFileListFilter"/>
+		<ref bean="azureFileSystemPersistentAcceptOnceListFilter"/>
+	</util:list>
+
+	<bean id="azureFileSystemPersistentAcceptOnceListFilter" class="org.springframework.integration.file.filters.FileSystemPersistentAcceptOnceFileListFilter">
+		<constructor-arg name="store" ref="hotfolderMetadataStore"/>
+		<constructor-arg name="prefix" value="${azure.hotfolder.storage.metadatastore.prefix}"/>
+	</bean>
+
+	<int:outbound-channel-adapter id="azureLocalInvoiceErrorOutboundChannelAdapter"
+		channel="azureLocalInvoiceErrorInboundChannelAdapter" ref="azureInvoiceBlobMessageHandler"/>
+
+	<bean id="azureInvoiceBlobMessageHandler" class="de.hybris.platform.cloud.azure.hotfolder.remote.outbound.AzureBlobMessageHandler">
+		<constructor-arg ref="azureBlobSessionFactory"/>
+		<property name="remoteDirectory" ref="azureInvoiceHotfolderErrorRemotePath"/>
+		<property name="fileNameGenerator" ref="azureTimestampFileNameGenerator"/>
+		<property name="deleteSourceFiles" value="true"/>
+	</bean>
+
+	<bean id="azureInvoiceHotfolderErrorRemotePath" class="java.lang.String">
+		<constructor-arg name="value"
+			value="#{azureHotfolderInvoiceRemotePath}/error"/>
+	</bean>
+	<!-- Invoice Details -->
+
+	<bean id="batchSiteOneInvoiceConverterMapping"
+		class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping"
+		p:mapping="siteoneinvoice"
+		p:converter-ref="batchSiteOneInvoiceConverter" />
+	<bean id="batchSiteOneInvoiceConverter"
+		class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>#{defaultImpexProductHeader}
+				INSERT_UPDATE SiteOneInvoice;invoiceNumber[unique=true];orderNumber;status(code)[cellDecorator=com.siteone.core.batch.decorator.InvoiceStatusCellDecorator];invoicedDate[dateformat='MM/dd/yyyy hh:mm:ss a'];purchaseOrderNumber;user(uid);currency(isocode);billingTerms;totalTax;subTotal;orderTotalPrice;storeId;storeName;deliveryMode;contact_firstName;contact_phone[cellDecorator=com.siteone.core.batch.decorator.InvoicePhoneNumberCellDecorator];pickupOrDeliveryDateTime[dateformat='MM/dd/yyyy hh:mm:ss a'];instructionsText;accountNumber;freight;totalPayment;amountDue;salesAssociate;terms;contact_emailid;creditCardType;ccNumberLastFour;paymentType;billingAccNumber;orderedDate[dateformat='MM/dd/yyyy hh:mm:ss a'];requestedFor;shipVia;authNumber;deliveryBranchNumber;branchNumber;customerObsessedContactName;customerObsessedPhoneNumber;customerObsessedEmail;customerObsessedContactTitle;orderShipmentActualId;accountDisplay;homeBranchNumber
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>;{+0};{1};{2};{3};{4};{5};{6};{7};{8};{9};{10};{16};{53};{17};{26};{27};{29};{30};{31}_{34};{49};{130};{51};{52};{57};{28};{65};{66};{67};{39};{68};{63};{64};{69};{20};{71};{35};{36};{37};{38};{133};{32};{161}
+			</value>
+		</property>
+		<property name="rowFilter">
+			<bean class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexRowFilter">
+				<property name="expression" value="row[33]=='invoice'"/>
+			</bean>
+		</property>
+		<property name="type" value="SiteOneInvoice" />
+	</bean>
+
+	<!-- Delivery or pick up address -->
+	<bean id="batchSiteOneAddressInvoiceConverterMapping"
+		class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping"
+		p:mapping="siteoneinvoice"
+		p:converter-ref="batchSiteOneAddressInvoiceConverter" />
+	<bean id="batchSiteOneAddressInvoiceConverter"
+		class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>
+				INSERT_UPDATE Address;guid[unique=true];line1;town;region(isocode)[cellDecorator=com.siteone.core.batch.decorator.RegionCellDecorator];postalCode;country(isocode);Phone1[cellDecorator=com.siteone.core.batch.decorator.InvoicePhoneNumberCellDecorator];company[cellDecorator=com.siteone.core.batch.decorator.DoubleQuoteCellDecorator];owner(SiteOneInvoice.invoiceNumber)
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>;{+0}-address;{21};{22};US-{23};{24};US;{25};{19};{+0}
+			</value>
+		</property>
+		<property name="rowFilter">
+			<bean class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexRowFilter">
+				<property name="expression" value="row[33]=='invoice'"/>
+			</bean>
+		</property>
+	</bean>
+
+	<!-- On Account payment address -->
+	<!--	<bean id="batchSiteOneRemitAddressInvoiceConverterMapping"
+    class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping"
+    p:mapping="siteoneinvoice"
+    p:converter-ref="batchSiteOneRemitAddressInvoiceConverter" />
+    <bean id="batchSiteOneRemitAddressInvoiceConverter"
+      class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+      <property name="header">
+        <value>
+          INSERT_UPDATE Address;guid[unique=true];line1;town;region(isocode)[cellDecorator=com.siteone.core.batch.decorator.RegionCellDecorator];postalCode;country(isocode);company;owner(SiteOneInvoice.invoiceNumber)
+        </value>
+      </property>
+      <property name="impexRow">
+        <value>;{+0}-remitaddress;{59};{60};US-{61};{62};US;{58};{+0}
+        </value>
+      </property>
+      <property name="rowFilter">
+        <bean class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexRowFilter">
+          <property name="expression" value="row[33]=='invoice'"/>
+        </bean>
+      </property>
+    </bean>-->
+
+
+	<!-- Billing address -->
+	<!--	<bean id="batchSiteOneBillingAddressInvoiceConverterMapping"
+    class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping"
+    p:mapping="siteoneinvoice"
+    p:converter-ref="batchSiteOneBillingAddressInvoiceConverter" />
+    <bean id="batchSiteOneBillingAddressInvoiceConverter"
+      class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+      <property name="header">
+        <value>
+          INSERT_UPDATE Address;guid[unique=true];line1;town;region(isocode)[cellDecorator=com.siteone.core.batch.decorator.RegionCellDecorator];postalCode;Phone1[cellDecorator=com.siteone.core.batch.decorator.InvoicePhoneNumberCellDecorator];company;owner(SiteOneInvoice.invoiceNumber)
+        </value>
+      </property>
+      <property name="impexRow">
+        <value>;{+0}-billingaddress;{41};{42};US-{44};{43};{45};{40};{+0}
+        </value>
+      </property>
+      <property name="rowFilter">
+        <bean class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexRowFilter">
+          <property name="expression" value="row[33]=='invoice'"/>
+        </bean>
+      </property>
+    </bean>-->
+
+
+	<!-- Branch address -->
+	<bean id="batchSiteOneBranchAddressInvoiceConverterMapping"
+		class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping"
+		p:mapping="siteoneinvoice"
+		p:converter-ref="batchSiteOneBranchAddressInvoiceConverter" />
+	<bean id="batchSiteOneBranchAddressInvoiceConverter"
+		class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>
+				INSERT_UPDATE Address;guid[unique=true];line1;town;region(isocode)[cellDecorator=com.siteone.core.batch.decorator.RegionCellDecorator];postalCode;country(isocode);Phone1[cellDecorator=com.siteone.core.batch.decorator.InvoicePhoneNumberCellDecorator];company;owner(SiteOneInvoice.invoiceNumber)
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>;{+0}-branchaddress;{72};{73};US-{74};{75};US;{76};{70};{+0}
+			</value>
+		</property>
+		<property name="rowFilter">
+			<bean class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexRowFilter">
+				<property name="expression" value="row[33]=='invoice'"/>
+			</bean>
+		</property>
+	</bean>
+
+	<!-- Invoice Entry Details  -->
+	<bean id="batchSiteOneInvoiceEntryConverterMapping"
+		class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping"
+		p:mapping="siteoneinvoice"
+		p:converter-ref="batchSiteOneInvoiceEntryConverter" />
+	<bean id="batchSiteOneInvoiceEntryConverter"
+		class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>#{defaultImpexProductHeader}
+				INSERT_UPDATE SiteOneInvoiceEntry;invoice(invoiceNumber)[unique=true];quantity;unit;basePrice;productItemNumber;qtyShipped;qtyOpen;description;netprice;extprice;entryNumber;quantityText;invoiceEntryId[unique=true]
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>;{+0};{12};{13};{14};{11};{47};{48};{15};{55};{56};{54};{12};{152}</value>
+		</property>
+		<property name="rowFilter">
+			<bean class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexRowFilter">
+				<property name="expression" value="row[33]=='entries'"/>
+			</bean>
+		</property>
+		<property name="type" value="SiteOneInvoiceEntry" />
+	</bean>
+
+
+	<bean id="batchSiteoneInvoice2AddressConverterMapping"
+		class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping"
+		p:mapping="siteoneinvoice"
+		p:converter-ref="batchSiteOneInvoice2AddressConverter" />
+
+	<bean id="batchSiteOneInvoice2AddressConverter"
+		class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>
+				UPDATE SiteOneInvoice;invoiceNumber[unique=true];address(guid);branchAddress(guid)
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>;{+0};{+0}-address;{+0}-branchaddress
+			</value>
+		</property>
+		<property name="rowFilter">
+			<bean class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexRowFilter">
+				<property name="expression" value="row[33]=='invoice'"/>
+			</bean>
+		</property>
+	</bean>
+	<bean id="batchSiteOneInvoicePaymentInfoConverterMapping"
+		class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping"
+		p:mapping="siteoneinvoice" p:converter-ref="batchSiteOneInvoicePaymentInfoConverter" />
+	<bean id="batchSiteOneInvoicePaymentInfoConverter"
+		class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>
+				INSERT_UPDATE SiteOneInvoice;invoiceNumber[unique=true];paymentInfoList(transactionReferenceNumber)[mode=append]
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>;{+0};{+158}</value>
+		</property>
+		<property name="rowFilter">
+			<bean
+				class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexRowFilter">
+				<property name="expression" value="row[33]=='payment' &amp;&amp; (row[153]=='2' || row[153]=='3')" />
+			</bean>
+		</property>
+		<property name="type" value="SiteOneInvoice"/>
+	</bean>
+	<bean id="batchSiteOneInvoicePOAInfoConverterMapping"
+		class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping"
+		p:mapping="siteoneinvoice" p:converter-ref="batchSiteOneInvoicePOAInfoConverter" />
+	<bean id="batchSiteOneInvoicePOAInfoConverter"
+		class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>
+				INSERT_UPDATE SiteOneInvoice;invoiceNumber[unique=true];POAPaymentInfoList(transactionReferenceNumber)[mode=append]
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>;{+0};{+158}</value>
+		</property>
+		<property name="rowFilter">
+			<bean
+				class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexRowFilter">
+				<property name="expression" value="row[33]=='payment' &amp;&amp; row[153]=='1'" />
+			</bean>
+		</property>
+		<property name="type" value="SiteOneInvoice"/>
+	</bean>
+	<bean id="batchSiteOneInvoicePaymentFilterConverterMapping"
+		class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping"
+		p:mapping="siteoneinvoice" p:converter-ref="batchSiteOneInvoicePaymentFilterConverter" />
+	<bean id="batchSiteOneInvoicePaymentFilterConverter"
+		class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>
+				INSERT_UPDATE SiteOneInvoice;invoiceNumber[unique=true];paymentStatus;dueDate[dateformat='yyyy-MM-dd hh:mm:ss']
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>;{+0};{159};{160}</value>
+		</property>
+		<property name="rowFilter">
+			<bean
+				class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexRowFilter">
+				<property name="expression" value="row[33]=='payment'" />
+			</bean>
+		</property>
+		<property name="type" value="SiteOneInvoice"/>
+	</bean>
+</beans>

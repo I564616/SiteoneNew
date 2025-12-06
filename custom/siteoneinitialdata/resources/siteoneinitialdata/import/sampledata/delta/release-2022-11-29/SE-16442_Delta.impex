@@ -1,0 +1,35 @@
+## New cron job for b2b unit path generation
+
+
+#Migration : Query Change
+
+## branch_rstriction new
+INSERT_UPDATE SearchRestriction; code[unique = true]; name[lang = en]    ; query  ;principal(UID); restrictedType(code); active; generate
+     ; branch_restriction ; branch_restriction ; (({item:path} LIKE CONCAT((?session.user.defaultb2bunit.path),'%') OR {item:path} LIKE ?session.user.defaultb2bunit.reportingorganization.path)); b2bgroup      ; B2BUnit             ; true  ; true
+
+
+## order_restriction_hana new
+INSERT_UPDATE SearchRestriction; code[unique = true]    ; name[lang = en]        ; query   ; principal(UID); restrictedType(code); active; generate
+			      ; order_restriction_hana ; Order Restriction Hana ; (DATEDIFF (DAY,CONVERT (datetime,{creationtime}), SYSDATETIME()) <= 730) AND EXISTS({{SELECT {unit:pk} FROM {B2BUnit as unit} WHERE {unit:pk} = {item:unit} AND {unit:path} LIKE CONCAT((?session.user.defaultb2bunit.path),'%')}}) ; b2bgroup      ; Order               ; true  ; true
+
+#-----------------------------------
+
+## invoice_restriction_hana new
+INSERT_UPDATE SearchRestriction; code[unique = true]      ; name[lang = en]          ; query ; principal(UID); restrictedType(code); active; generate
+                               ; invoice_restriction_hana ; Invoice Restriction Hana ; (DATEDIFF (DAY,CONVERT (datetime,{invoicedDate}), SYSDATETIME()) <= 730 or {amountdue} not like '0')  AND EXISTS({{SELECT {unit:pk} FROM {B2BUnit as unit} WHERE {unit:uid} = {item:accountNumber} AND {unit:path} LIKE CONCAT((?session.user.defaultb2bunit.path),'%')}}) ; b2bgroup      ; SiteOneInvoice      ; true  ; true
+
+## customer_restriction new
+INSERT_UPDATE SearchRestriction; code[unique = true]  ; name[lang = en]               ; query  ; principal(UID); restrictedType(code); active; generate
+                               ; customer_restriction ; Restrict customers visibility ; ({item:active} = 1 AND EXISTS({{SELECT {unit:pk} FROM {B2BUnit as unit} WHERE {unit:pk} = {item:defaultb2bunit} AND {unit:path} LIKE CONCAT((?session.user.defaultb2bunit.path),'%')}})) ; b2bgroup      ; B2BCustomer         ; true  ; true
+
+## purchased_products_restriction we are not using this anymore
+
+
+## wishlist_restriction new | Migration : Query Change
+INSERT_UPDATE SearchRestriction; code[unique = true]  ; name[lang = en]               ; query           ; principal(UID); restrictedType(code); active; generate
+                               ; wishlist_restriction ; List and Assembly Restriction ;EXISTS ({{ SELECT {unit:pk} FROM { B2BCustomer as customer join B2BUnit as unit on {customer.defaultb2bunit} = {unit.pk}} WHERE {item:user} = {customer:pk} AND {unit:path} LIKE CONCAT((?session.user.defaultb2bunit.path),'%')}}); b2bgroup      ; Wishlist2           ; true  ; true
+
+
+## ewallet_credit_card_restriction new
+INSERT_UPDATE SearchRestriction; code[unique = true] ; name[lang = en] ; query ; principal(UID); restrictedType(code)  ; active; generate
+  ; ewallet_credit_card_restriction ; Ewallet Credit Card Restriction ; {vaulttoken} in ({{SELECT {ewallet:vaulttoken} FROM {SiteoneEwalletCreditCard as ewallet JOIN ShipTo2WalletRelation AS b2bunitrelation ON {b2bunitrelation:target} = {ewallet:pk} JOIN B2BUnit  AS b2bunit ON {b2bunit:pk} = {b2bunitrelation:source} } WHERE {b2bunit:path} LIKE CONCAT((?session.user.defaultb2bunit.path),'%')}}); b2bgroup      ; SiteoneEwalletCreditCard; true  ; true

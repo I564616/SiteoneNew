@@ -1,0 +1,234 @@
+# -----------------------------------------------------------------------
+# [y] hybris Platform
+#
+# Copyright (c) 2017 SAP SE or an SAP affiliate company.  All rights reserved.
+#
+# This software is the confidential and proprietary information of SAP
+# ("Confidential Information"). You shall not disclose such Confidential
+# Information and shall use it only in accordance with the terms of the
+# license agreement you entered into with SAP.
+# -----------------------------------------------------------------------
+# ImpEx for Importing SiteOne store Prices
+#% impex.setLocale( Locale.GERMAN ); 
+
+$productCatalog=siteoneProductCatalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default='$productCatalog:Staged']
+$prices=Europe1prices[translator=de.hybris.platform.europe1.jalo.impex.Europe1PricesTranslator]
+$taxGroup=Europe1PriceFactory_PTG(code)[default=us-sales-tax-full]
+
+# Set product approval status to Approved only for those products that have prices.
+$approved=approvalstatus(code)[default='approved']
+
+#UPDATE Product;code[unique=true];$prices;$approved;$catalogVersion;$taxGroup
+#;637227;1 pieces = 16 USD N, 10 pieces = 14,89 USD N, 30 pieces = 13,49 USD N, 50 pieces = 11,19 USD N, 100 pieces = 9,99 USD N
+#
+#INSERT_UPDATE PriceRow;productId[unique=true];unit(code[default=pieces]);currency(isocode)[unique=true];price;minqtd[unique=true];unitFactor;pointOfService(storeid)[unique=true];    
+#; 637227    ;pieces;USD;140;1;1;S001
+#; 1101690   ;pieces;USD;143;1;1;S001
+#; 1101695   ;pieces;USD;143;1;1;S001
+#; 1128762   ;pieces;USD;142;1;1;S001
+#; 1128763   ;pieces;USD;152;1;1;S001
+#; 1221408   ;pieces;USD;152;1;1;S001
+#; 1221409   ;pieces;USD;152;1;1;804
+#; 1221411   ;pieces;USD;156;1;1;804
+#; 1221417   ;pieces;USD;156;1;1;804
+#; 1249191   ;pieces;USD;116;1;1;804
+#; 1249198   ;pieces;USD;457;1;1;804
+#; 1249200   ;pieces;USD;457;1;1;804
+#; 1399957   ;pieces;USD;457;1;1;804
+#; 1399958   ;pieces;USD;417;1;1;804
+#; 1399966   ;pieces;USD;390;1;1;804
+#; 1399984   ;pieces;USD;390;1;1;804
+#; 1399988   ;pieces;USD;390;1;1;850
+#; 1408366   ;pieces;USD;190;1;1;850
+#; 1664617   ;pieces;USD;110;1;1;850
+#; 1666884   ;pieces;USD;156;1;1;850
+#; 1669869   ;pieces;USD;156;1;1;850
+#; 1670353   ;pieces;USD;156;1;1;850
+#; 1670354   ;pieces;USD;156;1;1;850
+#; 1670355   ;pieces;USD;156;1;1;850
+#; 1670427   ;pieces;USD;110;1;1;850
+#; 1670428   ;pieces;USD;340;1;1;850
+#; 1670429   ;pieces;USD;343;1;1;850
+#; 1670430   ;pieces;USD;243;1;1;S004
+#; 1670435   ;pieces;USD;243;1;1;S004
+#; 1670436   ;pieces;USD;140;1;1;S004
+#; 1670448   ;pieces;USD;378;1;1;S004
+#; 1672248   ;pieces;USD;378;1;1;S004
+#; 1672249   ;pieces;USD;370;1;1;S005
+#; 1672250   ;pieces;USD;110;1;1;S005
+#; 1672251   ;pieces;USD;176;1;1;S005
+#; 1677056   ;pieces;USD;276;1;1;S005
+#; 1677065   ;pieces;USD;110;1;1;S005    
+#
+#
+#
+#INSERT_UPDATE PriceRow;productId[unique=true];unit(code[default=pieces]);currency(isocode)[unique=true];price;minqtd[unique=true];unitFactor;pointOfService(storeid)[unique=true];                     
+#  ; 1301_1   ;pieces;USD;110;1;1;S001                      
+#  ; 1301_2   ;pieces;USD;212;1;1;S001                      
+#  ; 1301_3   ;pieces;USD;316;1;1;S001                                                        
+#                                 
+#  ; 1302_1   ;pieces;USD;533;1;1;S001                      
+#  ; 1302_2   ;pieces;USD;432;1;1;S001           
+#  ; 1302_3   ;pieces;USD;610;1;1;S001                      
+#  ; 1302_4   ;pieces;USD;733;1;1;S001                      
+#                                
+#  ; 1303_1   ;pieces;USD;923;1;1;S001                      
+#  ; 1303_2   ;pieces;USD;144;1;1;S001                      
+#  ; 1303_3   ;pieces;USD;812;1;1;S001            
+#  ; 1303_4   ;pieces;USD;310;1;1;S001                      
+#  ; 1303_5   ;pieces;USD;444;1;1;S001                      
+#                             
+#  ; 1304_1   ;pieces;USD;443;1;1;S001                      
+#  ; 1304_2   ;pieces;USD;567;1;1;S001                      
+#                         
+#  ; 1305_1   ;pieces;USD;140;1;1;S001 
+#  ; 1305_2   ;pieces;USD;260;1;1;S001 
+#  ; 1305_3   ;pieces;USD;316;1;1;S001 
+#            
+#  ; 1401_1   ;pieces;USD;513;1;1;S001       
+#  ; 1401_2   ;pieces;USD;925;1;1;S001         
+#  ; 1401_3   ;pieces;USD;616;1;1;S001 
+#  ; 1401_4   ;pieces;USD;718;1;1;S001 
+#            
+#  ; 1402_1   ;pieces;USD;934;1;1;S001 
+#  ; 1402_2   ;pieces;USD;812;1;1;S001 
+#                    
+#  ; 1403_1   ;pieces;USD;313;1;1;S001 
+#  ; 1403_2   ;pieces;USD;416;1;1;S001 
+#  ; 1403_3   ;pieces;USD;554;1;1;S001 
+#            
+#  ; 1404_1   ;pieces;USD;467;1;1;S001 
+#  ; 1404_2   ;pieces;USD;133;1;1;S001 
+#  ; 1404_3   ;pieces;USD;233;1;1;S001 
+#  ; 1404_4   ;pieces;USD;337;1;1;S001 
+#            
+#  ; 1405_1   ;pieces;USD;530;1;1;S001 
+#                     
+# 
+#  ; 1601_1   ;pieces;USD;964;1;1;S001 
+#  ; 1601_2   ;pieces;USD;165;1;1;S001 
+#                        
+#  ; 1602_1   ;pieces;USD;377;1;1;S001 
+#  ; 1602_2   ;pieces;USD;476;1;1;S001 
+#  ; 1602_3   ;pieces;USD;575;1;1;S001 
+#  ; 1602_4   ;pieces;USD;474;1;1;S001 
+#             
+#  ; 1603_1    ;pieces;USD;863;1;1;S001 
+#  ; 1603_2    ;pieces;USD;134;1;1;S001 
+#  ; 1603_3    ;pieces;USD;235;1;1;S001 
+#            
+#  ; 1604_1    ;pieces;USD;437;1;1;S001 
+#  ; 1604_2    ;pieces;USD;538;1;1;S001 
+#  ; 1604_3    ;pieces;USD;336;1;1;S001         
+#  ; 1604_4    ;pieces;USD;695;1;1;S001 
+#  ; 1604_5    ;pieces;USD;796;1;1;S001 
+#             
+#  ; 1605_1    ;pieces;USD;992;1;1;S001 
+#  ; 1605_2    ;pieces;USD;199;1;1;S001 
+#  ; 1605_3    ;pieces;USD;336;1;1;S001         
+#  ; 1605_4    ;pieces;USD;316;1;1;S001 
+#             
+#  ; 1701_1    ;pieces;USD;516;1;1;S001 
+#  ; 1701_2    ;pieces;USD;416;1;1;S001 
+#             
+#  ; 1702_1    ;pieces;USD;416;1;1;S001 
+#  ; 1702_2    ;pieces;USD;181;1;1;S001 
+#  ; 1702_3    ;pieces;USD;282;1;1;S001 
+#             
+#  ; 1703_1    ;pieces;USD;484;1;1;S001 
+#  ; 1703_2    ;pieces;USD;515;1;1;S001 
+#  ; 1703_3    ;pieces;USD;383;1;1;S001         
+#  ; 1703_4    ;pieces;USD;650;1;1;S001 
+#  ; 1703_5    ;pieces;USD;750;1;1;S001 
+#           
+#  ; 1704_1    ;pieces;USD;950;1;1;S001 
+#  ; 1704_5    ;pieces;USD;150;1;1;S001 
+#                       
+#  ; 1705_1    ;pieces;USD;362;1;1;S001 
+#    
+#  
+#     ; 1301_1  ;pieces;USD;90;1;1;804                  
+#     ; 1301_2  ;pieces;USD;95;1;1;804                  
+#     ; 1301_3  ;pieces;USD;120;1;1;804                  
+#                               
+#     ; 1302_1  ;pieces;USD;142;1;1;804                  
+#     ; 1302_2  ;pieces;USD;135;1;1;804                       
+#     ; 1302_3  ;pieces;USD;696;1;1;804                  
+#     ; 1302_4  ;pieces;USD;796;1;1;804                  
+#                               
+#     ; 1303_1  ;pieces;USD;996;1;1;804                  
+#     ; 1303_2  ;pieces;USD;190;1;1;804                  
+#     ; 1303_3  ;pieces;USD;896;1;1;804                        
+#     ; 1303_4  ;pieces;USD;368;1;1;804                  
+#     ; 1303_5  ;pieces;USD;468;1;1;804                  
+#                               
+#     ; 1304_1  ;pieces;USD;460;1;1;804                  
+#     ; 1304_2  ;pieces;USD;560;1;1;804                  
+#                                      
+#     ; 1305_1  ;pieces;USD;147;1;1;804 
+#     ; 1305_2  ;pieces;USD;247;1;1;804 
+#     ; 1305_3  ;pieces;USD;347;1;1;804 
+#               
+#     ; 1401_1  ;pieces;USD;510;1;1;804
+#     ; 1401_2  ;pieces;USD;417;1;1;804 
+#     ; 1401_3  ;pieces;USD;910;1;1;804         
+#     ; 1401_4  ;pieces;USD;652;1;1;804 
+#              
+#     ; 1402_1  ;pieces;USD;852;1;1;804 
+#     ; 1402_2  ;pieces;USD;910;1;1;804 
+#             
+#     ; 1403_1  ;pieces;USD;923;1;1;804           
+#     ; 1403_2  ;pieces;USD;323;1;1;804 
+#     ; 1403_3  ;pieces;USD;423;1;1;804 
+#              
+#     ; 1404_1  ;pieces;USD;433;1;1;804 
+#     ; 1404_2  ;pieces;USD;417;1;1;804 
+#     ; 1404_3  ;pieces;USD;131;1;1;804
+#     ; 1404_4  ;pieces;USD;231;1;1;804
+#              
+#     ; 1405_1  ;pieces;USD;412;1;1;804
+#               
+#                  
+#     ; 1601_1  ;pieces;USD;821;1;1;804                 
+#     ; 1601_2  ;pieces;USD;929;1;1;804                 
+#                           
+#     ; 1602_1  ;pieces;USD;119;1;1;804                              
+#     ; 1602_2  ;pieces;USD;345;1;1;804                 
+#     ; 1602_3  ;pieces;USD;445;1;1;804                 
+#     ; 1602_4  ;pieces;USD;545;1;1;804                 
+#             
+#     ; 1603_1   ;pieces;USD;528;1;1;804                 
+#     ; 1603_2   ;pieces;USD;428;1;1;804               
+#     ; 1603_3   ;pieces;USD;145;1;1;804                                                   
+#                           
+#     ; 1604_1   ;pieces;USD;345;1;1;804                 
+#     ; 1604_2   ;pieces;USD;463;1;1;804                 
+#     ; 1604_3   ;pieces;USD;563;1;1;804                 
+#     ; 1604_4   ;pieces;USD;245;1;1;804                             
+#     ; 1604_5   ;pieces;USD;647;1;1;804                 
+#                          
+#     ; 1605_1   ;pieces;USD;847;1;1;804                 
+#     ; 1605_2   ;pieces;USD;947;1;1;804                 
+#     ; 1605_3   ;pieces;USD;110;1;1;804                 
+#     ; 1605_4   ;pieces;USD;747;1;1;804                               
+#                            
+#     ; 1701_1   ;pieces;USD;468;1;1;804                 
+#     ; 1701_2   ;pieces;USD;568;1;1;804                 
+#                               
+#     ; 1702_1   ;pieces;USD;575;1;1;804 
+#     ; 1702_2   ;pieces;USD;478;1;1;804 
+#     ; 1702_3   ;pieces;USD;157;1;1;804 
+#                             
+#     ; 1703_1   ;pieces;USD;357;1;1;804                     
+#     ; 1703_2   ;pieces;USD;410;1;1;804                     
+#     ; 1703_3   ;pieces;USD;510;1;1;804                     
+#     ; 1703_4   ;pieces;USD;257;1;1;804                                  
+#     ; 1703_5   ;pieces;USD;632;1;1;804                     
+#                              
+#     ; 1704_1   ;pieces;USD;832;1;1;804                     
+#     ; 1704_5   ;pieces;USD;912;1;1;804                     
+#                             
+#     ; 1705_1   ;pieces;USD;732;1;1;804                                   
+#               
+           

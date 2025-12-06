@@ -1,0 +1,3 @@
+INSERT_UPDATE Siteonefeatureswitch;key[unique=true];longValue
+;SplitMixedPickupBranches;
+;SplitMixedDeliveryBranches;

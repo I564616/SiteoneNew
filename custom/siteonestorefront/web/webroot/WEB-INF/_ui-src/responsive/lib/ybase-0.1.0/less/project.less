@@ -1,0 +1,62 @@
+.page-projectDashboard {
+	.hide { display: none;}
+}
+.project-dashboard-page {
+	.popover {
+		border: 0px;
+		border-radius: 3px;
+		.popover-content {
+			font-size: 12px;
+			color: #000;
+			padding: 5px;
+			min-width: 110px;
+			text-align: center;
+		}
+	}
+	.glyphicon.hidden{
+		display: none !important;
+	}
+	.btn-small {
+		padding: 0 10px;
+		font-size: 14px;
+	}
+	.btn-iconlink {
+	    padding: 2px 6px;
+    	background: #ECECEC;
+		&:active, &:focus, &:hover {
+			color: #78a22f;
+			opacity: .9;
+		}
+		&.selected {
+			background: #648825;
+			color: #fff;
+			&:active, &:focus, &:hover {
+				color: #fff;
+			}
+		}
+	}
+	.btn-bold {
+		font-weight: 700;
+	}
+	.btn-group .btn+.btn { margin-left: 0;}
+	.colored-radio input[type='radio'] {
+		width: 16px;
+		height: 16px;
+		border: 2px solid #CCCCCC;
+		&:before {
+			width: 50%;
+			height: 50%;
+			margin: 3px auto;
+		}
+		&:checked {
+			border: 2px solid #78a22f;
+		}
+	}
+	.btn-warning {
+		border: 3px solid;
+		border-radius: 3px !important;
+		color: #000000;
+		background-color: #FDEDD9;
+		border-color: #FDEDD9;
+	}
+}

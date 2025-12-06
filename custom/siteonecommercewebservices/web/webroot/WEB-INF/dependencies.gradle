@@ -1,0 +1,5 @@
+ext {
+	libraries = []
+}
+libraries << "org.glassfish.web:javax.servlet.jsp.jstl:1.2.5"
+libraries << "net.java.dev.stax-utils:stax-utils:20070216"

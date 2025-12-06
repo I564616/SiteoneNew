@@ -1,0 +1,74 @@
+import de.hybris.platform.core.Registry;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+def conn = Registry.getCurrentTenant().getDataSource().getConnection();            
+def s = conn.createStatement();
+
+def s1 ="UPDATE classificationattrs item_t0 SET item_t0.p_code = 'nrsryTrunkCharacteristics' WHERE (item_t0.p_code = 'nrsryBarkTrunk')";
+def s2 ="UPDATE classificationattrs item_t0 SET item_t0.p_code = 'nrsryBloomAttributes' WHERE (item_t0.p_code = 'nrsryBloomAttr')";
+def s3 ="UPDATE classificationattrs item_t0 SET item_t0.p_code = 'nrsryEnvironmental' WHERE (item_t0.p_code = 'nrsryEnvironment')";
+def s4 ="UPDATE classificationattrs item_t0 SET item_t0.p_code = 'nrsryFruitCharacteristics' WHERE (item_t0.p_code = 'nrsryFruitChars')";
+def s5 ="UPDATE classificationattrs item_t0 SET item_t0.p_code = 'nrsryFruitComposition' WHERE (item_t0.p_code = 'nrsryFruitComp')";
+def s6 ="UPDATE classificationattrs item_t0 SET item_t0.p_code = 'nrsryUSDAHardinessZoneMaximum' WHERE (item_t0.p_code = 'nrsryNrsryyMAX')";
+def s7 ="UPDATE classificationattrs item_t0 SET item_t0.p_code = 'nrsryUSDAHardinessZoneMinimum' WHERE (item_t0.p_code = 'nrsryNrsryyMIN')";
+def s8 ="UPDATE classificationattrs item_t0 SET item_t0.p_code = 'nrsryASHHeatZoneMaximum' WHERE (item_t0.p_code = 'nrsryHeatMAX')";
+def s9 ="UPDATE classificationattrs item_t0 SET item_t0.p_code = 'nrsryASHHeatZoneMinimum' WHERE (item_t0.p_code = 'nrsryHeatMIN')";
+def s10 ="UPDATE classificationattrs item_t0 SET item_t0.p_code = 'nrsryLeafArrangement' WHERE (item_t0.p_code = 'nrsryLeafARR')";
+def s11 ="UPDATE classificationattrs item_t0 SET item_t0.p_code = 'nrsryLeafCharacteristics' WHERE (item_t0.p_code = 'nrsryLeafChars')";
+def s12 ="UPDATE classificationattrs item_t0 SET item_t0.p_code = 'nrsryMaximumLeafLength' WHERE (item_t0.p_code = 'nrsryLeafLenMax')";
+def s13 ="UPDATE classificationattrs item_t0 SET item_t0.p_code = 'nrsryIndoorLightLevels' WHERE (item_t0.p_code = 'nrsryLightIndoor')";
+def s14 ="UPDATE classificationattrs item_t0 SET item_t0.p_code = 'nrsryMinimumSunLight' WHERE (item_t0.p_code = 'nrsryLightMIN')";
+def s15 ="UPDATE classificationattrs item_t0 SET item_t0.p_code = 'nrsryMaximumMoistureLevel' WHERE (item_t0.p_code = 'nrsryMoistMAX')";
+def s16 ="UPDATE classificationattrs item_t0 SET item_t0.p_code = 'nrsryMinimumMoistureLevel' WHERE (item_t0.p_code = 'nrsryMoistMIN')";
+def s17 ="UPDATE classificationattrs item_t0 SET item_t0.p_code = 'Maintenance_formulation' WHERE (item_t0.p_code = 'Maintenance_form')";
+def s18 ="UPDATE classificationattrs item_t0 SET item_t0.p_code = 'Maintenance_npkanalysis' WHERE (item_t0.p_code = 'Maintenance_npkratio')";
+def s19 ="UPDATE classificationattrs item_t0 SET item_t0.p_code = 'Maintenance_amperagerating' WHERE (item_t0.p_code = 'Maintenance_amprating')";
+def s20 ="UPDATE classificationattrs item_t0 SET item_t0.p_code = 'Maintenance_numberofblades' WHERE (item_t0.p_code = 'Maintenance_nbrofblades')";
+def s21 ="UPDATE classificationattrs item_t0 SET item_t0.p_code = 'Maintenance_numberofnozzles' WHERE (item_t0.p_code = 'Maintenance_nbrofnozzles')";
+def s22 ="UPDATE classificationattrs item_t0 SET item_t0.p_code = 'Maintenance_numberofspeeds' WHERE (item_t0.p_code = 'Maintenance_Nbrofspeeds')";
+def s23 ="UPDATE classificationattrs item_t0 SET item_t0.p_code = 'Maintenance_numberoftines' WHERE (item_t0.p_code = 'Maintenance_nbroftines')";
+def s24 ="UPDATE classificationattrs item_t0 SET item_t0.p_code = 'Maintenance_seedhoppercapacity' WHERE (item_t0.p_code = 'Maintenance_seedhoppercpcty')";
+def s25 ="UPDATE classificationattrs item_t0 SET item_t0.p_code = 'lghtWattage' WHERE (item_t0.p_code = 'lghtLampWattage')";
+def s26 ="UPDATE classificationattrs item_t0 SET item_t0.p_code = 'lghtWireLength' WHERE (item_t0.p_code = 'lghtCableLength')";
+def s27 ="UPDATE classificationattrs item_t0 SET item_t0.p_code = 'lghtIntegratedDropIn' WHERE (item_t0.p_code = 'lghtintgrtddropin')";
+def s28 ="UPDATE classificationattrs item_t0 SET item_t0.p_code = 'lghtColorRenderingIndexCRI' WHERE (item_t0.p_code = 'lghtColorRenderingIndex')";
+def s29 ="UPDATE solrindexedproperty item_t0 SET item_t0.p_name = 'lghtIntegratedDropIn' WHERE (item_t0.p_name = 'lghtintgrtddropin')";
+
+s.addBatch(s1);
+s.addBatch(s2);
+s.addBatch(s3);
+s.addBatch(s4);
+s.addBatch(s5);
+s.addBatch(s6);
+s.addBatch(s7);
+s.addBatch(s8);
+s.addBatch(s9);
+s.addBatch(s10);
+s.addBatch(s11);
+s.addBatch(s12);
+s.addBatch(s13);
+s.addBatch(s14);
+s.addBatch(s15);
+s.addBatch(s16);
+s.addBatch(s17);
+s.addBatch(s18);
+s.addBatch(s19);
+s.addBatch(s20);
+s.addBatch(s21);
+s.addBatch(s22);
+s.addBatch(s23);
+s.addBatch(s24);
+s.addBatch(s25);
+s.addBatch(s26);
+s.addBatch(s27);
+s.addBatch(s28);
+s.addBatch(s29);
+		 
+def result = s.executeBatch();
+def i=1;
+for (item in result) {
+println ("Statement "+i+" |"+"Records Found/Updated: "+item);
+  ++i;
+}

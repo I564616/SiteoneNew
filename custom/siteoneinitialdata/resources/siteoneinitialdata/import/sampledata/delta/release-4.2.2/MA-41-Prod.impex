@@ -1,0 +1,5 @@
+REMOVE OAuthClientDetails;clientId[unique=true]  
+                         ;ukt4za6t-70mn-mo6m-jhcb-jvm390pu4bd4 
+
+INSERT_UPDATE OAuthClientDetails;clientId[unique=true]    		        ;resourceIds       ;scope        ;authorizedGrantTypes                                            ;authorities             ;clientSecret    				            ;registeredRedirectUri											;accessTokenValiditySeconds ;refreshTokenValiditySeconds
+                                ;e2cd95cc-19a7-4cd5-b856-1461a863f7f1   ;hybris            ;basic        ;refresh_token,password    ;ROLE_CLIENT             ;c444da18-de25-4703-9805-67a6f0c85c8c      	;https://sio-p-www.ms.ycs.io/authorizationserver/oauth2_callback;3600			            ;14400

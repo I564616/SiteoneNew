@@ -1,0 +1,30 @@
+$contentCatalog=siteoneContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Online])[default=$contentCatalog:Online]
+$productCatalog=siteoneProductCatalog
+$productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Online'])[unique=true,default=$productCatalog:Online]
+$supercategories=supercategories( code, catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Online']));;;;;;;;;
+
+
+### Shop By industry ###
+
+INSERT_UPDATE Category;code[unique=true];name[lang=en];$supercategories;$contentCV;allowedPrincipals(uid);productCount
+ ;SH18;Shop By Industry;SH1;siteoneProductCatalog:Online;admingroup;1
+ ;SH1811;Golf;SH18;siteoneProductCatalog:Online;admingroup;1
+ ;SH1812;Sports Field;SH18;siteoneProductCatalog:Online;admingroup;1
+ ;SH1813;Pest Management;SH18;siteoneProductCatalog:Online;admingroup;1 
+ ;SH1814;Snow and Ice Removal;SH18;siteoneProductCatalog:Online;admingroup;1 
+
+INSERT_UPDATE GlobalProductNavigationNode;$contentCV[unique=true];uid[unique=true];name;parent(uid, $contentCV);category(code, $productCV);&nodeRef;sequenceNumber;url
+;;ShopByIndustryNavNode;ShopByIndustryNavNode;CategoriesNavNode;SH18;ShopByIndustryNavNode;9;
+;;GolfNavNode;GolfNavNode;ShopByIndustryNavNode;SH1811;GolfNavNode;1;/en/golfsales
+;;SportsFieldNavNode;SportsFieldNavNode;ShopByIndustryNavNode;SH1812;SportsFieldNavNode;2;/en/sportsturf
+;;PestManagementNavNode;PestManagementNavNode;ShopByIndustryNavNode;SH1813;PestManagementNavNode;3;/en/pestmanagement
+;;SnowandIceRemovalNavNode;SnowandIceRemovalNavNode;ShopByIndustryNavNode;SH1814;SnowandIceRemovalNavNode;4;/en/snow-equipment-and-parts
+
+INSERT_UPDATE CategoryComponent;$contentCV[unique=true];uid[unique=true];category(code,$productCV);media(code, $contentCV);&componentRef;name
+;;categoryComponent8;SH18;;categoryComponent8;Category component 8
+
+UPDATE VerticalBarComponent;$contentCV[unique=true];uid[unique=true];name;globalProductNodes(uid,$contentCV);&componentRef;;;
+;;VerticalBarComponent;All Products;AgronomicMaintenanceNavNode,Hardscapes&OutdoorLivingNavNode,IrrigationNavNode,LandscapeSupplyNavNode,LightingNavNode,NurseryNavNode,ToolsEquipment&SafetyNavNode,ShopByIndustryNavNode;VerticalBarComponent;;;
+
+

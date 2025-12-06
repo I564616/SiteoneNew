@@ -1,0 +1,38 @@
+$contentCatalog=siteoneContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$wideContent=CMSImageComponent,BannerComponent
+$jarEmailResource=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/coredata/contentCatalogs/siteoneContentCatalog/emails
+
+# Language
+$lang=en
+
+# Import modulegen config properties into impex macros
+UPDATE GenericItem[processor=de.hybris.platform.commerceservices.impex.impl.ConfigPropertyImportProcessor];pk[unique=true]
+$jarResourceCms=$config-jarResourceCmsValue
+$emailPackageName=$config-emailContextPackageName
+
+# Email page Template
+INSERT_UPDATE EmailPageTemplate;$contentCV[unique=true];uid[unique=true];name;active;frontendTemplateName;subject(code);htmlTemplate(code);restrictedPageTypes(code)
+;;OrderApprovalRejectionEmailTemplate;Order Approval Rejection Email Template;true;orderApprovalRejectionEmail;powertools_Email_Order_ApprovalRejection_Subject;powertools_Email_Order_ApprovalRejection_Body;EmailPage
+;;OrderPendingApprovalEmailTemplate;Order Pending Approval Email Template;true;orderPendingApprovalEmail;powertools_Email_Order_PendingApproval_Subject;powertools_Email_Order_PendingApproval_Body;EmailPage
+
+UPDATE EmailPageTemplate;$contentCV[unique=true];uid[unique=true];velocityTemplate[translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+;;OrderApprovalRejectionEmailTemplate;$jarEmailResource/structure-view/structure_orderApprovalRejectionEmailTemplate.vm
+;;OrderPendingApprovalEmailTemplate;$jarEmailResource/structure-view/structure_orderPendingApprovalEmailTemplate.vm
+
+INSERT_UPDATE RendererTemplate;code[unique=true];contextClass;rendererType(code)[default='velocity']
+;powertools_Email_Order_ApprovalRejection_Body;$emailPackageName.OrderNotificationEmailContext
+;powertools_Email_Order_ApprovalRejection_Subject;$emailPackageName.OrderNotificationEmailContext
+;powertools_Email_Order_PendingApproval_Subject;$emailPackageName.OrderAdminApprovalEmailContext
+;powertools_Email_Order_PendingApproval_Body;$emailPackageName.OrderAdminApprovalEmailContext
+
+UPDATE RendererTemplate;code[unique=true];description[lang=$lang];templateScript[lang=$lang,translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+ ;powertools_Email_Order_ApprovalRejection_Body;"Order Approval Rejection Email Body";$jarEmailResource/email-orderApprovalRejectionBody.vm
+ ;powertools_Email_Order_ApprovalRejection_Subject;"Order Approval Rejection Email Subject";$jarEmailResource/email-orderApprovalRejectionSubject.vm
+ ;powertools_Email_Order_PendingApproval_Body;"Order Pending Approval Email Body";$jarEmailResource/email-orderPendingApprovalBody.vm
+ ;powertools_Email_Order_PendingApproval_Subject;"Order Pending Approval Email Subject";$jarEmailResource/email-orderPendingApprovalSubject.vm
+ 
+# Email Pages
+INSERT_UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];fromEmail[lang=$lang];fromName[lang=$lang]
+;;OrderApprovalRejectionEmail;"customersupport@ec.siteone.com";"SiteOne"
+;;OrderPendingApprovalEmail;"customersupport@ec.siteone.com";"SiteOne"

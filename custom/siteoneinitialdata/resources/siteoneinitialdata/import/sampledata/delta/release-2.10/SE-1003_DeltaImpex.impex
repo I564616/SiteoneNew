@@ -1,0 +1,2 @@
+INSERT_UPDATE AttributeDescriptor;enclosingType(code)[unique=true];qualifier[unique=true];optional
+;PhoneContactInfo;phoneNumber;true

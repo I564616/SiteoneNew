@@ -1,0 +1,36 @@
+#Classifying;Class;creation;;;;;;;
+#-----------------------------;;;;;;;;;
+INSERT_UPDATE classificationclass;code[unique=true];name[lang=en];catalogVersion(catalog(id),version);;;;;
+;CH01_1515112;Product Details;siteoneClassification:1;;;;;
+;CH01_1515113;Product Details;siteoneClassification:1;;;;;
+;CH01_1511;Product Details;siteoneClassification:1;;;;;
+;CH01_1512;Product Details;siteoneClassification:1;;;;;
+;CH01_1513110;Product Details;siteoneClassification:1;;;;;
+;CH01_1513111;Product Details;siteoneClassification:1;;;;;
+;CH01_1513112;Product Details;siteoneClassification:1;;;;;
+;CH01_1513113;Product Details;siteoneClassification:1;;;;;
+;CH01_1513115;Product Details;siteoneClassification:1;;;;;
+;CH01_1514110101;Product Details;siteoneClassification:1;;;;;
+;CH01_1514111;Product Details;siteoneClassification:1;;;;;
+;CH01_1514112;Product Details;siteoneClassification:1;;;;;
+;CH01_1514113;Product Details;siteoneClassification:1;;;;;
+;CH01_1511112;Product Details;siteoneClassification:1;;;;;
+;CH01_1514110100;Product Details;siteoneClassification:1;;;;;
+;CH01_1514113101;Product Details;siteoneClassification:1;;;;;
+;CH01_1514113102;Product Details;siteoneClassification:1;;;;;
+;CH01_1514113103;Product Details;siteoneClassification:1;;;;;
+;CH01_1514113104;Product Details;siteoneClassification:1;;;;;
+;CH01_1514113105;Product Details;siteoneClassification:1;;;;;
+;CH01_1514113106;Product Details;siteoneClassification:1;;;;;
+;CH01_1514113107;Product Details;siteoneClassification:1;;;;;
+;CH01_1515110;Product Details;siteoneClassification:1;;;;;
+;CH01_1514112101;Product Details;siteoneClassification:1;;;;;
+;CH01_1511110;Product Details;siteoneClassification:1;;;;;
+;CH01_1511111;Product Details;siteoneClassification:1;;;;;
+;CH01_1515111;Product Details;siteoneClassification:1;;;;;
+;CH01_1514113100;Product Details;siteoneClassification:1;;;;;
+;CH01_1514;Product Details;siteoneClassification:1;;;;;
+;CH01_15;Product Details;siteoneClassification:1;;;;;
+;CH01_1515;Product Details;siteoneClassification:1;;;;;
+
+

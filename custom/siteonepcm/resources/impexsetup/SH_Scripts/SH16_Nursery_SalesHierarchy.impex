@@ -1,0 +1,60 @@
+$supercategories=supercategories( code, catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Staged']));;;;;;;;;
+$catalogVersion=catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Staged'])[unique=true,default='siteoneProductCatalog:Staged'];;;;;;;;;
+;;;;;;;;;
+INSERT_UPDATE Category;code[unique=true];name[lang=en];$supercategories;$catalogVersion;allowedPrincipals(uid)
+;SH1;Primary;;siteoneProductCatalog:Staged;admingroup
+;SH16;Nursery;SH1;siteoneProductCatalog:Staged;admingroup 
+;SH1611;Flowers, Plants & Shrubs;SH16;siteoneProductCatalog:Staged;admingroup 
+;SH1612;Holiday;SH16;siteoneProductCatalog:Staged;admingroup 
+;SH1613;Indoor Plants;SH16;siteoneProductCatalog:Staged;admingroup 
+;SH1614;Succulents;SH16;siteoneProductCatalog:Staged;admingroup 
+;SH1615;Trees;SH16;siteoneProductCatalog:Staged;admingroup 
+;SH1616;Landscape Bulbs, Grasses & Seed;SH16;siteoneProductCatalog:Staged;admingroup 
+;SH1617;Sod;SH16;siteoneProductCatalog:Staged;admingroup 
+;SH1611110;Annuals;SH1611;siteoneProductCatalog:Staged;admingroup 
+;SH1611111;Ground Cover;SH1611;siteoneProductCatalog:Staged;admingroup 
+;SH1611112;Patio Plants;SH1611;siteoneProductCatalog:Staged;admingroup 
+;SH1611113;Perennials;SH1611;siteoneProductCatalog:Staged;admingroup 
+;SH1611114;Potted Fruit Plants;SH1611;siteoneProductCatalog:Staged;admingroup 
+;SH1611115;Potted Seasonal Color;SH1611;siteoneProductCatalog:Staged;admingroup 
+;SH1611116;Deciduous Shrubs;SH1611;siteoneProductCatalog:Staged;admingroup 
+;SH1611117;Evergreen Shrubs;SH1611;siteoneProductCatalog:Staged;admingroup 
+;SH1611118;Succulent Shrubs;SH1611;siteoneProductCatalog:Staged;admingroup 
+;SH1612110;Cut Trees;SH1612;siteoneProductCatalog:Staged;admingroup 
+;SH1612111;Holiday Accessories;SH1612;siteoneProductCatalog:Staged;admingroup 
+;SH1612112;Holiday Wreaths & Roping;SH1612;siteoneProductCatalog:Staged;admingroup 
+;SH1612113;Other Holiday Accessories;SH1612;siteoneProductCatalog:Staged;admingroup 
+;SH1613110;Floor Plants;SH1613;siteoneProductCatalog:Staged;admingroup 
+;SH1613111;Specimen Plants;SH1613;siteoneProductCatalog:Staged;admingroup 
+;SH1613112;Table Top Plants;SH1613;siteoneProductCatalog:Staged;admingroup 
+;SH1614110;Succulent Plants;SH1614;siteoneProductCatalog:Staged;admingroup 
+;SH1614111;Succulent Shrubs;SH1614;siteoneProductCatalog:Staged;admingroup 
+;SH1614112;Succulent Trees;SH1614;siteoneProductCatalog:Staged;admingroup 
+;SH1615110;Evergreen Trees;SH1615;siteoneProductCatalog:Staged;admingroup 
+;SH1615111;Fruit Trees;SH1615;siteoneProductCatalog:Staged;admingroup 
+;SH1615112;Ornamental Trees;SH1615;siteoneProductCatalog:Staged;admingroup 
+;SH1615113;Palm Trees;SH1615;siteoneProductCatalog:Staged;admingroup 
+;SH1615114;Shade Trees;SH1615;siteoneProductCatalog:Staged;admingroup 
+;SH1615115;Succulent Trees;SH1615;siteoneProductCatalog:Staged;admingroup 
+;SH1616110;Landscape Bulbs;SH1616;siteoneProductCatalog:Staged;admingroup 
+;SH1616111;Turf Seed;SH1616;siteoneProductCatalog:Staged;admingroup 
+;SH1616112;Wildflowers;SH1616;siteoneProductCatalog:Staged;admingroup 
+;SH1617110;Cool Season Sod;SH1617;siteoneProductCatalog:Staged;admingroup 
+;SH1617111;Warm Season Sod;SH1617;siteoneProductCatalog:Staged;admingroup 
+;SH1616110100;Crocus;SH1616110;siteoneProductCatalog:Staged;admingroup 
+;SH1616110101;Daffodils;SH1616110;siteoneProductCatalog:Staged;admingroup 
+;SH1616110102;Hyacinth;SH1616110;siteoneProductCatalog:Staged;admingroup 
+;SH1616110103;Summer Bulbs;SH1616110;siteoneProductCatalog:Staged;admingroup 
+;SH1616110104;Tulips;SH1616110;siteoneProductCatalog:Staged;admingroup 
+;SH1616110105;Other  Bulbs;SH1616110;siteoneProductCatalog:Staged;admingroup 
+;SH1616111100;Annual Ryegrass;SH1616111;siteoneProductCatalog:Staged;admingroup 
+;SH1616111101;Bentgrass;SH1616111;siteoneProductCatalog:Staged;admingroup 
+;SH1616111102;Fine Fescue;SH1616111;siteoneProductCatalog:Staged;admingroup 
+;SH1616111103;Kentucky Bluegrass;SH1616111;siteoneProductCatalog:Staged;admingroup 
+;SH1616111104;Perennial Ryegrass;SH1616111;siteoneProductCatalog:Staged;admingroup 
+;SH1616111105;Poa Trivialis;SH1616111;siteoneProductCatalog:Staged;admingroup 
+;SH1616111106;Tall Fescue;SH1616111;siteoneProductCatalog:Staged;admingroup 
+;SH1616111107;Sod Seed;SH1616111;siteoneProductCatalog:Staged;admingroup 
+;SH1616111108;Warm Season;SH1616111;siteoneProductCatalog:Staged;admingroup 
+
+

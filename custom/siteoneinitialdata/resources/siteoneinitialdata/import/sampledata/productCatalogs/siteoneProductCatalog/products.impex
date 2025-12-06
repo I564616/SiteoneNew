@@ -1,0 +1,351 @@
+# -----------------------------------------------------------------------
+# [y] hybris Platform
+#
+# Copyright (c) 2017 SAP SE or an SAP affiliate company.  All rights reserved.
+#
+# This software is the confidential and proprietary information of SAP
+# ("Confidential Information"). You shall not disclose such Confidential
+# Information and shall use it only in accordance with the terms of the
+# license agreement you entered into with SAP.
+# -----------------------------------------------------------------------
+# ImpEx for Importing Products into SiteOne store
+
+# Macros / Replacement Parameter definitions
+$productCatalog=siteoneProductCatalog
+$productCatalogName=SiteOne Product Catalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$supercategories=supercategories(code, $catalogVersion)
+$baseProduct=baseProduct(code,$catalogVersion)
+$approved=approvalstatus(code)[default='approved']
+
+# Language
+$lang=en
+
+# Insert Products
+#INSERT_UPDATE Product;code[unique=true];$supercategories;manufacturerName;manufacturerAID;ean;variantType(code);unit(code)[default=pieces];$catalogVersion
+# ;637227;1359, brand_32;Belkin;F8E096;0722868137406
+# ;test1;CL1;test1;
+# ;test2;CL1;test2;
+# ;test3;CL2;test3;
+# ;test4;CL2;test4;
+# ;test5;CL11;test5;
+# ;test6;CL11;test6;
+# ;test7;CL12;test7;
+# ;test8;CL12;test8;
+# ;test9;CL111;test9;
+# ;test10;CL111;test10;
+# ;test11;CL112;test11;
+# ;test12;CL112;test12;
+# ;test13;CL1111;test13;
+# ;test14;CL112;test14;
+# ;test15;CL1111;test15;
+# ;test16;CL112;test16;
+# ;test17;CL1111;test17;
+#
+#UPDATE Product;code[unique=true];name[lang=$lang];description[lang=$lang];summary[lang=$lang];$approved;$catalogVersion
+# ;637227;Plier Set (3 Pack);Having the proper tool for the job is as important to the do-it-yourself electronic enthusiast as it is to the professional. Belkin's wide selection of multi-purpose computer tools handles upgrades, repairs, cleaning, routine maintenance and adjustments with ease.;Plier Set (3 Pack)
+#  ;test1;test1;
+# ;test2;test2;
+# ;test3;test3;
+# ;test4;test4;
+# ;test5;test5;
+# ;test6;test6;
+# ;test7;test7;
+# ;test8;test8;
+# ;test9;test9;
+# ;test10;test10;
+# ;test11;test11;
+# ;test12;test12;
+# ;test13;test13;
+# ;test14;test14;
+# ;test15;test15;
+# ;test16;test16;
+# ;test17;test17;
+ 
+
+ 
+ # Insert Products
+#INSERT_UPDATE Product;code[unique=true];$supercategories;productShortDesc;itemNumber;subBrand;vendorPartNumber;productBrandName(name[lang=en]);productLongDesc;marketingDescription;productShortDesc31Char;upcCode;unspsc;manufacturerAID; $approved ;stores(storeid);isRegulatedItem[default=false];regulatoryStates(isocode[unique=true]);isProductDiscontinued[default=false] ;$catalogVersion
+#;637228  ;PH1111;Weathered Brass Housing;P001;brand1;V90;Vista;SonArray;Vision;PVC;90;90;M01                                ;approved ;454;;;true
+#;1101690 ;PH1111;Toro VALC-12-20 Up-Light;P002;brand1;V91;Vista;SonArray;Vision;PVC;91;95;M02                               ;approved ;;;;true
+#;1101695 ;PH1111; 12 V;P003;brand1;V92;Hinkley;SonArray;Vision;PVC;92;62;M03                                                ;approved ;;;;true
+#;1128762 ;PH1111;MR-16 LED Lamp;P004;brand1;V93;Vista;SonArray;Vision;PVC;93;63;M04                                         ;approved
+#;1128763 ;PH1111;Weathered Brass Housing;P005;brand1;V94;Vista;SonArray;Vision;PVC;94;08;M05                                ;approved
+#;1221408 ;PH1111;Toro VALC-12-20 Up-Light;P006;brand1;V95;Vista;SonArray;Vision;PVC;95;09;M06                               ;approved
+#;1221409 ;PH1111;MR-16 LED Lamp;P007;brand1;V96;Vista;SonArray;Vision;PVC;96;11;M07                                         ;approved
+#;1221411 ;PH1112;Products;S001;brand1;V97;Vista;SonArray;Vision;PVC;97;17;M08                                               ;approved
+#;1221417 ;PH1112;Weathered Brass Housing;804;brand1;V81;Vista;SonArray;Vision;PVC;81;91;M09                                ;approved
+#;1249191 ;PH1112;Toro VALC-12-20 Up-Light;850;brand1;V82;Last Stop Lighting;SonArray;Vision;PVC;82;98;M011                 ;approved
+#;1249198 ;PH1112;MR-16 LED Lamp;S004;brand1;V83;Vista;SonArray;Vision;PVC;83;00;M012                                        ;approved
+#;1249200 ;PH1112;Weathered Brass Housing;S005;brand1;V84;Cast Lighting;SonArray;Vision;PVC;84;57;M013                       ;approved
+#;1399957 ;PH1112;BOLLARD;525;brand1;V85;Last Stop Lighting;SonArray;Vision;Black;85;58;                                    ;approved
+#;1399958 ;PH1113;Toro VALC-12-20 Up-Light;S007;brand1;V86;Focus;SonArray;Vision;Black;86;66;                                ;approved ;454;true;US-OK,US-CA,US-IN
+#;1399966 ;PH1113;Weathered Brass Housing;U001;brand1;V87;Hadco;SonArray;Vision;Black;87;84;                                 ;approved ;454
+#;1399984 ;PH1113;Toro VALC-12-20 Up-Light;U002;brand1;V88;Vista;SonArray;Vision;Black;88;88;                                ;approved ;454
+#;1399988 ;PH1113;MR-16 LED Lamp;U003;brand1;V60;Vista;SonArray;Vision;Black;60;66;                                          ;approved ;454
+#;1408366 ;PH1113;Toro VALC-12-20 Up-Light;U004;brand1;V61;Dabmar;Non-Hazardous/Transferrable;Effective;Black;61;17;         ;approved ;454
+#;1664617 ;PH1113;BOLLARD;U005;brand1;V62;Toro;Non-Hazardous/Transferrable;Effective;Black;62;84;                            ;approved ;177;true;US-CA,US-IN
+#;1666884 ;PH1114;BOLLARD;U006;brand1;V63;Toro;Non-Hazardous/Transferrable;Effective;Black;63;69;                            ;approved ;177;true
+#;1669869 ;PH1114;Products;U007;brand1;V64;Toro;Non-Hazardous/Transferrable;Effective;Black;64;53;                           ;approved ;177;true;US-IN
+#;1670353 ;PH1114;Tongs;L001;brand1;V65;Toro;Non-Hazardous/Transferrable;Effective;Black;65;54;                              ;approved ;177
+#;1670354 ;PH1114;Products;L002;brand1;V66;Toro;Non-Hazardous/Transferrable;Effective;Black;66;55;                           ;approved ;19;true;
+#;1670355 ;PH1114;Products;L003;brand1;V67;EasyPro Pond;Non-Hazardous/Transferrable;Effective;Black;67;27;                   ;approved ;19;true;US-CA,US-FL
+#;1670427 ;PH1114;Tongs;L004;brand1;V68;Toro;Non-Hazardous/Transferrable;Effective;Black;68;28;                              ;approved ;19;true
+#;1670428 ;PH1123;Products;L005;brand1;V69;Toro;Non-Hazardous/Transferrable;Effective;Black;69;29;                           ;approved ;525 ;true
+#;1670429 ;PH1123;Products;L006;brand1;V10;Toro;Non-Hazardous/Transferrable;Effective;Black;10;30;                           ;approved ;850
+#;1670430 ;PH1123;Products;L007;brand1;V11;Hinkley;Non-Hazardous/Transferrable;Effective;Black;11;35;                        ;approved ;850;true
+#;1670435 ;PH1123;Products;I001;brand1;V12;Auroralight;Non-Hazardous/Transferrable;Effective;Black;12;36;                    ;approved ;850;true;US-CA,US-IN
+#;1670436 ;PH1123;Tongs;I002;brand1;V13;Hartman;Non-Hazardous/Transferrable;Effective;Black;13;48;                           ;approved ;850;true;US-OK,US-CA,US-IN
+#;1670448 ;PH1124 ;Products;I003;brand1;V14;Teka;Non-Hazardous/Transferrable;Effective;PVC;14;48;                            ;approved ;850;;;true
+#;1672248 ;PH1124 ;Products;I004;brand1;V15;Toro;Non-Hazardous/Transferrable;Effective;PVC;15;49;                            ;approved ;804;true;US-IN
+#;1672249 ;PH1124 ;Products;I005;brand1;V16;Last Stop Lighting;Non-Hazardous/Transferrable;Effective;PVC;16;50;              ;approved ;454;;;true;
+#;1672250 ;PH1124 ;Products;I006;brand1;V17;Toro;Non-Hazardous/Transferrable;Effective;PVC;17;51;                            ;approved ;454;true
+#;1672251 ;PH1124 ;Products;I007;brand1;V18;Rain Bird;Non-Hazardous/Transferrable;Effective;PVC;18;56;                       ;approved ;454;true;US-CA,US-IN
+#;1677056 ;PH1124 ;Products;K000;brand1;V19;Toro;Non-Hazardous/Transferrable;Effective;PVC;19;65;                            ;approved ;454;true;US-OK,US-CA,US-IN
+#;1677065 ;PH1124 ;Tongs;K009;brand1;V22;EasyPro Pond;Non-Hazardous/Transferrable;Effective;PVC;22;66;                       ;approved ;804;true;US-CA,US-OK
+
+   
+# UPDATE Product;code[unique=true];$catalogVersion;name[lang=$lang];description[lang=$lang]
+# ;637228 ;; Ambisonic Systems;
+# ;1101690 ;; Aqua Master            ;
+# ;1101695 ;; Atlantic Water Gardens ;
+# ;1128762 ;; Aurolight              ;
+# ;1128763 ;; Baseline               ;
+# ;1221408 ;; Brilliance LED         ;
+# ;1221409 ;; Cast Lighting          ;
+# ;1221411 ;; Dabmar                 ;
+# ;1221417 ;; Electrical Sales       ;
+# ;1249191 ;; Focus                  ;
+# ;1249198 ;; FX Luminaire           ;
+# ;1249200 ;; Hadco                  ;
+# ;1399957 ;; Halco Lighting         ;
+# ;1399958 ;; Hunter                 ;
+# ;1399966 ;; Intermatic             ;
+# ;1399984 ;; Kichler                ;
+# ;1399988 ;; King Innovation        ;
+# ;1408366 ;; Northstar Industries   ;
+# ;1664617 ;; Paige Electric         ;
+# ;1666884 ;; Spot Systems           ;
+# ;1669869 ;; The Source             ;
+# ;1670353 ;; Toro                   ;
+# ;1670354 ;; Unique Lighting Systems;
+# ;1670355 ;; Vista                  ;
+# ;1670427 ;; Auroralight            ;
+# ;1670428 ;; Moon Visions           ;
+# ;1670429 ;; SPJ Lighting           ;
+# ;1670430 ;; Hartman                ;
+# ;1670435 ;; SEK Surebond           ;
+# ;1670436 ;; Savko Sales            ;
+# ;1670448 ;; Universal Lighting System;
+# ;1672248 ;; Cooper Lighting        ;
+# ;1672249 ;; Hinkley                ;
+# ;1672250 ;; Kim Lighting           ;
+# ;1672251 ;; Last Stop Lighting     ;
+# ;1677056 ;; Philips                ;
+# ;1677065 ;;Toro                    ;
+#
+#
+## Insert Variant Category
+#INSERT_UPDATE VariantCategory      ; code[unique=true] ; name         ; $supercategories ; hasImage ; $catalogVersion ; allowedPrincipals(uid)[default='customergroup']
+#                                   ; B2B_Width         ; Width        ;                  ; false
+#								   ; B2B_Diameter      ; Diameter     ; B2B_Width        ; false
+#								   ; B2B_VoltRating    ; VoltRating   ;                  ; false
+#								   ; B2B_AmpereRating  ; AmpereRating ;  B2B_VoltRating  ; false
+#                                   ; B2B_PipeType      ; PipeType     ;                  ; false
+#                                   ; B2B_Material      ; Material     ;                  ; false
+#                                   ; B2B_Type          ; Type         ;                  ; false
+#                                   ; B2B_Height        ; Height       ;                  ; false
+#
+#
+##Insert Variant Value Category
+#INSERT_UPDATE VariantValueCategory ; code[unique=true]          ; name          ; $supercategories  ; sequence ; $catalogVersion ; allowedPrincipals(uid)[default='customergroup']
+#                                   ; B2B_Width_1/2              ; 1/2           ; B2B_Width         ; 1
+#								   ; B2B_Width_11/2             ; 11/2          ; B2B_Width         ; 2
+#								   ; B2B_Width_3/8              ; 3/8           ; B2B_Width         ; 3
+#								   ; B2B_Width_5/7              ; 5/7           ; B2B_Width         ; 4
+#								   ; B2B_Width_9                ; 9             ; B2B_Width         ; 5
+#								   ; B2B_Diameter_100           ; 100           ; B2B_Diameter      ; 1
+#								   ; B2B_Diameter_120           ; 120           ; B2B_Diameter      ; 2
+#								   ; B2B_Diameter_150           ; 150           ; B2B_Diameter      ; 3
+#								   ; B2B_Diameter_381           ; 381           ; B2B_Diameter      ; 4
+#								   ; B2B_Diameter_200           ; 200           ; B2B_Diameter      ; 5
+#                                   ; B2B_VoltRating_5V          ; 5             ; B2B_VoltRating    ; 1
+#                                   ; B2B_VoltRating_7V          ; 7             ; B2B_VoltRating    ; 2
+#                                   ; B2B_VoltRating_9V          ; 9             ; B2B_VoltRating    ; 3
+#                                   ; B2B_VoltRating_12V         ; 12            ; B2B_VoltRating    ; 4
+#                                   ; B2B_AmpereRating_20A       ; 20            ; B2B_AmpereRating  ; 1
+#                                   ; B2B_AmpereRating_25A       ; 25            ; B2B_AmpereRating  ; 2
+#                                   ; B2B_AmpereRating_40A       ; 40            ; B2B_AmpereRating  ; 3
+#                                   ; B2B_AmpereRating_45A       ; 45            ; B2B_AmpereRating  ; 4
+#                                   ; B2B_PipeType _Copper       ; Copper        ; B2B_PipeType      ; 1
+#                                   ; B2B_PipeType _DWV          ; DWV           ; B2B_PipeType      ; 2
+#                                   ; B2B_PipeType _Pex          ; Pex           ; B2B_PipeType      ; 3
+#                                   ; B2B_PipeType _Polyethylene ; Polyethylene  ; B2B_PipeType      ; 4
+#                                   ; B2B_PipeType _PVC          ; PVC           ; B2B_PipeType      ; 5
+#                                   ; B2B_PipeType _Steel        ; Steel         ; B2B_PipeType      ; 6
+#                                   ; B2B_Material _CopperM      ; CopperM       ; B2B_Material      ; 1
+#                                   ; B2B_Material _Aluminum     ; Aluminum      ; B2B_Material      ; 2
+#                                   ; B2B_Type_K                 ; K             ; B2B_Type          ; 1
+#                                   ; B2B_Type_L                 ; L             ; B2B_Type          ; 2
+#                                   ; B2B_Type_M                 ; M             ; B2B_Type          ; 3
+#                                   ; B2B_Height_10              ; 10            ; B2B_Height        ; 1                                                                
+#                                   ; B2B_Height_15              ; 15            ; B2B_Height        ; 2
+#                                   ; B2B_Height_20              ; 20            ; B2B_Height        ; 3
+#                                   ; B2B_Height_25              ; 25            ; B2B_Height        ; 4 
+#
+#
+#
+#
+#
+## Insert Products
+#INSERT_UPDATE Product ; code[unique=true] ; $supercategories                                ; manufacturerName                      ;variantType(code)  ; unit(code)[default=pieces] ;productShortDesc;itemNumber;subBrand;vendorPartNumber;productBrandName(name[lang=en]);productLongDesc;marketingDescription;productShortDesc31Char;upcCode;unspsc; $catalogVersion
+#                      ; 1301              ; PH1111,B2B_Width,B2B_Diameter 			    ; 1/2" Crimp Clamp Oetiker       	    ; GenericVariantProduct  ; ;Products                                ;P201     ;brand2   ;V910;Baseline;SonArray;Vision;PVC;190;290
+#					  ; 1302              ; PH1111,B2B_Width,B2B_Diameter 			    ; 11/2 Stepless Clamp Oetiker           ; GenericVariantProduct  ; ;Products                                ;P202     ;brand2   ;V911;Cast Lighting;SonArray;Vision;PVC;191;295
+#					  ; 1303              ; PH1111,B2B_Width,B2B_Diameter 			    ; 381R 1 1/2 Pinch Clamp      		    ; GenericVariantProduct  ; ;Products                                ;P203     ;brand2   ;V912;Aurolight;SonArray;Vision;PVC;192;262
+#					  ; 1304              ; PH1111,B2B_Width,B2B_Diameter 			    ; 11/4 Oetiker For 200 psi Poly         ; GenericVariantProduct  ; ;Products                                ;P204     ;brand2   ;V913;Vista;SonArray;Vision;PVC;193;263
+#					  ; 1305              ;PH1122 ,B2B_Width,B2B_Diameter 			    ; 1" Stepless Ear Clamp Oetiker         ; GenericVariantProduct  ; ;Products                                ;P205     ;brand2   ;V914;Vista;SonArray;Vision;PVC;194;208
+#					  ; 1401              ;PH1122 ,B2B_VoltRating,B2B_AmpereRating        ; 6V Heavy Duty      				    ; GenericVariantProduct  ; ;Products                                ;P206     ;brand2   ;V915;Aurolight;SonArray;Vision;PVC;195;209
+#					  ; 1402              ;PH1122 ,B2B_VoltRating,B2B_AmpereRating        ; Spring Post Battery      			    ; GenericVariantProduct  ; ;Products                                ;P207     ;brand2   ;V916;Vista;SonArray;Vision;PVC;196;211
+#					  ; 1403              ;PH1122 ,B2B_VoltRating,B2B_AmpereRating        ; Alkaline Battery - Aa      		    ; GenericVariantProduct  ; ;Products                                ;L205     ;brand2   ;V917;Vista;SonArray;Vision;PVC;197;217
+#					  ; 1404              ; PH1123,B2B_VoltRating,B2B_AmpereRating        ; Alkaline D Cell Battery     		    ; GenericVariantProduct  ; ;Products                                ;L206     ;brand2   ;V811;Vista;SonArray;Vision;PVC;181;291
+#					  ; 1405              ; PH1123,B2B_VoltRating,B2B_AmpereRating        ; Heavy Duty 9 Volt Battery T Christy   ; GenericVariantProduct  ; ;Products                                ;L207     ;brand2   ;V812;Vista;SonArray;Vision;PVC;182;298
+#                      #; 1901              ; PH1124,B2B_Material                             ; 1-1/2 Type K Soft Coil Pipe    	    ; GenericVariantProduct  ; ;Products                                ;I201     ;brand2   ;V813;Aurolight;SonArray;Vision;PVC;183;200
+#                      #; 1902              ; PH1124,B2B_Material                             ; 1-1/4 Type M Hard Copper Pipe   	    ; GenericVariantProduct  ; ;Products                                ;I202     ;brand2   ;V814;Vista;SonArray;Vision;PVC;184;257
+#                      #; 1903              ; PH1124,B2B_Material                             ; 1-1/4 Type k Hard Copper Pipe    	    ; GenericVariantProduct  ; ;Products                                ;I203     ;brand2   ;V815;Vista;SonArray;Vision;Black;169;229
+#                      #; 1904              ; PH1124,B2B_Material                             ; 3/4x100 Blue PEX pipe Coil    	    ; GenericVariantProduct  ; ;Products                                ;I204     ;brand2   ;V816;Baseline;SonArray;Vision;Black;110;230
+#                      #; 1905              ; PH1124,B2B_Material                             ; 1x20 White PEX Pipe Cup    		    ; GenericVariantProduct  ; ;Products                                ;U201     ;brand2   ;V817;Vista;SonArray;Vision;Black;111;235
+#                      ; 1601              ; PH1120100,B2B_Height                             ; 1-1/2 Type K Soft Coil Pipe           ; GenericVariantProduct  ; ;Products                                ;U202     ;brand2   ;V818;Vista;SonArray;Vision;Black;112;236
+#                      ; 1602              ; PH1120100,B2B_Height                             ; 1-1/4 Type M Hard Copper Pipe         ; GenericVariantProduct  ; ;Products                                ;U203     ;brand2   ;V610;Aurolight;SonArray;Vision;Black;113;248
+#                      ; 1603              ; PH1120100,B2B_Height                             ; 1-1/4 Type k Hard Copper Pipe         ; GenericVariantProduct  ; ;Products                                ;U204     ;brand2   ;V611;Toro;Non-Hazardous/Transferrable;Effective;PVC;161;217
+#                      ; 1604              ; PH1120100,B2B_Height                             ; 3/4x100 Blue PEX pipe Coil            ; GenericVariantProduct  ; ;Products                                ;U205     ;brand2   ;V612;Dabmar;Non-Hazardous/Transferrable;Effective;PVC;162;284
+#                      ; 1605              ; PH1120100,B2B_Height                             ; 1x20 White PEX Pipe Cup    	        ; GenericVariantProduct  ; ;Products                                ;U206     ;brand2   ;V613;Toro;Non-Hazardous/Transferrable;Effective;PVC;163;269
+#                      ; 1701              ; PH1120102,B2B_Type						        ; Screwdriver Levox                     ; GenericVariantProduct  ; ;Products                                ;U207     ;brand2   ;V614;Spot Systems;Non-Hazardous/Transferrable;Effective;PVC;164;253
+#                      ; 1702              ; PH1120102,B2B_Type						        ; Gorilla Glue   		                ; GenericVariantProduct  ; ;Products                                ;L201     ;brand2   ;V615;Toro;Non-Hazardous/Transferrable;Effective;PVC;165;254
+#                      ; 1703              ; PH1120102,B2B_Type 						    ; Blue Gorilla Glue                     ; GenericVariantProduct  ; ;Products                                ;L202     ;brand2   ;V616;Toro;Non-Hazardous/Transferrable;Effective;PVC;166;255
+#                      ; 1704              ; PH1120102,B2B_Type						        ; Pocket screwdriver                    ; GenericVariantProduct  ; ;Products                                ;L203     ;brand2   ;V617;Spot Systems;Non-Hazardous/Transferrable;Effective;PVC;167;227
+#                      ; 1705              ; PH1120102,B2B_Type						        ; Ratchet driver    	                ; GenericVariantProduct  ; ;Products                                ;L204     ;brand2   ;V618;Toro;Non-Hazardous/Transferrable;Effective;PVC;168;228
+#                                                                                                                                                                                                                                                                          
+#                                                                                                                                                                                                                                                                          
+#                                                                                                                                                                                                                                                                              
+#                                                                                                                                                                                                                                                                          
+#                                                                                                                                                                                                                                                                          
+#                                                                                                                                                                                                                                                                          
+##Update product description                                                                                                                                                                                                                                               
+#UPDATE Product; code[unique=true]   ; name[lang=$lang]                      ; description[lang=$lang]              ; summary                              ; $approved ; $catalogVersion                                                                                   
+#              ; 1301                ; 1/2" Crimp Clamp Oetiker              ; 1/2" Crimp Clamp Oetiker     		   ; 1/2" Crimp Clamp Oetiker             ; approved                                                                                                      
+#			  ; 1302                ; 11/2 Stepless Clamp Oetiker           ; 11/2 Stepless Clamp Oetiker          ; 11/2 Stepless Clamp Oetiker          ; approved                                                                                                      
+#			  ; 1303                ; 381R 1 1/2 Pinch Clamp                ; 381R 1 1/2 Pinch Clamp     		   ; 381R 1 1/2 Pinch Clamp    	          ; approved                                                                                                      
+#			  ; 1304                ; 11/4 Oetiker For 200 psi Poly         ; 11/4 Oetiker For 200 psi Poly        ; 11/4 Oetiker For 200 psi Poly        ; approved
+#			  ; 1305                ; 1" Stepless Ear Clamp Oetiker         ; 1" Stepless Ear Clamp Oetiker        ; 1" Stepless Ear Clamp Oetiker        ; approved
+#			  ; 1401                ; 6V Heavy Duty                         ; 6V Heavy Duty                        ; 6V Heavy Duty                        ; approved
+#			  ; 1402                ; Spring Post Battery                   ; Spring Post Battery                  ; Spring Post Battery                  ; approved
+#			  ; 1403                ; Alkaline Battery - Aa                 ; Alkaline Battery - Aa                ; Alkaline Battery - Aa                ; approved
+#			  ; 1404                ; Alkaline D Cell Battery               ; Alkaline D Cell Battery              ; Alkaline D Cell Battery              ; approved
+#			  ; 1405                ; Heavy Duty 9 Volt Battery T Christy   ; Heavy Duty 9 Volt Battery T Christy  ; Heavy Duty 9 Volt Battery T Christy  ; approved
+#			  #; 1901                ; 1-1/2 Type K Soft Coil Pipe           ; 1-1/2 Type K Soft Coil Pipe          ; 1-1/2 Type K Soft Coil Pipe          ; approved
+#			  #; 1902                ; 1-1/4 Type M Hard Copper Pipe         ; 1-1/4 Type M Hard Copper Pipe 	   ; 1-1/4 Type M Hard Copper Pipe	      ; approved
+#              #; 1903                ; 1-1/4 Type k Hard Copper Pipe         ; 1-1/4 Type k Hard Copper Pipe        ; 1-1/4 Type k Hard Copper Pipe        ; approved
+#              #; 1904                ; 3/4x100 Blue PEX pipe Coil            ; 3/4x100 Blue PEX pipe Coil           ; 3/4x100 Blue PEX pipe Coil           ; approved
+#              #; 1905                ;1x20 White PEX Pipe Cup                ; 1x20 White PEX Pipe Cup              ; 1x20 White PEX Pipe Cup              ; approved
+#              ; 1601                ; Digital Plan Measure Scalemaster      ; Digital Plan Measure Scalemaster     ; Digital Plan Measure Scalemaster     ; approved
+#              ; 1602                ; Promarker Wand with stand rolatape    ; Promarker Wand with stand rolatape   ; Promarker Wand with stand rolatape   ; approved
+#              ; 1603                ; Rolling Tape Bold                     ; Rolling Tape Bold      			   ; Rolling Tape Bold     			      ; approved
+#              ; 1604                ; Measure Wheel-Curved Handle           ; Measure Wheel-Curved Handle     	   ; Measure Wheel-Curved Handle          ; approved
+#              ; 1605                ; Pro Roller Measuring Wheel            ; Pro Roller Measuring Wheel     	   ; Pro Roller Measuring Wheel    	      ; approved
+#              ; 1701                ; Screwdriver Levox                     ; Screwdriver Levox     			   ; Screwdriver Levox      			  ; approved
+#              ; 1702                ; Gorilla Glue                          ; Gorilla Glue      				   ; Gorilla Glue      				      ; approved
+#              ; 1703                ; Blue Gorilla Glue                     ; Blue Gorilla Glue     			   ; Blue Gorilla Glue    			      ; approved
+#              ; 1704                ; Pocket screwdriver                    ; Pocket screwdriver    			   ; Pocket screwdriver     		      ; approved
+#              ; 1705                ; Ratchet driver                        ; Ratchet driver     				   ; Ratchet driver      				  ; approved
+#
+#INSERT_UPDATE GenericVariantProduct ; code[unique=true]   ; $baseProduct  ;$catalogVersion    ;name                                 ; summary                                 ;ean      ;$supercategories                       ; $approved         ;description                                                                            ;productshortdesc;itemNumber;subbrand;vendorpartnumber;productbrandname(name[lang=en]);productlongdesc;marketingdescription;productshortdesc31char;upccode;unspsc 
+#								     ; 1301_1             ; 1301          ;				      ; Crimp Clamp Oetiker                 ; 1/2" Crimp Clamp Oetiker                ;         ; B2B_Width_1/2,B2B_Diameter_100        		        ; approved          ; <strong> Width is 1/2 </strong><br /><br />Diameter is 100            ;Products                                ;P201     ;brand2   ;V610;Vista;SonArray;Vision;PVC;170;290
+#									 ; 1301_2             ; 1301          ;				      ; Crimp Clamp Oetiker                 ; 11/2" Crimp Clamp Oetiker               ;         ; B2B_Width_11/2,B2B_Diameter_120      		        ; approved          ; <strong> Width is 11/2 </strong><br /><br />Diameter is 120               ;EA                                ;P202     ;brand2   ;V611;Vista;SonArray;Vision;PVC;171;295
+#									 ; 1301_3             ; 1301          ;				      ; Crimp Clamp Oetiker                 ; 3/8" Crimp Clamp Oetiker                ;         ; B2B_Width_3/8,B2B_Diameter_150         		        ; approved          ; <strong> Width is 3/8 </strong><br /><br />Diameter is 150            ;Products                                ;P203     ;brand2   ;V612;Vista;SonArray;Vision;PVC;172;262
+#									                                                                                                                                                                                                                                                                                                       
+#									 ; 1302_1             ; 1302          ;				      ;  Stepless Clamp Oetiker              ; 1/2" Stepless Clamp Oetiker            ;         ; B2B_Width_1/2 ,B2B_Diameter_100       		        ; approved          ; <strong> Width is 1/2 </strong><br /><br />Diameter is 100            ;Products                                ;P207     ;brand2   ;V516;Vista;SonArray;Vision;PVC;106;211
+#									 ; 1302_2             ; 1302          ;				      ;  Stepless Clamp Oetiker              ; 11/2" Stepless Clamp Oetiker           ;         ; B2B_Width_11/2,B2B_Diameter_120        		        ; approved          ; <strong> Width is 11/2 </strong><br /><br />Diameter is 120           ;Products                                ;L205     ;brand2   ;V517;Hinkley;SonArray;Vision;PVC;107;217
+#									 ; 1302_3             ; 1302          ;				      ;  Stepless Clamp Oetiker              ; 3/8" Stepless Clamp Oetiker            ;         ; B2B_Width_3/8,B2B_Diameter_150      		            ; approved          ; <strong> Width is 3/8 </strong><br /><br />Diameter is 150            ;Products                                ;L206     ;brand2   ;V511;Vista;SonArray;Vision;PVC;101;291
+#									 ; 1302_4             ; 1302          ;				      ;  Stepless Clamp Oetiker              ; 5/7" Stepless Clamp Oetiker            ;         ; B2B_Width_5/7,B2B_Diameter_381        		        ; approved          ; <strong> Width is 5/7 </strong><br /><br />Diameter is 381            ;Products                                ;L207     ;brand2   ;V512;Vista;SonArray;Vision;PVC;102;298
+#									                                                                                                                                                                                                                                                                                                       
+#									 ; 1303_1             ; 1303          ;				      ;  Pinch Clamp                		  ; 1/2" Pinch Clamp                	  ;         ; B2B_Width_1/2 ,B2B_Diameter_100        		        ; approved          ; <strong> Width is 1/2 </strong><br /><br />Diameter is 100            ;Products                                ;I203     ;brand2   ;V115;Vista;SonArray;Vision;Black;969;229
+#									 ; 1303_2             ; 1303          ;				      ;  Pinch Clamp                		  ; 11/2" Pinch Clamp              	      ;         ; B2B_Width_11/2,B2B_Diameter_120        		        ; approved          ; <strong> Width is 11/2 </strong><br /><br />Diameter is 120           ;EA                                ;I204     ;brand2   ;V116;The Source;SonArray;Vision;Black;910;230
+#                                     ; 1303_3             ; 1303          ;				      ;  Pinch Clamp              		      ; 3/8" Pinch Clamp                      ;         ; B2B_Width_3/8,B2B_Diameter_150        		        ; approved          ; <strong> Width is 3/8 </strong><br /><br />Diameter is 150            ;Products                                ;U201     ;brand2   ;V117;Hinkley;SonArray;Vision;Black;911;235
+#									 ; 1303_4             ; 1303          ;				      ;  Pinch Clamp              		      ; 5/7" Pinch Clamp                      ;         ; B2B_Width_5/7,B2B_Diameter_381         		        ; approved          ; <strong> Width is 5/7 </strong><br /><br />Diameter is 381            ;Products                                ;U202     ;brand2   ;V118;Vista;SonArray;Vision;Black;912;236
+#									 ; 1303_5             ; 1303          ;				      ;  Pinch Clamp      				      ; 9" Pinch Clamp     	                  ;         ; B2B_Width_9,B2B_Diameter_200          		        ; approved          ; <strong> Width is 9 </strong><br /><br />Diameter is 200              ;Products                                ;U203     ;brand2   ;V110;Paige Electric;SonArray;Vision;Black;913;248
+#									                                                                                                                                                                                                                                                                                                        
+#									 ; 1304_1             ; 1304          ;				      ;  Oetiker Poly              		      ; 1/2" Oetiker Poly                	  ;	        ; B2B_Width_1/2 ,B2B_Diameter_100                       ; approved          ; <strong> Width is 1/2 </strong><br /><br />Diameter is 100            ;Products                                ;U205     ;brand2   ;V312;Toro;Non-Hazardous/Transferrable;Effective;Black;862;6084
+#						             ; 1304_2             ; 1304          ;				      ;  Oetiker Poly            			  ; 11/2" Oetiker Poly           		  ;	        ; B2B_Width_11/2,B2B_Diameter_120                      ; approved          ; <strong> Width is 11/2 </strong><br /><br />Diameter is 120            ;Products                                ;U206     ;brand2   ;V313;Toro;Non-Hazardous/Transferrable;Effective;Black;863;6069
+#                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
+#                                     ; 1305_1             ; 1305          ;				      ;  Stepless Ear Clamp Oetiker           ; 1/2" Stepless Ear Clamp Oetiker       ;         ; B2B_Width_1/2 ,B2B_Diameter_100        		        ; approved          ; <strong> Width is 1/2 </strong><br /><br />Diameter is 100            ;Products                                ;U205     ;brand2   ;V012;Toro;Non-Hazardous/Transferrable;Effective;Black;862;584                               
+#                                     ; 1305_2             ; 1305          ;				      ;  Stepless Ear Clamp Oetiker           ; 11/2" Stepless Ear Clamp Oetiker      ;         ; B2B_Width_11/2,B2B_Diameter_120          	        ; approved          ; <strong> Width is 11/2 </strong><br /><br />Diameter is 120               ;Products                                ;U206     ;brand2   ;V013;Toro;Non-Hazardous/Transferrable;Effective;Black;863;569                                                                                                        
+#                                     ; 1305_3             ; 1305          ;				      ;  Stepless Ear Clamp Oetiker           ; 3/8" Stepless Ear Clamp Oetiker       ;         ; B2B_Width_3/8 ,B2B_Diameter_150        		        ; approved          ; <strong> Width is 3/8 </strong><br /><br />Diameter is 150            ;Products                                ;U207     ;brand2   ;V014;The Source;Non-Hazardous/Transferrable;Effective;Black;864;553                    
+#                                                                                                                                                                                                                                                    
+#                                     ; 1401_1             ; 1401          ;				      ;  Heavy Duty           				  ; Heavy Duty             				  ;         ; B2B_VoltRating_5V,B2B_AmpereRating_20A       			        ; approved          ; <strong> Volt Rating is 5V </strong><br /><br />Ampere Rating is 20A<br /> ;Products                                ;U205     ;brand32   ;V112;Rain Bird;Non-Hazardous/Transferrable;Effective;Black;162;2814
+#                                     ; 1401_2             ; 1401          ;				      ;  Heavy Duty            				  ; Heavy Duty           				  ;         ; B2B_VoltRating_7V,B2B_AmpereRating_25A       			        ; approved          ; <strong> Volt Rating is 7V </strong><br /><br />Ampere Rating is 25A<br /> ;Products                                ;U206     ;brand32   ;V113;Teka;Non-Hazardous/Transferrable;Effective;Black;163;2619
+#                                     ; 1401_3             ; 1401          ;				      ;  Heavy Duty            			      ; Heavy Duty            				  ;         ; B2B_VoltRating_9V,B2B_AmpereRating_40A        		        ; approved          ; <strong> Volt Rating is 9V </strong><br /><br />Ampere Rating is 40A<br /> ;Products                                ;U207     ;brand32   ;V114;Philips;Non-Hazardous/Transferrable;Effective;Black;164;2513                    
+#                                     ; 1401_4             ; 1401          ;				      ;  Heavy Duty               			  ; Heavy Duty              			  ;         ; B2B_VoltRating_12V,B2B_AmpereRating_45A         		        ; approved          ; <strong> Volt Rating is 12V </strong><br /><br />Ampere Rating is 45A<br />;Products                                ;L201     ;brand32   ;V115;Rain Bird;Non-Hazardous/Transferrable;Effective;Black;165;2514
+#                                                                                                                                                                                                                                                    
+#                                     ; 1402_1             ; 1402          ;				      ; Spring Post Battery           	      ; Spring Post Battery                   ;         ; B2B_VoltRating_5V,B2B_AmpereRating_20A         		        ; approved          ; <strong> Volt Rating is 5V </strong><br /><br />Ampere Rating is 20A<br />  ;Products                                ;U205     ;brand20   ;V912;Rain Bird;Non-Hazardous/Transferrable;Effective;Black;6162;2804
+#                                     ; 1402_2             ; 1402          ;				      ; Spring Post Battery                   ; Spring Post Battery           		  ;         ; B2B_VoltRating_7V,B2B_AmpereRating_25A       			        ; approved          ; <strong> Volt Rating is 7V </strong><br /><br />Ampere Rating is 25A<br />  ;Products                                ;U206     ;brand20   ;V913;Toro;Non-Hazardous/Transferrable;Effective;Black;6163;2609
+#                                                                                                                                                                                                                                                    
+#                                     ; 1403_1             ; 1403          ;				      ; Alkaline Battery - Aa           	  ; Alkaline Battery - Aa          		  ;         ; B2B_VoltRating_5V,B2B_AmpereRating_20A       			        ; approved          ; <strong> Volt Rating is 5V </strong><br /><br />Ampere Rating is 20A<br />  ;Products                                ;U205     ;brand02   ;V12;Toro;Non-Hazardous/Transferrable;Effective;Black;7162;9284
+#                                     ; 1403_2             ; 1403          ;				      ; Alkaline Battery - Aa                 ; Alkaline Battery - Aa           	  ;         ; B2B_VoltRating_7V,B2B_AmpereRating_25A         		        ; approved          ; <strong> Volt Rating is 7V </strong><br /><br />Ampere Rating is 25A<br />  ;Non-Hazardous/Transferrable                                ;U206     ;brand02   ;V13;Philips;Non-Hazardous/Transferrable;Effective;Black;7163;9269
+#                                     ; 1403_3             ; 1403          ;				      ; Alkaline Battery - Aa                 ; Alkaline Battery - Aa          		  ;         ; B2B_VoltRating_9V,B2B_AmpereRating_40A        		        ; approved          ; <strong> Volt Rating is 9V </strong><br /><br />Ampere Rating is 40A<br />  ;Products                                ;U207     ;brand02   ;V14;Paige Electric;Non-Hazardous/Transferrable;Effective;Black;7164;9253                    
+#                                                                                                                                                                                                                                                    
+#                                     ; 1404_1             ; 1404          ;				      ; Alkaline D Cell Battery          	  ; Alkaline D Cell Battery               ;         ; B2B_VoltRating_5V,B2B_AmpereRating_20A         		        ; approved          ; <strong> Volt Rating is 5V </strong><br /><br />Ampere Rating is 20A<br />   ;EA                                ;U205     ;brand2   ;V62;King Innovation;Non-Hazardous/Transferrable;Effective;Black;4162;3284
+#                                     ; 1404_2             ; 1404          ;				      ; Alkaline D Cell Battery               ; Alkaline D Cell Battery               ;         ; B2B_VoltRating_7V,B2B_AmpereRating_25A         		        ; approved          ; <strong> Volt Rating is 7V </strong><br /><br />Ampere Rating is 25A<br />   ;Products                                ;U206     ;brand2   ;V63;Toro;Non-Hazardous/Transferrable;Effective;Black;4163;3269
+#                                     ; 1404_3             ; 1404          ;				      ; Alkaline D Cell Battery               ; Alkaline D Cell Battery               ;         ; B2B_VoltRating_9V,B2B_AmpereRating_40A        		        ; approved          ; <strong> Volt Rating is 9V </strong><br /><br />Ampere Rating is 40A<br />   ;Products                                ;U207     ;brand2   ;V64;Toro;Non-Hazardous/Transferrable;Effective;Black;4164;3253                    
+#                                     ; 1404_4             ; 1404          ;				      ; Alkaline D Cell Battery               ; Alkaline D Cell Battery               ;         ; B2B_VoltRating_12V,B2B_AmpereRating_45A          		        ; approved          ; <strong> Volt Rating is 12V </strong><br /><br />Ampere Rating is 45A<br />  ;EA                                ;L201     ;brand2   ;V65;WAC Lighting;Non-Hazardous/Transferrable;Effective;Black;4165;3254
+#                                                                                                                                                                                                                                                    
+#                                     ; 1405_1             ; 1405          ;				      ; Heavy Duty 9 Volt Battery T Christy   ; Heavy Duty Battery T Christy          ;         ; B2B_VoltRating_5V,B2B_AmpereRating_20A         		        ; approved          ; <strong> Volt Rating is 5V </strong><br /><br />Ampere Rating is 20A<br />    ;Products                                ;U205     ;brand112   ;V692;Teka;Non-Hazardous/Transferrable;Effective;Black;1662;2284
+#                                                                                                                                                                                        
+#                                                                                                                                                                                                                                            
+#                                     ; 1601_1             ; 1601          ;				      ; Digital Plan Measure Scalemaster       ; Digital Plan Measure Scalemaster     ;         ; B2B_Height_10                                       		; approved          ; <strong>Height is 10</strong><br /><br />Diameter is 300<br /><ul><li>Material is Nylon</li>           ;Products                                ;U205     ;brand22   ;V622;Teka;Non-Hazardous/Transferrable;Effective;Black;102;4
+#                                     ; 1601_2             ; 1601          ;				      ; Digital Plan Measure Scalemaster       ; Digital Plan Measure Scalemaster     ;         ; B2B_Height_15                                       		; approved          ; <strong>Height is 15</strong><br /><br />Diameter is 250<br /><ul><li>Material is Cotton</li>          ;AMS™                                ;U206     ;brand22   ;V623;Toro;Non-Hazardous/Transferrable;Effective;Black;103;9
+#                                                                                                                                                                                                                                                   
+#                                     ; 1602_1             ; 1602          ;				      ; Promarker Wand with stand rolatape     ; Promarker Wand with stand rolatape   ;         ; B2B_Height_15                                           	; approved          ; <strong>Height is 15</strong><br /><br />Diameter is 250<br /><ul><li>Material is Nylon</li>             ;Products                                ;U205     ;brand12   ;V782;Focus;Non-Hazardous/Transferrable;Effective;Black;162;84
+#                                     ; 1602_2             ; 1602          ;				      ; Promarker Wand with stand rolatape     ; Promarker Wand with stand rolatape   ;         ; B2B_Height_20                                           	; approved          ; <strong>Height is 20</strong><br /><br />Diameter is 350<br /><ul><li>Material is Cotton</li>            ;Non-Hazardous/Transferrable                                ;U206     ;brand12   ;V783;Toro;Non-Hazardous/Transferrable;Effective;Black;163;69
+#                                     ; 1602_3             ; 1602          ;				      ; Promarker Wand with stand rolatape     ; Promarker Wand with stand rolatape   ;         ; B2B_Height_25                                               ; approved          ; <strong>Height is 25</strong><br /><br />Diameter is 180<br /><ul><li>Material is StainlessSteel</li>  ;Products                                ;U207     ;brand12   ;V784;King Innovation;Non-Hazardous/Transferrable;Effective;Black;164;53                    
+#                                     ; 1602_4             ; 1602          ;				      ; Promarker Wand with stand rolatape     ; Promarker Wand with stand rolatape   ;         ; B2B_Height_10                                           	; approved          ; <strong>Height is 10</strong><br /><br />Diameter is 300<br /><ul><li>Material is Rubber</li>            ;Products                                ;L201     ;brand12   ;V785;Toro;Non-Hazardous/Transferrable;Effective;Black;165;54
+#                                                                                                                                                                                                                                                    
+#                                     ; 1603_1             ; 1603          ;				      ; Rolling Tape Bold                	   ; Rolling Tape Bold               	  ;         ; B2B_Height_20		; approved          ; <strong>Height is 20</strong><br /><br />Diameter is 350<br />            ;SonArray                                ;U1205     ;brand22   ;V622;Toro;Non-Hazardous/Transferrable;Effective;Black;1082;94
+#                                     ; 1603_2             ; 1603          ;				      ; Rolling Tape Bold             	       ; Rolling Tape Bold             		  ;         ; B2B_Height_25		; approved          ; <strong>Height is 25</strong><br /><br />Diameter is 180<br />            ;Products                                ;U1206     ;brand22   ;V623;Toro;Non-Hazardous/Transferrable;Effective;Black;1083;99                   
+#									 ; 1603_3             ; 1603          ;				      ; Rolling Tape Bold               	   ; Rolling Tape Bold               	  ;         ; B2B_Height_10     ; approved          ; <strong>Height is 10</strong><br /><br />Diameter is 300<br />            ;AMS™                                ;U1207     ;brand22   ;V624;Toro;Non-Hazardous/Transferrable;Effective;Black;1084;93                    
+#                                                                                                                                                                                                                                                    
+#                                     ; 1604_1             ; 1604          ;				      ; Measure Wheel-Curved Handle            ; Measure Wheel-Curved Handle          ;         ; B2B_Height_25 	; approved          ; <strong>Height is 25</strong><br /><br />Diameter is 180<br />              ;SonArray                                ;U2205     ;brand12   ;V782;Toro;Non-Hazardous/Transferrable;Effective;Black;1692;454
+#                                     ; 1604_2             ; 1604          ;				      ; Measure Wheel-Curved Handle            ; Measure Wheel-Curved Handle          ;         ; B2B_Height_10 		; approved          ; <strong>Height is 10</strong><br /><br />Diameter is 300<br />          ;Products                                ;U2206     ;brand12   ;V783;Toro;Non-Hazardous/Transferrable;Effective;Black;1693;459
+#                                     ; 1604_3             ; 1604          ;				      ; Measure Wheel-Curved Handle            ; Measure Wheel-Curved Handle          ;         ; B2B_Height_15      ; approved          ; <strong>Height is 15</strong><br /><br />Diameter is 250<br />            ;Non-Hazardous/Transferrable                                ;U2207     ;brand12   ;V784;Toro;Non-Hazardous/Transferrable;Effective;Black;1694;453                    
+#                                     ; 1604_4             ; 1604          ;				      ; Measure Wheel-Curved Handle            ; Measure Wheel-Curved Handle          ;         ; B2B_Height_20 		; approved          ; <strong>Height is 20</strong><br /><br />Diameter is 350<br />          ;Products                                ;L2201     ;brand12   ;V785;Toro;Non-Hazardous/Transferrable;Effective;Black;1695;454
+#                                     ; 1604_5             ; 1604          ;				      ; Measure Wheel-Curved Handle            ; Measure Wheel-Curved Handle          ;         ; B2B_Height_25  	; approved          ; <strong>Height is 25</strong><br /><br />Diameter is 180<br /><ul>          ;Products                                ;L2202     ;brand12   ;V786;Toro;Non-Hazardous/Transferrable;Effective;Black;1696;455
+#                                                                                                                                                                                                                       
+#                                     ; 1605_1             ; 1605          ;				      ; Pro Roller Measuring Wheel             ; Pro Roller Measuring Wheel           ;         ; B2B_Height_10 		; approved          ; <strong>Height is 10</strong><br />                                       ;SonArray                                ;U3205     ;brand22   ;V622;Toro;Non-Hazardous/Transferrable;Effective;Black;4202;434
+#                                     ; 1605_2             ; 1605          ;				      ; Pro Roller Measuring Wheel             ; Pro Roller Measuring Wheel           ;         ; B2B_Height_15 		; approved          ; <strong>Height is 15</strong><br />                                       ;Products                                ;U3206     ;brand22   ;V623;Toro;Non-Hazardous/Transferrable;Effective;Black;4203;439
+#                                     ; 1605_3             ; 1605          ;				      ; Pro Roller Measuring Wheel             ; Pro Roller Measuring Wheel           ;         ; B2B_Height_20      ; approved          ; <strong>Height is 20</strong><br />                                          ;Products                                ;U3207     ;brand22   ;V624;Toro;Non-Hazardous/Transferrable;Effective;Black;4204;433                    
+#                                     ; 1605_4             ; 1605          ;				      ; Pro Roller Measuring Wheel             ; Pro Roller Measuring Wheel           ;         ; B2B_Height_25 		; approved          ; <strong>Height is 25</strong><br />                                       ;AMS™                                ;L3201     ;brand22   ;V625;Toro;Non-Hazardous/Transferrable;Effective;Black;4205;434
+#                                                                                                                                                                                                                                                   
+#                                     ; 1701_1             ; 1701          ;				      ; Screwdriver Levox            		   ; Screwdriver Levox             		  ;         ; B2B_Type_K       						; approved          ; <strong>Type is of 9 in 1</strong><br />                    ;Products                                ;U2505     ;brand12   ;V782;Toro;Non-Hazardous/Transferrable;Effective;Black;1462;784
+#                                     ; 1701_2             ; 1701          ;				      ; Screwdriver Levox              	       ; Screwdriver Levox             		  ;         ; B2B_Type_L        						; approved          ; <strong>Type is of 6 in 1</strong><br />                ;Products                                ;U2506     ;brand12   ;V783;Toro;Non-Hazardous/Transferrable;Effective;Black;1463;769
+#                                                                                                                                                                                                                                                   
+#                                     ; 1702_1             ; 1702          ;				      ; Gorilla Glue            		       ; Gorilla Glue					      ;         ; B2B_Type_K       						; approved          ; <strong>Type is of 2 in 1</strong><br />                      ;Products                                ;U2075     ;brand22   ;V622;Toro;Non-Hazardous/Transferrable;Effective;Black;1802;294
+#                                     ; 1702_2             ; 1702          ;				      ; Gorilla Glue            		       ; Gorilla Glue           		      ;         ; B2B_Type_L     							; approved          ; <strong>Type is of 9 in 1</strong><br />                  ;Products                                ;U2076     ;brand22   ;V623;Toro;Non-Hazardous/Transferrable;Effective;Black;1803;299
+#                                     ; 1702_3             ; 1702          ;				      ; Gorilla Glue              			   ; Gorilla Glue             		      ;         ; B2B_Type_M       						; approved          ; <strong>Type is of 6 in 1</strong><br />                      ;Non-Hazardous/Transferrable                                ;U2077     ;brand22   ;V624;Toro;Non-Hazardous/Transferrable;Effective;Black;1804;293                    
+#                                                                                                                                                                                                                                                    
+#                                     ; 1703_1             ; 1703          ;				      ; Blue Gorilla Glue             		   ; Blue Gorilla Glue             		  ;         ; B2B_Type_K       						; approved          ; <strong>Type is of 6 in 1</strong><br />                        ;Products                                ;U5205     ;brand12   ;V782;Toro;Non-Hazardous/Transferrable;Effective;Black;9162;984
+#                                     ; 1703_2             ; 1703          ;				      ; Blue Gorilla Glue                	   ; Blue Gorilla Glue             		  ;         ; B2B_Type_L     					    ; approved          ; <strong>Type is of 2 in 1</strong><br />                        ;Products                                ;U5206     ;brand12   ;V783;Toro;Non-Hazardous/Transferrable;Effective;Black;9163;969
+#                                     ; 1703_3             ; 1703          ;				      ; Blue Gorilla Glue             		   ; Blue Gorilla Glue            		  ;         ; B2B_Type_M      						; approved          ; <strong>Type is of 9 in 1</strong><br />                       ;Products                                 ;U5207     ;brand12   ;V784;Toro;Non-Hazardous/Transferrable;Effective;Black;9164;953                    
+#                                     ; 1703_4             ; 1703          ;				      ; Blue Gorilla Glue               	   ; Blue Gorilla Glue             		  ;         ; B2B_Type_K       						; approved          ; <strong>Type is of 6 in 1</strong><br />                        ;Non-Hazardous/Transferrable                                ;L5201     ;brand12   ;V785;Toro;Non-Hazardous/Transferrable;Effective;Black;9165;954
+#                                     ; 1703_5             ; 1703          ;				      ; Blue Gorilla Glue             		   ; Blue Gorilla Glue            		  ;         ; B2B_Type_L    							; approved          ; <strong>Type is of 2 in 1</strong><br />                    ;Products                                ;L5202     ;brand12   ;V786;Toro;Non-Hazardous/Transferrable;Effective;Black;9166;955
+#                                                                                                                                                                                                                                              
+#                                     ; 1704_1             ; 1704          ;				      ; Pocket screwdriver             		   ; Pocket screwdriver                   ;          ; B2B_Type_K      						; approved          ; <strong>Type is of 9 in 1</strong><br />                         ;Products                                ;U7205     ;brand22   ;V622;Toro;Non-Hazardous/Transferrable;Effective;Black;2602;34
+#                                     ; 1704_5             ; 1704          ;				      ; Pocket screwdriver             		   ; Pocket screwdriver                   ;          ; B2B_Type_L    						; approved          ; <strong>Type is of 6 in 1</strong><br />                         ;Non-Hazardous/Transferrable                                ;L7202     ;brand22   ;V626;Toro;Non-Hazardous/Transferrable;Effective;Black;2606;35
+#                                                                                                                                                                                                                                              
+#                                     ; 1705_1             ; 1705          ;				      ; Ratchet driver              	       ; Ratchet driver           		      ;          ; B2B_Type_K   							; approved          ; <strong>Type is of 2 in 1</strong><br />                       ;Products                                ;U9205     ;brand12   ;V782;Toro;Non-Hazardous/Transferrable;Effective;Black;2762;7884
+#                                     
+
+
+#Dummy product for batch order history feed
+
+INSERT_UPDATE product;code[unique=true];$catalogVersion;itemNumber;inventoryUOMID;productLongDesc;productShortDesc;$approved
+;9999999;;9999999;1329;dummy;dummy;approved
+                      

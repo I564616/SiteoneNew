@@ -1,0 +1,124 @@
+$supercategories=supercategories( code, catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Staged']));;;;;;;;;
+$catalogVersion=catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Staged'])[unique=true,default='siteoneProductCatalog:Staged'];;;;;;;;;
+;;;;;;;;;
+INSERT_UPDATE Category;code[unique=true];name[lang=es];$catalogVersion;allowedPrincipals(uid)
+;SH1511;Productos Arquitectónicos;siteoneProductCatalog:Staged;admingroup 
+;SH1511113;Mobiliario Urbano;siteoneProductCatalog:Staged;admingroup 
+;SH1516;Productos de Paisajismo Manufacturados;siteoneProductCatalog:Staged;admingroup 
+;SH1516110;Adoquines de Arcilla y Ladrillo;siteoneProductCatalog:Staged;admingroup 
+;SH1516111;Piedras Manufacturadas y Cultivadas;siteoneProductCatalog:Staged;admingroup 
+;SH1516112;Adoquines;siteoneProductCatalog:Staged;admingroup 
+;SH1516113;Adoquines Permeables;siteoneProductCatalog:Staged;admingroup 
+;SH1516114;Porcelana;siteoneProductCatalog:Staged;admingroup 
+;SH1516115;Bloques para Muros;siteoneProductCatalog:Staged;admingroup 
+;SH1516116;Tapas, albardillas y bordeadoras;siteoneProductCatalog:Staged;admingroup 
+;SH1515;Accesorios de Paisajismo;siteoneProductCatalog:Staged;admingroup 
+;SH1515110;Adhesivos;siteoneProductCatalog:Staged;admingroup 
+;SH1515111;Cuchillas;siteoneProductCatalog:Staged;admingroup 
+;SH1515112;Arena Polimérica;siteoneProductCatalog:Staged;admingroup 
+;SH1515113;Selladores y Limpiadores;siteoneProductCatalog:Staged;admingroup 
+;SH1515114;Pedestales;siteoneProductCatalog:Staged;admingroup 
+;SH1514;Bordillos;siteoneProductCatalog:Staged;admingroup 
+;SH1514110;Anillos para arboles;siteoneProductCatalog:Staged;admingroup 
+;SH1514111;Accesorios para bordes;siteoneProductCatalog:Staged;admingroup 
+;SH1514112;Bordillos de jardinería;siteoneProductCatalog:Staged;admingroup 
+;SH1514113;Restricciones para adoquines;siteoneProductCatalog:Staged;admingroup 
+;SH1518;Productos de Masonería y Construcción;siteoneProductCatalog:Staged;admingroup 
+;SH1518111;Ladrillo;siteoneProductCatalog:Staged;admingroup 
+;SH1518112;Químicos;siteoneProductCatalog:Staged;admingroup 
+;SH1518113;Partes y Accesorios;siteoneProductCatalog:Staged;admingroup 
+;SH1518114;Productos de Construcción de Acero y Metal;siteoneProductCatalog:Staged;admingroup 
+;SH1518115;Estuco;siteoneProductCatalog:Staged;admingroup 
+;SH1513;Vida al Aire Libre;siteoneProductCatalog:Staged;admingroup 
+;SH1513110;Chimeneas y Fogatas;siteoneProductCatalog:Staged;admingroup 
+;SH1513112;Parrillas y Accesorios;siteoneProductCatalog:Staged;admingroup 
+;SH1513113;Kits;siteoneProductCatalog:Staged;admingroup 
+;SH1513115;Cerámica;siteoneProductCatalog:Staged;admingroup 
+;SH1513114;Productos para Centros de Jardinería;siteoneProductCatalog:Staged;admingroup 
+;SH1513116;Decoración Exterior;siteoneProductCatalog:Staged;admingroup 
+;SH1513117;Estructuras Exteriores;siteoneProductCatalog:Staged;admingroup 
+;SH1513118;Accesorios para Estructuras Exteriores;siteoneProductCatalog:Staged;admingroup 
+;SH1512;Productos de Madera;siteoneProductCatalog:Staged;admingroup 
+;SH1512110;Durmientes y Vigas;siteoneProductCatalog:Staged;admingroup 
+;SH1512111;Madera;siteoneProductCatalog:Staged;admingroup 
+;SH1512112;Azulejos y Adoquines;siteoneProductCatalog:Staged;admingroup 
+;SH1517;Piedra Natural;siteoneProductCatalog:Staged;admingroup 
+;SH1517110;peñasco;siteoneProductCatalog:Staged;admingroup 
+;SH1517111;áridos de construcción a granel;siteoneProductCatalog:Staged;admingroup 
+;SH1517112;pisos de Piedra Dimensional;siteoneProductCatalog:Staged;admingroup 
+;SH1517113;Capa, Peldaños, Umbral de Piedra Dimensional y Accesorios;siteoneProductCatalog:Staged;admingroup 
+;SH1517114;Piedras Decorativas Embolsadas;siteoneProductCatalog:Staged;admingroup 
+;SH1517115;piedra Laja;siteoneProductCatalog:Staged;admingroup 
+;SH1517116;Acentos de jardín;siteoneProductCatalog:Staged;admingroup 
+;SH1517117;Piedras para Construcción y Apiladas;siteoneProductCatalog:Staged;admingroup 
+;SH1517118;Chapa Fina aserrada;siteoneProductCatalog:Staged;admingroup 
+;SH1517119;Losas Irregulares, Escalones y afloramientos;siteoneProductCatalog:Staged;admingroup 
+;SH1517120;Paneles de chapa;siteoneProductCatalog:Staged;admingroup 
+;SH1517121;Áridos Decorativos en Masa;siteoneProductCatalog:Staged;admingroup 
+;SH1517122;Adoquines y Bordillos;siteoneProductCatalog:Staged;admingroup 
+;SH1517123;Roca de Río y Adoquines;siteoneProductCatalog:Staged;admingroup 
+;SH1519;Pedido Especial;siteoneProductCatalog:Staged;admingroup 
+
+
+$supercategories=supercategories( code, catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Online']));;;;;;;;;
+$catalogVersion=catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Online'])[unique=true,default='siteoneProductCatalog:Online'];;;;;;;;;
+;;;;;;;;;
+INSERT_UPDATE Category;code[unique=true];name[lang=es];$catalogVersion;allowedPrincipals(uid)
+;SH1511;Productos Arquitectónicos;siteoneProductCatalog:Online;admingroup 
+;SH1511113;Mobiliario Urbano;siteoneProductCatalog:Online;admingroup 
+;SH1516;Productos de Paisajismo Manufacturados;siteoneProductCatalog:Online;admingroup 
+;SH1516110;Adoquines de Arcilla y Ladrillo;siteoneProductCatalog:Online;admingroup 
+;SH1516111;Piedras Manufacturadas y Cultivadas;siteoneProductCatalog:Online;admingroup 
+;SH1516112;Adoquines;siteoneProductCatalog:Online;admingroup 
+;SH1516113;Adoquines Permeables;siteoneProductCatalog:Online;admingroup 
+;SH1516114;Porcelana;siteoneProductCatalog:Online;admingroup 
+;SH1516115;Bloques para Muros;siteoneProductCatalog:Online;admingroup 
+;SH1516116;Tapas, albardillas y bordeadoras;siteoneProductCatalog:Online;admingroup 
+;SH1515;Accesorios de Paisajismo;siteoneProductCatalog:Online;admingroup 
+;SH1515110;Adhesivos;siteoneProductCatalog:Online;admingroup 
+;SH1515111;Cuchillas;siteoneProductCatalog:Online;admingroup 
+;SH1515112;Arena Polimérica;siteoneProductCatalog:Online;admingroup 
+;SH1515113;Selladores y Limpiadores;siteoneProductCatalog:Online;admingroup 
+;SH1515114;Pedestales;siteoneProductCatalog:Online;admingroup 
+;SH1514;Bordillos;siteoneProductCatalog:Online;admingroup 
+;SH1514110;Anillos para arboles;siteoneProductCatalog:Online;admingroup 
+;SH1514111;Accesorios para bordes;siteoneProductCatalog:Online;admingroup 
+;SH1514112;Bordillos de jardinería;siteoneProductCatalog:Online;admingroup 
+;SH1514113;Restricciones para adoquines;siteoneProductCatalog:Online;admingroup 
+;SH1518;Productos de Masonería y Construcción;siteoneProductCatalog:Online;admingroup 
+;SH1518111;Ladrillo;siteoneProductCatalog:Online;admingroup 
+;SH1518112;Químicos;siteoneProductCatalog:Online;admingroup 
+;SH1518113;Partes y Accesorios;siteoneProductCatalog:Online;admingroup 
+;SH1518114;Productos de Construcción de Acero y Metal;siteoneProductCatalog:Online;admingroup 
+;SH1518115;Estuco;siteoneProductCatalog:Online;admingroup 
+;SH1513;Vida al Aire Libre;siteoneProductCatalog:Online;admingroup 
+;SH1513110;Chimeneas y Fogatas;siteoneProductCatalog:Online;admingroup 
+;SH1513112;Parrillas y Accesorios;siteoneProductCatalog:Online;admingroup 
+;SH1513113;Kits;siteoneProductCatalog:Online;admingroup 
+;SH1513115;Cerámica;siteoneProductCatalog:Online;admingroup 
+;SH1513114;Productos para Centros de Jardinería;siteoneProductCatalog:Online;admingroup 
+;SH1513116;Decoración Exterior;siteoneProductCatalog:Online;admingroup 
+;SH1513117;Estructuras Exteriores;siteoneProductCatalog:Online;admingroup 
+;SH1513118;Accesorios para Estructuras Exteriores;siteoneProductCatalog:Online;admingroup 
+;SH1512;Productos de Madera;siteoneProductCatalog:Online;admingroup 
+;SH1512110;Durmientes y Vigas;siteoneProductCatalog:Online;admingroup 
+;SH1512111;Madera;siteoneProductCatalog:Online;admingroup 
+;SH1512112;Azulejos y Adoquines;siteoneProductCatalog:Online;admingroup 
+;SH1517;Piedra Natural;siteoneProductCatalog:Online;admingroup 
+;SH1517110;peñasco;siteoneProductCatalog:Online;admingroup 
+;SH1517111;áridos de construcción a granel;siteoneProductCatalog:Online;admingroup 
+;SH1517112;pisos de Piedra Dimensional;siteoneProductCatalog:Online;admingroup 
+;SH1517113;Capa, Peldaños, Umbral de Piedra Dimensional y Accesorios;siteoneProductCatalog:Online;admingroup 
+;SH1517114;Piedras Decorativas Embolsadas;siteoneProductCatalog:Online;admingroup 
+;SH1517115;piedra Laja;siteoneProductCatalog:Online;admingroup 
+;SH1517116;Acentos de jardín;siteoneProductCatalog:Online;admingroup 
+;SH1517117;Piedras para Construcción y Apiladas;siteoneProductCatalog:Online;admingroup 
+;SH1517118;Chapa Fina aserrada;siteoneProductCatalog:Online;admingroup 
+;SH1517119;Losas Irregulares, Escalones y afloramientos;siteoneProductCatalog:Online;admingroup 
+;SH1517120;Paneles de chapa;siteoneProductCatalog:Online;admingroup 
+;SH1517121;Áridos Decorativos en Masa;siteoneProductCatalog:Online;admingroup 
+;SH1517122;Adoquines y Bordillos;siteoneProductCatalog:Online;admingroup 
+;SH1517123;Roca de Río y Adoquines;siteoneProductCatalog:Online;admingroup 
+;SH1519;Pedido Especial;siteoneProductCatalog:Online;admingroup 
+
+

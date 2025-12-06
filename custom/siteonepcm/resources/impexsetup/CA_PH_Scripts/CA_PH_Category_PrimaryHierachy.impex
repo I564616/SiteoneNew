@@ -1,0 +1,15 @@
+
+$supercategories=supercategories( code, catalogVersion(catalog(id[default='siteoneCAProductCatalog']),version[default='Staged']));;;;;;;;;
+$catalogVersion=catalogVersion(catalog(id[default='siteoneCAProductCatalog']),version[default='Staged'])[unique=true,default='siteoneCAProductCatalog:Staged'];;;;;;;;;
+;;;;;;;;;
+
+
+INSERT_UPDATE Category;code[unique=true];name[lang=en];$supercategories;$catalogVersion;allowedPrincipals(uid);productCount
+;PH1;Primary;;siteoneCAProductCatalog:Staged;admingroup
+;PH11;Lighting;SH1;siteoneCAProductCatalog:Staged;admingroup;2
+;PH12;Landscape Supply;SH1;siteoneCAProductCatalog:Staged;admingroup;1
+;PH13;Agronomic Maintenance;SH1;siteoneCAProductCatalog:Staged;admingroup;3
+;PH14;Irrigation;SH1;siteoneCAProductCatalog:Staged;admingroup;3
+;PH15;Hardscapes & Outdoor Living;SH1;siteoneCAProductCatalog:Staged;admingroup;4
+;PH16;Nursery;SH1;siteoneCAProductCatalog:Staged;admingroup;6
+;PH17;Tools, Equipment & Safety;SH1;siteoneCAProductCatalog:Staged;admingroup;2

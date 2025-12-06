@@ -1,0 +1,25 @@
+$contentCatalog=siteoneContentCatalog								
+"$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]"										
+										
+# Language										
+$lang=en	
+UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];fullpagepath[lang=$lang];pathingChannel[lang=$lang]		
+;;How-to-Sell-Landscape-Lighting-to-Customers; Learn and Explore : lighting : How to sell Landscape Lighting to Customers;Learn and Explore
+;;checkout-login; My Account : Checkout-Login Page; My Account
+;;cmsitem_00059006; products : Hardscapes Stone Center Natural Stone; products
+;;siteonehomepage; home; home
+;;How-to-Identify-Boxwood-Blight; Learn and Explore : Nursery : How to Identify Boxwood Blight;Learn and Explore
+;;How-to-Sell-Smart-Controllers; Learn and Explore : Irrigation : How to Sell Smart Controllers;Learn and Explore
+;;Grub-Treatment-and-Prevention; Learn and Explore : Turf Care : grub treatment and prevention;Learn and Explore
+;;Snow-Mold-Prevention-and-Treatment; Learn and Explore : Turf Care : Snow Mold Prevention and Treatment;Learn and Explore
+;;Top-Synthetic-Turf-Installation-Problems; Learn and Explore : Turf Care : Top Synthetic Turf Installation Problems;Learn and Explore
+;;Synthetic-Turf-Upkeep-and-Maintenance; Learn and Explore : Turf Care : Synthetic Turf Upkeep and Maintenance;Learn and Explore
+;;login;My Account : Login Page;My Account
+;;cmsitem_00030013; promotions; promotions
+;;w9; company service : SiteOne W9; company service
+;;cmsitem_00017000; promotions : SiteOne, True Temper, UnionTools, Razorback, LESCO, Pro-Trade, Felco, Jackson Steel; promotions
+;;cmsitem_00096003; terms and conditions : sms terms and conditions; terms and conditions
+;;storeDirectoryCityPage; store : Store Directory City Page;store
+;;storeDirectoryListPage; store : Store Directory Page;store
+;;storeDirectoryStateListPage; store : Store Directory State List Page; store
+;;termsAndCondition; terms and conditions ;terms and conditions

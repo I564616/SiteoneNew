@@ -1,0 +1,8 @@
+INSERT_UPDATE ServicelayerJob; code[unique=true];springid[unique=true]
+;adobeAnalyticsCustomerExportCronJob;adobeAnalyticsCustomerExportCronJob;
+
+INSERT_UPDATE AdobeAnalyticsCustomerExportCronJob;code[unique=true];job(code)[default=adobeAnalyticsCustomerExportCronJob];sessionLanguage(isoCode)[default=en]
+;adobeAnalyticsCustomerExportCronJob
+
+INSERT_UPDATE Trigger;Cronjob(code)[unique=true];cronExpression;active[default=true]
+;adobeAnalyticsCustomerExportCronJob;0 0 11 ? * SUN *

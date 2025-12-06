@@ -1,0 +1,53 @@
+######################### Content Pages Start #########################
+
+$contentCatalog=siteoneContentCatalog								
+"$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]"										
+										
+# Language										
+$lang=en										
+										
+# Content Pages										
+UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];fullpagepath[lang=$lang];pathingChannel[lang=$lang]		
+;;login;Login Page;My Account
+;;checkout-login;Checkout-Login Page;My Account
+;;storeDirectoryStateListPage;Store Directory State List Page;store
+;;Causes-of-Water-Hammer-and-How-to-Fix-It;tools and resources: learn and explore: irrigation: causes of water hammer and how to fix it;Learn and Explore
+;;cmsitem_00059006;Hardscapes Stone Center Natural Stone;products
+;;Metal-Edging-for-Hardscapes;learn and explore: Metal Edging for Hardscapes;Learn and Explore
+;;cmsitem_00107016;promotions: 2023 seed eop curated;promotions
+;;Container-Trees-versus-Ball-and-Burlap-Trees;learn and explore: Container Trees versus Ball and Burlap Trees;Learn and Explore
+;;w9;SiteOne W9;company service
+;;Mosquito-Control;learn and explore: Mosquito Control;Learn and Explore
+;;storeDirectoryCityPage;Store Directory City Page;store
+;;Grub-Treatment-and-Prevention;learn and explore grub treatment and prevention;Learn and Explore
+;;storeDirectoryListPage;Store Directory Page;store
+;;How-to-Identify-Boxwood-Blight;How to Identify Boxwood Blight;Learn and Explore
+;;Troubleshooting-Standing-Water-on-Patios-and-Pool-Decks;learn and explore: Troubleshooting Standing Water on Patios and Pool Decks;Learn and Explore
+;;Backflow-Preventers;tools and resources: learn and explore: irrigation: backflow preventers;Learn and Explore
+;;Drip-Irrigation-FAQs;tools and resources: learn and explore: irrigation: drip irrigation faqs;Learn and Explore
+;;Benefits-of-Organic-Fertilizer;tools and resources: learn and explore: turf care: benefits of organic fertilizer;Learn and Explore
+;;Keep-Boxwood-Blight-Out-of-Your-Landscapes-with-Distylium;learn and explore: Keep Boxwood Blight Out of Your Landscapes with Distylium;Learn and Explore
+;;Benefits-of-Permeable-Pavers;tools and resources: learn and explore: hardscapes outdoor living: benefits of permeable pavers;Learn and Explore
+;;The-Value-of-Certification;learn and explore: Grow Your Irrigation Business: The Value of Certification;Learn and Explore
+;;Increase-Profits-by-Selling-Smart-Irrigation-Systems;learn and explore: Increase Profits by Selling Smart Irrigation Systems;Learn and Explore
+;;Top-Summer-Blooming-Plants;learn and explore: nursery: Top Summer Blooming Plants;Learn and Explore
+;;Top-Synthetic-Turf-Installation-Problems;learn and explore synthetic turf;Learn and Explore
+;;Putting-Your-Sports-Turf-Management-Through-Spring-Training;learn and explore: Putting Your Sports Turf Management Through Spring Training;Learn and Explore
+;;How-to-Sell-Smart-Controllers;How to Sell Smart Controllers;Learn and Explore
+;;Managing-Fleas-and-Ticks-with-the-Right-Control-Products;learn and explore: Flea & Tick Prevention & Treatment for Yards;Learn and Explore
+;;Stormwater-Management-Runoff-Tools;tools and resources: learn and explore: irrigation: stormwater management runoff tools;Learn and Explore
+;;The-Pros-of-Porcelain-Tile-in-Landscaping-Projects;learn and explore: The Pros of Porcelain Tile in Landscaping Projects;Learn and Explore
+;;How-to-Sell-Landscape-Lighting-to-Customers;articles/article/How-to-Sell-Landscape-Lighting-to-Customers;Learn and Explore
+;;Efficiency-Tools-for-Hardscaping-Jobs;learn and explore: Efficiency Tools for Hardscaping Jobs;Learn and Explore
+;;Restarting-Irrigation-Systems-in-Spring;learn and explore: Restarting Irrigation Systems in Spring;Learn and Explore
+;;How-to-Maintain-and-Renovate-Sports-Turf;learn and explore: How to Maintain and Renovate Sports Turf;Learn and Explore
+;;Building-a-Strong-Labor-Force;tools and resources: learn and explore: business tips: building a strong labor force;Learn and Explore
+;;Benefits-of-Porcelain;tools and resources: learn and explore: hardscapes outdoor living: benefits of porcelain for hardscapes;Learn and Explore
+;;Using-Channel-Drains-to-Prevent-Hardscape-Flooding;learn and explore: Using Channel Drains to Prevent Hardscape Flooding;Learn and Explore
+;;Stormwater-Management-Ponding-and-Erosion;tools and resources: learn and explore: irrigation: stormwater management ponding and erosion solutions;Learn and Explore
+;;How-to-Prune-Correctly-and-Mistakes-to-Avoid;learn and explore: How to Prune Correctly and Mistakes to Avoid;Learn and Explore
+;;Efficiencies-of-Multi-Purpose-Solutions;learn and explore: turf care: Efficiencies of Multi-Purpose Solutions;Learn and Explore
+;;LED-Landscape-Lighting-FAQs;tools and resources: learn and explore: lighting: why led fixtures;Learn and Explore
+;;Tree-Health-and-Maintenance;learn & explore: Tree Health and Maintenance;Learn and Explore
+;;Snow-Mold-Prevention-and-Treatment;learn and explore Snow Mold Prevention and Treatment;Learn and Explore
+;;Expediting-the-Bidding-and-Procurement-Process-for-Landscapers;tools and resources: learn and explore: expediting the bidding and procurement process for landscapers;Learn and Explore

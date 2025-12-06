@@ -1,0 +1,6 @@
+$contentCatalog=siteoneContentCatalog
+$contentCatalogName=SiteOne Content Catalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+
+INSERT_UPDATE FooterNavigationComponent;$contentCV[unique=true];uid[unique=true];iTunesUrl;playStoreUrl
+;;FooterNavigationComponent;https://apps.apple.com/us/app/siteone/id1564467805;https://play.google.com/store/apps/details?id=com.siteone.landscape

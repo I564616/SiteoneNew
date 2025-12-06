@@ -1,0 +1,232 @@
+## messageSource=classpath:/siteonecore/messages/email-notifyQuoteStatus_$lang.properties
+#macro( genHtmlBoldFont $text )
+<font color="#414a4f"><b>$text</b></font>
+#end
+#macro(genHtmlLinkStartTag $url)
+<a href="$url"><font color="#666666">
+#end
+#macro(genHtmlLinkEndTag)
+</font></a>
+#end
+#macro(genHtmlLink $url $textColor $bodyContent)
+<a href="$url"><font color="$textColor">$bodyContent</font></a>
+#end
+#if(${ctx.mongoId} && ${ctx.mongoId} != '')
+	#set ($quoteDetailsURL = "${ctx.baseUrl}/my-account/my-quotes/${ctx.mongoId}")
+#else
+	#set ($quoteDetailsURL = "${ctx.baseUrl}/my-account/my-quotes")
+#end
+#set ($onlineAccessURL = "${ctx.baseUrl}/request-account/onlineAccess")
+#if(${ctx.countryBaseSiteID} == "siteone-ca")
+  <table width="600" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#ffffff" style="border: 1px solid #999; min-height: 800px; min-width: 600px; max-width: 600px;font-family: Arial, Helvetica, sans-serif;  word-break: break-word;color: #5a5b5d;font-size: 12px;">
+<thead>
+    <tr>
+        <th colspan="3" align="left" style="padding: 24px;">
+            <a style="text-decoration:none;" href="${ctx.baseThemeUrl}">
+                <img title="SiteoneLogo" src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/SiteoneLogo.jpg" alt="SiteoneLogo" width="176" height="67">
+            </a>
+        </th>
+        <th colspan="3" valign="bottom" align="right" style="padding: 24px;">
+            <a style="text-decoration:none; margin-right: 20px;" href="https://www.facebook.com/siteonesupplycanada/">
+                <img src="https://www.siteone.com/_ui/responsive/theme-lambda/images/Footer_Social_Facebook.svg" alt="Facebook" title="Facebook" width="27" height="27">
+            </a>
+            <a style="text-decoration:none; margin-right: 20px;" href="https://www.instagram.com/Siteonesupplycanada/">
+                <img src="https://www.siteone.com/_ui/responsive/theme-lambda/images/Footer_Social_LinkedIn.svg" alt="Instagram" title="Instagram" width="27" height="27">
+            </a>
+            <a style="text-decoration:none;" href="https://x.com/SiteOneCanada">
+                <img src="https://www.siteone.com/_ui/responsive/theme-lambda/images/Footer_Social_Twitter.svg" alt="X" title="X" width="27" height="27">
+            </a>
+        </th>
+    </tr>
+	<tr>
+		<th colspan="6" align="left" style="background-color: #f1f2f2; font-weight: bold; padding: 20px;font-size:16px;">
+			<p style="margin: 0; padding: 0px 0px 0px 4px;">${ctx.messages.message}</p>
+		</th>
+	</tr>
+</thead>
+<tbody>
+	#if(${ctx.quoteNumber} && ${ctx.quoteNumber} != '')
+	<tr>
+		<td colspan="2"  width="25%" align="left" style="font-weight: bold; padding: 24px 10px 10px 24px;font-size:13px; color: #000000;">${ctx.messages.quoteNumber}</td>
+		<td colspan="4" align="left" style="padding: 24px 10px 10px 5px;font-size:13px; color: #000000;">${ctx.quoteNumber}</td>
+	</tr>	
+	#end
+	#if(${ctx.accountManagerName} && ${ctx.accountManagerName} != '')
+	<tr>
+		<td colspan="2"  width="25%" align="left" style="font-weight: bold; padding: 10px 10px 10px 24px;font-size:13px; color: #000000;">${ctx.messages.siteoneAccountManager}</td>
+		<td colspan="4" align="left" style="padding: 10px 10px 10px 5px;font-size:13px; color: #000000;">${ctx.accountManagerName}</td>
+	</tr>
+	#end
+	#if(${ctx.jobName} && ${ctx.jobName} != '')
+	<tr>
+		<td colspan="2"  width="25%" align="left" style="font-weight: bold; padding: 10px 10px 10px 24px;font-size:13px; color: #000000;">${ctx.messages.jobName}</td>
+		<td colspan="4" align="left" style="padding: 10px 10px 10px 5px;font-size:13px; color: #000000;">${ctx.jobName}</td>
+	</tr>
+	#end
+	#if(${ctx.submittedDate} && ${ctx.submittedDate} != '')	
+	<tr>
+		<td colspan="2"  width="25%" align="left" style="font-weight: bold; padding: 10px 10px 10px 24px;font-size:13px; color: #000000;">${ctx.messages.dateSubmitted}</td>
+		<td colspan="4" align="left" style="padding: 10px 10px 10px 5px;font-size:13px; color: #000000;">${ctx.submittedDate}</td>
+	</tr>
+	#end
+	#if(${ctx.expDate} && ${ctx.expDate} != '')
+	<tr>
+		<td colspan="2"  width="25%" align="left" style="font-weight: bold; padding: 10px 10px 10px 24px;font-size:13px; color: #000000;">${ctx.messages.expDate}</td>
+		<td colspan="4" align="left" style="padding: 10px 10px 10px 5px;font-size:13px; color: #000000;">${ctx.expDate}</td>
+	</tr>
+	#end
+	#if(${ctx.customMessage} && ${ctx.customMessage} != '')
+	<tr>
+		<td colspan="2"  width="25%" align="left" style="font-weight: bold; padding: 10px 10px 10px 24px;font-size:13px; color: #000000;">${ctx.messages.customMessage}</td>
+		<td colspan="4" align="left" style="padding: 10px 10px 10px 5px;font-size:13px; color: #000000;">${ctx.customMessage}</td>
+	</tr>
+	#end
+	
+	<tr>
+		<td colspan="6" valign="top" align="left" style="padding: 24px 24px 24px 24px;">			
+			<a href="$quoteDetailsURL" style="text-decoration:none;color: #fff;line-height: 40px; font-weight: bold; padding: 6px 40px;font-size:16px;  background: #78a22f;height: 36px; border-radius: 6px; display: inline-block;">${ctx.messages.viewDetails}</a>
+		</td>
+	</tr>
+	
+	<tr>
+		<td colspan="6" valign="top" align="left" style="padding: 5px 12px 0px 24px;font-size:14px;line-height: 22px;">${ctx.messages.onlineAccessQtn}</td>
+	</tr>
+	<tr>
+		<td colspan="6" valign="top" align="left" style="padding: 0px 10px 12px 24px;font-size:13px;line-height: 22px;">${ctx.messages.onlineAccessMsg} <a href="$onlineAccessURL" style="color: #00b300;">${ctx.messages.clickHere}</a>. ${ctx.messages.onlineAccessMsg1} (<a href="tel:18007483663" style="color: #5a5b5d;">1-800-748-3663</a>). ${ctx.messages.onlineAccessMsg2}</td>
+	</tr>	
+	<tr>
+		<td colspan="6" valign="top" align="left" style="padding: 10px 0px 20px 0px;">
+			<p style="font-weight: bold; padding: 15px 0px 15px 24px;background-color: #f1f2f2;color: #000000;font-size:14px;">${ctx.messages.accountManagerHeader}</p>
+			#if(${ctx.accountManagerName} && ${ctx.accountManagerName} != '')
+			<p style="padding: 10px 0px 5px 24px;margin: 0px;font-size:13px;">${ctx.accountManagerName}</p>
+			#end
+			#if(${ctx.accountManagerMobile} && ${ctx.accountManagerMobile} != '')
+			<p style="padding: 5px 0px 5px 24px;margin: 0px;font-size:13px;">${ctx.accountManagerMobile}</p>
+			#end
+			#if(${ctx.accountManagerMail} && ${ctx.accountManagerMail} != '')
+			<p style="padding: 5px 0px 0px 24px;margin: 0px;font-size:13px;">${ctx.accountManagerMail}</p>
+			#end
+	</tr>
+	
+	<tr>
+		<td colspan="6" style="padding: 5px 0px;">
+			<hr>
+		</td>
+	</tr>
+	
+	<tr>
+		<td colspan="6" valign="top" align="left" style="padding: 5px 24px;font-size:13px;">
+			<p style="padding: 10px 0px;margin: 0px;line-height: 22px;">${ctx.messages.footerMsg} (<a href="tel:18007483663" style="color: #5a5b5d;">1-800-748-3663</a>). ${ctx.messages.footerMsg1}</p>
+            <p style="padding: 4px 10px 0px 0px;margin: 0px;">${ctx.messages.complimentaryClose}</p>
+            <p style="padding: 4px 10px 0px 0px;margin: 0px;font-weight: bold;font-style:italic;color:000000;">${ctx.messages.signaturename}</p>
+		</td>
+	</tr>
+</tbody>
+</table>
+#else
+<table width="600" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#ffffff" style="border: 1px solid #999; min-height: 800px; min-width: 600px; max-width: 600px;font-family: Arial, Helvetica, sans-serif;  word-break: break-word;color: #5a5b5d;font-size: 12px;">
+<thead>
+    <tr>
+        <th colspan="3" align="left" style="padding: 24px;">
+            <a style="text-decoration:none;" href="${ctx.baseThemeUrl}">
+                <img title="SiteoneLogo" src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/SiteoneLogo.jpg" alt="SiteoneLogo" width="176" height="67">
+            </a>
+        </th>
+        <th colspan="3" valign="bottom" align="right" style="padding: 24px;">
+            <a style="text-decoration:none; margin-right: 20px;" href="https://www.facebook.com/SiteOneLandscape/">
+                <img src="https://www.siteone.com/_ui/responsive/theme-lambda/images/Footer_Social_Facebook.svg" alt="Facebook" title="Facebook" width="27" height="27">
+            </a>
+            <a style="text-decoration:none; margin-right: 20px;" href="https://www.instagram.com/siteonesupply/">
+                <img src="https://www.siteone.com/_ui/responsive/theme-lambda/images/Footer_Social_LinkedIn.svg" alt="Instagram" title="Instagram" width="27" height="27">
+            </a>
+            <a style="text-decoration:none;" href="https://x.com/SiteOneSupply">
+                <img src="https://www.siteone.com/_ui/responsive/theme-lambda/images/Footer_Social_Twitter.svg" alt="X" title="X" width="27" height="27">
+            </a>
+        </th>
+    </tr>
+	<tr>
+		<th colspan="6" align="left" style="background-color: #f1f2f2; font-weight: bold; padding: 20px;font-size:16px;">
+			<p style="margin: 0; padding: 0px 0px 0px 4px;">${ctx.messages.message}</p>
+		</th>
+	</tr>
+</thead>
+<tbody>
+	#if(${ctx.quoteNumber} && ${ctx.quoteNumber} != '')
+	<tr>
+		<td colspan="2"  width="25%" align="left" style="font-weight: bold; padding: 24px 10px 10px 24px;font-size:13px; color: #000000;">${ctx.messages.quoteNumber}</td>
+		<td colspan="4" align="left" style="padding: 24px 10px 10px 5px;font-size:13px; color: #000000;">${ctx.quoteNumber}</td>
+	</tr>	
+	#end
+	#if(${ctx.accountManagerName} && ${ctx.accountManagerName} != '')
+	<tr>
+		<td colspan="2"  width="25%" align="left" style="font-weight: bold; padding: 10px 10px 10px 24px;font-size:13px; color: #000000;">${ctx.messages.siteoneAccountManager}</td>
+		<td colspan="4" align="left" style="padding: 10px 10px 10px 5px;font-size:13px; color: #000000;">${ctx.accountManagerName}</td>
+	</tr>
+	#end
+	#if(${ctx.jobName} && ${ctx.jobName} != '')
+	<tr>
+		<td colspan="2"  width="25%" align="left" style="font-weight: bold; padding: 10px 10px 10px 24px;font-size:13px; color: #000000;">${ctx.messages.jobName}</td>
+		<td colspan="4" align="left" style="padding: 10px 10px 10px 5px;font-size:13px; color: #000000;">${ctx.jobName}</td>
+	</tr>
+	#end
+	#if(${ctx.submittedDate} && ${ctx.submittedDate} != '')	
+	<tr>
+		<td colspan="2"  width="25%" align="left" style="font-weight: bold; padding: 10px 10px 10px 24px;font-size:13px; color: #000000;">${ctx.messages.dateSubmitted}</td>
+		<td colspan="4" align="left" style="padding: 10px 10px 10px 5px;font-size:13px; color: #000000;">${ctx.submittedDate}</td>
+	</tr>
+	#end
+	#if(${ctx.expDate} && ${ctx.expDate} != '')
+	<tr>
+		<td colspan="2"  width="25%" align="left" style="font-weight: bold; padding: 10px 10px 10px 24px;font-size:13px; color: #000000;">${ctx.messages.expDate}</td>
+		<td colspan="4" align="left" style="padding: 10px 10px 10px 5px;font-size:13px; color: #000000;">${ctx.expDate}</td>
+	</tr>
+	#end
+	#if(${ctx.customMessage} && ${ctx.customMessage} != '')
+	<tr>
+		<td colspan="2"  width="25%" align="left" style="font-weight: bold; padding: 10px 10px 10px 24px;font-size:13px; color: #000000;">${ctx.messages.customMessage}</td>
+		<td colspan="4" align="left" style="padding: 10px 10px 10px 5px;font-size:13px; color: #000000;">${ctx.customMessage}</td>
+	</tr>
+	#end
+	
+	<tr>
+		<td colspan="6" valign="top" align="left" style="padding: 24px 24px 24px 24px;">			
+			<a href="$quoteDetailsURL" style="text-decoration:none;color: #fff;line-height: 40px; font-weight: bold; padding: 6px 40px;font-size:16px;  background: #78a22f;height: 36px; border-radius: 6px; display: inline-block;">${ctx.messages.viewDetails}</a>
+		</td>
+	</tr>
+	
+	<tr>
+		<td colspan="6" valign="top" align="left" style="padding: 5px 12px 0px 24px;font-size:14px;line-height: 22px;">${ctx.messages.onlineAccessQtn}</td>
+	</tr>
+	<tr>
+		<td colspan="6" valign="top" align="left" style="padding: 0px 10px 12px 24px;font-size:13px;line-height: 22px;">${ctx.messages.onlineAccessMsg} <a href="$onlineAccessURL" style="color: #00b300;">${ctx.messages.clickHere}</a>. ${ctx.messages.onlineAccessMsg1} (<a href="tel:18007483663" style="color: #5a5b5d;">1-800-748-3663</a>). ${ctx.messages.onlineAccessMsg2}</td>
+	</tr>	
+	<tr>
+		<td colspan="6" valign="top" align="left" style="padding: 10px 0px 20px 0px;">
+			<p style="font-weight: bold; padding: 15px 0px 15px 24px;background-color: #f1f2f2;color: #000000;font-size:14px;">${ctx.messages.accountManagerHeader}</p>
+			#if(${ctx.accountManagerName} && ${ctx.accountManagerName} != '')
+			<p style="padding: 10px 0px 5px 24px;margin: 0px;font-size:13px;">${ctx.accountManagerName}</p>
+			#end
+			#if(${ctx.accountManagerMobile} && ${ctx.accountManagerMobile} != '')
+			<p style="padding: 5px 0px 5px 24px;margin: 0px;font-size:13px;">${ctx.accountManagerMobile}</p>
+			#end
+			#if(${ctx.accountManagerMail} && ${ctx.accountManagerMail} != '')
+			<p style="padding: 5px 0px 0px 24px;margin: 0px;font-size:13px;">${ctx.accountManagerMail}</p>
+			#end
+	</tr>
+	
+	<tr>
+		<td colspan="6" style="padding: 5px 0px;">
+			<hr>
+		</td>
+	</tr>
+	
+	<tr>
+		<td colspan="6" valign="top" align="left" style="padding: 5px 24px;font-size:13px;">
+			<p style="padding: 10px 0px;margin: 0px;line-height: 22px;">${ctx.messages.footerMsg} (<a href="tel:18007483663" style="color: #5a5b5d;">1-800-748-3663</a>). ${ctx.messages.footerMsg1}</p>
+            <p style="padding: 4px 10px 0px 0px;margin: 0px;">${ctx.messages.complimentaryClose}</p>
+            <p style="padding: 4px 10px 0px 0px;margin: 0px;font-weight: bold;font-style:italic;color:000000;">${ctx.messages.signaturename}</p>
+		</td>
+	</tr>
+</tbody>
+</table>
+#end

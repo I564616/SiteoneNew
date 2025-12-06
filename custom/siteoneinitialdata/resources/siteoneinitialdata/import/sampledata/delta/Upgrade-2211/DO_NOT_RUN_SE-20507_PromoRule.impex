@@ -1,0 +1,18 @@
+import de.hybris.platform.core.Registry;
+import de.hybris.platform.ruleengineservices.rule.services.RuleService;
+import de.hybris.platform.ruleengineservices.maintenance.RuleMaintenanceService;
+import de.hybris.platform.ruleengineservices.maintenance.RuleCompilerPublisherResult;
+import org.slf4j.LoggerFactory
+
+def log = LoggerFactory.getLogger("promotion-fix-groovy-script")
+
+log.error("Publishing Rules")
+RuleService ruleService = (RuleService) Registry.getApplicationContext().getBean("ruleService");
+RuleMaintenanceService ruleMaintenanceService = (RuleMaintenanceService) Registry.getApplicationContext().getBean("ruleMaintenanceService");
+RuleCompilerPublisherResult myResult = ruleMaintenanceService.compileAndPublishRules(ruleService.getAllRules(),"promotions-module",false);
+log.error("----------------")
+log.error("Rule status call")
+println myResult.getResult()
+log.error("----------------")
+log.error("Job Complete")
+return

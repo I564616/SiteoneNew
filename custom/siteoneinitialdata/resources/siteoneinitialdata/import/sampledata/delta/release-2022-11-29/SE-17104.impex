@@ -1,0 +1,24 @@
+$b2bCustomer=B2BCustomer(uid);
+INSERT_UPDATE PunchOutCredential;code[unique=true]; domain[unique=true]; identity[unique=true]; sharedsecret
+;APTIVE;Aptive;aptive11;Aptive1234
+INSERT_UPDATE PunchOutCredential;code[unique=true]; domain[unique=true]; identity[unique=true]; sharedsecret[translator=com.siteone.punchout.batch.translator.SiteOneEncryptSharedSecretTranslator]
+;APTIVE;Aptive;aptive11;Aptive1234
+INSERT_UPDATE B2BCustomerPunchOutCredentialMapping; $b2bCustomer[unique=true]; credentials(code)
+;jeanne.mangum@goaptive.com;APTIVE
+
+## CMS User Group Restrictions
+INSERT_UPDATE Usergroup;uid[unique=true];groups(uid);locname[lang=en];
+;aptivepunchoutcustomergroup;b2bcustomergroup;
+;aptivepunchoutadmingroup;b2badmingroup;
+
+$contentCatalog=siteoneContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$productCatalog=siteoneProductCatalog
+$productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+
+UPDATE VerticalBarComponent;$contentCV[unique=true];uid[unique=true];name;globalProductNodes(uid,$contentCV);&componentRef;;;
+;;PunchoutVerticalBarComponent;All Products;AgronomicMaintenanceNavNode,Hardscapes&OutdoorLivingNavNode,IrrigationNavNode,LandscapeSupplyNavNode,LightingNavNode,NurseryNavNode,ToolsEquipment&SafetyNavNode;PunchoutVerticalBarComponent;;;
+
+INSERT_UPDATE CMSUserGroupRestriction;$contentCV[unique=true];uid[unique=true];name;userGroups(uid);includeSubgroups;components(uid,$contentCV)
+;;AptivePunchoutCustomerGroupRestriction;Aptive Customer Group Restriction;aptivepunchoutcustomergroup;false;PunchoutVerticalBarComponent
+;;AptivePunchoutAdminGroupRestriction;Aptive Admin Group Restriction;aptivepunchoutadmingroup;false;PunchoutVerticalBarComponent

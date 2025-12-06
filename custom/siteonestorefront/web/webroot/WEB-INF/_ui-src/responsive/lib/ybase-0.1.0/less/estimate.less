@@ -1,0 +1,361 @@
+@default-color: #78a22f;
+@white-color: #ffffff;
+@black-color: #000000;
+@red-color: #ff0000;
+.page-genarateEstimatePage {
+    .main-container {
+        background-color: @white-color;
+    }
+    .estimate-page {
+        font-size: 14px;
+        color: @black-color;
+        position: relative;
+        .estimate-date {
+            background-color: @white-color;
+            border: 0;
+            box-shadow: none;
+            padding: 2px;
+        }
+        .return-link {
+            color: #50A0C5;
+            font-size: 18px;
+        }
+        .contractor-section {
+			position: relative;
+		}
+        .upload-logo-btn {
+			border: 2px dashed #ccc;
+		    position: relative;
+		    padding: 19px 15px 18px 65px;
+		    border-radius: 3px !important;
+		    font-size: 14px;
+			.upload-logo-icon {
+				position: absolute;
+			    left: 15px;
+			    top: 15px;
+			    padding: 10px 11px;
+			    height: 65px;
+			}
+			&:hover,
+            &:active,
+            &:focus {
+				color: @default-color;
+                border-color: @default-color;
+            }
+		}
+		.contractor-logo-btn {
+			position: relative;
+    		display: none;
+		    padding: 0;
+		    height: 100px;
+		    text-align: left;
+		    .contractor-logo{
+				max-width: 300px;
+    			max-height: 100px;
+			}
+    		.edit-logo-icon {
+				position: absolute;
+			    left: 0;
+			    top: 0;
+			    opacity:0;
+			}
+			&:hover .edit-logo-icon,
+            &:active .edit-logo-icon,
+            &:focus .edit-logo-icon {
+				opacity:1;
+            }
+		}
+		.logo-popup {
+			max-width: 400px;
+			position: absolute;
+		    left: 15px;
+		    top: -20px;
+		    z-index: 99;
+		    box-shadow: 0 3px 10px #ccc;
+		    display: none;
+		    .upload-logo-btn {
+			    padding: 20px;
+				.upload-logo-icon {
+					position: static;
+				    height: auto;
+				    width: 100%;
+				    background-color: #c5c5c5;
+				    display: block;
+				}
+			}
+			.upload-logo-error {
+			    padding-bottom: 10px;
+			    border-color: @red-color;
+				.upload-logo-icon {
+					margin-bottom: 10px;
+				}
+			}
+			.delete-logo-btn{
+				width: 300px;
+			    height: 100px;
+			    margin: auto;
+			    padding: 0;
+			    display: none;
+			    position: relative;
+			    .contractor-logo {
+					max-width: 300px;
+				    max-height: 100px;
+				}
+			    .bg-lightGrey {
+					position: absolute;
+				    left: 50%;
+				    top: 50%;
+				    margin: -21px 0 0 -120px;
+				    width: 240px;
+					background-color: rgba(0,0,0,.5);
+				}
+			}
+		}
+        .edit-customer {
+            position: relative;
+            padding-left: 65px;
+        }
+        .edit-customer-btn {
+            position: absolute;
+		    left: 15px;
+		    top: 0;
+		    width: 36px;
+		    padding: 10px;
+		    height: 65px;
+		    border-radius: 3px !important;
+		    color: #999;
+        }
+        .edit-customer:hover .glyphicon-pencil,
+        .edit-customer:hover .company-name {
+            color: @default-color;
+        }
+        .customer-info {
+            background-color: #f1f2f2;
+            h3 {font-size: 22px;}
+            .form-control {
+                height: 47px;
+                border: 2px solid @white-color;
+                box-shadow: none;
+                &:hover,
+                &:active,
+                &:focus {
+                    border-color: @default-color;
+                }
+            }
+        }
+        .estimate-table {
+            border: 1px solid #E0E0E0;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            .form-control {
+                min-height: 60px;
+                border-radius: 0px;
+                padding: 18px 15px;
+                border: 1px solid #f1f2f2;
+                border-top: 0px;
+                border-bottom: 0px;
+                box-shadow: none;
+                background: transparent;
+                &:hover {
+                    border: 1px solid #ccc;
+                }
+            }
+            .movetoList-text {
+                margin: 0;
+                border: 0;
+                width: 100%;
+                background-color: transparent;
+                .badge {
+                    background: transparent;
+                    float: right;
+                }
+                &:hover,
+                &:active,
+                &:focus {
+                    background-color: #F1F2F2;
+                }
+            }
+        }
+        .heading {
+            font-size: 36px;
+            color: @black-color;
+            font-family: Geogrotesque-Medium;
+        }
+        .btn-red {
+            color: @red-color;
+            background-color: transparent;
+            border: 0;
+            &:hover,
+            &:active,
+            &:focus {
+                color: @red-color;
+                background: transparent;
+            }
+        }
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        input[type=number] {
+            -moz-appearance: textfield;
+            height: 47px;
+            border-radius: 4px;
+        }
+        .after-price,
+        .after-prcentage {
+            position: relative;
+            .form-control {
+                padding: 18px 20px;
+            }
+        }
+        .after-price {
+            .form-control {
+                padding: 18px 15px 18px 20px;
+            }
+        }
+        .after-prcentage {
+            .form-control {
+                padding: 18px 23px 18px 15px;
+            }
+        }
+        .after-price:after,
+        .after-prcentage:after {
+            position: absolute;
+            top: 50%;
+            color: @black-color;
+            margin-top: -10px;
+        }
+        .after-price:after {
+            content: "$";
+            left: 10px;
+        }
+        .after-prcentage:after {
+            content: "%";
+            right: 10px;
+        }
+        .estimate-popup {
+			background-color: #f1f2f2;
+			max-width: 500px; 
+			z-index: 99;
+		    position: absolute;
+			left: 0;
+			top: -47px;
+		    height: auto;
+			padding: 35px 20px;
+		    box-shadow: 0 0 10px #999;
+			display: none;
+			.estimate-popup-txt {
+				font-size: 14px;
+				font-family: 'Geogrotesque-Medium';
+				color: @black-color;
+				line-height: 16px;
+			}
+			label {
+				color: #999999;
+				font-size: 14px;
+				font-family: 'Geogrotesque-Medium';
+				line-height: 16px;
+			}
+			input {
+				height: 35px;
+				width: 100%;
+				border-radius: 3px;
+				border: none;
+				margin-bottom: 15px;
+				font-size: 14px;
+				line-height: 22px;
+				padding-left: 25px;
+			}
+		}
+    }
+    .estimate-successmsg {
+        #cboxLoadedContent {
+            margin-top: 0 !important;
+        }
+    }
+    .estimate-info {
+        font-style: italic;
+    }
+    .estimate-modal-cancel {
+        margin-right: 20px;
+    }
+    .estimate-mob-overlay {
+        position: fixed;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        background: #78A22F;
+        color: @white-color;
+        z-index: 9999999999;
+    }
+    .estimate-overlay-close {
+        position: absolute;
+        right: 0;
+        top: 0;
+        background: rgb(84, 83, 83, .9);
+    }
+    .estimate-total-text {
+        display: inline-block;
+        vertical-align: super;
+    }
+    .custom-category {
+        position: absolute;
+        z-index: 99;
+        box-shadow: 0 0 10px #999;
+        top: 700px;
+        min-width: 300px;
+        .movetoList-wrapper {
+            padding: 0 !important;
+            width: 100%;
+            border: 0;
+            position: relative;
+        }
+        .scroll-bar {
+            max-height: 205px;
+        }
+        .list-group-item {
+            text-decoration: none;
+            padding: 4px 20px 4px 10px;
+            color: #666;
+            font-weight: normal;
+        }
+        .list-group-item.active {
+            background-color: #eee;
+            border-color: #ddd;
+            position: relative;
+        }
+        .list-group-item.active::after {
+            content: "\e013";
+            position: absolute;
+            right: 5px;
+            top: 50%;
+            color: @default-color;
+            margin-top: -10px;
+            font-family: 'Glyphicons Halflings';
+        }
+        .scroll-bar {
+            .input-group-btn {
+                border: 1px solid #ccc;
+                border-left: 0px;
+            }
+        }
+        .movetoList-text {
+            padding: 6px 10px;
+            border: 0px;
+        }
+        .btn {
+            padding: 1px 10px;
+            min-width: 30px;
+        }
+        .form-control {
+            height: 30px;
+        }
+    }
+    .br-3 {
+        border-radius: 3px;
+    }
+}

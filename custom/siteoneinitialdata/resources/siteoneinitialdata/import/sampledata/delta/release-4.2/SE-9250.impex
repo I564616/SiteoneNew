@@ -1,0 +1,11 @@
+$contentCatalog=siteoneContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef)
+;;SectionCSlotMobile-AgronomicMaintenanceCategoryLandingPage;Brand Banner Component Slot Mobile;true;;
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='AgronomicMaintenanceCategoryLandingPage'];contentSlot(uid,$contentCV)[unique=true]
+;;SectionC-Mobile-AgronomicMaintenanceCategoryLandingPage;SectionCMobile;;SectionCSlotMobile-AgronomicMaintenanceCategoryLandingPage
+
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='CategoryLandingPageTemplate'];validComponentTypes(code);compTypeGroup(code)
+;SectionCMobile;;SiteOneCategoryPromotionBannerComponent

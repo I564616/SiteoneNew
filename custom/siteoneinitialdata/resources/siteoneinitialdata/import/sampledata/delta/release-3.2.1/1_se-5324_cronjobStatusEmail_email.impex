@@ -1,0 +1,37 @@
+  $contentCatalog=siteoneContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$wideContent=CMSImageComponent,BannerComponent
+$jarEmailResource=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/coredata/contentCatalogs/siteoneContentCatalog/emails
+$lang=en
+
+# Import modulegen config properties into impex macros
+UPDATE GenericItem[processor=de.hybris.platform.commerceservices.impex.impl.ConfigPropertyImportProcessor];pk[unique=true]
+$jarResourceCms=$config-jarResourceCmsValue
+$emailPackageName=$config-emailContextPackageName
+$emailResource=$config-emailResourceValue
+
+
+
+# Email velocity templates
+INSERT_UPDATE RendererTemplate;code[unique=true];contextClass;rendererType(code)[default='velocity']
+;SiteOne_Email_Jobs_Status_Body;$emailPackageName.SiteoneJobsStatusEmailContext
+;SiteOne_Email_Jobs_Status_Subject;$emailPackageName.SiteoneJobsStatusEmailContext
+
+
+INSERT_UPDATE RendererTemplate;code[unique=true];description[lang=$lang];templateScript[lang=$lang,translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+;SiteOne_Email_Jobs_Status_Subject;"CronJob Status Template";$emailResource/email-siteoneJobsStatusSubject.vm
+;SiteOne_Email_Jobs_Status_Body;"CronJob Status Template";$emailResource/email-siteoneJobsStatusBody.vm
+
+
+# Email Pages
+INSERT_UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);defaultPage;approvalStatus(code)[default='approved']
+;;SiteoneJobsStatusEmail;Siteone Jobs Status Email;SiteoneJobsStatusEmailTemplate;true;
+
+INSERT_UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];fromEmail[lang=$lang];fromName[lang=$lang] 
+;;SiteoneJobsStatusEmail;"donotreply@siteone.com";"SiteOne"
+
+
+# Email page Template
+INSERT_UPDATE EmailPageTemplate;$contentCV[unique=true];uid[unique=true];name;active;frontendTemplateName;subject(code);htmlTemplate(code);restrictedPageTypes(code)
+;;SiteoneJobsStatusEmailTemplate;Siteone Jobs Status Email Template;true;siteoneJobsStatusEmail;SiteOne_Email_Jobs_Status_Subject;SiteOne_Email_Jobs_Status_Body;EmailPage
+

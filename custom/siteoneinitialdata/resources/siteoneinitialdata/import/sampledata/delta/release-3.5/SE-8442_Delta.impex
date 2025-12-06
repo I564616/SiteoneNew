@@ -1,0 +1,6 @@
+# cron job configuration
+INSERT_UPDATE cleanupCronjob;code[unique=true];job(code);sessionUser(uid);sessionLanguage(isocode);active;xdaysOld
+;siteoneCleanupCronjobs;cleanupCronJobsPerformable;admin;en;true;14
+
+INSERT_UPDATE Trigger;Cronjob(code)[unique=true];cronExpression;active[default=true]
+;siteoneCleanupCronjobs;0 45 06 * * ?

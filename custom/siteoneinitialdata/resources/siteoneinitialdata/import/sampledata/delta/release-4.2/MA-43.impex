@@ -1,0 +1,15 @@
+$contentCatalog=siteoneContentCatalog
+$contentCatalogName=SiteOne Content Catalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Online])[default=$contentCatalog:Online]
+
+$productCatalog=siteoneProductCatalog
+$productCatalogName=SiteOne Product Catalog
+$productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Online'])[unique=true,default=$productCatalog:Online]
+
+INSERT_UPDATE GlobalProductNavigationNode;$contentCV[unique=true];uid[unique=true];category(code, $productCV);
+;;CategoriesNavNode;SH1
+;;LightingNavNode;SH11
+;;LandscapeSupplyNavNode;SH12
+;;AgronomicMaintenanceNavNode;SH13
+;;IrrigationNavNode;SH14
+;;Hardscapes&OutdoorLivingNavNode;SH15

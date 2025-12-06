@@ -1,0 +1,13 @@
+$productCatalog=siteoneProductCatalog
+$lang=en
+
+#Cronjob Impex
+INSERT_UPDATE StoreTimeZoneStatusCronJob;code[unique=true];job(code)[default=storeTimeZoneStatusCronjob];sessionLanguage(isoCode)[default=en]
+                                        ;storeTimeZoneStatusCronjob
+
+
+INSERT_UPDATE Trigger;cronJob(code)[unique=true];cronExpression;relative;active;maxAcceptableDelay
+;storeTimeZoneStatusCronjob;0 0 08 ? * SUN *;false;true;-1
+
+INSERT_UPDATE ServicelayerJob; code[unique=true];springid[unique=true]
+                             ;storeTimeZoneStatusCronjob;storeTimeZoneStatusCronjob;

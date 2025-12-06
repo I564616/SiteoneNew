@@ -1,0 +1,194 @@
+.plp-commonerror-section {
+    margin-top: 0px;
+    margin-bottom: 5px;
+}
+.plp-commonshippingonlyqtyerror{
+     margin-top: 0px;
+    margin-bottom: 5px;
+}
+.empty-space {
+    height: 62px;
+}
+.product-variants-wrapper {
+    .variant-item {
+        display:flex;
+        align-items: center;
+        padding: 0px 0px 5px 0px;
+        margin: 5px 0px;
+        justify-content: space-between;
+        border-bottom: 1px solid #F1F2F2;
+        .variant-detail-section {
+            /* width: 20%; */
+            font-weight: 400;
+            font-size: 12px;
+            color: #5A5B5D;
+            span.heading-label {
+                font-weight: 700;
+            }
+        }
+        .variant-qty-section {
+            /* width: 15%; */
+            .qty-section-width {
+                width: auto !important;
+            }
+            button {
+                border: 1px solid #D9D9D9;
+                color: #5A5B5D !important;
+                background-color: #FFF;
+                margin: 0 !important;
+                height: 30px !important;
+                padding: 0 5px !important;
+                &:hover {
+                    background-color: #F1F2F2;
+                }
+            }
+            .minusQty {
+                border-right: none;
+            }
+            .plusQty {
+                border-left: none;
+            }
+            input {
+                height: 30px;
+                padding: 0px 3px;
+                border-radius: 0px;
+                color: #5A5B5D;
+                border-left: none;
+                border-right: none;
+                -webkit-box-shadow: none;
+                box-shadow: none;
+                &:focus {
+                    border-color: #D9D9D9;
+                }
+            }
+        }
+        .variant-pricing-section {
+            /* width: 10%; */
+            font-family: Geogrotesque-Medium,sans-serif;
+            font-weight: 600;
+            font-size: 14px;
+            span.list-price-format {
+                span.black-title {
+                    color: #5A5B5D;
+                }
+            }
+        }
+        .variant-stock-section {
+            /* width: 50%; */
+            .stock-section-instock-nearby {
+                display: flex;
+                align-items: center;
+                justify-content: left;
+                .bg-color {
+                    margin-right: 5px;
+                }
+                .nearbylbl {
+                    font-family: Arial, Helvetica, sans-serif;
+                    font-size: 12px;
+                    font-weight: 700;
+                    color: #EF8700;
+                }
+                .branchIdCls {
+                    font-family: Arial, Helvetica, sans-serif;
+                    font-size: 12px;
+                    font-weight: 400;
+                    color: #4492B6;
+                    cursor: pointer;
+                }
+            }
+        }
+        .variant-list-section {
+            width: 47%;
+            .login-price-plp {
+                float: right;
+                width: 80px;
+            }
+            .add-to-list-container{
+                .dropdown {
+                    .dropdown-label {
+                        width: max-content;
+                    }
+                }
+            } 
+        }
+        .btnStatusSection {
+            width: 53%;
+        }
+        .callBranchForPrice {
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: 700;
+            font-size: 12px;
+            background-color: #F1F2F2;
+            color: #77A12E;
+            padding: 5px 0px !important;
+            border-radius: 3px;
+            text-align: center;
+            width: 100%;
+        }
+        .changeBranchSection {
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: 700;
+            font-size: 12px;
+            background-color: #F1F2F2;
+            color: #77A12E;
+            padding: 5px 0px !important;
+            border-radius: 3px;
+            text-align: center;
+            width: 100%;
+            height: 25px;
+            margin: 0;
+        }
+        .variant-login_to_buy-section {
+            button {
+                font-family: Arial, Helvetica, sans-serif;
+                font-weight: 700;
+                font-size: 12px;
+                padding: 0px;
+                color: #FFF;
+                width: 90px;
+                height: 25px;
+            }
+        }
+        .variant-atc-wrapper-section {
+            /* width: 10%; */
+            form {
+                text-align: right;
+                button {
+                    font-family: Arial, Helvetica, sans-serif;
+                    font-weight: 700;
+                    font-size: 12px;
+                    padding: 0px;
+                    color: #FFF;
+                    width: 100%;
+                    height: 25px;
+                }
+            }
+        }
+        .variant-login_to_buy-section {
+            button {
+                /* float: right; */
+            }
+        }
+    }
+}
+
+.toggle-variants {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    background-color: #F1F2F2;
+    color: #414244;
+    border: none;
+    padding: 5px 0px;
+    &:hover, &:focus, &:active:hover, &:active:focus {
+        border: none;
+        background-color: #F1F2F2;
+        color: #414244;
+    }
+    .option-label {
+        margin-right: 10px;
+    }
+    .toggle-up {
+        display: none;
+    }
+}

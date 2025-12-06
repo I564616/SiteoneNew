@@ -1,0 +1,5 @@
+<%@ attribute name="width" required="false" type="java.lang.String" %>
+<%@ attribute name="height" required="false" type="java.lang.String" %>
+<svg xmlns="http://www.w3.org/2000/svg" width="${width ne null?width:'8.079'}" height="${height ne null?height:'12'}" viewBox="0 0 8.079 12">   
+    <g transform="translate(-39.061 -33.9)"><path fill=#78a22f d="M42.765,43.44a.466.466,0,0,0,.745,0l3.54-4.621a.472.472,0,0,0-.373-.745H44.7V34.384a.484.484,0,0,0-.969,0v4.137a.493.493,0,0,0,.484.484h1.491L43.1,42.4l-2.609-3.391h1.491a.493.493,0,0,0,.484-.484v-4.1a.484.484,0,0,0-.969,0v3.689H39.522a.472.472,0,0,0-.373.745Z" transform="translate(0)"/><path fill=#78a22f d="M46.7,57.5a.493.493,0,0,0-.484.484v1.789H40.069V57.984a.484.484,0,0,0-.969,0V60.22a.493.493,0,0,0,.484.484h7.081a.493.493,0,0,0,.484-.484V57.984A.423.423,0,0,0,46.7,57.5Z" transform="translate(-0.025 -14.805)"/></g>
+</svg>

@@ -1,0 +1,8 @@
+INSERT_UPDATE ServicelayerJob; code[unique=true];springid[unique=true]
+;siteOneHotFolderArchiveCleanupCronJob;siteOneHotFolderArchiveCleanupCronJob;
+
+INSERT_UPDATE SiteOneHotFolderArchiveCleanupCronJob;code[unique=true];job(code)[default=siteOneHotFolderArchiveCleanupCronJob];sessionLanguage(isoCode)[default=en]
+;siteOneHotFolderArchiveCleanupCronJob
+
+INSERT_UPDATE Trigger;Cronjob(code)[unique=true];cronExpression;active[default=true]
+;siteOneHotFolderArchiveCleanupCronJob;0 30 07 * * ?

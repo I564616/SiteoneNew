@@ -1,0 +1,26 @@
+# Import config properties into impex macros for modulegen
+UPDATE GenericItem[processor=de.hybris.platform.commerceservices.impex.impl.ConfigPropertyImportProcessor];pk[unique=true]
+$emailResource=$config-emailResourceValue
+$emailPackageName=$config-emailContextPackageName
+
+# Language
+$lang=en
+
+
+# CMS components and Email velocity templates
+UPDATE RendererTemplate;code[unique=true];description[lang=$lang];templateScript[lang=$lang,translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+                       ;SiteOne_Email_Create_Password_Body;"Create Password Template";$emailResource/email-createPasswordBody.vm
+                       ;SiteOne_Email_PasswordChanged_Body;"Password Change Template";$emailResource/email-passwordChangedBody.vm
+                       ;powertools_Email_Forgotten_Password_Body;"Forgotten Password Email Body";$emailResource/email-forgottenPasswordBody.vm
+                       
+                       
+   
+
+   
+# Language
+$lang=es
+
+UPDATE RendererTemplate;code[unique=true];description[lang=$lang];templateScript[lang=$lang,translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+;SiteOne_Email_Create_Password_Body;"Create Password Template";$emailResource/email-createPasswordBody.vm
+;SiteOne_Email_PasswordChanged_Body;"Password Change Template";$emailResource/email-passwordChangedBody.vm
+;powertools_Email_Forgotten_Password_Body;"Forgotten Password Email Body";$emailResource/email-forgottenPasswordBody.vm

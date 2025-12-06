@@ -1,0 +1,32 @@
+INSERT_UPDATE UomRewriteConfig;indexName;regex[unique='true'];replacement;seqNo
+							  ;siteoneIndex;"(\d+[\/\d.\- ]*|\d)\s?(inches|inch|in\.|in|\"")";"in.";1
+							  ;siteoneIndex;"(\d+[\/\d.\- ]*|\d)\s?(feet|foot|ft\.|ft|\')";"ft.";2
+							  ;siteoneIndex;"(\d+[\/\d.\- ]*|\d)\s?(ounces|ounce|oz\.|oz)";"oz.";3
+							  ;siteoneIndex;"(\d+[\/\d.\- ]*|\d)\s?(pounds|pound|lb\.|lb)";"lb.";4
+							  ;siteoneIndex;"(\d+[\/\d.\- ]*|\d)\s?(gallons|gallon|gal\.|gal)";"gal.";5
+							  ;siteoneIndex;"(\d+[\/\d.\- ]*|\d)\s?(degrees|degree|deg.)";"degree";6
+
+
+# -----------------------------------------------------------------------
+#
+# SE-8499 - Remove Stopword "in"
+# -----------------------------------------------------------------------
+#
+# Import the Solr configuration for the SiteOne store
+#
+$contentCatalog=siteoneContentCatalog
+$productCatalog=siteoneProductCatalog
+$catalogVersions=catalogVersions(catalog(id),version);
+$serverConfigName=siteoneSolrServerConfig
+$indexConfigName=siteoneSolrIndexConfig
+$searchConfigName=siteonePageSize
+$facetSearchConfigName=siteoneIndex
+$facetSearchConfigDescription=SiteOne Solr Index
+$searchIndexNamePrefix=siteone
+$solrIndexedType=siteoneProductType
+$indexBaseSite=siteone
+$lang=en
+$indexCurrencies=USD
+
+REMOVE SolrStopWord;stopword[unique=true];facetSearchConfig(name)[unique=true,default=$facetSearchConfigName];language(isocode)[unique=true,default=$lang]
+				   ;"in"; ;

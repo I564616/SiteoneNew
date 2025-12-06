@@ -1,0 +1,18 @@
+
+$contentCatalog=siteoneContentCatalog
+$contentCatalogName=SiteOne Content Catalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$catalogVersion=catalogVersion(catalog(id[default='siteoneContentCatalog']),version[default='Staged'])[unique=true,default='siteoneContentCatalog:Staged']
+$picture=media(code, $contentCV);
+$image=image(code, $contentCV);
+$media=media(code, $contentCV);
+$page=page(uid, $contentCV);
+$contentPage=contentPage(uid, $contentCV);
+$lang=en
+
+
+
+#  Category Landing ContentPage Label update
+
+INSERT_UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];label
+;;IrrigationCategoryLandingPage;/irrigation;

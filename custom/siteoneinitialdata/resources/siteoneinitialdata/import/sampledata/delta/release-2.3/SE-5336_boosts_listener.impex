@@ -1,0 +1,35 @@
+$contentCatalog=siteoneContentCatalog
+$productCatalog=siteoneProductCatalog
+$catalogVersions=catalogVersions(catalog(id),version);
+$serverConfigName=siteoneSolrServerConfig
+$indexConfigName=siteoneSolrIndexConfig
+$searchConfigName=siteonePageSize
+$facetSearchConfigName=siteoneIndex
+$facetSearchConfigDescription=SiteOne Solr Index
+$searchIndexNamePrefix=siteone
+$solrIndexedType=siteoneProductType
+$indexBaseSite=siteone
+$indexLanguages=en
+$indexCurrencies=USD
+
+# Non-facet properties for event page
+INSERT_UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true];name[unique=true]              ;ftsPhraseQuery[default=false];ftsPhraseQueryBoost;ftsQuery[default=false];ftsQueryBoost;ftsFuzzyQuery[default=false];ftsFuzzyQueryBoost;ftsWildcardQuery[default=false];ftsWildcardQueryType(code)[default=POSTFIX];ftsWildcardQueryBoost;ftsWildcardQueryMinTermLength
+                                 ;$solrIndexedType                        ;soLowerCaseItemNumber          ;                             ;                   ;true                   ;200          ;                            ;                  ;true                           ;                                           ;100                  ;0
+                                 ;$solrIndexedType                        ;socode                         ;                             ;                   ;true                   ;200          ;                            ;                  ;true                           ;                                           ;100                  ;0
+                                 ;$solrIndexedType                        ;sokeywords                     ;                             ;                   ;true                   ;40           ;                            ;                  ;true                           ;                                           ;20                   ;0
+                                 ;$solrIndexedType                        ;socategoryName                 ;                             ;                   ;true                   ;40           ;                            ;                  ;true                           ;                                           ;20                   ;0
+                                 ;$solrIndexedType                        ;soproductShortDescForSuggestion;                             ;                   ;true                   ;60           ;                            ;                  ;true                           ;                                           ;30                   ;0
+                                 ;$solrIndexedType                        ;soLowerCaseProductBrandName    ;                             ;                   ;true                   ;100          ;                            ;                  ;true                           ;                                           ;50                   ;0
+                                 ;$solrIndexedType                        ;soLowerCaseVendorPartNumber    ;                             ;                   ;true                   ;100          ;                            ;                  ;true                           ;                                           ;50                   ;0
+                                 ;$solrIndexedType                        ;sovariantsku                   ;                             ;                   ;true                   ;100          ;                            ;                  ;true                           ;                                           ;50                   ;0
+                                 ;$solrIndexedType                        ;soproductShortDesc             ;                             ;                   ;true                   ;120          ;                            ;                  ;true                           ;                                           ;60                   ;0
+
+                                 ;$solrIndexedType                        ;soname                         ;                             ;                   ;                       ;             ;                            ;                  ;                               ;                                           ;                     ;
+                                 ;$solrIndexedType                        ;soitemNumber                   ;                             ;                   ;                       ;             ;                            ;                  ;                               ;                                           ;                     ;
+                                 ;$solrIndexedType                        ;somanufacturerName             ;                             ;                   ;                       ;             ;                            ;                  ;                               ;                                           ;                     ;
+
+UPDATE SolrFacetSearchConfig;name[unique=true]     ;listeners[mode=append]
+                            ;$facetSearchConfigName;siteOneFacetSearchListener
+# Uncomment the lines below to create a listener instance that outputs the search queries for debugging purposes.
+#UPDATE SolrIndexedType;identifier[unique=true];listeners[mode=append]
+#                             ;$solrIndexedType       ;siteOneSolrQueryDebuggingListener

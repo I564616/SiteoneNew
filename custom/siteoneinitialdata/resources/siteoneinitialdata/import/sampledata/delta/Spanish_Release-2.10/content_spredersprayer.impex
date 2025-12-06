@@ -1,0 +1,33 @@
+$contentCatalog=siteoneContentCatalog
+$contentCatalogName=SiteOne Content Catalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+INSERT_UPDATE SiteoneParagaraphComponent;$contentCV[unique=true];uid[unique=true];name;headline[lang=en];headline[lang=es];content[lang=en];content[lang=es]
+;;comp_000006YB;sprayerSpreader Heading Component;Business Resources;Recursos para tu Negocio;"<p><a href=""/businessresource"">Introduction</a></p><p><a href=""/openlineofcredit"">Line of Credit</a></p><p><a href=""/soilamendment"">Soil Amendment Coverage Rates</a></p><p><a href=""/spreader-settings"">Determining Spreader Settings</a></p><p><strong>Spreader &amp; Sprayer Calibration</strong></p><p><a href=""/greentech"">GreenTech Services</a></p>";"<p><a href=""/es/businessresource"">Introducci&oacute;n</a></p>
+<p><a href=""/es/openlineofcredit"">L&iacute;nea de Cr&eacute;dito </a></p>
+<p><a href=""/es/soilamendment"">Tasas de Cobertura en Mejora del Suelo </a></p>
+<p><a href=""/es/spreader-settings"">Determinando la Configuraci&oacute;n del Esparcidor </a></p>
+<p><strong>Calibraci&oacute;n de Esparcidor y Pulverizador</strong></p>
+<p><a href=""/es/greentech"">Servicios GreenTech </a></p>"
+;;comp_000006YD;spreaderSprayer Paragraph1;More Green, Less Waste;Más Verde, Menos Desperdicio;"<div>Properly calibrated equipment leads to effective product performance, reduced potential for plant injury, fewer callbacks, as well as greater productivity and efficiency. Calibrating your equipment correctly could save your company hundreds, thousands, even tens of thousands, annually.</div><div>&nbsp;</div><div>Click on the links below for tips on how to calibrate your spreader or sprayer.</div>";"<div>Un equipo correctamente calibrado lleva a un desempe&ntilde;o efectivo del producto, reduce el riesgo de lastimar las plantas, disminuye las llamadas con quejas, al igual que te brinda mayor productividad y eficiencia. Calibrar tu equipo de la forma adecuada puede ahorrarte cientos de d&oacute;lares, miles, o hasta mucho m&aacute;s cada a&ntilde;o.</div>
+<div>&nbsp;</div>
+<div>Haz clic a los enlaces de abajo para consejos sobre c&oacute;mo calibrar tus esparcidores y pulverizadores.</div>"
+;;comp_000006YE;spreaderSprayer Paragraph2;Spreader Calibration;Calibración del Esparcidor;"<ul><li><a href=""/medias/sys_master/root/h4c/h77/8919303094302/Lesco-SpreaderDropCalibration.pdf"" target=""_blank"">Drop Spreader Calibration Manual</a><br />&nbsp;</li><li><a href=""/medias/sys_master/root/hf5/hab/8919302864926/Lesco-SpreaderRotaryCalibration.pdf"" target=""_blank"">Rotary Spreader Calibration Manual</a></li></ul>";"<ul>
+    <li><a href=""/medias/sys_master/root/h4c/h77/8919303094302/Lesco-SpreaderDropCalibration.pdf"" target=""_blank"">Calibraci&oacute;n Manual del Esparcidor por Ca&iacute;da </a><br />
+    &nbsp;</li>
+    <li><a href=""/medias/sys_master/root/hf5/hab/8919302864926/Lesco-SpreaderRotaryCalibration.pdf"" target=""_blank"">Calibraci&oacute;n Manual de Esparcidor Rotativo </a></li>
+</ul>"
+;;comp_000006YE;spreaderSprayer Paragraph2;Spreader Calibration;Calibración del Esparcidor;"<ul><li><a href=""/medias/sys_master/root/h4c/h77/8919303094302/Lesco-SpreaderDropCalibration.pdf"" target=""_blank"">Drop Spreader Calibration Manual</a><br />&nbsp;</li><li><a href=""/medias/sys_master/root/hf5/hab/8919302864926/Lesco-SpreaderRotaryCalibration.pdf"" target=""_blank"">Rotary Spreader Calibration Manual</a></li></ul>";"<ul>
+    <li><a href=""/medias/sys_master/root/h4c/h77/8919303094302/Lesco-SpreaderDropCalibration.pdf"" target=""_blank"">Calibraci&oacute;n Manual del Esparcidor por Ca&iacute;da </a><br />
+    &nbsp;</li>
+    <li><a href=""/medias/sys_master/root/hf5/hab/8919302864926/Lesco-SpreaderRotaryCalibration.pdf"" target=""_blank"">Calibraci&oacute;n Manual de Esparcidor Rotativo </a></li>
+</ul>"
+;;comp_000006YF;spreaderSprayer Paragraph3;Sprayer Calibration;Calibración del Pulverizador;"<ul><li><a href=""/medias/sys_master/root/h15/he0/8919302570014/Lesco-SprayerBackpackHandheldCalibration.pdf"" target=""_blank"">Backpack &amp; Hand Held Calibration Manual</a><br />&nbsp;</li><li><a href=""/medias/sys_master/root/hf4/h9d/8919302373406/Lesco-SprayerBoomCalibration.pdf"" target=""_blank"">Boom Sprayer Calibration Manual</a><br />&nbsp;</li><li><a href=""/medias/sys_master/root/h06/h69/8828221816862/sprayer-tank-calibration-guide-siteone.pdf"" target=""_blank"">Tank Calibration Manual</a></li></ul>";"<ul>
+    <li><a href=""/medias/sys_master/root/h15/he0/8919302570014/Lesco-SprayerBackpackHandheldCalibration.pdf"" target=""_blank"">Manual de Calibraci&oacute;n para Pulverizador de Mochila y Mano </a><br />
+    &nbsp;</li>
+    <li><a href=""/medias/sys_master/root/hf4/h9d/8919302373406/Lesco-SprayerBoomCalibration.pdf"" target=""_blank"">Calibraci&oacute;n Manual del Pulverizador de Barra </a><br />
+    &nbsp;</li>
+    <li><a href=""/medias/sys_master/root/h06/h69/8828221816862/sprayer-tank-calibration-guide-siteone.pdf"" target=""_blank"">Calibraci&oacute;n Manual del Tanque </a></li>
+</ul>"
+;;comp_000006YG;spreaderSprayer Paragraph4;Ride-On Spreader/Sprayer Calibration;Calibración de Mini-Tractor Esparcidor/Pulverizador;"<ul>     <li><a href=""/medias/sys_master/root/h3f/h78/8919301783582/Lesco-RideOnSpreaderSprayerCalibration.pdf"" target=""_blank"">Spread/Spray Calibration Manual</a></li> </ul>";"<ul>
+    <li><a href=""/medias/sys_master/root/h3f/h78/8919301783582/Lesco-RideOnSpreaderSprayerCalibration.pdf"" target=""_blank"">Calibraci&oacute;n Manual de Esparcidor/Pulverizador</a></li>
+</ul>"

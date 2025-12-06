@@ -1,0 +1,8 @@
+INSERT_UPDATE ServicelayerJob; code[unique=true];springid[unique=true]
+;siteoneAnonymousCartRemovalJob;siteoneAnonymousCartRemovalJob;
+
+INSERT_UPDATE SiteoneAnonymousCartRemovalCronJob;code[unique=true];job(code)[default=siteoneAnonymousCartRemovalJob];sessionLanguage(isoCode)[default=en]
+;siteoneAnonymousCartRemovalJob
+
+INSERT_UPDATE Trigger;cronJob(code)[unique=true];cronExpression;relative;active;maxAcceptableDelay
+                     ;siteoneAnonymousCartRemovalJob;0 30 20 * * ?;false;true;-1

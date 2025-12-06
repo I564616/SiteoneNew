@@ -1,0 +1,27 @@
+$contentCatalog=siteoneContentCatalog								
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]										
+
+										
+# Language										
+$lang=en										
+										
+# Content Pages										
+UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];fullpagepath[lang=$lang];pathingChannel[lang=$lang]
+;;page_00000N5C;promotions: protrade lighting for landscaping;promotions
+;;cmsitem_00021042;promotions: equipped for lighting;promotions
+;;cmsitem_00024000;promotions: equipped for drainage;promotions	
+;;cmsitem_00032011;promotions: makita;promotions
+;;cmsitem_00030013;promotions: early summer savings;promotions
+;;cmsitem_00026027;promotions: controller upgrades;promotions
+;;cmsitem_00025017;promotions: belgard sweepstakes;promotions
+;;cmsitem_00025011;promotions: pest control;promotions
+;;cmsitem_00022014;promotions: lesco;promotions	
+;;Tips-For-Protecting-Client-Hardscapes-From-Cold;tools and resources: learn and explore: hardscapes outdoor living: tips for protecting your clients hardscapes from cold;tools and resources
+;;plantsonmoveLander;promotions: plants on the move;promotions			
+
+
+									
+#### Removing single quote(') from the page name to resolve analytics tags not firing issue ####										
+# Content Pages										
+UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];name
+;;Tips-For-Protecting-Client-Hardscapes-From-Cold;Tips for Protecting your Clients Hardscapes from Cold

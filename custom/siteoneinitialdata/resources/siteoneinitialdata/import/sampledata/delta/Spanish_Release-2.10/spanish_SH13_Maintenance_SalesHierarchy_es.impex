@@ -1,0 +1,116 @@
+$supercategories=supercategories( code, catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Staged']));;;;;;;;;
+$catalogVersion=catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Staged'])[unique=true,default='siteoneProductCatalog:Staged'];;;;;;;;;
+;;;;;;;;;
+INSERT_UPDATE Category;code[unique=true];name[lang=es];$supercategories;$catalogVersion;allowedPrincipals(uid)
+;SH1;Primary;;siteoneProductCatalog:Staged;admingroup
+;SH13;Mantenimiento Agronómico;SH1;siteoneProductCatalog:Staged;admingroup 
+;SH1311;Fertilizantes + Productos con Pesticidas Combinados;SH13;siteoneProductCatalog:Staged;admingroup 
+;SH1312;Derretidor de Hielo;SH13;siteoneProductCatalog:Staged;admingroup 
+;SH1313;Bulbos para Jardín;SH13;siteoneProductCatalog:Staged;admingroup 
+;SH1314;Hidrosiembra;SH13;siteoneProductCatalog:Staged;admingroup 
+;SH1315;Fertilidad y Nutrición;SH13;siteoneProductCatalog:Staged;admingroup 
+;SH1316;Pintura;SH13;siteoneProductCatalog:Staged;admingroup 
+;SH1317;Pesticidas y Otros Productos Relacionados;SH13;siteoneProductCatalog:Staged;admingroup 
+;SH1318;Control de Plagas;SH13;siteoneProductCatalog:Staged;admingroup 
+;SH1319;Semillas;SH13;siteoneProductCatalog:Staged;admingroup 
+;SH1320;Acondicionadores de Suelo;SH13;siteoneProductCatalog:Staged;admingroup 
+;SH1321;Químicos Especializados y Adyuvantes;SH13;siteoneProductCatalog:Staged;admingroup 
+;SH1322;Equipos y Productos de Inyección para Árboles;SH13;siteoneProductCatalog:Staged;admingroup 
+;SH1323;Equipos;SH13;siteoneProductCatalog:Staged;admingroup 
+;SH1311110;Herbicidas + Fertilizantes;SH1311;siteoneProductCatalog:Staged;admingroup 
+;SH1311111;Insecticidas + Fertilizantes;SH1311;siteoneProductCatalog:Staged;admingroup 
+;SH1311112;Otro Pesticida + Productos con Fertilizantes Combinados;SH1311;siteoneProductCatalog:Staged;admingroup 
+;SH1311113;Specialty / Natural-Based;SH1311;siteoneProductCatalog:Staged;admingroup 
+;SH1312110;Granular;SH1312;siteoneProductCatalog:Staged;admingroup 
+;SH1312111;Líquido;SH1312;siteoneProductCatalog:Staged;admingroup 
+;SH1313110;Crocus;SH1313;siteoneProductCatalog:Staged;admingroup 
+;SH1313111;Daffodils;SH1313;siteoneProductCatalog:Staged;admingroup 
+;SH1313112;Hyacinth;SH1313;siteoneProductCatalog:Staged;admingroup 
+;SH1313113;Summer Bulbs;SH1313;siteoneProductCatalog:Staged;admingroup 
+;SH1313114;Tulips;SH1313;siteoneProductCatalog:Staged;admingroup 
+;SH1313115;Other Landscape Bulbs;SH1313;siteoneProductCatalog:Staged;admingroup 
+;SH1314110;Mantillo Mezclado;SH1314;siteoneProductCatalog:Staged;admingroup 
+;SH1314111;Mantillo de Celulosa;SH1314;siteoneProductCatalog:Staged;admingroup 
+;SH1314112;Productos Combinados de Mantillo;SH1314;siteoneProductCatalog:Staged;admingroup 
+;SH1314113;Pellas;SH1314;siteoneProductCatalog:Staged;admingroup 
+;SH1314114;Mantillo de Madera;SH1314;siteoneProductCatalog:Staged;admingroup 
+;SH1314115;Rolled Mulch Products;SH1314;siteoneProductCatalog:Staged;admingroup 
+;SH1314116;Otra Hidrosiembra;SH1314;siteoneProductCatalog:Staged;admingroup 
+;SH1315110;Fertilizante;SH1315;siteoneProductCatalog:Staged;admingroup 
+;SH1315111;Inyectores;SH1315;siteoneProductCatalog:Staged;admingroup 
+;SH1315112;pH / kits para Prueba de Suelo;SH1315;siteoneProductCatalog:Staged;admingroup 
+;SH1315113;Mejora del Suelo / pH de Productos;SH1315;siteoneProductCatalog:Staged;admingroup 
+;SH1316110;Utility;SH1316;siteoneProductCatalog:Staged;admingroup 
+;SH1316111;Céspedes;SH1316;siteoneProductCatalog:Staged;admingroup 
+;SH1317110;Productos Acuáticos;SH1317;siteoneProductCatalog:Staged;admingroup 
+;SH1317111;Fungicidas;SH1317;siteoneProductCatalog:Staged;admingroup 
+;SH1317112;Reguladores de Crecimiento para;SH1317;siteoneProductCatalog:Staged;admingroup 
+;SH1317113;Reguladores de Crecimiento para Plantas;SH1317;siteoneProductCatalog:Staged;admingroup 
+;SH1317114;Herbicidas;SH1317;siteoneProductCatalog:Staged;admingroup 
+;SH1317115;Insecticidas;SH1317;siteoneProductCatalog:Staged;admingroup 
+;SH1317116;Acaricidas;SH1317;siteoneProductCatalog:Staged;admingroup 
+;SH1317117;Nematicidas;SH1317;siteoneProductCatalog:Staged;admingroup 
+;SH1317118;Otros Productos de Control;SH1317;siteoneProductCatalog:Staged;admingroup 
+;SH1317119;Empaques;SH1317;siteoneProductCatalog:Staged;admingroup 
+;SH1317120;Repelentes;SH1317;siteoneProductCatalog:Staged;admingroup 
+;SH1318110;Carnadas;SH1318;siteoneProductCatalog:Staged;admingroup 
+;SH1318111;Equipos y Dispositivos de Entrega;SH1318;siteoneProductCatalog:Staged;admingroup 
+;SH1318112;Insecticidas;SH1318;siteoneProductCatalog:Staged;admingroup 
+;SH1318113;Termiticidas;SH1318;siteoneProductCatalog:Staged;admingroup 
+;SH1318114;Trampas ;SH1318;siteoneProductCatalog:Staged;admingroup 
+;SH1318115;Otros Pesticidas;SH1318;siteoneProductCatalog:Staged;admingroup 
+;SH1318116;Otros Productos para Control de Plagas;SH1318;siteoneProductCatalog:Staged;admingroup 
+;SH1319110;Hierbas y Humedales Nativos, Legumbres;SH1319;siteoneProductCatalog:Staged;admingroup 
+;SH1319111;Semillas de Césped;SH1319;siteoneProductCatalog:Staged;admingroup 
+;SH1319112;Flores Silvestres;SH1319;siteoneProductCatalog:Staged;admingroup 
+;SH1320110; Acondicionadores para Campos de Golf;SH1320;siteoneProductCatalog:Staged;admingroup 
+;SH1320111;Acondicionadores para Campos Deportivos;SH1320;siteoneProductCatalog:Staged;admingroup 
+;SH1320112;Otros Productos para Campos de Arcilla;SH1320;siteoneProductCatalog:Staged;admingroup 
+;SH1321110;Productos para Uso Eficiente del Agua;SH1321;siteoneProductCatalog:Staged;admingroup 
+;SH1321111;Antitranspirantes;SH1321;siteoneProductCatalog:Staged;admingroup 
+;SH1321112;Limpiadores;SH1321;siteoneProductCatalog:Staged;admingroup 
+;SH1321113;Colorantes;SH1321;siteoneProductCatalog:Staged;admingroup 
+;SH1321114;Adyuvantes;SH1321;siteoneProductCatalog:Staged;admingroup 
+;SH1321115;Agentes Humectantes;SH1321;siteoneProductCatalog:Staged;admingroup 
+;SH1321116;Otros Químicos Especializados;SH1321;siteoneProductCatalog:Staged;admingroup 
+;SH1322110;Fertilizante;SH1322;siteoneProductCatalog:Staged;admingroup 
+;SH1322111;Equipos de Inyección;SH1322;siteoneProductCatalog:Staged;admingroup 
+;SH1322112;Pesticidas;SH1322;siteoneProductCatalog:Staged;admingroup 
+;SH1323110;Pulverizador/Esparcidor a Motor;SH1323;siteoneProductCatalog:Staged;admingroup 
+;SH1323111;Equipos de Mano Motorizados;SH1323;siteoneProductCatalog:Staged;admingroup 
+;SH1323112;Materiales Duros;SH1323;siteoneProductCatalog:Staged;admingroup 
+;SH1323113;Partes;SH1323;siteoneProductCatalog:Staged;admingroup 
+;SH1323114;Renovación;SH1323;siteoneProductCatalog:Staged;admingroup 
+;SH1323115;Nieve y Hielo;SH1323;siteoneProductCatalog:Staged;admingroup 
+;SH1323116;Equipo Especializadot;SH1323;siteoneProductCatalog:Staged;admingroup 
+;SH1323117;Pulverizadores;SH1323;siteoneProductCatalog:Staged;admingroup 
+;SH1323118;Esparcidores;SH1323;siteoneProductCatalog:Staged;admingroup 
+;SH1315110100;Liquid / Soluble;SH1315110;siteoneProductCatalog:Staged;admingroup 
+;SH1315110101;Granular;SH1315110;siteoneProductCatalog:Staged;admingroup 
+;SH1315110102;Specialty / Natural-Based;SH1315110;siteoneProductCatalog:Staged;admingroup 
+;SH1315110103;Micronutrient;SH1315110;siteoneProductCatalog:Staged;admingroup 
+;SH1315111100;Equipment / Delivery Devices;SH1315111;siteoneProductCatalog:Staged;admingroup 
+;SH1315112100; kits para Prueba de Suelo;SH1315112;siteoneProductCatalog:Staged;admingroup 
+;SH1315113100;Limestone / Gypsum / Sulphur;SH1315113;siteoneProductCatalog:Staged;admingroup 
+;SH1317112100;Insect;SH1317112;siteoneProductCatalog:Staged;admingroup 
+;SH1319111100;Annual & Intermediate Ryegrass;SH1319111;siteoneProductCatalog:Staged;admingroup 
+;SH1319111101;Bentgrass;SH1319111;siteoneProductCatalog:Staged;admingroup 
+;SH1319111102;Blends & Mixtures;SH1319111;siteoneProductCatalog:Staged;admingroup 
+;SH1319111103;Fine Fescue;SH1319111;siteoneProductCatalog:Staged;admingroup 
+;SH1319111104;Kentucky Bluegrass;SH1319111;siteoneProductCatalog:Staged;admingroup 
+;SH1319111105;Other Turf Seed;SH1319111;siteoneProductCatalog:Staged;admingroup 
+;SH1319111106;Perennial Ryegrass;SH1319111;siteoneProductCatalog:Staged;admingroup 
+;SH1319111107;Roughstalk Bluegrass Poa Trivialis;SH1319111;siteoneProductCatalog:Staged;admingroup 
+;SH1319111108;Tall Fescue;SH1319111;siteoneProductCatalog:Staged;admingroup 
+;SH1319111109;Sod Seed;SH1319111;siteoneProductCatalog:Staged;admingroup 
+;SH1319111110;Warm Season;SH1319111;siteoneProductCatalog:Staged;admingroup 
+;SH1323;Equipos;; 
+;SH1323110;Pulverizador/Esparcidor a Moto;; 
+;SH1323111;Equipos de Mano Motorizados;; 
+;SH1323112;Materiales Duros;; 
+;SH1323113;Partes;; 
+;SH1323114;Renovación;; 
+;SH1323115;Nieve y Hielo;; 
+;SH1323116;Equipo Especializado;; 
+;SH1323117;Pulverizadores;; 
+;SH1323118;Esparcidores;; 

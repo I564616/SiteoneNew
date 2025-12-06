@@ -1,0 +1,23 @@
+#Classifying;Class;creation;;;;;;;
+#-----------------------------;;;;;;;;;
+INSERT_UPDATE classificationclass;code[unique=true];name[lang=en];catalogVersion(catalog(id),version);;;;;
+;CH01_1611111;Product Details;siteoneClassification:1;;;;;
+;CH01_1611112;Product Details;siteoneClassification:1;;;;;
+;CH01_1611114;Product Details;siteoneClassification:1;;;;;
+;CH01_1611116;Product Details;siteoneClassification:1;;;;;
+;CH01_1611117;Product Details;siteoneClassification:1;;;;;
+;CH01_1611118;Product Details;siteoneClassification:1;;;;;
+;CH01_1613;Product Details;siteoneClassification:1;;;;;
+;CH01_1614;Product Details;siteoneClassification:1;;;;;
+;CH01_1615;Product Details;siteoneClassification:1;;;;;
+;CH01_1612;Product Details;siteoneClassification:1;;;;;
+;CH01_1611113;Product Details;siteoneClassification:1;;;;;
+;CH01_1615110;Product Details;siteoneClassification:1;;;;;
+;CH01_1615111;Product Details;siteoneClassification:1;;;;;
+;CH01_1615112;Product Details;siteoneClassification:1;;;;;
+;CH01_1615114;Product Details;siteoneClassification:1;;;;;
+;CH01_1615115;Product Details;siteoneClassification:1;;;;;
+;CH01_1611110;Product Details;siteoneClassification:1;;;;;
+;CH01_1612111;Product Details;siteoneClassification:1;;;;;
+
+

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+ [y] hybris Platform
+
+ Copyright (c) 2017 SAP SE or an SAP affiliate company.  All rights reserved.
+
+ This software is the confidential and proprietary information of SAP
+ ("Confidential Information"). You shall not disclose such Confidential
+ Information and shall use it only in accordance with the terms of the
+ license agreement you entered into with SAP.
+--><extensioninfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="extensioninfo.xsd">
+
+
+	<extension abstractclassprefix="Generated" classprefix="SiteoneCore" managername="SiteoneCoreManager" managersuperclass="de.hybris.platform.jalo.extension.Extension" name="siteonecore" usemaven="true">
+
+		<!-- you should add all required extensions to this list, except platform 
+			extensions which are automatically required -->
+		<requires-extension name="acceleratorcms"/>
+		<requires-extension name="acceleratorfacades"/>
+		<requires-extension name="azurecloud"/>
+		<requires-extension name="solrserver"/>
+		<requires-extension name="b2bcommerce"/>
+		<requires-extension name="acceleratorstorefrontcommons"/>
+		<requires-extension name="b2bacceleratorservices"/>
+		<requires-extension name="promotionengineservices"/>
+		<requires-extension name="siteonecontentsearch"/>
+		<requires-extension name="commerceservices"/>
+		<requires-extension name="wishlist"/>
+		<requires-extension name="siteoneintegration"/>
+		<requires-extension name="couponservices"/>
+		<requires-extension name="ruleengineservices"/>
+		<requires-extension name="personalizationservices"/>    
+		<requires-extension name="personalizationfacades"/>  
+		<requires-extension name="personalizationwebservices"/>
+		<coremodule generated="true" manager="com.siteone.core.jalo.SiteoneCoreManager" packageroot="com.siteone.core"/>
+
+		
+		
+		<meta key="backoffice-module" value="true"/>
+	</extension>
+
+</extensioninfo>

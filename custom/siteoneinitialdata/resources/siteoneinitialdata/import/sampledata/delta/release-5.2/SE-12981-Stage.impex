@@ -1,0 +1,2 @@
+INSERT_UPDATE OAuthClientDetails;clientId[unique=true]    		        ;registeredRedirectUri
+                                ;ukt4za6t-70mn-mo6m-jhcb-jvm390pu4bd4   ;https://stg-api.sapv2.siteone.com/authorizationserver/oauth2_callback

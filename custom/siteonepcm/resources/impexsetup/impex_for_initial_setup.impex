@@ -1,0 +1,140 @@
+$productCatalog=siteoneProductCatalog
+$lang=en
+
+INSERT_UPDATE catalog;id[unique=true];name[lang=en];
+;$productCatalog;SiteOne Product Catalog;
+
+INSERT_UPDATE UserGroup;uid[unique=true];locName[lang=en];name;description;;;;
+;admingroup;Read Only Group;Read Only Group;This group is for having read only access;;;;
+
+INSERT_UPDATE catalogversion;catalog(id)[unique=true];version[unique=true];readPrincipals(uid);writePrincipals(uid);active;;;;
+;$productCatalog;Staged;admingroup,employeegroup,testgroup;admingroup;false;;;;
+;$productCatalog;Online;admingroup,employeegroup,testgroup;admingroup;true;;;;
+
+INSERT_UPDATE classificationSystem;id[unique=true];name[lang=en];;;;
+;siteoneClassification;SiteOne Classification;;;;
+
+INSERT_UPDATE ClassificationSystemVersion;catalog(id)[unique=true];version;active;readPrincipals(uid);writePrincipals(uid);;;;
+;siteoneClassification;1;true;admingroup;admingroup,employeegroup;;;;;
+
+$writableCatalogVersions=writableCatalogVersions(catalog(id),version);;;
+$readableCatalogVersions=readableCatalogVersions(catalog(id),version);;;
+
+INSERT_UPDATE Usergroup;UID[unique=true];$readableCatalogVersions;$writableCatalogVersions
+;employeegroup;siteoneClassification:1,siteoneProductCatalog:Staged,siteoneProductCatalog:Online;
+;testgroup;siteoneClassification:1,siteoneProductCatalog:Staged,siteoneProductCatalog:Online;
+
+$sourceProductCV=sourceVersion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default='$productCatalog:Staged']
+$targetProductCV=targetVersion(catalog(id[default=$productCatalog]),version[default='Online'])[unique=true,default='$productCatalog:Online']
+
+#One time run
+#REMOVE MediaFormat;qualifier[unique=true];name[lang=$lang];
+#;1200Wx1200H;1200Wx1200H;
+#;300Wx300H;300Wx300H;
+#;30Wx30H;30Wx30H;
+#;365Wx246H;365Wx246H;
+#;515Wx515H;515Wx515H;
+#;65Wx65H;65Wx65H;
+#;96Wx96H;96Wx96H;
+#;83Wx83H;83Wx83H; 
+
+INSERT_UPDATE ConversionMediaFormat;qualifier[unique=true];name;conversionStrategy;conversion
+;65Wx65H;65Wx65H;imageMagickMediaConversionStrategy;-resize 65x65!>;
+;96Wx96H;96Wx96H;imageMagickMediaConversionStrategy;-resize 96x96!>;
+;515Wx515H;515Wx515H;imageMagickMediaConversionStrategy;-resize 515x515!>;
+;1200Wx1200H;1200Wx1200H;imageMagickMediaConversionStrategy;-resize 1200x1200!>;
+;300Wx300H;300Wx300H;imageMagickMediaConversionStrategy;-resize 300x300!>;
+;30Wx30H;30Wx30H;imageMagickMediaConversionStrategy;-resize 30x30!>;
+;83Wx83H;83Wx83H;imageMagickMediaConversionStrategy;-resize 83x83!>;
+;365Wx246H;365Wx246H;imageMagickMediaConversionStrategy;-resize 365x264!>;
+
+
+$productCatalog=siteoneProductCatalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+INSERT_UPDATE MediaConversionCronJob; code[unique=true];job(code);singleExecutable;sessionLanguage(isocode);includedFormats(qualifier);$catalogVersion
+;PcmMediaConversionJob;mediaConversionJob;false;en;1200Wx1200H,515Wx515H,300Wx300H,96Wx96H,65Wx65H,30Wx30H,83Wx83H,365Wx246H;
+
+INSERT_UPDATE CronJob; code[unique=true];job(code);singleExecutable;sessionLanguage(isocode)
+;PcmMediaAssociationJob;PcmMediaAssociationJob;false;en
+;PcmProductFeatureImportJob;PcmProductFeatureImportJob;false;en
+;PCMErrorReportJob;PCMErrorReportJob;false;en
+;RemoveDuplicateMediaAssociationToProductJob;RemoveDuplicateMediaAssociationToProductJob;false;en
+;PcmMediaMetaDataFixAfterSync;PcmMediaMetaDataFixAfterSync;false;en
+
+INSERT_UPDATE Trigger;cronJob(code)[unique=true];cronExpression
+#;PcmMediaAssociationJob; 0 0/30 * * * ?
+#;PcmProductFeatureImportJob; 0 0/30 * * * ? 
+#;PcmMediaConversionJob; 0 0/30 * * * ? 
+#;RemoveDuplicateMediaAssociationToProductJob;0 0/30 * * * ? 
+#;PcmMediaMetaDataFixAfterSync;0 0/30 * * * ? 
+
+$supercategories=supercategories( code, catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Staged']))
+$catalogVersion=catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Staged'])[unique=true,default='siteoneProductCatalog:Staged']
+INSERT_UPDATE Category;code[unique=true];name[lang=en];$supercategories;$catalogVersion;allowedPrincipals(uid)
+;PH1;Primary;;siteoneProductCatalog:Staged;admingroup
+
+#Sync Job Configuration
+##########################
+
+#Create a Technical User for API Update#
+##############  All the below scripts must be executed in the same order for Synchronization process - Attributes and the User Details may vary with the requirement #######  
+
+INSERT_UPDATE Employee;UID[unique=true];name;sessionLanguage(isocode);sessionCurrency(isocode);groups(uid);
+;SyncUser_apiUpdate;SyncUser_apiUpdate;en;;;
+
+########################## Creating Sync Users between Staged and Online ####################################
+#Users like Employe -  who does the Sychronisation job must be added to Employee group and the below script needs to be executed# 
+
+INSERT_UPDATE Employee;UID[unique=true];name;sessionLanguage(isocode);sessionCurrency(isocode);groups(uid);
+;SyncProductUser_StagedToOnline;SyncProductUser_StagedToOnline;en;;;
+
+#Apply Product Restriction for Update
+
+INSERT_UPDATE SearchRestriction;code[unique=true];name[lang=en];query;principal(UID);restrictedType(code);active;generate
+;ProductRestriction_StagedToOnline;ProductRestriction_StagedToOnline;({approvalStatus} = ({{select {ars:pk} from {ArticleApprovalStatus AS ars} where {ars:code} = 'approved'}}));SyncProductUser_StagedToOnline;Product;true;true
+
+;GenericVariProductRestriction_StagedToOnline;GenericVariProductRestriction_StagedToOnline;({approvalStatus} = ({{select {ars:pk} from {ArticleApprovalStatus AS ars} where {ars:code} = 'approved'}}));SyncProductUser_StagedToOnline;GenericVariantProduct;true;true
+
+############################ Creating  Master Catalog Synch job ###################################
+
+### sync job create
+$productCatalog=siteoneProductCatalog
+$sourceVersion = sourceVersion(catalog(id[default='$productCatalog']),version[default='Staged'])[unique=true,default='$productCatalog:Staged'];;;;;
+$targetVersion = targetVersion(catalog(id[default='$productCatalog']),version[default='Online'])[unique=true,default='$productCatalog:Online'];;;;;
+INSERT_UPDATE CatalogVersionSyncJob;active;code[unique=true];syncLanguages(isocode);createNewItems[allownull=true];removeMissingItems[allownull=true];sessionCurrency(isocode);sessionLanguage(isocode);sessionUser(uid);$sourceVersion;$targetVersion;
+;true;siteone_SyncProducts_StageToOnline;en;true;false;;en;SyncProductUser_StagedToOnline;;;
+
+
+INSERT_UPDATE CatalogVersionSyncJob;code[unique=true];$sourceVersion;$targetVersion;rootTypes(code)[mode=append]
+;siteone_SyncProducts_StageToOnline;;;MediaContainer,Product;
+
+#INSERT_UPDATE Trigger;Job(code)[unique=true];cronExpression
+#;siteone_SyncProducts_StageToOnline;0 0 0 * * ?
+
+#Sync Attribute Restriction
+INSERT_UPDATE SyncAttributeDescriptorConfig;syncJob(code)[unique=true];attributeDescriptor(enclosingType(code),qualifier)[unique=true];includedInSync;copyByValue
+;siteone_SyncProducts_StageToOnline;Product:stores;false;true
+;siteone_SyncProducts_StageToOnline;Product:regulatoryStates;false;true
+;siteone_SyncProducts_StageToOnline;Product:lastModifiedTimeStamp;false;true
+
+########################## Creating Sync Users between Staged and Online for category####################################
+#Users like Employe -  who does the Sychronisation job must be added to Employee group and the below script needs to be executed# 
+
+INSERT_UPDATE Employee;UID[unique=true];name;sessionLanguage(isocode);sessionCurrency(isocode);groups(uid);
+;SyncCategoryUser_StagedToOnline;SyncCategoryUser_StagedToOnline;en;;;
+
+############################ Creating Catalog category Sync job ###################################
+
+### sync job create
+$productCatalog=siteoneProductCatalog
+$sourceVersion = sourceVersion(catalog(id[default='$productCatalog']),version[default='Staged'])[unique=true,default='$productCatalog:Staged'];;;;;
+$targetVersion = targetVersion(catalog(id[default='$productCatalog']),version[default='Online'])[unique=true,default='$productCatalog:Online'];;;;;
+INSERT_UPDATE CatalogVersionSyncJob;active;code[unique=true];syncLanguages(isocode);createNewItems[allownull=true];removeMissingItems[allownull=true];sessionCurrency(isocode);sessionLanguage(isocode);sessionUser(uid);$sourceVersion;$targetVersion;
+;true;siteone_Category_Sync_StageToOnline;en;true;false;;en;SyncCategoryUser_StagedToOnline;;;
+
+INSERT_UPDATE CatalogVersionSyncJob;code[unique=true];$sourceVersion;$targetVersion;rootTypes(code);
+;siteone_Category_Sync_StageToOnline;;;Category;
+
+#INSERT_UPDATE Trigger;Job(code)[unique=true];cronExpression
+#;siteone_Category_Sync_StageToOnline;0 30 23 * * ?
+

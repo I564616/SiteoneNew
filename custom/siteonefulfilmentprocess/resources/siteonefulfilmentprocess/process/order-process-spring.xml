@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ [y] hybris Platform
+ Copyright (c) 2017 SAP SE or an SAP affiliate company.  All rights reserved.
+ This software is the confidential and proprietary information of SAP
+ ("Confidential Information"). You shall not disclose such Confidential
+ Information and shall use it only in accordance with the terms of the
+ license agreement you entered into with SAP.
+-->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context.xsd">
+           
+    <context:annotation-config/>
+
+	<!-- Order Process Actions -->
+
+	<bean id="abstractOrderAction" class="com.siteone.fulfilmentprocess.actions.order.AbstractOrderAction"  abstract="true" parent="abstractAction">
+		<property name="timeService" ref="timeService"/>
+	</bean>
+
+	<bean id="checkOrderAction" class="com.siteone.fulfilmentprocess.actions.order.CheckOrderAction"  parent="abstractAction">
+		<property name="checkOrderService" ref="checkOrderService"/>
+	</bean>
+
+	<bean id="checkNearbyOrderAction" class="com.siteone.fulfilmentprocess.actions.order.CheckNearbyOrderAction"  parent="abstractAction" >
+		<property name="checkNearbyOrderService" ref="checkNearbyOrderService"/>
+	</bean>
+
+	<bean id="cancelWholeOrderAuthorizationAction" class="com.siteone.fulfilmentprocess.actions.order.CancelWholeOrderAuthorizationAction"
+            parent="abstractAction">
+		<property name="paymentService" ref="paymentService"/>
+    </bean>
+
+	<bean id="sendOrderPlacedNotificationAction" class="com.siteone.fulfilmentprocess.actions.order.SendOrderPlacedNotificationAction"  parent="abstractAction">
+		<property name="eventService" ref="eventService"/>
+	</bean>
+	
+	<bean id="submitOrderUEAction" class="com.siteone.fulfilmentprocess.actions.order.SubmitOrderUEAction"  parent="abstractAction">
+		<property name="siteOneOrderWebService" ref="siteOneOrderWebService"/>
+	</bean>
+
+	<bean id="purchasedProductsMappingAction" class="com.siteone.fulfilmentprocess.actions.order.PurchasedProductsMappingAction"  parent="abstractAction">
+		<property name="modelService" ref="modelService"/>
+		<property name="eventService" ref="eventService"/>
+	
+	</bean>
+
+	<bean id="takePaymentAction" class="com.siteone.fulfilmentprocess.actions.order.TakePaymentAction"  parent="abstractAction">
+		<property name="paymentService" ref="paymentService"/>
+    </bean>
+
+	<bean id="sendPaymentFailedNotificationAction" class="com.siteone.fulfilmentprocess.actions.order.SendPaymentFailedNotificationAction"  parent="abstractAction">
+		<property name="eventService" ref="eventService"/>
+	</bean>
+
+	<bean id="checkTransactionReviewStatusAction" class="com.siteone.fulfilmentprocess.actions.order.CheckTransactionReviewStatusAction"  parent="abstractAction">
+		<property name="ticketBusinessService" ref="ticketBusinessService"/>
+	</bean>
+
+	<bean id="fraudCheckOrderAction" class="com.siteone.fulfilmentprocess.actions.order.FraudCheckOrderAction"  parent="abstractOrderAction">
+		<property name="fraudService" ref="fraudService"/>
+		<property name="providerName" value="Mockup_3rdPartyProvider"/>
+	</bean>
+
+	<bean id="prepareOrderForManualCheckAction" class="com.siteone.fulfilmentprocess.actions.order.PrepareOrderForManualCheckAction"  parent="abstractAction">
+		<property name="eventService" ref="eventService"/>
+	</bean>
+
+	<bean id="sendFraudErrorNotificationAction" class="com.siteone.fulfilmentprocess.actions.order.SendFraudErrorNotificationAction"  parent="abstractAction">
+		<property name="eventService" ref="eventService"/>
+	</bean>
+
+	<bean id="checkAuthorizeOrderPaymentAction" class="com.siteone.fulfilmentprocess.actions.order.CheckAuthorizeOrderPaymentAction"  parent="abstractAction"/>
+
+	<bean id="sendAuthorizationFailedNotificationAction" class="com.siteone.fulfilmentprocess.actions.order.SendAuthorizationFailedNotificationAction"  parent="abstractAction">
+		<property name="eventService" ref="eventService"/>
+	</bean>
+
+	<bean id="reserveOrderAmountAction" class="com.siteone.fulfilmentprocess.actions.order.ReserveOrderAmountAction"  parent="abstractAction"/>
+
+	<bean id="fraudCheckOrderInternalAction" class="com.siteone.fulfilmentprocess.actions.order.FraudCheckOrderInternalAction"  parent="abstractOrderAction">
+		<property name="fraudService" ref="fraudService"/>
+		<property name="providerName" value="hybris"/>
+	</bean>
+
+	<bean id="orderManualCheckedAction" class="com.siteone.fulfilmentprocess.actions.order.OrderManualCheckedAction"  parent="abstractOrderAction"/>
+
+	<bean id="splitOrderAction" class="com.siteone.fulfilmentprocess.actions.order.SplitOrderAction"  parent="abstractAction">
+		<property name="orderSplittingService" ref="orderSplittingService"/>
+		<property name="businessProcessService" ref="businessProcessService"/>
+	</bean>
+
+	<bean id="subprocessesCompletedAction" class="com.siteone.fulfilmentprocess.actions.order.SubprocessesCompletedAction"  parent="abstractAction"/>
+
+	<bean id="sendOrderCompletedNotificationAction" class="com.siteone.fulfilmentprocess.actions.order.SendOrderCompletedNotificationAction"  parent="abstractAction">
+		<property name="eventService" ref="eventService"/>
+	</bean>
+
+	<bean id="scheduleForCleanUpAction" class="com.siteone.fulfilmentprocess.actions.order.ScheduleForCleanUpAction"  parent="abstractAction">
+		<property name="timeService" ref="timeService"/>
+	</bean>
+
+	<bean id="notifyCustomerAboutFraudAction" class="com.siteone.fulfilmentprocess.actions.order.NotifyCustomerAboutFraudAction"  parent="abstractAction">
+		<property name="eventService" ref="eventService"/>
+	</bean>
+
+    <bean id="notifyOrderFailedAction" class="com.siteone.fulfilmentprocess.actions.order.NotifyOrderFailedAction"  parent="abstractAction">
+		<property name="eventService" ref="eventService"/>
+	</bean>
+	
+	<bean id="notifyConsignmentFailedAction" class="com.siteone.fulfilmentprocess.actions.consignment.NotifyConsignmentFailedAction"  parent="abstractAction">
+		<property name="eventService" ref="eventService"/>
+	</bean>
+	
+	<bean id="notifyPurchasedProductFailure" class="com.siteone.fulfilmentprocess.actions.order.NotifyPurchasedProductFailureAction"  parent="abstractAction">
+		
+	</bean>
+	
+	<bean id="capturePaymentProcessAction" class="com.siteone.fulfilmentprocess.actions.order.CapturePaymentProcessAction"  parent="abstractAction">
+    </bean>
+
+</beans>

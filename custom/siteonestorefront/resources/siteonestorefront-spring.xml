@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/mvc
+		http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/util
+		http://www.springframework.org/schema/util/spring-util.xsd
+		http://www.springframework.org/schema/aop
+		http://www.springframework.org/schema/aop/spring-aop.xsd">
+		
+		<alias name="defaultSiteoneAddressDataUtil" alias="siteoneAddressDataUtil" />
+		<bean id="defaultSiteoneAddressDataUtil" class="com.siteone.storefront.util.SiteOneAddressDataUtil" /> 
+		
+		<alias name="defaultSiteOneCacheKeyProviders" alias="siteoneCacheKeyProviders"/>
+		<util:map id="defaultSiteOneCacheKeyProviders" key-type="java.lang.String">
+			<!--  <entry key="ProductReferencesComponent" value-ref="currentProductCmsCacheKeyProvider"/>  -->
+			<entry key="AbstractCMSComponent" value-ref="cmsCacheKeyProvider"/>
+			<entry key="NavigationBarComponent" value-ref="cmsCacheKeyProvider"/>
+			<entry key="BannerComponent" value-ref="cmsCacheKeyProvider"/>
+			<entry key="SimpleBannerComponent" value-ref="cmsCacheKeyProvider"/>
+			<entry key="RotatingImagesComponent" value-ref="cmsCacheKeyProvider"/>
+			<entry key="ImageMapComponent" value-ref="cmsCacheKeyProvider"/>
+			<!-- <entry key="ProductCarouselComponent" value-ref="cmsCacheKeyProvider"/> -->
+			<entry key="CategoryFeatureComponent" value-ref="cmsCacheKeyProvider"/>
+			<entry key="ProductFeatureComponent" value-ref="cmsCacheKeyProvider"/>
+			<entry key="CMSParagraphComponent" value-ref="cmsCacheKeyProvider"/>
+			<entry key="CMSImageComponent" value-ref="cmsCacheKeyProvider"/>
+			<entry key="CMSTabParagraphComponent" value-ref="cmsCacheKeyProvider"/>
+			<entry key="FooterComponent" value-ref="cmsCacheKeyProvider"/>
+			<entry key="ProductDetailComponent" value-ref="currentProductCmsCacheKeyProvider"/>
+			<entry key="ProductVariantSelectorComponent" value-ref="currentProductCmsCacheKeyProvider"/>
+			<entry key="DynamicBannerComponent" value-ref="currentCategoryCmsCacheKeyProvider"/>
+
+			<entry key="GlobalMessageCMSComponent" value-ref="cmsCacheKeyProvider"/>
+			<!--<entry key="VerticalBarComponent" value-ref="cmsCacheKeyProvider"/>-->
+			<entry key="CategoryComponent" value-ref="cmsCacheKeyProvider"/>
+			<entry key="HomePageResponsiveBannerComponent" value-ref="cmsCacheKeyProvider"/>
+			<entry key="PromotionBannerComponent" value-ref="cmsCacheKeyProvider"/>
+			<entry key="HomePageToolsComponent" value-ref="cmsCacheKeyProvider"/>
+			<entry key="HomePageCustomerEventsComponent" value-ref="cmsCacheKeyProvider"/>
+			<entry key="SiteoneParagaraphComponent" value-ref="cmsCacheKeyProvider"/>
+			<entry key="SiteOneStoreDetailsPromoComponent" value-ref="cmsCacheKeyProvider"/>
+			<!--<entry key="SiteOneCategoryBannerComponent" value-ref="cmsCacheKeyProvider"/>-->
+			<entry key="SiteOneBrandBannerComponent" value-ref="cmsCacheKeyProvider"/>
+			<entry key="SiteOnePromotionalResponsiveBannerComponent" value-ref="cmsCacheKeyProvider"/>
+			<!--<entry key="SiteOneFeatureProductComponent" value-ref="cmsCacheKeyProvider"/>-->
+			<!--<entry key="SiteOneEventComponent" value-ref="cmsCacheKeyProvider"/>
+			<entry key="SiteoneEventTypeGroupHeaderComponent" value-ref="cmsCacheKeyProvider"/>
+			<entry key="SiteoneEventTypeGroupComponent" value-ref="cmsCacheKeyProvider"/>-->
+			<entry key="SiteOnePromotionCategoryComponent" value-ref="cmsCacheKeyProvider"/>
+			<!--<entry key="SiteOnePartnerProgramComponent" value-ref="cmsCacheKeyProvider"/>-->
+			<entry key="SiteonePageTitleBannerComponent" value-ref="cmsCacheKeyProvider"/>
+			<entry key="SiteoneVideoComponent" value-ref="cmsCacheKeyProvider"/>
+			<entry key="SiteoneLeftNavigationComponent" value-ref="cmsCacheKeyProvider"/>
+			<entry key="SiteoneFAQCollectionComponent" value-ref="cmsCacheKeyProvider"/>
+			<entry key="SiteoneFAQ" value-ref="cmsCacheKeyProvider"/>
+			<!--<entry key="SiteonePartnerPromotionalComponent" value-ref="cmsCacheKeyProvider"/>-->
+			<entry key="SiteoneHeaderPromotionalComponent" value-ref="cmsCacheKeyProvider"/>
+			<entry key="SiteoneArticleBannerComponent" value-ref="cmsCacheKeyProvider"/>
+			<entry key="SiteoneArticleFeatureComponent" value-ref="cmsCacheKeyProvider"/>
+			<entry key="SiteOneArticleCategory" value-ref="cmsCacheKeyProvider"/>
+			<entry key="SiteOneArticle" value-ref="cmsCacheKeyProvider"/>
+			<entry key="SiteOneArticleContent" value-ref="cmsCacheKeyProvider"/>
+			<entry key="SiteoneGreenTechButtonComponent" value-ref="cmsCacheKeyProvider"/>
+			<entry key="SiteOneNews" value-ref="cmsCacheKeyProvider"/>
+			<entry key="NewsComponent" value-ref="cmsCacheKeyProvider"/>
+		</util:map>
+		
+		<alias name="defaultSiteOneCmsCacheService" alias="cmsCacheService"/>
+		<bean id="defaultSiteOneCmsCacheService" class="de.hybris.platform.acceleratorcms.component.cache.impl.DefaultCmsCacheService" >
+			<property name="cacheKeyProviders" ref="siteoneCacheKeyProviders"/>
+			<property name="configurationService" ref="configurationService"/>
+			<property name="cacheController" ref="cacheController"/>
+		</bean>
+
+	    <bean id="siteoneAccessDeniedHandler" class="com.siteone.storefront.filters.SiteoneAccessDeniedHandler" />
+	    
+	    <alias name="defaultSiteOneKountService" alias="siteOneKountService"/>
+		<bean id="defaultSiteOneKountService" class="com.siteone.core.kount.service.impl.DefaultSiteOneKountService" />
+		
+	    
+		<bean id="siteOnePaymentInfoUtil" class="com.siteone.storefront.util.SiteOnePaymentInfoUtil" />
+		 
+		<bean id="siteOneEwalletDataUtil" class="com.siteone.storefront.util.SiteOneEwalletDataUtil" />
+		
+	</beans>
+		

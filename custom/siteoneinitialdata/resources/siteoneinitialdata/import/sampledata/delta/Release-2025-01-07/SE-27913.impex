@@ -1,0 +1,6 @@
+INSERT_UPDATE ServicelayerJob;code[unique=true];springid[unique=true]
+                             ;bulkListUploadCronJob;bulkListUploadCronJob;
+
+INSERT_UPDATE BulkListUploadCronJob;code[unique=true];job(code);singleExecutable;sessionLanguage(isocode);
+                     ;bulkListUploadCronJob;bulkListUploadCronJob;false;en;
+

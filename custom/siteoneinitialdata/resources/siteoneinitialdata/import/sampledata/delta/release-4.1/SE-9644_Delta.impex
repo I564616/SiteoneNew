@@ -1,0 +1,58 @@
+$contentCatalog=siteoneContentCatalog
+$contentCatalogName=SiteOne Content Catalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$productCatalog=siteoneProductCatalog
+$productCatalogName=SiteOne Product Catalog
+$productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$picture=media(code, $contentCV);
+$image=image(code, $contentCV);
+$media=media(code, $contentCV);
+$page=page(uid, $contentCV);
+$contentPage=contentPage(uid, $contentCV);
+$product=product(code, $productCV)
+$category=category(code, $productCV)
+$siteResource=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/contentCatalogs/$contentCatalog
+$productResource=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/productCatalogs/$productCatalog
+$jarResourceCms=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/cockpits/cmscockpit
+$addonExtensionName=siteoneacceleratoraddon
+$medias=medias(code, $contentCV);
+$articleMedia=articleMedia(code, $contentCV);
+$mediaContainer=media(qualifier, $contentCV);
+$siteUid=siteone
+$lang=en
+
+
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='SiteOneHomePageTemplate'];validComponentTypes(code);compTypeGroup(code)
+;Section4H4;;SiteOneHomePageBackgroundImageComponent
+;Section4H5;;SiteOneHomePageBackgroundImageComponent
+
+
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef)
+;;Section4H4Slot-SiteOneHomePage;Section4H4 Slot for SiteOneHomePage;true;backgroundImageComponent
+;;Section4H5Slot-SiteOneHomePage;Section4H5 Slot for SiteOneHomePage;true;backgroundImageMobileComponent
+
+
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='siteonehomepage'];contentSlot(uid,$contentCV)[unique=true]
+;;Section4H4-SiteOneHomePage;Section4H4;;Section4H4Slot-SiteOneHomePage
+;;Section4H5-SiteOneHomePage;Section4H5;;Section4H5Slot-SiteOneHomePage
+
+
+INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='image/jpeg'];altText;&imageRef;folder(qualifier)[default='images']
+;;whitebox-bg.jpg;$siteResource/images/banners/homepage/responsive/whitebox-bg.jpg;;;""
+;;whitebox-bg-mobile.jpg;$siteResource/images/banners/homepage/responsive/whitebox-bg-mobile.jpg;;;""
+
+
+
+INSERT_UPDATE SiteOneHomePageTextBannerComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef;title[lang=en];title[lang=es];description[lang=en];description[lang=es];buttonLabel[lang=en];buttonLabel[lang=es];buttonURL
+;;SiteOneHomePageTextBannerComponent1;SiteOne HomePage PromoBanner Component1;SiteOneHomePageTextBannerComponent1;SAVE TIME.</br>SAVE MONEY.;;Request an Online Account today.;;Request Account;;/request-account/form?icid=home-feature1
+;;SiteOneHomePageTextBannerComponent2;SiteOne HomePage PromoBanner Component2;SiteOneHomePageTextBannerComponent2;NEED A LINE OF CREDIT?;;We’re proud to offer line of credit options to help you get the job done.;;;;/openlineofcredit
+;;SiteOneHomePageTextBannerComponent3;SiteOne HomePage PromoBanner Component3;SiteOneHomePageTextBannerComponent3;INTRODUCING 'BUY AGAIN' ON SITEONE.COM;;Reorder your favorite items quickly and easily.;;;;/my-account/buy-again/${sessionShipTo.uid}
+
+
+INSERT_UPDATE SiteOneHomePageBackgroundImageComponent;$contentCV[unique=true];uid[unique=true];name;bannerList(&componentRef);&componentRef;$picture[lang=$lang]
+;;backgroundImageComponent;background image component;SiteOneHomePageTextBannerComponent1,SiteOneHomePageTextBannerComponent2,SiteOneHomePageTextBannerComponent3;backgroundImageComponent;whitebox-bg.jpg
+;;backgroundImageMobileComponent;background image mobile component;SiteOneHomePageTextBannerComponent1,SiteOneHomePageTextBannerComponent2,SiteOneHomePageTextBannerComponent3;backgroundImageMobileComponent;whitebox-bg-mobile.jpg
+
+

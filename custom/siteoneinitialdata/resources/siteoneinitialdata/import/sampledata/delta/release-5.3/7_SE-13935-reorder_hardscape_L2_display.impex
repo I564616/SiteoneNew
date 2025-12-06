@@ -1,0 +1,14 @@
+$contentCatalog=siteoneContentCatalog
+$contentCatalogName=SiteOne Content Catalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+
+
+INSERT_UPDATE GlobalProductNavigationNode;$contentCV[unique=true];uid[unique=true]                       ;sequenceNumber
+                                         ;                       ;ManufacturedHardscapeProductsL2NavNode ;1
+                                         ;                       ;HardscapeAccessoriesNavNode            ;2
+										 ;                       ;EdgingL2NavNode                        ;3
+                                         ;                       ;Masonry&ConstructionProductsNavNode    ;4 	
+                                         ;                       ;OutdoorLivingNavNode                   ;5
+                                         ;                       ;WoodProductsNavNode                    ;6															 
+
+

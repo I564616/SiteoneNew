@@ -1,0 +1,5 @@
+INSERT_UPDATE ServicelayerJob; code[unique=true];springid[unique=true]
+;siteoneJobsStatusCronJob;siteoneJobsStatusCronJob;
+
+INSERT_UPDATE SiteoneJobsStatusCronJob;code[unique=true];job(code)[default=siteoneJobsStatusCronJob];sessionLanguage(isoCode)[default=en]
+;siteoneJobsStatusCronJob

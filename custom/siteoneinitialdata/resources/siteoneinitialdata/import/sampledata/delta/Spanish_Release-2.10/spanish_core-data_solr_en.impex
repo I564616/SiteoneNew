@@ -1,0 +1,51 @@
+
+# -----------------------------------------------------------------------
+# [y] hybris Platform
+#
+# Copyright (c) 2017 SAP SE or an SAP affiliate company.  All rights reserved.
+#
+# This software is the confidential and proprietary information of SAP
+# ("Confidential Information"). You shall not disclose such Confidential
+# Information and shall use it only in accordance with the terms of the
+# license agreement you entered into with SAP.
+# -----------------------------------------------------------------------
+# Import the Solr configuration for the SiteOne store
+#
+# Localization en
+#
+$lang=es
+
+$indexedType=siteoneProductType
+
+UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true,default=$indexedType];name[unique=true];displayName[lang=$lang]
+ ;;soallPromotions;Promotion;
+ #;;sobrand;Brand;
+ ;;socategory;Mostrar resultados para;
+ ;;socode;Code;
+ #;;sodescription;Description;
+ ;;somanufacturerName;Manufacturer Name;
+ ;;soname;Nombre;
+ ;;price;Precio;
+ #;;sosummary;Summary;
+ ;;soavailableInStores;Disponible en mi sucursal;
+ ;siteoneContentSearchType;socontenttags;Content Tags;
+ ;siteoneEventSearchType;sostate;Ubicación
+ ;siteoneEventSearchType;soeventdate;Fecha
+ ;siteoneEventSearchType;soeventtype;Event Type
+ ;;soproductBrandNameFacet;Marca
+
+
+# Define the available sorts
+UPDATE SolrSort;indexedType(identifier)[unique=true,default=$indexedType];code[unique=true];name[lang=$lang]
+ ;;name-asc;Nombre (ascendente);
+ ;;name-desc;Nombre (descendente);
+ ;;price-asc;Precio (Más bajo primero);
+ ;;price-desc;Precio (los más altos primero);
+ ;;relevance;Defecto;
+ #;;topRated;Top Rated;
+ ;siteoneContentSearchType;title-asc;Título (ascendente);
+ ;siteoneContentSearchType;title-desc;Título (descendente);
+ ;siteoneContentSearchType;relevance;Defecto;
+ 
+ 
+

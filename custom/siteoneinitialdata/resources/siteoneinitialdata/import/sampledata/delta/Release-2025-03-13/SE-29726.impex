@@ -1,0 +1,44 @@
+### Shop By industry - Staged Start #########
+
+$contentCatalog=siteoneContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$productCatalog=siteoneProductCatalog
+$productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$supercategories=supercategories( code, catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Staged']));;;;;;;;;
+
+INSERT_UPDATE Category;code[unique=true];name[lang=en];$supercategories;$contentCV;allowedPrincipals(uid);productCount
+ ;SH1816;Commercial Irrigation;SH18;siteoneProductCatalog:Staged;admingroup;1 
+
+INSERT_UPDATE GlobalProductNavigationNode;$contentCV[unique=true];uid[unique=true];name;parent(uid, $contentCV);category(code, $productCV);&nodeRef;sequenceNumber;url
+;;CommIrrigationNavNode;CommIrrigationNavNode;ShopByIndustryNavNode;SH1816;CommIrrigationNavNode;6;https://greentech.siteone.com/
+
+INSERT_UPDATE CategoryComponent;$contentCV[unique=true];uid[unique=true];category(code,$productCV);media(code, $contentCV);&componentRef;name
+;;categoryComponent8;SH18;;categoryComponent8;Category component 8
+
+UPDATE VerticalBarComponent;$contentCV[unique=true];uid[unique=true];name;globalProductNodes(uid,$contentCV);&componentRef;;;
+;;VerticalBarComponent;All Products;AgronomicMaintenanceNavNode,Hardscapes&OutdoorLivingNavNode,IrrigationNavNode,LandscapeSupplyNavNode,LightingNavNode,NurseryNavNode,ToolsEquipment&SafetyNavNode,ShopByIndustryNavNode;VerticalBarComponent;;;
+
+###### Staged End ######
+
+
+### Shop By industry - Online Start #########
+
+$contentCatalog=siteoneContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Online])[default=$contentCatalog:Online]
+$productCatalog=siteoneProductCatalog
+$productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Online'])[unique=true,default=$productCatalog:Online]
+$supercategories=supercategories( code, catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Online']));;;;;;;;;
+
+INSERT_UPDATE Category;code[unique=true];name[lang=en];$supercategories;$contentCV;allowedPrincipals(uid);productCount
+ ;SH1816;Commercial Irrigation;SH18;siteoneProductCatalog:Online;admingroup;1 
+
+INSERT_UPDATE GlobalProductNavigationNode;$contentCV[unique=true];uid[unique=true];name;parent(uid, $contentCV);category(code, $productCV);&nodeRef;sequenceNumber;url
+;;CommIrrigationNavNode;CommIrrigationNavNode;ShopByIndustryNavNode;SH1816;CommIrrigationNavNode;6;https://greentech.siteone.com/
+
+INSERT_UPDATE CategoryComponent;$contentCV[unique=true];uid[unique=true];category(code,$productCV);media(code, $contentCV);&componentRef;name
+;;categoryComponent8;SH18;;categoryComponent8;Category component 8
+
+UPDATE VerticalBarComponent;$contentCV[unique=true];uid[unique=true];name;globalProductNodes(uid,$contentCV);&componentRef;;;
+;;VerticalBarComponent;All Products;AgronomicMaintenanceNavNode,Hardscapes&OutdoorLivingNavNode,IrrigationNavNode,LandscapeSupplyNavNode,LightingNavNode,NurseryNavNode,ToolsEquipment&SafetyNavNode,ShopByIndustryNavNode;VerticalBarComponent;;;
+
+###### Online End ######

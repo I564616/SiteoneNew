@@ -1,0 +1,141 @@
+$contentCatalog=siteoneContentCatalog
+$contentCatalogName=SiteOne Content Catalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$catalogVersion=catalogVersion(catalog(id[default='siteoneContentCatalog']),version[default='Staged'])[unique=true,default='siteoneContentCatalog:Staged']
+$picture=media(code, $contentCV);
+$image=image(code, $contentCV);
+$media=media(code, $contentCV);
+$page=page(uid, $contentCV);
+$contentPage=contentPage(uid, $contentCV);
+$lang=en
+
+
+
+#  Category ContentPage Creation
+
+INSERT_UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];name;label;category(code,$contentCV);featuredArticle;fullPagePath[lang=$lang];pathingChannel[lang=$lang][default='tools and resources'];masterTemplate(uid,$contentCV)[default='ArticleLandingPageTemplate'];contentType(code)[default='CONTENT_PAGE'];defaultPage[default='true'];approvalStatus(code)[default='approved'];homepage[default='false'];isIndexable[default='false']
+;;Irrigation;Irrigation;/articles/Irrigation;Irrigation;Happy-Customers-Pay-More;tools and resources: learn and explore: irrigation;;;;;;;
+;;Turf-Care;Turf Care;/articles/Turf-Care;Turf-Care;Cool-&-Warm-Season-Grasses;tools and resources: learn and explore: turf care;;;;;;;
+;;Nursery;Nursery;/articles/Nursery;Nursery;Planning-Plant-Purchases;tools and resources: learn and explore: nursery;;;;;;;
+;;Business-Tips;Business Tips;/articles/Business-Tips;Business-Tips;Consultative-Selling;tools and resources: learn and explore: business tips;;;;;;;
+;;Hardscapes-Outdoor-Living;Hardscapes & Outdoor Living;/articles/Hardscapes-Outdoor-Living;Hardscapes-Outdoor-Living;Grow-Your-Business-by-Adding-Hardscape-Services;tools and resources: learn and explore: hardscapes outdoor living;;;;;;;
+;;Tools-Equipment-Safety;Tools Equipment & Safety;/articles/Tools-Equipment-Safety;Tools-Equipment-Safety;Tips-for-Selecting-Battery-Powered-Equipment;tools and resources: learn and explore: tools equipment and safety;;;;;;;
+;;Lighting;Lighting;/articles/Lighting;Lighting;Add-Landscape-Lighting-And-Outdoor-Audio-As-Additional-Service;tools and resources: learn and explore: lighting;;;;;;;
+
+INSERT_UPDATE JspIncludeComponent;$contentCV[unique=true];uid[unique=true];name;page;actions(uid,$contentCV);&componentRef
+;;articleCategoryListComponent;Article List Component;articleCategoryPage.jsp;;articleCategoryListComponent
+;;articleCategoryComponent;Article List Component;articleCategoryNamePage.jsp;;articleCategoryComponent
+
+INSERT_UPDATE SiteoneArticleHeroBannerComponent;$contentCV[unique=true];uid[unique=true];name;heroImage(code, $contentCV);heroImageText[lang=$lang];&componentRef
+;;articleIrrigationHeroBannerComponent;Irrigation Hero Banner Component;Irrigation_landing_P8A0446-2.jpg;;articleIrrigationHeroBannerComponent
+;;articleTurfCareHeroBannerComponent;Turf Care Hero Banner Component;Turf_Care_Landing_P8A0291-2.jpg;;articleTurfCareHeroBannerComponent
+;;articleNurseryHeroBannerComponent;Nursery Hero Banner Component;Nursery_Landing_L4_3064.jpg;;articleNurseryHeroBannerComponent
+;;articleBusinessTipsHeroBannerComponent;Business Tips Hero Banner Component;Business_Tips_landing_P8A0145-4.jpg;;articleBusinessTipsHeroBannerComponent
+;;articleHardscapesHeroBannerComponent;Hardscapes Hero Banner Component;Hardscapes_Landing_L5_7485.jpg;;articleHardscapesHeroBannerComponent
+;;articleToolsHeroBannerComponent;Tools Hero Banner Component;Tools_Equipment_and_Safety_Landing_P8A0407-2.jpg;;articleToolsHeroBannerComponent
+;;articleLightingHeroBannerComponent;Lighting Hero Banner Component;Lighting_Landing_L5_6207.jpg;;articleLightingHeroBannerComponent
+
+
+INSERT_UPDATE SiteoneArticleCategoryParagaraphComponent;$contentCV[unique=true];uid[unique=true];name;headline[lang=$lang];content[lang=$lang];&componentRef
+;;articleIrrigationCategoryDescriptionComponent;Irrigation Article Category Description Component;Industry Innovations and Advice from SiteOne Experts;This isnt your fathers sprinkler system. Innovation in the irrigation industry is expanding fast. From the efficiency of drip irrigation to the convenience of Wi-Fi-enabled controllers there are more ways than ever to water easier and more responsibly. And SiteOne is home to an unmatched selection of these irrigation solutions. Our green industry experts know how you can put them to good use.;articleIrrigationCategoryDescriptionComponent
+;;articleTurfCareCategoryDescriptionComponent;Turf Care Article Category Description Component;Everything You Need to Know About Growing Grass;Your customer's turf is your livelihood. You will do anything you can to protect it and we will do anything we can to assist you. That includes arming you with turf care tips you need to overcome high heat pests and disease while building a better business. Our green industry experts have devoted their careers to understanding turf,how to grow it protect it and keeping it coming back healthy year after year.;articleTurfCareCategoryDescriptionComponent
+;;articleNurseryCategoryDescriptionComponent;Nursery Article Category Description Component;Helping Knowledge Take Root;Just as plantings need water and fertile soil your business needs information in order to grow. At SiteOne Landscape Supply you will find a team of experts with a rich understanding of nursery products as well as the category as a whole. And best of all we are constantly adding new stock to our digital greenhouse;articleNurseryCategoryDescriptionComponent
+;;articleBusinessTipsCategoryDescriptionComponent;Business Tips Article Category Description Component;Let us Grow Your Bottom Line Together;Working with SiteOne means more than just quality products and the best service in the industry it means having a true business partner dedicated to your needs and the needs of your company. Through articles containing the latest industry techniques and solutions our team of experts is helping raise standards spread best practices and deliver better more sustainable landscapes.;articleBusinessTipsCategoryDescriptionComponent
+;;articleHardscapesCategoryDescriptionComponent;Hardscapes Article Category Description Component;The Building Blocks to a Stronger Business;Hardscapes and outdoor living spaces represent one of the green industry's most promising growth opportunities. And yet many landscape contractors are unable to tap into this potential due to labor concerns and a lack of knowledge. SiteOne and its team of experts are here to minimize the learning curve with proven techniques and strategies plus the latest most innovative solutions;articleHardscapesCategoryDescriptionComponent
+;;articleToolsCategoryDescriptionComponent;Tools Article Category Description Component;Outfitting You with the Topics of Your Trade;It is our job to equip you with the knowledge and insights that you need to do yours more safely efficiently and productively. Here you will find articles authored by our team of experts on a range of issues relating to tools equipment as well as safety. And because this industry changes every day we are constantly adding new content to your toolbox.;articleToolsCategoryDescriptionComponent
+;;articleLightingCategoryDescriptionComponent;Lighting Article Category Description Component;Knowledge is Where We Shine;At SiteOne Landscape Supply we offer a full range of products from the top outdoor lighting manufacturers. But where we really excel is helping you put these solutions to work for your company. Our team of experts will keep you at the forefront of landscape lighting with articles detailing best practices and technologies that will help your businesses grow stronger.;articleLightingCategoryDescriptionComponent
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef)
+#Irrigation
+;;IrrigationSection1Slot-ArticleCategoryPage;Section1 Slot for Irrigation Article Landing Page;true;articleCategoryComponent
+;;IrrigationHeroBannerSlot-ArticleCategoryPage;HeroBanner Slot Irrigation for Article Landing Page;true;articleIrrigationHeroBannerComponent
+;;IrrigationPromotionBannerSlot-ArticleCategoryPage;PromotionBanner Slot Irrigation for Article Landing Page;true;articleIrrigationCategoryDescriptionComponent
+;;IrrigationArticleContentSlot-ArticleCategoryPage;ArticleContent Slot for Irrigation Article Landing Page;true;
+;;IrrigationSection3Slot-ArticleCategoryPage;Section3 Slot for Article Irrigation Landing Page;true;articleCategoryListComponent
+#Turf Care
+;;TurfCareSection1Slot-ArticleCategoryPage;Section1 Slot for Article Landing Page;true;articleCategoryComponent
+;;TurfCareHeroBannerSlot-ArticleCategoryPage;HeroBanner Slot for Article Landing Page;true;articleTurfCareHeroBannerComponent
+;;TurfCarePromotionBannerSlot-ArticleCategoryPage;PromotionBanner Slot for Article Landing Page;true;articleTurfCareCategoryDescriptionComponent
+;;TurfCareArticleContentSlot-ArticleCategoryPage;ArticleContent Slot for Article Landing Page;true;
+;;TurfCareSection3Slot-ArticleCategoryPage;Section3 Slot for Article Landing Page;true;articleCategoryListComponent
+#Nursery
+;;NurserySection1Slot-ArticleCategoryPage;Section1 Slot for Article Landing Page;true;articleCategoryComponent
+;;NurseryHeroBannerSlot-ArticleCategoryPage;HeroBanner Slot for Article Landing Page;true;articleNurseryHeroBannerComponent
+;;NurseryPromotionBannerSlot-ArticleCategoryPage;PromotionBanner Slot for Article Landing Page;true;articleNurseryCategoryDescriptionComponent
+;;NurseryArticleContentSlot-ArticleCategoryPage;ArticleContent Slot for Article Landing Page;true;
+;;NurserySection3Slot-ArticleCategoryPage;Section3 Slot for Article Landing Page;true;articleCategoryListComponent
+#Business Tips
+;;BusinessSection1Slot-ArticleCategoryPage;Section1 Slot for Article Landing Page;true;articleCategoryComponent
+;;BusinessHeroBannerSlot-ArticleCategoryPage;HeroBanner Slot for Article Landing Page;true;articleBusinessTipsHeroBannerComponent
+;;BusinessPromotionBannerSlot-ArticleCategoryPage;PromotionBanner Slot for Article Landing Page;true;articleBusinessTipsCategoryDescriptionComponent
+;;BusinessArticleContentSlot-ArticleCategoryPage;ArticleContent Slot for Article Landing Page;true;
+;;BusinessSection3Slot-ArticleCategoryPage;Section3 Slot for Article Landing Page;true;articleCategoryListComponent
+#Hardscapes & Outdoor Living
+;;HardscapesSection1Slot-ArticleCategoryPage;Section1 Slot for Article Landing Page;true;articleCategoryComponent
+;;HardscapesHeroBannerSlot-ArticleCategoryPage;HeroBanner Slot for Article Landing Page;true;articleHardscapesHeroBannerComponent
+;;HardscapesPromotionBannerSlot-ArticleCategoryPage;PromotionBanner Slot for Article Landing Page;true;articleHardscapesCategoryDescriptionComponent
+;;HardscapesArticleContentSlot-ArticleCategoryPage;ArticleContent Slot for Article Landing Page;true;
+;;HardscapesSection3Slot-ArticleCategoryPage;Section3 Slot for Article Landing Page;true;articleCategoryListComponent
+#Tools Equipment & Safety
+;;ToolsSection1Slot-ArticleCategoryPage;Section1 Slot for Article Landing Page;true;articleCategoryComponent
+;;ToolsHeroBannerSlot-ArticleCategoryPage;HeroBanner Slot for Article Landing Page;true;articleToolsHeroBannerComponent
+;;ToolsPromotionBannerSlot-ArticleCategoryPage;PromotionBanner Slot for Article Landing Page;true;articleToolsCategoryDescriptionComponent
+;;ToolsArticleContentSlot-ArticleCategoryPage;ArticleContent Slot for Article Landing Page;true;
+;;ToolsSection3Slot-ArticleCategoryPage;Section3 Slot for Article Landing Page;true;articleCategoryListComponent
+#Lighting
+;;LightingSection1Slot-ArticleCategoryPage;Section1 Slot for Article Landing Page;true;articleCategoryComponent
+;;LightingHeroBannerSlot-ArticleCategoryPage;HeroBanner Slot for Article Landing Page;true;articleLightingHeroBannerComponent
+;;LightingPromotionBannerSlot-ArticleCategoryPage;PromotionBanner Slot for Article Landing Page;true;articleLightingCategoryDescriptionComponent
+;;LightingArticleContentSlot-ArticleCategoryPage;ArticleContent Slot for Article Landing Page;true;
+;;LightingSection3Slot-ArticleCategoryPage;Section3 Slot for Article Landing Page;true;articleCategoryListComponent
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true];contentSlot(uid,$contentCV)[unique=true];;;
+#Irrigation
+;;IrrigationSection1-ArticleCategoryPage;Section1;Irrigation;IrrigationSection1Slot-ArticleCategoryPage;;;
+;;IrrigationHeroBanner-ArticleCategoryPage;HeroBannerSlot;Irrigation;IrrigationHeroBannerSlot-ArticleCategoryPage;;;
+;;IrrigationPromotionBanner-ArticleCategoryPage;PromotionBannerSlot;Irrigation;IrrigationPromotionBannerSlot-ArticleCategoryPage;;;
+;;IrrigationArticleContent-ArticleCategoryPage;ArticleContentSlot;Irrigation;IrrigationArticleContentSlot-ArticleCategoryPage;;;
+;;IrrigationSection3-ArticleCategoryPage;Section3;Irrigation;IrrigationSection3Slot-ArticleCategoryPage;;;
+#Turf Care
+;;TurfCareSection1-ArticleCategoryPage;Section1;Turf-Care;TurfCareSection1Slot-ArticleCategoryPage;;;
+;;TurfCareHeroBanner-ArticleCategoryPage;HeroBannerSlot;Turf-Care;TurfCareHeroBannerSlot-ArticleCategoryPage;;;
+;;TurfCarePromotionBanner-ArticleCategoryPage;PromotionBannerSlot;Turf-Care;TurfCarePromotionBannerSlot-ArticleCategoryPage;;;
+;;TurfCareArticleContent-ArticleCategoryPage;ArticleContentSlot;Turf-Care;TurfCareArticleContentSlot-ArticleCategoryPage;;;
+;;TurfCareSection3-ArticleCategoryPage;Section3;Turf-Care;TurfCareSection3Slot-ArticleCategoryPage;;;
+#Nursery
+;;NurserySection1-ArticleCategoryPage;Section1;Nursery;NurserySection1Slot-ArticleCategoryPage;;;
+;;NurseryHeroBanner-ArticleCategoryPage;HeroBannerSlot;Nursery;NurseryHeroBannerSlot-ArticleCategoryPage;;;
+;;NurseryPromotionBanner-ArticleCategoryPage;PromotionBannerSlot;Nursery;NurseryPromotionBannerSlot-ArticleCategoryPage;;;
+;;NurseryArticleContent-ArticleCategoryPage;ArticleContentSlot;Nursery;NurseryArticleContentSlot-ArticleCategoryPage;;;
+;;NurserySection3-ArticleCategoryPage;Section3;Nursery;NurserySection3Slot-ArticleCategoryPage;;
+#Business Tips
+;;BusinessSection1-ArticleCategoryPage;Section1;Business-Tips;BusinessSection1Slot-ArticleCategoryPage;;;
+;;BusinessHeroBanner-ArticleCategoryPage;HeroBannerSlot;Business-Tips;BusinessHeroBannerSlot-ArticleCategoryPage;;;
+;;BusinessPromotionBanner-ArticleCategoryPage;PromotionBannerSlot;Business-Tips;BusinessPromotionBannerSlot-ArticleCategoryPage;;;
+;;BusinessArticleContent-ArticleCategoryPage;ArticleContentSlot;Business-Tips;BusinessArticleContentSlot-ArticleCategoryPage;;;
+;;BusinessSection3-ArticleCategoryPage;Section3;Business-Tips;BusinessSection3Slot-ArticleCategoryPage;;
+#Hardscapes & Outdoor Living
+;;HardscapesSection1-ArticleCategoryPage;Section1;Hardscapes-Outdoor-Living;HardscapesSection1Slot-ArticleCategoryPage;;;
+;;HardscapesHeroBanner-ArticleCategoryPage;HeroBannerSlot;Hardscapes-Outdoor-Living;HardscapesHeroBannerSlot-ArticleCategoryPage;;;
+;;HardscapesPromotionBanner-ArticleCategoryPage;PromotionBannerSlot;Hardscapes-Outdoor-Living;HardscapesPromotionBannerSlot-ArticleCategoryPage;;;
+;;HardscapesArticleContent-ArticleCategoryPage;ArticleContentSlot;Hardscapes-Outdoor-Living;HardscapesArticleContentSlot-ArticleCategoryPage;;;
+;;HardscapesSection3-ArticleCategoryPage;Section3;Hardscapes-Outdoor-Living;HardscapesSection3Slot-ArticleCategoryPage;;
+#Tools Equipment & Safety
+;;ToolsSection1-ArticleCategoryPage;Section1;Tools-Equipment-Safety;ToolsSection1Slot-ArticleCategoryPage;;;
+;;ToolsHeroBanner-ArticleCategoryPage;HeroBannerSlot;Tools-Equipment-Safety;ToolsHeroBannerSlot-ArticleCategoryPage;;;
+;;ToolsPromotionBanner-ArticleCategoryPage;PromotionBannerSlot;Tools-Equipment-Safety;ToolsPromotionBannerSlot-ArticleCategoryPage;;;
+;;ToolsArticleContent-ArticleCategoryPage;ArticleContentSlot;Tools-Equipment-Safety;ToolsArticleContentSlot-ArticleCategoryPage;;;
+;;ToolsSection3-ArticleCategoryPage;Section3;Tools-Equipment-Safety;ToolsSection3Slot-ArticleCategoryPage;;
+#Lighting
+;;LightingSection1-ArticleCategoryPage;Section1;Lighting;LightingSection1Slot-ArticleCategoryPage;;;
+;;LightingHeroBanner-ArticleCategoryPage;HeroBannerSlot;Lighting;LightingHeroBannerSlot-ArticleCategoryPage;;;
+;;LightingPromotionBanner-ArticleCategoryPage;PromotionBannerSlot;Lighting;LightingPromotionBannerSlot-ArticleCategoryPage;;;
+;;LightingArticleContent-ArticleCategoryPage;ArticleContentSlot;Lighting;LightingArticleContentSlot-ArticleCategoryPage;;;
+;;LightingSection3-ArticleCategoryPage;Section3;Lighting;LightingSection3Slot-ArticleCategoryPage;;
+
+
+
+
+
+
+

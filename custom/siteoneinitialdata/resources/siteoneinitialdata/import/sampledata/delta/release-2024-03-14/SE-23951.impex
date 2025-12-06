@@ -1,0 +1,4 @@
+##### For guest checkout national rollout
+
+INSERT_UPDATE SiteOneFeatureSwitch;key[unique=true];longValue
+;GuestOrRetailCheckoutDisabledBranches;1136,1137,1138

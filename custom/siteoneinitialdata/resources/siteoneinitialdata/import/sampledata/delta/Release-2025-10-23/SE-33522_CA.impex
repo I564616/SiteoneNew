@@ -1,0 +1,296 @@
+$solrIndexedType=siteoneCAProductType
+
+INSERT_UPDATE SolrIndexedProperty; solrIndexedType(identifier)[unique=true]; name[unique=true]; displayName[en]; type(code); multiValue; facet; facetType(code);localized[default=false];includeInResponse;visible;fieldValueProvider; valueProviderParameter
+;$solrIndexedType;Airflow;Airflow;string;true;true;MultiSelectOr;true;true ;true;siteOneUnifiedClassificationPropertyValueProvider;irgAirflow,hrdscpAirflow,lghtAirflow,lndscpAirflow,nrsryAirflow,Maintenance_Airflow
+;$solrIndexedType;AmperageRating;Amperage Rating;string;true;true;MultiSelectOr;true;true ;true;siteOneUnifiedClassificationPropertyValueProvider;irgAmperageRating,hrdscpAmperageRating,lghtAmperageRating,lndscpAmperageRating,nrsryAmperageRating,Maintenance_AmperageRating
+;$solrIndexedType;Angle;Angle;string;true;true;MultiSelectOr;true;true ;true;siteOneUnifiedClassificationPropertyValueProvider;irgAngle,hrdscpAngle,lghtAngle,lndscpAngle,nrsryAngle,Maintenance_Angle
+;$solrIndexedType;AnimalResistance;Animal Resistance;string;true;true;MultiSelectOr;true;true ;true;siteOneUnifiedClassificationPropertyValueProvider;irgAnimalResistance,hrdscpAnimalResistance,lghtAnimalResistance,lndscpAnimalResistance,nrsryAnimalResistance,Maintenance_AnimalResistance
+;$solrIndexedType;AverageLife;Average Life;string;true;true;MultiSelectOr;true;true ;true;siteOneUnifiedClassificationPropertyValueProvider;irgAverageLife,hrdscpAverageLife,lghtAverageLife,lndscpAverageLife,nrsryAverageLife,Maintenance_AverageLife
+;$solrIndexedType;BackgroundColor;Background Color;string;true;true;MultiSelectOr;true;true ;true;siteOneUnifiedClassificationPropertyValueProvider;irgBackgroundColor,hrdscpBackgroundColor,lghtBackgroundColor,lndscpBackgroundColor,nrsryBackgroundColor,Maintenance_BackgroundColor
+;$solrIndexedType;BatteryCapacity;Battery Capacity;string;true;true;MultiSelectOr;true;true ;true;siteOneUnifiedClassificationPropertyValueProvider;irgBatteryCapacity,hrdscpBatteryCapacity,lghtBatteryCapacity,lndscpBatteryCapacity,nrsryBatteryCapacity,Maintenance_BatteryCapacity
+;$solrIndexedType;BatteryType;Battery Type;string;true;true;MultiSelectOr;true;true ;true;siteOneUnifiedClassificationPropertyValueProvider;irgBatteryType,hrdscpBatteryType,lghtBatteryType,lndscpBatteryType,nrsryBatteryType,Maintenance_BatteryType
+;$solrIndexedType;BladeLength;Blade Length;string;true;true;MultiSelectOr;true;true ;true;siteOneUnifiedClassificationPropertyValueProvider;irgBladeLength,hrdscpBladeLength,lghtBladeLength,lndscpBladeLength,nrsryBladeLength,Maintenance_BladeLength
+;$solrIndexedType;BladeMaterial;Blade Material;string;true;true;MultiSelectOr;true;true ;true;siteOneUnifiedClassificationPropertyValueProvider;irgBladeMaterial,hrdscpBladeMaterial,lghtBladeMaterial,lndscpBladeMaterial,nrsryBladeMaterial,Maintenance_BladeMaterial
+;$solrIndexedType;BladeThickness;Blade Thickness;string;true;true;MultiSelectOr;true;true ;true;siteOneUnifiedClassificationPropertyValueProvider;irgBladeThickness,hrdscpBladeThickness,lghtBladeThickness,lndscpBladeThickness,nrsryBladeThickness,Maintenance_BladeThickness
+;$solrIndexedType;BladeWidth;Blade Width;string;true;true;MultiSelectOr;true;true ;true;siteOneUnifiedClassificationPropertyValueProvider;irgBladeWidth,hrdscpBladeWidth,lghtBladeWidth,lndscpBladeWidth,nrsryBladeWidth,Maintenance_BladeWidth
+;$solrIndexedType;BloomTime;Bloom Time;string;true;true;MultiSelectOr;true;true ;true;siteOneUnifiedClassificationPropertyValueProvider;irgBloomTime,hrdscpBloomTime,lghtBloomTime,lndscpBloomTime,nrsryBloomTime,Maintenance_BloomTime
+;$solrIndexedType;Capacity;Capacity;string;true;true;MultiSelectOr;true;true ;true;siteOneUnifiedClassificationPropertyValueProvider;irgCapacity,hrdscpCapacity,lghtCapacity,lndscpCapacity,nrsryCapacity,Maintenance_Capacity
+;$solrIndexedType;Color;Color;string;true;true;MultiSelectOr;true;true ;true;siteOneUnifiedClassificationPropertyValueProvider;irgColor,hrdscpColor,lghtColor,lndscpColor,nrsryColor,Maintenance_Color
+;$solrIndexedType;CommonName;Common Name;string;true;true;MultiSelectOr;true;true ;true;siteOneUnifiedClassificationPropertyValueProvider;irgCommonName,hrdscpCommonName,lghtCommonName,lndscpCommonName,nrsryCommonName,Maintenance_CommonName
+;$solrIndexedType;ConnectionSize;Connection Size;string;true;true;MultiSelectOr;true;true ;true;siteOneUnifiedClassificationPropertyValueProvider;irgConnectionSize,hrdscpConnectionSize,lghtConnectionSize,lndscpConnectionSize,nrsryConnectionSize,Maintenance_ConnectionSize
+;$solrIndexedType;ConnectionType;Connection Type;string;true;true;MultiSelectOr;true;true ;true;siteOneUnifiedClassificationPropertyValueProvider;irgConnectionType,hrdscpConnectionType,lghtConnectionType,lndscpConnectionType,nrsryConnectionType,Maintenance_ConnectionType
+;$solrIndexedType;ContainerSize;Container Size;string;true;true;MultiSelectOr;true;true ;true;siteOneUnifiedClassificationPropertyValueProvider;irgContainerSize,hrdscpContainerSize,lghtContainerSize,lndscpContainerSize,nrsryContainerSize,Maintenance_ContainerSize
+;$solrIndexedType;ContainerType;Container Type;string;true;true;MultiSelectOr;true;true ;true;siteOneUnifiedClassificationPropertyValueProvider;irgContainerType,hrdscpContainerType,lghtContainerType,lndscpContainerType,nrsryContainerType,Maintenance_ContainerType
+;$solrIndexedType;CoverageArea;Coverage Area;string;true;true;MultiSelectOr;true;true ;true;siteOneUnifiedClassificationPropertyValueProvider;irgCoverageArea,hrdscpCoverageArea,lghtCoverageArea,lndscpCoverageArea,nrsryCoverageArea,Maintenance_CoverageArea
+;$solrIndexedType;CureTime;Cure Time;string;true;true;MultiSelectOr;true;true ;true;siteOneUnifiedClassificationPropertyValueProvider;irgCureTime,hrdscpCureTime,lghtCureTime,lndscpCureTime,nrsryCureTime,Maintenance_CureTime
+;$solrIndexedType;CuttingCapacity;Cutting Capacity;string;true;true;MultiSelectOr;true;true ;true;siteOneUnifiedClassificationPropertyValueProvider;irgCuttingCapacity,hrdscpCuttingCapacity,lghtCuttingCapacity,lndscpCuttingCapacity,nrsryCuttingCapacity,Maintenance_CuttingCapacity
+;$solrIndexedType;Depth;Depth;string;true;true;MultiSelectOr;true;true ;true;siteOneUnifiedClassificationPropertyValueProvider;irgDepth,hrdscpDepth,lghtDepth,lndscpDepth,nrsryDepth,Maintenance_Depth
+;$solrIndexedType;Diameter;Diameter;string;true;true;MultiSelectOr;true;true ;true;siteOneUnifiedClassificationPropertyValueProvider;irgDiameter,hrdscpDiameter,lghtDiameter,lndscpDiameter,nrsryDiameter,Maintenance_Diameter
+;$solrIndexedType;Dimensions;Dimensions;string;true;true;MultiSelectOr;true;true ;true;siteOneUnifiedClassificationPropertyValueProvider;irgDimensions,hrdscpDimensions,lghtDimensions,lndscpDimensions,nrsryDimensions,Maintenance_Dimensions
+;$solrIndexedType;Disposable/Reusable;Disposable/ Reusable;string;true;true;MultiSelectOr;true;true ;true;siteOneUnifiedClassificationPropertyValueProvider;irgDisposable/Reusable,hrdscpDisposable/Reusable,lghtDisposable/Reusable,lndscpDisposable/Reusable,nrsryDisposable/Reusable,Maintenance_Disposable/Reusable
+;$solrIndexedType;Exposure;Exposure;string;true;true;MultiSelectOr;true;true ;true;siteOneUnifiedClassificationPropertyValueProvider;irgExposure,hrdscpExposure,lghtExposure,lndscpExposure,nrsryExposure,Maintenance_Exposure
+;$solrIndexedType;FabricWeight;Fabric Weight;string;true;true;MultiSelectOr;true;true ;true;siteOneUnifiedClassificationPropertyValueProvider;irgFabricWeight,hrdscpFabricWeight,lghtFabricWeight,lndscpFabricWeight,nrsryFabricWeight,Maintenance_FabricWeight
+;$solrIndexedType;Finish;Finish;string;true;true;MultiSelectOr;true;true ;true;siteOneUnifiedClassificationPropertyValueProvider;irgFinish,hrdscpFinish,lghtFinish,lndscpFinish,nrsryFinish,Maintenance_Finish
+;$solrIndexedType;FlowRate;Flow Rate;string;true;true;MultiSelectOr;true;true ;true;siteOneUnifiedClassificationPropertyValueProvider;irgFlowRate,hrdscpFlowRate,lghtFlowRate,lndscpFlowRate,nrsryFlowRate,Maintenance_FlowRate
+;$solrIndexedType;FrameMaterial;Frame Material;string;true;true;MultiSelectOr;true;true ;true;siteOneUnifiedClassificationPropertyValueProvider;irgFrameMaterial,hrdscpFrameMaterial,lghtFrameMaterial,lndscpFrameMaterial,nrsryFrameMaterial,Maintenance_FrameMaterial
+;$solrIndexedType;FuelType;Fuel Type;string;true;true;MultiSelectOr;true;true ;true;siteOneUnifiedClassificationPropertyValueProvider;irgFuelType,hrdscpFuelType,lghtFuelType,lndscpFuelType,nrsryFuelType,Maintenance_FuelType
+;$solrIndexedType;Gauge;Gauge;string;true;true;MultiSelectOr;true;true ;true;siteOneUnifiedClassificationPropertyValueProvider;irgGauge,hrdscpGauge,lghtGauge,lndscpGauge,nrsryGauge,Maintenance_Gauge
+;$solrIndexedType;Grade;Grade;string;true;true;MultiSelectOr;true;true ;true;siteOneUnifiedClassificationPropertyValueProvider;irgGrade,hrdscpGrade,lghtGrade,lndscpGrade,nrsryGrade,Maintenance_Grade
+;$solrIndexedType;HandleType;Handle Type;string;true;true;MultiSelectOr;true;true ;true;siteOneUnifiedClassificationPropertyValueProvider;irgHandleType,hrdscpHandleType,lghtHandleType,lndscpHandleType,nrsryHandleType,Maintenance_HandleType
+;$solrIndexedType;Height;Height;string;true;true;MultiSelectOr;true;true ;true;siteOneUnifiedClassificationPropertyValueProvider;irgHeight,hrdscpHeight,lghtHeight,lndscpHeight,nrsryHeight,Maintenance_Height
+;$solrIndexedType;HousingMaterial;Housing Material;string;true;true;MultiSelectOr;true;true ;true;siteOneUnifiedClassificationPropertyValueProvider;irgHousingMaterial,hrdscpHousingMaterial,lghtHousingMaterial,lndscpHousingMaterial,nrsryHousingMaterial,Maintenance_HousingMaterial
+;$solrIndexedType;Includes;Includes;string;true;true;MultiSelectOr;true;true ;true;siteOneUnifiedClassificationPropertyValueProvider;irgIncludes,hrdscpIncludes,lghtIncludes,lndscpIncludes,nrsryIncludes,Maintenance_Includes
+;$solrIndexedType;InsideDiameter;Inside Diameter;string;true;true;MultiSelectOr;true;true ;true;siteOneUnifiedClassificationPropertyValueProvider;irgInsideDiameter,hrdscpInsideDiameter,lghtInsideDiameter,lndscpInsideDiameter,nrsryInsideDiameter,Maintenance_InsideDiameter
+;$solrIndexedType;JacketColor;Jacket Color;string;true;true;MultiSelectOr;true;true ;true;siteOneUnifiedClassificationPropertyValueProvider;irgJacketColor,hrdscpJacketColor,lghtJacketColor,lndscpJacketColor,nrsryJacketColor,Maintenance_JacketColor
+;$solrIndexedType;JacketMaterial;Jacket Material;string;true;true;MultiSelectOr;true;true ;true;siteOneUnifiedClassificationPropertyValueProvider;irgJacketMaterial,hrdscpJacketMaterial,lghtJacketMaterial,lndscpJacketMaterial,nrsryJacketMaterial,Maintenance_JacketMaterial
+;$solrIndexedType;LampBase;Lamp Base;string;true;true;MultiSelectOr;true;true ;true;siteOneUnifiedClassificationPropertyValueProvider;irgLampBase,hrdscpLampBase,lghtLampBase,lndscpLampBase,nrsryLampBase,Maintenance_LampBase
+;$solrIndexedType;LampType;Lamp Type;string;true;true;MultiSelectOr;true;true ;true;siteOneUnifiedClassificationPropertyValueProvider;irgLampType,hrdscpLampType,lghtLampType,lndscpLampType,nrsryLampType,Maintenance_LampType
+;$solrIndexedType;LandscapeUse;Landscape Use;string;true;true;MultiSelectOr;true;true ;true;siteOneUnifiedClassificationPropertyValueProvider;irgLandscapeUse,hrdscpLandscapeUse,lghtLandscapeUse,lndscpLandscapeUse,nrsryLandscapeUse,Maintenance_LandscapeUse
+;$solrIndexedType;Legend;Legend;string;true;true;MultiSelectOr;true;true ;true;siteOneUnifiedClassificationPropertyValueProvider;irgLegend,hrdscpLegend,lghtLegend,lndscpLegend,nrsryLegend,Maintenance_Legend
+;$solrIndexedType;Length;Length;string;true;true;MultiSelectOr;true;true ;true;siteOneUnifiedClassificationPropertyValueProvider;irgLength,hrdscpLength,lghtLength,lndscpLength,nrsryLength,Maintenance_Length
+;$solrIndexedType;LightingTechnology;Lighting Technology;string;true;true;MultiSelectOr;true;true ;true;siteOneUnifiedClassificationPropertyValueProvider;irgLightingTechnology,hrdscpLightingTechnology,lghtLightingTechnology,lndscpLightingTechnology,nrsryLightingTechnology,Maintenance_LightingTechnology
+;$solrIndexedType;Lumens;Lumens;string;true;true;MultiSelectOr;true;true ;true;siteOneUnifiedClassificationPropertyValueProvider;irgLumens,hrdscpLumens,lghtLumens,lndscpLumens,nrsryLumens,Maintenance_Lumens
+;$solrIndexedType;Maintenance;Maintenance;string;true;true;MultiSelectOr;true;true ;true;siteOneUnifiedClassificationPropertyValueProvider;irgMaintenance,hrdscpMaintenance,lghtMaintenance,lndscpMaintenance,nrsryMaintenance,Maintenance_Maintenance
+;$solrIndexedType;Material;Material;string;true;true;MultiSelectOr;true;true ;true;siteOneUnifiedClassificationPropertyValueProvider;irgMaterial,hrdscpMaterial,lghtMaterial,lndscpMaterial,nrsryMaterial,Maintenance_Material
+;$solrIndexedType;NozzleType;Nozzle Type;string;true;true;MultiSelectOr;true;true ;true;siteOneUnifiedClassificationPropertyValueProvider;irgNozzleType,hrdscpNozzleType,lghtNozzleType,lndscpNozzleType,nrsryNozzleType,Maintenance_NozzleType
+;$solrIndexedType;NumberofConductors;Number of Conductors;string;true;true;MultiSelectOr;true;true ;true;siteOneUnifiedClassificationPropertyValueProvider;irgNumberofConductors,hrdscpNumberofConductors,lghtNumberofConductors,lndscpNumberofConductors,nrsryNumberofConductors,Maintenance_NumberofConductors
+;$solrIndexedType;NumberofPieces;Number of Pieces;string;true;true;MultiSelectOr;true;true ;true;siteOneUnifiedClassificationPropertyValueProvider;irgNumberofPieces,hrdscpNumberofPieces,lghtNumberofPieces,lndscpNumberofPieces,nrsryNumberofPieces,Maintenance_NumberofPieces
+;$solrIndexedType;OperatingRadius;Operating Radius;string;true;true;MultiSelectOr;true;true ;true;siteOneUnifiedClassificationPropertyValueProvider;irgOperatingRadius,hrdscpOperatingRadius,lghtOperatingRadius,lndscpOperatingRadius,nrsryOperatingRadius,Maintenance_OperatingRadius
+;$solrIndexedType;OutsideDiameter;Outside Diameter;string;true;true;MultiSelectOr;true;true ;true;siteOneUnifiedClassificationPropertyValueProvider;irgOutsideDiameter,hrdscpOutsideDiameter,lghtOutsideDiameter,lndscpOutsideDiameter,nrsryOutsideDiameter,Maintenance_OutsideDiameter
+;$solrIndexedType;Package;Package;string;true;true;MultiSelectOr;true;true ;true;siteOneUnifiedClassificationPropertyValueProvider;irgPackage,hrdscpPackage,lghtPackage,lndscpPackage,nrsryPackage,Maintenance_Package
+;$solrIndexedType;Pattern;Pattern;string;true;true;MultiSelectOr;true;true ;true;siteOneUnifiedClassificationPropertyValueProvider;irgPattern,hrdscpPattern,lghtPattern,lndscpPattern,nrsryPattern,Maintenance_Pattern
+;$solrIndexedType;PowerSource;Power Source;string;true;true;MultiSelectOr;true;true ;true;siteOneUnifiedClassificationPropertyValueProvider;irgPowerSource,hrdscpPowerSource,lghtPowerSource,lndscpPowerSource,nrsryPowerSource,Maintenance_PowerSource
+;$solrIndexedType;PressureRating;Pressure Rating;string;true;true;MultiSelectOr;true;true ;true;siteOneUnifiedClassificationPropertyValueProvider;irgPressureRating,hrdscpPressureRating,lghtPressureRating,lndscpPressureRating,nrsryPressureRating,Maintenance_PressureRating
+;$solrIndexedType;Shape;Shape;string;true;true;MultiSelectOr;true;true ;true;siteOneUnifiedClassificationPropertyValueProvider;irgShape,hrdscpShape,lghtShape,lndscpShape,nrsryShape,Maintenance_Shape
+;$solrIndexedType;Size;Size;string;true;true;MultiSelectOr;true;true ;true;siteOneUnifiedClassificationPropertyValueProvider;irgSize,hrdscpSize,lghtSize,lndscpSize,nrsrySize,Maintenance_Size
+;$solrIndexedType;Specifications;Specifications;string;true;true;MultiSelectOr;true;true ;true;siteOneUnifiedClassificationPropertyValueProvider;irgSpecifications,hrdscpSpecifications,lghtSpecifications,lndscpSpecifications,nrsrySpecifications,Maintenance_Specifications
+;$solrIndexedType;SuitableForUseWith;Suitable For Use With;string;true;true;MultiSelectOr;true;true ;true;siteOneUnifiedClassificationPropertyValueProvider;irgSuitableForUseWith,hrdscpSuitableForUseWith,lghtSuitableForUseWith,lndscpSuitableForUseWith,nrsrySuitableForUseWith,Maintenance_SuitableForUseWith
+;$solrIndexedType;TemperatureRating;Temperature Rating;string;true;true;MultiSelectOr;true;true ;true;siteOneUnifiedClassificationPropertyValueProvider;irgTemperatureRating,hrdscpTemperatureRating,lghtTemperatureRating,lndscpTemperatureRating,nrsryTemperatureRating,Maintenance_TemperatureRating
+;$solrIndexedType;Thickness;Thickness;string;true;true;MultiSelectOr;true;true ;true;siteOneUnifiedClassificationPropertyValueProvider;irgThickness,hrdscpThickness,lghtThickness,lndscpThickness,nrsryThickness,Maintenance_Thickness
+;$solrIndexedType;VoltageRating;Voltage Rating;string;true;true;MultiSelectOr;true;true ;true;siteOneUnifiedClassificationPropertyValueProvider;irgVoltageRating,hrdscpVoltageRating,lghtVoltageRating,lndscpVoltageRating,nrsryVoltageRating,Maintenance_VoltageRating
+;$solrIndexedType;Weight;Weight;string;true;true;MultiSelectOr;true;true ;true;siteOneUnifiedClassificationPropertyValueProvider;irgWeight,hrdscpWeight,lghtWeight,lndscpWeight,nrsryWeight,Maintenance_Weight
+;$solrIndexedType;Width;Width;string;true;true;MultiSelectOr;true;true ;true;siteOneUnifiedClassificationPropertyValueProvider;irgWidth,hrdscpWidth,lghtWidth,lndscpWidth,nrsryWidth,Maintenance_Width
+;$solrIndexedType;Item;Item;string;true;true;MultiSelectOr;true;true ;true;siteOneUnifiedClassificationPropertyValueProvider;irgItem,hrdscpItem,lghtItem,lndscpItem,nrsryItem,Maintenance_Item
+;$solrIndexedType;Type;Type;string;true;true;MultiSelectOr;true;true ;true;siteOneUnifiedClassificationPropertyValueProvider;irgType,hrdscpType,lghtType,lndscpType,nrsryType,Maintenance_Type
+;$solrIndexedType;Series;Series;string;true;true;MultiSelectOr;true;true ;true;siteOneUnifiedClassificationPropertyValueProvider;irgSeries,hrdscpSeries,lghtSeries,lndscpSeries,nrsrySeries,Maintenance_Series
+
+REMOVE SolrIndexedProperty; solrIndexedType(identifier)[unique=true]; name[unique=true];
+; $solrIndexedType ;lndscpAirflow
+; $solrIndexedType ;Maintenance_Airflow
+; $solrIndexedType ;irgAmperageRating
+; $solrIndexedType ;lghtAmperageRating
+; $solrIndexedType ;Maintenance_AmperageRating
+; $solrIndexedType ;irgAngle
+; $solrIndexedType ;lndscpAngle
+; $solrIndexedType ;Maintenance_AnimalResistance
+; $solrIndexedType ;nrsryAnimalResistance
+; $solrIndexedType ;lghtAverageLife
+; $solrIndexedType ;lndscpAverageLife
+; $solrIndexedType ;irgBackgroundColor
+; $solrIndexedType ;lndscpBackgroundColor
+; $solrIndexedType ;lndscpBatteryCapacity
+; $solrIndexedType ;Maintenance_BatteryCapacity
+; $solrIndexedType ;lndscpBatteryType
+; $solrIndexedType ;Maintenance_BatteryType
+; $solrIndexedType ;lndscpBladeLength
+; $solrIndexedType ;Maintenance_BladeLength
+; $solrIndexedType ;lndscpBladeMaterial
+; $solrIndexedType ;Maintenance_BladeMaterial
+; $solrIndexedType ;lndscpBladeThickness
+; $solrIndexedType ;Maintenance_BladeThickness
+; $solrIndexedType ;lndscpBladeWidth
+; $solrIndexedType ;Maintenance_BladeWidth
+; $solrIndexedType ;Maintenance_BloomTime
+; $solrIndexedType ;nrsryBloomTime
+; $solrIndexedType ;hrdscpCapacity
+; $solrIndexedType ;irgCapacity
+; $solrIndexedType ;lndscpCapacity
+; $solrIndexedType ;Maintenance_Capacity
+; $solrIndexedType ;hrdscpColor
+; $solrIndexedType ;irgColor
+; $solrIndexedType ;lghtColor
+; $solrIndexedType ;lndscpColor
+; $solrIndexedType ;Maintenance_Color
+; $solrIndexedType ;lndscpCommonName
+; $solrIndexedType ;Maintenance_CommonName
+; $solrIndexedType ;irgConnectionSize
+; $solrIndexedType ;lndscpConnectionSize
+; $solrIndexedType ;Maintenance_ConnectionSize
+; $solrIndexedType ;irgConnectionType
+; $solrIndexedType ;lghtConnectionType
+; $solrIndexedType ;lndscpConnectionType
+; $solrIndexedType ;Maintenance_ConnectionType
+; $solrIndexedType ;hrdscpContainerSize
+; $solrIndexedType ;irgContainerSize
+; $solrIndexedType ;lndscpContainerSize
+; $solrIndexedType ;Maintenance_ContainerSize
+; $solrIndexedType ;hrdscpContainerType
+; $solrIndexedType ;irgContainerType
+; $solrIndexedType ;lndscpContainerType
+; $solrIndexedType ;Maintenance_ContainerType
+; $solrIndexedType ;hrdscpCoverageArea
+; $solrIndexedType ;lndscpCoverageArea
+; $solrIndexedType ;Maintenance_CoverageArea
+; $solrIndexedType ;hrdscpCureTime
+; $solrIndexedType ;irgCureTime
+; $solrIndexedType ;lndscpCuttingCapacity
+; $solrIndexedType ;Maintenance_CuttingCapacity
+; $solrIndexedType ;irgDepth
+; $solrIndexedType ;lndscpDepth
+; $solrIndexedType ;Maintenance_Depth
+; $solrIndexedType ;irgDiameter
+; $solrIndexedType ;lghtDiameter
+; $solrIndexedType ;lndscpDiameter
+; $solrIndexedType ;hrdscpDimensions
+; $solrIndexedType ;irgDimensions
+; $solrIndexedType ;lghtDimensions
+; $solrIndexedType ;lndscpDimensions
+; $solrIndexedType ;Maintenance_Dimensions
+; $solrIndexedType ;lghtDisposableReusable
+; $solrIndexedType ;lndscpDisposableReusable
+; $solrIndexedType ;lndscpExposure
+; $solrIndexedType ;nrsryExposure
+; $solrIndexedType ;lndscpFabricWeight
+; $solrIndexedType ;Maintenance_FabricWeight
+; $solrIndexedType ;hrdscpFinish
+; $solrIndexedType ;lghtFinish
+; $solrIndexedType ;lndscpFinish
+; $solrIndexedType ;Maintenance_Finish
+; $solrIndexedType ;irgFlowRate
+; $solrIndexedType ;lndscpFlowRate
+; $solrIndexedType ;Maintenance_FlowRate
+; $solrIndexedType ;lndscpFrameMaterial
+; $solrIndexedType ;Maintenance_FrameMaterial
+; $solrIndexedType ;hrdscpFuelType
+; $solrIndexedType ;Maintenance_FuelType
+; $solrIndexedType ;lghtGauge
+; $solrIndexedType ;lndscpGauge
+; $solrIndexedType ;hrdscpGrade
+; $solrIndexedType ;lndscpGrade
+; $solrIndexedType ;lndscpHandleType
+; $solrIndexedType ;Maintenance_HandleType
+; $solrIndexedType ;hrdscpHeight
+; $solrIndexedType ;irgHeight
+; $solrIndexedType ;lghtHeight
+; $solrIndexedType ;lndscpHeight
+; $solrIndexedType ;Maintenance_Height
+; $solrIndexedType ;irgHousingMaterial
+; $solrIndexedType ;lghtHousingMaterial
+; $solrIndexedType ;hrdscpIncludes
+; $solrIndexedType ;irgIncludes
+; $solrIndexedType ;lghtIncludes
+; $solrIndexedType ;lndscpIncludes
+; $solrIndexedType ;Maintenance_Includes
+; $solrIndexedType ;irgInsideDiameter
+; $solrIndexedType ;lndscpInsideDiameter
+; $solrIndexedType ;irgJacketColor
+; $solrIndexedType ;lghtJacketColor
+; $solrIndexedType ;irgJacketMaterial
+; $solrIndexedType ;lghtJacketMaterial
+; $solrIndexedType ;lghtLampBase
+; $solrIndexedType ;lndscpLampBase
+; $solrIndexedType ;lghtLampType
+; $solrIndexedType ;lndscpLampType
+; $solrIndexedType ;lndscpLandscapeUse
+; $solrIndexedType ;nrsryLandscapeUse
+; $solrIndexedType ;irgLegend
+; $solrIndexedType ;lndscpLegend
+; $solrIndexedType ;hrdscpLength
+; $solrIndexedType ;irgLength
+; $solrIndexedType ;lghtLength
+; $solrIndexedType ;lndscpLength
+; $solrIndexedType ;lghtLightingTechnology
+; $solrIndexedType ;lndscpLightingTechnology
+; $solrIndexedType ;lndscpLumens
+; $solrIndexedType ;Maintenance_Lumens
+; $solrIndexedType ;lndscpMaintenance
+; $solrIndexedType ;nrsryMaintenance
+; $solrIndexedType ;hrdscpMaterial
+; $solrIndexedType ;irgMaterial
+; $solrIndexedType ;lghtMaterial
+; $solrIndexedType ;lndscpMaterial
+; $solrIndexedType ;Maintenance_Material
+; $solrIndexedType ;irgNozzleType
+; $solrIndexedType ;Maintenance_NozzleType
+; $solrIndexedType ;irgNumberofConductors
+; $solrIndexedType ;lghtNumberofConductors
+; $solrIndexedType ;hrdscpNumberofPieces
+; $solrIndexedType ;lndscpNumberofPieces
+; $solrIndexedType ;irgOperatingRadius
+; $solrIndexedType ;Maintenance_OperatingRadius
+; $solrIndexedType ;irgOutsideDiameter
+; $solrIndexedType ;lndscpOutsideDiameter
+; $solrIndexedType ;lndscpPackage
+; $solrIndexedType ;nrsryPackage
+; $solrIndexedType ;hrdscpPattern
+; $solrIndexedType ;irgPattern
+; $solrIndexedType ;lndscpPattern
+; $solrIndexedType ;lghtPowerSource
+; $solrIndexedType ;lndscpPowerSource
+; $solrIndexedType ;Maintenance_PowerSource
+; $solrIndexedType ;hrdscpPressureRating
+; $solrIndexedType ;irgPressureRating
+; $solrIndexedType ;lndscpPressureRating
+; $solrIndexedType ;hrdscpShape
+; $solrIndexedType ;irgShape
+; $solrIndexedType ;lndscpShape
+; $solrIndexedType ;hrdscpSize
+; $solrIndexedType ;irgSize
+; $solrIndexedType ;lndscpSize
+; $solrIndexedType ;hrdscpSpecifications
+; $solrIndexedType ;lghtSpecifications
+; $solrIndexedType ;lndscpSpecifications
+; $solrIndexedType ;Maintenance_Specifications
+; $solrIndexedType ;hrdscpSuitableForUseWith
+; $solrIndexedType ;irgSuitableForUseWith
+; $solrIndexedType ;lghtSuitableForUseWith
+; $solrIndexedType ;lndscpSuitableForUseWith
+; $solrIndexedType ;Maintenance_SuitableForUseWith
+; $solrIndexedType ;lghtTemperatureRating
+; $solrIndexedType ;lndscpTemperatureRating
+; $solrIndexedType ;hrdscpThickness
+; $solrIndexedType ;lndscpThickness
+; $solrIndexedType ;lghtVoltageRating
+; $solrIndexedType ;lndscpVoltageRating
+; $solrIndexedType ;Maintenance_VoltageRating
+; $solrIndexedType ;hrdscpWeight
+; $solrIndexedType ;irgWeight
+; $solrIndexedType ;lndscpWeight
+; $solrIndexedType ;hrdscpWidth
+; $solrIndexedType ;irgWidth
+; $solrIndexedType ;lndscpWidth
+; $solrIndexedType ;hrdscpItem
+; $solrIndexedType ;irgItem
+; $solrIndexedType ;lghtItem
+; $solrIndexedType ;lndscpItem
+; $solrIndexedType ;Maintenance_Item
+; $solrIndexedType ;hrdscpProductBrandName
+; $solrIndexedType ;irgProductBrandName
+; $solrIndexedType ;lghtProductBrandName
+; $solrIndexedType ;lndscpProductBrandName
+; $solrIndexedType ;Maintenance_ProductBrandName
+; $solrIndexedType ;nrsryProductBrandName
+; $solrIndexedType ;hrdscpSeries
+; $solrIndexedType ;irgSeries
+; $solrIndexedType ;lghtSeries
+; $solrIndexedType ;lndscpSeries
+; $solrIndexedType ;Maintenance_Series
+; $solrIndexedType ;nrsrySeries
+; $solrIndexedType ;hrdscpSubBrand
+; $solrIndexedType ;irgSubBrand
+; $solrIndexedType ;lghtSubBrand
+; $solrIndexedType ;lndscpSubBrand
+; $solrIndexedType ;Maintenance_SubBrand
+; $solrIndexedType ;hrdscpType
+; $solrIndexedType ;irgType
+; $solrIndexedType ;lghtType
+; $solrIndexedType ;lndscpType
+; $solrIndexedType ;Maintenance_Type
+; $solrIndexedType ;nrsryType
+
+INSERT_UPDATE SiteOneFeatureSwitch;key[unique=true];value;
+;SolrIndexedPropertyToBeRemovedCA;;Airflow,Amperage Rating,Angle,Animal Resistance,Average Life,Background Color,Battery Capacity,Battery Type,Blade Length,Blade Material,Blade Thickness,Blade Width,Bloom Time,Capacity,Color,Common Name,Connection Size,Connection Type,Container Size,Container Type,Coverage Area,Cure Time,Cutting Capacity,Depth,Diameter,Dimensions,Disposable/ Reusable,Exposure,Fabric Weight,Finish,Flow Rate,Frame Material,Fuel Type,Gauge,Grade,Handle Type,Height,Housing Material,Includes,Inside Diameter,Jacket Color,Jacket Material,Lamp Base,Lamp Type,Landscape Use,Legend,Length,Lighting Technology,Lumens,Maintenance,Material,Nozzle Type,Number of Conductors,Number of Pieces,Operating Radius,Outside Diameter,Package,Pattern,Power Source,Pressure Rating,Shape,Size,Specifications,Suitable For Use With,Temperature Rating,Thickness,Voltage Rating,Weight,Width,Product Brand Name,Item,Type,Series,Sub Brand
+
+INSERT_UPDATE SolrIndexerQuery;solrIndexedType(identifier)[unique=true];identifier[unique=true];user(uid)
+;$solrIndexedType;siteoneCA-CA-fullQuery;admin
+

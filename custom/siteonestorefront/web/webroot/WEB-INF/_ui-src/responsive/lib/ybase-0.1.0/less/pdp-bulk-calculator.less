@@ -1,0 +1,848 @@
+// body {
+//     overflow: hidden;
+// }
+
+// STYLE OVERLAY CONTAINER
+#calculator-overlay {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.7);
+    /* Dark gray gradient effect */
+    z-index: 9999;
+    /* Ensure it appears above everything */
+}
+
+.pdp-bulk-sidebar {
+    right: 0;
+    bottom: 0;
+    top: 0;
+    display: block;
+    width: 510px;
+    position: absolute;
+    z-index: 99999;
+    background: #fff;
+    overflow-y: scroll;
+    @media (max-width: @screen-sm-max) {
+        width: 100%;
+    }
+
+    button {
+        border: 0;
+        width: 100%;
+        height: 50px;
+        cursor: pointer;
+    }
+
+    #calculatorMenu,
+    #calculatorInputs,
+    #calculatorWast {
+        width: 360px;
+    }
+
+    #closeBulkCalculator {
+        background-image: url("https://www.siteone.com/_ui/responsive/theme-lambda/images/Close.svg") !important;
+        cursor: pointer;
+        position: relative;
+        width: 20px;
+        height: 14px;
+        background: no-repeat;
+    }
+
+    .header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        justify-content: center;
+        flex-direction: column;
+
+        .icon-container {
+            display: grid;
+            width: 100%;
+            padding: 16px 12px 0;
+
+            span {
+                place-self: flex-end;
+            }
+        }
+
+        .content-container {
+            padding: 0 6rem;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            justify-content: center;
+
+            svg {
+                height: 27px;
+                width: 20px;
+                margin-top: 3px;
+            }
+
+            h2 {
+                font-family: Arial;
+                font-size: 30px;
+                font-weight: 400;
+                line-height: 100%;
+                margin: 0;
+                white-space: nowrap;
+                color: #414244;
+            }
+        }
+    }
+
+    .content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        .calculate-by {
+            margin-top: 32px;
+            margin-bottom: 24px;
+            color: black;
+
+            .custom-radio-button {
+                display: block;
+                position: relative;
+                margin: 12px 0 0;
+                cursor: pointer;
+                padding: 0 0 0 36px;
+
+                /* When the radio button is checked, add a blue background */
+                input {
+                    position: absolute;
+                    opacity: 0;
+                    cursor: pointer;
+
+                    &:checked~.checkmark {
+                        background-color: white;
+                        color: #78A22F;
+
+                        &:after {
+                            width: 80%;
+                            height: 80%;
+                            border-radius: 50%;
+                            background: #78A22F;
+                        }
+                    }
+                }
+
+                .checkmark {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 25px;
+                    height: 25px;
+                    border-radius: 50%;
+                    background: #F8F8F8;
+                    border: 1px solid #CCCCCC;
+
+                    &:after {
+                        content: "";
+                        position: absolute;
+                        display: none;
+                    }
+                }
+            }
+
+            div:nth-child(1) {
+                span {
+                    margin-bottom: 8px;
+                }
+            }
+
+            div:nth-child(2) {
+                display: flex;
+                flex-direction: column;
+
+            }
+        }
+
+        .graphics {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .waste-checkbox {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        #calculatorMenu {
+            margin: 32px 0 0px;
+            box-sizing: border-box;
+
+            .button-group {
+                display: flex;
+                flex-direction: column;
+
+                >span {
+                    margin: 0 0 12px;
+                    color: #414244 !important;
+                }
+
+                >label {
+                    display: flex;
+                    gap: 16px;
+                    align-items: center;
+                    margin-bottom: 8px;
+                }
+
+                input {
+                    cursor: pointer;
+                    margin: 0;
+                    /* Add if not using autoprefixer */
+                    -webkit-appearance: none;
+                    appearance: none;
+                    /* For iOS < 15 to remove gradient background */
+                    background-color: #fff;
+                    /* Not removed via appearance */
+                    margin: 0;
+                    font: inherit;
+                    color: #78A22F;
+                    width: 25px;
+                    height: 25px;
+                    border: 1px solid #78A22F;
+                    border-radius: 50%;
+                    transform: translateY(-0.075em);
+
+                    /* ...existing styles */
+                    display: grid;
+                    place-content: center;
+
+                    &:focus {
+                        outline: 1px auto #78A22F;
+                        outline-offset: 0px;
+                    }
+
+                    &:before {
+                        content: "";
+                        width: 15px;
+                        height: 15px;
+                        border-radius: 50%;
+                        transform: scale(0);
+                        transition: 120ms transform ease-in-out;
+                        box-shadow: inset 1em 1em var(--form-control-color);
+                        background: #78A22F;
+                    }
+
+                    &:checked {
+                        &:before {
+                            transform: scale(1);
+                        }
+                    }
+                }
+
+                span {
+                    font-family: Arial;
+                    font-size: 16px;
+                    font-weight: 400;
+                    line-height: 18.4px;
+                    text-align: left;
+                    text-underline-position: from-font;
+                    text-decoration-skip-ink: none;
+                    color: #5A5B5D;
+                }
+            }
+        }
+
+        #calculatorButtons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            gap: 10px;
+            width: max-content;
+            margin: 32px 0 24px;
+
+            >div {
+                cursor: pointer;
+                width: 83px;
+                height: 83px;
+
+                svg {
+                    fill: #F7F7F7;
+                    stroke: #E0E0E0;
+                    display: inline-block;
+                    cursor: not-allowed;
+                    width: 83px;
+                    height: 83px;
+                    pointer-events: none;
+
+                    path:nth-child(1) {
+                        stroke: #000;
+                        stroke-width: 0.15px;
+                        scale: .98;
+                    }
+
+                    path:nth-child(2) {
+                        stroke: #000;
+                        stroke-width: 0.05;
+                        scale: .98;
+                        fill: #000;
+                    }
+                }
+
+                &.active {
+                    svg {
+                        stroke: #77A12E;
+                        stroke-width: 2px;
+
+                        path:nth-child(3) {
+                            stroke: #000;
+                            stroke-width: 1px;
+                        }
+                    }
+                }
+            }
+        }
+
+        #calculatorImages {
+            margin: 1rem 0 0;
+            display: flex;
+            justify-content: center;
+
+            svg {
+                display: none;
+
+                &.active {
+                    scale: 1.05;
+                    display: block;
+                }
+            }
+
+            .active {
+                scale: 1.05 !important;
+                display: block !important;
+            }
+        }
+
+        #calculatorInputs {
+            .input-container {
+                display: flex;
+                flex-direction: column;
+
+                .group {
+                    gap: 8px;
+                }
+
+                p {
+                    color: #414244;
+                    font-size: 16px;
+                    font-family: Arial;
+                    font-weight: 400;
+                    word-wrap: break-word;
+                    margin: 32px 0 8px;
+                }
+
+                .input {
+                    display: none;
+                    &.always-active,
+                    &.active {
+                        position: relative;
+                        height: 40px;
+                        border: 0;
+                        display: grid;
+                        color: #5A5B5D;
+                        font-size: 16px;
+                        font-family: Arial;
+                        font-weight: 400;
+                        line-height: 19.20px;
+                        grid-template-columns: 100px 180px 84px;
+                        grid-template-rows: repeat(1, 1fr);
+                        margin-bottom: 12px;
+                        outline: none;
+
+                        // &:focus-visible {
+                        //     box-shadow: -3px 0 0 0 #e0e0e0;
+                        // }
+
+                        label {
+                            background: #F1F2F2;
+                            text-align: left;
+                            line-height: 38px;
+                            border-radius: 4px 0 0 4px;
+                            border: 1px solid #e0e0e0;
+                            padding-left: 8px;
+                            color: #5A5B5D;
+                            margin: 0;
+                        }
+
+                        .metricLabel {
+                            position: absolute;
+                            transform: translateY(-50%);
+                            pointer-events: none;
+                            align-self: end;
+                            visibility: hidden;
+                            // transition: left 0.15s ease;
+                            pointer-events: none;
+                            color: var(--Grey-1, #414244);
+                            font-feature-settings: 'liga' off;
+                            font-family: Arial;
+                            font-size: 16px;
+                            font-style: normal;
+                            font-weight: 400;
+                            // line-height: 150%;
+                        }
+
+                        /* Chrome, Safari, Edge, Opera */
+                        input::-webkit-outer-spin-button,
+                        input::-webkit-inner-spin-button {
+                            -webkit-appearance: none;
+                            margin: 0;
+                        }
+
+                        /* Firefox */
+                        input[type=text] {
+                            -moz-appearance: textfield;
+                        }
+
+                        input {
+                            height: 40px;
+                            padding-left: 16px;
+                            color: var(--Grey-1, #414244);
+                            font-size: 16px;
+                            font-family: Arial;
+                            font-weight: 400;
+                            line-height: 24px;
+                            word-wrap: break-word;
+                            border-radius: 0;
+                            border: 1px solid #e0e0e0;
+                            border-left: 0;
+                            border-right: 0;
+                            // outline-color: rgba(1, 1, 1, .1);
+                            outline: none;
+
+                            &:placeholder {
+                                font-style: normal;
+                            }
+                        }
+
+                        input::placeholder {
+                            font-style: normal;
+                            color: #999999;
+                        }
+
+                        .buttons {
+                            z-index: 999;
+                            display: flex;
+                            justify-content: end;
+                            align-items: center;
+                            border-radius: 0 4px 4px 0;
+                            border: 1px solid #e0e0e0;
+                            border-left: 0;
+                            padding-right: 2px;
+                            gap: 2px;
+
+                            button {
+                                width: 34px;
+                                height: 34px;
+                                border-radius: 4px;
+                                color: white;
+                                font-size: 18px;
+                                font-family: Arial;
+                                font-weight: 400;
+                                word-wrap: break-word;
+                                outline: none;
+                                background-color: #CCC;
+                                @media (max-width: @screen-sm-max) {
+                                    width: 100%;
+                                }
+                                /* Remove the default focus outline */
+                                &:focus {
+                                    visibility: visible;
+                                    /* Ensure the element is visible when focused */
+                                    border: none;
+                                    /* Remove any border */
+                                    box-shadow: none;
+                                    /* Optionally remove box shadow, if any */
+                                }
+
+                                >div {
+                                    cursor: not-allowed;
+                                    pointer-events: none;
+                                }
+
+                                &.selected {
+                                    background-color: #78A22F;
+                                    pointer-events: none;
+                                }
+
+                                &:first-of-type {
+                                    border-radius: 4px 0 0 4px;
+                                }
+
+                                &:last-of-type {
+                                    border-radius: 0 4px 4px 0;
+                                }
+
+                                &.variant {
+                                    &:first-of-type {
+                                        background-color: #78A22F;
+                                    }
+
+                                    &:last-of-type {
+                                        background-color: #E0E0E0;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        #calculatorWaste {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 32px 0 0;
+            width: 360px;
+            position: relative;
+
+            #tooltip {
+                position: absolute;
+                display: none;
+                color: #808080;
+                z-index: 999999;
+                bottom: calc(160%);
+                right: -38px;
+                width: 247px;
+                background: #F1F2F2;
+                text-align: center;
+                padding: 1rem;
+                border-radius: 5px;
+                border-radius: 15px;
+                -moz-border-radius: 15px;
+                -webkit-border-radius: 15px;
+                box-shadow: inset 0 2px 13px #999;
+                -moz-box-shadow: inset 0 2px 13px #999;
+                -webkit-box-shadow: 0 0 3px #999;
+                width: 200px;
+                height: 90px;
+                font-size: 12px;
+                border-color: #E0E0E0;
+
+                &:after {
+                    content: '';
+                    position: absolute;
+                    top: 100%;
+                    left: 73%;
+                    margin-left: -10px;
+                    border-width: 10px;
+                    border-style: solid;
+                    border-color: #f2f2f2 transparent transparent transparent;
+                    -moz-border-radius: 15px;
+                    -moz-box-shadow: inset 0 2px 13px #999;
+                }
+
+                &:hover+#tooltip {
+                    display: block;
+                }
+            }
+
+            .hover-element {
+                display: inline-block;
+                margin: 50px;
+                padding: 10px;
+                background-color: #007BFF;
+                color: white;
+                cursor: pointer;
+            }
+
+            #pdpBulkTooltip {
+                cursor: pointer;
+            }
+
+            .form-group {
+                display: block;
+                margin: 0;
+            }
+
+            .form-group input {
+                padding: 0;
+                height: initial;
+                width: initial;
+                margin-bottom: 0;
+                display: none;
+                cursor: pointer;
+            }
+
+            .form-group label {
+                position: relative;
+                cursor: pointer;
+                margin: 0;
+                width: 20px;
+                height: 20px;
+            }
+
+            .form-group label:before {
+                content: '';
+                border: 1px solid #78A22F;
+                padding: 10px;
+                display: inline-block;
+                position: relative;
+                vertical-align: middle;
+                cursor: pointer;
+                margin: 0;
+                border-radius: 3px;
+            }
+
+            .form-group input:checked+label:before {
+                background-color: #78A22F;
+            }
+
+            .form-group input:checked+label:after {
+                content: '';
+                display: block;
+                position: absolute;
+                top: 4px;
+                left: 8px;
+                width: 6px;
+                height: 14px;
+                border: solid #fff;
+                border-width: 0 2px 2px 0;
+                transform: rotate(45deg);
+            }
+
+            img {
+                position: relative;
+                width: 20px;
+                height: 20px;
+            }
+
+            p {
+                font-weight: 400;
+                letter-spacing: 0;
+                white-space: nowrap;
+                line-height: normal;
+                margin: 0;
+                color: var(--Grey-1, #414244);
+                font-family: Arial;
+                font-size: 16px;
+                font-style: normal;
+            }
+        }
+
+        #calculatorDisplay {
+            margin: 80px 0 0px;
+            position: relative;
+            width: 360px;
+
+            .ellipsis {
+                width: 100px;
+                height: 20px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 24px;
+                color: #5A5B5D;
+                text-align: center;
+
+                &:after {
+                    content: '...';
+                    display: inline-block;
+                    font-family: Arial;
+                    font-size: 14px;
+                    font-weight: 400;
+                    line-height: 16.1px;
+                    text-align: right;
+                    text-underline-position: from-font;
+                    text-decoration-skip-ink: none;
+                    position: absolute;
+                    right: 0;
+                }
+            }
+
+            .ellipsis+label {
+                display: none;
+            }
+
+            .totals {
+                width: 360px;
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+                margin-top: 4rem;
+                margin-bottom: 20px;
+
+                .qty-warning-message {
+                    font-family: Arial, Helvetica, sans-serif;
+                    font-size: 14px;
+                    font-weight: 400;
+                    color: #999999;
+                    margin-bottom: 20px;
+                }
+                .total {
+                    text-align: right;
+                    white-space: nowrap;
+                    border-radius: 5px;
+                    border: 1px solid var(--grey-5-separator-lines, #e0e0e0);
+                    background: var(--grey-6-backgrounds, #f1f2f2);
+                    width: 360px;
+                    height: 60px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    color: var(--Theme-text-body, #5A5B5D);
+                    font-family: Arial;
+                    font-size: 12px;
+                    font-style: normal;
+                    font-weight: 700;
+                    padding: 0 2rem;
+                    line-height: 14px;
+                    letter-spacing: 0.48px;
+                    text-transform: uppercase;
+
+                    #finalCubicYards,
+                    #finalTotal {
+                        color: var(--Grey-1, #414244);
+                        text-align: right;
+                        font-family: Arial;
+                        font-size: 36px;
+                        font-style: normal;
+                        font-weight: 400;
+                        line-height: 100%;
+                    }
+                }
+            }
+
+            .add-to-cart-button {
+                all: unset;
+                box-sizing: border-box;
+                width: 347px;
+                height: 50px;
+                top: 150px;
+                left: 0;
+            }
+
+            .divider {
+                border-bottom: 1px solid #F1F2F2;
+                margin: 10px 0;
+            }
+
+            .lineitem {
+                display: flex;
+                justify-content: space-between;
+
+                .line-item-label {
+                    font-family: Arial, Helvetica, sans-serif;
+                    font-weight: 700;
+                    color: #5a5b5d;
+                    font-size: 14px;
+                    letter-spacing: 0;
+                    white-space: nowrap;
+                }
+
+                .result {
+                    span, label {
+                        font-family: Arial, Helvetica, sans-serif;
+                        font-weight: 400;
+                        font-size: 14px;
+                        color: #5A5B5D;
+                        letter-spacing: 0;
+                    }
+                }
+            }
+
+            .line {
+                width: 345px;
+                height: 1px;
+                object-fit: cover;
+            }
+        }
+    }
+
+    .footer {
+        padding: 0rem 7rem 1rem 7rem;
+        @media (max-width: @screen-sm-max) {
+            padding: 0 1rem;
+        }
+        z-index: 9999;
+
+        #calculatorAddToCart {
+            width: 100%;
+            padding: 12px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            #addToCartSection {
+                padding: 0 44px;
+
+                .col-md-12 {
+                    width: -webkit-fill-available !important;
+                }
+            }
+        }
+    }
+
+    #disclaimer {
+        width: 360px;
+        font-size: 14px;
+        color: #999999;
+    }
+}
+
+// BUTTON ON PDP PAGE
+#materialsCalculators {
+    &.bulk {
+        padding: 0;
+
+        .bulk-calculator {
+            display: grid;
+            grid-template-columns: .05fr 1fr;
+            padding: 16px 0 0 0;
+            gap: 12px;
+
+            .content {
+                display: flex;
+                justify-content: space-between;
+
+                .header {
+                    color: var(--Grey-1, #414244);
+                    margin: 0 0 4px;
+                    margin: 0;
+                }
+
+                .tool-tip {
+                    color: var(--grey-2-text, #5A5B5D);
+                    font-family: Arial;
+                    font-size: 12px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: 14px;
+                }
+            }
+
+            button {
+                border: 1px solid #ccc;
+                color: #414244;
+                background: white;
+                font-family: Arial;
+                font-size: 16px;
+                font-weight: 400;
+                line-height: 19.2px;
+                text-align: left;
+                text-decoration-skip-ink: none;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 8px;
+                padding: 10px 18px;
+                border-radius: 6px;
+                white-space: nowrap;
+                #icons {
+                    margin-top: 5px;
+                }
+            }
+        }
+    }
+}

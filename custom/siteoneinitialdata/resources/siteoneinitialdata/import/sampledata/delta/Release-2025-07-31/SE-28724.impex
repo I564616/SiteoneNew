@@ -1,0 +1,120 @@
+####Staged Start####
+$contentCatalog=siteoneContentCatalog
+$contentCatalogName=SiteOne Content Catalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$productCatalog=siteoneProductCatalog
+$productCatalogName=SiteOne Product Catalog
+$productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$picture=media(code, $contentCV);
+$image=image(code, $contentCV);
+$media=media(code, $contentCV);
+$page=page(uid, $contentCV);
+$contentPage=contentPage(uid, $contentCV);
+$product=product(code, $productCV)
+$category=category(code, $productCV)
+$siteResource=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/contentCatalogs/$contentCatalog
+$productResource=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/productCatalogs/$productCatalog
+$jarResourceCms=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/cockpits/cmscockpit
+$addonExtensionName=siteoneacceleratoraddon
+$medias=medias(code, $contentCV);
+$articleMedia=articleMedia(code, $contentCV);
+$mediaContainer=media(qualifier, $contentCV);
+$siteUid=siteone
+$lang=en
+
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='AccountDashboardPageTemplate'];validComponentTypes(code);compTypeGroup(code)
+;SiteLogo;;;logo
+;HeaderLinks;;;headerlinks
+;SearchBox;;;searchbox
+;MiniCart;;;minicart
+;NavigationBar;;;navigation
+;Footer;;;footer
+;TopHeaderSlot;;;wide
+;Promotion_SlotA;;PromotionImageComponent;
+;Promotion_SlotB;;PromotionImageComponent;
+;Promotion_SlotC;;PromotionImageComponent;
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='accountDashboardPage'];contentSlot(uid,$contentCV)[unique=true]
+;;PromotionA-AccountDashboardPage;Promotion_SlotA;;PromotionSlotA
+;;PromotionB-AccountDashboardPage;Promotion_SlotB;;PromotionSlotB
+;;PromotionC-AccountDashboardPage;Promotion_SlotC;;PromotionSlotC
+
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef)
+;;PromotionSlotA;Partners Program Slot;true;promotionBannerImage1
+;;PromotionSlotB;Personalized Promo Slot;true;promotionBannerImage2
+;;PromotionSlotC;Promotion Slot C;true;promotionBannerImage3
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='accountDashboardPage'];contentSlot(uid,$contentCV)[unique=true]
+;;PromotionA-AccountDashboardPage;Promotion_SlotA;;PromotionSlotA
+;;PromotionB-AccountDashboardPage;Promotion_SlotB;;PromotionSlotB
+;;PromotionC-AccountDashboardPage;Promotion_SlotC;;PromotionSlotC
+
+INSERT_UPDATE PromotionImageComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef;urlLink;$picture[lang=$lang]
+;;promotionBannerImage1;promotion image Component1;promotionBannerImage1;;
+;;promotionBannerImage2;promotion image Component2;promotionBannerImage2;;
+;;promotionBannerImage3;promotion image Component3;promotionBannerImage3;;
+
+############ Account Dashboard Ends ##############
+
+####Staged end####
+
+
+####Online Start####
+$contentCatalog=siteoneContentCatalog
+$contentCatalogName=SiteOne Content Catalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Online])[default=$contentCatalog:Online]
+$productCatalog=siteoneProductCatalog
+$productCatalogName=SiteOne Product Catalog
+$productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Online'])[unique=true,default=$productCatalog:Online]
+$picture=media(code, $contentCV);
+$image=image(code, $contentCV);
+$media=media(code, $contentCV);
+$page=page(uid, $contentCV);
+$contentPage=contentPage(uid, $contentCV);
+$product=product(code, $productCV)
+$category=category(code, $productCV)
+$siteResource=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/contentCatalogs/$contentCatalog
+$productResource=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/productCatalogs/$productCatalog
+$jarResourceCms=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/cockpits/cmscockpit
+$addonExtensionName=siteoneacceleratoraddon
+$medias=medias(code, $contentCV);
+$articleMedia=articleMedia(code, $contentCV);
+$mediaContainer=media(qualifier, $contentCV);
+$siteUid=siteone
+$lang=en
+
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='AccountDashboardPageTemplate'];validComponentTypes(code);compTypeGroup(code)
+;SiteLogo;;;logo
+;HeaderLinks;;;headerlinks
+;SearchBox;;;searchbox
+;MiniCart;;;minicart
+;NavigationBar;;;navigation
+;Footer;;;footer
+;TopHeaderSlot;;;wide
+;Promotion_SlotA;;PromotionImageComponent;
+;Promotion_SlotB;;PromotionImageComponent;
+;Promotion_SlotC;;PromotionImageComponent;
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='accountDashboardPage'];contentSlot(uid,$contentCV)[unique=true]
+;;PromotionA-AccountDashboardPage;Promotion_SlotA;;PromotionSlotA
+;;PromotionB-AccountDashboardPage;Promotion_SlotB;;PromotionSlotB
+;;PromotionC-AccountDashboardPage;Promotion_SlotC;;PromotionSlotC
+
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef)
+;;PromotionSlotA;Partners Program Slot;true;promotionBannerImage1
+;;PromotionSlotB;Personalized Promo Slot;true;promotionBannerImage2
+;;PromotionSlotC;Promotion Slot C;true;promotionBannerImage3
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='accountDashboardPage'];contentSlot(uid,$contentCV)[unique=true]
+;;PromotionA-AccountDashboardPage;Promotion_SlotA;;PromotionSlotA
+;;PromotionB-AccountDashboardPage;Promotion_SlotB;;PromotionSlotB
+;;PromotionC-AccountDashboardPage;Promotion_SlotC;;PromotionSlotC
+
+INSERT_UPDATE PromotionImageComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef;urlLink;$picture[lang=$lang]
+;;promotionBannerImage1;promotion image Component1;promotionBannerImage1;;
+;;promotionBannerImage2;promotion image Component2;promotionBannerImage2;;
+;;promotionBannerImage3;promotion image Component3;promotionBannerImage3;;
+
+############ Account Dashboard Ends ##############
+
+####Online end####

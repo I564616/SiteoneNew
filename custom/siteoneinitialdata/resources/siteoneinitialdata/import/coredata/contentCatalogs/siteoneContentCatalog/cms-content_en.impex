@@ -1,0 +1,90 @@
+# -----------------------------------------------------------------------
+# [y] hybris Platform
+#
+# Copyright (c) 2017 SAP SE or an SAP affiliate company.  All rights reserved.
+#
+# This software is the confidential and proprietary information of SAP
+# ("Confidential Information"). You shall not disclose such Confidential
+# Information and shall use it only in accordance with the terms of the
+# license agreement you entered into with SAP.
+# -----------------------------------------------------------------------
+#
+# Import CMS content for the SiteOne Website
+#
+
+$contentCatalog=siteoneContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+
+# Language
+$lang=en
+
+# Content Pages
+UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];title[lang=$lang];isIndexable[default=false];contentTags;description
+ ;;account;"My Account";
+ ;;add-edit-address;"Add/Edit Address";
+ ;;address-book;"My Delivery Addresses";
+ ;;cartPage;"Your Shopping Cart";
+ ;;checkout-login;"Proceed to Checkout";
+ ;;faq;"FAQs";true;Questions,Answers;"The content is added via a custom post type, so you have full access to the tinyMCE editor. This allows you to easily add images, text, and links to your random content.";
+ ;;siteonehomepage;"Homepage";true;Homepage;"The content is added via a custom post type, so you have full access to the tinyMCE editor. This allows you to easily add images, text, and links to your random content.";
+ ;;importCSVSavedCartPage;"Import Saved Cart";
+ ;;login;"Login";
+ ;;multiStepCheckoutSummaryPage;"Order Summary";
+ ;;my-quotes;"Quotes";
+ ;;my-replenishment-cancel-confirmation;"Replenishment Cancel Confirmation";
+ ;;my-replenishment-details;"Replenishment Order Details";
+ ;;my-replenishment-orders;"Replenishment Orders";
+ ;;notFound;"Not Found";
+ ;;order;"Order Details";
+ ;;orderConfirmationPage;"Order Confirmation";
+ ;;orders;"Order History";
+ ;;payment-details;"Payment Details";
+ ;;profile;"Profile";
+ ;;quickOrderPage;"Quick Order";
+ ;;quoteEditPage;"Quote Edit";
+ ;;replenishmentConfirmationPage;"Replenishment Confirmation";
+ ;;saved-carts;"Saved Carts";
+ ;;savedCartDetailsPage;"Saved Cart Details";
+ ;;searchAdvancedEmpty;"Order Forms";
+ ;;searchEmpty;"No Results";
+ ;;storefinderPage;"Find a Lawn & Garden Supply Store Near Me";
+ ;;termsAndCondition;"Terms and Conditions";true;Conditions,Questions;"The content is added via a custom post type, so you have full access to the tinyMCE editor. This allows you to easily add images, text, and links to your random content.";
+ ;;update-email;"Update Email";
+ ;;update-profile;"Update Profile";
+ ;;updatePassword;"Update Forgotten Password";
+ ;;storeDirectoryStateListPage;"Find an Irrigation & Landscaping Supply Store";
+ ;;storeDirectoryListPage;"Store Directory List";
+ ;;storeDirectoryCityPage;"Store Directory City";
+ ;;accountDashboardPage;"Account Dashboard";
+ ;;shipToPage;"All Ship-Tos";
+ ;;accountOverviewPage;"Account Overview Page";
+ ;;setPasswordPage;"Set Password";
+ ;;contactUs;"Contact Us"
+ 
+
+UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];title[lang=$lang];isIndexable[default=false];contentTags;description
+;;openorderspage;"Open Orders";
+;;invoicelistingpage;"Invoices";
+;;invoicedetailspage;"Invoice Detail";
+;;purchasedProductPage;"Purchased Products";
+;;my-stores;"My Stores";
+;;assemblyPage;"Create New Assembly";
+;;editAssemblyPage;"Edit Assembly";
+;;detailsAssemblyPage;"Assembly Detail";
+;;accountinfo;"Account Information";
+;;saved-carts;"Saved Carts";
+;;savedListPage;"Create New List";
+;;editSavedListPage;"Edit List";
+;;detailsSavedListPage;"List Detail";
+;;siteoneupdate-profile;"Contact Information";
+;;siteoneupdate-preference;"Preferences";
+#;;manageUsergroups;"Manage Users";
+#;;my-company;"Manage Users";
+;;sds-search;"Safety Data Sheets / Labels Search";
+#;;organizationManagement;"Create New User";
+
+#####Spanish Translation
+
+INSERT_UPDATE SiteoneEventTypeGroupHeaderComponent;$contentCV[unique=true];uid[unique=true];title[lang=$lang];typeContent[lang=$lang]
+;;SiteoneHeaderComponent;See What We're Up To;SiteOne holds hundreds of events every year designed to support your business. Some events are educational, earning you continuing education credits (CEUs), and some are just for fun. You can find all your local event information here.
+

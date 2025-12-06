@@ -1,0 +1,2 @@
+INSERT_UPDATE OAuthClientDetails;clientId[unique=true]    		       ;accessTokenValiditySeconds 
+                                ;e2cd95cc-19a7-4cd5-b856-1461a863f7f1  ;1800			           

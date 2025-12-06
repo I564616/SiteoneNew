@@ -1,0 +1,216 @@
+## messageSource=classpath:/siteonecore/messages/email-eWalletNotification_$lang.properties
+#macro( genHtmlBoldFont $text )
+<font color="#414a4f" size="2" ><b>$text</b></font>
+#end
+#macro(genHtmlLinkStartTag $url)
+<a href="$url"><font color="#666666">
+#end
+#macro(genHtmlLinkEndTag)
+</font></a>
+#end
+#macro(genHtmlLink $url $textColor $bodyContent)
+<a href="$url"><font color="$textColor">$bodyContent</font></a>
+#end
+<html>
+	<head>
+<style>
+body{
+font-family:arial;
+}
+</style>
+    </head>
+	<body bgcolor="#ffffff">
+		<table width="550"  align="center" cellpadding="0" cellspacing="0">
+			<tr>
+				<td align="center" valign="top"  style="border: 1px solid #51585c;">
+					<table width="610" border="0" align="center" cellpadding="0" cellspacing="0">
+						<tr>
+							<td align="center" valign="top">
+								<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="padding:15px;" valign="left">
+											<a style="text-decoration:none;" href="${ctx.baseThemeUrl}">
+												<img title="SiteoneLogo" src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/SiteoneLogo.jpg" alt="SiteoneLogo" style="outline:0;border:none;">
+											</a>
+										</td>
+											<td style="padding:20px;" align="right">
+												<span class="col-xs-6 col-md-12">
+													<a style="text-decoration:none;" href="https://www.facebook.com/SiteOneLandscape/">
+														<img src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/Print_facebook_color.png" alt="Facebook" title="Facebook" style="outline:0;border:none;" width="30" height="30">
+														</a>&nbsp;
+														
+														<a style="text-decoration:none;" href="https://www.instagram.com/siteonesupply/">
+															<img src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/Print_instagram_color.png" alt="Instagram" title="Instagram" style="outline:0;border:none;" width="30" height="30">
+															</a>&nbsp;
+															
+															<a style="text-decoration:none;" href="https://x.com/SiteOneSupply">
+																<img src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/Print_twitter_color.png" alt="X" title="X" style="outline:0;border:none;" width="30" height="30">
+																</a>
+															</span>
+														</td>
+													</tr>
+													<tr>
+														<td colspan="2">
+															<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+																<tr>
+																	<td width="100%" colspan="4" height="10" align="left" bgcolor="#CCCCCC" style="padding:20px 15px 0px 15px;font-size:14pt;">
+																		<font color="#000000" face="Arial">
+																			<b>${ctx.firstName},</b><br>
+																		</font>
+																	</td>
+																</tr>
+																<tr>
+																	<td width="100%" colspan="4" height="20" align="left" bgcolor="#CCCCCC" style="padding:10px 15px 20px 15px;">
+																		<font color="#000000" face="Arial" style="font-size:18pt;">
+																			#if(${ctx.operation} == "ADD")
+																				<b>${ctx.messages.addInfo}</b>
+																			#end
+																			#if(${ctx.operation} == "EDIT")
+																				<b>${ctx.messages.editInfo}</b>
+																			#end
+																			#if(${ctx.operation} == "DELETE")
+																				<b>${ctx.messages.deleteInfo}</b>
+																			#end
+																			#if(${ctx.operation} == "ACCESSTM")
+																				<b>${ctx.messages.privilegeInfo}</b>
+																			#end
+																			#if(${ctx.operation} == "ACCESSADMIN")
+																				<b>${ctx.messages.privilegeInfo}</b>
+																			#end
+																		</font>
+																	</td>
+																</tr>
+																<tr>
+																	<td colspan="2">&nbsp;</td>
+																</tr>
+																<tr>
+																	<td style="padding-left:20px;" width="100%" colspan="4">
+																		#if(${ctx.operation} == "ADD")
+																			<p>
+																				<font style="font-family:Arial;font-weight:regular;font-size:16px;color:#565656;">${ctx.messages.getMessage('addConfirmation',  ${ctx.cardType},${ctx.cardNumber})}</font>
+																			</p>
+																		#end
+																		#if(${ctx.operation} == "EDIT")
+																			<p>
+																				<font style="font-family:Arial;font-weight:regular;font-size:16px;color:#565656;">${ctx.messages.getMessage('editConfirmation',  ${ctx.cardType},${ctx.cardNumber})}</font>
+																			</p>
+																		#end
+																		#if(${ctx.operation} == "DELETE")
+																			<p>
+																				<font style="font-family:Arial;font-weight:regular;font-size:16px;color:#565656;">${ctx.messages.getMessage('deleteConfirmation', ${ctx.cardType},${ctx.cardNumber})}</font>
+																			</p>
+																		#end
+																		#if(${ctx.operation} == "ACCESSTM")
+																			<p>
+																				<font style="font-family:Arial;font-weight:regular;font-size:16px;color:#565656;">${ctx.messages.privilegeConfirmationTM}</font>
+																			</p>
+																			<tr>
+																				<td style="padding: 20px 0px 0px 20px;"><b>${ctx.messages.nickName}<b></td>
+																				<td style="width: 69%;padding: 20px 0px 0px 0px;">${ctx.nickName}</td>
+																			</tr>
+																			<tr>
+																				<td style="padding: 10px 0px 10px 20px;"> <b>${ctx.messages.crediCard}</b></td>
+																				<td style="width: 67%;">${ctx.cardType} ${ctx.cardNumber}</td>
+																			</tr>
+																		#end
+																		#if(${ctx.operation} == "ACCESSADMIN")
+																			<p>
+																				<font style="font-family:Arial;font-weight:regular;font-size:16px;color:#565656;">${ctx.messages.privilegeConfirmationAdmin}</font>
+																			</p>
+																			<tr>
+																				<td style="padding: 20px 0px 0px 20px;"><b>${ctx.messages.nickName}<b></td>
+																				<td style="width: 69%;padding: 20px 0px 0px 0px;">${ctx.nickName}</td>
+																			</tr>
+																			<tr>
+																				<td style="padding: 10px 0px 10px 20px;"> <b>${ctx.messages.crediCard}</b></td>
+																				<td style="width: 67%;">${ctx.cardType} ${ctx.cardNumber}</td>
+																			</tr>
+																		#end
+																		
+																	</td>
+																</tr>
+																<tr>
+																	<td colspan="2">&nbsp;</td>
+																</tr>
+																<tr>
+																	<td style="padding-left:20px;" width="100%" colspan="4">
+																		#if(${ctx.operation} == "ADD" || ${ctx.operation} == "EDIT" || ${ctx.operation} == "DELETE")
+																			<p>
+																				<font style="font-family:Arial;font-weight:regular;font-size:16px;color:#565656;">
+																				${ctx.messages.contactUsMessage}
+																				<a href="${ctx.baseUrl}/my-account/account-dashboard" style="color:#50a0c5">${ctx.messages.contactUs}</a>
+																				${ctx.messages.contactUsMessage1}</font>
+																			</p>
+																		#end
+																		#if(${ctx.operation} == "ACCESSTM")
+																			<p>
+																				<font style="font-family:Arial;font-weight:regular;font-size:16px;color:#565656;">
+																				${ctx.messages.privilegeContactUsTM}</font>
+																			</p>
+																		#end
+																		#if(${ctx.operation} == "ACCESSADMIN")
+																			<p>
+																				<font style="font-family:Arial;font-weight:regular;font-size:16px;color:#565656;">
+																				${ctx.messages.privilegeContactUsAdmin}
+																				<a href="${ctx.baseUrl}/my-account/account-dashboard" style="color:#50a0c5">${ctx.messages.contactUs}</a>
+																				${ctx.messages.contactUsMessage1}</font>
+																			</p>
+																		#end
+																	</td>
+																</tr>
+																<tr>
+																	<td colspan="2">&nbsp;</td>
+																</tr>
+																<tr>
+																	<td colspan="6" style="padding:10px 20px;">${ctx.messages.complimentaryClosing}  
+																		<br>
+																		<span style="font-weight: bold; font-style: italic;">${ctx.messages.signature}</span>
+																	</td>
+																</tr>
+																<tr>
+																	<td colspan="2">&nbsp;</td>
+																</tr>
+																<tr>
+																	<td colspan="2" style="padding:0px 15px;">
+																		<hr color="black" align="center" width="100%">
+																	</td>
+																</tr>								
+																<tr>
+																	<td colspan="2" height="0" align="right" valign="middle">
+																			<tr>
+																				<td colspan="2" style="padding: 10px;margin: 0px;font-size:11pt;font-family:Arial;">
+																					<center>
+																						<font color="#000">${ctx.messages.toensurethatyoucontinuetoreceiveyouremails}<br><a href="mailto:${ctx.messages.infoEmailAddress}">${ctx.messages.infoEmailAddress}</a> ${ctx.messages.afterinfoEmailAddress}</font>
+																					</center>
+																				</td>
+																			</tr>
+																			<tr>
+																				<td colspan="2" style="padding: 10px;margin: 0px;font-size:11pt;font-family:Arial;">
+																					<center>
+																						<font color="#000">${ctx.messages.siteonerights}<br/>${ctx.messages.address}</font>
+																					</center>
+																				</td>
+																			</tr>
+																			<tr>												
+																				<td colspan="2" style="padding: 10px 10px 30px 10px;margin: 0px;font-size:11pt;font-family:Arial;">
+																					<center>
+																						<font ><a href="${ctx.baseThemeUrl}/privacypolicy">${ctx.messages.privacyPolicy}</a> | <a href="${ctx.baseThemeUrl}mailMediaUrl">${ctx.messages.viewinBrowser}</a></font>
+																					</center>
+																				</td>
+																			</tr>
+																	
+																	</td>
+																</tr>
+																
+															</table>
+														</td>
+													</tr>
+												</table>
+											</td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+						</table>
+					</body>
+				</html>

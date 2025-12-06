@@ -1,0 +1,287 @@
+##Primary Hierarchy
+
+$supercategories=supercategories( code, catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Staged']));;;;;;;;;
+$catalogVersion=catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Staged'])[unique=true,default='siteoneProductCatalog:Staged'];;;;;;;;;
+;;;;;;;;;
+INSERT_UPDATE Category;code[unique=true];name[lang=en];$supercategories;$catalogVersion;allowedPrincipals(uid)
+##L2s
+;PH1618;Color;PH16;siteoneProductCatalog:Staged;admingroup 
+;PH1621;Accents;PH16;siteoneProductCatalog:Staged;admingroup 
+
+
+
+##L3s
+##Flowers, Grasses & Groundcovers
+;PH1618110;Annuals;PH1618;siteoneProductCatalog:Staged;admingroup 
+;PH1618111;Edibles;PH1618;siteoneProductCatalog:Staged;admingroup 
+;PH1618114;Perennials;PH1618;siteoneProductCatalog:Staged;admingroup 
+;PH1618116;Patio Color;PH1618;siteoneProductCatalog:Staged;admingroup 
+
+;PH1621110;Grasses;PH1621;siteoneProductCatalog:Staged;admingroup 
+;PH1621111;Groundcovers;PH1621;siteoneProductCatalog:Staged;admingroup 
+;PH1621112;Vines;PH1621;siteoneProductCatalog:Staged;admingroup 
+
+#needs to be removed
+#;PH1618112;Grasses;PH1618;siteoneProductCatalog:Staged;admingroup 
+#;PH1618113;Groundcovers;PH1618;siteoneProductCatalog:Staged;admingroup 
+#;PH1618115;Vines;PH1618;siteoneProductCatalog:Staged;admingroup 
+ 
+##Sales Hierarchy
+
+$supercategories=supercategories( code, catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Staged']));;;;;;;;;
+$catalogVersion=catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Staged'])[unique=true,default='siteoneProductCatalog:Staged'];;;;;;;;;
+;;;;;;;;;
+INSERT_UPDATE Category;code[unique=true];name[lang=en];$supercategories;$catalogVersion;allowedPrincipals(uid)
+
+;SH1618;Color;SH16;siteoneProductCatalog:Staged;admingroup 
+;SH1621;Accents;SH16;siteoneProductCatalog:Staged;admingroup 
+
+;SH1618110;Annuals;SH1618;siteoneProductCatalog:Staged;admingroup 
+;SH1618111;Edibles;SH1618;siteoneProductCatalog:Staged;admingroup 
+;SH1618114;Perennials;SH1618;siteoneProductCatalog:Staged;admingroup 
+;SH1618116;Patio Color;SH1618;siteoneProductCatalog:Staged;admingroup 
+
+;SH1621110;Grasses;SH1621;siteoneProductCatalog:Staged;admingroup 
+;SH1621111;Groundcovers;SH1621;siteoneProductCatalog:Staged;admingroup 
+;SH1621112;Vines;SH1621;siteoneProductCatalog:Staged;admingroup 
+
+
+
+##----------------------------------------------------------------------------------------------
+
+##primary hierarchy - sales hierarchy mapping
+$productCatalog=siteoneProductCatalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+INSERT_UPDATE category;code[unique=true];salescategorymapping;$catalogVersion;
+;PH1621;SH1621;
+;PH1621110;SH1621110;
+;PH1621111;SH1621111;
+;PH1621112;SH1621112;
+
+
+## ---c
+#Classifying;Class;creation;;;;;;;
+#-----------------------------;;;;;;;;;
+INSERT_UPDATE classificationclass;code[unique=true];name[lang=en];catalogVersion(catalog(id),version);;;;;
+;CH01_1621;Product Details;siteoneClassification:1;;;;;
+;CH01_1621110;Product Details;siteoneClassification:1;;;;;
+;CH01_1621111;Product Details;siteoneClassification:1;;;;;
+;CH01_1621112;Product Details;siteoneClassification:1;;;;;
+
+
+##d
+##-------------------------------------------------------------------------	   
+$classCatalogVersion=catalogversion(catalog(id[default='siteoneClassification']),version[default='1'])[unique=true,default='siteoneClassification:1']
+$classSystemVersion=systemversion(catalog(id[default='siteoneClassification']),version[default='1'])[unique=true,default='siteoneClassification:1']
+INSERT_UPDATE classAttributeAssignment;classificationAttribute(code,$classSystemVersion)[unique=true];attributeType(code);classificationClass(code,$classCatalogVersion)[unique=true];attributeValues(code)[mode=append];multiValued(code);mandatory(code);formatDefinition
+
+ #Grasses
+	 ;nrsryType;string;CH01_1621110;;false;false;30;
+	 ;nrsryForm;string;CH01_1621110;;false;false;30;
+	 ;nrsrySize;string;CH01_1621110;;false;false;30;
+	 ;nrsryPackage;string;CH01_1621110;;false;false;30;
+	 ;nrsryItem;string;CH01_1621110;;false;false;30;
+	 ;nrsryGenus;string;CH01_1621110;;false;false;30;
+	 ;nrsrySpecies;string;CH01_1621110;;false;false;30;
+	 ;nrsrySeries;string;CH01_1621110;;false;false;30;
+	 ;nrsryCultivar;string;CH01_1621110;;false;false;30;
+	 ;nrsryBrand;string;CH01_1621110;;false;false;30;
+	 ;nrsryCommonName;string;CH01_1621110;;false;false;30;
+	 ;nrsryGrade;string;CH01_1621110;;false;false;30;
+	 ;nrsryCalliperSellable;string;CH01_1621110;;false;false;30;	
+	 ;nrsryHeightSellable;string;CH01_1621110;;false;false;30;	
+	 ;nrsryWidthSellable;string;CH01_1621110;;false;false;30;	
+	 ;nrsryUOM;string;CH01_1621110;;false;false;30;	
+	 ;nrsryContainerSize;string;CH01_1621110;;false;false;30;
+     ;nrsryPatentNumber;string;CH01_1621110;;false;false;30;		 
+	 ;nrsryTrademarkBrand;string;CH01_1621110;;false;false;30;
+	 ;nrsryTrademarkItem;string;CH01_1621110;;false;false;30;	
+	 ;nrsryJDABookingGroup;string;CH01_1621110;;false;false;30;	
+	 ;nrsryHardinessZoneMin;string;CH01_1621110;;false;false;30;	
+	 ;nrsryHardinessZoneMax;string;CH01_1621110;;false;false;30;	
+	 ;nrsryGrowthHeightMin;string;CH01_1621110;;false;false;30;	
+	 ;nrsryGrowthHeightMax;string;CH01_1621110;;false;false;30;	
+	 ;nrsryGrowthWidthMin;string;CH01_1621110;;false;false;30;	
+	 ;nrsryGrowthWidthMax;string;CH01_1621110;;false;false;30;	
+	 ;nrsrySpacing;string;CH01_1621110;;false;false;30;	
+	 ;nrsryGrowthHabit;string;CH01_1621110;;false;false;30;	
+	 ;nrsryGrowthRate;string;CH01_1621110;;false;false;30;	
+	 ;nrsrySoilMoisture;string;CH01_1621110;;false;false;30;	
+	 ;nrsrySoilAcidity;string;CH01_1621110;;false;false;30;	
+	 ;nrsryExposure;string;CH01_1621110;;false;false;30;	
+	 ;nrsryLandscapeUse;string;CH01_1621110;;false;false;30;	
+	 ;nrsryMaintenance;string;CH01_1621110;;false;false;30;	
+	 ;nrsryAnimalResistance;string;CH01_1621110;;false;false;30;	
+	 ;nrsryTolerance;string;CH01_1621110;;false;false;30;	
+	 ;nrsrySeasonOfInterest;string;CH01_1621110;;false;false;30;	
+	 ;nrsryFlowerColor;string;CH01_1621110;;false;false;30;	
+	 ;nrsryBloomTime;string;CH01_1621110;;false;false;30;	
+	 ;nrsryFruit;string;CH01_1621110;;false;false;30;	
+	 ;nrsryEdible;string;CH01_1621110;;false;false;30;
+     ;nrsryChillTimeRequirements;string;CH01_1621110;;false;false;30;
+     
+     	 #Grasses
+	 ;nrsryType;string;CH01_1621111;;false;false;30;
+	 ;nrsryForm;string;CH01_1621111;;false;false;30;
+	 ;nrsrySize;string;CH01_1621111;;false;false;30;
+	 ;nrsryPackage;string;CH01_1621111;;false;false;30;
+	 ;nrsryItem;string;CH01_1621111;;false;false;30;
+	 ;nrsryGenus;string;CH01_1621111;;false;false;30;
+	 ;nrsrySpecies;string;CH01_1621111;;false;false;30;
+	 ;nrsrySeries;string;CH01_1621111;;false;false;30;
+	 ;nrsryCultivar;string;CH01_1621111;;false;false;30;
+	 ;nrsryBrand;string;CH01_1621111;;false;false;30;
+	 ;nrsryCommonName;string;CH01_1621111;;false;false;30;
+	 ;nrsryGrade;string;CH01_1621111;;false;false;30;
+	 ;nrsryCalliperSellable;string;CH01_1621111;;false;false;30;	
+	 ;nrsryHeightSellable;string;CH01_1621111;;false;false;30;	
+	 ;nrsryWidthSellable;string;CH01_1621111;;false;false;30;	
+	 ;nrsryUOM;string;CH01_1621111;;false;false;30;	
+	 ;nrsryContainerSize;string;CH01_1621111;;false;false;30;
+     ;nrsryPatentNumber;string;CH01_1621111;;false;false;30;		 
+	 ;nrsryTrademarkBrand;string;CH01_1621111;;false;false;30;
+	 ;nrsryTrademarkItem;string;CH01_1621111;;false;false;30;	
+	 ;nrsryJDABookingGroup;string;CH01_1621111;;false;false;30;	
+	 ;nrsryHardinessZoneMin;string;CH01_1621111;;false;false;30;	
+	 ;nrsryHardinessZoneMax;string;CH01_1621111;;false;false;30;	
+	 ;nrsryGrowthHeightMin;string;CH01_1621111;;false;false;30;	
+	 ;nrsryGrowthHeightMax;string;CH01_1621111;;false;false;30;	
+	 ;nrsryGrowthWidthMin;string;CH01_1621111;;false;false;30;	
+	 ;nrsryGrowthWidthMax;string;CH01_1621111;;false;false;30;	
+	 ;nrsrySpacing;string;CH01_1621111;;false;false;30;	
+	 ;nrsryGrowthHabit;string;CH01_1621111;;false;false;30;	
+	 ;nrsryGrowthRate;string;CH01_1621111;;false;false;30;	
+	 ;nrsrySoilMoisture;string;CH01_1621111;;false;false;30;	
+	 ;nrsrySoilAcidity;string;CH01_1621111;;false;false;30;	
+	 ;nrsryExposure;string;CH01_1621111;;false;false;30;	
+	 ;nrsryLandscapeUse;string;CH01_1621111;;false;false;30;	
+	 ;nrsryMaintenance;string;CH01_1621111;;false;false;30;	
+	 ;nrsryAnimalResistance;string;CH01_1621111;;false;false;30;	
+	 ;nrsryTolerance;string;CH01_1621111;;false;false;30;	
+	 ;nrsrySeasonOfInterest;string;CH01_1621111;;false;false;30;	
+	 ;nrsryFlowerColor;string;CH01_1621111;;false;false;30;	
+	 ;nrsryBloomTime;string;CH01_1621111;;false;false;30;	
+	 ;nrsryFruit;string;CH01_1621111;;false;false;30;	
+	 ;nrsryEdible;string;CH01_1621111;;false;false;30;
+     ;nrsryChillTimeRequirements;string;CH01_1621111;;false;false;30;
+     
+     #Grasses
+	 ;nrsryType;string;CH01_1621112;;false;false;30;
+	 ;nrsryForm;string;CH01_1621112;;false;false;30;
+	 ;nrsrySize;string;CH01_1621112;;false;false;30;
+	 ;nrsryPackage;string;CH01_1621112;;false;false;30;
+	 ;nrsryItem;string;CH01_1621112;;false;false;30;
+	 ;nrsryGenus;string;CH01_1621112;;false;false;30;
+	 ;nrsrySpecies;string;CH01_1621112;;false;false;30;
+	 ;nrsrySeries;string;CH01_1621112;;false;false;30;
+	 ;nrsryCultivar;string;CH01_1621112;;false;false;30;
+	 ;nrsryBrand;string;CH01_1621112;;false;false;30;
+	 ;nrsryCommonName;string;CH01_1621112;;false;false;30;
+	 ;nrsryGrade;string;CH01_1621112;;false;false;30;
+	 ;nrsryCalliperSellable;string;CH01_1621112;;false;false;30;	
+	 ;nrsryHeightSellable;string;CH01_1621112;;false;false;30;	
+	 ;nrsryWidthSellable;string;CH01_1621112;;false;false;30;	
+	 ;nrsryUOM;string;CH01_1621112;;false;false;30;	
+	 ;nrsryContainerSize;string;CH01_1621112;;false;false;30;
+     ;nrsryPatentNumber;string;CH01_1621112;;false;false;30;		 
+	 ;nrsryTrademarkBrand;string;CH01_1621112;;false;false;30;
+	 ;nrsryTrademarkItem;string;CH01_1621112;;false;false;30;	
+	 ;nrsryJDABookingGroup;string;CH01_1621112;;false;false;30;	
+	 ;nrsryHardinessZoneMin;string;CH01_1621112;;false;false;30;	
+	 ;nrsryHardinessZoneMax;string;CH01_1621112;;false;false;30;	
+	 ;nrsryGrowthHeightMin;string;CH01_1621112;;false;false;30;	
+	 ;nrsryGrowthHeightMax;string;CH01_1621112;;false;false;30;	
+	 ;nrsryGrowthWidthMin;string;CH01_1621112;;false;false;30;	
+	 ;nrsryGrowthWidthMax;string;CH01_1621112;;false;false;30;	
+	 ;nrsrySpacing;string;CH01_1621112;;false;false;30;	
+	 ;nrsryGrowthHabit;string;CH01_1621112;;false;false;30;	
+	 ;nrsryGrowthRate;string;CH01_1621112;;false;false;30;	
+	 ;nrsrySoilMoisture;string;CH01_1621112;;false;false;30;	
+	 ;nrsrySoilAcidity;string;CH01_1621112;;false;false;30;	
+	 ;nrsryExposure;string;CH01_1621112;;false;false;30;	
+	 ;nrsryLandscapeUse;string;CH01_1621112;;false;false;30;	
+	 ;nrsryMaintenance;string;CH01_1621112;;false;false;30;	
+	 ;nrsryAnimalResistance;string;CH01_1621112;;false;false;30;	
+	 ;nrsryTolerance;string;CH01_1621112;;false;false;30;	
+	 ;nrsrySeasonOfInterest;string;CH01_1621112;;false;false;30;	
+	 ;nrsryFlowerColor;string;CH01_1621112;;false;false;30;	
+	 ;nrsryBloomTime;string;CH01_1621112;;false;false;30;	
+	 ;nrsryFruit;string;CH01_1621112;;false;false;30;	
+	 ;nrsryEdible;string;CH01_1621112;;false;false;30;
+     ;nrsryChillTimeRequirements;string;CH01_1621112;;false;false;30;	
+     
+     
+##-------------------------------------
+##--e
+
+
+$productCatalog=siteoneProductCatalog
+$catalogVersion=catalogversion(catalog(id[default='siteoneProductCatalog']),version[default='Staged'])[unique=true,default='siteoneProductCatalog:Staged']
+$classCatalogVersion=catalogversion(catalog(id[default='siteoneClassification']),version[default='1'])[unique=true,default='siteoneClassification:1']
+$supercategories=source(code, $classCatalogVersion)[unique=true]
+$categories=target(code, $catalogVersion)[unique=true]
+INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories
+;PH1621;CH01_1621
+;PH1621110;CH01_1621110
+;PH1621111;CH01_1621111
+;PH1621112;CH01_1621112
+
+##-------------------------------------
+##--e with online catalog version 
+$productCatalog=siteoneProductCatalog
+$catalogVersion=catalogversion(catalog(id[default='siteoneProductCatalog']),version[default='Online'])[unique=true,default='siteoneProductCatalog:Online']
+$classCatalogVersion=catalogversion(catalog(id[default='siteoneClassification']),version[default='1'])[unique=true,default='siteoneClassification:1']
+$supercategories=source(code, $classCatalogVersion)[unique=true]
+$categories=target(code, $catalogVersion)[unique=true]
+INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories	 
+;PH1621;CH01_1621
+;PH1621110;CH01_1621110
+;PH1621111;CH01_1621111
+;PH1621112;CH01_1621112
+
+##-----------------------------------------------------------------------------------
+##--f
+
+$classCatalogVersion=catalogversion(catalog(id[default='siteoneClassification']),version[default='1'])[unique=true,default='siteoneClassification:1']
+$supercategories=source(code, $classCatalogVersion)[unique=true]
+$categories=target(code, $classCatalogVersion)[unique=true]
+INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories
+;CH01_1621110;CH01_1621;	 		 
+;CH01_1621111;CH01_1621;
+;CH01_1621112;CH01_1621;	 		 
+
+
+#--navigation nodes-------------------------------
+
+#CMS Impexes for category nav nodes in header-------------------------
+
+$contentCatalog=siteoneContentCatalog
+$contentCatalogName=SiteOne Content Catalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$productCatalog=siteoneProductCatalog
+$productCatalogName=SiteOne Product Catalog
+$productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$picture=media(code, $contentCV);
+$image=image(code, $contentCV);
+$media=media(code, $contentCV);
+$page=page(uid, $contentCV);
+$contentPage=contentPage(uid, $contentCV);
+$product=product(code, $productCV)
+$category=category(code, $productCV)
+$siteResource=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/contentCatalogs/$contentCatalog
+$productResource=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/productCatalogs/$productCatalog
+$jarResourceCms=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/cockpits/cmscockpit
+$addonExtensionName=siteoneacceleratoraddon
+$medias=medias(code, $contentCV);
+$articleMedia=articleMedia(code, $contentCV);
+$mediaContainer=media(qualifier, $contentCV);
+$siteUid=siteone
+$lang=en
+
+INSERT_UPDATE GlobalProductNavigationNode;$contentCV[unique=true];uid[unique=true];name;parent(uid, $contentCV);category(code, $productCV);&nodeRef;sequenceNumber;
+;;NurseryAccentsNavNode;NurseryAccentsNavNode;NurseryNavNode;SH1621;NurseryAccentsNavNode;11;
+
+;;NurseryAccentsGrassesNavNode;NurseryAccentsGrassesNavNode;NurseryAccentsNavNode;SH1621110;NurseryAccentsGrassesNavNode;1;
+;;NurseryAccentsGroundcoversNavNode;NurseryAccentsGroundcoversNavNode;NurseryAccentsNavNode;SH1621111;NurseryAccentsGroundcoversNavNode;2;
+;;NurseryAccentsVinesNavNode;NurseryAccentsVinesNavNode;NurseryAccentsNavNode;SH1621112;NurseryAccentsVinesNavNode;3;
+

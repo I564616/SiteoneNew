@@ -1,0 +1,6 @@
+INSERT_UPDATE ServicelayerJob; code[unique=true];springid[unique=true]
+;SiteoneExtractDuplicateShippingAddressesJob;SiteoneExtractDuplicateShippingAddressesJob;
+INSERT_UPDATE CronJob; code[unique=true];job(code);singleExecutable;sessionLanguage(isocode)
+;SiteoneExtractDuplicateShippingAddressesJob;SiteoneExtractDuplicateShippingAddressesJob;false;en
+INSERT_UPDATE Trigger;cronJob(code)[unique=true];cronExpression;relative;active;maxAcceptableDelay
+;SiteoneExtractDuplicateShippingAddressesJob; 0 0 0 ? * 1;false;true;-1

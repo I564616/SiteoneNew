@@ -1,0 +1,10 @@
+INSERT_UPDATE ServicelayerJob; code[unique=true];springid[unique=true]
+;nurseryInventoryFeedCronJob;nurseryInventoryFeedCronJob;
+
+
+INSERT_UPDATE NurseryInventoryFeedCronJob;code[unique=true];job(code)[default=nurseryInventoryFeedCronJob];sessionLanguage(isoCode)[default=en]
+;nurseryInventoryFeedCronJob
+
+INSERT_UPDATE Trigger;cronjob(code)[unique=true];active;cronExpression
+#Fires at 06:00 AM
+;nurseryInventoryFeedCronJob;true;0 0 6 * * ?

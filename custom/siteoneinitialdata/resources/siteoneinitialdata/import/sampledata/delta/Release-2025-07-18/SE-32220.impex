@@ -1,0 +1,25 @@
+$contentCatalog=siteoneCAContentCatalog
+$contentCatalogName=SiteOne CA Content Catalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$productCatalog=siteoneCAProductCatalog
+$productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$supercategories=supercategories( code, catalogVersion(catalog(id[default='siteoneCAProductCatalog']),version[default='Staged']));;;;;;;;;
+$catalogVersion=catalogVersion(catalog(id[default='siteoneCAProductCatalog']),version[default='Staged'])[unique=true,default='siteoneCAProductCatalog:Staged'];;;;;;;;;
+;;;;;;;;;
+$lang=en
+REMOVE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;
+;PartnersProgramNavNode;;Partners Program;
+
+
+
+$contentCatalog=siteoneCAContentCatalog
+$contentCatalogName=SiteOne CA Content Catalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Online])[default=$contentCatalog:Online]
+$productCatalog=siteoneCAProductCatalog
+$productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Online'])[unique=true,default=$productCatalog:Online]
+$supercategories=supercategories( code, catalogVersion(catalog(id[default='siteoneCAProductCatalog']),version[default='Online']));;;;;;;;;
+$catalogVersion=catalogVersion(catalog(id[default='siteoneCAProductCatalog']),version[default='Online'])[unique=true,default='siteoneCAProductCatalog:Online'];;;;;;;;;
+;;;;;;;;;
+$lang=en
+REMOVE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;
+;PartnersProgramNavNode;;Partners Program;

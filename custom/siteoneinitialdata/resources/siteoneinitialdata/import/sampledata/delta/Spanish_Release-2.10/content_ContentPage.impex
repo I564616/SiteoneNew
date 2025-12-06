@@ -1,0 +1,104 @@
+$contentCatalog=siteoneContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+
+
+INSERT_UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];name;title[lang=en];title[lang=es]
+;;AdmiralsCove;Admirals Cove;;
+;;AgronomicMaintenanceCategoryLandingPage;Agronomic Maintenance Category;;
+;;Community;Community;Community;Comunidad
+;;Diversity;Diversity;Diversity;Diversidad
+;;EdsPestControl;Ed's Pest Control;SiteOne Success Stories: Ed's Pest Control;Historias De Éxito Siteone: Ed's Pest Control
+;;Environmental Sustainability;Environmental Sustainability;;
+;;FlockeLoneStar;Flocke Lone Star Irrigation;;
+;;Hardscapes&OutdoorLivingCategoryLandingPage;Hardscapes & Outdoor Living Category;;
+;;Health and Wellness;Health and Wellness;Health and Wellness;Salud y Bienestar
+;;IrrigationCategoryLandingPage;Irrigation Category;;
+;;LandscapeSupplyCategoryLandingPage;Landscape Supply Category;;
+;;NurseryCategoryLandingPage;Nursery Category;;
+;;Partners Trip Cabo;Partners Program Trip - Los Cabos;;
+;;Partners Trip Disney;Partners Program Trip - Disney Cruise;;
+;;Political Involvement;Political Involvement;Political Involvement;Participación Política
+;;RequestOnlineAccount2;Request Online Access;;
+;;Responsibility;Responsibility;Responsibility;Responsabilidad
+;;Safety;Safety;Safety;Seguridad
+;;StoneForest;Stone Forest;;
+;;ToolsEquipment&SafetyCategoryLandingPage;Tools, Equipment & Safety Category;;
+;;aboutUs;About Us;About Us;Sobre Nosotros
+;;account;Account Page;My Account;Mi Cuenta
+;;accountDashboard;Account Dashboard;;
+;;accountDashboardPage;Account Dashboard Page;Account Dashboard;Cuenta Dashboard
+;;accountOverviewPage;Account Overview Page;Account Overview Page;Página de resumen de cuenta
+;;accountPartnerProgramPage;Account Partner Program Page;;
+;;accountSetup;Account Setup;;
+;;accountinfo;Account Information Page;Account Information;Información de la Cuenta
+;;add-edit-address;Add Edit Address Page;Add/Edit Address;Agregar / Editar dirección
+;;address-book;Address Book Page;My Delivery Addresses;Mis Direcciones para Envíos
+;;assemblyPage;Assembly Page List Page;Create New Assembly;Crear un Nuevo Ensamblaje
+;;businessResource;Business Resources;BUSINESS RESOURCES;RECURSOS PARA TU NEGOCIO
+;;businessSolutions;Business Solutions;;
+;;careers;Careers;;
+;;cartPage;Cart Page;Your Shopping Cart;Tu carrito de compra
+;;catalogs;Catalogs;CATALOGS;CATÁLOGOS
+;;checkout-login;Checkout-Login Page;Proceed to Checkout;Pasar por la caja
+;;companyHistory;Company History;Company History;Nuestra Historia
+;;contactUs;Contact Us Page;Contact Us;Contáctanos
+;;detailsAssemblyPage;Details assembly Page;Assembly Detail;Detalle de Ensamblaje
+;;detailsSavedListPage;Details Saved List;List Detail;Detalle de Lista
+;;directSales;Direct Sales;DIRECT SALES;VENTAS DIRECTAS
+;;earnPoints;Earn Points For Equipment;EARN POINTS FOR EQUIPMENT;GANA PUNTOS POR EQUIPOS
+;;editAssemblyPage;Edit assembly Page;Edit Assembly;Editar Ensamblaje
+;;editSavedListPage;Edit Saved List Page;Edit List;Editar lista
+;;faq;FAQS;FAQs;Preguntas Frecuentes
+;;golfSales;Golf Sales;GOLF SALES;VENTAS DE GOLF
+;;greenTechServices;Green Tech Services;Green Tech Services;Servicios de GreenTech
+;;invoicedetailspage;Invoice Detail Page;Invoice Detail;Detalle de factura
+;;invoicelistingpage;Invoice Listing Page;Invoices;Facturas
+;;irrigationDesign;Irrigation Design;Irrigation Design;Diseño de Riego
+;;login;Login Page;Login;Iniciar Sesión
+;;loginAssistance;Login Assistance;Login Assistance;Asistencia para Iniciar Sesión
+;;manageUsergroups;Manage Usergroup Page;;Administrar usuarios
+;;multiStepCheckoutSummaryPage;Multi Checkout Summary Page;Order Summary;Resumen de pedido
+;;my-company;My Company Page;;Administrar usuarios
+;;my-stores;My Stores Page;My Stores;Mis tiendas
+;;notFound;page not found;Not Found;NO ENCONTRADA
+;;nurseryDirect;Nursery Direct;NURSERY DIRECT;VIVERO DIRECTO
+;;openLineofCredit;Line of Credit;Line of Credit;Línea de Crédito
+;;openorderspage;Open Orders Page;Open Orders;Órdenes Abiertas
+;;order;Order Details Page;Order Details;Detalles de Orden
+;;orders;Order History Page;Order History;Historial de Órdenes
+;;organizationManagement;Organization Management Page;;Crear nuevo Usario
+;;ourBrands;Our Brands;Our Brands;Nuestras Marcas
+;;ourBrands2;Our Brands;Our Brands;Nuestras Marcas
+;;page_00000MDK;Environmental Policy;Environmental Policy;Sostenibilidad Ambiental
+;;page_00000MDL;Human Rights Policy;Human Rights Policy;Política de Derechos Humanos
+;;page_00000MDN;Supplier Code of Conduct;Supplier Code of Conduct;Código de Conducta para Proveedores
+;;partnerProgram;Partners Program;PARTNERS PROGRAM;PROGRAMA DE SOCIOS
+;;partnerProgramEvents;Partner Program Events;PARTNERS PROGRAM;PROGRAMA DE SOCIOS
+;;payment-details;Payment Details Page;Payment Details;Detalles del pago
+;;profile;Profile Page;Profile;Perfil
+;;purchasedProductPage;Purchased Product Page;Purchased Products;Productos Comprados
+;;projectServices;Project Services;Project Services;Servicios para Proyectos
+;;projectServices;Project Services;Project Services;Servicios para Proyectos
+;;quickOrderPage;Quick Order Page;Quick Order;Orden Rápida
+;;quoteEditPage;Quote Edit Page;Quote Edit;Cita Editar
+;;redeemPoints;Redeem Points;REDEEM POINTS;REDIME PUNTOS
+;;saved-carts;Saved Carts Page;Saved Carts;Carritos guardados
+;;savedListPage;Saved List Page;Create New List;Crear un nuevo lista
+;;sds-search;SDS Search Page;;Buscador de Fichas de Datos de Seguridad / Etiquetas
+;;searchEmpty;Search Results;No Results;No resultados.
+;;setPasswordPage;Set Password Page;Set Password;Establecer Contraseña
+;;shipToPage;Ship To Page;All Ship-Tos;Todas Destinos de envío
+;;siteonehomepage;HomePage;Homepage;Página principal
+;;siteoneupdate-preference;Update Preference Page;Preferences;Preferencias
+;;siteoneupdate-profile;Update Profile Page;Contact Information;Información de Contacto
+;;soilAmendment;Soil Amendment;Soil Amendment;Mejoras del Suelo
+;;spreaderSprayer;Spreader & Sprayer;SPREADER & SPRAYER;ESPARCIDORES Y PULVERIZADORES
+;;storeDirectoryStateListPage;Store Directory State List Page;Find an Irrigation & Landscaping Supply Store;Tiendas de Materiales de Riego, Jardinería y Paisajismo
+;;storefinderPage;StoreFinder Page;Find a Lawn & Garden Supply Store Near Me;Suministro para Césped & Jardín más cercano
+;;termsAndCondition;Terms and Conditions;Terms and Conditions;Términos y Condiciones
+;;testimonialsLanding;Testimonials Landing;Testimonials Landing;Testimonios
+;;update-email;Update Email Page;Update Email;Actualizar Email
+;;update-profile;Update Profile Page;Update Profile;Actualización del perfil
+;;updatePassword;Update Forgotten Password Page;Update Forgotten Password;Actualizar contraseña olvidada
+;;videoOverview;Help and Information;HELP AND INFORMATION;AYUDA E INFORMACIÓN
+

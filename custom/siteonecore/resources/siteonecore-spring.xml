@@ -1,0 +1,2946 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ [y] hybris Platform
+ Copyright (c) 2017 SAP SE or an SAP affiliate company.  All rights reserved.
+ This software is the confidential and proprietary information of SAP
+ ("Confidential Information"). You shall not disclose such Confidential
+ Information and shall use it only in accordance with the terms of the
+ license agreement you entered into with SAP.
+-->
+
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/util
+           http://www.springframework.org/schema/util/spring-util.xsd
+       http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context.xsd">
+
+     <context:annotation-config/> 
+
+	<!-- Spring Integration -->
+
+				<import resource="/siteonecore/integration/hot-folder-common-spring.xml"/>
+        <import resource="/siteonecore/integration/hot-folder-siteone-common-spring.xml"/>
+        <import resource="/siteonecore/integration/hot-folder-siteone-customer-spring.xml"/>
+        <import resource="/siteonecore/integration/hot-folder-siteone-price-spring.xml"/>
+        <import resource="/siteonecore/integration/hot-folder-siteone-inventory-spring.xml"/>
+        <import resource="/siteonecore/integration/hot-folder-siteone-store-spring.xml"/>
+        <import resource="/siteonecore/integration/hot-folder-siteone-storeskuassoc-spring.xml"/>
+        <import resource="/siteonecore/integration/hot-folder-siteone-regulatorystates-spring.xml"/>
+        <import resource="/siteonecore/integration/hot-folder-siteone-invoice-spring.xml"/>
+        <import resource="/siteonecore/integration/hot-folder-siteone-order-spring.xml"/>
+        <import resource="/siteonecore/integration/hot-folder-siteone-order-impex-spring.xml"/>
+        <import resource="/siteonecore/integration/hot-folder-siteone-ewallet-spring.xml"/>
+        <import resource="/siteonecore/integration/hot-folder-siteone-customersync-spring.xml"/>
+        
+		<!--<import resource="/siteonecore/integration/hot-folder-siteone-priceattributes-spring.xml"/>-->
+        
+
+	<bean id="siteOneBatchNotificationEventListener" class="com.siteone.core.event.SiteOneBatchNotificationEventListener" parent="abstractAcceleratorSiteEventListener">
+		<property name="modelService" ref="modelService"/>
+		<property name="businessProcessService" ref="businessProcessService"/>
+	</bean>
+	
+	
+	<bean id="generateBatchNotificationEmailProcess" parent="abstractGenerateEmailAction">
+		<property name="frontendTemplateName" value="BatchNotificationEmailTemplate"/>
+	</bean>
+	
+	<bean id="batchNotificationEmailProcessDefinitionResource"
+	      class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
+		<property name="resource" value="classpath:/siteonecore/processes/batchNotificationEmailProcess.xml"/>
+	</bean>
+	
+		<bean id="generateSiteoneJobsStatusEmailProcess" parent="abstractGenerateEmailAction">
+		<property name="frontendTemplateName" value="SiteoneJobsStatusEmailTemplate"/>
+	</bean>
+	
+	<bean id="siteoneJobsStatusEmailProcessDefinitionResource"
+	      class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
+		<property name="resource" value="classpath:/siteonecore/processes/siteoneJobsStatusEmailProcess.xml"/>
+	</bean>
+	
+	<bean id="siteoneJobsStatusEventListener" class="com.siteone.core.event.SiteoneJobsStatusEventListener" parent="abstractAcceleratorSiteEventListener">
+		<property name="modelService" ref="modelService"/>
+		<property name="businessProcessService" ref="businessProcessService"/>
+	</bean>
+
+	<bean id="siteOneFeedFileNotificationEventListener" class="com.siteone.core.event.SiteOneFeedFileNotificationEventListener" parent="abstractAcceleratorSiteEventListener">
+		<property name="modelService" ref="modelService"/>
+		<property name="businessProcessService" ref="businessProcessService"/>
+	</bean>
+	
+	<bean id="generateFeedFileMonitorNotificationEmailProcess" parent="abstractGenerateEmailAction">
+		<property name="frontendTemplateName" value="FeedFileMonitorNotificationEmailTemplate"/>
+	</bean>
+	
+	<bean id="feedFileMonitorNotificationEmailProcessDefinitionResource"
+	      class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
+		<property name="resource" value="classpath:/siteonecore/processes/feedFileMonitorNotificationEmailProcess.xml"/>
+	</bean>
+	
+	<bean id="generatedPimBatchFailureEmailProcess" parent="abstractGenerateEmailAction">
+		<property name="frontendTemplateName" value="PimBatchFailureEmailTemplate"/>
+	</bean>
+	
+	<bean id="pimBatchFailureEmailProcessDefinitionResource"
+	      class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
+		<property name="resource" value="classpath:/siteonecore/processes/pimBatchFailureEmailProcess.xml"/>
+	</bean>
+	
+	<bean id="generatePIMBatchFailureReportNotificationEmailProcess" parent="abstractGenerateEmailAction">
+		<property name="frontendTemplateName" value="PIMBatchFailureReportNotificationEmailTemplate"/>
+	</bean>
+	
+	<bean id="pimBatchFailureReportNotificationEmailProcessDefinitionResource"
+	      class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
+		<property name="resource" value="classpath:/siteonecore/processes/pimBatchFailureReportNotificationEmailProcess.xml"/>
+	</bean>
+	<bean id="siteonePIMBatchFailureReportEventListener" class="com.siteone.core.event.SiteonePIMBatchFailureReportEventListener" parent="abstractAcceleratorSiteEventListener">
+		<property name="modelService" ref="modelService"/>
+		<property name="businessProcessService" ref="businessProcessService"/>
+		<property name="emailService" ref="emailService"/>
+	</bean>
+
+	<!-- SystemSetup for the SiteoneCore -->
+	<bean id="acceleratorCoreSystemSetup" class="com.siteone.core.setup.CoreSystemSetup"
+	       parent="abstractCoreSystemSetup"/>
+
+	<!-- Solr field value providers -->
+	
+	<bean id="volumeAwareProductPriceValueProvider" class="com.siteone.core.search.solrfacetsearch.provider.impl.VolumeAwareProductPriceValueProvider"  parent="abstractPropertyFieldValueProvider">
+        <property name="fieldNameProvider" ref="solrFieldNameProvider"/>
+        <property name="priceService" ref="priceService"/>
+        <property name="commonI18NService" ref="commonI18NService"/>
+        <property name="sessionService" ref="sessionService"/>
+        <property name="userService" ref="userService"/>
+        <property name="priceComparator" ref="volumePriceComparator"/>
+        <property name="catalogVersionService" ref="catalogVersionService"/>
+    </bean>
+
+    <bean id="volumePriceComparator" class="com.siteone.core.comparators.VolumeAwarePriceInformationComparator" scope="singleton"/>
+
+    <bean id="productVolumePricesProvider" class="com.siteone.core.search.solrfacetsearch.provider.impl.ProductVolumePricesProvider"  parent="abstractPropertyFieldValueProvider">
+        <property name="fieldNameProvider" ref="solrFieldNameProvider"/>
+        <property name="priceService" ref="priceService"/>
+    </bean>
+	
+    <bean id="siteoneVariantCategoryCodeValueProvider" parent="abstractCategoryCodeValueProvider">
+        <property name="categorySource" ref="siteoneVariantCategorySource"/>
+    </bean>
+
+    <bean id="siteoneCategoryNameValueProvider" parent="abstractCategoryNameValueProvider">
+        <property name="categorySource" ref="siteoneCategorySource"/>
+    </bean>
+    
+    <bean id="siteoneVariantCategorySource" parent="variantCategorySource"/>
+
+	<bean id="abstractCategoryCodeValueProvider" abstract="true"
+	      class="de.hybris.platform.commerceservices.search.solrfacetsearch.provider.impl.CategoryCodeValueProvider"
+	      parent="abstractPropertyFieldValueProvider" >
+		<property name="fieldNameProvider" ref="solrFieldNameProvider"/>
+		<property name="commonI18NService" ref="commonI18NService"/>
+	</bean>
+	<bean id="abstractCategoryNameValueProvider" abstract="true"
+	      class="de.hybris.platform.commerceservices.search.solrfacetsearch.provider.impl.CategoryNameValueProvider"
+	      parent="abstractPropertyFieldValueProvider" >
+		<property name="fieldNameProvider" ref="solrFieldNameProvider"/>
+		<property name="commonI18NService" ref="commonI18NService"/>
+	</bean>
+	
+	<bean id="image515ValueProvider" parent="defaultSiteOneImageValueProvider" >
+		<property name="mediaFormat" value="515Wx515H"/>
+	</bean>
+	<bean id="image300ValueProvider" parent="defaultSiteOneImageValueProvider" >
+		<property name="mediaFormat" value="300Wx300H"/>
+	</bean>
+	<bean id="image96ValueProvider" parent="defaultSiteOneImageValueProvider" >
+		<property name="mediaFormat" value="96Wx96H"/>
+	</bean>
+	<bean id="image65ValueProvider" parent="defaultSiteOneImageValueProvider" >
+		<property name="mediaFormat" value="65Wx65H"/>
+	</bean>
+	<bean id="image30ValueProvider" parent="defaultSiteOneImageValueProvider" >
+		<property name="mediaFormat" value="30Wx30H"/>
+	</bean>
+
+	<bean id="productUrlValueProvider"
+	      class="de.hybris.platform.commerceservices.search.solrfacetsearch.provider.impl.ProductUrlValueProvider"
+	      parent="abstractPropertyFieldValueProvider" >
+		<property name="urlResolver" ref="productModelUrlResolver"/>
+		<property name="fieldNameProvider" ref="solrFieldNameProvider"/>
+		<property name="i18nService" ref="i18nService"/>
+		<property name="commonI18NService" ref="commonI18NService"/>
+	</bean>
+
+	<bean id="promotionCodeValueProvider"
+	      class="de.hybris.platform.commerceservices.search.solrfacetsearch.provider.impl.PromotionCodeValueProvider"
+	      parent="abstractPropertyFieldValueProvider" >
+		<property name="promotionsService" ref="promotionsService"/>
+		<property name="fieldNameProvider" ref="solrFieldNameProvider"/>
+	</bean>
+
+	<bean id="promotionImageValueProvider"
+	      class="de.hybris.platform.commerceservices.search.solrfacetsearch.provider.impl.PrimaryPromotionImageValueProvider"
+	      parent="abstractPropertyFieldValueProvider" >
+		<property name="promotionsService" ref="promotionsService"/>
+		<property name="fieldNameProvider" ref="solrFieldNameProvider"/>
+	</bean>
+	
+	<bean id="priorityBrandNameValueProvider" class="com.siteone.core.search.solrfacetsearch.provider.impl.PriorityBrandNameValueProvider" parent="abstractPropertyFieldValueProvider" >
+		<property name="fieldNameProvider" ref="solrFieldNameProvider"/>
+        <property name="modelService" ref="modelService"/>
+        <property name="enumerationService" ref="enumerationService"/>
+	</bean>
+	
+	<bean id="isVariantProductValueProvider" class="com.siteone.core.search.solrfacetsearch.provider.impl.IsVariantProductValueProvider" parent="abstractPropertyFieldValueProvider" >
+		<property name="fieldNameProvider" ref="solrFieldNameProvider"/>
+	</bean>
+	
+    <alias name="defaultVariantItemNumberValueProvider" alias="variantItemNumberValueProvider"/>
+	<bean id="defaultVariantItemNumberValueProvider" class="com.siteone.core.search.solrfacetsearch.provider.impl.VariantItemNumberValueProvider">
+        <property name="fieldNameProvider" ref="solrFieldNameProvider"/>
+        <property name="modelService" ref="modelService"/>
+    </bean>
+
+	<!-- Solr field Sort providers -->
+			
+		<!-- COMPARATOR -->
+	<bean id="priceRangeFacetNameComparator" class="com.siteone.core.search.solrfacetsearch.search.impl.comparators.PriceRangeFacetNameComparator" />
+ 
+	<bean id="priceRangeFacetNameSortProviderAscending" class="de.hybris.platform.solrfacetsearch.config.impl.DefaultFacetSortProvider">
+    	<property name="comparator" ref="priceRangeFacetNameComparator"/>
+    	<property name="descending" value="false"/>
+	</bean>
+	
+	<bean id="uomFacetNameComparator" class="com.siteone.core.search.solrfacetsearch.search.impl.comparators.UomFacetNameComparator" />
+ 
+	<bean id="uomFacetNameSortProviderAscending" class="de.hybris.platform.solrfacetsearch.config.impl.DefaultFacetSortProvider">
+    	<property name="comparator" ref="uomFacetNameComparator"/>
+    	<property name="descending" value="false"/>
+	</bean>
+	
+	<bean id="uomFacetNameSortProviderDescending" class="de.hybris.platform.solrfacetsearch.config.impl.DefaultFacetSortProvider">
+    	<property name="comparator" ref="uomFacetNameComparator"/>
+    	<property name="descending" value="true"/>
+	</bean>
+
+	<bean id="facetNameIgnoreCaseComparator" class="com.siteone.core.search.solrfacetsearch.search.impl.comparators.FacetNameIgnoreCaseComparator" />
+	<bean id="facetDisplayNameIgnoreCaseComparator" class="com.siteone.core.search.solrfacetsearch.search.impl.comparators.FacetDisplayNameIgnoreCaseComparator" />
+
+	<bean id="facetNameIgnoreCaseSortProviderAscending" class="de.hybris.platform.solrfacetsearch.config.impl.DefaultFacetSortProvider">
+		<property name="comparator" ref="facetNameIgnoreCaseComparator" />
+		<property name="descending" value="false" />
+	</bean>
+	<bean id="facetDisplayNameIgnoreCaseSortProviderAscending" class="de.hybris.platform.solrfacetsearch.config.impl.DefaultFacetSortProvider">
+		<property name="comparator" ref="facetDisplayNameIgnoreCaseComparator" />
+		<property name="descending" value="false" />
+	</bean>
+	<!--
+		Event listeners are singletons, therefore the dependency for a bean in tenant-scope
+		must be configured with a lookup method.
+	-->
+	<bean id="orderCancelledEventListener"
+	      class="com.siteone.core.event.OrderCancelledEventListener" parent="abstractAcceleratorSiteEventListener">
+		<property name="modelService" ref="modelService"/>
+		<property name="businessProcessService" ref="businessProcessService"/>
+	</bean>
+	<bean id="orderRefundEventListener"
+	      class="com.siteone.core.event.OrderRefundEventListener" parent="abstractAcceleratorSiteEventListener">
+		<property name="modelService" ref="modelService"/>
+		<property name="businessProcessService" ref="businessProcessService"/>
+	</bean>
+	<bean id="customerRegistrationEventListener"
+	      class="com.siteone.core.event.RegistrationEventListener" parent="abstractAcceleratorSiteEventListener">
+		<property name="modelService" ref="modelService"/>
+		<property name="businessProcessService" ref="businessProcessService"/>
+	</bean>
+	<bean id="forgottenPasswordEventListener"
+	      class="com.siteone.core.event.ForgottenPasswordEventListener" parent="abstractAcceleratorSiteEventListener">
+		<property name="modelService" ref="modelService"/>
+		<property name="businessProcessService" ref="businessProcessService"/>
+	</bean>
+	<bean id="homeOwnerEventListener"
+	      class="com.siteone.core.event.HomeOwnerEventListener" parent="abstractAcceleratorSiteEventListener">
+		<property name="modelService" ref="modelService"/>
+		<property name="businessProcessService" ref="businessProcessService"/>
+	</bean>
+	<bean id="submitOrderEventListener" class="com.siteone.core.event.SubmitOrderEventListener" parent="abstractAcceleratorSiteEventListener">
+		<property name="businessProcessService" ref="businessProcessService"/>
+		<property name="modelService" ref="modelService"/>
+		<property name="baseStoreService" ref="baseStoreService"/>
+	</bean>
+	<bean id="orderConfirmationEventListener"
+	      class="com.siteone.core.event.OrderConfirmationEventListener" parent="abstractAcceleratorSiteEventListener">
+		<property name="modelService" ref="modelService"/>
+		<property name="businessProcessService" ref="businessProcessService"/>
+	</bean>
+	<bean id="sendDeliveryMessageEventListener"
+	      class="com.siteone.core.event.SendDeliveryMessageEventListener" parent="abstractAcceleratorSiteEventListener">
+		<property name="modelService" ref="modelService"/>
+		<property name="businessProcessService" ref="businessProcessService"/>
+	</bean>
+	<bean id="sendReadyForPickupMessageEventListener"
+	      class="com.siteone.core.event.SendReadyForPickupMessageEventListener" parent="abstractAcceleratorSiteEventListener">
+		<property name="modelService" ref="modelService"/>
+		<property name="businessProcessService" ref="businessProcessService"/>
+	</bean>
+	<bean id="sendOrderPartiallyCanceledMessageEventListener"
+	      class="com.siteone.core.event.SendOrderPartiallyCanceledMessageEventListener" parent="abstractAcceleratorSiteEventListener">
+		<property name="modelService" ref="modelService"/>
+		<property name="businessProcessService" ref="businessProcessService"/>
+	</bean>
+	<bean id="sendOrderPartiallyRefundedMessageEventListener"
+	      class="com.siteone.core.event.SendOrderPartiallyRefundedMessageEventListener" parent="abstractAcceleratorSiteEventListener">
+		<property name="modelService" ref="modelService"/>
+		<property name="businessProcessService" ref="businessProcessService"/>
+	</bean>
+	<bean id="sendNotPickedUpConsignmentCanceledMessageEventListener"
+	      class="com.siteone.core.event.SendNotPickedUpConsignmentCanceledMessageEventListener" parent="abstractAcceleratorSiteEventListener">
+		<property name="modelService" ref="modelService"/>
+		<property name="businessProcessService" ref="businessProcessService"/>
+	</bean>
+	<bean id="orderCompletedEventListener" class="com.siteone.core.event.OrderCompletedEventListener" parent="abstractAcceleratorSiteEventListener">
+		<property name="modelService" ref="modelService"/>
+		<property name="businessProcessService" ref="businessProcessService"/>
+	</bean>
+	
+	<!-- Process resources definition -->
+
+	
+	
+	<bean id="customerRegistrationEmailProcessDefinitionResource"
+	      class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
+		<property name="resource" value="classpath:/siteonecore/processes/customerRegistrationEmailProcess.xml"/>
+	</bean>
+	<bean id="forgottenPasswordEmailProcessDefinitionResource"
+	      class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
+		<property name="resource" value="classpath:/siteonecore/processes/forgottenPasswordEmailProcess.xml"/>
+	</bean>
+	<bean id="homeOwnerEmailProcessDefinitionResource"
+	      class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
+		<property name="resource" value="classpath:/siteonecore/processes/homeOwnerEmailProcess.xml"/>
+	</bean>
+	<bean id="orderConfirmationEmailProcessDefinitionResource"
+	      class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
+		<property name="resource" value="classpath:/siteonecore/processes/orderConfirmationEmailProcess.xml"/>
+	</bean>
+	<bean id="sendDeliveryEmailProcessDefinitionResource"
+	      class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
+		<property name="resource" value="classpath:/siteonecore/processes/sendDeliveryEmailProcess.xml"/>
+	</bean>
+	<bean id="sendReadyForPickupEmailProcessDefinitionResource"
+	      class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
+		<property name="resource" value="classpath:/siteonecore/processes/sendReadyForPickupEmailProcess.xml"/>
+	</bean>
+	<bean id="sendOrderCancelledEmailProcessDefinitionResource"
+	      class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
+		<property name="resource" value="classpath:/siteonecore/processes/sendOrderCancelledEmailProcess.xml"/>
+	</bean>
+	<bean id="sendOrderRefundEmailProcessDefinitionResource"
+	      class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
+		<property name="resource" value="classpath:/siteonecore/processes/sendOrderRefundEmailProcess.xml"/>
+	</bean>
+	<bean id="sendOrderPartiallyCanceledEmailProcessDefinitionResource"
+	      class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
+		<property name="resource" value="classpath:/siteonecore/processes/sendOrderPartiallyCanceledEmailProcess.xml"/>
+	</bean>
+	<bean id="sendOrderPartiallyRefundedEmailProcessDefinitionResource"
+	      class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
+		<property name="resource" value="classpath:/siteonecore/processes/sendOrderPartiallyRefundedEmailProcess.xml"/>
+	</bean>
+	<bean id="sendNotPickedUpConsignmentCanceledEmailProcessDefinitionResource"
+	      class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
+		<property name="resource" value="classpath:/siteonecore/processes/sendNotPickedUpConsignmentCanceledEmailProcess.xml"/>
+	</bean>
+	
+	<!-- Actions -->
+	<bean id="abstractAction" class="de.hybris.platform.processengine.action.AbstractAction"
+	      abstract="true">
+		<property name="modelService" ref="modelService"/>
+		<property name="processParameterHelper" ref="processParameterHelper"/>
+	</bean>
+
+	<bean id="sendEmail" class="de.hybris.platform.acceleratorservices.process.email.actions.SendEmailAction"
+	       parent="abstractAction">
+		<property name="emailService" ref="emailService"/>
+	</bean>
+
+	<bean id="abstractGenerateEmailAction" class="de.hybris.platform.acceleratorservices.process.email.actions.GenerateEmailAction"
+	      parent="abstractAction" abstract="true">
+		<property name="modelService" ref="modelService"/>
+		<property name="cmsEmailPageService" ref="cmsEmailPageService"/>
+		<property name="contextResolutionStrategy" ref="processContextResolutionStrategy"/>
+		<property name="emailGenerationService" ref="emailGenerationService"/>
+	</bean>
+
+    
+	<bean id="generateCustomerRegistrationEmail" parent="abstractGenerateEmailAction">
+		<property name="frontendTemplateName" value="CustomerRegistrationEmailTemplate"/>
+	</bean>
+
+	<bean id="generateCustomerEmailChangeOldEmail" parent="abstractGenerateEmailAction">
+		<property name="frontendTemplateName" value="CustomerEmailChangeOldEmailTemplate"/>
+	</bean>
+
+	<bean id="generateCustomerEmailChangeNewEmail" parent="abstractGenerateEmailAction">
+		<property name="frontendTemplateName" value="CustomerEmailChangeNewEmailTemplate"/>
+	</bean>
+
+	<bean id="generateForgottenPasswordEmail" parent="abstractGenerateEmailAction">
+		<property name="frontendTemplateName" value="ForgottenPasswordEmailTemplate"/>
+	</bean>
+	<bean id="generateHomeOwnerEmail" parent="abstractGenerateEmailAction">
+		<property name="frontendTemplateName" value="HomeOwnerEmailTemplate"/>
+	</bean>
+	
+
+	<bean id="generateOrderConfirmationEmail" parent="abstractGenerateEmailAction">
+		<property name="frontendTemplateName" value="OrderConfirmationEmailTemplate"/>
+	</bean>
+	
+	<bean id="generateDeliverySentEmail" parent="abstractGenerateEmailAction">
+		<property name="frontendTemplateName" value="DeliverySentEmailTemplate"/>
+	</bean>
+
+	<bean id="generateReadyForPickupEmail" parent="abstractGenerateEmailAction">
+		<property name="frontendTemplateName" value="ReadyForPickupEmailTemplate"/>
+	</bean>
+	
+	<bean id="generateOrderCancelledEmail" parent="abstractGenerateEmailAction">
+		<property name="frontendTemplateName" value="OrderCancelledEmailTemplate"/>
+	</bean>
+	
+	<bean id="generateOrderRefundEmail" parent="abstractGenerateEmailAction">
+		<property name="frontendTemplateName" value="OrderRefundEmailTemplate"/>
+	</bean>
+
+	<bean id="generateOrderPartiallyCanceledEmail" parent="abstractGenerateEmailAction">
+		<property name="frontendTemplateName" value="OrderPartiallyCanceledEmailTemplate"/>
+	</bean>
+	<bean id="generateOrderPartiallyRefundedEmail" parent="abstractGenerateEmailAction">
+		<property name="frontendTemplateName" value="OrderPartiallyRefundedEmailTemplate"/>
+	</bean>
+	<bean id="generateNotPickedUpConsignmentCanceledEmail" parent="abstractGenerateEmailAction">
+		<property name="frontendTemplateName" value="NotPickedUpConsignmentCanceledEmailTemplate"/>
+	</bean>
+
+	<bean id="removeSentEmail"
+	      class="de.hybris.platform.acceleratorservices.process.email.actions.RemoveSentEmailAction"
+	      parent="abstractAction">
+		<property name="modelService" ref="modelService"/>
+	</bean>
+
+	<!-- Simple Suggestion Service -->
+	<alias alias="simpleSuggestionService" name="defaultSimpleSuggestionService"/>
+	<bean id="defaultSimpleSuggestionService"
+	      class="com.siteone.core.suggestion.impl.DefaultSimpleSuggestionService" >
+		<property name="simpleSuggestionDao" ref="simpleSuggestionDao"/>
+	</bean>
+	<alias alias="simpleSuggestionDao" name="defaultSimpleSuggestionDao"/>
+	<bean id="defaultSimpleSuggestionDao"
+	      class="com.siteone.core.suggestion.dao.impl.DefaultSimpleSuggestionDao"
+	      parent="abstractItemDao" >
+		<property name="flexibleSearchService" ref="flexibleSearchService"/>
+	</bean>
+
+	<bean id="mccSiteUrlHelper" class="com.siteone.core.util.MccSiteUrlHelper" >
+		<property name="siteChannelValidationStrategy" ref="siteChannelValidationStrategy"/>
+		<property name="siteBaseUrlResolutionService" ref="siteBaseUrlResolutionService"/>
+		<property name="cmsSiteService" ref="cmsSiteService"/>
+	</bean>
+
+
+	<!-- checkout flow configuration -->
+	
+<!--	<bean id="pickUpInStoreCheckoutFlowStrategy" class="com.siteone.core.checkout.flow.impl.PickUpInStoreCheckoutFlowStrategy" >-->
+<!--		<property name="pickupStrategy" ref="pickupStrategy" />-->
+<!--		<property name="defaultStrategy" ref="siteCheckoutFlowStrategy"/>-->
+<!--		<property name="multiStepCheckoutFlowStrategy" ref="multiStepCheckoutFlowStrategy" />-->
+<!--	</bean>	-->
+
+<!--	<bean id="siteCheckoutFlowStrategy"-->
+<!--	      class="com.siteone.core.checkout.flow.impl.SiteCheckoutFlowStrategy" >-->
+<!--		&lt;!&ndash; This strategy looks up a strategy based on the current site UID &ndash;&gt;-->
+<!--		<property name="cmsSiteService" ref="cmsSiteService"/>-->
+<!--		<property name="siteMappings">-->
+<!--			<map>-->
+<!--				<entry key="electronics" value-ref="newCustomerCheckoutFlowStrategy"/>-->
+<!--				<entry key="apparel-de" value-ref="multiStepCheckoutFlowStrategy"/>-->
+<!--				<entry key="apparel-uk" value-ref="multiStepCheckoutFlowStrategy"/>-->
+<!--				<entry key="powertoolsstore" value-ref="multiStepCheckoutFlowStrategy"/>-->
+<!--			</map>-->
+<!--		</property>-->
+<!--		&lt;!&ndash; Default to SINGLE step checkout &ndash;&gt;-->
+<!--		<property name="defaultStrategy" ref="multiStepCheckoutFlowStrategy"/>-->
+<!--	</bean>-->
+
+<!--	<bean id="newCustomerCheckoutFlowStrategy"-->
+<!--	      class="com.siteone.core.checkout.flow.impl.NewCustomerCheckoutFlowStrategy" >-->
+<!--		&lt;!&ndash; This strategy works out if the user has created any data &ndash;&gt;-->
+<!--		<property name="userService" ref="userService"/>-->
+<!--		<property name="customerAccountService" ref="customerAccountService"/>-->
+<!--		<property name="defaultStrategy" ref="multiStepCheckoutFlowStrategy"/>-->
+<!--		<property name="newCustomerStrategy" ref="multiStepCheckoutFlowStrategy"/>-->
+<!--	</bean>-->
+
+	<!-- Sales quote process actions -->
+
+	<!-- quote-->
+	<!-- <bean id="quoteBuyerSubmitEventListener" class="com.siteone.core.event.QuoteBuyerSubmitEventListener"
+		  parent="abstractEventListener">
+		<property name="modelService" ref="modelService"/>
+		<property name="businessProcessService" ref="businessProcessService"/>
+	</bean>
+	<bean id="quoteSalesRepSubmitEventListener" class="com.siteone.core.event.QuoteSalesRepSubmitEventListener"
+		  parent="abstractEventListener">
+		<property name="modelService" ref="modelService"/>
+		<property name="businessProcessService" ref="businessProcessService"/>
+	</bean>
+	<bean id="quoteSellerApprovalSubmitEventListener" class="com.siteone.core.event.QuoteSellerApprovalSubmitEventListener"
+		  parent="abstractEventListener">
+		<property name="modelService" ref="modelService"/>
+		<property name="businessProcessService" ref="businessProcessService"/>
+	</bean>
+	<bean id="quoteBuyerOrderPlacedEventListener" class="com.siteone.core.event.QuoteBuyerOrderPlacedEventListener"
+		  parent="abstractEventListener">
+		<property name="commerceQuoteService" ref="commerceQuoteService"/>
+		<property name="modelService" ref="modelService"/>
+	</bean>
+	<bean id="quoteBuyerProcessDefinitionResource"
+		  class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
+		<property name="resource" value="classpath:/siteonecore/processes/quote/quote-buyer-process.xml"/>
+	</bean>
+	<bean id="quoteSalesRepProcessDefinitionResource"
+		  class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
+		<property name="resource" value="classpath:/siteonecore/processes/quote/quote-salesrep-process.xml"/>
+	</bean>
+	<bean id="quoteSellerApprovalProcessDefinitionResource"
+		  class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
+		<property name="resource" value="classpath:/siteonecore/processes/quote/quote-seller-approval-process.xml"/>
+	</bean>
+ -->	
+	<alias name="defaultSiteOneStoreFinderService" alias="storeFinderService"/>
+	<bean id="defaultSiteOneStoreFinderService" class="com.siteone.core.store.services.impl.DefaultSiteOneStoreFinderService" parent="defaultStoreFinderService"> 
+		    <property name="regionDao" ref="regionDao"></property>
+		    <property name="countryDao" ref="countryDao"></property>
+		    <property name="siteOneRegionDao" ref="siteOneRegionDao"/>
+		    <property name="restTemplate" ref="restTemplate"/>
+	</bean>
+	
+	<alias alias="pointOfServiceDao" name="defaultSiteOnePointOfServiceDao"/>
+	<bean id="defaultSiteOnePointOfServiceDao" class="com.siteone.core.store.dao.impl.DefaultSiteOnePointOfServiceDao" parent="defaultPointOfServiceDao">
+	</bean>
+	
+	<bean id="asmAgentRetrieveDao" class="com.siteone.core.asm.dao.impl.DefaultASMAgentRetrieveDao">
+	<property name="flexibleSearchService" ref="flexibleSearchService"/>
+	</bean>
+	
+	<alias alias="customerAccountService" name="defaultSiteOneCustomerAccountService"/>
+	<bean id="defaultSiteOneCustomerAccountService" class="com.siteone.core.customer.impl.DefaultSiteOneCustomerAccountService" parent="defaultCustomerAccountService">
+		<property name="b2bCustomerService" ref="b2bCustomerService"></property>
+		<property name="siteOneStoreFinderService" ref="defaultSiteOneStoreFinderService"></property>
+		<property name="b2bUnitModelDao" ref="b2bUnitModelDao"/>
+		<property name="b2bUnitService" ref="b2bUnitService"/>
+		<property name="oktaAPI" ref="oktaAPI"/>
+		<property name="customerAccountDao" ref="customerAccountDao"/>
+		<property name="siteOnePagedB2BCustomerDao" ref="pagedB2BCustomerDao"/>
+		<property name="siteOneRestClientForOrders" ref="siteOneRestClient"/>
+		<property name="siteOneRestClient" ref="siteOneRestClient"/>
+	</bean>
+	
+	<alias name="defaultSiteOnePagedB2BUnitDao" alias="b2bUnitModelDao"/>
+	<bean name="defaultSiteOnePagedB2BUnitDao" class="com.siteone.core.unit.dao.impl.DefaultSiteOnePagedB2BUnitDao">
+		<constructor-arg value="B2BUnit" />
+		<property name="pagedFlexibleSearchService" ref="pagedFlexibleSearchService"/>
+	</bean>
+  
+	<bean id="defaultEmailSubscriptionsService" class="com.siteone.core.services.impl.DefaultEmailSubscriptionsService" >
+		<property name="modelService" ref="modelService"></property>
+	</bean>
+	
+	<alias  name="DefaultSiteOnePagedB2BCustomerDao" alias="pagedB2BCustomerDao"/>
+	<bean id="DefaultSiteOnePagedB2BCustomerDao" class="com.siteone.core.customer.dao.impl.DefaultSiteOnePagedB2BCustomerDao" parent="defaultPagedB2BCustomerDao">
+	<property name="b2bUnitService" ref="b2bUnitService"></property>
+	<property name="flexibleSearchService" ref="flexibleSearchService"/>
+	</bean>
+	
+	<alias  name="DefaultSiteOnePagedB2BPermissionDao" alias="pagedB2BPermissionDao"/>
+	<bean id="DefaultSiteOnePagedB2BPermissionDao" class="com.siteone.core.customer.dao.impl.DefaultSiteOnePagedB2BPermissionDao" parent="defaultPagedB2BPermissionDao">
+	</bean>
+	
+	 <alias  name="DefaultSiteOnePagedB2BUserGroupDao" alias="pagedB2BUserGroupDao"/>
+	<bean id="DefaultSiteOnePagedB2BUserGroupDao" class="com.siteone.core.customer.dao.impl.DefaultSiteOnePagedB2BUserGroupDao" parent="defaultPagedB2BUserGroupDao">
+	</bean>
+
+	<bean id="productStockLevelCachingValueProvider" class="com.siteone.core.search.solrfacetsearch.provider.impl.ProductStockLevelCachingValueProvider"  parent="abstractProductInventoryCachingValueProvider">
+	</bean>
+    <alias name="defaultProductStoreValueProvider" alias="productStoreValueProvider" />
+	<bean id="defaultProductStoreValueProvider"  parent="abstractPropertyFieldValueProvider"
+		class="com.siteone.core.search.solrfacetsearch.provider.impl.ProductStoreValueProvider">
+		<property name="fieldNameProvider" ref="solrFieldNameProvider" />
+	</bean>
+	<alias alias="propertyFieldValueProvider" name="abstractPropertyFieldValueProvider"/>
+	<bean id="abstractPropertyFieldValueProvider" class="de.hybris.platform.solrfacetsearch.provider.impl.AbstractPropertyFieldValueProvider"
+		abstract="true">
+		<property name="modelService" ref="modelService" />
+		<property name="localeService" ref="localizationService" />
+		<property name="i18nService" ref="i18nService" />
+		<property name="rangeNameProvider" ref="rangeNameProvider" />
+	</bean>
+
+	<bean id="savingsCenterValueProvider" class="com.siteone.core.search.solrfacetsearch.provider.impl.SavingsCenterValueProvider"
+		  parent="abstractPropertyFieldValueProvider">
+		<property name="fieldNameProvider" ref="solrFieldNameProvider"></property>
+	</bean>
+	
+	<bean id="productVariantCountValueProvider" class="com.siteone.core.search.solrfacetsearch.provider.impl.ProductVariantCountValueProvider"
+		parent="abstractPropertyFieldValueProvider">
+		<property name="fieldNameProvider" ref="solrFieldNameProvider"></property>
+	</bean>
+	
+	<alias alias="siteOneProductService" name="defaultSiteOneProductService"/>
+	<bean id="defaultSiteOneProductService" class="com.siteone.core.services.impl.DefaultSiteOneProductService" parent="defaultProductService">
+	<property name="siteOneProductDao" ref="siteOneProductDao"></property>
+	</bean>
+
+	<alias alias="siteOneProductSalesService" name="defaultSiteOneProductSalesService"/>
+	<bean id="defaultSiteOneProductSalesService" class="com.siteone.core.services.impl.DefaultSiteOneProductSalesService">
+		<property name="siteOneProductSalesDao" ref="siteOneProductSalesDao"></property>
+	</bean>
+
+	<alias alias="siteOneUomRewriteConfigService" name="defaultSiteOneUomRewriteConfigService"/>
+	<bean id="defaultSiteOneUomRewriteConfigService" class="com.siteone.core.services.impl.DefaultSiteOneUomRewriteConfigService">
+		<property name="siteOneProductUomRewriteDao" ref="siteOneProductUomRewriteDao"></property>
+	</bean>
+	
+	<alias alias="couponManagementService" name="defaultSiteOneCouponManagementService"/>
+	<bean id="defaultSiteOneCouponManagementService" class="com.siteone.core.services.impl.DefaultSiteOneCouponManagementService" parent="defaultCouponManagementService">
+	</bean>
+
+	<alias alias="siteOneAutoPhraseConfigService" name="defaultSiteOneAutoPhraseConfigService"/>
+	<bean id="defaultSiteOneAutoPhraseConfigService" class="com.siteone.core.services.impl.DefaultSiteOneAutoPhraseConfigService">
+		<property name="siteOneAutoPhraseConfigDao" ref="siteOneAutoPhraseConfigDao"></property>
+	</bean>
+	
+	<alias alias="siteOneProprietaryBrandConfigService" name="defaultSiteOneProprietaryBrandConfigService"/>
+	<bean id="defaultSiteOneProprietaryBrandConfigService" class="com.siteone.core.services.impl.DefaultSiteOneProprietaryBrandConfigService">
+		<property name="siteOneProprietaryBrandConfigDao" ref="siteOneProprietaryBrandConfigDao"></property>
+	</bean>
+	
+	<alias  name="defaultSiteOneProductDao" alias="siteOneProductDao"/>
+	<bean id="defaultSiteOneProductDao" class="com.siteone.core.product.dao.impl.DefaultSiteOneProductDao" >
+	<property name="catalogVersionService" ref="catalogVersionService"></property>
+	</bean>
+
+	<alias  name="defaultSiteOneProductSalesDao" alias="siteOneProductSalesDao"/>
+	<bean id="defaultSiteOneProductSalesDao" class="com.siteone.core.product.dao.impl.DefaultSiteOneProductSalesDao" >
+	</bean>
+
+	<alias  name="defaultSiteOneProductUomRewriteDao" alias="siteOneProductUomRewriteDao"/>
+	<bean id="defaultSiteOneProductUomRewriteDao" class="com.siteone.core.product.dao.impl.DefaultSiteOneProductUomRewriteDao" >
+	</bean>
+
+	<alias  name="defaultSiteOneAutoPhraseConfigDao" alias="siteOneAutoPhraseConfigDao"/>
+	<bean id="defaultSiteOneAutoPhraseConfigDao" class="com.siteone.core.product.dao.impl.DefaultSiteOneAutoPhraseConfigDao" >
+	</bean>
+	
+	<alias  name="defaultSiteOneProprietaryBrandConfigDao" alias="siteOneProprietaryBrandConfigDao"/>
+	<bean id="defaultSiteOneProprietaryBrandConfigDao" class="com.siteone.core.product.dao.impl.DefaultSiteOneProprietaryBrandConfigDao" >
+	</bean>
+	
+	<alias name="defaultStockLevelValueProvider" alias="stockLevelValueProvider" />
+	<bean id="defaultStockLevelValueProvider" class="com.siteone.core.search.solrfacetsearch.provider.impl.StockLevelValueProvider">
+		<property name="fieldNameProvider" ref="solrFieldNameProvider" />
+		<property name="commerceStockService" ref="commerceStockService" />
+		<property name="siteOnePointOfServiceDao" ref="pointOfServiceDao" />
+		<property name="sessionService" ref="sessionService" />
+		
+	</bean>
+	
+	<alias name="defaultStockQuantityValueProvider" alias="stockQuantityValueProvider" />
+	<bean id="defaultStockQuantityValueProvider" class="com.siteone.core.search.solrfacetsearch.provider.impl.StockQuantityValueProvider">
+		<property name="fieldNameProvider" ref="solrFieldNameProvider" />
+		<property name="commerceStockService" ref="commerceStockService" />
+		<property name="siteOnePointOfServiceDao" ref="pointOfServiceDao" />
+		<property name="sessionService" ref="sessionService" />
+		
+	</bean>
+	
+	<bean id="productVariantSkuValueProvider" class="com.siteone.core.search.solrfacetsearch.provider.impl.ProductVariantSkuValueProvider"
+		parent="abstractPropertyFieldValueProvider">
+		<property name="fieldNameProvider" ref="solrFieldNameProvider"></property>
+	</bean>
+	
+	<bean id="promotionPriceValueProvider" class="com.siteone.core.search.solrfacetsearch.provider.impl.PromotionPriceValueProvider"
+		parent="abstractPropertyFieldValueProvider">
+		<property name="fieldNameProvider" ref="solrFieldNameProvider"/>
+		<property name="promotionsService" ref="promotionsService" />
+	</bean>
+	
+	<!-- Price Caching Value Providers -->
+    <bean id="indexProductPriceDAO" class="com.siteone.core.search.solrfacetsearch.index.dao.impl.IndexProductPriceDAOImpl">
+    	 <property name="flexibleSearchService" ref="flexibleSearchService"/>
+    </bean>
+
+	<bean id="abstractProductPriceCachingValueProvider" class="com.siteone.core.search.solrfacetsearch.provider.impl.AbstractProductPriceCachingValueProvider"
+		abstract="true" parent="abstractPropertyFieldValueProvider">
+		<property name="indexProductPriceDAO" ref="indexProductPriceDAO" />
+		<property name="fieldNameProvider" ref="solrFieldNameProvider"/>
+	</bean>
+
+	<bean id="productPriceCachingStoreValueProvider" class="com.siteone.core.search.solrfacetsearch.provider.impl.ProductPriceCachingStoreValueProvider"  parent="abstractProductPriceCachingValueProvider">
+    </bean>
+    
+    <bean id="productPriceCachingLowSortValueProvider" class="com.siteone.core.search.solrfacetsearch.provider.impl.ProductPriceCachingLowSortValueProvider"  parent="abstractProductPriceCachingValueProvider">
+    </bean>
+    
+    <bean id="productPriceCachingStoreFacetValueProvider" class="com.siteone.core.search.solrfacetsearch.provider.impl.ProductPriceCachingStoreFacetValueProvider"  parent="abstractProductPriceCachingValueProvider">
+    </bean>
+    
+    <bean id="productPriceCachingRangeStoreValueProvider" class="com.siteone.core.search.solrfacetsearch.provider.impl.ProductPriceCachingRangeStoreValueProvider"  parent="abstractProductPriceCachingValueProvider">
+         <property name="siteOneProductUOMService" ref="siteOneProductUOMService"/>
+    </bean>
+    
+    <!-- Inventory Caching Value Providers -->
+    <bean id="indexProductInventoryDAO" class="com.siteone.core.search.solrfacetsearch.index.dao.impl.IndexProductInventoryDAOImpl">
+    	 <property name="flexibleSearchService" ref="flexibleSearchService"/>
+    	 <property name="commerceStockLevelCalculationStrategy" ref="commerceStockLevelCalculationStrategy"/>
+    </bean>
+    
+	<bean id="abstractProductInventoryCachingValueProvider" class="com.siteone.core.search.solrfacetsearch.provider.impl.AbstractProductInventoryCachingValueProvider"
+		abstract="true" parent="abstractPropertyFieldValueProvider">
+		<property name="indexProductInventoryDAO" ref="indexProductInventoryDAO" />
+		<property name="fieldNameProvider" ref="solrFieldNameProvider"/>
+	</bean> 
+	
+	<bean id="stockLevelCachingValueProvider" class="com.siteone.core.search.solrfacetsearch.provider.impl.StockLevelCachingValueProvider"  parent="abstractProductInventoryCachingValueProvider">
+    </bean>   
+	
+	<bean id="productInventoryHitCachingValueProvider" class="com.siteone.core.search.solrfacetsearch.provider.impl.ProductInventoryHitCachingValueProvider"  parent="abstractProductInventoryCachingValueProvider">
+    </bean>  
+    
+	<bean id="nlaProductStockCachingValueProvider" class="com.siteone.core.search.solrfacetsearch.provider.impl.NLAProductStockCachingValueProvider"  parent="abstractProductInventoryCachingValueProvider">
+    </bean>    
+
+	<bean id="productInventoryFlagCachingValueProvider" class="com.siteone.core.search.solrfacetsearch.provider.impl.ProductInventoryFlagCachingValueProvider"  parent="abstractProductInventoryCachingValueProvider">
+    </bean>    
+
+	
+	<bean id="productPriceStoreValueProvider" class="com.siteone.core.search.solrfacetsearch.provider.impl.ProductPriceStoreValueProvider"  parent="abstractPropertyFieldValueProvider">
+        <property name="fieldNameProvider" ref="solrFieldNameProvider"/>
+    </bean>
+ 
+    <bean id="siteOneClassificationPropertyValueProvider" class="com.siteone.core.search.solrfacetsearch.provider.impl.SiteOneClassificationPropertyValueProvider"  parent="commerceClassificationPropertyValueProvider">
+    </bean>
+    
+    <bean id="siteOneClassificationCachingPropertyValueProvider" class="com.siteone.core.search.solrfacetsearch.provider.impl.SiteOneClassificationCachingPropertyValueProvider" parent="commerceClassificationPropertyValueProvider">
+    </bean>
+
+	<bean id="siteOneClassificationCachingTextPropertyValueProvider" class="com.siteone.core.search.solrfacetsearch.provider.impl.SiteOneClassificationCachingTextPropertyValueProvider" parent="commerceClassificationPropertyValueProvider">
+	</bean>
+
+	<bean id="siteOneWireSizeConductorsValueProvider" class="com.siteone.core.search.solrfacetsearch.provider.impl.SiteOneWireSizeConductorsValueProvider" parent="commerceClassificationPropertyValueProvider">
+     <property name="fieldNameProvider" ref="solrFieldNameProvider" />
+     <property name="classificationService" ref="classificationService"/>
+    </bean>
+  
+  	<bean id="siteoneClassificationUtils" class="com.siteone.core.search.solrfacetsearch.provider.impl.SiteoneClassificationUtils">
+     <property name="classificationService" ref="classificationService"/>
+     <property name="fieldNameProvider" ref="solrFieldNameProvider" />
+    </bean>
+    
+    <bean id="siteOneIrgPipeCategoriesValueProvider" class="com.siteone.core.search.solrfacetsearch.provider.impl.SiteOneIrgPipeCategoriesValueProvider" parent="commerceClassificationPropertyValueProvider">
+     <property name="siteoneClassificationUtils" ref="siteoneClassificationUtils"/>
+    </bean>
+    
+     <bean id="siteOneConsolidateTypeValueProvider" class="com.siteone.core.search.solrfacetsearch.provider.impl.SiteOneConsolidateTypeValueProvider" parent="commerceClassificationPropertyValueProvider">
+     <property name="siteoneClassificationUtils" ref="siteoneClassificationUtils"/>
+    </bean>
+    
+     <bean id="siteOneConsolidateItemValueProvider" class="com.siteone.core.search.solrfacetsearch.provider.impl.SiteOneConsolidateItemValueProvider" parent="commerceClassificationPropertyValueProvider">
+     <property name="siteoneClassificationUtils" ref="siteoneClassificationUtils"/>
+    </bean>
+    
+     <bean id="siteOneConsolidateSeriesValueProvider" class="com.siteone.core.search.solrfacetsearch.provider.impl.SiteOneConsolidateSeriesValueProvider" parent="commerceClassificationPropertyValueProvider">
+     <property name="siteoneClassificationUtils" ref="siteoneClassificationUtils"/>
+    </bean>
+    
+    <bean id="siteOneItemTypeSeriesCachingPropertyValueProvider" class="com.siteone.core.search.solrfacetsearch.provider.impl.SiteOneItemTypeSeriesCachingPropertyValueProvider" parent="commerceClassificationPropertyValueProvider">
+	</bean>
+	
+    <bean id="productPriceRangeStoreValueProvider" class="com.siteone.core.search.solrfacetsearch.provider.impl.ProductPriceRangeStoreValueProvider"  parent="abstractPropertyFieldValueProvider">
+        <property name="fieldNameProvider" ref="solrFieldNameProvider"/>
+         <property name="siteOneProductUOMService" ref="siteOneProductUOMService"/>
+    </bean>
+    
+     <bean id="productRegulatoryStatesValueProvider" class="com.siteone.core.search.solrfacetsearch.provider.impl.ProductRegulatoryStatesValueProvider"  parent="abstractPropertyFieldValueProvider">
+        <property name="fieldNameProvider" ref="solrFieldNameProvider"/>
+    </bean>
+    
+    <bean id="productPriceStoreFacetValueProvider" class="com.siteone.core.search.solrfacetsearch.provider.impl.ProductPriceStoreFacetValueProvider"  parent="abstractPropertyFieldValueProvider">
+        <property name="fieldNameProvider" ref="solrFieldNameProvider"/>
+    </bean>
+
+	<bean id="siteOneYtdSalesValueProvider" class="com.siteone.core.search.solrfacetsearch.provider.impl.SalesYtdValueProvider"  parent="abstractPropertyFieldValueProvider">
+		<property name="fieldNameProvider" ref="solrFieldNameProvider"/>
+	</bean>
+
+	<bean id="siteOneLastYtdSalesValueProvider" class="com.siteone.core.search.solrfacetsearch.provider.impl.SalesLastYtdValueProvider"  parent="abstractPropertyFieldValueProvider">
+		<property name="fieldNameProvider" ref="solrFieldNameProvider"/>
+	</bean>
+
+	<bean id="siteOneProductCreateDateValueResolver" class="com.siteone.core.search.solrfacetsearch.provider.impl.SiteOneProductCreateDateValueResolver"  parent="abstractValueResolver" />
+
+	<bean id="productYtdSalesValueProvider" class="com.siteone.core.search.solrfacetsearch.provider.impl.ProductYtdSalesValueProvider"  parent="abstractPropertyFieldValueProvider">
+		<property name="fieldNameProvider" ref="solrFieldNameProvider"/>
+	</bean>
+	
+	<alias alias="fieldNameTranslator" name="defaultSiteoneFieldNameTranslator"/>
+	<bean id="defaultSiteoneFieldNameTranslator" class="com.siteone.core.translator.DefaultSiteOneFieldNameTranslator">
+		<property name="sessionService" ref="sessionService"/>
+		<property name="fieldNameProvider" ref="solrFieldNameProvider" />
+		<property name="valueProviderSelectionStrategy" ref="valueProviderSelectionStrategy" />
+	</bean>
+	
+	<bean id="siteOneProductPriceLowSortValueProvider" class="com.siteone.core.search.solrfacetsearch.provider.impl.ProductPriceLowSortValueProvider" parent="abstractPropertyFieldValueProvider">
+        <property name="fieldNameProvider" ref="solrFieldNameProvider"/>
+    </bean>
+    
+    <bean id="contentSearchCrawledContentValueProvider" class="com.siteone.core.content.search.provider.impl.ContentSearchCrawledContentValueProvider" parent="abstractPropertyFieldValueProvider">
+        <property name="fieldNameProvider" ref="solrFieldNameProvider"/>
+    </bean>
+    
+     <bean id="contentSearchUrlValueProvider" class="com.siteone.core.content.search.provider.impl.ContentSearchUrlValueProvider" parent="abstractPropertyFieldValueProvider">
+        <property name="fieldNameProvider" ref="solrFieldNameProvider"/>
+    </bean>
+    
+    <bean id="contentTagsValueProvider" class="com.siteone.core.content.search.provider.impl.ContentTagsValueProvider" parent="abstractPropertyFieldValueProvider">
+		<property name="fieldNameProvider" ref="solrFieldNameProvider"></property>
+	</bean>
+	
+	<bean id="contentPageMediaValueProvider" class="com.siteone.core.content.search.provider.impl.ContentPageMediaValueProvider" parent="abstractPropertyFieldValueProvider">
+		<property name="fieldNameProvider" ref="solrFieldNameProvider"></property>
+	</bean>
+	
+ 	<alias name="defaultSiteOneSolrQueryConverter" alias="solrSearchQueryConverter" />
+	<alias name="defaultSiteOneSolrQueryConverter" alias="solrQueryConverter" />
+
+	<bean id="defaultSiteOneSolrQueryConverter" class="com.siteone.core.search.solrfacetsearch.provider.impl.DefaultSiteOneSolrQueryConverter" parent="defaultSolrQueryConverter">
+		<property name="sessionService" ref="sessionService"/>
+	</bean>
+  
+ 	<alias name="defaultSiteOneCommerceSearchTextPopulator" alias="commerceSearchTextPopulator" />
+	<bean id="defaultSiteOneCommerceSearchTextPopulator" class="de.hybris.platform.commerceservices.search.solrfacetsearch.populators.SearchTextPopulator">
+		<property name="freeTextQueryBuilders">
+			<list>
+				<bean class="com.siteone.core.solrfacetsearch.querybuilder.impl.DefaultSiteOneFreeTextQueryBuilder">
+					<property name="propertyName" value="soLowerCaseItemNumber" />
+					<property name="boost" value="100" />
+				</bean>
+				<bean class="com.siteone.core.solrfacetsearch.querybuilder.impl.DefaultSiteOneFreeTextQueryBuilder">
+					<property name="propertyName" value="socode" />
+					<property name="boost" value="100" />
+				</bean>
+				<bean class="com.siteone.core.solrfacetsearch.querybuilder.impl.DefaultSiteOneFreeTextQueryBuilder">
+					<property name="propertyName" value="sokeywords" />
+					<property name="boost" value="20" />
+				</bean>
+				<bean class="com.siteone.core.solrfacetsearch.querybuilder.impl.DefaultSiteOneFreeTextQueryBuilder">
+					<property name="propertyName" value="socategoryName" />
+					<property name="boost" value="20" />
+				</bean>
+				<bean class="com.siteone.core.solrfacetsearch.querybuilder.impl.DefaultSiteOneFreeTextQueryBuilder">
+					<property name="propertyName" value="soproductShortDescForSuggestion" />
+					<property name="boost" value="30" />
+				</bean>
+				<bean class="com.siteone.core.solrfacetsearch.querybuilder.impl.DefaultSiteOneFreeTextQueryBuilder">
+					<property name="propertyName" value="soLowerCaseProductBrandName" />
+					<property name="boost" value="50" />
+				</bean>
+				<bean class="com.siteone.core.solrfacetsearch.querybuilder.impl.DefaultSiteOneFreeTextQueryBuilder">
+					<property name="propertyName" value="soLowerCaseVendorPartNumber" />
+					<property name="boost" value="50" />
+				</bean>
+				<bean class="com.siteone.core.solrfacetsearch.querybuilder.impl.DefaultSiteOneFreeTextQueryBuilder">
+					<property name="propertyName" value="sovariantsku" />
+					<property name="boost" value="50" />
+				</bean>
+				<bean class="com.siteone.core.solrfacetsearch.querybuilder.impl.DefaultSiteOneFreeTextQueryBuilder">
+					<property name="propertyName" value="soproductShortDesc" />
+					<property name="boost" value="60" />
+				</bean>
+				<bean class="com.siteone.core.solrfacetsearch.querybuilder.impl.DefaultSiteOneFreeTextQueryBuilder">
+					<property name="propertyName" value="irgWireSizeConductors" />
+					<property name="boost" value="50" />
+				</bean>
+				<bean class="com.siteone.core.solrfacetsearch.querybuilder.impl.DefaultSiteOneFreeTextQueryBuilder">
+					<property name="propertyName" value="irgPipeCategories" />
+					<property name="boost" value="50" />
+				</bean>
+				<bean class="com.siteone.core.solrfacetsearch.querybuilder.impl.DefaultSiteOneFreeTextQueryBuilder">
+					<property name="propertyName" value="consolidateTypeCategories" />
+					<property name="boost" value="50" />
+				</bean>
+				<bean class="com.siteone.core.solrfacetsearch.querybuilder.impl.DefaultSiteOneFreeTextQueryBuilder">
+					<property name="propertyName" value="consolidateItemCategories" />
+					<property name="boost" value="50" />
+				</bean>
+				<bean class="com.siteone.core.solrfacetsearch.querybuilder.impl.DefaultSiteOneFreeTextQueryBuilder">
+					<property name="propertyName" value="consolidateSeriesCategories" />
+					<property name="boost" value="50" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="productRegulatedItemValueProvider" class="com.siteone.core.search.solrfacetsearch.provider.impl.ProductRegulatedItemValueProvider" parent="abstractPropertyFieldValueProvider">
+        <property name="fieldNameProvider" ref="solrFieldNameProvider"/>
+    </bean>
+  
+	<!-- <import resource="/siteonecore/processes/quote/quote-buyer-process-spring.xml"/>
+	<import resource="/siteonecore/processes/quote/quote-salesrep-process-spring.xml"/>
+	<import resource="/siteonecore/processes/quote/quote-seller-approval-process-spring.xml"/>
+	 -->
+	<alias alias="b2bCommerceUserService" name="defaultSiteOneB2BCommerceUserService"/>
+	<bean id="defaultSiteOneB2BCommerceUserService" class="com.siteone.core.company.impl.DefaultSiteOneB2BCommerceUserService" parent="defaultB2BCommerceUserService">
+	</bean>
+	
+	<alias name="defaultSolrContentSearchService" alias="solrContentSearchService" />
+	<bean id="defaultSolrContentSearchService" class="com.siteone.core.content.search.service.impl.DefaultSolrContentSearchService">
+		<property name="contentSearchQueryPageableConverter" ref="contentSearchQueryPageableConverter" />
+		<property name="searchRequestConverter" ref="commerceSolrSearchRequestConverter" />
+		<property name="contentSearchResponseConverter" ref="commerceSolrContentSearchResponseConverter" />
+	</bean>
+
+	<alias alias="cmsPageService" name="defaultSiteOneCMSPageService" />
+	<bean id="defaultSiteOneCMSPageService" class="com.siteone.core.cms.service.impl.DefaultSiteOneCMSPageService" parent="defaultCMSPageService">
+	</bean>
+	
+	<alias alias="cmsPageDao" name="defaultSiteOneCMSPageDao" />
+	<bean id="defaultSiteOneCMSPageDao" class="com.siteone.core.cms.dao.impl.DefaultSiteOneCMSPageDao" parent="defaultCMSPageDao" />
+	
+	<bean id="defaultSiteOneSDSProductSearchService" class="com.siteone.core.sds.service.impl.DefaultSiteOneSDSProductSearchService" parent="defaultCommerceSolrProductSearchService">
+		<property name="sdsSearchQueryPageableConverter" ref="defaultSDSSearchQueryPageableConverter" />
+		<property name="sdsSearchRequestConverter" ref="defaultSDSSearchRequestConverter" />
+		<property name="sdsSearchResponseConverter" ref="defaultSDSSearchResponseConverter" />
+	</bean>
+	
+	<alias name="defaultSDSMediavalueProvider" alias="sdsMediaValueProvider"/>
+	<bean id="defaultSDSMediavalueProvider" class="com.siteone.core.search.solrfacetsearch.provider.impl.SDSMediaValueProvider">
+        <property name="fieldNameProvider" ref="solrFieldNameProvider"/>
+    </bean>
+        
+    <alias name="defaultLabelValueProvider" alias="labelValueProvider"/>
+	<bean id="defaultLabelValueProvider" class="com.siteone.core.search.solrfacetsearch.provider.impl.LabelValueProvider">
+        <property name="fieldNameProvider" ref="solrFieldNameProvider"/>
+    </bean>
+
+	<!-- Custom dismax query builder -->
+	<alias alias="disMaxFreeTextQueryBuilder" name="siteOneDisMaxFreeTextQueryBuilder" />
+	<bean id="siteOneDisMaxFreeTextQueryBuilder" class="com.siteone.core.search.solrfacetsearch.query.builder.impl.SiteOneDisMaxFreeTextQueryBuilder" parent="defaultDisMaxFreeTextQueryBuilder">
+		<property name="fieldNameTranslator" ref="fieldNameTranslator" />
+	</bean>
+
+	<bean id="siteOneFacetSearchQueryBasicPopulator" class="com.siteone.core.search.solrfacetsearch.search.impl.populators.SiteOneFacetSearchQueryBasicPopulator"
+		  parent="facetSearchQueryBasicPopulator">
+		<property name="freeTextQueryBuilderFactory" ref="freeTextQueryBuilderFactory" />
+		<property name="configurationService" ref="configurationService"/>
+	</bean>
+
+	<bean id="facetSearchQueryConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="org.apache.solr.client.solrj.SolrQuery" />
+		<property name="populators">
+			<list>
+				<ref bean="siteOneFacetSearchQueryBasicPopulator" />
+				<ref bean="facetSearchQueryFilterQueriesPopulator" />
+				<ref bean="facetSearchQueryExcludedItemsFilterPopulator" />
+				<ref bean="facetSearchQueryCatalogVersionsFilterPopulator" />
+				<ref bean="facetSearchQueryGroupingPopulator" />
+				<ref bean="facetSearchQuerySortsPopulator" />
+				<ref bean="facetSearchQueryPagingPopulator" />
+				<ref bean="facetSearchQueryFacetsPopulator" />
+				<ref bean="facetSearchQueryFieldsPopulator" />
+				<ref bean="facetSearchQueryHighlightingFieldsPopulator" />
+				<ref bean="facetSearchQuerySpellcheckPopulator" />
+				<ref bean="facetSearchQueryParamsPopulator" />
+			</list>
+		</property>
+	</bean>
+
+
+	<bean id="facetSearchQuerySpellcheckPopulator"
+		  class="com.siteone.core.search.solrfacetsearch.search.impl.populators.SiteOneFacetSearchQuerySpellcheckPopulator">
+		<property name="additionalSpellDictionaries">
+			<list>
+				<value>wordbreak</value>
+			</list>
+		</property>
+	</bean>
+
+    <alias alias="b2bUnitService" name="defaultSiteOneB2BUnitService"/>
+    <bean id="defaultSiteOneB2BUnitService" class="com.siteone.core.b2bunit.service.impl.DefaultSiteOneB2BUnitService" parent="defaultB2BUnitService">
+   		<property name="siteOneB2BUnitPrincipalGroupMembersDao" ref="siteOneB2BUnitPrincipalGroupMembersDao"/>
+    </bean>
+    
+    <alias name="globalProductNavigationNodeUrlHandler" alias="siteOneGlobalProductNavigationNodeUrlHandler" />
+	<bean id="globalProductNavigationNodeUrlHandler" class="com.siteone.core.attributehandlers.GlobalProductNavigationNodeUrlHandler">
+	</bean>
+	
+	<alias name="siteOneCategoryService" alias="categoryService"/>
+	<bean id="siteOneCategoryService" class="com.siteone.core.category.service.impl.DefaultSiteOneCategoryService" parent="defaultCategoryService">
+		<property name="siteOneCategoryDao" ref="siteOneCategoryDao"/>
+	</bean>
+	
+	<bean id="siteOneCategoryDao" class="com.siteone.core.category.dao.DefaultSiteOneCategoryDao" parent="categoryDao">
+		<property name="catalogVersionService" ref="catalogVersionService"/>
+	</bean>
+	
+	<alias  name="defaultSiteOneEventService" alias="siteOneEventService"/>
+	<bean id="defaultSiteOneEventService" class="com.siteone.core.events.service.impl.DefaultSiteOneEventService" >
+	</bean>
+
+	<alias name="defaultSiteOneCommerceAddToCartStrategy" alias="commerceAddToCartStrategy"/>
+	<bean id="defaultSiteOneCommerceAddToCartStrategy" class="com.siteone.core.cart.strategies.impl.DefaultSiteOneCommerceAddToCartStrategy" parent="defaultCommerceAddToCartStrategy">
+		<property name="sessionService" ref="sessionService"/>
+        <property name="siteOneStoreFinderService" ref="defaultSiteOneStoreFinderService" />
+	</bean>
+	
+	<alias name="defaultSiteOneCommerceUpdateCartEntryStrategy" alias="commerceUpdateCartEntryStrategy"/>
+	<bean name="defaultSiteOneCommerceUpdateCartEntryStrategy" class="com.siteone.core.cart.strategies.impl.DefaultSiteOneCommerceUpdateCartEntryStrategy" parent="defaultCommerceUpdateCartEntryStrategy">
+		<property name="sessionService" ref="sessionService"/>
+        <property name="siteOneStoreFinderService" ref="defaultSiteOneStoreFinderService" />
+	</bean>
+	
+	<alias name="defaultSiteOneCalculationService" alias="calculationService"/>
+	<bean id="defaultSiteOneCalculationService" class="com.siteone.core.services.impl.DefaultSiteOneCalculationService" parent="defaultCalculationService">
+		<property name="userFacade" ref="userFacade"/>
+		<property name="siteOnePriceWebService" ref="siteOnePriceWebService"/>
+		<property name="priceDataFactory" ref="priceDataFactory"/>
+		<property name="commonI18NService" ref="commonI18NService"/>
+		<property name="productService" ref="productService"/>
+		<property name="productConfiguredPopulator" ref="productConfiguredPopulator"/>
+		<property name="siteOneProductUOMService" ref="siteOneProductUOMService"/>
+		<property name="siteOneCommerceCartEntryRemovalStrategy" ref="siteOneCommerceCartEntryRemovalStrategy"/>
+	</bean>
+    <alias name="defaultSiteOneRuleEngineCalculationService" alias="ruleEngineCalculationService"/>
+	<bean id="defaultSiteOneRuleEngineCalculationService" class="com.siteone.core.services.impl.DefaultSiteOneRuleEngineCalculationService" parent="defaultRuleEngineCalculationService">
+		<property name="cartService" ref="cartService"/>
+		</bean>
+    <alias alias="commerceCartCalculationStrategy" name="defaultSiteOneCommerceCartCalculationStrategy"/>
+	<bean id="defaultSiteOneCommerceCartCalculationStrategy" class="com.siteone.core.strategies.impl.DefaultSiteOneCommerceCartCalculationStrategy" parent="defaultCommerceCartCalculationStrategy">
+	<property name="siteOneCalculationService" ref="calculationService"/>
+	</bean>
+    
+    <alias name="defaultPromotionPriceValueProvider" alias="promotionPriceValueProvider"/>
+    <bean id="defaultPromotionPriceValueProvider" class="com.siteone.core.search.solrfacetsearch.provider.impl.PromotionPriceValueProvider" >
+	    <property name="fieldNameProvider" ref="solrFieldNameProvider"/>
+	    <property name="flexibleSearchService" ref="flexibleSearchService"/>
+	    <property name="promotionsService" ref="promotionsService"/>
+    </bean>
+    
+    <alias alias="siteOneStockLevelDao" name="defaultSiteOneStockLevelDao"/>
+	<bean id="defaultSiteOneStockLevelDao" class="com.siteone.core.stock.dao.DefaultSiteOneStockLevelDao"
+	      parent="defaultStockLevelDao">
+	      <property name="catalogVersionService" ref="catalogVersionService"/>
+	</bean>
+	
+	<bean id="siteOneDivisionUtil" class="com.siteone.core.util.SiteOneDivisionUtil">
+	</bean>
+	
+	<alias alias="siteOneStockLevelService" name="defaultSiteOneStockLevelService"/>
+	<bean id="defaultSiteOneStockLevelService" class="com.siteone.core.services.impl.DefaultSiteOneStockLevelService">
+		<property name="siteOneStockLevelDao" ref="siteOneStockLevelDao"/>
+	</bean>
+	
+	 <alias alias="siteoneSavedListService" name="defaultSiteoneSavedListService"/>
+    <bean id="defaultSiteoneSavedListService" class="com.siteone.core.savedList.service.impl.DefaultSiteoneSavedListService" parent="defaultWishlistService">
+    </bean>
+    
+    <alias alias="siteoneSavedListDao" name="defaultSiteoneSavedListDao"/>
+    <bean id="defaultSiteoneSavedListDao" class="com.siteone.core.savedList.dao.impl.DefaultSiteoneSavedListDao" parent="defaultWishlistDao">
+    </bean>
+    
+    <alias alias="siteOneRegionService" name="defaultSiteOneRegionService" />
+    <bean id="defaultSiteOneRegionService" class="com.siteone.core.location.service.impl.DefaultSiteOneRegionService">
+        <property name="regionDao" ref="regionDao"/>
+        <property name="countryDao" ref="countryDao"/>
+    </bean>
+    <!-- Kount Email -->
+     <bean id="kountDeclineEventListener" class="com.siteone.core.event.KountDeclineEventListener" parent="abstractAcceleratorSiteEventListener">
+		<property name="modelService" ref="modelService"/>
+		<property name="businessProcessService" ref="businessProcessService"/>
+	</bean>
+	
+	<bean id="generateKountDeclineEmailProcess" parent="abstractGenerateEmailAction">
+		<property name="frontendTemplateName" value="KountDeclineEmailTemplate"/>
+	</bean>
+	
+	 <bean id="kountDeclineEmailProcessDefinitionResource" class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
+		<property name="resource" value="classpath:/siteonecore/processes/kountDeclineEmailProcess.xml"/>
+	</bean>
+	
+    
+    <!-- Request Account -->
+    
+    <bean id="requestAccountEventListener" class="com.siteone.core.event.RequestAccountEventListener" parent="abstractAcceleratorSiteEventListener">
+		<property name="modelService" ref="modelService"/>
+		<property name="businessProcessService" ref="businessProcessService"/>
+	</bean>
+	
+	<bean id="generateRequestAccountEmailProcess" parent="abstractGenerateEmailAction">
+		<property name="frontendTemplateName" value="RequestAccountEmailTemplate"/>
+	</bean>
+	
+	
+	<bean id="generateRequestAccountCustomerEmailProcess" parent="abstractGenerateEmailAction">
+		<property name="frontendTemplateName" value="RequestAccountCustomerEmailTemplate"/>
+	</bean>
+	
+	
+    <bean id="requestAccountEmailProcessDefinitionResource" class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
+		<property name="resource" value="classpath:/siteonecore/processes/requestAccountEmailProcess.xml"/>
+	</bean>
+	
+	<bean id="requestAccountCustomerEmailProcessDefinitionResource" class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
+		<property name="resource" value="classpath:/siteonecore/processes/requestAccountCustomerEmailProcess.xml"/>
+	</bean>
+	
+	<alias  name="defaultSiteoneContrPrimaryBusinessMapDao" alias="siteoneContrPrimaryBusinessMapDao"/>
+	<bean id="defaultSiteoneContrPrimaryBusinessMapDao" class="com.siteone.core.requestaccount.dao.impl.DefaultSiteoneContrPrimaryBusinessMapDao" >
+	</bean>
+	
+	<alias  name="defaultSiteoneContrPrimaryBusinessMapService" alias="siteoneContrPrimaryBusinessMapService"/>
+	<bean id="defaultSiteoneContrPrimaryBusinessMapService" class="com.siteone.core.requestaccount.service.impl.DefaultSiteoneContrPrimaryBusinessMapService" >
+	</bean>
+	
+    <alias alias="cartValidationStrategy" name="defaultSiteoneCartValidationStrategy"/>
+    <bean id="defaultSiteoneCartValidationStrategy" class="com.siteone.core.cart.strategies.DefaultSiteOneCartValidationStrategy" parent="defaultCartValidationStrategy">
+    	<property name="stockService" ref="stockService"/>
+    </bean>
+
+    <alias  name="defaultSiteOneEventDao" alias="siteOneEventDao"/>
+	<bean id="defaultSiteOneEventDao" class="com.siteone.core.events.dao.impl.DefaultSiteOneEventDao" >
+	</bean>
+	
+
+	<alias alias="siteOnePromotionSourceRuleDao" name="defaultSiteOnePromotionSourceRuleDao"/>
+	<bean id="defaultSiteOnePromotionSourceRuleDao" class="com.siteone.core.promotion.dao.impl.DefaultSiteOnePromotionSourceRuleDao"
+	       parent="abstractItemDao">
+	      
+	</bean>
+	
+    <alias alias="siteOnePromotionSourceRuleService" name="defaultSiteOnePromotionSourceRuleService" />
+    <bean id="defaultSiteOnePromotionSourceRuleService" class="com.siteone.core.services.impl.DefaultSiteOnePromotionSourceRuleService">
+        <property name="siteOnePromotionSourceRuleDao" ref="siteOnePromotionSourceRuleDao"/>
+    </bean>
+
+	 <alias name="defaultSolrEventSearchService" alias="solrEventSearchService" />
+	<bean id="defaultSolrEventSearchService" class="com.siteone.core.events.impl.DefaultSolrEventSearchService">
+		<property name="eventSearchQueryPageableConverter" ref="eventSearchQueryPageableConverter" />
+		<property name="searchRequestConverter" ref="commerceSolrSearchRequestConverter" />
+		<property name="eventSearchResponseConverter" ref="commerceSolrEventSearchResponseConverter" />
+	</bean>
+
+
+	<alias name="defaultSolrNearbyStoreSearchService" alias="solrNearbyStoreSearchService" />
+	<bean id="defaultSolrNearbyStoreSearchService" class="com.siteone.core.store.services.impl.DefaultSolrNearbyStoreSearchService">
+		<property name="nearbyStoreSearchQueryPageableConverter" ref="nearbyStoreSearchQueryPageableConverter" />
+		<property name="searchRequestConverter" ref="commerceSolrSearchRequestConverter" />
+		<property name="nearbyStoreSearchResponseConverter" ref="commerceSolrNearbyStoreSearchResponseConverter" />
+	</bean>
+
+	<alias name="defaultSolrBuyItAgainSearchService" alias="solrBuyItAgainSearchService" />
+	<bean id="defaultSolrBuyItAgainSearchService" class="com.siteone.core.buyitagain.service.impl.DefaultSolrBuyItAgainSearchService">
+		<property name="buyItAgainSearchQueryPageableConverter" ref="buyItAgainSearchQueryPageableConverter" />
+		<property name="searchRequestConverter" ref="commerceSolrSearchRequestConverter" />
+		<property name="buyItAgainSearchResponseConverter" ref="commerceSolrBuyItAgainSearchResponseConverter" />
+	</bean>
+	
+	<alias name="defaultSolrListSearchService" alias="solrListSearchService" />
+	<bean id="defaultSolrListSearchService" class="com.siteone.core.events.impl.DefaultSolrListSearchService">
+		<property name="listSearchQueryPageableConverter" ref="listSearchQueryPageableConverter" />
+		<property name="searchRequestConverter" ref="commerceSolrSearchRequestConverter" />
+		<property name="listSearchResponseConverter" ref="commerceSolrListSearchResponseConverter" />
+	</bean>
+	
+	<bean id="buyItAgainOrderingAccountValueResolver" class="com.siteone.core.search.solrfacetsearch.provider.impl.BuyItAgainOrderingAccountValueResolver"
+		  parent="abstractValueResolver" />
+
+	<bean id="buyItAgainLastPurchasedDateValueResolver" class="com.siteone.core.search.solrfacetsearch.provider.impl.BuyItAgainLastPurchasedDateValueResolver"
+		  parent="abstractValueResolver" />
+
+	<bean id="buyItAgainIsOnlineProductValueResolver" class="com.siteone.core.search.solrfacetsearch.provider.impl.BuyItAgainIsOnlineProductValueResolver"
+		  parent="abstractValueResolver" />
+
+
+	<bean id="buyItAgainProductShortDescriptionValueResolver" class="com.siteone.core.search.solrfacetsearch.provider.impl.BuyItAgainProductShortDescriptionValueResolver"
+		  parent="abstractValueResolver" />
+
+	<bean id="buyItAgainProductUOMValueResolver" class="com.siteone.core.search.solrfacetsearch.provider.impl.BuyItAgainProductUOMValueResolver"
+		  parent="abstractValueResolver" />
+
+	<bean id="buyItAgainOrderNumberValueResolver" class="com.siteone.core.search.solrfacetsearch.provider.impl.BuyItAgainOrderNumberValueResolver"
+		  parent="abstractValueResolver" />
+
+	<bean id="buyItAgainImageValueResolver" class="com.siteone.core.search.solrfacetsearch.provider.impl.BuyItAgainImageValueResolver" parent="defaultSiteOneImageValueProvider">
+	    <property name="mediaService" ref="mediaService" />
+		<property name="mediaContainerService" ref="mediaContainerService" />
+		<property name="fieldNameProvider" ref="solrFieldNameProvider" />
+		<property name="mediaFormat" value="96Wx96H"/>
+	</bean>
+	
+	<bean id="listProductCodeValueResolver" class="com.siteone.core.search.solrfacetsearch.provider.impl.ListProductCodeValueResolver"
+		  parent="abstractValueResolver" />
+
+	<bean id="listProductItemNumberValueResolver" class="com.siteone.core.search.solrfacetsearch.provider.impl.ListProductItemNumberValueResolver"
+		  parent="abstractValueResolver" />
+
+	<bean id="listProductShortDescValueResolver" class="com.siteone.core.search.solrfacetsearch.provider.impl.ListProductShortDescValueResolver"
+		  parent="abstractValueResolver" />
+
+	<bean id="listProductBrandValueResolver" class="com.siteone.core.search.solrfacetsearch.provider.impl.ListProductBrandValueResolver" parent="abstractPropertyFieldValueProvider" >
+		<property name="fieldNameProvider" ref="solrFieldNameProvider"/>
+        <property name="modelService" ref="modelService"/>
+        <property name="enumerationService" ref="enumerationService"/>
+	</bean>
+		  
+	<bean id="listProductImagesValueResolver" class="com.siteone.core.search.solrfacetsearch.provider.impl.ListProductImagesValueResolver" parent="defaultSiteOneImageValueProvider">
+	    <property name="mediaService" ref="mediaService" />
+		<property name="mediaContainerService" ref="mediaContainerService" />
+		<property name="fieldNameProvider" ref="solrFieldNameProvider" />
+		<property name="mediaFormat" value="96Wx96H"/>
+	</bean>
+	
+	<alias name="listCategoryCodeValueProvider" alias="listCategoryCodeValueProvider"/>
+	<bean id="listCategoryCodeValueProvider" class="com.siteone.core.search.solrfacetsearch.provider.impl.ListCategoryCodeValueProvider">
+        <property name="fieldNameProvider" ref="solrFieldNameProvider" />
+		<property name="commonI18NService" ref="commonI18NService" />
+		<property name="categorySource" ref="siteoneCategorySource" />
+    </bean>
+    
+     <bean id="listWishlistPkValueProvider" class="com.siteone.core.search.solrfacetsearch.provider.impl.ListWishlistPkValueProvider"
+        parent="abstractPropertyFieldValueProvider">
+        <property name="fieldNameProvider" ref="solrFieldNameProvider"></property>
+    </bean>
+    
+    	<bean id="listCategoryNameValueProvider" class="com.siteone.core.search.solrfacetsearch.provider.impl.ListCategoryNameValueProvider">
+    	<property name="fieldNameProvider" ref="solrFieldNameProvider" />
+    	<property name="categorySource" ref="siteoneCategorySource"/>	
+    	<property name="commonI18NService" ref="commonI18NService"/>
+    </bean>
+	
+	<alias name="defaultBuyItAgainLastPurchasedDateFacetValueProvider" alias="buyItAgainLastPurchasedDateFacetValueProvider"/>
+	<bean id="defaultBuyItAgainLastPurchasedDateFacetValueProvider" class="com.siteone.core.search.solrfacetsearch.provider.impl.BuyItAgainLastPurchasedDateFacetValueProvider"
+		parent="abstractPropertyFieldValueProvider">
+		<property name="fieldNameProvider" ref="solrFieldNameProvider"></property>
+	</bean>
+	
+		  
+	<alias name="defaultEventDateFacetValueProvider" alias="eventDateFacetValueProvider"/>
+	<bean id="defaultEventDateFacetValueProvider" class="com.siteone.core.search.solrfacetsearch.provider.impl.EventDateFacetValueProvider"
+		parent="abstractPropertyFieldValueProvider">
+		<property name="fieldNameProvider" ref="solrFieldNameProvider"></property>
+	</bean>
+	
+	<alias name="defaultEventDateValueProvider" alias="eventDateValueProvider"/>
+	<bean id="defaultEventDateValueProvider" class="com.siteone.core.search.solrfacetsearch.provider.impl.EventDateValueProvider"
+		parent="abstractPropertyFieldValueProvider">
+		<property name="fieldNameProvider" ref="solrFieldNameProvider"></property>
+	</bean>
+	
+	<alias name="defaultEventTypeValueProvider" alias="eventTypeValueProvider"/>
+	<bean id="defaultEventTypeValueProvider" class="com.siteone.core.search.solrfacetsearch.provider.impl.EventTypeValueProvider"
+		parent="abstractPropertyFieldValueProvider">
+		<property name="fieldNameProvider" ref="solrFieldNameProvider"></property>
+	</bean>
+    <bean id="siteOneEventsPrepareInterceptor" class="com.siteone.core.interceptors.SiteOneEventsPrepareInterceptor">
+		<property name="modelService" ref="modelService"/>
+		<property name="keyGenerator" ref="siteOneEventCodeGenerator"/>
+	</bean>
+	
+	<bean id="siteOneEventsInterceptorMapping" class="de.hybris.platform.servicelayer.interceptor.impl.InterceptorMapping">
+		<property name="interceptor" ref="siteOneEventsPrepareInterceptor"/>
+		<property name="typeCode" value="SiteOneEvent"/>
+	</bean>
+
+	<bean id="siteOneEventCodeGenerator" class="de.hybris.platform.servicelayer.keygenerator.impl.PersistentKeyGenerator">
+		<property name="key" value="siteoneevent_code"/>
+		<property name="digits" value="8"/>
+		<property name="start" value="00000001"/>
+		<property name="numeric" value="true"/>
+		</bean>
+	
+	 <alias name="defaultPromotionRuleVersionService" alias="commercePromotionService" />
+	<bean id="defaultPromotionRuleVersionService" class="com.siteone.core.promotion.service.DefaultPromotionRuleVersionService" parent="defaultCommercePromotionService">
+	<property name="commercePromotionDao" ref="commercePromotionDao"/>
+	</bean>
+	
+	<alias alias="commercePromotionDao" name="defaultPromotionRuleVersionDao"/>
+	<bean id="defaultPromotionRuleVersionDao"
+			class="com.siteone.core.promotion.dao.DefaultPromotionRuleVersionDao"
+			parent="defaultCommercePromotionDao"/>
+			
+	<alias name="defaultPromotionFacetCodeValueProvider" alias="promotionFacetCodeValueProvider"/>
+	<bean id="defaultPromotionFacetCodeValueProvider" class="com.siteone.core.search.solrfacetsearch.provider.impl.PromotionFacetCodeValueProvider"
+		parent="abstractPropertyFieldValueProvider">
+		<property name="promotionsService" ref="promotionsService"/>
+		<property name="fieldNameProvider" ref="solrFieldNameProvider"/>
+	</bean>
+	
+	<!-- Customer Email Change -->
+	<bean id="customerEmailChangeEventListener"
+	      class="com.siteone.core.event.CustomerEmailChangeEventListener" parent="abstractAcceleratorSiteEventListener">
+		<property name="modelService" ref="modelService"/>
+		<property name="businessProcessService" ref="businessProcessService"/>
+	</bean>
+
+	<bean id="customerEmailChangeOldEmailProcessDefinitionResource"
+	      class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
+		<property name="resource" value="classpath:/siteonecore/processes/customerEmailChangeOldEmailProcess.xml"/>
+	</bean>
+
+	<bean id="customerEmailChangeNewEmailProcessDefinitionResource"
+	      class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
+		<property name="resource" value="classpath:/siteonecore/processes/customerEmailChangeNewEmailProcess.xml"/>
+	</bean>
+
+		 <!-- Create Password -->
+   <bean id="createPasswordEventListener"
+	      class="com.siteone.core.event.CreatePasswordEventListener" parent="abstractAcceleratorSiteEventListener">
+		<property name="modelService" ref="modelService"/>
+		<property name="businessProcessService" ref="businessProcessService"/>
+	</bean>
+	
+	<bean id="createPasswordEmailProcessDefinitionResource"
+	      class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
+		<property name="resource" value="classpath:/siteonecore/processes/createPasswordEmailProcess.xml"/>
+	</bean>
+	
+	<bean id="generateCreatePasswordEmail" parent="abstractGenerateEmailAction">
+		<property name="frontendTemplateName" value="CreatePasswordEmailTemplate"/>
+	</bean>
+	
+	<alias alias="b2bOrderService" name="defaultSiteOneB2BOrderService"/>
+	<bean id="defaultSiteOneB2BOrderService" parent="defaultB2BOrderService">
+		<property name="submitOrderStrategies">
+			<list>
+				<!-- implementation that sends SubmitOrderEvent -->
+				<ref bean="eventPublishingSubmitOrderStrategy"/>
+			</list>
+		</property>
+	</bean>
+	
+	<alias name="defaultSiteOneCustomerAccountDao" alias="customerAccountDao"/>
+	<bean id="defaultSiteOneCustomerAccountDao" class="com.siteone.core.order.dao.impl.DefaultSiteOneCustomerAccountDao" parent="defaultCustomerAccountDao">
+	<property name="pagedFlexibleSearchService" ref="pagedFlexibleSearchService" />
+	</bean>
+	
+	<alias name="defaultEventTypeGroupValueProvider" alias="eventTypeGroupValueProvider"/>
+	<bean id="defaultEventTypeGroupValueProvider" class="com.siteone.core.search.solrfacetsearch.provider.impl.EventTypeGroupValueProvider"
+		parent="abstractPropertyFieldValueProvider">
+		<property name="fieldNameProvider" ref="solrFieldNameProvider"/>
+	</bean>
+	
+	<alias alias="siteOneProductUOMDao" name="defaultSiteOneProductUOMDao"/>
+	<bean id="defaultSiteOneProductUOMDao" class="com.siteone.core.product.dao.impl.DefaultSiteOneProductUOMDao"
+	       parent="abstractItemDao">
+	</bean>
+	
+    <alias alias="siteOneProductUOMService" name="defaultSiteOneProductUOMService" />
+    <bean id="defaultSiteOneProductUOMService" class="com.siteone.core.services.impl.DefaultSiteOneProductUOMService">
+        <property name="siteOneProductUOMDao" ref="siteOneProductUOMDao"/>
+    </bean>
+
+	<bean id="firstTimeUserCronJob" class="com.siteone.core.jobs.customer.FirstTimeUserCronJob" parent="abstractJobPerformable" >          
+         <property name="firstTimeUserCronJobService" ref="firstTimeUserCronJobService"/>
+	</bean>
+	
+	<bean id="convertedProductMappingCronJob" class="com.siteone.core.jobs.product.ConvertedProductMappingCronJob" parent="abstractJobPerformable" >          
+		<property name="convertedProductCronJobService" ref="convertedProductCronJobService"/>
+	</bean>
+	
+
+	<alias name="customerEmailUpdateCronJob" alias="customerEmailUpdateCronJob" />
+	<bean id="customerEmailUpdateCronJob" class="com.siteone.core.jobs.customer.CustomerUpdateCronJob" parent="abstractJobPerformable" >
+		<property name="customerEmailUpdateCronJobService" ref="customerEmailUpdateCronJobService" />
+	</bean>
+
+	<alias name="defaultCustomerEmailUpdateCronJobService" alias="customerEmailUpdateCronJobService"/>
+  	<bean id="defaultCustomerEmailUpdateCronJobService" class="com.siteone.core.jobs.customer.service.impl.DefaultCustomerUpdateCronJobService" >
+    	<property name="customerEmailUpdateCronJobDao" ref="customerEmailUpdateCronJobDao"/>
+    	<property name="modelService" ref="modelService"/>
+		<property name="baseStoreService" ref="baseStoreService"/>
+		<property name="eventService" ref="eventService"/>
+		<property name="commonI18NService" ref="commonI18NService"/>
+		<property name="baseSiteService" ref="baseSiteService"/>
+		<property name="secureTokenService" ref="secureTokenService"/>
+    </bean>
+
+  	<alias name="defaultCustomerEmailUpdateCronJobDao" alias="customerEmailUpdateCronJobDao"/>
+  	<bean id="defaultCustomerEmailUpdateCronJobDao" class="com.siteone.core.jobs.customer.dao.impl.DefaultCustomerUpdateCronJobDao" parent="abstractItemDao">
+     </bean>
+
+
+
+	<!-- Unlock User -->
+   <bean id="unlockUserEventListener"
+	      class="com.siteone.core.event.UnlockUserEventListener" parent="abstractAcceleratorSiteEventListener">
+		<property name="modelService" ref="modelService"/>
+		<property name="businessProcessService" ref="businessProcessService"/>
+	</bean>
+	
+	<bean id="unlockUserEmailProcessDefinitionResource"
+	      class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
+		<property name="resource" value="classpath:/siteonecore/processes/unlockUserEmailProcess.xml"/>
+	</bean>
+	
+	<bean id="generateUnlockUserEmail" parent="abstractGenerateEmailAction">
+		<property name="frontendTemplateName" value="UnlockUserEmailTemplate"/>
+	</bean>
+	
+	<!--Points For Equipment  -->
+	
+	<bean id="pointsForEquipmentEventListener" class="com.siteone.core.event.PointsForEquipmentEventListener" parent="abstractAcceleratorSiteEventListener">
+		<property name="modelService" ref="modelService"/>
+		<property name="businessProcessService" ref="businessProcessService"/>
+	</bean>
+	
+	<bean id="generatePointsForEquipmentEmailProcess" parent="abstractGenerateEmailAction">
+		<property name="frontendTemplateName" value="PointsForEquipmentEmailTemplate"/>
+	</bean>
+	
+    <bean id="pointsForEquipmentEmailProcessDefinitionResource" class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
+		<property name="resource" value="classpath:/siteonecore/processes/pointsForEquipmentEmailProcess.xml"/>
+	</bean>
+	
+
+	<!--Contact Us Event  -->
+	<bean id="contactUsEventListener" class="com.siteone.core.event.ContactUsEventListener" parent="abstractAcceleratorSiteEventListener">
+		<property name="modelService" ref="modelService"/>
+		<property name="businessProcessService" ref="businessProcessService"/>
+	</bean>
+	
+	<bean id="generateContactUsEmailProcess" parent="abstractGenerateEmailAction">
+		<property name="frontendTemplateName" value="ContactUsEmailTemplate"/>
+	</bean>
+	
+    <bean id="contactUsEmailProcessDefinitionResource" class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
+		<property name="resource" value="classpath:/siteonecore/processes/contactUsEmailProcess.xml"/>
+		</bean>
+
+	 <alias  name="defaultSiteOneNewsDao" alias="siteOneNewsDao"/>
+	<bean id="defaultSiteOneNewsDao" class="com.siteone.core.news.dao.impl.DefaultSiteOneNewsDao" >
+	</bean>
+	
+	<alias  name="defaultSiteOneNewsService" alias="siteOneNewsService"/>
+	<bean id="defaultSiteOneNewsService" class="com.siteone.core.news.service.impl.DefaultSiteOneNewsService" >
+
+	</bean>
+	
+	<!-- Invoice Details Event -->
+	<bean id="invoiceDetailsEventListener" class="com.siteone.core.event.InvoiceDetailsEventListener" parent="abstractAcceleratorSiteEventListener">
+		<property name="modelService" ref="modelService"/>
+		<property name="businessProcessService" ref="businessProcessService"/>
+	</bean>
+	
+	<bean id="generateInvoiceDetailsEmailProcess" parent="abstractGenerateEmailAction">
+		<property name="frontendTemplateName" value="InvoiceDetailsEmailTemplate"/>
+	</bean>
+	
+	<bean id="invoiceDetailsEmailProcessDefinitionResource" class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
+		<property name="resource" value="classpath:/siteonecore/processes/invoiceDetailsEmailProcess.xml"/>
+	</bean>
+	
+	<!--start Shared Product email -->
+	
+	<bean id="sharedProductEventListener" class="com.siteone.core.event.SharedProductEventListener" parent="abstractAcceleratorSiteEventListener">
+		<property name="modelService" ref="modelService"/>
+		<property name="businessProcessService" ref="businessProcessService"/>
+	</bean>
+	
+	<bean id="sharedProductEmailProcessDefinitionResource" class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
+		<property name="resource" value="classpath:/siteonecore/processes/sharedProductEmailProcess.xml"/>
+	</bean>
+	
+	<bean id="generateSharedProductEmailProcess" parent="abstractGenerateEmailAction">
+		<property name="frontendTemplateName" value="SharedProductEmailTemplate"/>
+	</bean>
+	
+	<!-- end Shared Product email -->
+	
+
+	 <bean id="siteMapPageService" class="com.siteone.core.services.impl.DefaultSiteMapPageService" >
+		<property name="flexibleSearchService" ref="flexibleSearchService"/>
+	</bean>
+	
+	 <bean id="sendOrderDetailsEventListener" class="com.siteone.core.event.SendOrderDetailsEventListener" parent="abstractAcceleratorSiteEventListener">
+		<property name="modelService" ref="modelService"/>
+		<property name="businessProcessService" ref="businessProcessService"/>
+	</bean>
+	
+	<bean id="generateOrderDetailEmailProcess" parent="abstractGenerateEmailAction">
+		<property name="frontendTemplateName" value="SendorderDetailEmailTemplate"/>
+	</bean>
+	
+	
+    <bean id="orderDetailEmailProcessDefinitionResource" class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
+		<property name="resource" value="classpath:/siteonecore/processes/OrderDetailEmailProcess.xml"/>
+	</bean>
+		
+	<alias name="defaultSiteOneCategoryPageSiteMapGenerator" alias="categoryPageSiteMapGenerator"/>
+	<bean id="defaultSiteOneCategoryPageSiteMapGenerator"
+	      class="com.siteone.core.generators.SiteOneCategoryPageSiteMapGenerator"
+	      parent="defaultCategoryPageSiteMapGenerator">
+	</bean>
+	
+	<alias name="defaultSiteOneContentPageModelSiteMapGenerator" alias="contentPageModelSiteMapGenerator"/>
+	<bean id="defaultSiteOneContentPageModelSiteMapGenerator"
+	      class="com.siteone.core.generators.SiteOneContentPageModelSiteMapGenerator"
+	      parent="defaultContentPageModelSiteMapGenerator">
+	</bean>
+	<alias name="defaultSiteOnePointOfServiceSiteMapGenerator" alias="pointOfServicePageSiteMapGenerator"/>
+    <bean id="defaultSiteOnePointOfServiceSiteMapGenerator"
+          class="com.siteone.core.generators.SiteOnePointOfServiceSiteMapGenerator"
+          parent="defaultPointOfServicePageSiteMapGenerator">
+    </bean>
+    
+    <alias name="defaultSiteOneProductPageSiteMapGenerator" alias="productPageSiteMapGenerator"/>
+	<bean id="defaultSiteOneProductPageSiteMapGenerator"
+	      class="com.siteone.core.generators.SiteOneProductPageSiteMapGenerator"
+	      parent="defaultProductPageSiteMapGenerator">
+	</bean>
+
+   <alias name="defaultSiteOnePointOfServiceUrlResolver" alias="pointOfServiceUrlResolver"/>
+	<bean id="defaultSiteOnePointOfServiceUrlResolver"
+			class="com.siteone.core.resolver.DefaultSiteOnePointOfServiceUrlResolver" parent="defaultPointOfServiceUrlResolver">
+			<property name="pattern" value="/store/{store-id}"/>
+	</bean>
+	
+	<!--URL resolver  -->
+   
+   <alias name="defaultSiteOneProductModelUrlResolver" alias="productModelUrlResolver"/>
+	<bean id="defaultSiteOneProductModelUrlResolver"
+			class="com.siteone.core.url.impl.DefaultSiteOneProductModelUrlResolver" parent="defaultProductModelUrlResolver">
+		<property name="primaryHierarchy" value="${sales.hierarchy.root.category}"/>
+		<property name="defaultPattern" value="/{item-number}-{product-name}/p/{product-code}"/>
+	</bean>
+	
+	<alias name="defaultSiteOneCategoryModelUrlResolver" alias="categoryModelUrlResolver"/>
+	<bean id="defaultSiteOneCategoryModelUrlResolver"
+			class="com.siteone.core.url.impl.DefaultSiteOneCategoryModelUrlResolver" parent="defaultCategoryModelUrlResolver">
+		<property name="primaryHierarchy" value="${sales.hierarchy.root.category}"/>
+		<property name="pattern" value="/{category-path}/c/{category-code}"/>
+	</bean>
+	
+
+	<!-- Cart Abandonment -->
+	<bean id="cartAbandonmentCronJob" class="com.siteone.core.jobs.customer.CartAbandonmentCronJob" parent="abstractJobPerformable" >          
+		<property name="cartAbandonmentCronJobDao" ref="cartAbandonmentCronJobDao"/>
+		<property name="commonI18NService" ref="commonI18NService"/>
+	</bean>
+	
+	<alias name="defaultCartAbandonmentCronJobDao" alias="cartAbandonmentCronJobDao"/>
+  		<bean id="defaultCartAbandonmentCronJobDao" class="com.siteone.core.jobs.customer.dao.impl.DefaultCartAbandonmentCronJobDao" parent="abstractItemDao">
+     </bean>
+	
+	<bean id="generateCartAbandonmentEmail" parent="abstractGenerateEmailAction">
+		<property name="frontendTemplateName" value="CartAbandonmentEmailTemplate"/>
+	</bean>
+	
+	<bean id="cartAbandonmentEmailProcessDefinitionResource"
+	      class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
+		<property name="resource" value="classpath:/siteonecore/processes/cartAbandonmentEmailProcess.xml"/>
+	</bean>
+	
+	<bean id="cartAbandonmentEventListener"
+	      class="com.siteone.core.event.CartAbandonmentEventListener" parent="abstractAcceleratorSiteEventListener">
+		<property name="modelService" ref="modelService"/>
+		<property name="businessProcessService" ref="businessProcessService"/>
+	</bean>
+	
+	<bean id="cartAbandonmentEmailSent" class="com.siteone.core.event.CartAbandonmentEmailSent"  parent="abstractAction">
+		<property name="modelService" ref="modelService"/>
+	</bean>
+
+
+	<alias name="defaultSiteoneEmailGenerationService" alias="emailGenerationService"/>
+	<bean id="defaultSiteoneEmailGenerationService" class="com.siteone.core.email.service.impl.DefaultSiteoneEmailGenerationService"
+		  parent="defaultEmailGenerationService">
+	</bean>
+	
+	<bean id="staticMediaUrlStrategy" class="com.siteone.core.media.StaticMediaUrlStrategy" >
+	<property name="prettyUrlEnabled" value="${media.legacy.prettyURL}"/>
+	</bean>
+
+	<!-- Password Changed  -->
+   <bean id="passwordChangedEventListener"
+	      class="com.siteone.core.event.PasswordChangedEventListener" parent="abstractAcceleratorSiteEventListener">
+		<property name="modelService" ref="modelService"/>
+		<property name="businessProcessService" ref="businessProcessService"/>
+	</bean>
+	
+	<bean id="passwordChangedEmailProcessDefinitionResource"
+	      class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
+		<property name="resource" value="classpath:/siteonecore/processes/passwordChangedEmailProcess.xml"/>
+	</bean>
+	
+	<bean id="generatePasswordChangedEmail" parent="abstractGenerateEmailAction">
+		<property name="frontendTemplateName" value="PasswordChangedEmailTemplate"/>
+	</bean>
+	
+	<!-- Order Ready For Pick Up -->
+	<bean id="OrderReadyToPickUpEventListener" class="com.siteone.core.event.OrderReadyToPickUpEventListener" parent="abstractAcceleratorSiteEventListener">
+		<property name="modelService" ref="modelService"/>
+		<property name="businessProcessService" ref="businessProcessService"/>
+	</bean>
+	
+	<bean id="generateOrderReadyToPickUpEmailProcess" parent="abstractGenerateEmailAction">
+		<property name="frontendTemplateName" value="OrderReadyToPickUpEmailTemplate"/>
+	</bean>
+	
+	
+    <bean id="orderPickUpEmailProcessDefinitionResource" class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
+		<property name="resource" value="classpath:/siteonecore/processes/OrderReadyToPickUpEmailProcess.xml"/>
+	</bean>
+	
+	<!-- Order Tracking Link -->
+	<bean id="OrderTrackingLinkEventListener" class="com.siteone.core.event.OrderTrackingLinkEventListener" parent="abstractAcceleratorSiteEventListener">
+		<property name="modelService" ref="modelService"/>
+		<property name="businessProcessService" ref="businessProcessService"/>
+	</bean>
+	
+	<bean id="generateOrderTrackingLinkEmailProcess" parent="abstractGenerateEmailAction">
+		<property name="frontendTemplateName" value="OrderTrackingLinkEmailTemplate"/>
+	</bean>
+	
+	
+    <bean id="orderTrackingLinkEmailProcessDefinitionResource" class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
+		<property name="resource" value="classpath:/siteonecore/processes/OrderTrackingLinkEmailProcess.xml"/>
+	</bean>
+	
+	<!-- Order Schedule For Delivery -->
+	<bean id="OrderScheduledForDeliveryEventListener" class="com.siteone.core.event.OrderScheduledForDeliveryEventListener" parent="abstractAcceleratorSiteEventListener">
+		<property name="modelService" ref="modelService"/>
+		<property name="businessProcessService" ref="businessProcessService"/>
+	</bean>
+	
+	<bean id="generateOrderScheduledForDeliveryEmailProcess" parent="abstractGenerateEmailAction">
+		<property name="frontendTemplateName" value="OrderScheduledForDeliveryEmailTemplate"/>
+	</bean>
+	
+	
+    <bean id="orderScheduledForDeliveryEmailProcessDefinitionResource" class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
+		<property name="resource" value="classpath:/siteonecore/processes/OrderScheduledForDeliveryEmailProcess.xml"/>
+	</bean>
+	
+    <bean id="promotionSourceRulePrepareInterceptor" class="com.siteone.core.interceptors.PromotionSourceRulePrepareInterceptor" >
+		
+	</bean>
+	
+	<bean id="siteOnePromotionSourceRulePrepareInterceptorMapping"
+			class="de.hybris.platform.servicelayer.interceptor.impl.InterceptorMapping">
+		<property name="interceptor" ref="promotionSourceRulePrepareInterceptor"/>
+		<property name="typeCode" value="PromotionSourceRule"/>
+	</bean>
+
+	<!-- Share Cart Email -->
+	<bean id="generateShareCartEmailProcess" parent="abstractGenerateEmailAction">
+		<property name="frontendTemplateName" value="ShareCartEmailTemplate"/>
+	</bean>
+	
+	<bean id="generateShareCartEmailProcessDefinitionResource"
+	      class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
+		<property name="resource" value="classpath:/siteonecore/processes/shareCartEmailProcess.xml"/>
+	</bean>
+	
+	 <bean id="shareCartEventListener"
+	      class="com.siteone.core.event.ShareCartEventListener" parent="abstractAcceleratorSiteEventListener">
+		<property name="modelService" ref="modelService"/>
+		<property name="businessProcessService" ref="businessProcessService"/>
+
+	</bean>
+	
+	 <alias  name="defaultSiteOneInspirationService" alias="siteOneInspirationService"/>
+	<bean id="defaultSiteOneInspirationService" class="com.siteone.core.inspire.service.impl.DefaultSiteOneInspirationService" >
+
+	</bean>
+	
+	
+	 <alias  name="defaultSiteOneInspirationDao" alias="siteOneInspirationDao"/>
+	<bean id="defaultSiteOneInspirationDao" class="com.siteone.core.inspire.dao.impl.DefaultSiteOneInspirationDao" >
+	</bean> 
+	
+	<bean id="siteOneB2BAcceleratorStatusDisplayMapMergeDirective" depends-on="acceleratorStatusDisplayMap" parent="mapMergeDirective">
+		<property name="sourceMap">
+			<map>
+				<entry key="SCHEDULED_FOR_DELIVERY" value="SCHEDULED_FOR_DELIVERY"/>
+				<entry key="READY_FOR_PICKUP" value="READY_FOR_PICKUP"/>
+				<entry key="SUBMITTED" value="SUBMITTED"/>
+				<entry key="PROCESSING" value="PROCESSING"/>
+				<entry key="INVOICED" value="INVOICED"/>
+				<entry key="SHIPPED" value="SHIPPED"/>
+				<entry key="CHECKED_VALID" value="PENDING"/>
+				<entry key="CHECKED_INVALID" value="PENDING"/>
+			</map>
+		</property>
+	</bean>
+	
+	<alias name="defaultSellableUomValueProvider" alias="sellableUomValueProvider"/>
+	<bean id="defaultSellableUomValueProvider" class="com.siteone.core.search.solrfacetsearch.provider.impl.SellableUomValueProvider">
+        <property name="fieldNameProvider" ref="solrFieldNameProvider"/>
+        <property name="siteOneProductUOMService" ref="siteOneProductUOMService"/>
+    </bean>
+
+	<alias name="acceleratorDetermineExternalTaxStrategy" alias="decideExternalTaxesStrategy"/>
+	<bean id="acceleratorDetermineExternalTaxStrategy"
+		  class="com.siteone.core.externaltax.impl.AcceleratorDetermineExternalTaxStrategy"/>
+	
+	<alias name="defaultSiteOneCalculateExternalTaxesStrategy" alias="calculateExternalTaxesStrategy"/>
+	<bean id="defaultSiteOneCalculateExternalTaxesStrategy"
+		  class="com.siteone.core.externaltax.impl.DefaultSiteOneCalculateExternalTaxesStrategy">
+		<property name="taxCalculationWebService" ref="taxCalculationWebService"/>
+	</bean>
+
+<alias name="defaultSiteOneApplyExternalTaxesStrategy" alias="applyExternalTaxesStrategy"/>
+	<bean id="defaultSiteOneApplyExternalTaxesStrategy"
+		  class="com.siteone.core.externaltax.impl.DefaultSiteOneApplyExternalTaxesStrategy" parent="defaultApplyExternalTaxesStrategy">
+	</bean>
+	
+	<alias name="defaultSiteOneExternalTaxesService" alias="externalTaxesService"/>
+	<bean id="defaultSiteOneExternalTaxesService"
+		  class="com.siteone.core.externaltax.impl.DefaultSiteOneExternalTaxesService" parent="defaultExternalTaxesService">
+	</bean>
+	
+	 <alias alias="commerceStockLevelCalculationStrategy" name="defaultSiteOneCommerceAvailabilityCalculationStrategy"/>
+	<bean id="defaultSiteOneCommerceAvailabilityCalculationStrategy" class="com.siteone.core.strategies.impl.DefaultSiteOneCommerceAvailabilityCalculationStrategy" parent="defaultCommerceStockLevelCalculationStrategy">
+	</bean>
+	
+	<alias name="defaultProductInventoryHitValueProvider" alias="productInventoryHitValueProvider" />
+	<bean id="defaultProductInventoryHitValueProvider" class="com.siteone.core.search.solrfacetsearch.provider.impl.ProductInventoryHitValueProvider">
+		<property name="fieldNameProvider" ref="solrFieldNameProvider" />
+		<property name="commerceStockService" ref="commerceStockService" />
+		<property name="stockService" ref="stockService" />
+		<property name="siteOnePointOfServiceDao" ref="pointOfServiceDao" />
+		<property name="sessionService" ref="sessionService" />
+	</bean>
+	
+	<alias name="siteoneCategoryPathValueProvider" alias="categoryPathValueProvider"/>
+	<bean id="siteoneCategoryPathValueProvider" class="com.siteone.core.search.solrfacetsearch.provider.impl.SiteOneCategoryPathValueProvider">
+	    <property name="fieldNameProvider" ref="solrFieldNameProvider" />
+		<property name="categoryService" ref="categoryService" />
+		<property name="categorySource" ref="siteoneCategorySource" />
+	</bean>
+	
+	<alias name="siteoneCategoryCodeValueProvider" alias="siteoneCategoryCodeValueProvider"/>
+	<bean id="siteoneCategoryCodeValueProvider" class="com.siteone.core.search.solrfacetsearch.provider.impl.SiteOneCategoryCodeValueProvider">
+        <property name="fieldNameProvider" ref="solrFieldNameProvider" />
+		<property name="commonI18NService" ref="commonI18NService" />
+		<property name="categorySource" ref="siteoneCategorySource" />
+    </bean>
+    
+	<bean id="siteoneCategorySource" class="com.siteone.core.category.source.SiteOneCategorySource" parent="defaultCategorySource">
+	<property name="rootCategory" value="SH1"/> 
+	</bean>
+	
+	
+	<bean id="regulatoryStatesCronJob" class="com.siteone.core.jobs.customer.RegulatoryStatesCronJob" parent="abstractJobPerformable" >          
+		<property name="regulatoryStatesCronJobService" ref="regulatoryStatesCronJobService"/>
+	</bean>
+	
+	<alias name="defaultRegulatoryStatesCronJobService" alias="regulatoryStatesCronJobService"/>
+	<bean id="defaultRegulatoryStatesCronJobService" class="com.siteone.core.services.impl.DefaultRegulatoryStatesCronJobService">
+		<property name="regulatoryStatesCronJobDao" ref="regulatoryStatesCronJobDao"/>
+		<property name="modelService" ref="modelService"/>
+		<property name="productService" ref="productService"/>
+		<property name="catalogVersionService" ref="catalogVersionService"/>
+		<property name="siteOneRegionService" ref="siteOneRegionService"/>
+	</bean>
+	
+	<alias name="defaultRegulatoryStatesCronJobDao" alias="regulatoryStatesCronJobDao"/>
+	<bean id="defaultRegulatoryStatesCronJobDao" class="com.siteone.core.jobs.customer.dao.impl.DefaultRegulatoryStatesCronJobDao" parent="abstractItemDao">
+	</bean>
+	
+	<bean id="ImportProductStoresCronJob" class="com.siteone.core.jobs.customer.ImportProductStoresCronJob" parent="abstractJobPerformable" >          
+		<property name="ImportProductStoresCronJobService" ref="ImportProductStoresCronJobService"/>
+	</bean>
+	
+	<alias name="defaultImportProductStoresCronJobService" alias="ImportProductStoresCronJobService"/>
+	<bean id="defaultImportProductStoresCronJobService" class="com.siteone.core.services.impl.DefaultImportProductStoresCronJobService">
+	    <property name="importProductStoresCronJobDao" ref="importProductStoresCronJobDao"/>
+	    <property name="modelService" ref="modelService"/>
+		<property name="productService" ref="productService"/>
+		<property name="catalogVersionService" ref="catalogVersionService"/>
+	</bean>
+
+	<bean id="importOnHandProductStoresCronJob" class="com.siteone.core.jobs.customer.ImportOnHandProductStoresCronJob" parent="abstractJobPerformable" >
+		<property name="importOnHandProductStoresCronJobService" ref="importOnHandProductStoresCronJobService"/>
+	</bean>
+
+	<alias name="defaultImportOnHandProductStoresCronJobService" alias="importOnHandProductStoresCronJobService"/>
+	<bean id="defaultImportOnHandProductStoresCronJobService" class="com.siteone.core.services.impl.DefaultImportOnHandProductStoresCronJobService">
+		<property name="importOnHandProductStoresCronJobDao" ref="importOnHandProductStoresCronJobDao"/>
+		<property name="modelService" ref="modelService"/>
+		<property name="productService" ref="productService"/>
+		<property name="catalogVersionService" ref="catalogVersionService"/>
+	</bean>
+	
+	<bean id="importQRCodeProductsCronJob" class="com.siteone.core.jobs.customer.ImportQRCodeProductsCronJob" parent="abstractJobPerformable" >
+		<property name="importQRCodeProductsCronJobService" ref="importQRCodeProductsCronJobService"/>
+	</bean>
+	<alias name="defaultImportQRCodeProductsCronJobService" alias="importQRCodeProductsCronJobService"/>
+	<bean id="defaultImportQRCodeProductsCronJobService" class="com.siteone.core.services.impl.DefaultImportQRCodeProductsCronJobService">
+	</bean> 
+	
+	<alias name="defaultConvertedProductCronJobService" alias="convertedProductCronJobService"/>	
+	<bean id="defaultConvertedProductCronJobService" class="com.siteone.core.services.impl.DefaultConvertedProductCronJobService">
+	    <property name="convertedProductCronJobDao" ref="convertedProductCronJobDao"/>
+	    <property name="modelService" ref="modelService"/>
+	</bean>
+	
+	<alias name="defaultConvertedProductCronJobDao" alias="convertedProductCronJobDao"/>	
+	<bean id="defaultConvertedProductCronJobDao" class="com.siteone.core.cronjob.dao.impl.DefaultConvertedProductCronJobDao">
+	    <property name="flexibleSearchService" ref="flexibleSearchService"/>	
+	</bean>
+	
+	<bean id="siteoneJobsStatusCronJobDAO" class="com.siteone.core.jobs.report.dao.impl.SiteoneJobsStatusCronJobDAOImpl" parent="abstractItemDao">          
+	</bean>
+    <bean id="siteoneJobsStatusCronJobService" class="com.siteone.core.jobs.report.service.impl.SiteoneJobsStatusCronJobServiceImpl" >          
+	     <property name="siteoneJobsStatusCronJobDAO" ref="siteoneJobsStatusCronJobDAO"/>
+	</bean>
+
+    <bean id="siteoneJobsStatusCronJob" class="com.siteone.core.jobs.report.SiteoneJobsStatusCronJob" parent="abstractJobPerformable" >          
+	     <property name="siteoneJobsStatusCronJobService" ref="siteoneJobsStatusCronJobService"/>
+	     <property name="baseStoreService" ref="baseStoreService" />
+	     <property name="baseSiteService" ref="baseSiteService" />
+	     <property name="eventService" ref="eventService" />
+	     <property name="commonI18NService" ref="commonI18NService"/>
+	</bean>
+
+	<alias name="siteOneDefaultExtendedWriteAuditGateway" alias="extendedWriteAuditGateway" />
+	<bean id="siteOneDefaultExtendedWriteAuditGateway" class="com.siteone.core.jobs.audit.service.impl.SiteOneDefaultExtendedWriteAuditGateway" parent="defaultWriteAuditGateway" >
+		<property name="jdbcTemplate" ref="jdbcTemplate"/>
+		<property name="auditScopeInvalidator" ref="auditScopeInvalidator"/>
+		<property name="blobDataImportService" ref="blobDataImportService"/>
+		<property name="configurationService" ref="configurationService"/>
+	</bean>
+
+	<bean id="siteOneAuditCleanupCronJob" class="com.siteone.core.jobs.audit.SiteOneAuditCleanupCronJob" parent="abstractJobPerformable" >
+		<property name="auditGateway" ref="extendedWriteAuditGateway"/>
+	</bean>
+
+	<bean id="siteOneAuditExportCronJob" class="com.siteone.core.jobs.audit.SiteOneAuditExportCronJob" parent="abstractJobPerformable" >
+		<property name="auditGateway" ref="extendedWriteAuditGateway"/>
+	</bean>
+	
+	<bean id="SiteoneCleanUpLogsCronJob" class="com.siteone.core.jobs.cleanup.SiteoneCleanUpLogsCronJob" parent="abstractJobPerformable" >  
+		<property name="siteoneCleanUpLogsCronJobService" ref="siteoneCleanUpLogsCronJobService"/>  
+		<property name="modelService" ref="modelService"/>
+		<property name="blobDataImportService" ref="blobDataImportService"/>
+	</bean>
+	<bean id="siteoneCleanUpLogsCronJobService" class="com.siteone.core.jobs.cleanup.service.impl.DefaultSiteoneCleanUpLogsCronJobService" >          
+	     <property name="siteoneCleanUpLogsCronJobDao" ref="siteoneCleanUpLogsCronJobDao"/>
+	</bean>
+	<bean id="siteoneCleanUpLogsCronJobDao" class="com.siteone.core.jobs.cleanup.dao.impl.DefaultSiteoneCleanUpLogsCronJobDao" parent="abstractItemDao">          
+	</bean>
+
+	<bean id="siteOneHotFolderArchiveCleanupCronJob" class="com.siteone.core.jobs.cleanup.SiteOneHotFolderArchiveCleanupCronJob" parent="abstractJobPerformable" >
+		<property name="configurationService" ref="configurationService"/>
+		<property name="blobDataImportService" ref="blobDataImportService"/>
+	</bean>
+	
+	<alias name="defaultSiteOneCommerceCartService" alias="commerceCartService"/>
+	<bean id="defaultSiteOneCommerceCartService" class="com.siteone.core.cart.strategies.DefaultSiteOneCommerceCartService" parent="defaultCommerceCartService">
+	</bean>
+
+	<alias name="defaultSiteOneCommerceCartEntryRemovalStrategy" alias="siteOneCommerceCartEntryRemovalStrategy"/>
+	<bean id="defaultSiteOneCommerceCartEntryRemovalStrategy" class="com.siteone.core.strategies.impl.DefaultSiteOneCommerceCartEntryRemovalStrategy">
+		<property name="modelService" ref="modelService"/>
+	</bean>
+
+	<alias name="defaultSiteOneCommerceCartRestorationStrategy" alias="commerceCartRestorationStrategy"/>
+	<bean id="defaultSiteOneCommerceCartRestorationStrategy" class="com.siteone.core.strategies.impl.DefaultSiteOneCommerceCartRestorationStrategy" parent="defaultCommerceCartRestorationStrategy">
+		<property name="commerceCommonI18NService" ref="commerceCommonI18NService"/>
+	</bean>
+
+	<alias name="defaultSiteOneRegionDao" alias="siteOneRegionDao"/>
+	<bean id="defaultSiteOneRegionDao" class="com.siteone.core.region.dao.impl.DefaultSiteOneRegionDao" parent="regionDao">
+	</bean>
+	
+	
+		<bean id="orderStatusEmailCronJob" class="com.siteone.core.jobs.customer.OrderStatusEmailCronJob" parent="abstractJobPerformable" >          
+         <property name="siteOneOrderService" ref="siteOneOrderService"/>
+	</bean>
+	
+	<bean id="quoteToOrderStatusEmailCronJob" class="com.siteone.core.jobs.customer.QuoteToOrderStatusEmailCronJob" parent="abstractJobPerformable" >          
+         <property name="siteOneOrderService" ref="siteOneOrderService"/>
+	</bean>
+	
+	<bean id="orderReadyForPickUpRemainderEmailCronJob" class="com.siteone.core.jobs.customer.OrderReadyForPickUpRemainderEmailCronJob" parent="abstractJobPerformable" >          
+         <property name="siteOneOrderService" ref="siteOneOrderService"/>
+	</bean>
+	
+	<bean id="orderStatusNotificationCronJob" class="com.siteone.core.jobs.customer.OrderStatusNotificationCronJob" parent="abstractJobPerformable" >          
+         <property name="siteOneOrderService" ref="siteOneOrderService"/>
+	</bean>	
+	
+	<alias name="defaultSiteOneOrderService" alias="siteOneOrderService"/>
+  		<bean id="defaultSiteOneOrderService" class="com.siteone.core.order.services.impl.DefaultSiteOneOrderService" >
+    	<property name="siteOneOrderDao" ref="siteOneOrderDao"/>
+    	<property name="modelService" ref="modelService" /> 
+		<property name="eventService" ref="eventService" />
+		<property name="baseStoreService" ref="baseStoreService" />
+		<property name="baseSiteService" ref="baseSiteService" />
+		<property name="commonI18NService" ref="commonI18NService" />
+    	</bean>
+     
+     <alias name="defaultSiteOneOrderDao" alias="siteOneOrderDao"/>
+  		<bean id="defaultSiteOneOrderDao" class="com.siteone.core.order.dao.impl.DefaultSiteOneOrderDao" parent="abstractItemDao">
+     </bean>
+	
+	<bean id="customPushNotificationCronJob" class="com.siteone.core.jobs.customer.CustomPushNotificationCronJob" parent="abstractJobPerformable" >          
+         <property name="customPushNotificationService" ref="customPushNotificationService"/>
+	</bean>
+    	
+    <alias name="defaultCustomPushNotificationService" alias="customPushNotificationService"/>
+  		<bean id="defaultCustomPushNotificationService" class="com.siteone.core.jobs.customer.service.impl.DefaultCustomPushNotificationService" >
+    	<property name="customPushNotificationDao" ref="customPushNotificationDao"/>
+		</bean>		    	
+  	
+  	<alias name="defaultCustomPushNotificationDao" alias="customPushNotificationDao"/>
+  		<bean id="defaultCustomPushNotificationDao" class="com.siteone.core.jobs.customer.dao.impl.DefaultCustomPushNotificationDao" parent="abstractItemDao">
+     </bean>
+
+     	<!--Edit List Event  -->
+	<bean id="editListEventListener" class="com.siteone.core.event.ListEditEventListener" parent="abstractAcceleratorSiteEventListener">
+		<property name="modelService" ref="modelService"/>
+		<property name="businessProcessService" ref="businessProcessService"/>
+	</bean>
+	
+	<bean id="generateListEditEmailProcess" parent="abstractGenerateEmailAction">
+		<property name="frontendTemplateName" value="ListEditEmailTemplate"/>
+	</bean>
+	
+    <bean id="editListEmailProcessDefinitionResource" class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
+		<property name="resource" value="classpath:/siteonecore/processes/listEditEmailProcess.xml"/>
+		</bean>
+
+     <alias name="defaultImportProductStoresCronJobDao" alias="importProductStoresCronJobDao"/>
+	<bean id="defaultImportProductStoresCronJobDao" class="com.siteone.core.cronjob.dao.impl.DefaultImportProductStoresCronJobDao" parent="abstractItemDao">
+	</bean>
+
+	<alias name="defaultImportOnHandProductStoresCronJobDao" alias="importOnHandProductStoresCronJobDao"/>
+	<bean id="defaultImportOnHandProductStoresCronJobDao" class="com.siteone.core.cronjob.dao.impl.DefaultImportOnHandProductStoresCronJobDao" parent="abstractItemDao">
+	</bean>
+	
+	<alias name="defaultSDSAvailabilityValueProvider" alias="sdsAvailabilityValueProvider"/>
+	<bean id="defaultSDSAvailabilityValueProvider" class="com.siteone.core.search.solrfacetsearch.provider.impl.SDSAvailabilityValueProvider">
+        <property name="fieldNameProvider" ref="solrFieldNameProvider"/>
+    </bean>
+   
+    	<!--start Share Saved List email -->
+	
+	<bean id="shareListEventListener" class="com.siteone.core.event.ShareListEventListener" parent="abstractAcceleratorSiteEventListener">
+		<property name="modelService" ref="modelService"/>
+		<property name="businessProcessService" ref="businessProcessService"/>
+	</bean>
+	
+	<bean id="shareListEmailProcessDefinitionResource" class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
+		<property name="resource" value="classpath:/siteonecore/processes/shareListEmailProcess.xml"/>
+	</bean>
+	
+	<bean id="generateShareListEmailProcess" parent="abstractGenerateEmailAction">
+		<property name="frontendTemplateName" value="ShareListEmailTemplate"/>
+	</bean>
+	
+	<!-- end Share List email -->
+	
+	<!--start Share Assembly email -->
+	
+	<bean id="shareAssemblyEventListener" class="com.siteone.core.event.ShareAssemblyEventListener" parent="abstractAcceleratorSiteEventListener">
+		<property name="modelService" ref="modelService"/>
+		<property name="businessProcessService" ref="businessProcessService"/>
+	</bean>
+	
+	<bean id="shareAssemblyEmailProcessDefinitionResource" class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
+		<property name="resource" value="classpath:/siteonecore/processes/shareAssemblyEmailProcess.xml"/>
+	</bean>
+	
+	<bean id="generateShareAssemblyEmailProcess" parent="abstractGenerateEmailAction">
+		<property name="frontendTemplateName" value="ShareAssemblyEmailTemplate"/>
+	</bean>
+	
+	<!-- end Share Assembly email -->
+	
+	<!--Branch Manager Notification Email  -->
+	
+	<bean id="generateManagerEmailProcess" parent="abstractGenerateEmailAction">
+		<property name="frontendTemplateName" value="ManagerEmailTemplate"/>
+	</bean>
+	
+    <bean id="managerEmailProcessDefinitionResource" class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
+		<property name="resource" value="classpath:/siteonecore/processes/managerEmailProcess.xml"/>
+		</bean>
+	
+		<!--Branch Manager Notification Email End -->
+	
+		<!--Contact Us Event  -->
+	<bean id="contactUsCustomerEventListener" class="com.siteone.core.event.ContactUsCustomerEventListener" parent="abstractAcceleratorSiteEventListener">
+		<property name="modelService" ref="modelService"/>
+		<property name="businessProcessService" ref="businessProcessService"/>
+	</bean>
+	
+	<bean id="generateContactUsCustomerEmailProcess" parent="abstractGenerateEmailAction">
+		<property name="frontendTemplateName" value="ContactUsCustomerEmailTemplate"/>
+	</bean>
+	
+    <bean id="contactUsCustomerEmailProcessDefinitionResource" class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
+		<property name="resource" value="classpath:/siteonecore/processes/contactUsCustomerEmailProcess.xml"/>
+		</bean>
+	
+	<bean id="siteOneSolrQueryDebuggingListener" class="com.siteone.core.listeners.SiteOneSolrQueryDebuggingListener" />
+
+	<bean id="siteOneFacetSearchListener" class="com.siteone.core.listeners.SiteOneFacetSearchListener" />
+
+	<bean id="siteOneStoreSearchListener" class="com.siteone.core.listeners.SiteoneStoreSearchListener" />
+	
+	<alias name="defaultNLAProductStockValueProvider" alias="nlaProductStockValueProvider" />
+	<bean id="defaultNLAProductStockValueProvider" class="com.siteone.core.search.solrfacetsearch.provider.impl.NLAProductStockValueProvider">
+		<property name="fieldNameProvider" ref="solrFieldNameProvider" />
+		<property name="commerceStockService" ref="commerceStockService" />
+		<property name="stockService" ref="stockService" />
+		<property name="siteOnePointOfServiceDao" ref="pointOfServiceDao" />
+		<property name="sessionService" ref="sessionService" />
+	</bean>
+	
+	<alias name="defaultGenericCaseConvertionValueProvider" alias="genericCaseConvertionValueProvider"/>
+	<bean id="defaultGenericCaseConvertionValueProvider" class="com.siteone.core.search.solrfacetsearch.provider.impl.GenericCaseConvertionValueProvider">
+        <property name="fieldNameProvider" ref="solrFieldNameProvider"/>
+        <property name="modelService" ref="modelService"/>
+        <property name="enumerationService" ref="enumerationService"/>
+    </bean>
+    
+        <alias name="defaultFirstTimeUserCronJobService" alias="firstTimeUserCronJobService"/>
+  		<bean id="defaultFirstTimeUserCronJobService" class="com.siteone.core.jobs.customer.service.impl.DefaultFirstTimeUserCronJobService" >
+    	<property name="firstTimeUserCronJobDao" ref="firstTimeUserCronJobDao"/>
+     	<property name="modelService" ref="modelService"/>        
+  	  	<property name="siteBaseUrlResolutionService" ref="siteBaseUrlResolutionService"/>   
+     	<property name="baseSiteService" ref="baseSiteService"/>
+     	<property name="secureTokenService" ref="secureTokenService"/>
+		<property name="customerAccountService" ref="customerAccountService"/>
+		<property name="eventService" ref="eventService" />
+		<property name="baseStoreService" ref="baseStoreService" />
+		<property name="commonI18NService" ref="commonI18NService" />
+		<property name="oktaAPI" ref="oktaAPI" />
+    	</bean>
+  	
+  	<alias name="defaultFirstTimeUserCronJobDao" alias="firstTimeUserCronJobDao"/>
+  		<bean id="defaultFirstTimeUserCronJobDao" class="com.siteone.core.jobs.customer.dao.impl.DefaultFirstTimeUserCronJobDao" parent="abstractItemDao">
+     </bean>
+
+    
+    <alias name="defaultGenericSingleVariantValueProvider" alias="genericSingleVariantValueProvider"/>
+	<bean id="defaultGenericSingleVariantValueProvider" class="com.siteone.core.search.solrfacetsearch.provider.impl.GenericSingleVariantValueProvider">
+        <property name="fieldNameProvider" ref="solrFieldNameProvider"/>
+        <property name="modelService" ref="modelService"/>
+    </bean>
+    
+     <alias name="defaultSiteOneProductUrlValueProvider" alias="siteOneProductUrlValueProvider"/>
+	<bean id="defaultSiteOneProductUrlValueProvider" class="com.siteone.core.search.solrfacetsearch.provider.impl.SiteOneProductUrlValueProvider" 
+	parent="abstractPropertyFieldValueProvider">
+        <property name="fieldNameProvider" ref="solrFieldNameProvider"/>
+        <property name="commonI18NService" ref="commonI18NService"/>
+        <property name="urlResolver" ref="productModelUrlResolver"/>
+        <property name="i18nService" ref="i18nService"/>
+    </bean>
+    
+    <alias name="defaultProductShortDescriptionValueProvider" alias="productShortDescriptionValueProvider"/>
+	<bean id="defaultProductShortDescriptionValueProvider" class="com.siteone.core.search.solrfacetsearch.provider.impl.ProductShortDescriptionValueProvider" 
+	parent="abstractPropertyFieldValueProvider">
+        <property name="fieldNameProvider" ref="solrFieldNameProvider"/>
+        <property name="commonI18NService" ref="commonI18NService"/>
+        <property name="i18nService" ref="i18nService"/>
+    </bean>
+    
+    <alias name="defaultEventStateFacetValueProvider" alias="eventStateFacetValueProvider"/>
+	<bean id="defaultEventStateFacetValueProvider" class="com.siteone.core.search.solrfacetsearch.provider.impl.EventStateFacetValueProvider">
+        <property name="fieldNameProvider" ref="solrFieldNameProvider"/>
+    </bean>
+
+	<bean id="siteoneCategoryFacetValueProvider" class="com.siteone.core.search.solrfacetsearch.provider.impl.SiteOneCategoryFacetValueProvider">
+        <property name="fieldNameProvider" ref="solrFieldNameProvider" />
+		<property name="commonI18NService" ref="commonI18NService" />
+		<property name="categorySource" ref="siteoneCategorySource" />
+    </bean>
+
+	<bean id="siteonePasswordEncoder" class="com.siteone.core.customer.SiteonePasswordEncoder">
+		<property name="oktaAPI" ref="oktaAPI"/>
+		<property name="userService" ref="userService"/>
+	</bean>
+
+	<bean id="core.passwordEncoderFactory" class="de.hybris.platform.persistence.security.PasswordEncoderFactoryImpl">
+		<property name="encoders">
+			<map>
+				<entry key="*" value-ref="${default.password.encoder}" />
+				<entry key="plain" value-ref="core.plainTextEncoder" />
+				<entry key="sha-256" value-ref="sha256PasswordEncoder" />
+				<entry key="sha-512" value-ref="sha512PasswordEncoder" />
+				<entry key="md5" value-ref="core.saltedMD5PasswordEncoder" />
+				<entry key="pbkdf2" value-ref="pbkdf2PasswordEncoder" />
+				<entry key="okta" value-ref="siteonePasswordEncoder" />
+				<entry key="argon2" value-ref="argon2PasswordEncoder" />
+			    <entry key="scrypt" value-ref="scryptPasswordEncoder"/>
+                <entry key="bcrypt" value-ref="bcryptPasswordEncoder"/>
+			</map>
+		</property>
+	</bean>
+	
+	<bean id="siteOnePromotionsInterceptor" class="com.siteone.core.interceptors.SiteOnePromotionsInterceptor" >
+		
+	</bean>
+	
+	<bean id="siteOnePromotionsInterceptorMapping" class="de.hybris.platform.servicelayer.interceptor.impl.InterceptorMapping">
+		<property name="interceptor" ref="siteOnePromotionsInterceptor"/>
+		<property name="typeCode" value="RuleBasedPromotion"/>
+	</bean>
+	
+
+	<bean id="productPromotionsCronJob" class="com.siteone.core.cronjob.ProductPromotionsCronJob" parent="abstractJobPerformable" >          
+		<property name="productPromotionsCronJobService" ref="productPromotionsCronJobService"/>
+	</bean>
+	
+	<alias name="defaultProductPromotionsCronJobService" alias="productPromotionsCronJobService"/>
+	<bean id="defaultProductPromotionsCronJobService" class="com.siteone.core.services.impl.DefaultProductPromotionsCronJobService">
+		<property name="productPromotionsCronJobDao" ref="productPromotionsCronJobDao"/>
+		<property name="modelService" ref="modelService"/>
+		<property name="productService" ref="productService"/>
+		<property name="catalogVersionService" ref="catalogVersionService"/>
+		<property name="promotionFeedCronJobService" ref="promotionFeedCronJobService"/>
+		<property name="siteOneCategoryDao" ref="siteOneCategoryDao"/>
+	</bean>
+	
+	<alias name="defaultProductPromotionsCronJobDao" alias="productPromotionsCronJobDao"/>
+	<bean id="defaultProductPromotionsCronJobDao" class="com.siteone.core.cronjob.dao.impl.DefaultProductPromotionsCronJobDao" parent="abstractItemDao">
+	</bean>
+	
+	<bean id="siteOneFeedFileInfoCronJob" class="com.siteone.core.cronjob.SiteOneFeedFileInfoCronJob" parent="abstractJobPerformable" >          
+		<property name="flexibleSearchService" ref="flexibleSearchService"/>
+		<property name="baseStoreService" ref="baseStoreService" />
+		<property name="baseSiteService" ref="baseSiteService" />
+		<property name="eventService" ref="eventService" />
+		<property name="siteOneFeedFileInfoCronJobDao" ref="siteOneFeedFileInfoCronJobDao"/>
+		<property name="commonI18NService" ref="commonI18NService"/>
+	</bean>
+		
+	<bean id="siteOneFeedFileInfoCronJobDao" class="com.siteone.core.cronjob.dao.impl.DefaultSiteOneFeedFileInfoCronJobDao" parent="abstractItemDao">
+	</bean>
+
+	<!-- PurgeRegulatoryStates CronJob -->
+	<bean id="purgeRegulatoryStatesCronJob" class="com.siteone.core.jobs.customer.PurgeRegulatoryStatesCronJob" parent="abstractJobPerformable" >          
+		<property name="regulatoryStatesCronJobDao" ref="regulatoryStatesCronJobDao"/>
+		<property name="modelService" ref="modelService"/>
+	</bean>
+	
+	<bean id="generateOrderFailedNotificationEmail" parent="abstractGenerateEmailAction">
+		<property name="frontendTemplateName" value="OrderFailureEmailTemplate"/>
+	</bean>
+	
+	<bean id="orderFailureEmailProcessDefinitionResource"
+		  class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
+		<property name="resource" value="classpath:/siteonecore/processes/orderFailedNotificationEmailProcess.xml"/>
+	</bean>
+
+	<alias alias="emailService" name="defaultSiteOneEmailService"/>
+		<bean id="defaultSiteOneEmailService" class="com.siteone.core.email.service.impl.DefaultSiteOneEmailService" parent="defaultEmailService">
+	</bean>
+
+  <alias name="defaultSiteOneRuleMaintenanceService" alias="ruleMaintenanceService" />
+	<bean id="defaultSiteOneRuleMaintenanceService" class="com.siteone.core.services.impl.DefaultSiteOneRuleMaintenanceService" parent="defaultRuleMaintenanceService">
+		<property name="modelService" ref="modelService"/>
+		<property name="productService" ref="productService"/>
+		<property name="catalogVersionService" ref="catalogVersionService"/>
+		<property name="promotionFeedCronJobService" ref="promotionFeedCronJobService"/>
+		<property name="siteOneCategoryDao" ref="siteOneCategoryDao"/>
+		<property name="siteOnePromotionSourceRuleDao" ref="siteOnePromotionSourceRuleDao"/>
+		<property name="ruleCompilerService" ref="ruleCompilerService"/>
+		
+	</bean>
+
+	<alias name="defaultProductShortDescriptionAutoSuggestValueProvider" alias="productShortDescriptionAutoSuggestValueProvider"/>
+	<bean id="defaultProductShortDescriptionAutoSuggestValueProvider" class="com.siteone.core.search.solrfacetsearch.provider.impl.ProductShortDescriptionAutoSuggestValueProvider" 
+	parent="abstractPropertyFieldValueProvider">
+        <property name="fieldNameProvider" ref="solrFieldNameProvider"/>
+        <property name="commonI18NService" ref="commonI18NService"/>
+        <property name="i18nService" ref="i18nService"/>
+    </bean>
+
+	<!--Enable the below commented beans to activate cache for product category count in Listing pages-->
+	<bean id="categoryProductCountCacheValueLoader" class="com.siteone.core.category.cache.CategoryProductCountCacheValueLoader" scope="tenant">
+		<property name="siteOneCategoryService" ref="siteOneCategoryService" />
+	</bean>
+	
+	<alias name="cachingSiteOneCategoryService" alias="categoryService" />
+	<bean id="cachingSiteOneCategoryService" class="com.siteone.core.category.cache.DefaultSiteOneCachingCategoryService" parent="siteOneCategoryService">
+		<property name="categoryProductCountCacheValueLoader" ref="categoryProductCountCacheValueLoader"/>
+		<property name="categoryProductCountCacheRegion" ref="categoryProductCountCacheRegion"/>
+	</bean>
+
+	<bean id="siteOneStoreUtilityDao" class="com.siteone.core.store.dao.impl.DefaultSiteOneStoreUtilityDao" parent="abstractItemDao" >
+	<property name="flexibleSearchService" ref="flexibleSearchService"/>
+	</bean>
+
+	<bean id="siteOneStoreUtilityService" class="com.siteone.core.store.services.impl.DefaultSiteOneStoreUtilityService">
+		<property name="siteOneStoreUtilityDao" ref="siteOneStoreUtilityDao" />
+	</bean>
+
+	<bean id="storeBySupplyChainNodeIdCacheValueLoader" class="com.siteone.core.store.cache.StoreBySupplyChainNodeIdCacheValueLoader" scope="tenant">
+		<property name="siteOneStoreUtilityService" ref="siteOneStoreUtilityService" />
+	</bean>
+
+	<alias name="cachingSiteOneStoreFinderService" alias="siteOneStoreUtilService" />
+	<bean id="cachingSiteOneStoreFinderService" class="com.siteone.core.store.cache.DefaultSiteoneStoreFinderCachingService" parent="siteOneStoreUtilityService">
+		<property name="storeBySupplyChainNodeIdCacheValueLoader" ref="storeBySupplyChainNodeIdCacheValueLoader"/>
+		<property name="storeBySupplyChainNodeIdCacheRegion" ref="storeBySupplyChainNodeIdCacheRegion"/>
+	</bean>
+
+<bean id="siteOneFeatureSwitchCacheValueLoader" class="com.siteone.core.ewallet.cache.SiteOneFeatureSwitchCacheValueLoader" scope="tenant">
+		<property name="siteOneEwalletService" ref="ewalletService" />
+	</bean>
+
+	<alias name="cachingSiteOneFeatureSwitchService" alias="siteOneFeatureSwitchService" />
+	<bean id="cachingSiteOneFeatureSwitchService" class="com.siteone.core.ewallet.cache.SiteOneFeatureSwitchCacheService" parent="ewalletService">
+		<property name="siteOneFeatureSwitchCacheValueLoader" ref="siteOneFeatureSwitchCacheValueLoader"/>
+		<property name="siteOneFeatureSwitchCacheRegion" ref="siteOneFeatureSwitchCacheRegion"/>
+	</bean>
+	
+	
+
+	
+	<!--End of cache specific beans-->
+
+	<bean id="pointofServiceRemoveInterceptor" class="com.siteone.core.interceptors.PointOfServiceRemoveInterceptor"/>
+
+	<bean id="pointofServiceRemoveInterceptorMapping"
+		  class="de.hybris.platform.servicelayer.interceptor.impl.InterceptorMapping">
+		<property name="interceptor" ref="pointofServiceRemoveInterceptor"/>
+		<property name="typeCode" value="PointOfService"/>
+	</bean>
+	
+	<bean id="productBrandNameValueProvider" class="com.siteone.core.search.solrfacetsearch.provider.impl.ProductBrandNameValueProvider" parent="abstractPropertyFieldValueProvider" >
+		<property name="fieldNameProvider" ref="solrFieldNameProvider"/>
+        <property name="modelService" ref="modelService"/>
+        <property name="enumerationService" ref="enumerationService"/>
+	</bean>
+
+	<bean id="defaultSiteOneImageValueProvider" class="com.siteone.core.search.solrfacetsearch.provider.impl.SiteOneImageValueProvider" parent="abstractImageValueProvider" abstract="true">
+	    <property name="mediaService" ref="mediaService" />
+		<property name="mediaContainerService" ref="mediaContainerService" />
+		<property name="fieldNameProvider" ref="solrFieldNameProvider" />
+	</bean>
+
+	<bean id="siteOneShareEmailService"	class="com.siteone.core.email.service.impl.DefaultSiteOneShareEmailService" />
+	
+	<!-- START Bright view User groups-->
+	<bean id="defaultB2BUnitService"
+	      class="de.hybris.platform.b2b.services.impl.DefaultB2BUnitService">
+		<property name="b2bUnitDao" ref="b2bUnitDao"/>
+		<property name="modelService" ref="modelService"/>
+		<property name="sessionService" ref="sessionService"/>
+		<property name="userService" ref="userService"/>
+		<property name="principalGroupMembersDao" ref="bUnitPrincipalGroupMembersDao"/>
+		<property name="processDefinitionFactory" ref="processDefinitionFactory"/>
+		<property name="configurationService" ref="configurationService"/>
+		<property name="searchRestrictionService" ref="searchRestrictionService"/>
+		<property name="typeService" ref="typeService"/>
+	</bean>
+	<alias alias="bUnitPrincipalGroupMembersDao" name="defaultBUnitPrincipalGroupMembersDao"/>
+	<bean id="defaultBUnitPrincipalGroupMembersDao"
+	      class="com.siteone.core.article.dao.impl.DefaultBUnitPrincipalGroupMembersDao"
+	      parent="principalGroupMembersDao" >
+		<property name="modelService" ref="modelService"/>
+		<property name="flexibleSearchService" ref="flexibleSearchService"/>
+	</bean>
+	
+	<alias alias="siteOneB2BUnitPrincipalGroupMembersDao" name="defaultSiteOneB2BUnitPrincipalGroupMembersDao"/>
+	<bean id="defaultSiteOneB2BUnitPrincipalGroupMembersDao"
+	      class="com.siteone.core.article.dao.impl.DefaultSiteOneB2BUnitPrincipalGroupMembersDao">
+		<property name="modelService" ref="modelService"/>
+		<property name="flexibleSearchService" ref="flexibleSearchService"/>
+	</bean>
+	
+	<!-- END Bright view User groups-->
+  <alias name="defaultInventoryUomValueProvider" alias="inventoryUomValueProvider"/>
+	<bean id="defaultInventoryUomValueProvider" class="com.siteone.core.search.solrfacetsearch.provider.impl.ProductInventoryUomValueProvider">
+        <property name="fieldNameProvider" ref="solrFieldNameProvider"/>
+        <property name="siteOneProductUOMService" ref="siteOneProductUOMService"/>
+    </bean>
+    
+    <alias name="defaultInventoryUomIdValueProvider" alias="inventoryUomIdValueProvider"/>
+	<bean id="defaultInventoryUomIdValueProvider" class="com.siteone.core.search.solrfacetsearch.provider.impl.ProductInventoryUomIdValueProvider">
+        <property name="fieldNameProvider" ref="solrFieldNameProvider"/>
+    </bean>
+    
+     <bean id="productInventoryFlagValueProvider" class="com.siteone.core.search.solrfacetsearch.provider.impl.ProductInventoryFlagValueProvider">
+     	<property name="fieldNameProvider" ref="solrFieldNameProvider" />
+		<property name="commerceStockService" ref="commerceStockService" />
+		<property name="stockService" ref="stockService" />
+     </bean>
+
+
+ 	 <bean id="hideCSPValueProvider" class="com.siteone.core.search.solrfacetsearch.provider.impl.HideCSPValueProvider">
+    	<property name="fieldNameProvider" ref="solrFieldNameProvider" />
+     </bean>
+     
+     <bean id="couponEnabledValueProvider" class="com.siteone.core.search.solrfacetsearch.provider.impl.CouponEnabledValueProvider">
+    	<property name="fieldNameProvider" ref="solrFieldNameProvider" />
+    	<property name="promotionsService" ref="promotionsService"/>	
+    	<property name="baseSiteService" ref="baseSiteService"/>
+     </bean>
+     
+     <bean id="baseProductCodeValueProvider" class="com.siteone.core.search.solrfacetsearch.provider.impl.BaseProductCodeValueProvider">
+    	<property name="fieldNameProvider" ref="solrFieldNameProvider" />
+     </bean>
+     
+     <bean id="variantOptionsValueProvider" class="com.siteone.core.search.solrfacetsearch.provider.impl.VariantOptionsValueProvider">
+    	<property name="fieldNameProvider" ref="solrFieldNameProvider" />
+     </bean>
+     
+     <bean id="categoryLevelTransferrableFlagValueProvider" class="com.siteone.core.search.solrfacetsearch.provider.impl.CategoryLevelTransferrableFlagValueProvider">
+    	<property name="fieldNameProvider" ref="solrFieldNameProvider" />
+     </bean>
+     
+     <bean id="couponFacetValueProvider" class="com.siteone.core.search.solrfacetsearch.provider.impl.CouponFacetValueProvider">
+    	<property name="fieldNameProvider" ref="solrFieldNameProvider" />
+    	<property name="promotionsService" ref="promotionsService"/>	
+    	<property name="baseSiteService" ref="baseSiteService"/>
+     </bean>
+
+    <alias name="defaultDealsValueProvider" alias="dealsValueProvider"/>
+    <bean id="defaultDealsValueProvider" class="com.siteone.core.search.solrfacetsearch.provider.impl.DealCodeValueProvider">
+        <property name="fieldNameProvider" ref="solrFieldNameProvider"/>
+    </bean>
+
+    <bean id="verifyRecaptchaUtils" class="com.siteone.core.recaptcha.util.VerifyRecaptchaUtils"/>
+
+    <alias alias="cmsContentSlotDao" name="defaultSiteoneCMSContentSlotDao" />
+    <bean id="defaultSiteoneCMSContentSlotDao" class="com.siteone.core.cms.dao.impl.DefaultSiteoneCMSContentSlotDao" parent="defaultCMSContentSlotDao" />
+
+
+
+	<bean id="siteoneStoreLatLongValueProvider" class="com.siteone.core.search.solrfacetsearch.provider.impl.SiteoneStoreLatLongValueProvider"  parent="abstractPropertyFieldValueProvider">
+		<property name="fieldNameProvider" ref="solrFieldNameProvider"/>
+	</bean>
+    
+    <alias name="categoryProductCountCronJob" alias="categoryProductCountCronJob" />
+	<bean id="categoryProductCountCronJob" class="com.siteone.core.jobs.customer.CategoryProductCountCronJob" parent="abstractJobPerformable"  >
+		<property name="siteOneCategoryService" ref="siteOneCategoryService" />
+		<property name="modelService" ref="modelService"/>
+		 <property name="catalogVersionService" ref="catalogVersionService"/>
+
+	</bean>
+	<alias name="ewalletService" alias="ewalletService"/>
+	<bean id="ewalletService" class="com.siteone.core.ewallet.service.impl.DefaultSiteOneEwalletService"></bean>
+	
+	<bean id="defaultSiteOneFeatureSwitchDao" class="com.siteone.core.featureswitch.dao.impl.DefaultSiteOneFeatureSwitchDao" parent="abstractItemDao">
+		<property name="flexibleSearchService" ref="flexibleSearchService"/>
+	</bean>
+	
+	<bean id="defaultSiteOneEwalletDao" class="com.siteone.core.ewallet.dao.impl.DefaultSiteOneEwalletDao" parent="abstractItemDao">
+		<property name="flexibleSearchService" ref="flexibleSearchService"/>
+		<property name="pagedFlexibleSearchService" ref="pagedFlexibleSearchService" />
+	</bean>
+	
+	<alias name="storeTimeZoneStatusCronjob" alias="storeTimeZoneStatusCronjob"/>
+  	<bean id="storeTimeZoneStatusCronjob" class="com.siteone.core.jobs.customer.StoreTimeZoneStatusCronjob" parent="abstractJobPerformable" >
+    	<property name="modelService" ref="modelService"/>
+    	<property name="siteOneStoreFinderService" ref="defaultSiteOneStoreFinderService"/>
+    	
+    </bean>
+
+	<alias alias="ruleOrderEntryMaxLimitDiscountRAOAction" name="defaultRuleOrderEntryMaxDiscountRAOAction" />
+	<bean id="defaultRuleOrderEntryMaxDiscountRAOAction" parent="abstractRuleExecutableSupport" class="com.siteone.core.rule.definitions.action.RuleOrderEntryMaxLimitDiscountRAOAction"/>
+    
+    <alias alias="ruleOrderEntryMaxLimitDiscountAction" name="defaultRuleOrderEntryMaxLimitDiscountAction" />
+	<bean id="defaultRuleOrderEntryMaxLimitDiscountAction" class="de.hybris.platform.ruledefinitions.actions.DefaultRuleExecutableAction">
+		<property name="raoAction" ref="ruleOrderEntryMaxLimitDiscountRAOAction"/>
+	</bean>
+	<alias alias="ruleOrderEntryMaxMinPercentageDiscountRAOAction" name="defaultRuleOrderEntryMaxMinPercentageDiscountRAOAction" />
+	<bean id="defaultRuleOrderEntryMaxMinPercentageDiscountRAOAction" parent="abstractRuleExecutableSupport" class="com.siteone.core.rule.definitions.action.RuleOrderEntryMaxMinPercentageDiscountRAOAction">
+		<property name="cartService" ref="cartService"/>
+	</bean>
+    
+    <alias alias="ruleOrderEntryMaxMinPercentageDiscountAction" name="defaultRuleOrderEntryMaxMinPercentageDiscountAction" />
+	<bean id="defaultRuleOrderEntryMaxMinPercentageDiscountAction" class="de.hybris.platform.ruledefinitions.actions.DefaultRuleExecutableAction">
+		<property name="raoAction" ref="ruleOrderEntryMaxMinPercentageDiscountRAOAction"/>
+	</bean>
+	<alias alias="ruleOrderEntryMaxMinThresholdPercentageDiscountRAOAction" name="defaultRuleOrderEntryMaxMinThresholdPercentageDiscountRAOAction" />
+	<bean id="defaultRuleOrderEntryMaxMinThresholdPercentageDiscountRAOAction" parent="abstractRuleExecutableSupport" class="com.siteone.core.rule.definitions.action.RuleOrderEntryMaxMinThresholdPercentageDiscountRAOAction"/>
+    
+    <alias alias="ruleOrderEntryMaxMinThresholdPercentageDiscountAction" name="defaultRuleOrderEntryMaxMinThresholdPercentageDiscountAction" />
+	<bean id="defaultRuleOrderEntryMaxMinThresholdPercentageDiscountAction" class="de.hybris.platform.ruledefinitions.actions.DefaultRuleExecutableAction">
+		<property name="raoAction" ref="ruleOrderEntryMaxMinThresholdPercentageDiscountRAOAction"/>
+	</bean>
+	<alias alias="ruleOrderEntryMaxMinFixedDiscountRAOAction" name="defaultRuleOrderEntryMaxMinFixedDiscountRAOAction" />
+	<bean id="defaultRuleOrderEntryMaxMinFixedDiscountRAOAction" parent="abstractRuleExecutableSupport" class="com.siteone.core.rule.definitions.action.RuleOrderEntryMaxMinFixedDiscountRAOAction">
+		<property name="cartService" ref="cartService"/>
+	</bean>
+    
+    <alias alias="ruleOrderEntryMaxMinFixedDiscountAction" name="defaultRuleOrderEntryMaxMinFixedDiscountAction" />
+	<bean id="defaultRuleOrderEntryMaxMinFixedDiscountAction" class="de.hybris.platform.ruledefinitions.actions.DefaultRuleExecutableAction">
+		<property name="raoAction" ref="ruleOrderEntryMaxMinFixedDiscountRAOAction"/>
+	</bean>
+	
+	
+  <alias name="cleanupCronJobsPerformable" alias="cleanupCronJobsPerformable"/>
+    <bean id="cleanupCronJobsPerformable" parent="abstractGenericMaintenanceJobPerformable" >
+			<property name="maintenanceCleanupStrategy">
+			<bean class="de.hybris.platform.jobs.maintenance.impl.CleanupCronJobStrategy" >
+				<property name="modelService" ref="modelService"/>
+				<property name="typeService" ref="typeService" />
+				<property name="status">
+					<set>
+						<value type="de.hybris.platform.cronjob.enums.CronJobStatus">FINISHED</value>
+						<value type="de.hybris.platform.cronjob.enums.CronJobStatus">ABORTED</value>
+						<value type="de.hybris.platform.cronjob.enums.CronJobStatus">UNKNOWN</value>
+						<value type="de.hybris.platform.cronjob.enums.CronJobStatus">PAUSED</value>
+						<value type="de.hybris.platform.cronjob.enums.CronJobStatus">RUNNING</value>
+						<value type="de.hybris.platform.cronjob.enums.CronJobStatus">RUNNINGRESTART</value>	
+					</set>
+				</property>
+				<property name="result">
+					<set>
+						<value type="de.hybris.platform.cronjob.enums.CronJobResult">SUCCESS</value>
+						<value type="de.hybris.platform.cronjob.enums.CronJobResult">FAILURE</value>
+      					<value type="de.hybris.platform.cronjob.enums.CronJobResult">ERROR</value>
+      					<value type="de.hybris.platform.cronjob.enums.CronJobResult">UNKNOWN</value>	     					
+					</set> 
+				</property>
+				<property name="excludedCronJobCodes" >
+					<set/>
+				</property>
+			</bean>
+		</property>
+		</bean>
+  <bean id="ccpaEventListener" class="com.siteone.core.event.CCPAEventListener" parent="abstractAcceleratorSiteEventListener">
+		<property name="modelService" ref="modelService"/>
+		<property name="businessProcessService" ref="businessProcessService"/>
+	</bean>
+	
+	<bean id="generateCCPAEmailProcess" parent="abstractGenerateEmailAction">
+		<property name="frontendTemplateName" value="CCPAEmailTemplate"/>
+	</bean>
+	
+    <bean id="ccpaProcessDefinitionResource" class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
+		<property name="resource" value="classpath:/siteonecore/processes/ccpaEmailProcess.xml"/>
+		</bean>
+	<bean id="ccpaCustomerEventListener" class="com.siteone.core.event.CCPACustomerEventListener" parent="abstractAcceleratorSiteEventListener">
+		<property name="modelService" ref="modelService"/>
+		<property name="businessProcessService" ref="businessProcessService"/>
+	</bean>
+	
+	<bean id="generateCCPACustomerEmailProcess" parent="abstractGenerateEmailAction">
+		<property name="frontendTemplateName" value="CCPACustomerEmailTemplate"/>
+	</bean>
+	
+    <bean id="ccpaCustomerEmailProcessDefinitionResource" class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
+		<property name="resource" value="classpath:/siteonecore/processes/ccpaCustomerEmailProcess.xml"/>
+		</bean>
+	<alias alias="rulePartnerOrderEntryPercentageDiscountRAOAction" name="defaultSiteOneRulePartnerOrderEntryPercentageDiscountRAOAction" />
+	<bean id="defaultSiteOneRulePartnerOrderEntryPercentageDiscountRAOAction" parent="defaultRulePartnerOrderEntryPercentageDiscountRAOAction" class="com.siteone.core.rule.definitions.action.SiteOneRulePartnerProductsOrderEntryDiscountRAOAction"/>
+	
+		
+	<util:map id="promotionActionStrategiesMapping">
+		<entry key="defaultRuleOrderEntryMaxDiscountRAOAction" value-ref="orderEntryAdjustActionStrategy" />
+		<entry key="defaultRuleOrderEntryMaxMinPercentageDiscountRAOAction" value-ref="orderEntryAdjustActionStrategy" />
+		<entry key="defaultRuleOrderEntryMaxMinFixedDiscountRAOAction" value-ref="orderEntryAdjustActionStrategy" />
+		<entry key="defaultRuleOrderEntryMaxMinThresholdPercentageDiscountRAOAction" value-ref="orderEntryAdjustActionStrategy" />
+		<entry key="defaultRuleOrderFixedDiscountRAOAction" value-ref="orderTotalAdjustActionStrategy" />
+		<entry key="defaultRuleOrderPercentageDiscountRAOAction" value-ref="orderTotalAdjustActionStrategy" />
+		<entry key="defaultRuleOrderEntryFixedDiscountRAOAction" value-ref="orderEntryAdjustActionStrategy" />
+	    <entry key="defaultRuleOrderEntryPercentageDiscountRAOAction" value-ref="orderEntryAdjustActionStrategy" />
+	    <entry key="defaultRulePartnerOrderEntryFixedDiscountRAOAction" value-ref="orderEntryAdjustActionStrategy" />
+        <entry key="defaultSiteOneRulePartnerOrderEntryPercentageDiscountRAOAction" value-ref="orderEntryAdjustActionStrategy" />
+		<entry key="defaultRuleFreeGiftRAOAction" value-ref="addProductToCartActionStrategy" />	
+		<entry key="defaultRuleFreeGiftToBundleRAOAction" value-ref="addProductToCartActionStrategy" />
+		<entry key="defaultRuleAddFreeProductDiscountRAOAction" value-ref="orderEntryAdjustActionStrategy" />				
+		<entry key="defaultRuleOrderEntryFixedPriceRAOAction" value-ref="orderEntryAdjustActionStrategy" />
+        <entry key="defaultRulePartnerOrderEntryFixedPriceRAOAction" value-ref="orderEntryAdjustActionStrategy" />
+		<entry key="defaultRuleChangeDeliveryModeRAOAction" value-ref="shippingActionStrategy" />
+		<entry key="defaultRuleTargetBundlePriceRAOAction" value-ref="orderTotalAdjustActionStrategy" />
+		<entry key="defaultFreeProductDiscountRAOAction" value-ref="orderEntryAdjustActionStrategy" />
+		<entry key="defaultRuleTriggerMessageRAOAction" value-ref="potentialPromotionMessageActionStrategy" />
+		<entry key="defaultRuleOrderEntryGroupFixedDiscountRAOAction" value-ref="orderTotalAdjustActionStrategy" />
+		<entry key="defaultRuleOrderPercentageDiscountExcludedProductsRAOAction" value-ref="orderTotalAdjustActionStrategy" />
+		<entry key="defaultRuleOrderEntryPercentageDiscountWithStrategyRAOAction" value-ref="orderEntryAdjustActionStrategy" />		
+	</util:map>
+   
+   <bean id="ewalletNotificationEventListener" class="com.siteone.core.event.EwalletNotificationEventListener" parent="abstractAcceleratorSiteEventListener">
+		<property name="modelService" ref="modelService"/>
+		<property name="businessProcessService" ref="businessProcessService"/>
+	</bean>
+	<bean id="generateEwalletNotificationEmail" parent="abstractGenerateEmailAction">
+		<property name="frontendTemplateName" value="EwalletNotificationEmailTemplate"/>
+	</bean>
+	<bean id="eWalletCreditCardEmailProcessDefinitionResource" 
+	class="de.hybris.platform.processengine.definition.ProcessDefinitionResource">
+		<property name="resource" value="classpath:/siteonecore/processes/eWalletNotificationEmailProcess.xml" />
+	</bean>
+	<bean id="webServiceAuditLogCleanUpCronJobDao" class="com.siteone.core.cronjob.dao.impl.DefaultWebServiceAuditLogCleanUpCronJobDao" parent="abstractItemDao">
+	</bean>
+
+	<bean id="webServiceAuditLogCleanUpCronJobService" class="com.siteone.core.services.impl.DefaultWebServiceAuditLogCleanUpCronJobService">
+		<property name="webServiceAuditLogCleanUpCronJobDao" ref="webServiceAuditLogCleanUpCronJobDao"/>
+		<property name="modelService" ref="modelService"/>
+	</bean>
+
+	<bean id="webServiceAuditLogCleanUpCronJob" class="com.siteone.core.jobs.audit.WebServiceAuditLogCleanUpCronJob" parent="abstractJobPerformable" >
+		<property name="webServiceAuditLogCleanUpCronJobService" ref="webServiceAuditLogCleanUpCronJobService"/>
+	</bean>
+
+	<bean id="siteoneAnonymousCartRemovalCronJobDao" class="com.siteone.core.cronjob.dao.impl.DefaultAnonymousCartRemovalCronJobDao" parent="abstractItemDao">
+		<property name="jdbcTemplate" ref="jdbcTemplate"/>
+	</bean>
+
+	<bean id="siteoneAnonymousCartRemovalCronJobService" class="com.siteone.core.services.impl.DefaultAnonymousCartRemovalCronJobService">
+		<property name="siteoneAnonymousCartRemovalCronJobDao" ref="siteoneAnonymousCartRemovalCronJobDao"/>
+	</bean>
+
+	<bean id="siteoneAnonymousCartRemovalJob" class="com.siteone.core.jobs.cleanup.SiteoneAnonymousCartRemovalJob" parent="abstractJobPerformable" >
+		<property name="siteoneAnonymousCartRemovalCronJobService" ref="siteoneAnonymousCartRemovalCronJobService"/>
+	</bean>
+	
+	<bean id="oldInvoiceAddressRemovalCronJobDao" class="com.siteone.core.cronjob.dao.impl.OldInvoiceAddressRemovalCronJobDaoImpl" parent="abstractItemDao">
+		<property name="jdbcTemplate" ref="jdbcTemplate"/>
+	</bean>
+
+	<bean id="oldInvoiceAddressRemovalCronJobService" class="com.siteone.core.services.impl.DefaultOldInvoiceAddressRemovalCronJobService">
+		<property name="oldInvoiceAddressRemovalCronJobDao" ref="oldInvoiceAddressRemovalCronJobDao"/>
+	</bean>
+	
+	<bean id="oldInvoiceAddressRemovalCronjob" class="com.siteone.core.jobs.cleanup.OldInvoiceAddressRemovalCronjob" parent="abstractJobPerformable" >
+		<property name="oldInvoiceAddressRemovalCronJobService" ref="oldInvoiceAddressRemovalCronJobService"/>
+	</bean>
+	
+	<alias alias="qualifyingPromotionCategoriesConditionTranslator" name="defaultQualifyingPromotionCategoriesConditionTranslator" />
+	<bean id="defaultQualifyingPromotionCategoriesConditionTranslator" class="com.siteone.core.rule.definitions.action.RuleQualifyingPromotionCategoriesTranslator" parent="abstractRuleConditionTranslator" >
+	<property name="siteOnePromotionSourceRuleService" ref="siteOnePromotionSourceRuleService"/>
+	</bean>
+	
+	<bean id="promotionCategoryRuleParameterValueMapper" class="com.siteone.core.promotion.strategies.impl.mappers.PromotionCategoryRuleParameterValueMapper">
+		<property name="siteOnePromotionSourceRuleService" ref="siteOnePromotionSourceRuleService"/>
+	</bean>
+
+	<bean id="promotionCategoryRuleParameterValueTypeDefinition" class="de.hybris.platform.ruleengineservices.rule.strategies.impl.RuleParameterValueTypeDefinition">
+		<property name="mapper" ref="promotionCategoryRuleParameterValueMapper" />
+		<property name="type" value="ItemType(PromotionProductCategory)" />
+	</bean>
+	<bean id="SiteoneExtractDuplicateShippingAddressesJob" class="com.siteone.core.cronjob.SiteoneExtractDuplicateShippingAddressesJob"
+		  parent="abstractJobPerformable" />
+	<bean id="siteOneSegmentTriggerStrategy" class="com.siteone.core.trigger.strategy.SiteOneSegmentTriggerStrategy">
+	</bean>
+		
+	<alias name="siteOneSegmentTriggerDao" alias="siteOneSegmentTriggerDao"/>
+	<bean id="siteOneSegmentTriggerDao" parent="baseCxDao" class="com.siteone.core.trigger.dao.SiteOneSegmentTriggerDao"  />
+	
+	<bean id="cxCustomizationRankAttributeHandler" class="com.siteone.core.trigger.strategy.SiteOneCustomizationRankAttributeHandler">
+        <property name="rankAssigmentStrategy" ref="cxRankAssigmentStrategy"/>
+    </bean>
+	
+	<bean id="contentTypeValueProvider" class="com.siteone.core.content.search.provider.impl.ContentTypeValueProvider" parent="abstractPropertyFieldValueProvider">
+		<property name="fieldNameProvider" ref="solrFieldNameProvider"></property>
+	</bean>
+	
+	<bean id="contentPageCategoryValueProvider" class="com.siteone.core.content.search.provider.impl.ContentPageCategoryValueProvider" parent="abstractPropertyFieldValueProvider">
+		<property name="fieldNameProvider" ref="solrFieldNameProvider"></property>
+	</bean>
+		
+	<bean id="contentPageModifiedDateValueProvider" class="com.siteone.core.content.search.provider.impl.ContentPageModifiedDateValueProvider" parent="abstractPropertyFieldValueProvider">
+		<property name="fieldNameProvider" ref="solrFieldNameProvider"></property>
+	</bean>	
+	
+	<bean id="contentPageCategoryNameProvider" class="com.siteone.core.content.search.provider.impl.ContentPageCategoryNameProvider" parent="abstractPropertyFieldValueProvider">
+		<property name="fieldNameProvider" ref="solrFieldNameProvider"/>
+		<property name="commonI18NService" ref="commonI18NService"/>
+		<property name="i18nService" ref="i18nService"/>
+	</bean>
+	
+	<bean id="articleCategoryFacetDisplayNameProvider" class="com.siteone.core.content.search.provider.impl.ArticleCategoryFacetDisplayNameProvider"  />
+	
+	<bean id="SiteoneCleanUpImpexMediaCronJob" class="com.siteone.core.jobs.cleanup.SiteoneCleanUpImpexMediaCronJob" parent="abstractJobPerformable" >
+		<property name="siteoneCleanUpImpexMediaCronJobService" ref="siteoneCleanUpImpexMediaCronJobService"/>  
+		<property name="modelService" ref="modelService"/>
+		<property name="blobDataImportService" ref="blobDataImportService"/>
+	</bean>
+	<bean id="siteoneCleanUpImpexMediaCronJobService" class="com.siteone.core.jobs.cleanup.service.impl.DefaultSiteoneCleanUpImpexMediaCronJobService" >          
+	     <property name="siteoneCleanUpImpexMediaCronJobDao" ref="siteoneCleanUpImpexMediaCronJobDao"/>
+	</bean>
+	<bean id="siteoneCleanUpImpexMediaCronJobDao" class="com.siteone.core.jobs.cleanup.dao.impl.DefaultSiteoneCleanUpImpexMediaCronJobDao" parent="abstractItemDao">          
+	</bean>
+	
+	<alias name="defaultSiteoneRequestAccountService" alias="siteoneRequestAccountService"/>
+	<bean id="defaultSiteoneRequestAccountService" class="com.siteone.core.requestaccount.service.impl.DefaultSiteoneRequestAccountService">
+		<property name="modelService" ref="modelService"/>  
+		<property name="regionDao" ref="regionDao"/>
+        <property name="countryDao" ref="countryDao"/>
+		<property name="blobDataImportService" ref="blobDataImportService"/>
+		<property name="configurationService" ref="configurationService"/>
+	</bean>
+	
+	<alias name="siteoneVariantValueCategoryValidateInterceptor" alias="variantValueCategoryValidateInterceptor" />
+	 <bean id="siteoneVariantValueCategoryValidateInterceptor"
+          class="com.siteone.core.interceptors.SiteOneVariantValueCategoryValidateInterceptor">
+        <property name="l10NService" ref="l10nService"/>
+        <property name="sessionService" ref="sessionService"/>
+    </bean>
+	
+	<alias name="siteoneB2BUnitModelValidateInterceptor" alias="B2BUnitModelValidateInterceptor"/>
+	<bean id="siteoneB2BUnitModelValidateInterceptor" class="com.siteone.core.interceptors.SiteOneB2BUnitModelValidateInterceptor">	
+		<property name="b2bUnitService" ref="b2bUnitService"/>
+		<property name="userService" ref="userService"/>
+		<property name="modelService" ref="modelService"/>
+		<property name="l10NService" ref="l10nService"/>
+	</bean>
+	
+	<bean id="siteoneB2BUnitModelValidateInterceptorMapping" class="de.hybris.platform.servicelayer.interceptor.impl.InterceptorMapping">
+		<property name="interceptor" ref="siteoneB2BUnitModelValidateInterceptor"/>
+		<property name="typeCode" value="B2BUnit"/>
+	</bean>
+
+	<alias name="defaultCommerceSearchResponseSpellingSuggestionPopulator" alias="commerceSearchResponseSpellingSuggestionPopulator" />
+	<bean id="defaultCommerceSearchResponseSpellingSuggestionPopulator"
+		  class="com.siteone.core.search.solrfacetsearch.search.impl.populators.SiteOneSearchResponseSpellingSuggestionPopulator" />
+
+
+	<bean id="facetSearchResultConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="com.siteone.core.search.solrfacetsearch.search.impl.SiteOneSolrSearchResult" />
+		<property name="populators">
+			<list>
+				<ref bean="facetSearchResultBasicPopulator" />
+				<ref bean="facetSearchResultFacetsPopulator" />
+				<ref bean="facetSearchResultDocumentsPopulator" />
+				<ref bean="facetSearchResultSortsPopulator" />
+			</list>
+		</property>
+	</bean>
+	<bean id="pimBatchFailureReportCronjob" class="com.siteone.core.cronjob.PIMBatchFailureReportCronJob" parent="abstractJobPerformable">
+		<property name="pimBatchFailureReportCronjobService" ref="pimBatchFailureReportCronjobService"/>
+	</bean>
+	
+	<alias name="defaultPimBatchFailureReportCronjobService" alias="pimBatchFailureReportCronjobService"/>
+	<bean id="defaultPimBatchFailureReportCronjobService" class="com.siteone.core.cronjob.service.impl.DefaultPIMBatchFailureReportCronJobService">
+		<property name="pimBatchFailureReportCronjobDao" ref="pimBatchFailureReportCronjobDao"/>
+		<property name="pimBatchFailureReportMessageDao" ref="pimBatchFailureReportMessageDao"/>
+	     <property name="baseSiteService" ref="baseSiteService" />
+		<property name="eventService" ref="eventService" />
+		<property name="commonI18NService" ref="commonI18NService"/>
+		<property name="modelService" ref="modelService"/>
+	</bean>
+	<alias name="defaultPimBatchFailureReportCronjobDao" alias="pimBatchFailureReportCronjobDao"/>
+	<bean id="defaultPimBatchFailureReportCronjobDao" class="com.siteone.core.cronjob.dao.impl.DefaultPIMBatchFailureReportCronJobDao" parent="abstractItemDao">
+</bean>
+  <alias name="defaultPimBatchFailureReportMessageDao" alias="pimBatchFailureReportMessageDao"/>
+	<bean id="defaultPimBatchFailureReportMessageDao" class="com.siteone.core.pimmessage.dao.impl.DefaultPIMBatchFailureReportMessageDao" parent="abstractItemDao">
+</bean>
+
+	<alias name="defaultSiteoneDeliveryFeeService" alias="siteoneDeliveryFeeService"/>
+	<bean id="defaultSiteoneDeliveryFeeService" class="com.siteone.core.deliveryfee.service.impl.DefaultSiteoneDeliveryFeeService">
+		<property name="siteoneDeliveryFeeDao" ref="siteoneDeliveryFeeDao"/>
+	</bean>
+	
+	<alias name="defaultSiteoneCADeliveryFeeService" alias="siteoneCADeliveryFeeService"/>
+	<bean id="defaultSiteoneCADeliveryFeeService" class="com.siteone.core.deliveryfee.service.impl.DefaultSiteoneCADeliveryFeeService">
+		<property name="siteoneCADeliveryFeeDao" ref="siteoneCADeliveryFeeDao"/>
+	</bean>
+
+	<alias name="defaultSiteoneDeliveryFeeDao" alias="siteoneDeliveryFeeDao"/>
+	<bean id="defaultSiteoneDeliveryFeeDao" class="com.siteone.core.deliveryfee.dao.impl.DefaultSiteoneDeliveryFeeDao" parent="abstractItemDao">
+	</bean>
+	
+	<alias name="defaultSiteoneCADeliveryFeeDao" alias="siteoneCADeliveryFeeDao"/>
+	<bean id="defaultSiteoneCADeliveryFeeDao" class="com.siteone.core.deliveryfee.dao.impl.DefaultSiteoneCADeliveryFeeDao" parent="abstractItemDao">
+	</bean>
+	
+<bean id="pimPayloadsDeleteService" class="com.siteone.core.services.impl.DefaultPimPayloadsDeleteService">
+    <property name="configurationService" ref="configurationService"/>
+	<property name="blobDataImportService" ref="blobDataImportService"/>
+</bean>
+<bean id="pimPayloadsDeleteFacade" class="com.siteone.core.facades.impl.DefaultPimPayloadsDeleteFacade">
+	<property name="configurationService" ref="configurationService"/>
+	<property name="pimPayloadsDeleteService" ref="pimPayloadsDeleteService"/>	
+	</bean>
+	<bean id="pimPayloadsDeleteCronJob" class="com.siteone.core.job.PimPayloadsDeleteJob">
+	<property name="pimPayloadsDeleteFacade" ref="pimPayloadsDeleteFacade"/>
+	</bean>
+
+	<bean id="siteOneProductRemoveInterceptor" class="com.siteone.core.interceptors.SiteOneProductRemoveInterceptor"/>
+
+	<bean id="siteOneProductRemoveInterceptorMapping" class="de.hybris.platform.servicelayer.interceptor.impl.InterceptorMapping">
+		<property name="interceptor" ref="siteOneProductRemoveInterceptor"/>
+		<property name="typeCode" value="Product"/>
+	</bean>
+	
+	<bean id="productsSkuValueProvider" class="com.siteone.core.search.solrfacetsearch.provider.impl.ProductsSkuValueProvider"
+		parent="abstractPropertyFieldValueProvider">
+		<property name="fieldNameProvider" ref="solrFieldNameProvider"/>
+
+	</bean>
+	<bean id="generateLinkToPayEmailProcess" parent="abstractGenerateEmailAction">
+		<property name="frontendTemplateName" value="LinkToPayEmailTemplate"/>
+	</bean>
+	<bean id="linkToPayEmailProcessDefinitionResource" class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
+		<property name="resource" value="classpath:/siteonecore/processes/linkToPayEmailProcess.xml"/>
+	</bean>
+	<bean id="linkToPayEventListener" class="com.siteone.core.event.LinkToPayEventListener" parent="abstractAcceleratorSiteEventListener">
+		<property name="modelService" ref="modelService"/>
+		<property name="businessProcessService" ref="businessProcessService"/>
+	</bean>
+	
+		<bean id="generateLinkToPayEmailPaymentProcess" parent="abstractGenerateEmailAction">
+		<property name="frontendTemplateName" value="LinkToPayEmailPaymentTemplate"/>
+	</bean>
+	<bean id="linkToPayEmailPaymentProcessDefinitionResource" class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
+		<property name="resource" value="classpath:/siteonecore/processes/linkToPayEmailPaymentProcess.xml"/>
+	</bean>
+	<bean id="linkToPayEmailPaymentEventListener" class="com.siteone.core.event.LinkToPayEmailPaymentEventListener" parent="abstractAcceleratorSiteEventListener">
+		<property name="modelService" ref="modelService"/>
+		<property name="businessProcessService" ref="businessProcessService"/>
+	</bean>
+	
+	<bean id="generateQuoteApprovalEmailProcess" parent="abstractGenerateEmailAction">
+		<property name="frontendTemplateName" value="QuoteApprovalEmailTemplate"/>
+	</bean>
+	<bean id="quoteApprovalEmailProcessDefinitionResource" class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
+		<property name="resource" value="classpath:/siteonecore/processes/quoteApprovalEmailProcess.xml"/>
+	</bean>
+	<bean id="quoteApprovalEventListener" class="com.siteone.core.event.QuoteApprovalEventListener" parent="abstractAcceleratorSiteEventListener">
+		<property name="modelService" ref="modelService"/>
+		<property name="businessProcessService" ref="businessProcessService"/>
+	</bean>
+	<bean id="generateContactSellerEmailProcess" parent="abstractGenerateEmailAction">
+		<property name="frontendTemplateName" value="ContactSellerEmailTemplate"/>
+	</bean>
+	<bean id="contactSellerEmailProcessDefinitionResource" class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
+		<property name="resource" value="classpath:/siteonecore/processes/contactSellerEmailProcess.xml"/>
+	</bean>
+	<bean id="contactSellerEventListener" class="com.siteone.core.event.ContactSellerEventListener" parent="abstractAcceleratorSiteEventListener">
+		<property name="modelService" ref="modelService"/>
+		<property name="businessProcessService" ref="businessProcessService"/>
+	</bean>
+	<bean id="generateExpiredQuoteUpdEmailProcess" parent="abstractGenerateEmailAction">
+		<property name="frontendTemplateName" value="ExpiredQuoteUpdEmailTemplate"/>
+	</bean>
+	<bean id="expiredQuoteUpdEmailProcessDefinitionResource" class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
+		<property name="resource" value="classpath:/siteonecore/processes/expiredQuoteUpdEmailProcess.xml"/>
+	</bean>
+	<bean id="expiredQuoteUpdEventListener" class="com.siteone.core.event.ExpiredQuoteUpdEventListener" parent="abstractAcceleratorSiteEventListener">
+		<property name="modelService" ref="modelService"/>
+		<property name="businessProcessService" ref="businessProcessService"/>
+	</bean>
+	<bean id="generateRequestQuoteEmailProcess" parent="abstractGenerateEmailAction">
+		<property name="frontendTemplateName" value="RequestQuoteEmailTemplate"/>
+	</bean>
+	<bean id="requestQuoteEmailProcessDefinitionResource" class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
+		<property name="resource" value="classpath:/siteonecore/processes/requestQuoteEmailProcess.xml"/>
+	</bean>
+	<bean id="requestQuoteEventListener" class="com.siteone.core.event.RequestQuoteEventListener" parent="abstractAcceleratorSiteEventListener">
+		<property name="modelService" ref="modelService"/>
+		<property name="businessProcessService" ref="businessProcessService"/>
+	</bean>
+	<alias alias="siteoneLinkToPayAuditLogService" name="defaultSiteoneLinkToPayAuditLogService"/>
+	<bean id="defaultSiteoneLinkToPayAuditLogService" class="com.siteone.core.services.impl.DefaultSiteoneLinkToPayAuditLogService">
+	<property name="modelService" ref="modelService"/>
+	<property name="siteOneOrderDao" ref="siteOneOrderDao"/>
+	</bean>
+	
+	    <alias name="defaultSiteOneB2BApprovalBusinessProcessStrategy" alias="b2bSiteOneApprovalBusinessProcessStrategy"/>
+	<bean id="defaultSiteOneB2BApprovalBusinessProcessStrategy"
+	      class="com.siteone.core.strategies.impl.DefaultSiteOneB2BApprovalBusinessProcessStrategy">
+		<property name="processCode" value="b2borderapproval-process"/>
+		<property name="processName" value="CREATED"/>
+		<property name="b2bUnitService" ref="b2bUnitService"/>
+		<property name="processCodeGenerator" ref="b2bProcessCodeGenerator"/>
+		<property name="businessProcessService" ref="businessProcessService"/>
+		<property name="modelService" ref="modelService"/>
+	</bean>
+	
+	<alias name="siteOneRecentScanService" alias="siteOneRecentScanService"/>
+	<bean id="siteOneRecentScanService" class="com.siteone.core.recentscan.service.impl.DefaultSiteOneRecentScanService">
+		<property name="siteOneRecentScanDao" ref="siteOneRecentScanDao"/>
+	</bean>
+	
+	<bean id="siteOneRecentScanDao" class="com.siteone.core.recentscan.dao.impl.DefaultSiteOneRecentScanDao" parent="abstractItemDao">
+		<property name="flexibleSearchService" ref="flexibleSearchService"/>
+	</bean>
+
+	<alias alias="b2bCostCenterService" name="defaultSiteOneB2BCostCenterService"/>
+	<bean id="defaultSiteOneB2BCostCenterService" class="com.siteone.core.costcenter.service.DefaultSiteOneB2BCostCenterService" parent="defaultB2BCostCenterService">
+	</bean>
+	
+	<alias name="defaultNoVisibleUomCronJobDao" alias="noVisibleUomCronJobDao"/>
+	<bean id="defaultNoVisibleUomCronJobDao" class="com.siteone.core.cronjob.dao.impl.DefaultNoVisibleUomCronJobDao" parent="abstractItemDao">
+	<property name="catalogVersionService" ref="catalogVersionService"/>
+</bean>
+
+<alias name="defaultNoVisibleUomCronJobService" alias="noVisibleUomCronJobService"/>
+	<bean id="defaultNoVisibleUomCronJobService" class="com.siteone.core.cronjob.service.impl.DefaultNoVisibleUomCronJobService">
+	     <property name="baseSiteService" ref="baseSiteService" />
+		<property name="eventService" ref="eventService" />
+		<property name="commonI18NService" ref="commonI18NService"/>
+		<property name="modelService" ref="modelService"/>
+	</bean>
+
+	<bean id="noVisibleUomCronJob" class="com.siteone.core.cronjob.NoVisibleUomCronJob" parent="abstractJobPerformable">
+		<property name="noVisibleUomCronJobService" ref="noVisibleUomCronJobService"/>
+	</bean>
+	<bean id="generateNoVisibleUomProductEmailProcess" parent="abstractGenerateEmailAction">
+		<property name="frontendTemplateName" value="NoVisibleUomEmailTemplate"/>
+	</bean>
+	<bean id="NoVisibleUomProductEmailProcesssDefinitionResource" class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
+		<property name="resource" value="classpath:/siteonecore/processes/noVisibleUomEmailProcess.xml"/>
+	</bean>
+	<bean id="noVisibleUomEventListener" class="com.siteone.core.event.NoVisibleUomEventListener" parent="abstractAcceleratorSiteEventListener">
+		<property name="modelService" ref="modelService"/>
+		<property name="businessProcessService" ref="businessProcessService"/>
+		<property name="emailService" ref="emailService"/>
+	</bean>
+	
+	<alias name="defaultWindowsAzureBlobStorageStrategy" alias="windowsAzureBlobStorageStrategy"/>
+    <bean name="defaultWindowsAzureBlobStorageStrategy" class="com.siteone.core.pim.storage.SiteOneWindowsAzureBlobStorageStrategy">
+     <property name="locationHashService" ref="mediaLocationHashService"/>
+     <property name="storageConfigService" ref="mediaStorageConfigService"/>
+     </bean>
+     
+	<bean id="siteoneOldInvoiceRemovalJobDao" class="com.siteone.core.cronjob.dao.impl.DefaultOldInvoiceRemovalJobDao" parent="abstractItemDao"/>
+
+	<bean id="siteoneOldInvoiceRemovalCronJobService" class="com.siteone.core.services.impl.DefaultSiteoneOldInvoiceRemovalCronJobService">
+		<property name="siteoneOldInvoiceRemovalJobDao" ref="siteoneOldInvoiceRemovalJobDao"/>
+		<property name="modelService" ref="modelService"/>
+	</bean>
+	<bean id="siteoneOldInvoiceRemovalJob" class="com.siteone.core.jobs.cleanup.SiteoneOldInvoiceRemovalJob" parent="abstractJobPerformable" >
+		<property name="siteoneOldInvoiceRemovalCronJobService" ref="siteoneOldInvoiceRemovalCronJobService"/>
+	</bean>
+	
+	<bean id="siteoneOldOrderRemovalJobDao" class="com.siteone.core.cronjob.dao.impl.DefaultOldOrderRemovalJobDao" parent="abstractItemDao"/>
+
+	<bean id="siteoneOldOrderRemovalCronJobService" class="com.siteone.core.services.impl.DefaultSiteoneOldOrderRemovalCronJobService">
+		<property name="siteoneOldOrderRemovalJobDao" ref="siteoneOldOrderRemovalJobDao"/>
+		<property name="modelService" ref="modelService"/>
+	</bean>
+	<bean id="siteoneOldOrderRemovalJob" class="com.siteone.core.jobs.cleanup.SiteoneOldOrderRemovalJob" parent="abstractJobPerformable" >
+		<property name="siteoneOldOrderRemovalCronJobService" ref="siteoneOldOrderRemovalCronJobService"/>
+	</bean>
+	
+	<bean id="generateNotifyQuoteStatusEmailProcess" parent="abstractGenerateEmailAction">
+		<property name="frontendTemplateName" value="NotifyQuoteStatusEmailTemplate"/>
+	</bean>
+	<bean id="notifyQuoteStatusProcessDefinitionResource" class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
+		<property name="resource" value="classpath:/siteonecore/processes/notifyQuoteStatusEmailProcess.xml"/>
+	</bean>
+	<bean id="notifyQuoteStatusEventListener" class="com.siteone.core.event.NotifyQuoteStatusEventListener" parent="abstractAcceleratorSiteEventListener">
+		<property name="modelService" ref="modelService"/>
+		<property name="businessProcessService" ref="businessProcessService"/>
+	</bean>
+	
+	<bean id="generateQuoteToOrderStatusEmailProcess" parent="abstractGenerateEmailAction">
+	    <property name="frontendTemplateName" value="QuoteToOrderStatusEmailTemplate"/>
+	</bean>
+	
+	<bean id="quoteToOrderStatusEmailProcessDefinitionResource" class="de.hybris.platform.processengine.definition.ProcessDefinitionResource">
+	    <property name="resource" value="classpath:/siteonecore/processes/quoteToOrderStatusEmailProcess.xml"/>
+	</bean>
+	
+	<bean id="quoteToOrderStatusEventListener" class="com.siteone.core.event.QuoteToOrderStatusEventListener"
+	      parent="abstractAcceleratorSiteEventListener">
+	    <property name="modelService" ref="modelService"/>
+	    <property name="businessProcessService" ref="businessProcessService"/>
+	</bean>
+	
+	<bean id="buyItAgainCategoryNameValueProvider" class="com.siteone.core.search.solrfacetsearch.provider.impl.BuyItAgainCategoryNameValueProvider">
+    	<property name="fieldNameProvider" ref="solrFieldNameProvider" />
+    	<property name="categorySource" ref="siteoneCategorySource"/>	
+    	<property name="commonI18NService" ref="commonI18NService"/>
+    </bean>
+     
+    <bean id="buyItAgainPurchasedQuantityValueProvider" class="com.siteone.core.search.solrfacetsearch.provider.impl.BuyItAgainPurchasedQuantityValueProvider" parent="buyItAgainProductCountCachingValueProvider">
+    </bean>
+    
+    <bean id="buyItAgainPurchasedCountValueProvider" class="com.siteone.core.search.solrfacetsearch.provider.impl.BuyItAgainPurchasedCountValueProvider" parent="buyItAgainProductCountCachingValueProvider">
+    </bean>
+     
+    <bean id="indexPurchasedProductCountDAO" class="com.siteone.core.search.solrfacetsearch.index.dao.impl.IndexPurchasedProductCountDAOImpl">
+    	 <property name="flexibleSearchService" ref="flexibleSearchService"/>
+    </bean>
+    
+        <bean id="indexPurchasedQuantityDAO" class="com.siteone.core.search.solrfacetsearch.index.dao.impl.IndexPurchasedQuantityDAOImpl">
+    	 <property name="flexibleSearchService" ref="flexibleSearchService"/>
+    </bean>
+    
+	<bean id="buyItAgainProductCountCachingValueProvider" class="com.siteone.core.search.solrfacetsearch.provider.impl.BuyItAgainProductCountCacheValueProvider"
+		abstract="true" parent="abstractPropertyFieldValueProvider">
+		<property name="indexPurchasedProductCountDAO" ref="indexPurchasedProductCountDAO" />
+		<property name="indexPurchasedQuantityDAO" ref="indexPurchasedQuantityDAO" />
+		<property name="fieldNameProvider" ref="solrFieldNameProvider"/>
+	</bean>
+
+	<alias name="productAllKeywordsValueProvider" alias="productAllKeywordsValueProvider"/>
+	<bean id="productAllKeywordsValueProvider" class="com.siteone.core.search.solrfacetsearch.provider.impl.ProductAllKeywordsValueProvider"
+		  abstract="true" parent="abstractPropertyFieldValueProvider">
+		<property name="sessionService" ref="sessionService" />
+		<property name="fieldNameProvider" ref="solrFieldNameProvider"/>
+	</bean>
+
+	<bean id="findDuplicateSequenceCronJobDao" class="com.siteone.core.cronjob.dao.impl.DefaultFindDuplicateSequenceCronJobDao" parent="abstractItemDao">
+		<property name="catalogVersionService" ref="catalogVersionService"/>
+	</bean>
+
+	<bean id="findDuplicateSequenceCronJobService" class="com.siteone.core.cronjob.service.impl.DefaultFindDuplicateSequenceCronJobService">
+		<property name="findDuplicateSequenceCronJobDao" ref="findDuplicateSequenceCronJobDao"/>
+		<property name="modelService" ref="modelService"/>
+	</bean>
+	
+	<bean id="findDuplicateSequenceCronJob" class="com.siteone.core.cronjob.FindDuplicateSequenceCronJob" parent="abstractJobPerformable" >
+		<property name="findDuplicateSequenceCronJobService" ref="findDuplicateSequenceCronJobService"/>
+	</bean>
+
+	<bean id="siteOneStoreIndexQueryListener" class="com.siteone.core.listeners.SiteoneStoreIndexerQueryListener">
+	</bean>
+	
+	<bean id="bulkListUploadCronJob" class="com.siteone.core.jobs.customer.BulkListUploadCronJob" parent="abstractJobPerformable" >          
+	<property name="siteOneProductService" ref="siteOneProductService"></property>
+	</bean>
+	
+
+	<bean id="excludedB2BUnitValueProvider" class="com.siteone.core.search.solrfacetsearch.provider.impl.ExcludedB2BUnitValueProvider">
+    </bean>
+    
+    <bean id="siteoneFooterNavigationService" class="com.siteone.core.footer.service.impl.DefaultSiteoneFooterNavigationService">
+    </bean>
+    <bean id="siteoneFooterNavigationDAO" class="com.siteone.core.footer.dao.impl.DefaultSiteoneFooterNavigationDAO">
+    </bean>
+    
+     <bean id="generateDeclinedCardAttemptEmailProcess" parent="abstractGenerateEmailAction">
+		<property name="frontendTemplateName" value="DeclinedCardAttemptEmailTemplate"/>
+	</bean>
+	<bean id="declinedCardAttemptEmailProcessDefinitionResource" class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
+		<property name="resource" value="classpath:/siteonecore/processes/declinedCardAttemptEmailProcess.xml"/>
+	</bean>
+	<bean id="declinedCardAttemptEmailProcessEventListener" class="com.siteone.core.event.DeclinedCardAttemptEmailEventListener" parent="abstractAcceleratorSiteEventListener">
+		<property name="modelService" ref="modelService"/>
+		<property name="businessProcessService" ref="businessProcessService"/>
+	</bean>
+	
+	<bean id="siteoneCAContentCatalogSyncJob" class="com.siteone.core.job.SiteoneCAContentCatalogSyncJob">
+    <property name="modelService" ref="modelService"/>
+    <property name="flexibleSearchService" ref="flexibleSearchService"/>
+    <property name="sessionService" ref="sessionService"/>
+</bean>  
+	<bean id="siteOneUnifiedClassificationPropertyValueProvider"
+      class="com.siteone.core.search.solrfacetsearch.provider.impl.SiteOneUnifiedClassificationPropertyValueProvider">
+		<property name="fieldNameProvider" ref="solrFieldNameProvider"/>
+		</bean>
+</beans>

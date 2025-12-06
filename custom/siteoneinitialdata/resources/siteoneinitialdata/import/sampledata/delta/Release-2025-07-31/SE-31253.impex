@@ -1,0 +1,9 @@
+INSERT_UPDATE ServicelayerJob; code[unique=true];springid[unique=true]
+;orphanMediaCronJob;orphanMediaCronJob;
+
+INSERT_UPDATE OrphanMediaCronJob;code[unique=true];job(code)[default=orphanMediaCronJob];sessionLanguage(isoCode)[default=en]
+;orphanMediaCronJob
+
+INSERT_UPDATE Trigger;cronjob(code)[unique=true];active;cronExpression
+# Example: Fires at 02:00 AM everyday (modify cron as needed)
+;orphanMediaCronJob;true;0 2 * * *

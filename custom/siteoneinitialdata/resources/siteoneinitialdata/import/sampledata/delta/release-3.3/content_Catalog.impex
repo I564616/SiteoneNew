@@ -1,0 +1,12 @@
+$hidden_catalog_id = _boconfig
+$hidden_catalog_version = hidden
+ 
+REMOVE Media;code[unique=true]
+;cockpitng-config;
+;cockpitng-widgets-config;
+ 
+INSERT_UPDATE CatalogVersion;version[unique=true];catalog(id)[unique=true];active;
+                            ;$hidden_catalog_version; $hidden_catalog_id ; false ;
+ 
+INSERT_UPDATE Catalog;id[unique=true]     ;name[lang=en]
+                     ; $hidden_catalog_id ; Backoffice Configuration Catalog (do not use)

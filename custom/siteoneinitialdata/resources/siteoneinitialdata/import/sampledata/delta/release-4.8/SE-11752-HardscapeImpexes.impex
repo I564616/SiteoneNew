@@ -1,0 +1,944 @@
+
+##------------------ Hardscape Impexes for PTH-90 ------------------
+
+##------------------ RENAME ------------------
+
+## --- Primary Hierarchy ---
+## Define supercategories and catalogVersion 
+$supercategories=supercategories(code, catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Staged']));;;;;;;;;
+$catalogVersion=catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Staged'])[unique=true,default='siteoneProductCatalog:Staged'];;;;;;;;;;;;;;;;;;
+
+## Hardscapes & Outdoor Living>Wood Products>Crossties & Timbers - Rename Level 2 category
+UPDATE category;code[unique=true];name[lang=en];$catalogVersion
+;PH1512;Wood Products;
+
+## Hardscapes & Outdoor Living>Outdoor Living>Garden Center Products - Rename level 3 category 
+;PH1513114;Garden Center Products;
+
+## Hardscapes & Outdoor Living>Edging>Tree Rings
+## Hardscapes & Outdoor Living>Edging>Edging Accessories
+## Hardscapes & Outdoor Living>Edging>Landscape Edging
+## Hardscapes & Outdoor Living>Edging>Paver Restraints
+## Rename Category Level 2 and Categories Level 3
+;PH1514;Edging;
+;PH1514110;Tree Rings;
+;PH1514111;Edging Accessories;
+;PH1514112;Landscape Edging;
+;PH1514113;Paver Restraints;
+
+## Hardscapes & Outdoor Living>Hardscape Accessories>Pedestals - Rename Category Level 2
+;PH1515;Hardscape Accessories;
+
+
+## --- Sales Hierarchy ---
+## Define supercategories and catalogVersion 
+$supercategories=supercategories(code, catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Staged']));;;;;;;;;
+$catalogVersion=catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Staged'])[unique=true,default='siteoneProductCatalog:Staged'];;;;;;;;;;;;;;;;;;
+
+## Hardscapes & Outdoor Living>Outdoor Living>Garden Center Products - Rename level 3 category
+## Hardscapes & Outdoor Living>Outdoor Living>Outdoor Décor - Rename level 3 category
+UPDATE category;code[unique=true];name[lang=en];$catalogVersion
+;SH1513114;Garden Center Products;
+;SH1513116;Outdoor Décor;
+
+## Hardscapes & Outdoor Living>Edging>Tree Rings
+## Hardscapes & Outdoor Living>Edging>Edging Accessories
+## Hardscapes & Outdoor Living>Edging>Landscape Edging
+## Hardscapes & Outdoor Living>Edging>Paver Restraints
+## Rename Category Level 2 and Categories Level 3
+;SH1514;Edging;
+;SH1514110;Tree Rings;
+;SH1514111;Edging Accessories;
+;SH1514112;Landscape Edging;
+;SH1514113;Paver Restraints;
+
+## Hardscapes & Outdoor Living>Hardscape Accessories>Pedestals - Rename Category Level 3
+;SH1515114;Pedestals;
+
+
+
+##------------------ NEW CATEGORIES
+
+## --- Primary Hierarchy ---
+## Define supercategories and catalogVersion 
+$supercategories=supercategories(code, catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Staged']));;;;;;;;;
+$catalogVersion=catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Staged'])[unique=true,default='siteoneProductCatalog:Staged'];;;;;;;;;;;;;;;;;;
+
+## Hardscapes & Outdoor Living>Architectural products>Site Furnishings - Create Level 3 category
+INSERT_UPDATE Category;code[unique=true];name[lang=en];$supercategories;$catalogVersion;allowedPrincipals(uid)
+;PH1511113;Site Furnishings;PH1511;siteoneProductCatalog:Staged;admingroup
+
+## Hardscapes & Outdoor Living>Wood Products>Lumber
+## Hardscapes & Outdoor Living>Wood Products>Tiles & Pavers
+## Create Level 3 categories
+;PH1512111;Lumber;PH1512;siteoneProductCatalog:Staged;admingroup
+;PH1512112;Tiles & Pavers;PH1512;siteoneProductCatalog:Staged;admingroup
+
+## Hardscapes & Outdoor Living>Outdoor Living>Outdoor Décor Create level 3 category
+;PH1513116;Outdoor Décor;PH1513;siteoneProductCatalog:Staged;admingroup
+
+## Hardscapes & Outdoor Living>Masonry & Construction Products>Asphalt
+## Hardscapes & Outdoor Living>Masonry & Construction Products>Brick
+## Hardscapes & Outdoor Living>Masonry & Construction Products>Chemicals
+## Hardscapes & Outdoor Living>Masonry & Construction Products>Parts & Accessories
+## Hardscapes & Outdoor Living>Masonry & Construction Products>Steel & Metal Construction Products
+## Hardscapes & Outdoor Living>Masonry & Construction Products>Stucco
+## Create level 2 and level 3 categories
+;PH1518;Masonry & Construction Products;PH15;siteoneProductCatalog:Staged;admingroup
+;PH1518110;Asphalt;PH1518;siteoneProductCatalog:Staged;admingroup
+;PH1518111;Brick;PH1518;siteoneProductCatalog:Staged;admingroup
+;PH1518112;Chemicals;PH1518;siteoneProductCatalog:Staged;admingroup
+;PH1518113;Parts & Accessories;PH1518;siteoneProductCatalog:Staged;admingroup
+;PH1518114;Steel & Metal Construction Products;PH1518;siteoneProductCatalog:Staged;admingroup
+;PH1518115;Stucco;PH1518;siteoneProductCatalog:Staged;admingroup
+
+## Hardscapes & Outdoor Living>Manufactured Hardscape Products>Clay & Brick Pavers
+## Hardscapes & Outdoor Living>Manufactured Hardscape Products>Manufactured & Cultured Stones
+## Hardscapes & Outdoor Living>Manufactured Hardscape Products>Pavers
+## Hardscapes & Outdoor Living>Manufactured Hardscape Products>Permeable Pavers
+## Hardscapes & Outdoor Living>Manufactured Hardscape Products>Porcelain
+## Hardscapes & Outdoor Living>Manufactured Hardscape Products>Wall Blocks
+## Create Level 2 and level 3 categories
+;PH1516;Manufactured Hardscape Products;PH15;siteoneProductCatalog:Staged;admingroup
+;PH1516110;Clay & Brick Pavers;PH1516;siteoneProductCatalog:Staged;admingroup
+;PH1516111;Manufactured & Cultured Stones;PH1516;siteoneProductCatalog:Staged;admingroup
+;PH1516112;Pavers;PH1516;siteoneProductCatalog:Staged;admingroup
+;PH1516113;Permeable Pavers;PH1516;siteoneProductCatalog:Staged;admingroup
+;PH1516114;Porcelain;PH1516;siteoneProductCatalog:Staged;admingroup
+;PH1516115;Wall Blocks;PH1516;siteoneProductCatalog:Staged;admingroup
+
+## Hardscapes & Outdoor Living>Natural Stone>Boulders
+## Hardscapes & Outdoor Living>Natural Stone>Bulk Construction Aggregates
+## Hardscapes & Outdoor Living>Natural Stone>Dimensional Stone Flooring
+## Hardscapes & Outdoor Living>Natural Stone>Dimensional Stone Cap, Treads, Sill & Accessories
+## Hardscapes & Outdoor Living>Natural Stone>Bagged Decorative Stones
+## Hardscapes & Outdoor Living>Natural Stone>Flagstone
+## Hardscapes & Outdoor Living>Natural Stone>Garden Accents
+## Hardscapes & Outdoor Living>Natural Stone>Building & Stacked Stones
+## Hardscapes & Outdoor Living>Natural Stone>Sawn Thin Veneer
+## Hardscapes & Outdoor Living>Natural Stone>Irregular Slabs, Steps & Outcroppings
+## Hardscapes & Outdoor Living>Natural Stone>Veneer Panels
+## Hardscapes & Outdoor Living>Natural Stone>Bulk Decorative Aggregates
+## Hardscapes & Outdoor Living>Natural Stone>Cobblestone & Edging
+## Hardscapes & Outdoor Living>Natural Stone>River Rock & Cobbles
+## Create Level 2 and level 3 categories
+;PH1517;Natural Stone;PH15;siteoneProductCatalog:Staged;admingroup
+;PH1517110;Boulders;PH1517;siteoneProductCatalog:Staged;admingroup
+;PH1517111;Bulk Construction Aggregates;PH1517;siteoneProductCatalog:Staged;admingroup
+;PH1517112;Dimensional Stone Flooring;PH1517;siteoneProductCatalog:Staged;admingroup
+;PH1517113;Dimensional Stone Cap, Treads, Sill & Accessories;PH1517;siteoneProductCatalog:Staged;admingroup
+;PH1517114;Bagged Decorative Stones;PH1517;siteoneProductCatalog:Staged;admingroup
+;PH1517115;Flagstone;PH1517;siteoneProductCatalog:Staged;admingroup
+;PH1517116;Garden Accents;PH1517;siteoneProductCatalog:Staged;admingroup
+;PH1517117;Building & Stacked Stones;PH1517;siteoneProductCatalog:Staged;admingroup
+;PH1517118;Sawn Thin Veneer;PH1517;siteoneProductCatalog:Staged;admingroup
+;PH1517119;Irregular Slabs, Steps & Outcroppings;PH1517;siteoneProductCatalog:Staged;admingroup
+;PH1517120;Veneer Panels;PH1517;siteoneProductCatalog:Staged;admingroup
+;PH1517121;Bulk Decorative Aggregates;PH1517;siteoneProductCatalog:Staged;admingroup
+;PH1517122;Cobblestone & Edging;PH1517;siteoneProductCatalog:Staged;admingroup
+;PH1517123;River Rock & Cobbles;PH1517;siteoneProductCatalog:Staged;admingroup
+
+## Hardscapes & Outdoor Living>Hardscape Accessories>Pedestals - Create Category Level 3 
+;PH1515114;Pedestals;PH1515;siteoneProductCatalog:Staged;admingroup
+
+
+## --- Sales Hierarchy ---
+## Define supercategories and catalogVersion 
+$supercategories=supercategories(code, catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Staged']));;;;;;;;;
+$catalogVersion=catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Staged'])[unique=true,default='siteoneProductCatalog:Staged'];;;;;;;;;;;;;;;;;;
+
+## Hardscapes & Outdoor Living>Architectural products>Site Furnishings - Create Level 3 category
+INSERT_UPDATE Category;code[unique=true];name[lang=en];$supercategories;$catalogVersion;allowedPrincipals(uid)
+;SH1511113;Site Furnishings;SH1511;siteoneProductCatalog:Staged;admingroup
+
+## Hardscapes & Outdoor Living>Wood Products>Lumber
+## Hardscapes & Outdoor Living>Wood Products>Tiles & Pavers
+## Create Level 3 categories
+;SH1512111;Lumber;SH1512;siteoneProductCatalog:Staged;admingroup
+;SH1512112;Tiles & Pavers;SH1512;siteoneProductCatalog:Staged;admingroup
+
+## Hardscapes & Outdoor Living>Masonry & Construction Products>Asphalt
+## Hardscapes & Outdoor Living>Masonry & Construction Products>Brick
+## Hardscapes & Outdoor Living>Masonry & Construction Products>Chemicals
+## Hardscapes & Outdoor Living>Masonry & Construction Products>Parts & Accessories
+## Hardscapes & Outdoor Living>Masonry & Construction Products>Steel & Metal Construction Products
+## Hardscapes & Outdoor Living>Masonry & Construction Products>Stucco
+## Create level 2 and level 3 categories
+;SH1518;Masonry & Construction Products;SH15;siteoneProductCatalog:Staged;admingroup
+;SH1518110;Asphalt;SH1518;siteoneProductCatalog:Staged;admingroup
+;SH1518111;Brick;SH1518;siteoneProductCatalog:Staged;admingroup
+;SH1518112;Chemicals;SH1518;siteoneProductCatalog:Staged;admingroup
+;SH1518113;Parts & Accessories;SH1518;siteoneProductCatalog:Staged;admingroup
+;SH1518114;Steel & Metal Construction Products;SH1518;siteoneProductCatalog:Staged;admingroup
+;SH1518115;Stucco;SH1518;siteoneProductCatalog:Staged;admingroup
+
+## Hardscapes & Outdoor Living>Manufactured Hardscape Products>Clay & Brick Pavers
+## Hardscapes & Outdoor Living>Manufactured Hardscape Products>Manufactured & Cultured Stones
+## Hardscapes & Outdoor Living>Manufactured Hardscape Products>Pavers
+## Hardscapes & Outdoor Living>Manufactured Hardscape Products>Permeable Pavers
+## Hardscapes & Outdoor Living>Manufactured Hardscape Products>Porcelain
+## Hardscapes & Outdoor Living>Manufactured Hardscape Products>Wall Blocks
+## Create Level 2 and level 3 categories
+;SH1516;Manufactured Hardscape Products;SH15;siteoneProductCatalog:Staged;admingroup
+;SH1516110;Clay & Brick Pavers;SH1516;siteoneProductCatalog:Staged;admingroup
+;SH1516111;Manufactured & Cultured Stones;SH1516;siteoneProductCatalog:Staged;admingroup
+;SH1516112;Pavers;SH1516;siteoneProductCatalog:Staged;admingroup
+;SH1516113;Permeable Pavers;SH1516;siteoneProductCatalog:Staged;admingroup
+;SH1516114;Porcelain;SH1516;siteoneProductCatalog:Staged;admingroup
+;SH1516115;Wall Blocks;SH1516;siteoneProductCatalog:Staged;admingroup
+
+## Hardscapes & Outdoor Living>Natural Stone>Boulders
+## Hardscapes & Outdoor Living>Natural Stone>Bulk Construction Aggregates
+## Hardscapes & Outdoor Living>Natural Stone>Dimensional Stone Flooring
+## Hardscapes & Outdoor Living>Natural Stone>Dimensional Stone Cap, Treads, Sill & Accessories
+## Hardscapes & Outdoor Living>Natural Stone>Bagged Decorative Stones
+## Hardscapes & Outdoor Living>Natural Stone>Flagstone
+## Hardscapes & Outdoor Living>Natural Stone>Garden Accents
+## Hardscapes & Outdoor Living>Natural Stone>Building & Stacked Stones
+## Hardscapes & Outdoor Living>Natural Stone>Sawn Thin Veneer
+## Hardscapes & Outdoor Living>Natural Stone>Irregular Slabs, Steps & Outcroppings
+## Hardscapes & Outdoor Living>Natural Stone>Veneer Panels
+## Hardscapes & Outdoor Living>Natural Stone>Bulk Decorative Aggregates
+## Hardscapes & Outdoor Living>Natural Stone>Cobblestone & Edging
+## Hardscapes & Outdoor Living>Natural Stone>River Rock & Cobbles
+## Create Level 2 and level 3 categories
+;SH1517;Natural Stone;SH15;siteoneProductCatalog:Staged;admingroup
+;SH1517110;Boulders;SH1517;siteoneProductCatalog:Staged;admingroup
+;SH1517111;Bulk Construction Aggregates;SH1517;siteoneProductCatalog:Staged;admingroup
+;SH1517112;Dimensional Stone Flooring;SH1517;siteoneProductCatalog:Staged;admingroup
+;SH1517113;Dimensional Stone Cap, Treads, Sill & Accessories;SH1517;siteoneProductCatalog:Staged;admingroup
+;SH1517114;Bagged Decorative Stones;SH1517;siteoneProductCatalog:Staged;admingroup
+;SH1517115;Flagstone;SH1517;siteoneProductCatalog:Staged;admingroup
+;SH1517116;Garden Accents;SH1517;siteoneProductCatalog:Staged;admingroup
+;SH1517117;Building & Stacked Stones;SH1517;siteoneProductCatalog:Staged;admingroup
+;SH1517118;Sawn Thin Veneer;SH1517;siteoneProductCatalog:Staged;admingroup
+;SH1517119;Irregular Slabs, Steps & Outcroppings;SH1517;siteoneProductCatalog:Staged;admingroup
+;SH1517120;Veneer Panels;SH1517;siteoneProductCatalog:Staged;admingroup
+;SH1517121;Bulk Decorative Aggregates;SH1517;siteoneProductCatalog:Staged;admingroup
+;SH1517122;Cobblestone & Edging;SH1517;siteoneProductCatalog:Staged;admingroup
+;SH1517123;River Rock & Cobbles;SH1517;siteoneProductCatalog:Staged;admingroup
+
+
+##----------------------------------------------------------------------------------------------
+
+## Primary hierarchy - Sales hierarchy Mapping
+$productCatalog=siteoneProductCatalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+INSERT_UPDATE category;code[unique=true];salescategorymapping;$catalogVersion;
+;PH1511113;SH1511113;
+;PH1512111;SH1512111;
+;PH1512112;SH1512112;
+;PH1513116;SH1513116;
+;PH1518;SH1518;
+;PH1518110;SH1518110;
+;PH1518111;SH1518111;
+;PH1518112;SH1518112;
+;PH1518113;SH1518113;
+;PH1518114;SH1518114;
+;PH1518115;SH1518115;
+;PH1516;SH1516;
+;PH1516110;SH1516110;
+;PH1516111;SH1516111;
+;PH1516112;SH1516112;
+;PH1516113;SH1516113;
+;PH1516114;SH1516114;
+;PH1516115;SH1516115;
+;PH1517;SH1517;
+;PH1517110;SH1517110;
+;PH1517111;SH1517111;
+;PH1517112;SH1517112;
+;PH1517113;SH1517113;
+;PH1517114;SH1517114;
+;PH1517115;SH1517115;
+;PH1517116;SH1517116;
+;PH1517117;SH1517117;
+;PH1517118;SH1517118;
+;PH1517119;SH1517119;
+;PH1517120;SH1517120;
+;PH1517121;SH1517121;
+;PH1517122;SH1517122;
+;PH1517123;SH1517123;
+;PH1515114;SH1515114;
+
+
+##----------------------------------------------------------------------------------------------
+
+## Classifying Class creation
+INSERT_UPDATE classificationclass;code[unique=true];name[lang=en];catalogVersion(catalog(id),version);;;;;
+;CH01_1511113;Product Details;siteoneClassification:1;;;;;
+;CH01_1512111;Product Details;siteoneClassification:1;;;;;
+;CH01_1512112;Product Details;siteoneClassification:1;;;;;
+;CH01_1513116;Product Details;siteoneClassification:1;;;;;
+;CH01_1518;Product Details;siteoneClassification:1;;;;;
+;CH01_1518110;Product Details;siteoneClassification:1;;;;;
+;CH01_1518111;Product Details;siteoneClassification:1;;;;;
+;CH01_1518112;Product Details;siteoneClassification:1;;;;;
+;CH01_1518113;Product Details;siteoneClassification:1;;;;;
+;CH01_1518114;Product Details;siteoneClassification:1;;;;;
+;CH01_1518115;Product Details;siteoneClassification:1;;;;;
+;CH01_1516;Product Details;siteoneClassification:1;;;;;
+;CH01_1516110;Product Details;siteoneClassification:1;;;;;
+;CH01_1516111;Product Details;siteoneClassification:1;;;;;
+;CH01_1516112;Product Details;siteoneClassification:1;;;;;
+;CH01_1516113;Product Details;siteoneClassification:1;;;;;
+;CH01_1516114;Product Details;siteoneClassification:1;;;;;
+;CH01_1516115;Product Details;siteoneClassification:1;;;;;
+;CH01_1517;Product Details;siteoneClassification:1;;;;;
+;CH01_1517110;Product Details;siteoneClassification:1;;;;;
+;CH01_1517111;Product Details;siteoneClassification:1;;;;;
+;CH01_1517112;Product Details;siteoneClassification:1;;;;;
+;CH01_1517113;Product Details;siteoneClassification:1;;;;;
+;CH01_1517114;Product Details;siteoneClassification:1;;;;;
+;CH01_1517115;Product Details;siteoneClassification:1;;;;;
+;CH01_1517116;Product Details;siteoneClassification:1;;;;;
+;CH01_1517117;Product Details;siteoneClassification:1;;;;;
+;CH01_1517118;Product Details;siteoneClassification:1;;;;;
+;CH01_1517119;Product Details;siteoneClassification:1;;;;;
+;CH01_1517120;Product Details;siteoneClassification:1;;;;;
+;CH01_1517121;Product Details;siteoneClassification:1;;;;;
+;CH01_1517122;Product Details;siteoneClassification:1;;;;;
+;CH01_1517123;Product Details;siteoneClassification:1;;;;;
+;CH01_1515114;Product Details;siteoneClassification:1;;;;;
+
+$productCatalog=siteoneProductCatalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+INSERT_UPDATE classificationclass;code[unique=true];name[lang=en];$catalogVersion;;;;;
+;CH01_1513;Product Details;siteoneClassification:1;;;;;
+
+
+
+##----------------------------------------------------------------------------------------------
+
+## Class attribute assignment
+
+$classCatalogVersion=catalogversion(catalog(id[default='siteoneClassification']),version[default='1'])[unique=true,default='siteoneClassification:1']
+$classSystemVersion=systemversion(catalog(id[default='siteoneClassification']),version[default='1'])[unique=true,default='siteoneClassification:1']
+
+INSERT_UPDATE classAttributeAssignment;classificationAttribute(code,$classSystemVersion)[unique=true];attributeType(code);classificationClass(code,$classCatalogVersion)[unique=true];attributeValues(code)[mode=append];multiValued(code);mandatory(code);formatDefinition
+
+## Site Furnishings
+##;hrdscpItem;string;CH01_1511113;;false;false;30;
+##;hrdscpType;string;CH01_1511113;;false;false;30;
+##;hrdscpSeries;string;CH01_1511113;;false;false;30;
+
+## Lumber
+##;hrdscpItem;string;CH01_1512111;;false;false;30;
+##;hrdscpType;string;CH01_1512111;;false;false;30;
+##;hrdscpSeries;string;CH01_1512111;;false;false;30;
+
+## Tiles & Pavers
+##;hrdscpItem;string;CH01_1512112;;false;false;30;
+##;hrdscpType;string;CH01_1512112;;false;false;30;
+##;hrdscpSeries;string;CH01_1512112;;false;false;30;
+
+## Outdoor Décor 
+##;hrdscpItem;string;CH01_1513116;;false;false;30;
+##;hrdscpType;string;CH01_1513116;;false;false;30;
+##;hrdscpSeries;string;CH01_1513116;;false;false;30;
+
+## Asphalt
+##;hrdscpItem;string;CH01_1518110;;false;false;30;
+##;hrdscpType;string;CH01_1518110;;false;false;30;
+##;hrdscpSeries;string;CH01_1518110;;false;false;30;
+
+## Brick
+##;hrdscpItem;string;CH01_1518111;;false;false;30;
+##;hrdscpType;string;CH01_1518111;;false;false;30;
+##;hrdscpSeries;string;CH01_1518111;;false;false;30;
+
+## Chemicals
+##;hrdscpItem;string;CH01_1518112;;false;false;30;
+##;hrdscpType;string;CH01_1518112;;false;false;30;
+##;hrdscpSeries;string;CH01_1518112;;false;false;30;
+
+## Parts & Accessories
+##;hrdscpItem;string;CH01_1518113;;false;false;30;
+##;hrdscpType;string;CH01_1518113;;false;false;30;
+##;hrdscpSeries;string;CH01_1518113;;false;false;30;
+
+## Steel & Metal Construction Products
+##;hrdscpItem;string;CH01_1518114;;false;false;30;
+##;hrdscpType;string;CH01_1518114;;false;false;30;
+##;hrdscpSeries;string;CH01_1518114;;false;false;30;
+
+
+## Stucco
+##;hrdscpItem;string;CH01_1518115;;false;false;30;
+##;hrdscpType;string;CH01_1518115;;false;false;30;
+##;hrdscpSeries;string;CH01_1518115;;false;false;30;
+
+## Clay & Brick Pavers
+##;hrdscpItem;string;CH01_1516110;;false;false;30;
+##;hrdscpType;string;CH01_1516110;;false;false;30;
+##;hrdscpSeries;string;CH01_1516110;;false;false;30;
+;hrdscpSuitableForUseWith;string;CH01_1516110;;false;false;30;
+;hrdscpColor;string;CH01_1516110;;false;false;30;
+;hrdscpFinish;string;CH01_1516110;;false;false;30;
+;hrdscpOverallHeight;string;CH01_1516110;;false;false;30;
+;hrdscpLength;string;CH01_1516110;;false;false;30;
+;hrdscpSize;string;CH01_1516110;;false;false;30;
+;hrdscpWeight;string;CH01_1516110;;false;false;30;
+;hrdscpSpecifications;string;CH01_1516110;;false;false;30;
+;hrdscpWidth;string;CH01_1516110;;false;false;30;
+;hrdscpMaterial;string;CH01_1516110;;false;false;30;
+;hrdscpNumberofPieces;string;CH01_1516110;;false;false;30;
+;hrdscpHeight;string;CH01_1516110;;false;false;30;
+;hrdscpCoverageArea;string;CH01_1516110;;false;false;30;
+;hrdscpDimensions;string;CH01_1516110;;false;false;30;
+;hrdscpPattern;string;CH01_1516110;;false;false;30;
+;hrdscpGrade;string;CH01_1516110;;false;false;30;
+;hrdscpDepth;string;CH01_1516110;;false;false;30;
+;hrdscpThickness;string;CH01_1516110;;false;false;30;
+
+## Manufactured & Cultured Stones
+##;hrdscpItem;string;CH01_1516111;;false;false;30;
+##;hrdscpType;string;CH01_1516111;;false;false;30;
+##;hrdscpSeries;string;CH01_1516111;;false;false;30;
+;hrdscpSuitableForUseWith;string;CH01_1516111;;false;false;30;
+;hrdscpColor;string;CH01_1516111;;false;false;30;
+;hrdscpFinish;string;CH01_1516111;;false;false;30;
+;hrdscpOverallHeight;string;CH01_1516111;;false;false;30;
+;hrdscpLength;string;CH01_1516111;;false;false;30;
+;hrdscpSize;string;CH01_1516111;;false;false;30;
+;hrdscpWeight;string;CH01_1516111;;false;false;30;
+;hrdscpSpecifications;string;CH01_1516111;;false;false;30;
+;hrdscpWidth;string;CH01_1516111;;false;false;30;
+;hrdscpMaterial;string;CH01_1516111;;false;false;30;
+;hrdscpNumberofPieces;string;CH01_1516111;;false;false;30;
+;hrdscpHeight;string;CH01_1516111;;false;false;30;
+;hrdscpCompositions;string;CH01_1516111;;false;false;30;
+;hrdscpCoverageArea;string;CH01_1516111;;false;false;30;
+;hrdscpDimensions;string;CH01_1516111;;false;false;30;
+;hrdscpPattern;string;CH01_1516111;;false;false;30;
+;hrdscpGrade;string;CH01_1516111;;false;false;30;
+;hrdscpDepth;string;CH01_1516111;;false;false;30;
+;hrdscpThickness;string;CH01_1516111;;false;false;30;
+;hrdscpSellingUnit;string;CH01_1516111;;false;false;30;
+
+## Pavers
+##;hrdscpItem;string;CH01_1516112;;false;false;30;
+##;hrdscpType;string;CH01_1516112;;false;false;30;
+##;hrdscpSeries;string;CH01_1516112;;false;false;30;
+;hrdscpSuitableForUseWith;string;CH01_1516112;;false;false;30;
+;hrdscpColor;string;CH01_1516112;;false;false;30;
+;hrdscpFinish;string;CH01_1516112;;false;false;30;
+;hrdscpOverallHeight;string;CH01_1516112;;false;false;30;
+;hrdscpLength;string;CH01_1516112;;false;false;30;
+;hrdscpSize;string;CH01_1516112;;false;false;30;
+;hrdscpWeight;string;CH01_1516112;;false;false;30;
+;hrdscpSpecifications;string;CH01_1516112;;false;false;30;
+;hrdscpWidth;string;CH01_1516112;;false;false;30;
+;hrdscpMaterial;string;CH01_1516112;;false;false;30;
+;hrdscpNumberofPieces;string;CH01_1516112;;false;false;30;
+;hrdscpShape;string;CH01_1516112;;false;false;30;
+;hrdscpHeight;string;CH01_1516112;;false;false;30;
+;hrdscpCoverageArea;string;CH01_1516112;;false;false;30;
+;hrdscpDimensions;string;CH01_1516112;;false;false;30;
+;hrdscpPattern;string;CH01_1516112;;false;false;30;
+;hrdscpGrade;string;CH01_1516112;;false;false;30;
+;hrdscpDepth;string;CH01_1516112;;false;false;30;
+;hrdscpThickness;string;CH01_1516112;;false;false;30;
+;hrdscpSellingUnit;string;CH01_1516112;;false;false;30;
+
+## Permeable Pavers
+##;hrdscpItem;string;CH01_1516113;;false;false;30;
+##;hrdscpType;string;CH01_1516113;;false;false;30;
+##;hrdscpSeries;string;CH01_1516113;;false;false;30;
+;hrdscpSuitableForUseWith;string;CH01_1516113;;false;false;30;
+;hrdscpColor;string;CH01_1516113;;false;false;30;
+;hrdscpFinish;string;CH01_1516113;;false;false;30;
+;hrdscpOverallHeight;string;CH01_1516113;;false;false;30;
+;hrdscpLength;string;CH01_1516113;;false;false;30;
+;hrdscpSize;string;CH01_1516113;;false;false;30;
+;hrdscpWeight;string;CH01_1516113;;false;false;30;
+;hrdscpSpecifications;string;CH01_1516113;;false;false;30;
+;hrdscpWidth;string;CH01_1516113;;false;false;30;
+;hrdscpMaterial;string;CH01_1516113;;false;false;30;
+;hrdscpNumberofPieces;string;CH01_1516113;;false;false;30;
+;hrdscpHeight;string;CH01_1516113;;false;false;30;
+;hrdscpCoverageArea;string;CH01_1516113;;false;false;30;
+;hrdscpDimensions;string;CH01_1516113;;false;false;30;
+;hrdscpPattern;string;CH01_1516113;;false;false;30;
+;hrdscpGrade;string;CH01_1516113;;false;false;30;
+;hrdscpDepth;string;CH01_1516113;;false;false;30;
+;hrdscpThickness;string;CH01_1516113;;false;false;30;
+
+## Porcelain
+##;hrdscpItem;string;CH01_1516114;;false;false;30;
+##;hrdscpType;string;CH01_1516114;;false;false;30;
+##;hrdscpSeries;string;CH01_1516114;;false;false;30;
+;hrdscpSuitableForUseWith;string;CH01_1516114;;false;false;30;
+;hrdscpColor;string;CH01_1516114;;false;false;30;
+;hrdscpFinish;string;CH01_1516114;;false;false;30;
+;hrdscpOverallHeight;string;CH01_1516114;;false;false;30;
+;hrdscpLength;string;CH01_1516114;;false;false;30;
+;hrdscpSize;string;CH01_1516114;;false;false;30;
+;hrdscpWeight;string;CH01_1516114;;false;false;30;
+;hrdscpSpecifications;string;CH01_1516114;;false;false;30;
+;hrdscpWidth;string;CH01_1516114;;false;false;30;
+;hrdscpMaterial;string;CH01_1516114;;false;false;30;
+;hrdscpNumberofPieces;string;CH01_1516114;;false;false;30;
+;hrdscpHeight;string;CH01_1516114;;false;false;30;
+;hrdscpCoverageArea;string;CH01_1516114;;false;false;30;
+;hrdscpDimensions;string;CH01_1516114;;false;false;30;
+;hrdscpPattern;string;CH01_1516114;;false;false;30;
+;hrdscpGrade;string;CH01_1516114;;false;false;30;
+;hrdscpDepth;string;CH01_1516114;;false;false;30;
+;hrdscpThickness;string;CH01_1516114;;false;false;30;
+
+
+## Wall Blocks
+##;hrdscpItem;string;CH01_1516115;;false;false;30;
+##;hrdscpType;string;CH01_1516115;;false;false;30;
+##;hrdscpSeries;string;CH01_1516115;;false;false;30;
+;hrdscpSuitableForUseWith;string;CH01_1516115;;false;false;30;
+;hrdscpColor;string;CH01_1516115;;false;false;30;
+;hrdscpFinish;string;CH01_1516115;;false;false;30;
+;hrdscpOverallHeight;string;CH01_1516115;;false;false;30;
+;hrdscpLength;string;CH01_1516115;;false;false;30;
+;hrdscpSize;string;CH01_1516115;;false;false;30;
+;hrdscpWeight;string;CH01_1516115;;false;false;30;
+;hrdscpSpecifications;string;CH01_1516115;;false;false;30;
+;hrdscpWidth;string;CH01_1516115;;false;false;30;
+;hrdscpMaterial;string;CH01_1516115;;false;false;30;
+;hrdscpNumberofPieces;string;CH01_1516115;;false;false;30;
+;hrdscpHeight;string;CH01_1516115;;false;false;30;
+;hrdscpCoverageArea;string;CH01_1516115;;false;false;30;
+;hrdscpDimensions;string;CH01_1516115;;false;false;30;
+;hrdscpPattern;string;CH01_1516115;;false;false;30;
+;hrdscpGrade;string;CH01_1516115;;false;false;30;
+;hrdscpDepth;string;CH01_1516115;;false;false;30;
+;hrdscpThickness;string;CH01_1516115;;false;false;30;
+;hrdscpSellingUnit;string;CH01_1516115;;false;false;30;
+
+## Boulders
+##;hrdscpItem;string;CH01_1517110;;false;false;30;
+##;hrdscpType;string;CH01_1517110;;false;false;30;
+##;hrdscpSeries;string;CH01_1517110;;false;false;30;
+;hrdscpColor;string;CH01_1517110;;false;false;30;
+;hrdscpFinish;string;CH01_1517110;;false;false;30;
+;hrdscpOverallHeight;string;CH01_1517110;;false;false;30;
+;hrdscpSize;string;CH01_1517110;;false;false;30;
+;hrdscpWeight;string;CH01_1517110;;false;false;30;
+;hrdscpSpecifications;string;CH01_1517110;;false;false;30;
+;hrdscpMaterial;string;CH01_1517110;;false;false;30;
+;hrdscpDimensions;string;CH01_1517110;;false;false;30;
+;hrdscpSellingUnit;string;CH01_1517110;;false;false;30;
+
+## Bulk Construction Aggregates
+##;hrdscpItem;string;CH01_1517111;;false;false;30;
+##;hrdscpType;string;CH01_1517111;;false;false;30;
+##;hrdscpSeries;string;CH01_1517111;;false;false;30;
+;hrdscpColor;string;CH01_1517111;;false;false;30;
+;hrdscpSize;string;CH01_1517111;;false;false;30;
+;hrdscpWeight;string;CH01_1517111;;false;false;30;
+;hrdscpSpecifications;string;CH01_1517111;;false;false;30;
+;hrdscpWidth;string;CH01_1517111;;false;false;30;
+;hrdscpMaterial;string;CH01_1517111;;false;false;30;
+;hrdscpContainerType;string;CH01_1517111;;false;false;30;
+;hrdscpNumberofPieces;string;CH01_1517111;;false;false;30;
+;hrdscpShape;string;CH01_1517111;;false;false;30;
+;hrdscpHeight;string;CH01_1517111;;false;false;30;
+;hrdscpCoverageArea;string;CH01_1517111;;false;false;30;
+;hrdscpIncludes;string;CH01_1517111;;false;false;30;
+;hrdscpDimensions;string;CH01_1517111;;false;false;30;
+;hrdscpThickness;string;CH01_1517111;;false;false;30;
+;hrdscpSellingUnit;string;CH01_1517111;;false;false;30;
+
+## Dimensional Stone Flooring
+##;hrdscpItem;string;CH01_1517112;;false;false;30;
+##;hrdscpType;string;CH01_1517112;;false;false;30;
+##;hrdscpSeries;string;CH01_1517112;;false;false;30;
+;hrdscpSuitableForUseWith;string;CH01_1517112;;false;false;30;
+;hrdscpColor;string;CH01_1517112;;false;false;30;
+;hrdscpFinish;string;CH01_1517112;;false;false;30;
+;hrdscpOverallHeight;string;CH01_1517112;;false;false;30;
+;hrdscpLength;string;CH01_1517112;;false;false;30;
+;hrdscpSize;string;CH01_1517112;;false;false;30;
+;hrdscpWeight;string;CH01_1517112;;false;false;30;
+;hrdscpSpecifications;string;CH01_1517112;;false;false;30;
+;hrdscpWidth;string;CH01_1517112;;false;false;30;
+;hrdscpMaterial;string;CH01_1517112;;false;false;30;
+;hrdscpContainerType;string;CH01_1517112;;false;false;30;
+;hrdscpNumberofPieces;string;CH01_1517112;;false;false;30;
+;hrdscpShape;string;CH01_1517112;;false;false;30;
+;hrdscpHeight;string;CH01_1517112;;false;false;30;
+;hrdscpCoverageArea;string;CH01_1517112;;false;false;30;
+;hrdscpIncludes;string;CH01_1517112;;false;false;30;
+;hrdscpDimensions;string;CH01_1517112;;false;false;30;
+;hrdscpPattern;string;CH01_1517112;;false;false;30;
+;hrdscpThickness;string;CH01_1517112;;false;false;30;
+
+## Dimensional Stone Cap, Treads, Sill & Accessories
+##;hrdscpItem;string;CH01_1517113;;false;false;30;
+##;hrdscpType;string;CH01_1517113;;false;false;30;
+##;hrdscpSeries;string;CH01_1517113;;false;false;30;
+;hrdscpSuitableForUseWith;string;CH01_1517113;;false;false;30;
+;hrdscpColor;string;CH01_1517113;;false;false;30;
+;hrdscpFinish;string;CH01_1517113;;false;false;30;
+;hrdscpOverallHeight;string;CH01_1517113;;false;false;30;
+;hrdscpLength;string;CH01_1517113;;false;false;30;
+;hrdscpSize;string;CH01_1517113;;false;false;30;
+;hrdscpWeight;string;CH01_1517113;;false;false;30;
+;hrdscpSpecifications;string;CH01_1517113;;false;false;30;
+;hrdscpWidth;string;CH01_1517113;;false;false;30;
+;hrdscpMaterial;string;CH01_1517113;;false;false;30;
+;hrdscpContainerType;string;CH01_1517113;;false;false;30;
+;hrdscpNumberofPieces;string;CH01_1517113;;false;false;30;
+;hrdscpShape;string;CH01_1517113;;false;false;30;
+;hrdscpHeight;string;CH01_1517113;;false;false;30;
+;hrdscpCoverageArea;string;CH01_1517113;;false;false;30;
+;hrdscpIncludes;string;CH01_1517113;;false;false;30;
+;hrdscpDimensions;string;CH01_1517113;;false;false;30;
+;hrdscpPattern;string;CH01_1517113;;false;false;30;
+;hrdscpThickness;string;CH01_1517113;;false;false;30;
+
+## Bagged Decorative Stones
+##;hrdscpItem;string;CH01_1517114;;false;false;30;
+##;hrdscpType;string;CH01_1517114;;false;false;30;
+##;hrdscpSeries;string;CH01_1517114;;false;false;30;
+;hrdscpSuitableForUseWith;string;CH01_1517114;;false;false;30;
+;hrdscpColor;string;CH01_1517114;;false;false;30;
+;hrdscpFinish;string;CH01_1517114;;false;false;30;
+;hrdscpOverallHeight;string;CH01_1517114;;false;false;30;
+;hrdscpLength;string;CH01_1517114;;false;false;30;
+;hrdscpSize;string;CH01_1517114;;false;false;30;
+;hrdscpWeight;string;CH01_1517114;;false;false;30;
+;hrdscpSpecifications;string;CH01_1517114;;false;false;30;
+;hrdscpWidth;string;CH01_1517114;;false;false;30;
+;hrdscpMaterial;string;CH01_1517114;;false;false;30;
+;hrdscpCoverageArea;string;CH01_1517114;;false;false;30;
+;hrdscpDimensions;string;CH01_1517114;;false;false;30;
+
+## Flagstone
+##;hrdscpItem;string;CH01_1517115;;false;false;30;
+##;hrdscpType;string;CH01_1517115;;false;false;30;
+##;hrdscpSeries;string;CH01_1517115;;false;false;30;
+;hrdscpColor;string;CH01_1517115;;false;false;30;
+;hrdscpWidth;string;CH01_1517115;;false;false;30;
+;hrdscpMaterial;string;CH01_1517115;;false;false;30;
+;hrdscpCoverageArea;string;CH01_1517115;;false;false;30;
+;hrdscpDimensions;string;CH01_1517115;;false;false;30;
+;hrdscpThickness;string;CH01_1517115;;false;false;30;
+
+## Garden Accents
+##;hrdscpItem;string;CH01_1517116;;false;false;30;
+##;hrdscpType;string;CH01_1517116;;false;false;30;
+##;hrdscpSeries;string;CH01_1517116;;false;false;30;
+;hrdscpSuitableForUseWith;string;CH01_1517116;;false;false;30;
+;hrdscpColor;string;CH01_1517116;;false;false;30;
+;hrdscpFinish;string;CH01_1517116;;false;false;30;
+;hrdscpLength;string;CH01_1517116;;false;false;30;
+;hrdscpSize;string;CH01_1517116;;false;false;30;
+;hrdscpWeight;string;CH01_1517116;;false;false;30;
+;hrdscpSpecifications;string;CH01_1517116;;false;false;30;
+;hrdscpWidth;string;CH01_1517116;;false;false;30;
+;hrdscpMaterial;string;CH01_1517116;;false;false;30;
+;hrdscpNumberofPieces;string;CH01_1517116;;false;false;30;
+;hrdscpShape;string;CH01_1517116;;false;false;30;
+;hrdscpHeight;string;CH01_1517116;;false;false;30;
+;hrdscpCompositions;string;CH01_1517116;;false;false;30;
+;hrdscpCoverageArea;string;CH01_1517116;;false;false;30;
+;hrdscpIncludes;string;CH01_1517116;;false;false;30;
+;hrdscpDimensions;string;CH01_1517116;;false;false;30;
+;hrdscpThickness;string;CH01_1517116;;false;false;30;
+
+## Building & Stacked Stones
+##;hrdscpItem;string;CH01_1517117;;false;false;30;
+##;hrdscpType;string;CH01_1517117;;false;false;30;
+##;hrdscpSeries;string;CH01_1517117;;false;false;30;
+;hrdscpSuitableForUseWith;string;CH01_1517117;;false;false;30;
+;hrdscpColor;string;CH01_1517117;;false;false;30;
+;hrdscpFinish;string;CH01_1517117;;false;false;30;
+;hrdscpLength;string;CH01_1517117;;false;false;30;
+;hrdscpSize;string;CH01_1517117;;false;false;30;
+;hrdscpWeight;string;CH01_1517117;;false;false;30;
+;hrdscpSpecifications;string;CH01_1517117;;false;false;30;
+;hrdscpWidth;string;CH01_1517117;;false;false;30;
+;hrdscpMaterial;string;CH01_1517117;;false;false;30;
+;hrdscpNumberofPieces;string;CH01_1517117;;false;false;30;
+;hrdscpShape;string;CH01_1517117;;false;false;30;
+;hrdscpHeight;string;CH01_1517117;;false;false;30;
+;hrdscpCompositions;string;CH01_1517117;;false;false;30;
+;hrdscpCoverageArea;string;CH01_1517117;;false;false;30;
+;hrdscpIncludes;string;CH01_1517117;;false;false;30;
+;hrdscpDimensions;string;CH01_1517117;;false;false;30;
+;hrdscpSellingUnit;string;CH01_1517117;;false;false;30;
+
+## Sawn Thin Veneer
+##;hrdscpItem;string;CH01_1517118;;false;false;30;
+##;hrdscpType;string;CH01_1517118;;false;false;30;
+##;hrdscpSeries;string;CH01_1517118;;false;false;30;
+;hrdscpColor;string;CH01_1517118;;false;false;30;
+;hrdscpFinish;string;CH01_1517118;;false;false;30;
+;hrdscpContainerSize;string;CH01_1517118;;false;false;30;
+;hrdscpWeight;string;CH01_1517118;;false;false;30;
+;hrdscpWidth;string;CH01_1517118;;false;false;30;
+;hrdscpMaterial;string;CH01_1517118;;false;false;30;
+;hrdscpNumberofPieces;string;CH01_1517118;;false;false;30;
+;hrdscpShape;string;CH01_1517118;;false;false;30;
+;hrdscpHeight;string;CH01_1517118;;false;false;30;
+;hrdscpCoverageArea;string;CH01_1517118;;false;false;30;
+;hrdscpDimensions;string;CH01_1517118;;false;false;30;
+;hrdscpPattern;string;CH01_1517118;;false;false;30;
+;hrdscpThickness;string;CH01_1517118;;false;false;30;
+
+## Irregular Slabs, Steps & Outcroppings
+##;hrdscpItem;string;CH01_1517119;;false;false;30;
+##;hrdscpType;string;CH01_1517119;;false;false;30;
+##;hrdscpSeries;string;CH01_1517119;;false;false;30;
+;hrdscpSuitableForUseWith;string;CH01_1517119;;false;false;30;
+;hrdscpColor;string;CH01_1517119;;false;false;30;
+;hrdscpFinish;string;CH01_1517119;;false;false;30;
+;hrdscpLength;string;CH01_1517119;;false;false;30;
+;hrdscpSize;string;CH01_1517119;;false;false;30;
+;hrdscpWeight;string;CH01_1517119;;false;false;30;
+;hrdscpSpecifications;string;CH01_1517119;;false;false;30;
+;hrdscpWidth;string;CH01_1517119;;false;false;30;
+;hrdscpMaterial;string;CH01_1517119;;false;false;30;
+;hrdscpNumberofPieces;string;CH01_1517119;;false;false;30;
+;hrdscpShape;string;CH01_1517119;;false;false;30;
+;hrdscpHeight;string;CH01_1517119;;false;false;30;
+;hrdscpCompositions;string;CH01_1517119;;false;false;30;
+;hrdscpCoverageArea;string;CH01_1517119;;false;false;30;
+;hrdscpIncludes;string;CH01_1517119;;false;false;30;
+;hrdscpDimensions;string;CH01_1517119;;false;false;30;
+
+## Veneer Panels
+##;hrdscpItem;string;CH01_1517120;;false;false;30;
+##;hrdscpType;string;CH01_1517120;;false;false;30;
+##;hrdscpSeries;string;CH01_1517120;;false;false;30;
+;hrdscpSuitableForUseWith;string;CH01_1517120;;false;false;30;
+;hrdscpColor;string;CH01_1517120;;false;false;30;
+;hrdscpFinish;string;CH01_1517120;;false;false;30;
+;hrdscpLength;string;CH01_1517120;;false;false;30;
+;hrdscpSize;string;CH01_1517120;;false;false;30;
+;hrdscpWeight;string;CH01_1517120;;false;false;30;
+;hrdscpSpecifications;string;CH01_1517120;;false;false;30;
+;hrdscpWidth;string;CH01_1517120;;false;false;30;
+;hrdscpMaterial;string;CH01_1517120;;false;false;30;
+;hrdscpNumberofPieces;string;CH01_1517120;;false;false;30;
+;hrdscpShape;string;CH01_1517120;;false;false;30;
+;hrdscpHeight;string;CH01_1517120;;false;false;30;
+;hrdscpCompositions;string;CH01_1517120;;false;false;30;
+;hrdscpCoverageArea;string;CH01_1517120;;false;false;30;
+;hrdscpIncludes;string;CH01_1517120;;false;false;30;
+;hrdscpDimensions;string;CH01_1517120;;false;false;30;
+;hrdscpPattern;string;CH01_1517120;;false;false;30;
+;hrdscpThickness;string;CH01_1517120;;false;false;30;
+
+## Bulk Decorative Aggregates
+##;hrdscpItem;string;CH01_1517121;;false;false;30;
+##;hrdscpType;string;CH01_1517121;;false;false;30;
+##;hrdscpSeries;string;CH01_1517121;;false;false;30;
+;hrdscpSuitableForUseWith;string;CH01_1517121;;false;false;30;
+;hrdscpColor;string;CH01_1517121;;false;false;30;
+;hrdscpFinish;string;CH01_1517121;;false;false;30;
+;hrdscpLength;string;CH01_1517121;;false;false;30;
+;hrdscpSize;string;CH01_1517121;;false;false;30;
+;hrdscpContainerSize;string;CH01_1517121;;false;false;30;
+;hrdscpCapacity;string;CH01_1517121;;false;false;30;
+;hrdscpWeight;string;CH01_1517121;;false;false;30;
+;hrdscpSpecifications;string;CH01_1517121;;false;false;30;
+;hrdscpMaterial;string;CH01_1517121;;false;false;30;
+;hrdscpContainerType;string;CH01_1517121;;false;false;30;
+;hrdscpNumberofPieces;string;CH01_1517121;;false;false;30;
+;hrdscpShape;string;CH01_1517121;;false;false;30;
+;hrdscpCompositions;string;CH01_1517121;;false;false;30;
+;hrdscpCoverageArea;string;CH01_1517121;;false;false;30;
+;hrdscpIncludes;string;CH01_1517121;;false;false;30;
+;hrdscpDimensions;string;CH01_1517121;;false;false;30;
+;hrdscpPattern;string;CH01_1517121;;false;false;30;
+;hrdscpThickness;string;CH01_1517121;;false;false;30;
+
+## Cobblestone & Edging
+##;hrdscpItem;string;CH01_1517122;;false;false;30;
+##;hrdscpType;string;CH01_1517122;;false;false;30;
+##;hrdscpSeries;string;CH01_1517122;;false;false;30;
+;hrdscpSuitableForUseWith;string;CH01_1517122;;false;false;30;
+;hrdscpColor;string;CH01_1517122;;false;false;30;
+;hrdscpFinish;string;CH01_1517122;;false;false;30;
+;hrdscpOverallHeight;string;CH01_1517122;;false;false;30;
+;hrdscpLength;string;CH01_1517122;;false;false;30;
+;hrdscpSize;string;CH01_1517122;;false;false;30;
+;hrdscpWeight;string;CH01_1517122;;false;false;30;
+;hrdscpSpecifications;string;CH01_1517122;;false;false;30;
+;hrdscpCoverageArea;string;CH01_1517122;;false;false;30;
+;hrdscpIncludes;string;CH01_1517122;;false;false;30;
+;hrdscpDimensions;string;CH01_1517122;;false;false;30;
+;hrdscpPattern;string;CH01_1517122;;false;false;30;
+;hrdscpThickness;string;CH01_1517122;;false;false;30;
+
+## River Rock & Cobbles
+##;hrdscpItem;string;CH01_1517123;;false;false;30;
+##;hrdscpType;string;CH01_1517123;;false;false;30;
+##;hrdscpSeries;string;CH01_1517123;;false;false;30;
+;hrdscpSuitableForUseWith;string;CH01_1517123;;false;false;30;
+;hrdscpColor;string;CH01_1517123;;false;false;30;
+;hrdscpFinish;string;CH01_1517123;;false;false;30;
+;hrdscpOverallHeight;string;CH01_1517123;;false;false;30;
+;hrdscpLength;string;CH01_1517123;;false;false;30;
+;hrdscpSize;string;CH01_1517123;;false;false;30;
+;hrdscpWeight;string;CH01_1517123;;false;false;30;
+;hrdscpSpecifications;string;CH01_1517123;;false;false;30;
+;hrdscpCoverageArea;string;CH01_1517123;;false;false;30;
+;hrdscpIncludes;string;CH01_1517123;;false;false;30;
+;hrdscpDimensions;string;CH01_1517123;;false;false;30;
+;hrdscpPattern;string;CH01_1517123;;false;false;30;
+;hrdscpThickness;string;CH01_1517123;;false;false;30;
+
+## Pedestals
+##;hrdscpItem;string;CH01_1515114;;false;false;30;
+##;hrdscpType;string;CH01_1515114;;false;false;30;
+##;hrdscpSeries;string;CH01_1515114;;false;false;30;
+;hrdscpSuitableForUseWith;string;CH01_1515114;;false;false;30;
+;hrdscpColor;string;CH01_1515114;;false;false;30;
+;hrdscpOverallHeight;string;CH01_1515114;;false;false;30;
+;hrdscpLength;string;CH01_1515114;;false;false;30;
+;hrdscpSize;string;CH01_1515114;;false;false;30;
+;hrdscpContainerSize;string;CH01_1515114;;false;false;30;
+;hrdscpWeight;string;CH01_1515114;;false;false;30;
+##;hrdscpSpecifications;string;CH01_1515114;;false;false;30;
+;hrdscpWidth;string;CH01_1515114;;false;false;30;
+;hrdscpMaterial;string;CH01_1515114;;false;false;30;
+;hrdscpContainerType;string;CH01_1515114;;false;false;30;
+;hrdscpNumberofPieces;string;CH01_1515114;;false;false;30;
+;hrdscpShape;string;CH01_1515114;;false;false;30;
+;hrdscpCoverageArea;string;CH01_1515114;;false;false;30;
+
+
+##----------------------------------------------------------------------------------------------
+
+##--e with Staged catalog version 
+$productCatalog=siteoneProductCatalog
+$catalogVersion=catalogversion(catalog(id[default='siteoneProductCatalog']),version[default='Staged'])[unique=true,default='siteoneProductCatalog:Staged']
+$classCatalogVersion=catalogversion(catalog(id[default='siteoneClassification']),version[default='1'])[unique=true,default='siteoneClassification:1']
+$supercategories=source(code, $classCatalogVersion)[unique=true]
+$categories=target(code, $catalogVersion)[unique=true]
+INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories
+;PH1511113;CH01_1511113;
+;PH1512111;CH01_1512111;
+;PH1512112;CH01_1512112;
+;PH1513116;CH01_1513116;
+;PH1518;CH01_1518;
+;PH1518110;CH01_1518110;
+;PH1518111;CH01_1518111;
+;PH1518112;CH01_1518112;
+;PH1518113;CH01_1518113;
+;PH1518114;CH01_1518114;
+;PH1518115;CH01_1518115;
+;PH1516;CH01_1516;
+;PH1516110;CH01_1516110;
+;PH1516111;CH01_1516111;
+;PH1516112;CH01_1516112;
+;PH1516113;CH01_1516113;
+;PH1516114;CH01_1516114;
+;PH1516115;CH01_1516115;
+;PH1517;CH01_1517;
+;PH1517110;CH01_1517110;
+;PH1517111;CH01_1517111;
+;PH1517112;CH01_1517112;
+;PH1517113;CH01_1517113;
+;PH1517114;CH01_1517114;
+;PH1517115;CH01_1517115;
+;PH1517116;CH01_1517116;
+;PH1517117;CH01_1517117;
+;PH1517118;CH01_1517118;
+;PH1517119;CH01_1517119;
+;PH1517120;CH01_1517120;
+;PH1517121;CH01_1517121;
+;PH1517122;CH01_1517122;
+;PH1517123;CH01_1517123;
+;PH1515114;CH01_1515114;
+;PH1513;CH01_1513;
+
+
+##----------------------------------------------------------------------------------------------
+
+##------------------------------------- OK
+##--e with online catalog version 
+$productCatalog=siteoneProductCatalog
+$catalogVersion=catalogversion(catalog(id[default='siteoneProductCatalog']),version[default='Online'])[unique=true,default='siteoneProductCatalog:Online']
+$classCatalogVersion=catalogversion(catalog(id[default='siteoneClassification']),version[default='1'])[unique=true,default='siteoneClassification:1']
+$supercategories=source(code, $classCatalogVersion)[unique=true]
+$categories=target(code, $catalogVersion)[unique=true]
+INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories
+;PH1511113;CH01_1511113;
+;PH1512111;CH01_1512111;
+;PH1512112;CH01_1512112;
+;PH1513116;CH01_1513116;
+;PH1518;CH01_1518;
+;PH1518110;CH01_1518110;
+;PH1518111;CH01_1518111;
+;PH1518112;CH01_1518112;
+;PH1518113;CH01_1518113;
+;PH1518114;CH01_1518114;
+;PH1518115;CH01_1518115;
+;PH1516;CH01_1516;
+;PH1516110;CH01_1516110;
+;PH1516111;CH01_1516111;
+;PH1516112;CH01_1516112;
+;PH1516113;CH01_1516113;
+;PH1516114;CH01_1516114;
+;PH1516115;CH01_1516115;
+;PH1517;CH01_1517;
+;PH1517110;CH01_1517110;
+;PH1517111;CH01_1517111;
+;PH1517112;CH01_1517112;
+;PH1517113;CH01_1517113;
+;PH1517114;CH01_1517114;
+;PH1517115;CH01_1517115;
+;PH1517116;CH01_1517116;
+;PH1517117;CH01_1517117;
+;PH1517118;CH01_1517118;
+;PH1517119;CH01_1517119;
+;PH1517120;CH01_1517120;
+;PH1517121;CH01_1517121;
+;PH1517122;CH01_1517122;
+;PH1517123;CH01_1517123;
+;PH1515114;CH01_1515114;
+;PH1513;CH01_1513;
+
+
+##-----------------------------------------------------------------------------------
+##--f
+
+$classCatalogVersion=catalogversion(catalog(id[default='siteoneClassification']),version[default='1'])[unique=true,default='siteoneClassification:1']
+$supercategories=source(code, $classCatalogVersion)[unique=true]
+$categories=target(code, $classCatalogVersion)[unique=true]
+INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories
+;CH01_1511113;CH01_1511;
+;CH01_1512111;CH01_1512;
+;CH01_1512112;CH01_1512;
+;CH01_1513116;CH01_1513;
+;CH01_1518;CH01_15;
+;CH01_1518110;CH01_1518;
+;CH01_1518111;CH01_1518;
+;CH01_1518112;CH01_1518;
+;CH01_1518113;CH01_1518;
+;CH01_1518114;CH01_1518;
+;CH01_1518115;CH01_1518;
+;CH01_1516;CH01_15;
+;CH01_1516110;CH01_1516;
+;CH01_1516111;CH01_1516;
+;CH01_1516112;CH01_1516;
+;CH01_1516113;CH01_1516;
+;CH01_1516114;CH01_1516;
+;CH01_1516115;CH01_1516;
+;CH01_1517;CH01_15;
+;CH01_1517110;CH01_1517;
+;CH01_1517111;CH01_1517;
+;CH01_1517112;CH01_1517;
+;CH01_1517113;CH01_1517;
+;CH01_1517114;CH01_1517;
+;CH01_1517115;CH01_1517;
+;CH01_1517116;CH01_1517;
+;CH01_1517117;CH01_1517;
+;CH01_1517118;CH01_1517;
+;CH01_1517119;CH01_1517;
+;CH01_1517120;CH01_1517;
+;CH01_1517121;CH01_1517;
+;CH01_1517122;CH01_1517;
+;CH01_1517123;CH01_1517;
+;CH01_1515114;CH01_1515;
+;CH01_1513;CH01_15;

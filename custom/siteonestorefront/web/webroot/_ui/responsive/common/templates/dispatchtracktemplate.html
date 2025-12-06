@@ -1,0 +1,542 @@
+<!-- Base template - each modules should be placed here -->
+<script id="order-loop-template" type="text/x-handlebars-template" charset="utf-8">
+
+    <div class="container header-container">
+        <div class="row">
+            <div class="col-lg-12 text-center" id="business_name">
+                {{{ service_order.business_logo_or_name }}}
+                <h2 style="margin-top: 10px;font-size: 22px;">Track Your Order</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" id="success-comment" title="Submitted Successfully" style="display: none;">
+        <p>
+            Thank you, your comments will be communicated with the service team!
+        </p>
+    </div>
+
+    <div class="order_placeholder">
+        <div class="chevrons_container"></div>
+        <div class="order_details_container"></div>
+        <div class="order_items_container"></div>
+        <div class="order_drivers_container"></div>
+        <div class="order_shipments_container"></div>
+        <div class="order_additional_fields_container"></div>
+        <div class="order_custom_fields_container"></div>
+        <div class="comment_widget_container"></div>
+    </div>
+
+    <div class="container footer-container">
+        <div class="row">
+            <div class="col-lg-12" style="margin-top: 20px;">
+                <div style="font-size:13px; color:#696764">
+                    * ETA - Estimated Time of Arrival subject to change.
+                </div>
+            </div>
+        </div>
+    </div>
+
+</script>
+
+<!-- Chevron Template -->
+<script id="chevrons-template" type="text/x-handlebars-template" charset="utf-8">
+    <div class="container order-details chev-cont">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <ul class="container chev-cont">
+                    {{#each statuses}}
+
+                        <li class="{{#ifException exception}} red {{else}} {{#ifGt @index st_index}} not-done {{/ifGt}} {{/ifException}}">
+
+                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40">
+                                <g id="Group_523" data-name="Group 523" transform="translate(-530 -309)">
+                                    <g id="Ellipse_14" data-name="Ellipse 14" transform="translate(530 309)" fill="#ffffff" stroke="#78a22f" stroke-width="2">
+                                        <circle cx="20" cy="20" r="20" stroke="none"/>
+                                        <circle cx="20" cy="20" r="19" fill="none"/>
+                                    </g>
+                                    <circle id="Ellipse_17" data-name="Ellipse 17" cx="15" cy="15" r="15" transform="translate(535 314)" fill="#78a22f"/>
+                                    <path id="check" d="M5.095,76.064.22,71.189a.75.75,0,0,1,0-1.061l1.061-1.061a.75.75,0,0,1,1.061,0l3.284,3.284,7.034-7.034a.75.75,0,0,1,1.061,0l1.061,1.061a.75.75,0,0,1,0,1.061L6.156,76.064a.75.75,0,0,1-1.061,0Z" transform="translate(543 258.902)" fill="#fff"/>
+                                </g>
+                            </svg>
+
+                            <div class="chevron-inner">
+                                <div class="chevron-content">
+                                    {{ this }}
+                                </div>
+                            </div>
+                        </li>
+                    {{/each}}
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+</script>
+
+<!-- Order Detail Template -->
+<script id="order-details-template" type="text/x-handlebars-template" charset="utf-8">
+    {{#if service_order.expected_time}}
+    <div class="top-eta-container">
+        <h6 class="top-eta">
+            Current ETA:
+            {{ service_order.expected_time }}</h6>
+    </div>
+    {{/if}}
+
+    <div class="container order-details order-details-container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="data-box order-box">
+                    <h3>Order</h3>
+                    <ul>
+                        <li>Order #
+                            {{ service_order.service_order_number }}</li>
+                        <li>Tracking #
+                            {{ service_order.tracking_number }}
+                        </li>
+                        <li>Customer
+                            {{ service_order.customer_name }}
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="data-box">
+                    <h3>Consignee</h3>
+                    <p>
+                        {{ service_order.delivery_address1 }}
+                        {{ service_order.delivery_city }}
+                        {{ service_order.delivery_state }}
+                        -
+                        {{ service_order.delivery_zip }}
+                    </p>
+                </div>
+                <div class="data-box">
+                    <h3>Schedule</h3>
+                    <ul>
+                        <li>
+                            <span>Delivery Date:</span>
+                            {{ service_order.scheduled_date }}</li>
+                        <li class="time-window">
+                            <span>Time Window:</span>
+                            {{ service_order.scheduled_time_window }}
+                            <a href="{{ service_order.eta_download_link }}" class="tooltip_ical" data-titles="Click here and save the Appointment in your Calendar.">
+                                <img alt="Calendar_day_down" src="https://dmlzklevomxxt.cloudfront.net/web/images/track_widget/ic-calendar.png"></a>
+                            </li>
+                            <li class="stop-number">
+                                <span>Stop Number:</span>
+                                {{ service_order.stop }}</li>
+                            <li class="expected-time">
+                                <span>*Current ETA:</span>
+                                {{ service_order.expected_time }}</li>
+                            <li class="current-stop">
+                                <span>Service Team currently at:</span>
+                                <strong>Stop no.
+                                    {{ service_order.current_stop }}</strong>
+                            </li>
+                            <li class="last-stop-served">
+                                <span>Service Team completed:</span>
+                                <strong>Stop no.
+                                    {{ service_order.last_stop_served }}</strong>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-6 map-div-wrapper">
+                    <div class="data-box map-div">
+
+                        <p class="map">
+                            <style>
+                                .gmap_canvas img {
+                                    max-width: none !important;
+                                    background: none !important
+                                }
+                            </style>
+                            <div class='gmap_canvas' id="{{ service_order.map_holder }}" style='height: 325px;width:100%;border: 1px solid #C7C7CA;'></div>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </script>
+
+<!-- Order Item Template -->
+<script id="order-line-items-template" type="text/x-handlebars-template" charset="utf-8">
+        {{#if service_order.order_line_items}}
+            <div class="container order-details">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="data-box-table">
+                            <h3 style="font-size: 17px;font-weight: bold;">Order Items</h3>
+
+                            <div class="tms-table col-lg-12">
+                                <div class="tms-table__header row hide-xs">
+                                    <div class="col-lg-8">Item</div>
+                                    <div class="col-lg-2">Quantity</div>
+                                    <div class="col-lg-2">Delivered</div>
+                                </div>
+                                {{#each service_order.order_line_items}}
+                                    {{#with service_order_item}}
+                                        <div class="tms-table__values row">
+                                            <div class="col-lg-8 col-xs-12 xs-pad-bot-15">
+                                                {{#if serial_number}}
+                                                    {{ serial_number }}
+                                                    -
+                                                {{/if}}
+                                                {{{ description }}}</div>
+                                            <div class="col-lg-2 col-xs-6">
+                                                <div class="col-xs-6 hide-md bold xs-no-padding">Quantity</div>
+                                                <div class="col-xs-6 col-lg-12">{{ quantity }}</div>
+                                            </div>
+
+                                            <div class="col-lg-2 col-xs-6">
+                                                <div class="col-xs-6 hide-md bold  xs-no-padding">Delivered</div>
+                                                <div class="col-xs-6 col-lg-12"></div>
+                                                {{ delivered_quantity }}</div>
+                                        </div>
+
+                                    {{/with}}
+                                {{/each}}
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    {{/if}}
+</script>
+
+<!-- Order Drivers Template -->
+<script id="order-drivers-template" type="text/x-handlebars-template" charset="utf-8">
+    {{#if service_order.order_driver_details}}
+        <div class="container order-details">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="data-box-table-white">
+                        <h3 style="font-size: 17px;font-weight: bold;">Delivery Team</h3>
+                        <table class="table table-bordered">
+                            {{#each service_order.order_driver_details}}
+                                <tr>
+                                    <td>
+                                        {{#if image}}
+                                            <img alt="Alert_message" style="width:90px;height:90px" src="{{ image }}"/>
+                                        {{/if}}
+                                        <span class="del-per-name">{{ name }}</span>
+                                    </td>
+                                    {{#if description}}
+                                        <td>
+                                            {{{ description }}}
+                                        </td>
+                                    {{/if}}
+                                </tr>
+                            {{/each}}
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {{/if}}
+</script>
+
+<!-- Order Shipment Template -->
+<script id="order-shipments-template" type="text/x-handlebars-template" charset="utf-8">
+    {{#if service_order.order_ship_events}}
+        <div class="container order-details">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="data-box-table">
+                        <h3 style="font-size: 17px;font-weight: bold;">Shipment Updates</h3>
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Date &amp; Time</th>
+                                        <th>Event</th>
+                                        <th>Location</th>
+                                    </tr>
+                                </thead>
+                                {{#each service_order.order_ship_events}}
+                                    <tr>
+                                        <td>{{ event_date }},
+                                            {{ event_time }}</td>
+                                        <td>{{ event_description }}</td>
+                                        <td>{{ event_location }}</td>
+                                    </tr>
+                                {{/each}}
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {{/if}}
+</script>
+
+<!-- Order Additional Fields Template -->
+<!-- <script id="order-additional-fields-template" type="text/x-handlebars-template" charset="utf-8">
+                {{#if service_order.order_additional_fields}}
+                  <div class="container order-details">
+                    <div class="row">
+                      <div class="col-lg-12">
+                        <div class="data-box-table">
+                          <h3 style="font-size: 17px;font-weight: bold;">Additional Details</h3>
+                          <div class="data-box order-box">
+                            <ul>
+                              {{#each service_order.order_additional_fields}}
+                                <li style="width:45%; float:left">
+                                  <label class="smallkey">{{label}} : </label>{{value}}
+                                </li>
+                              {{/each}}
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                {{/if}}
+              </script> -->
+
+<!-- Order Custom Fields Template -->
+<!-- <script id="order-custom-fields-template" type="text/x-handlebars-template" charset="utf-8">
+                {{#if service_order.order_custom_fields}}
+                  <div class="container order-details">
+                    <div class="row">
+                      <div class="col-lg-12">
+                        <div class="data-box-table">
+                          <h3 style="font-size: 17px;font-weight: bold;">Custom Fields</h3>
+                          <div class="data-box order-box">
+                            <ul>
+                              {{#each service_order.order_custom_fields}}
+                                <li style="width:45%; float:left">
+                                  <label class="smallkey">{{label}} : </label>{{value}}
+                                </li>
+                              {{/each}}
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                {{/if}}
+              </script> -->
+
+<!-- Comment Widget Template -->
+<!-- <script id="comment-widget-template" type="text/x-handlebars-template" charset="utf-8">
+                {{#if service_order.show_widget_comment}}
+                  <div class="container widget-form">
+                    <div class="row">
+                      <div class="col-lg-12">
+                        <div class="data-box-table">
+                          <h4>Have something to say to the service team? Let us know...</h4>
+                          <div class="tw-driver_info">
+                            <form action="{{service_order.comment_url}}" method="post" class="comment-form">
+                              <textarea name="user_comment" class="tw-user-comment form-control text-area-draggable-disable" rows="5"></textarea>
+                              <div class="form-actions" style="padding-top: 10px">
+                                <input name="commit" class="submit_btn btn btn-delete dark-sky-blue" type="submit" value="Submit">
+                              </div>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                {{/if}}
+              </script> -->
+
+<script id="no-order-template" type="text/x-handlebars-template" charset="utf-8"> <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="table table-striped table-bordered table-curved" style="padding: 12px;text-align: center;border-left: 1px solid #ccc;">
+                    Your order is not available for tracking at this time.
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+<style>
+    /*** common styles***/
+    .bold {
+        font-weight: bold;
+    }
+
+    @media(min-width: 1023px) {
+        .md-no-padding {
+            padding: 0;
+        }
+
+        .hide-md {
+            display: none;
+        }
+    }
+
+    @media(max-width: 767px) {
+        .xs-no-padding {
+            padding: 0;
+        }
+
+        .hide-xs {
+            display: none;
+        }
+
+        .xs-pad-bot-15 {
+            padding-bottom: 15px;
+        }
+    }
+
+    /*** common styles ends***/
+    /*** top ETA***/
+    .top-eta-container {
+        margin: 15px;
+        font-size: 13px;
+        border-top: 1px solid;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .top-eta {
+        margin: 0;
+        margin-top: -6px;
+        padding-left: 10px;
+        padding-right: 10px;
+        background-color: white;
+    }
+
+    /*** top ETA ends***/
+    /**** Progress tracker ***/
+    ul.container.chev-cont li {
+        display: inline-block;
+        padding-right: 30px;
+        position: relative;
+        z-index: 1;
+    }
+
+    ul.container.chev-cont li::before {
+        content: '';
+        position: absolute;
+        top: 1em;
+        left: 60px;
+        width: 112px;
+        height: 0.2em;
+        background: green;
+        z-index: -1;
+    }
+
+    ul.container.chev-cont li:last-child::before {
+        display: none;
+    }
+
+    ul.container.chev-cont {
+        padding-right: 0;
+    }
+
+    ul.container.chev-cont li.not-done::before,
+    ul.container.chev-cont li.done::before {
+        background: #ccc;
+    }
+
+    ul.container.chev-cont li.red::before {
+        background: red;
+    }
+
+    ul.container.chev-cont li.not-done svg #Ellipse_14 {
+        stroke: #ccc;
+    }
+
+    ul.container.chev-cont li.not-done svg #Ellipse_17,
+    ul.container.chev-cont li.not-done svg .check {
+        fill: #ccc;
+    }
+
+    ul.container.chev-cont li.red svg #Ellipse_14 {
+        stroke: red;
+    }
+
+    ul.container.chev-cont li.red svg #Ellipse_17,
+    ul.container.chev-cont li.red svg .check {
+        fill: red;
+    }
+
+    .chevron-inner {
+        padding-top: 5px;
+    }
+
+    @media(max-width: 767px) {
+        ul.container.chev-cont li::before {
+            left: 15%;
+            width: 96px;
+
+        }
+
+        .chevron-inner {
+
+            font-size: 8px;
+            font-weight: 600;
+        }
+
+        ul.container.chev-cont {
+            padding-right: 0;
+        }
+    }
+
+    /**** Progress tracker ends***/
+    /*** Order Details ***/
+    .order-details .data-box ul li,
+    .order-details .data-box p {
+        font-size: 14px;
+        margin-bottom: 0;
+    }
+
+    .order-details .data-box h3 {
+        margin-bottom: 10px;
+    }
+
+    .order-details-container {
+        border: 1px solid #ccc;
+        margin-left: 15px;
+        margin-right: 15px;
+    }
+    @media(min-width: 1023px) {
+    .map-div-wrapper {
+        
+            padding-right: 0;
+        }
+    }
+
+    /***Order details ends ***/
+    /*** Body parent container***/
+    .tw-main_container {
+        border: none !important;
+    }
+
+    /*** Body parent container Ends***/
+    /*** Order Item template ***/
+    .tms-table {
+        font-size: 14px;
+    }
+
+    .tms-table__header {
+        padding-top: 10px;
+        padding-bottom: 10px;
+        background-color: #eee;
+        font-weight: bold;
+    }
+
+    .tms-table__values {
+        padding-top: 10px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #ccc;
+    }
+
+    /*** Order Item template ends ***/
+</style>
+<script>
+    function currentStatus() {
+        if (document.getElementsByClassName("not-done").length) {
+            var currentStatusElement = document.getElementsByClassName("not-done")[0].previousElementSibling;
+            currentStatusElement.classList.add("done");
+        }
+    }
+    window.onload = currentStatus;
+</script>

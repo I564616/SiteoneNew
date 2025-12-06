@@ -1,0 +1,325 @@
+##----------------------------------------------------------------------------------------------
+##----------------------------------------SE-12465----------------------------------------------
+##----------------------------------------------------------------------------------------------
+
+$classCatalogVersion=catalogversion(catalog(id[default='siteoneClassification']),version[default='1'])[unique=true,default='siteoneClassification:1']
+$classSystemVersion=systemversion(catalog(id[default='siteoneClassification']),version[default='1'])[unique=true,default='siteoneClassification:1']
+
+
+## Class attribute creation
+
+INSERT_UPDATE classificationAttribute;code[unique=true];name[lang=en];systemVersion(catalog(id),version);;;;;
+;hrdscpTexture;Texture;siteoneClassification:1;;;;;
+;hrdscpLayersPerPallet;Layers Per Pallet;siteoneClassification:1;;;;;
+;hrdscpCureTime;Cure Time;siteoneClassification:1;;;;;
+
+
+## Class attribute assignment
+
+INSERT_UPDATE classAttributeAssignment;classificationAttribute(code,$classSystemVersion)[unique=true];attributeType(code);classificationClass(code,$classCatalogVersion)[unique=true];attributeValues(code)[mode=append];multiValued(code);mandatory(code);formatDefinition
+
+## Hardscapes & Outdoor Living>Architectural Products>Site Furnishings
+;hrdscpShape;string;CH01_1511113;;false;false;30;
+;hrdscpDimensions;string;CH01_1511113;;false;false;30;
+;hrdscpWeight;string;CH01_1511113;;false;false;30;
+;hrdscpMaterial;string;CH01_1511113;;false;false;30;
+;hrdscpIncludes;string;CH01_1511113;;false;false;30;
+;hrdscpSpecifications;string;CH01_1511113;;false;false;30;
+
+## Hardscapes & Outdoor Living>Edging>Edging Accessories
+;hrdscpPattern;string;CH01_1514111;;false;false;30;
+;hrdscpTexture;string;CH01_1514111;;false;false;30;
+
+## Hardscapes & Outdoor Living>Edging>Landscape Edging
+;hrdscpTexture;string;CH01_1514112;;false;false;30;
+;hrdscpShape;string;CH01_1514112;;false;false;30;
+;hrdscpMeltingPoint;string;CH01_1514112;;false;false;30;
+;hrdscpIncludes;string;CH01_1514112;;false;false;30;
+
+## Hardscapes & Outdoor Living>Edging>Paver Restraints
+;hrdscpPattern;string;CH01_1514113;;false;false;30;
+;hrdscpFinish;string;CH01_1514113;;false;false;30;
+;hrdscpTexture;string;CH01_1514113;;false;false;30;
+;hrdscpShape;string;CH01_1514113;;false;false;30;
+;hrdscpSize;string;CH01_1514113;;false;false;30;
+;hrdscpHeight;string;CH01_1514113;;false;false;30;
+;hrdscpLength;string;CH01_1514113;;false;false;30;
+;hrdscpThickness;string;CH01_1514113;;false;false;30;
+;hrdscpWeight;string;CH01_1514113;;false;false;30;
+;hrdscpSpecifications;string;CH01_1514113;;false;false;30;
+;hrdscpWidth;string;CH01_1514113;;false;false;30;
+;hrdscpMeltingPoint;string;CH01_1514113;;false;false;30;
+;hrdscpSuitableForUseWith;string;CH01_1514113;;false;false;30;
+
+## Hardscapes & Outdoor Living>Edging>Tree Rings
+;hrdscpPattern;string;CH01_1514110;;false;false;30;
+;hrdscpFinish;string;CH01_1514110;;false;false;30;
+;hrdscpTexture;string;CH01_1514110;;false;false;30;
+;hrdscpShape;string;CH01_1514110;;false;false;30;
+;hrdscpSize;string;CH01_1514110;;false;false;30;
+;hrdscpHeight;string;CH01_1514110;;false;false;30;
+;hrdscpLength;string;CH01_1514110;;false;false;30;
+;hrdscpThickness;string;CH01_1514110;;false;false;30;
+;hrdscpWeight;string;CH01_1514110;;false;false;30;
+;hrdscpSpecifications;string;CH01_1514110;;false;false;30;
+;hrdscpWidth;string;CH01_1514110;;false;false;30;
+;hrdscpMaterial;string;CH01_1514110;;false;false;30;
+;hrdscpMeltingPoint;string;CH01_1514110;;false;false;30;
+;hrdscpDimensions;string;CH01_1514110;;false;false;30;
+;hrdscpSuitableForUseWith;string;CH01_1514110;;false;false;30;
+;hrdscpIncludes;string;CH01_1514110;;false;false;30;
+
+## Hardscapes & Outdoor Living>Hardscape Accessories>Adhesives
+;hrdscpColor;string;CH01_1515110;;false;false;30;
+
+## Hardscapes & Outdoor Living>Hardscape Accessories>Blades
+;hrdscpMaterial;string;CH01_1515111;;false;false;30;
+
+## Hardscapes & Outdoor Living>Hardscape Accessories>Polymeric Sand
+;hrdscpSize;string;CH01_1515112;;false;false;30;
+;hrdscpContainerType;string;CH01_1515112;;false;false;30;
+
+## Hardscapes & Outdoor Living>Hardscape Accessories>Sealers & Cleaners
+;hrdscpContainerType;string;CH01_1515113;;false;false;30;
+
+## Hardscapes & Outdoor Living>Manufactured Hardscape Products>Clay & Brick Pavers
+;hrdscpTexture;string;CH01_1516110;;false;false;30;
+
+## Hardscapes & Outdoor Living>Manufactured Hardscape Products>Manufactured & Cultured Stones
+;hrdscpTexture;string;CH01_1516111;;false;false;30;
+;hrdscpShape;string;CH01_1516111;;false;false;30;
+
+## Hardscapes & Outdoor Living>Manufactured Hardscape Products>Pavers
+;hrdscpTexture;string;CH01_1516112;;false;false;30;
+;hrdscpLayersPerPallet;string;CH01_1516112;;false;false;30;
+;hrdscpShape;string;CH01_1516112;;false;false;30;
+
+## Hardscapes & Outdoor Living>Manufactured Hardscape Products>Permeable Pavers
+;hrdscpTexture;string;CH01_1516113;;false;false;30;
+;hrdscpLayersPerPallet;string;CH01_1516113;;false;false;30;
+
+## Hardscapes & Outdoor Living>Manufactured Hardscape Products>Porcelain
+;hrdscpTexture;string;CH01_1516114;;false;false;30;
+;hrdscpLayersPerPallet;string;CH01_1516114;;false;false;30;
+
+## Hardscapes & Outdoor Living>Manufactured Hardscape Products>Wall Blocks
+;hrdscpTexture;string;CH01_1516115;;false;false;30;
+
+## Hardscapes & Outdoor Living>Masonry & Construction Products>Asphalt
+;hrdscpColor;string;CH01_1518110;;false;false;30;
+;hrdscpMaterial;string;CH01_1518110;;false;false;30;
+;hrdscpFinish;string;CH01_1518110;;false;false;30;
+;hrdscpSize;string;CH01_1518110;;false;false;30;
+;hrdscpWeight;string;CH01_1518110;;false;false;30;
+;hrdscpContainerSize;string;CH01_1518110;;false;false;30;
+;hrdscpContainerType;string;CH01_1518110;;false;false;30;
+;hrdscpSuitableForUseWith;string;CH01_1518110;;false;false;30;
+;hrdscpPressureRating;string;CH01_1518110;;false;false;30;
+;hrdscpCoverageArea;string;CH01_1518110;;false;false;30;
+
+## Hardscapes & Outdoor Living>Masonry & Construction Products>Bagged Products
+;hrdscpSize;string;CH01_1518116;;false;false;30;
+;hrdscpContainerSize;string;CH01_1518116;;false;false;30;
+
+## Hardscapes & Outdoor Living>Masonry & Construction Products>Block
+;hrdscpContainerType;string;CH01_1518117;;false;false;30;
+
+## Hardscapes & Outdoor Living>Masonry & Construction Products>Brick
+;hrdscpColor;string;CH01_1518111;;false;false;30;
+;hrdscpMaterial;string;CH01_1518111;;false;false;30;
+;hrdscpFinish;string;CH01_1518111;;false;false;30;
+;hrdscpSize;string;CH01_1518111;;false;false;30;
+;hrdscpDimensions;string;CH01_1518111;;false;false;30;
+
+## Hardscapes & Outdoor Living>Masonry & Construction Products>Chemicals
+;hrdscpColor;string;CH01_1518112;;false;false;30;
+;hrdscpMaterial;string;CH01_1518112;;false;false;30;
+;hrdscpFinish;string;CH01_1518112;;false;false;30;
+;hrdscpCureTime;string;CH01_1518112;;false;false;30;
+;hrdscpWeight;string;CH01_1518112;;false;false;30;
+;hrdscpContainerSize;string;CH01_1518112;;false;false;30;
+;hrdscpContainerType;string;CH01_1518112;;false;false;30;
+;hrdscpSuitableForUseWith;string;CH01_1518112;;false;false;30;
+;hrdscpSpecifications;string;CH01_1518112;;false;false;30;
+;hrdscpCoverageArea;string;CH01_1518112;;false;false;30;
+;hrdscpIncludes;string;CH01_1518112;;false;false;30;
+
+## Hardscapes & Outdoor Living>Masonry & Construction Products>Parts & Accessories
+;hrdscpColor;string;CH01_1518113;;false;false;30;
+;hrdscpMaterial;string;CH01_1518113;;false;false;30;
+;hrdscpFinish;string;CH01_1518113;;false;false;30;
+;hrdscpDimensions;string;CH01_1518113;;false;false;30;
+;hrdscpWeight;string;CH01_1518113;;false;false;30;
+;hrdscpLength;string;CH01_1518113;;false;false;30;
+;hrdscpHeight;string;CH01_1518113;;false;false;30;
+;hrdscpShape;string;CH01_1518113;;false;false;30;
+;hrdscpSuitableForUseWith;string;CH01_1518113;;false;false;30;
+;hrdscpContainerSize;string;CH01_1518113;;false;false;30;
+;hrdscpContainerType;string;CH01_1518113;;false;false;30;
+;hrdscpSpecifications;string;CH01_1518113;;false;false;30;
+;hrdscpIncludes;string;CH01_1518113;;false;false;30;
+
+## Hardscapes & Outdoor Living>Masonry & Construction Products>Steel & Metal Construction Products
+;hrdscpColor;string;CH01_1518114;;false;false;30;
+;hrdscpMaterial;string;CH01_1518114;;false;false;30;
+;hrdscpFinish;string;CH01_1518114;;false;false;30;
+;hrdscpDimensions;string;CH01_1518114;;false;false;30;
+;hrdscpWeight;string;CH01_1518114;;false;false;30;
+;hrdscpLength;string;CH01_1518114;;false;false;30;
+;hrdscpHeight;string;CH01_1518114;;false;false;30;
+;hrdscpShape;string;CH01_1518114;;false;false;30;
+;hrdscpSuitableForUseWith;string;CH01_1518114;;false;false;30;
+;hrdscpContainerSize;string;CH01_1518114;;false;false;30;
+;hrdscpContainerType;string;CH01_1518114;;false;false;30;
+;hrdscpSpecifications;string;CH01_1518114;;false;false;30;
+;hrdscpIncludes;string;CH01_1518114;;false;false;30;
+
+## Hardscapes & Outdoor Living>Masonry & Construction Products>Stucco
+;hrdscpColor;string;CH01_1518115;;false;false;30;
+;hrdscpMaterial;string;CH01_1518115;;false;false;30;
+;hrdscpFinish;string;CH01_1518115;;false;false;30;
+;hrdscpSize;string;CH01_1518115;;false;false;30;
+;hrdscpWeight;string;CH01_1518115;;false;false;30;
+;hrdscpContainerSize;string;CH01_1518115;;false;false;30;
+;hrdscpContainerType;string;CH01_1518115;;false;false;30;
+;hrdscpSuitableForUseWith;string;CH01_1518115;;false;false;30;
+;hrdscpPressureRating;string;CH01_1518115;;false;false;30;
+;hrdscpCoverageArea;string;CH01_1518115;;false;false;30;
+
+## Hardscapes & Outdoor Living>Natural Stone>Bagged Decorative Stones
+;hrdscpContainerSize;string;CH01_1517114;;false;false;30;
+;hrdscpContainerType;string;CH01_1517114;;false;false;30;
+
+## Hardscapes & Outdoor Living>Natural Stone>Boulders
+;hrdscpHeight;string;CH01_1517110;;false;false;30;
+
+## Hardscapes & Outdoor Living>Natural Stone>Bulk Construction Aggregates
+;hrdscpFinish;string;CH01_1517111;;false;false;30;
+;hrdscpContainerSize;string;CH01_1517111;;false;false;30;
+;hrdscpSuitableForUseWith;string;CH01_1517111;;false;false;30;
+;hrdscpPressureRating;string;CH01_1517111;;false;false;30;
+
+## Hardscapes & Outdoor Living>Natural Stone>Bulk Decorative Aggregates
+;hrdscpPressureRating;string;CH01_1517121;;false;false;30;
+
+## Hardscapes & Outdoor Living>Natural Stone>Cobblestone & Edging
+;hrdscpMaterial;string;CH01_1517122;;false;false;30;
+;hrdscpTexture;string;CH01_1517122;;false;false;30;
+;hrdscpContainerSize;string;CH01_1517122;;false;false;30;
+;hrdscpContainerType;string;CH01_1517122;;false;false;30;
+
+## Hardscapes & Outdoor Living>Natural Stone>Dimensional Stone Cap, Treads, Sill & Accessories
+;hrdscpSuitableForUseWith;string;CH01_1517113;;false;false;30;
+;hrdscpLength;string;CH01_1517113;;false;false;30;
+;hrdscpWidth;string;CH01_1517113;;false;false;30;
+
+## Hardscapes & Outdoor Living>Natural Stone>Garden Accents
+;hrdscpLength;string;CH01_1517116;;false;false;30;
+;hrdscpWidth;string;CH01_1517116;;false;false;30;
+
+
+## Hardscapes & Outdoor Living>Natural Stone>Flagstone
+;hrdscpFinish;string;CH01_1517115;;false;false;30;
+;hrdscpWeight;string;CH01_1517115;;false;false;30;
+;hrdscpSize;string;CH01_1517115;;false;false;30;
+;hrdscpTexture;string;CH01_1517115;;false;false;30;
+
+## Hardscapes & Outdoor Living>Natural Stone>River Rock & Cobbles
+;hrdscpMaterial;string;CH01_1517123;;false;false;30;
+;hrdscpTexture;string;CH01_1517123;;false;false;30;
+;hrdscpShape;string;CH01_1517123;;false;false;30;
+;hrdscpContainerSize;string;CH01_1517123;;false;false;30;
+;hrdscpContainerType;string;CH01_1517123;;false;false;30;
+
+## Hardscapes & Outdoor Living>Natural Stone>Veneer Panels
+;hrdscpTexture;string;CH01_1517120;;false;false;30;
+;hrdscpContainerSize;string;CH01_1517120;;false;false;30;
+
+## Hardscapes & Outdoor Living>Natural Stone>Sawn Thin Veneer
+;hrdscpSize;string;CH01_1517118;;false;false;30;
+;hrdscpTexture;string;CH01_1517118;;false;false;30;
+
+## Hardscapes & Outdoor Living>Outdoor Living>Fireplaces & Fire Pits
+;hrdscpSuitableForUseWith;string;CH01_1513110;;false;false;30;
+
+## Hardscapes & Outdoor Living>Outdoor Living>Garden Center Products
+;hrdscpColor;string;CH01_1513114;;false;false;30;
+;hrdscpFinish;string;CH01_1513114;;false;false;30;
+;hrdscpMaterial;string;CH01_1513114;;false;false;30;
+;hrdscpDimensions;string;CH01_1513114;;false;false;30;
+;hrdscpSize;string;CH01_1513114;;false;false;30;
+;hrdscpWeight;string;CH01_1513114;;false;false;30;
+;hrdscpSuitableForUseWith;string;CH01_1513114;;false;false;30;
+;hrdscpIncludes;string;CH01_1513114;;false;false;30;
+;hrdscpSpecifications;string;CH01_1513114;;false;false;30;
+
+## Hardscapes & Outdoor Living>Outdoor Living>Outdoor Decor
+;hrdscpColor;string;CH01_1513116;;false;false;30;
+;hrdscpFinish;string;CH01_1513116;;false;false;30;
+;hrdscpMaterial;string;CH01_1513116;;false;false;30;
+;hrdscpDimensions;string;CH01_1513116;;false;false;30;
+;hrdscpSize;string;CH01_1513116;;false;false;30;
+;hrdscpWeight;string;CH01_1513116;;false;false;30;
+;hrdscpSuitableForUseWith;string;CH01_1513116;;false;false;30;
+;hrdscpIncludes;string;CH01_1513116;;false;false;30;
+;hrdscpSpecifications;string;CH01_1513116;;false;false;30;
+;hrdscpLength;string;CH01_1513116;;false;false;30;
+;hrdscpHeight;string;CH01_1513116;;false;false;30;
+;hrdscpIncludes;string;CH01_1513116;;false;false;30;
+;hrdscpPattern;string;CH01_1513116;;false;false;30;
+;hrdscpThickness;string;CH01_1513116;;false;false;30;
+;hrdscpWidth;string;CH01_1513116;;false;false;30;
+
+## Hardscapes & Outdoor Living>Outdoor Living>Pottery
+;hrdscpSuitableForUseWith;string;CH01_1513115;;false;false;30;
+;hrdscpSpecifications;string;CH01_1513115;;false;false;30;
+;hrdscpIncludes;string;CH01_1513115;;false;false;30;
+
+
+## Hardscapes & Outdoor Living>Wood Products>Crossties & Timbers
+;hrdscpColor;string;CH01_1512110;;false;false;30;
+;hrdscpLength;string;CH01_1512110;;false;false;30;
+;hrdscpSize;string;CH01_1512110;;false;false;30;
+;hrdscpWeight;string;CH01_1512110;;false;false;30;
+;hrdscpSpecifications;string;CH01_1512110;;false;false;30;
+;hrdscpWidth;string;CH01_1512110;;false;false;30;
+;hrdscpMaterial;string;CH01_1512110;;false;false;30;
+;hrdscpHeight;string;CH01_1512110;;false;false;30;
+;hrdscpDimensions;string;CH01_1512110;;false;false;30;
+;hrdscpGrade;string;CH01_1512110;;false;false;30;
+;hrdscpDepth;string;CH01_1512110;;false;false;30;
+;hrdscpTreatmentType;string;CH01_1512110;;false;false;30;
+
+## Hardscapes & Outdoor Living>Wood Products>Lumber
+;hrdscpColor;string;CH01_1512111;;false;false;30;
+;hrdscpLength;string;CH01_1512111;;false;false;30;
+;hrdscpSize;string;CH01_1512111;;false;false;30;
+;hrdscpWeight;string;CH01_1512111;;false;false;30;
+;hrdscpWidth;string;CH01_1512111;;false;false;30;
+;hrdscpMaterial;string;CH01_1512111;;false;false;30;
+;hrdscpHeight;string;CH01_1512111;;false;false;30;
+;hrdscpDimensions;string;CH01_1512111;;false;false;30;
+;hrdscpGrade;string;CH01_1512111;;false;false;30;
+;hrdscpDepth;string;CH01_1512111;;false;false;30;
+;hrdscpTreatmentType;string;CH01_1512111;;false;false;30;
+;hrdscpSpecifications;string;CH01_1512111;;false;false;30;
+;hrdscpNumberofPieces;string;CH01_1512111;;false;false;30;
+
+## Hardscapes & Outdoor Living>Wood Products>Tiles & Pavers
+;hrdscpColor;string;CH01_1512112;;false;false;30;
+;hrdscpLength;string;CH01_1512112;;false;false;30;
+;hrdscpSize;string;CH01_1512112;;false;false;30;
+;hrdscpWeight;string;CH01_1512112;;false;false;30;
+;hrdscpWidth;string;CH01_1512112;;false;false;30;
+;hrdscpMaterial;string;CH01_1512112;;false;false;30;
+;hrdscpFinish;string;CH01_1512112;;false;false;30;
+;hrdscpHeight;string;CH01_1512112;;false;false;30;
+;hrdscpDimensions;string;CH01_1512112;;false;false;30;
+;hrdscpTexture;string;CH01_1512112;;false;false;30;
+;hrdscpGrade;string;CH01_1512112;;false;false;30;
+;hrdscpThickness;string;CH01_1512112;;false;false;30;
+;hrdscpTreatmentType;string;CH01_1512112;;false;false;30;
+;hrdscpPattern;string;CH01_1512112;;false;false;30;
+;hrdscpCoverageArea;string;CH01_1512112;;false;false;30;
+;hrdscpSpecifications;string;CH01_1512112;;false;false;30;
+;hrdscpNumberofPieces;string;CH01_1512112;;false;false;30;

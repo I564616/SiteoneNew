@@ -1,0 +1,107 @@
+$contentCatalog=siteoneContentCatalog
+$contentCatalogName=SiteOne Content Catalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$productCatalog=siteoneProductCatalog
+$productCatalogName=SiteOne Product Catalog
+$productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$picture=media(code, $contentCV);
+$image=image(code, $contentCV);
+$media=media(code, $contentCV);
+$page=page(uid, $contentCV);
+$contentPage=contentPage(uid, $contentCV);
+$product=product(code, $productCV)
+$category=category(code, $productCV)
+$siteResource=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/contentCatalogs/$contentCatalog
+$productResource=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/productCatalogs/$productCatalog
+$jarResourceCms=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/cockpits/cmscockpit
+$addonExtensionName=siteoneacceleratoraddon
+$medias=medias(code, $contentCV);
+$articleMedia=articleMedia(code, $contentCV);
+$mediaContainer=media(qualifier, $contentCV);
+$siteUid=siteone
+$lang=en
+
+INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];mime;label[lang=en];
+;;driveway11;image/jpeg;Driveways and Walkways
+;;driveway1;image/jpeg;Driveways and Walkways;
+;;driveway2;image/jpeg;Driveways and Walkways;
+;;driveway3;image/jpeg;Driveways and Walkways;
+;;driveway4;image/jpeg;Driveways and Walkways;
+;;driveway5;image/jpeg;Driveways and Walkways;
+;;driveway6;image/jpeg;Driveways and Walkways;
+;;driveway7;image/jpeg;Driveways and Walkways;
+;;driveway8;image/jpeg;Driveways and Walkways;
+;;driveway9;image/jpeg;Driveways and Walkways;
+;;driveway10;image/jpeg;Driveways and Walkways
+;;driveway11;image/jpeg;Driveways and Walkways
+;;driveway12;image/jpeg;Driveways and Walkways
+;;driveway13;image/jpeg;Driveways and Walkways
+;;landscape1;image/jpeg;Landscaping
+;;landscape2;image/jpeg;Landscaping
+;;landscape3;image/jpeg;Landscaping
+;;landscape5;image/jpeg;Landscaping
+;;landscape4;image/jpeg;Landscaping
+;;landscape6;image/jpeg;Landscaping
+;;retaining1;image/jpeg;Retaining Walls
+;;retaining4;image/jpeg;Retaining Walls
+;;retaining8;image/jpeg;Retaining Walls
+;;retaining9;image/jpeg;Retaining Walls
+;;retaining2;image/jpeg;Retaining Walls
+;;retaining3;image/jpeg;Retaining Walls
+;;retaining5;image/jpeg;Retaining Walls
+;;retaining7;image/jpeg;Retaining Walls
+;;retaining6;image/jpeg;Retaining Walls
+;;galleryRetainingWalls26;image/jpeg;Retaining walls;
+;;galleryLandscaping27;image/jpeg;Landscaping;
+;;galleryDriveways25;image/jpeg;Driveways and Walkways;
+
+INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];mime;label[lang=en];galleryImages(code,$contentCV);realfilename;@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator][forceWrite=true];folder(qualifier)[default='images']
+;;patios_01;image/jpeg;Patios;;;$siteResource/images/banners/site/gallery/patio_01.jpg
+;;patios_02;image/jpeg;Patios;;;$siteResource/images/banners/site/gallery/patio_02.jpg
+;;patios_03;image/jpeg;Patios;;;$siteResource/images/banners/site/gallery/patio_03.jpg
+;;patios_04;image/jpeg;Patios;;;$siteResource/images/banners/site/gallery/patio_04.jpg
+;;patios_05;image/jpeg;Patios;;;$siteResource/images/banners/site/gallery/patio_05.jpg
+;;patios_06;image/jpeg;Patios;;;$siteResource/images/banners/site/gallery/patio_06.jpg
+;;patios_07;image/jpeg;Patios;;;$siteResource/images/banners/site/gallery/patio_07.jpg
+;;patios_08;image/jpeg;Patios;;;$siteResource/images/banners/site/gallery/patio_08.jpg
+;;patios_09;image/jpeg;Patios;;;$siteResource/images/banners/site/gallery/patio_09.jpg
+;;patios_10;image/jpeg;Patios;;;$siteResource/images/banners/site/gallery/patio_10.jpg
+;;kitchen_01;image/jpeg;Outdoor Kitchens;;;$siteResource/images/banners/site/gallery/kitchen_01.jpg
+;;kitchen_02;image/jpeg;Outdoor Kitchens;;;$siteResource/images/banners/site/gallery/kitchen_02.jpg
+;;kitchen_03;image/jpeg;Outdoor Kitchens;;;$siteResource/images/banners/site/gallery/kitchen_03.jpg
+;;kitchen_04;image/jpeg;Outdoor Kitchens;;;$siteResource/images/banners/site/gallery/kitchen_04.jpg
+;;kitchen_05;image/jpeg;Outdoor Kitchens;;;$siteResource/images/banners/site/gallery/kitchen_05.jpg
+;;kitchen_06;image/jpeg;Outdoor Kitchens;;;$siteResource/images/banners/site/gallery/kitchen_06.jpg
+;;kitchen_07;image/jpeg;Outdoor Kitchens;;;$siteResource/images/banners/site/gallery/kitchen_07.jpg
+;;kitchen_08;image/jpeg;Outdoor Kitchens;;;$siteResource/images/banners/site/gallery/kitchen_08.jpg
+;;kitchen_09;image/jpeg;Outdoor Kitchens;;;$siteResource/images/banners/site/gallery/kitchen_09.jpg
+;;kitchen_10;image/jpeg;Outdoor Kitchens;;;$siteResource/images/banners/site/gallery/kitchen_10.jpg
+;;kitchen_11;image/jpeg;Outdoor Kitchens;;;$siteResource/images/banners/site/gallery/kitchen_11.jpg
+;;fire_01;image/jpeg;Outdoor Fires;;;$siteResource/images/banners/site/gallery/fire_01.jpg
+;;fire_02;image/jpeg;Outdoor Fires;;;$siteResource/images/banners/site/gallery/fire_02.jpg
+;;fire_03;image/jpeg;Outdoor Fires;;;$siteResource/images/banners/site/gallery/fire_03.jpg
+;;fire_04;image/jpeg;Outdoor Fires;;;$siteResource/images/banners/site/gallery/fire_04.jpg
+;;fire_05;image/jpeg;Outdoor Fires;;;$siteResource/images/banners/site/gallery/fire_05.jpg
+;;fire_06;image/jpeg;Outdoor Fires;;;$siteResource/images/banners/site/gallery/fire_06.jpg
+;;fire_07;image/jpeg;Outdoor Fires;;;$siteResource/images/banners/site/gallery/fire_07.jpg
+;;fire_08;image/jpeg;Outdoor Fires;;;$siteResource/images/banners/site/gallery/fire_08.jpg
+;;fire_09;image/jpeg;Outdoor Fires;;;$siteResource/images/banners/site/gallery/fire_09.jpg
+;;fire_10;image/jpeg;Outdoor Fires;;;$siteResource/images/banners/site/gallery/fire_10.jpg
+;;fire_11;image/jpeg;Outdoor Fires;;;$siteResource/images/banners/site/gallery/fire_11.jpg
+;;fire_12;image/jpeg;Outdoor Fires;;;$siteResource/images/banners/site/gallery/fire_12.jpg
+;;fire_13;image/jpeg;Outdoor Fires;;;$siteResource/images/banners/site/gallery/fire_13.jpg
+;;pooldeck_01;image/jpeg;Pool Decks;;;$siteResource/images/banners/site/gallery/pooldeck_01.jpg
+;;pooldeck_02;image/jpeg;Pool Decks;;;$siteResource/images/banners/site/gallery/pooldeck_02.jpg
+;;pooldeck_03;image/jpeg;Pool Decks;;;$siteResource/images/banners/site/gallery/pooldeck_03.jpg
+;;pooldeck_04;image/jpeg;Pool Decks;;;$siteResource/images/banners/site/gallery/pooldeck_04.jpg
+;;pooldeck_05;image/jpeg;Pool Decks;;;$siteResource/images/banners/site/gallery/pooldeck_05.jpg
+;;pooldeck_06;image/jpeg;Pool Decks;;;$siteResource/images/banners/site/gallery/pooldeck_06.jpg
+;;pooldeck_07;image/jpeg;Pool Decks;;;$siteResource/images/banners/site/gallery/pooldeck_07.jpg
+;;pooldeck_08;image/jpeg;Pool Decks;;;$siteResource/images/banners/site/gallery/pooldeck_08.jpg
+;;pooldeck_09;image/jpeg;Pool Decks;;;$siteResource/images/banners/site/gallery/pooldeck_09.jpg
+;;pooldeck_10;image/jpeg;Pool Decks;;;$siteResource/images/banners/site/gallery/pooldeck_10.jpg
+;;pooldeck_11;image/jpeg;Pool Decks;;;$siteResource/images/banners/site/gallery/pooldeck_11.jpg
+;;gallerypatios21;image/jpeg;Patios;patios_01,patios_02,patios_03,patios_04,patios_05,patios_06,patios_07,patios_08,patios_09,patios_10;gallery01;$siteResource/images/banners/site/gallery/Gallery_Patios_960x720.jpg;;
+;;galleryOutdoorLiving22;image/jpeg;Outdoor Kitchens;kitchen_01,kitchen_02,kitchen_03,kitchen_04,kitchen_05,kitchen_06,kitchen_07,kitchen_08,kitchen_09,kitchen_10,kitchen_11;gallery02;$siteResource/images/banners/site/gallery/Gallery_OutdoorLivingGrills_960x720.jpg
+;;galleryOutdoorFires23;image/jpeg;Outdoor Fires;fire_01,fire_02,fire_03,fire_04,fire_05,fire_06,fire_07,fire_08,fire_09,fire_10,fire_11,fire_12,fire_13;gallery03;$siteResource/images/banners/site/gallery/Gallery_Outdoor-Fires_960x720.jpg
+;;galleryPoolDecks24;image/jpeg;Pool Decks;pooldeck_01,pooldeck_02,pooldeck_03,pooldeck_04,pooldeck_05,pooldeck_06,pooldeck_07,pooldeck_08,pooldeck_09;gallery04;$siteResource/images/banners/site/gallery/Gallery_Pool-Decks_960x720.jpg

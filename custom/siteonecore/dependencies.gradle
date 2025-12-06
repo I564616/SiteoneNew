@@ -1,0 +1,7 @@
+ext {
+	libraries = []
+}
+libraries << "com.google.zxing:core:3.5.3"
+libraries << "com.google.zxing:javase:3.5.3"
+libraries << "net.sf.barcode4j:barcode4j:2.1"
+libraries << "com.kount:kount-ris-sdk:8.0.0"

@@ -1,0 +1,11 @@
+INSERT_UPDATE ComponentTypeGroups2ComponentType;source(code)[unique=true];target(code)[unique=true]
+;narrow;SiteOneCuratedPLPBottomPromoBannerComponent
+;wide;SiteOneCuratedPLPBottomPromoBannerComponent
+;narrow;SiteOneCuratedPLPBottomBannerComponent
+;wide;SiteOneCuratedPLPBottomBannerComponent
+;narrow;SiteOneCuratedPLPHeaderComponent
+;wide;SiteOneCuratedPLPHeaderComponent
+;narrow;SiteOneGalleryParagraphComponent
+;wide;SiteOneGalleryParagraphComponent
+;narrow;CuratedPLPVerticaNavNodeComponent
+;wide;CuratedPLPVerticaNavNodeComponent

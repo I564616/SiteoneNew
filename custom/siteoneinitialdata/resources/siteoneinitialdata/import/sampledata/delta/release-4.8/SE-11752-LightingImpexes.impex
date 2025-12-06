@@ -1,0 +1,103 @@
+
+##------------------ Lighting Impexes for PTH-90 ------------------
+
+##------------------ NEW CATEGORIES
+
+## --- Primary Hierarchy ---
+## Define supercategories and catalogVersion 
+$supercategories=supercategories(code, catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Staged']));;;;;;;;;
+$catalogVersion=catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Staged'])[unique=true,default='siteoneProductCatalog:Staged'];;;;;;;;;;;;;;;;;;
+
+## Lighting>Lamps>12V LED MR8 Lamps - Create Level 3 category
+INSERT_UPDATE Category;code[unique=true];name[lang=en];$supercategories;$catalogVersion;allowedPrincipals(uid)
+;PH1114109;12V LED MR8 Lamps;PH1114;siteoneProductCatalog:Staged;admingroup
+
+
+## --- Sales Hierarchy ---
+## Define supercategories and catalogVersion 
+$supercategories=supercategories(code, catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Staged']));;;;;;;;;
+$catalogVersion=catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Staged'])[unique=true,default='siteoneProductCatalog:Staged'];;;;;;;;;;;;;;;;;;
+
+INSERT_UPDATE Category;code[unique=true];name[lang=en];$supercategories;$catalogVersion;allowedPrincipals(uid)
+;SH1114109;12V LED MR8 Lamps;SH1114;siteoneProductCatalog:Staged;admingroup
+
+
+##----------------------------------------------------------------------------------------------
+
+## Primary hierarchy - Sales hierarchy Mapping
+$productCatalog=siteoneProductCatalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+INSERT_UPDATE category;code[unique=true];salescategorymapping;$catalogVersion;
+;PH1114109;SH1114109;
+
+
+##----------------------------------------------------------------------------------------------
+
+## Classifying Class creation
+INSERT_UPDATE classificationclass;code[unique=true];name[lang=en];catalogVersion(catalog(id),version);;;;;
+;CH01_1114109;Product Details;siteoneClassification:1;;;;;
+
+
+##----------------------------------------------------------------------------------------------
+
+## Class attribute assignment
+
+$classCatalogVersion=catalogversion(catalog(id[default='siteoneClassification']),version[default='1'])[unique=true,default='siteoneClassification:1']
+$classSystemVersion=systemversion(catalog(id[default='siteoneClassification']),version[default='1'])[unique=true,default='siteoneClassification:1']
+
+INSERT_UPDATE classAttributeAssignment;classificationAttribute(code,$classSystemVersion)[unique=true];attributeType(code);classificationClass(code,$classCatalogVersion)[unique=true];attributeValues(code)[mode=append];multiValued(code);mandatory(code);formatDefinition
+
+## 12V LED MR8 Lamps
+##;lghtItem;string;CH01_1114109;;false;false;30;
+##;lghtSeries;string;CH01_1114109;;false;false;30;
+##;lghtVoltageRating;string;CH01_1114109;;false;false;30;
+##;lghtSpecifications;string;CH01_1114109;;false;false;30;
+##;lghtBulbShape;string;CH01_1114109;;false;false;30;
+;lghtEquivalentWattage;string;CH01_1114109;;false;false;30;
+##;lghtDimmable;string;CH01_1114109;;false;false;30;
+##;lghtLampType;string;CH01_1114109;;false;false;30;
+##;lghtColorRenderingIndexCRI;string;CH01_1114109;;false;false;30;
+##;lghtLampBase;string;CH01_1114109;;false;false;30;
+##;lghtLightColor;string;CH01_1114109;;false;false;30;
+##;lghtLightOutput;string;CH01_1114109;;false;false;30;
+##;lghtEfficiency;string;CH01_1114109;;false;false;30;
+##;lghtColorTemperature;string;CH01_1114109;;false;false;30;
+;lghtAverageLife;string;CH01_1114109;;false;false;30;
+;lghtBeamAngle;string;CH01_1114109;;false;false;30;
+;lghtMaximumOverallLength;string;CH01_1114109;;false;false;30;
+;lghtMaximumOverallDiameter;string;CH01_1114109;;false;false;30;
+
+
+##----------------------------------------------------------------------------------------------
+
+##--e with Staged catalog version 
+$productCatalog=siteoneProductCatalog
+$catalogVersion=catalogversion(catalog(id[default='siteoneProductCatalog']),version[default='Staged'])[unique=true,default='siteoneProductCatalog:Staged']
+$classCatalogVersion=catalogversion(catalog(id[default='siteoneClassification']),version[default='1'])[unique=true,default='siteoneClassification:1']
+$supercategories=source(code, $classCatalogVersion)[unique=true]
+$categories=target(code, $catalogVersion)[unique=true]
+INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories
+;PH1114109;CH01_1114109;
+
+
+##----------------------------------------------------------------------------------------------
+
+##------------------------------------- OK
+##--e with online catalog version 
+$productCatalog=siteoneProductCatalog
+$catalogVersion=catalogversion(catalog(id[default='siteoneProductCatalog']),version[default='Online'])[unique=true,default='siteoneProductCatalog:Online']
+$classCatalogVersion=catalogversion(catalog(id[default='siteoneClassification']),version[default='1'])[unique=true,default='siteoneClassification:1']
+$supercategories=source(code, $classCatalogVersion)[unique=true]
+$categories=target(code, $catalogVersion)[unique=true]
+INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories
+;PH1114109;CH01_1114109;
+
+
+##-----------------------------------------------------------------------------------
+##--f
+
+$classCatalogVersion=catalogversion(catalog(id[default='siteoneClassification']),version[default='1'])[unique=true,default='siteoneClassification:1']
+$supercategories=source(code, $classCatalogVersion)[unique=true]
+$categories=target(code, $classCatalogVersion)[unique=true]
+INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories
+;CH01_1114109;CH01_1114;

@@ -1,0 +1,46 @@
+$contentCatalog=siteoneContentCatalog
+$contentCatalogName=SiteOne Content Catalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$productCatalog=siteoneProductCatalog
+$productCatalogName=SiteOne Product Catalog
+$productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$picture=media(code, $contentCV);
+$image=image(code, $contentCV);
+$media=media(code, $contentCV);
+$page=page(uid, $contentCV);
+$contentPage=contentPage(uid, $contentCV);
+$product=product(code, $productCV)
+$category=category(code, $productCV)
+$siteResource=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/contentCatalogs/$contentCatalog
+$productResource=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/productCatalogs/$productCatalog
+$jarResourceCms=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/cockpits/cmscockpit
+$addonExtensionName=siteoneacceleratoraddon
+$medias=medias(code, $contentCV);
+$articleMedia=articleMedia(code, $contentCV);
+$mediaContainer=media(qualifier, $contentCV);
+$siteUid=siteone
+$lang=en
+
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef)
+;;Section2NSlot-lightingCategoryLandingPage;Section2N Slot for CategoryLandingPage;true;
+;;Section2NSlot-LandscapeSupplyCategoryLandingPage;Section2N Slot for CategoryLandingPage;true;
+;;Section2NSlot-AgronomicMaintenanceCategoryLandingPage;Section2N Slot for CategoryLandingPage;true;
+;;Section2NSlot-IrrigationCategoryLandingPage;Section2N Slot for CategoryLandingPage;true;
+;;Section2NSlot-NurseryCategoryLandingPage;Section2N Slot for CategoryLandingPage;true;
+;;Section2NSlot-ToolsEquipment&SafetyCategoryLandingPage;Section2N Slot for CategoryLandingPage;true;
+
+
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='lightingCategoryLandingPage'];contentSlot(uid,$contentCV)[unique=true]
+;;Section2N-lightingCategoryLandingPage;Section2N;;Section2NSlot-lightingCategoryLandingPage
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='LandscapeSupplyCategoryLandingPage'];contentSlot(uid,$contentCV)[unique=true]
+;;Section2N-LandscapeSupplyCategoryLandingPage;Section2N;;Section2NSlot-LandscapeSupplyCategoryLandingPage
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='AgronomicMaintenanceCategoryLandingPage'];contentSlot(uid,$contentCV)[unique=true]
+;;Section2N-AgronomicMaintenanceCategoryLandingPage;Section2N;;Section2NSlot-AgronomicMaintenanceCategoryLandingPage
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='IrrigationCategoryLandingPage'];contentSlot(uid,$contentCV)[unique=true]
+;;Section2N-IrrigationCategoryLandingPage;Section2N;;Section2NSlot-IrrigationCategoryLandingPage
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='NurseryCategoryLandingPage'];contentSlot(uid,$contentCV)[unique=true]
+;;Section2N-NurseryCategoryLandingPage;Section2N;;Section2NSlot-NurseryCategoryLandingPage
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='ToolsEquipment&SafetyCategoryLandingPage'];contentSlot(uid,$contentCV)[unique=true]
+;;Section2N-ToolsEquipment&SafetyCategoryLandingPage;Section2N;;Section2NSlot-ToolsEquipment&SafetyCategoryLandingPage

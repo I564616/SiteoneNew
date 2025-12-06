@@ -1,0 +1,9 @@
+
+INSERT_UPDATE ServicelayerJob; code[unique=true];springid[unique=true]
+;customerEmailUpdateCronJob;customerEmailUpdateCronJob;
+
+INSERT_UPDATE CronJob; code[unique=true];job(code);singleExecutable;sessionLanguage(isocode);nodeID;
+;customerEmailUpdateCronJob;customerEmailUpdateCronJob;false;en;0;​
+
+INSERT_UPDATE Trigger;cronJob(code)[unique=true];cronExpression;relative;active;maxAcceptableDelay
+;customerEmailUpdateCronJob;0 0 0-23 * * ?;false;true;-1 

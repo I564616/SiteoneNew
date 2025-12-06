@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xmlns:util="http://www.springframework.org/schema/util"
+	   xmlns:aop="http://www.springframework.org/schema/aop"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+		
+	<context:annotation-config/> 
+
+	<alias name="defaultSiteOneAttributeValueSetterFactory" alias="integrationServicesAttributeValueSetterFactory"/>
+    <bean name="defaultSiteOneAttributeValueSetterFactory"
+          class="com.siteone.pimintegration.valueSetter.SiteOneAttributeValueSetterFactory">
+        <property name="modelService" ref="modelService"/>
+        <property name="valueConverters">
+            <list>
+                <ref bean="integrationServicesSingleClassificationAttributeValueConverter"/>
+                <ref bean="integrationServicesLocalizedClassificationAttributeValueConverter"/>
+                <ref bean="integrationServicesCollectionClassificationAttributeValueConverter"/>
+            </list>
+        </property>
+        <property name="valueHandlers">
+            <list>
+                <ref bean="integrationServicesRemoveClassificationAttributeValueHandler"/>
+                <ref bean="integrationServicesLocalizedClassificationAttributeValueHandler"/>
+                <ref bean="integrationServicesCollectionClassificationAttributeValueHandler"/>
+                <ref bean="integrationServicesSingleClassificationAttributeValueHandler"/>
+            </list>
+        </property>
+    </bean>
+    
+      <alias name="defaultSiteOnePrimitiveAttributePopulator" alias="inboundServicesSiteOnePrimitiveAttributePopulator"/>
+    <bean id="defaultSiteOnePrimitiveAttributePopulator"
+          class="com.siteone.pimintegration.populators.SiteOnePrimitiveAttributePopulator"
+          parent="inboundServicesAbstractAttributePopulator">
+        <property name="primitiveValueHandler" ref="inboundServicesPrimitiveValueHandler"/>
+        <property name="modelService" ref="modelService"/>
+    </bean>
+    
+     <alias name="defaultSiteOneItemModelPopulator" alias="inboundServicesItemModelPopulator"/>
+    <bean id="defaultSiteOneItemModelPopulator"
+          class="com.siteone.pimintegration.populators.DefaultSiteOneItemModelPopulator"
+          parent="defaultInboundServicesItemModelPopulator">
+          <property name="modelService" ref="modelService"/>
+          <property name="productService" ref="productService"/>
+           <property name="attributePopulators" ref="attributePopulators"/>   
+        </bean>
+    
+    <alias name="defaultAttributePopulators" alias="attributePopulators"/>
+    <util:list id="defaultAttributePopulators">
+        <ref bean="inboundServicesSiteOnePrimitiveAttributePopulator"/>
+        <ref bean="inboundServicesItemModelAttributePopulator"/>
+        <ref bean="inboundServicesPrimitiveCollectionAttributePopulator"/>
+        <ref bean="inboundServicesItemModelCollectionAttributePopulator"/>
+        <ref bean="inboundServicesReplacePrimitiveCollectionAttributePopulator"/>
+        <ref bean="inboundServicesReplaceItemModelCollectionAttributePopulator"/>
+        <ref bean="inboundServicesMapAttributePopulator"/>
+        <ref bean="inboundServicesReplaceMapAttributePopulator"/>
+        <ref bean="inboundServicesPartOfAttributePopulator"/>
+    </util:list>
+			
+			
+	<alias name="defaultSiteOneInboundRequestService" alias="oDataInboundRequestService"/>
+    <bean id="defaultSiteOneInboundRequestService"
+          class="com.siteone.pimintegration.monitoring.SiteOneInboundRequestService">
+        <property name="modelService" ref="modelService"/>
+        <property name="userService" ref="userService"/>
+        <property name="blobDataImportService" ref="blobDataImportService"/>
+        <property name="configurationService" ref="configurationService"/>
+    </bean>
+    
+    <alias name="defaultODataProcessorFactory" alias="oDataProcessorFactory"/>
+    <bean id="defaultODataProcessorFactory"
+          class="de.hybris.platform.odata2services.odata.processor.DefaultODataProcessorFactory">
+       <!--  <property name="persistenceService" ref="oDataPersistenceService"/>
+        <property name="modelService" ref="modelService"/>
+        <property name="ODataServicesConfiguration" ref="oDataServicesConfiguration"/>
+        <property name="entityReaderRegistry" ref="oDataEntityReaderRegistry"/>
+        <property name="storageRequestFactory" ref="oDataStorageRequestFactory"/>
+        <property name="itemLookupRequestFactory" ref="oDataItemLookupRequestFactory"/> -->
+        <property name="persistenceHandler" ref="siteoneODataProcessorPersistenceHandler"/>
+        <property name="batchPersistenceHandler" ref="oDataProcessorBatchPersistenceHandler"/>
+        <property name="changeSetPersistenceHandler" ref="oDataProcessorChangeSetPersistenceHandler"/>
+        <property name="patchPersistenceHandler" ref="oDataProcessorPatchPersistenceHandler"/>
+        <property name="deleteHandler" ref="oDataProcessorDeleteHandler"/>
+        <property name="readHandler" ref="oDataProcessorReadHandler"/>
+        <property name="accessRightsService" ref="accessRightsService"/>
+        <property name="serviceNameExtractor" ref="oDataServiceNameExtractor"/>
+        <property name="itemTypeDescriptorService" ref="itemTypeDescriptorService"/>
+    </bean>
+
+    <alias name="defaultSiteoneODataProcessorPersistenceHandler" alias="siteoneODataProcessorPersistenceHandler"/>
+    <bean id="defaultSiteoneODataProcessorPersistenceHandler"
+          class="com.siteone.pimintegration.persistence.handler.SiteOnePersistenceHandler">
+        <property name="persistenceService" ref="oDataPersistenceService"/>
+        <property name="storageRequestFactory" ref="oDataStorageRequestFactory"/>
+    </bean>
+</beans>

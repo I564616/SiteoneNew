@@ -1,0 +1,8 @@
+#if (${ctx.username}== "Anonymous")
+${ctx.messages.getMessage('emailSubjectAnonymous')}
+#else
+﻿${ctx.messages.getMessage('emailSubjectUser', ${ctx.username})}
+#end
+
+
+

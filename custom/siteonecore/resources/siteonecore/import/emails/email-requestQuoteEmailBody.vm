@@ -1,0 +1,372 @@
+## messageSource=classpath:/siteonecore/messages/email-requestQuote_$lang.properties
+#macro( genHtmlBoldFont $text )
+<font color="#414a4f" size="2" ><b>$text</b></font>
+#end
+#macro(genHtmlLinkStartTag $url)
+<a href="$url"><font color="#666666">
+#end
+#macro(genHtmlLinkEndTag)
+</font></a>
+#end
+#macro(genHtmlLink $url $textColor $bodyContent)
+<a href="$url"><font color="$textColor">$bodyContent</font></a>
+#end
+#if(${ctx.countryBaseSiteID} == "siteone-ca")
+ <table width="100%" cellpadding="0" cellspacing="0" border="0" align="center" style="max-width: 600px; min-width: 400px; font-size: 14px; font-family: Arial, Helvetica, sans-serif; color: #000000; border: 1px solid #ccc;">
+ <thead>
+        <tr>
+            <th colspan="6" valign="left" align="left" style="padding: 20px;">
+                <a style="text-decoration:none;" href="${ctx.baseThemeUrl}">
+                    <img title="SiteoneLogo" src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/SiteoneLogo.jpg" alt="SiteoneLogo" width="200">
+                </a>
+            </th>
+            <th colspan="6" valign="right" align="right" style="padding: 20px;">
+                <a style="text-decoration:none; padding-right: 15px;" href="https://www.facebook.com/siteonesupplycanada/">
+                    <img src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/Print_facebook_color.png" alt="Facebook" title="Facebook" width="24">
+                </a>
+                <a style="text-decoration:none; padding-right: 15px;" href="https://www.instagram.com/Siteonesupplycanada/">
+                    <img src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/Print_instagram_color.png" alt="Instagram" title="Instagram" width="24">
+                </a>
+                <a style="text-decoration:none;" href="https://x.com/SiteOneCanada">
+                    <img src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/Print_twitter_color.png" alt="X" title="X" width="24">
+                </a>
+            </th>
+        </tr>
+		<tr>
+			<td colspan="12" valign="top" style="padding: 20px 20px 20px 0px;background-color: #f1f2f2;font-weight:bold;color: #414244;font-size: 15px;">
+                   		 <p style="margin-left: 20px;">A new quote has been requested online from ${ctx.accountName}.</p>
+                	</td>
+		</tr>
+		<tr>
+			<td colspan="12" valign="top" style="padding: 20px 20px 0 20px;">
+				<p>This Quote can now be found in the UE Bid Center. Upon review and pricing, simply select 'Show Online' and 'Save'. The customer will be notified via email that the quote is ready for review.</p>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="12" valign="top" style="padding: 20px;">
+				<p>New <a href="${ctx.baseUrl}" style="color: #5a5b5d;">Siteone.ca</a> Quote Request.</p>
+			</td>
+		</tr>
+		#if(${ctx.quoteHeaderId} && ${ctx.quoteHeaderId} != '')
+		<tr>
+			<td colspan="3" style="padding-bottom: 15px; padding-left: 20px; font-weight: bold; width: 30%;">Quote #</td>
+			<td colspan="9" style="padding-bottom: 15px; padding-right: 20px; color: #5a5b5d; font-size: 15px;">${ctx.quoteHeaderId}</td>
+		</tr>
+		#end
+		<tr>
+			<td colspan="3" style="padding-bottom: 15px; padding-left: 20px; font-weight: bold; width: 30%;">Job Name</td>
+			<td colspan="9" style="padding-bottom: 15px; padding-right: 20px; color: #5a5b5d; font-size: 15px;">${ctx.jobName}</td>
+		</tr>
+		<tr>
+			<td colspan="3" style="padding-bottom: 15px; padding-left: 20px; font-weight: bold;">Job Start Date</td>
+			<td colspan="9" style="padding-bottom: 15px; padding-right: 20px; color: #5a5b5d; font-size: 15px;">${ctx.jobStartDate}</td>
+		</tr>
+		<tr>
+			<td colspan="3" style="padding-bottom: 15px; padding-left: 20px; font-weight: bold;">Branch</td>
+			<td colspan="9" style="padding-bottom: 15px; padding-right: 20px; color: #5a5b5d; font-size: 15px;">${ctx.branch}</td>
+		</tr>
+                #if(${ctx.jobDescription})
+		<tr>
+			<td colspan="3" style="padding-bottom: 15px; padding-left: 20px; font-weight: bold;">Job Description</td>
+			<td colspan="9" style="padding-bottom: 15px; padding-right: 20px; color: #5a5b5d; font-size: 15px;">${ctx.jobDescription}</td>
+		</tr>
+		      #end
+		      #if(${ctx.comment})
+		<tr>
+			<td colspan="3" style="padding-bottom: 35px; padding-left: 20px; font-weight: bold;">Comment</td>
+			<td colspan="9" style="padding-bottom: 35px; padding-right: 20px; color: #5a5b5d; font-size: 15px;">${ctx.comment}</td>
+		</tr>
+		#end
+	</thead>
+	<tbody>
+		<tr>
+			<td colspan="12" valign="top" style="padding: 20px 20px 20px 0; background-color: #f1f2f2; font-weight:bold; font-size: 15px;">
+				<p style="margin-left: 20px;">Quote Request Details</p>
+			</td>
+		</tr>
+		<tr style="text-transform: uppercase; color: #5a5b5d; font-size: 12px;">
+			<td colspan="7" style="padding-top: 15px; padding-left: 20px;">Product Information</td>
+			<td colspan="1" style="text-align: center; padding-top: 15px; width: 10%;">QTY</td>
+			<td colspan="4" style="text-align: right; padding-top: 15px; padding-right: 20px; width: 30%;">Price
+			</td>
+		</tr>
+                #foreach( $entry in $ctx.itemDetails )
+		<tr>
+			<td colspan="12" style="padding: 5px 20px;">
+				<hr>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="7" valign="top" style="padding-left:20px;">
+				<p style="color: #5a5b5d; margin: 0px; font-size: 12px;">${entry.itemNumber}</p>
+				<a href="http://sio-d-adm.ms.ycs.io/en/p/${ctx.quoteHeaderID}" style="text-decoration:none !important; text-decoration:none; color: #78a22f; font-weight: bold; font-size: 15px;">${entry.itemDescription}</a>
+			</td>
+			<td colspan="1" valign="top" align="center" style="color: #5a5b5d; width: 10%;">
+				<p style="color: #5a5b5d; margin: 0px;">&nbsp;</p>
+				${entry.quantity}
+			</td>
+			<td colspan="4" valign="top" align="right" style="padding-right:20px; width: 30%;">
+				<p style="color: #5a5b5d; margin: 0px;">&nbsp;</p>
+				<span style="font-weight: bold;">$${entry.totalPrice}</span>
+				<p style="color: #5a5b5d; margin: 0px; font-size: 12px;">$${entry.unitPrice} / ${entry.UOM}</p>
+			</td>
+		</tr>
+                #end
+                <tr>
+			<td colspan="12" style="padding: 5px 20px;">
+				<hr style="border-width: 2px;">
+			</td>
+		</tr>
+                #if(${ctx.customItemDetails})
+		<tr style="text-transform: uppercase; color: #5a5b5d; font-size: 12px;">
+			<td colspan="7" style="padding-top: 5px; padding-left: 20px; width: 60%;">Custom item requests*</td>
+			<td colspan="5" style="padding-top: 5px;">QTY</td>
+		</tr>
+		#foreach( $entry in $ctx.customItemDetails )
+		<tr>
+			<td colspan="12" style="padding: 5px 20px;">
+				<hr>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="7" valign="top" style="padding-left:20px;">
+				<p style="color: #5a5b5d; margin: 0; font-size: 12px;">${entry.itemNumber}</p>
+				<span style="text-decoration:none; color: #78a22f; font-weight: bold;">${entry.itemDescription}</a>
+			</td>
+			<td colspan="5" valign="top" style="color: #5a5b5d;">
+				<p style="margin: 0;">&nbsp;</p>
+				${entry.quantity}
+			</td>
+		</tr>
+                #end
+                <tr>
+			<td colspan="12" style="padding: 5px 20px;">
+				<hr>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="12" style="padding:10px 20px 35px 20px;">
+				<span style="color: #5a5b5d;">*These items were requested by the customer, and may have not been available through <a href="http://sio-d-adm.ms.ycs.io/en" style="color: #5a5b5d;">SiteOne.com</a> in their area, are a special order item, or are not stocked by SiteOne.</span>
+			</td>
+		</tr>
+                #end
+		<tr>
+            <td colspan="12" valign="top" style="padding: 10px 10px 10px 0;background-color: #f1f2f2;font-weight:bold;color: #414244;font-size: 15px;">
+                <p style="margin-left: 20px; color: #000000;">Your Customer</p>
+            </td>
+		</tr>
+		<tr>
+			<td colspan="12" valign="top">
+			    #if((${ctx.accountName} && ${ctx.accountName} != '') && (${ctx.accountId} && ${ctx.accountId} != '' ))
+				<p style="margin: 20px 0 1px 20px; font-size:14px;">${ctx.accountName}&nbsp;${ctx.accountId}</p>
+				#end
+				#if(${ctx.customerName} && ${ctx.customerName} != '')
+					<p style="margin: 0px 0 1px 20px; font-size:14px;">${ctx.customerName}</p>
+				#end
+				#if(${ctx.phoneNumber} && ${ctx.phoneNumber} != '')
+					<p style="margin: 0px 0 1px 20px; font-size:14px;">${ctx.phoneNumber}</p>
+				#end
+				#if(${ctx.customerEmailAddress} && ${ctx.customerEmailAddress} != '')
+					<p style="margin: 0px 0 20px 20px; font-size:14px;">${ctx.customerEmailAddress}</p>
+				#end
+			</td>
+        </tr>
+		
+		<tr>
+			<td colspan="12">
+				<hr>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="12" style="padding:35px 20px 10px 20px; color: #5a5b5d;">
+				<span>Questions? Call us at 1-800-SITEONE (<a href="tel:18007483663" style="color: #5a5b5d;">1-800-748-3663</a><span>). We are available Monday through Friday from 8 a.m. to 5 p.m. EST.</span>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="12" style="padding:10px 20px 35px 20px;">
+				<span style="color: #5a5b5d;">Thanks,</span>
+				<p style="font-weight: bold; font-style: italic; ">SiteOne Landscape Supply</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+#else
+<table width="100%" cellpadding="0" cellspacing="0" border="0" align="center" style="max-width: 600px; min-width: 400px; font-size: 14px; font-family: Arial, Helvetica, sans-serif; color: #000000; border: 1px solid #ccc;">
+ <thead>
+        <tr>
+            <th colspan="6" valign="left" align="left" style="padding: 20px;">
+                <a style="text-decoration:none;" href="${ctx.baseThemeUrl}">
+                    <img title="SiteoneLogo" src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/SiteoneLogo.jpg" alt="SiteoneLogo" width="200">
+                </a>
+            </th>
+            <th colspan="6" valign="right" align="right" style="padding: 20px;">
+                <a style="text-decoration:none; padding-right: 15px;" href="https://www.facebook.com/SiteOneLandscape/">
+                    <img src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/Print_facebook_color.png" alt="Facebook" title="Facebook" width="24">
+                </a>
+                <a style="text-decoration:none; padding-right: 15px;" href="https://www.instagram.com/siteonesupply/">
+                    <img src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/Print_instagram_color.png" alt="Instagram" title="Instagram" width="24">
+                </a>
+                <a style="text-decoration:none;" href="https://x.com/SiteOneSupply">
+                    <img src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/Print_twitter_color.png" alt="X" title="X" width="24">
+                </a>
+            </th>
+        </tr>
+		<tr>
+			<td colspan="12" valign="top" style="padding: 20px 20px 20px 0px;background-color: #f1f2f2;font-weight:bold;color: #414244;font-size: 15px;">
+                   		 <p style="margin-left: 20px;">A new quote has been requested online from ${ctx.accountName}.</p>
+                	</td>
+		</tr>
+		<tr>
+			<td colspan="12" valign="top" style="padding: 20px 20px 0 20px;">
+				<p>This Quote can now be found in the UE Bid Center. Upon review and pricing, simply select 'Show Online' and 'Save'. The customer will be notified via email that the quote is ready for review.</p>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="12" valign="top" style="padding: 20px;">
+				<p>New <a href="${ctx.baseUrl}" style="color: #5a5b5d;">SiteOne.com</a> Quote Request.</p>
+			</td>
+		</tr>
+		#if(${ctx.quoteHeaderId} && ${ctx.quoteHeaderId} != '')
+		<tr>
+			<td colspan="3" style="padding-bottom: 15px; padding-left: 20px; font-weight: bold; width: 30%;">Quote #</td>
+			<td colspan="9" style="padding-bottom: 15px; padding-right: 20px; color: #5a5b5d; font-size: 15px;">${ctx.quoteHeaderId}</td>
+		</tr>
+		#end
+		<tr>
+			<td colspan="3" style="padding-bottom: 15px; padding-left: 20px; font-weight: bold; width: 30%;">Job Name</td>
+			<td colspan="9" style="padding-bottom: 15px; padding-right: 20px; color: #5a5b5d; font-size: 15px;">${ctx.jobName}</td>
+		</tr>
+		<tr>
+			<td colspan="3" style="padding-bottom: 15px; padding-left: 20px; font-weight: bold;">Job Start Date</td>
+			<td colspan="9" style="padding-bottom: 15px; padding-right: 20px; color: #5a5b5d; font-size: 15px;">${ctx.jobStartDate}</td>
+		</tr>
+		<tr>
+			<td colspan="3" style="padding-bottom: 15px; padding-left: 20px; font-weight: bold;">Branch</td>
+			<td colspan="9" style="padding-bottom: 15px; padding-right: 20px; color: #5a5b5d; font-size: 15px;">${ctx.branch}</td>
+		</tr>
+                #if(${ctx.jobDescription})
+		<tr>
+			<td colspan="3" style="padding-bottom: 15px; padding-left: 20px; font-weight: bold;">Job Description</td>
+			<td colspan="9" style="padding-bottom: 15px; padding-right: 20px; color: #5a5b5d; font-size: 15px;">${ctx.jobDescription}</td>
+		</tr>
+		      #end
+		      #if(${ctx.comment})
+		<tr>
+			<td colspan="3" style="padding-bottom: 35px; padding-left: 20px; font-weight: bold;">Comment</td>
+			<td colspan="9" style="padding-bottom: 35px; padding-right: 20px; color: #5a5b5d; font-size: 15px;">${ctx.comment}</td>
+		</tr>
+		#end
+	</thead>
+	<tbody>
+		<tr>
+			<td colspan="12" valign="top" style="padding: 20px 20px 20px 0; background-color: #f1f2f2; font-weight:bold; font-size: 15px;">
+				<p style="margin-left: 20px;">Quote Request Details</p>
+			</td>
+		</tr>
+		<tr style="text-transform: uppercase; color: #5a5b5d; font-size: 12px;">
+			<td colspan="7" style="padding-top: 15px; padding-left: 20px;">Product Information</td>
+			<td colspan="1" style="text-align: center; padding-top: 15px; width: 10%;">QTY</td>
+			<td colspan="4" style="text-align: right; padding-top: 15px; padding-right: 20px; width: 30%;">Price
+			</td>
+		</tr>
+                #foreach( $entry in $ctx.itemDetails )
+		<tr>
+			<td colspan="12" style="padding: 5px 20px;">
+				<hr>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="7" valign="top" style="padding-left:20px;">
+				<p style="color: #5a5b5d; margin: 0px; font-size: 12px;">${entry.itemNumber}</p>
+				<a href="http://sio-d-adm.ms.ycs.io/en/p/${ctx.quoteHeaderID}" style="text-decoration:none !important; text-decoration:none; color: #78a22f; font-weight: bold; font-size: 15px;">${entry.itemDescription}</a>
+			</td>
+			<td colspan="1" valign="top" align="center" style="color: #5a5b5d; width: 10%;">
+				<p style="color: #5a5b5d; margin: 0px;">&nbsp;</p>
+				${entry.quantity}
+			</td>
+			<td colspan="4" valign="top" align="right" style="padding-right:20px; width: 30%;">
+				<p style="color: #5a5b5d; margin: 0px;">&nbsp;</p>
+				<span style="font-weight: bold;">$${entry.totalPrice}</span>
+				<p style="color: #5a5b5d; margin: 0px; font-size: 12px;">$${entry.unitPrice} / ${entry.UOM}</p>
+			</td>
+		</tr>
+                #end
+                <tr>
+			<td colspan="12" style="padding: 5px 20px;">
+				<hr style="border-width: 2px;">
+			</td>
+		</tr>
+                #if(${ctx.customItemDetails})
+		<tr style="text-transform: uppercase; color: #5a5b5d; font-size: 12px;">
+			<td colspan="7" style="padding-top: 5px; padding-left: 20px; width: 60%;">Custom item requests*</td>
+			<td colspan="5" style="padding-top: 5px;">QTY</td>
+		</tr>
+		#foreach( $entry in $ctx.customItemDetails )
+		<tr>
+			<td colspan="12" style="padding: 5px 20px;">
+				<hr>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="7" valign="top" style="padding-left:20px;">
+				<p style="color: #5a5b5d; margin: 0; font-size: 12px;">${entry.itemNumber}</p>
+				<span style="text-decoration:none; color: #78a22f; font-weight: bold;">${entry.itemDescription}</a>
+			</td>
+			<td colspan="5" valign="top" style="color: #5a5b5d;">
+				<p style="margin: 0;">&nbsp;</p>
+				${entry.quantity}
+			</td>
+		</tr>
+                #end
+                <tr>
+			<td colspan="12" style="padding: 5px 20px;">
+				<hr>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="12" style="padding:10px 20px 35px 20px;">
+				<span style="color: #5a5b5d;">*These items were requested by the customer, and may have not been available through <a href="http://sio-d-adm.ms.ycs.io/en" style="color: #5a5b5d;">SiteOne.com</a> in their area, are a special order item, or are not stocked by SiteOne.</span>
+			</td>
+		</tr>
+                #end
+		<tr>
+            <td colspan="12" valign="top" style="padding: 10px 10px 10px 0;background-color: #f1f2f2;font-weight:bold;color: #414244;font-size: 15px;">
+                <p style="margin-left: 20px; color: #000000;">Your Customer</p>
+            </td>
+		</tr>
+		<tr>
+			<td colspan="12" valign="top">
+			    #if((${ctx.accountName} && ${ctx.accountName} != '') && (${ctx.accountId} && ${ctx.accountId} != '' ))
+				<p style="margin: 20px 0 1px 20px; font-size:14px;">${ctx.accountName}&nbsp;${ctx.accountId}</p>
+				#end
+				#if(${ctx.customerName} && ${ctx.customerName} != '')
+					<p style="margin: 0px 0 1px 20px; font-size:14px;">${ctx.customerName}</p>
+				#end
+				#if(${ctx.phoneNumber} && ${ctx.phoneNumber} != '')
+					<p style="margin: 0px 0 1px 20px; font-size:14px;">${ctx.phoneNumber}</p>
+				#end
+				#if(${ctx.customerEmailAddress} && ${ctx.customerEmailAddress} != '')
+					<p style="margin: 0px 0 20px 20px; font-size:14px;">${ctx.customerEmailAddress}</p>
+				#end
+			</td>
+        </tr>
+		
+		<tr>
+			<td colspan="12">
+				<hr>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="12" style="padding:35px 20px 10px 20px; color: #5a5b5d;">
+				<span>Questions? Call us at 1-800-SITEONE (<a href="tel:18007483663" style="color: #5a5b5d;">1-800-748-3663</a><span>). We are available Monday through Friday from 8 a.m. to 5 p.m. EST.</span>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="12" style="padding:10px 20px 35px 20px;">
+				<span style="color: #5a5b5d;">Thanks,</span>
+				<p style="font-weight: bold; font-style: italic; ">SiteOne Landscape Supply</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+#end

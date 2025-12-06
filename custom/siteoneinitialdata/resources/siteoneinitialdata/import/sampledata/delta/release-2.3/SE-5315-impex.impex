@@ -1,0 +1,730 @@
+$supercategories=supercategories( code, catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Staged']));;;;;;;;;
+$catalogVersion=catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Staged'])[unique=true,default='siteoneProductCatalog:Staged'];;;;;;;;;
+;;;;;;;;;
+INSERT_UPDATE Category;code[unique=true];name[lang=en];$supercategories;$catalogVersion;allowedPrincipals(uid)
+;PH1323;Equipment;PH13;siteoneProductCatalog:Staged;admingroup 
+;PH1323110;Engine Powered Spreader / Sprayer;PH1323;siteoneProductCatalog:Staged;admingroup 
+;PH1323111;Handheld Power Equipment;PH1323;siteoneProductCatalog:Staged;admingroup 
+;PH1323112;Hardscapes;PH1323;siteoneProductCatalog:Staged;admingroup 
+;PH1323113;Parts;PH1323;siteoneProductCatalog:Staged;admingroup 
+;PH1323114;Renovation;PH1323;siteoneProductCatalog:Staged;admingroup  
+;PH1323115;Snow & Ice ;PH1323;siteoneProductCatalog:Staged;admingroup 
+;PH1323116;Specialty Equipment;PH1323;siteoneProductCatalog:Staged;admingroup 
+;PH1323117;Sprayers;PH1323;siteoneProductCatalog:Staged;admingroup 
+;PH1323118;Spreaders;PH1323;siteoneProductCatalog:Staged;admingroup 
+;PH1323110100;Multipurpose;PH1323110;siteoneProductCatalog:Staged;admingroup 
+;PH1323110101;Single Purpose;PH1323110;siteoneProductCatalog:Staged;admingroup 
+;PH1323110102;Spreader / Sprayer Accessories;PH1323110;siteoneProductCatalog:Staged;admingroup 
+;PH1323111100;Handheld Battery Powered Accessories;PH1323111;siteoneProductCatalog:Staged;admingroup 
+;PH1323111101;Handheld Battery Powered Equipment;PH1323111;siteoneProductCatalog:Staged;admingroup 
+;PH1323111102;Handheld Gas Powered Accessories;PH1323111;siteoneProductCatalog:Staged;admingroup 
+;PH1323111103;Handheld Gas Powered Equipment;PH1323111;siteoneProductCatalog:Staged;admingroup 
+;PH1323112100;Hardscapes Accessories;PH1323112;siteoneProductCatalog:Staged;admingroup 
+;PH1323113100;Backpack & Handheld Sprayer;PH1323113;siteoneProductCatalog:Staged;admingroup 
+;PH1323113101;Engine ;PH1323113;siteoneProductCatalog:Staged;admingroup 
+;PH1323113102;Engine Sprayer;PH1323113;siteoneProductCatalog:Staged;admingroup 
+;PH1323113103;Handheld Power Equipment;PH1323113;siteoneProductCatalog:Staged;admingroup 
+;PH1323113104;Lubrication & Fuel Treatment;PH1323113;siteoneProductCatalog:Staged;admingroup 
+;PH1323113105;Miscellaneous;PH1323113;siteoneProductCatalog:Staged;admingroup 
+;PH1323113106;Renovation Equipment;PH1323113;siteoneProductCatalog:Staged;admingroup 
+;PH1323113107;Sports & Turf Equipment;PH1323113;siteoneProductCatalog:Staged;admingroup 
+;PH1323113108;Spreader;PH1323113;siteoneProductCatalog:Staged;admingroup 
+;PH1323113109;Spreader / Sprayer;PH1323113;siteoneProductCatalog:Staged;admingroup 
+;PH1323114100;Aerating Accessories;PH1323114;siteoneProductCatalog:Staged;admingroup 
+;PH1323114101;Aerating Equipment;PH1323114;siteoneProductCatalog:Staged;admingroup 
+;PH1323114102;Renovation Accessories;PH1323114;siteoneProductCatalog:Staged;admingroup 
+;PH1323114103;Renovation Equipment;PH1323114;siteoneProductCatalog:Staged;admingroup 
+;PH1323115100;Plows;PH1323115;siteoneProductCatalog:Staged;admingroup 
+;PH1323115101;Sprayers;PH1323115;siteoneProductCatalog:Staged;admingroup 
+;PH1323115102;Spreaders;PH1323115;siteoneProductCatalog:Staged;admingroup 
+;PH1323115103;Parts;PH1323115;siteoneProductCatalog:Staged;admingroup 
+;PH1323116100;Hardscapes Equipment;PH1323116;siteoneProductCatalog:Staged;admingroup 
+;PH1323116101;Irrigation Equipment;PH1323116;siteoneProductCatalog:Staged;admingroup 
+;PH1323116102;Miscellaneous;PH1323116;siteoneProductCatalog:Staged;admingroup 
+;PH1323116103;Power Takeoff;PH1323116;siteoneProductCatalog:Staged;admingroup 
+;PH1323116104;Sports & Turf Accessories;PH1323116;siteoneProductCatalog:Staged;admingroup 
+;PH1323116105;Sports & Turf Equipment;PH1323116;siteoneProductCatalog:Staged;admingroup 
+;PH1323117100;Accessories;PH1323117;siteoneProductCatalog:Staged;admingroup 
+;PH1323117101;Backpack & Handheld Sprayer;PH1323117;siteoneProductCatalog:Staged;admingroup 
+;PH1323117102;Electric Sprayer;PH1323117;siteoneProductCatalog:Staged;admingroup 
+;PH1323117103;Tank Sprayer;PH1323117;siteoneProductCatalog:Staged;admingroup 
+;PH1323118100;Electric Spreader;PH1323118;siteoneProductCatalog:Staged;admingroup 
+;PH1323118101;Handheld Spreader;PH1323118;siteoneProductCatalog:Staged;admingroup 
+;PH1323118102;Hydro Spreader;PH1323118;siteoneProductCatalog:Staged;admingroup 
+;PH1323118103;Push Spreader;PH1323118;siteoneProductCatalog:Staged;admingroup 
+;PH1323118104;Accessories;PH1323118;siteoneProductCatalog:Staged;admingroup  
+##-----------------------------------------------------------------------------------------------------------------------------------------
+$supercategories=supercategories( code, catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Staged']));;;;;;;;;
+$catalogVersion=catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Staged'])[unique=true,default='siteoneProductCatalog:Staged'];;;;;;;;;
+;;;;;;;;;
+INSERT_UPDATE Category;code[unique=true];name[lang=en];$supercategories;$catalogVersion;allowedPrincipals(uid)
+;SH1323;Equipment;SH13;siteoneProductCatalog:Staged;admingroup 
+;SH1323110;Engine Powered Spreader / Sprayer;SH1323;siteoneProductCatalog:Staged;admingroup 
+;SH1323111;Handheld Power Equipment;SH1323;siteoneProductCatalog:Staged;admingroup 
+;SH1323112;Hardscapes;SH1323;siteoneProductCatalog:Staged;admingroup 
+;SH1323113;Parts;SH1323;siteoneProductCatalog:Staged;admingroup 
+;SH1323114;Renovation;SH1323;siteoneProductCatalog:Staged;admingroup  
+;SH1323115;Snow & Ice ;SH1323;siteoneProductCatalog:Staged;admingroup 
+;SH1323116;Specialty Equipment;SH1323;siteoneProductCatalog:Staged;admingroup 
+;SH1323117;Sprayers;SH1323;siteoneProductCatalog:Staged;admingroup 
+;SH1323118;Spreaders;SH1323;siteoneProductCatalog:Staged;admingroup 
+;SH1323110100;Multipurpose;SH1323110;siteoneProductCatalog:Staged;admingroup 
+;SH1323110101;Single Purpose;SH1323110;siteoneProductCatalog:Staged;admingroup 
+;SH1323110102;Spreader / Sprayer Accessories;SH1323110;siteoneProductCatalog:Staged;admingroup 
+;SH1323111100;Handheld Battery Powered Accessories;SH1323111;siteoneProductCatalog:Staged;admingroup 
+;SH1323111101;Handheld Battery Powered Equipment;SH1323111;siteoneProductCatalog:Staged;admingroup 
+;SH1323111102;Handheld Gas Powered Accessories;SH1323111;siteoneProductCatalog:Staged;admingroup 
+;SH1323111103;Handheld Gas Powered Equipment;SH1323111;siteoneProductCatalog:Staged;admingroup 
+;SH1323112100;Hardscapes Accessories;SH1323112;siteoneProductCatalog:Staged;admingroup 
+;SH1323113100;Backpack & Handheld Sprayer;SH1323113;siteoneProductCatalog:Staged;admingroup 
+;SH1323113101;Engine ;SH1323113;siteoneProductCatalog:Staged;admingroup 
+;SH1323113102;Engine Sprayer;SH1323113;siteoneProductCatalog:Staged;admingroup 
+;SH1323113103;Handheld Power Equipment;SH1323113;siteoneProductCatalog:Staged;admingroup 
+;SH1323113104;Lubrication & Fuel Treatment;SH1323113;siteoneProductCatalog:Staged;admingroup 
+;SH1323113105;Miscellaneous;SH1323113;siteoneProductCatalog:Staged;admingroup 
+;SH1323113106;Renovation Equipment;SH1323113;siteoneProductCatalog:Staged;admingroup 
+;SH1323113107;Sports & Turf Equipment;SH1323113;siteoneProductCatalog:Staged;admingroup 
+;SH1323113108;Spreader;SH1323113;siteoneProductCatalog:Staged;admingroup 
+;SH1323113109;Spreader / Sprayer;SH1323113;siteoneProductCatalog:Staged;admingroup 
+;SH1323114100;Aerating Accessories;SH1323114;siteoneProductCatalog:Staged;admingroup 
+;SH1323114101;Aerating Equipment;SH1323114;siteoneProductCatalog:Staged;admingroup 
+;SH1323114102;Renovation Accessories;SH1323114;siteoneProductCatalog:Staged;admingroup 
+;SH1323114103;Renovation Equipment;SH1323114;siteoneProductCatalog:Staged;admingroup 
+;SH1323115100;Plows;SH1323115;siteoneProductCatalog:Staged;admingroup 
+;SH1323115101;Sprayers;SH1323115;siteoneProductCatalog:Staged;admingroup 
+;SH1323115102;Spreaders;SH1323115;siteoneProductCatalog:Staged;admingroup 
+;SH1323115103;Parts;SH1323115;siteoneProductCatalog:Staged;admingroup 
+;SH1323116100;Hardscapes Equipment;SH1323116;siteoneProductCatalog:Staged;admingroup 
+;SH1323116101;Irrigation Equipment;SH1323116;siteoneProductCatalog:Staged;admingroup 
+;SH1323116102;Miscellaneous;SH1323116;siteoneProductCatalog:Staged;admingroup 
+;SH1323116103;Power Takeoff;SH1323116;siteoneProductCatalog:Staged;admingroup 
+;SH1323116104;Sports & Turf Accessories;SH1323116;siteoneProductCatalog:Staged;admingroup 
+;SH1323116105;Sports & Turf Equipment;SH1323116;siteoneProductCatalog:Staged;admingroup 
+;SH1323117100;Accessories;SH1323117;siteoneProductCatalog:Staged;admingroup 
+;SH1323117101;Backpack & Handheld Sprayer;SH1323117;siteoneProductCatalog:Staged;admingroup 
+;SH1323117102;Electric Sprayer;SH1323117;siteoneProductCatalog:Staged;admingroup 
+;SH1323117103;Tank Sprayer;SH1323117;siteoneProductCatalog:Staged;admingroup 
+;SH1323118100;Electric Spreader;SH1323118;siteoneProductCatalog:Staged;admingroup 
+;SH1323118101;Handheld Spreader;SH1323118;siteoneProductCatalog:Staged;admingroup 
+;SH1323118102;Hydro Spreader;SH1323118;siteoneProductCatalog:Staged;admingroup 
+;SH1323118103;Push Spreader;SH1323118;siteoneProductCatalog:Staged;admingroup 
+;SH1323118104;Accessories;SH1323118;siteoneProductCatalog:Staged;admingroup  
+##----------------------------------------------------------------------------------------------
+
+$productCatalog=siteoneProductCatalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+INSERT_UPDATE category;code[unique=true];salescategorymapping;$catalogVersion;
+;PH1323115100;SH1323115100;
+;PH1323115103;SH1323115103;
+;PH1323110100;SH1711110100:SH1323110100;
+;PH1323110101;SH1323110101:SH1711110101;
+;PH1323110102;SH1711110102:SH1323110102;
+;PH1323111100;SH1323111100:SH1711111100;
+;PH1323111101;SH1323111101:SH1711111101;
+;PH1323111102;SH1711111102:SH1323111102;
+;PH1323111103;SH1323111103:SH1711111103;
+;PH1323112100;SH1711112100:SH1323112100;
+;PH1323113100;SH1323113100:SH1711113100;
+;PH1323113101;SH1711113101:SH1323113101;
+;PH1323113102;SH1323113102:SH1711113102;
+;PH1323113103;SH1323113103:SH1711113103;
+;PH1323113104;SH1323113104:SH1711113104;
+;PH1323113105;SH1323113105:SH1711113105;
+;PH1323113106;SH1323113106:SH1711113106;
+;PH1323113107;SH1323113107:SH1711113107;
+;PH1323113108;SH1323113108:SH1711113108;
+;PH1323113109;SH1323113109:SH1711113109;
+;PH1323114100;SH1711114100:SH1323114100;
+;PH1323114101;SH1323114101:SH1711114101;
+;PH1323114102;SH1711114102:SH1323114102;
+;PH1323114103;SH1711114103:SH1323114103;
+;PH1323115101;SH1711116100:SH1323115101;
+;PH1323115102;SH1711117100:SH1323115102;
+;PH1323115103;SH1323115103:SH1323115103;
+;PH1323116100;SH1711115100:SH1323116100;
+;PH1323116101;SH1323116101:SH1711115101;
+;PH1323116102;SH1711115102:SH1323116102;
+;PH1323116103;SH1323116103:SH1711115103;
+;PH1323116104;SH1711115104:SH1323116104;
+;PH1323116105;SH1711115105:SH1323116105;
+;PH1323117100;SH1323117100:SH1711116101;
+;PH1323117101;SH1711116102:SH1323117101;
+;PH1323117102;SH1323117102:SH1711116103;
+;PH1323117103;SH1711116104:SH1323117103;
+;PH1323118100;SH1711117101:SH1323118100;
+;PH1323118101;SH1323118101:SH1711117102;
+;PH1323118102;SH1711117103:SH1323118102;
+;PH1323118103;SH1711117104:SH1323118103;
+;PH1323118104;SH1711117105:SH1323118104;
+##---
+##--a
+INSERT_UPDATE classificationAttribute;code[unique=true];name[lang=en];systemVersion(catalog(id),version);;;;;
+;Maintenance_agitation;Agitation;siteoneClassification:1;;;;;
+;Maintenance_amprating;Amperage Rating;siteoneClassification:1;;;;;
+;Maintenance_barlength;Bar Length;siteoneClassification:1;;;;;
+;Maintenance_batterycapacity;Battery Capacity;siteoneClassification:1;;;;;
+;Maintenance_batterytype;Battery Type;siteoneClassification:1;;;;;
+;Maintenance_bladelength;Blade Length;siteoneClassification:1;;;;;
+;Maintenance_bladethickness;Blade Thickness;siteoneClassification:1;;;;;
+;Maintenance_bladewidth;Blade Width;siteoneClassification:1;;;;;
+;Maintenance_cfm;CFM;siteoneClassification:1;;;;;
+;Maintenance_chargingsystem;Charging System;siteoneClassification:1;;;;;
+;Maintenance_coredepth;Core Depth;siteoneClassification:1;;;;;
+;Maintenance_cuttingdepth;Cutting Depth;siteoneClassification:1;;;;;
+;Maintenance_enginetype;Engine Type;siteoneClassification:1;;;;;
+;Maintenance_finish;Finish;siteoneClassification:1;;;;;
+;Maintenance_flowrate;Flow Rate;siteoneClassification:1;;;;;
+;Maintenance_framematerial;Frame Material;siteoneClassification:1;;;;;
+;Maintenance_fueltankcapacity;Fuel Tank Capacity;siteoneClassification:1;;;;;
+;Maintenance_groundspeed;Ground Speed;siteoneClassification:1;;;;;
+;Maintenance_handletype;Handle Type;siteoneClassification:1;;;;;
+;Maintenance_hoselength;Hose Length;siteoneClassification:1;;;;;
+;Maintenance_hosesize;Hose Size;siteoneClassification:1;;;;;
+;Maintenance_material;Material;siteoneClassification:1;;;;;
+;Maintenance_model;Model;siteoneClassification:1;;;;;
+;Maintenance_mph;MPH;siteoneClassification:1;;;;;
+;Maintenance_nbrofblades;Number of Blades;siteoneClassification:1;;;;;
+;Maintenance_nbrofnozzles;Number of Nozzles;siteoneClassification:1;;;;;
+;Maintenance_Nbrofspeeds;Number of Speeds;siteoneClassification:1;;;;;
+;Maintenance_nbroftines;Number of Tines;siteoneClassification:1;;;;;
+;Maintenance_openingsize;Opening Size;siteoneClassification:1;;;;;
+;Maintenance_powersource;Power Source;siteoneClassification:1;;;;;
+;Maintenance_pressurerating;Pressure Rating;siteoneClassification:1;;;;;
+;Maintenance_pumpspecification;Pump Specification;siteoneClassification:1;;;;;
+;Maintenance_pumptype;Pump Type;siteoneClassification:1;;;;;
+;Maintenance_runningtime;Running Time;siteoneClassification:1;;;;;
+;Maintenance_seedhoppercpcty;Seed Hopper Capacity;siteoneClassification:1;;;;;
+;Maintenance_seedingwidth;Seeding Width;siteoneClassification:1;;;;;
+;Maintenance_series;Series;siteoneClassification:1;;;;;
+;Maintenance_soundpowerlevel;Sound Power Level;siteoneClassification:1;;;;;
+;Maintenance_specifications;Specifications;siteoneClassification:1;;;;;
+;Maintenance_speed;Speed;siteoneClassification:1;;;;;
+;Maintenance_spraydistance;Spray Distance;siteoneClassification:1;;;;;
+;Maintenance_spraylinewidth;Spray Line Width;siteoneClassification:1;;;;;
+;Maintenance_tinewidth;Tine Width;siteoneClassification:1;;;;;
+;Maintenance_totalweight;Total Weight;siteoneClassification:1;;;;;
+;Maintenance_vibrationlevel;Vibration Level;siteoneClassification:1;;;;;
+;Maintenance_voltagerating;Voltage Rating;siteoneClassification:1;;;;;
+;Maintenance_watertankcapacity;Water Tank Capacity;siteoneClassification:1;;;;;
+;Maintenance_weight;Weight;siteoneClassification:1;;;;;
+;Maintenance_weightempty;Weight Empty;siteoneClassification:1;;;;;
+;Maintenance_wheelmaterial;Wheel Material;siteoneClassification:1;;;;;
+;Maintenance_wheelsize;Wheel Size;siteoneClassification:1;;;;;
+
+
+## ----
+## ---c
+#Classifying;Class;creation;;;;;;;
+#-----------------------------;;;;;;;;;
+INSERT_UPDATE classificationclass;code[unique=true];name[lang=en];catalogVersion(catalog(id),version);;;;;
+;CH01_1323;Product Details;siteoneClassification:1;;;;;
+;CH01_1323;Product Details;siteoneClassification:1;;;;;
+;CH01_1323110;Product Details;siteoneClassification:1;;;;;
+;CH01_1323111;Product Details;siteoneClassification:1;;;;;
+;CH01_1323112;Product Details;siteoneClassification:1;;;;;
+;CH01_1323113;Product Details;siteoneClassification:1;;;;;
+;CH01_1323114;Product Details;siteoneClassification:1;;;;;
+;CH01_1323115;Product Details;siteoneClassification:1;;;;;
+;CH01_1323116;Product Details;siteoneClassification:1;;;;;
+;CH01_1323117;Product Details;siteoneClassification:1;;;;;
+;CH01_1323118;Product Details;siteoneClassification:1;;;;;
+;CH01_1323110100;Product Details;siteoneClassification:1;;;;;
+;CH01_1323110101;Product Details;siteoneClassification:1;;;;;
+;CH01_1323110102;Product Details;siteoneClassification:1;;;;;
+;CH01_1323111100;Product Details;siteoneClassification:1;;;;;
+;CH01_1323111101;Product Details;siteoneClassification:1;;;;;
+;CH01_1323111102;Product Details;siteoneClassification:1;;;;;
+;CH01_1323111103;Product Details;siteoneClassification:1;;;;;
+;CH01_1323112100;Product Details;siteoneClassification:1;;;;;
+;CH01_1323113100;Product Details;siteoneClassification:1;;;;;
+;CH01_1323113101;Product Details;siteoneClassification:1;;;;;
+;CH01_1323113102;Product Details;siteoneClassification:1;;;;;
+;CH01_1323113103;Product Details;siteoneClassification:1;;;;;
+;CH01_1323113104;Product Details;siteoneClassification:1;;;;;
+;CH01_1323113105;Product Details;siteoneClassification:1;;;;;
+;CH01_1323113106;Product Details;siteoneClassification:1;;;;;
+;CH01_1323113107;Product Details;siteoneClassification:1;;;;;
+;CH01_1323113108;Product Details;siteoneClassification:1;;;;;
+;CH01_1323113109;Product Details;siteoneClassification:1;;;;;
+;CH01_1323114100;Product Details;siteoneClassification:1;;;;;
+;CH01_1323114101;Product Details;siteoneClassification:1;;;;;
+;CH01_1323114102;Product Details;siteoneClassification:1;;;;;
+;CH01_1323114103;Product Details;siteoneClassification:1;;;;;
+;CH01_1323115100;Product Details;siteoneClassification:1;;;;;
+;CH01_1323115101;Product Details;siteoneClassification:1;;;;;
+;CH01_1323115102;Product Details;siteoneClassification:1;;;;;
+;CH01_1323115103;Product Details;siteoneClassification:1;;;;;
+;CH01_1323116100;Product Details;siteoneClassification:1;;;;;
+;CH01_1323116101;Product Details;siteoneClassification:1;;;;;
+;CH01_1323116102;Product Details;siteoneClassification:1;;;;;
+;CH01_1323116103;Product Details;siteoneClassification:1;;;;;
+;CH01_1323116104;Product Details;siteoneClassification:1;;;;;
+;CH01_1323116105;Product Details;siteoneClassification:1;;;;;
+;CH01_1323117100;Product Details;siteoneClassification:1;;;;;
+;CH01_1323117101;Product Details;siteoneClassification:1;;;;;
+;CH01_1323117102;Product Details;siteoneClassification:1;;;;;
+;CH01_1323117103;Product Details;siteoneClassification:1;;;;;
+;CH01_1323118100;Product Details;siteoneClassification:1;;;;;
+;CH01_1323118101;Product Details;siteoneClassification:1;;;;;
+;CH01_1323118102;Product Details;siteoneClassification:1;;;;;
+;CH01_1323118103;Product Details;siteoneClassification:1;;;;;
+;CH01_1323118104;Product Details;siteoneClassification:1;;;;;
+
+##---------
+##--d
+$classCatalogVersion=catalogversion(catalog(id[default='siteoneClassification']),version[default='1'])[unique=true,default='siteoneClassification:1']
+$classSystemVersion=systemversion(catalog(id[default='siteoneClassification']),version[default='1'])[unique=true,default='siteoneClassification:1']
+INSERT_UPDATE classAttributeAssignment;classificationAttribute(code,$classSystemVersion)[unique=true];attributeType(code);classificationClass(code,$classCatalogVersion)[unique=true];attributeValues(code)[mode=append];multiValued(code);mandatory(code);formatDefinition
+;Maintenance_item;string;CH01_1323;;false;false;50
+
+;Maintenance_wheelmaterial;string;CH01_1323110100;;false;false;30
+;Maintenance_spraydistance;string;CH01_1323110100;;false;false;30
+;Maintenance_fueltankcapacity;string;CH01_1323110100;;false;false;30
+;Maintenance_spraylinewidth;string;CH01_1323110100;;false;false;30
+;Maintenance_flowrate;string;CH01_1323110100;;false;false;30
+;Maintenance_weight;string;CH01_1323110100;;false;false;30
+;Maintenance_wheelsize;string;CH01_1323110100;;false;false;20
+;Maintenance_weightempty;string;CH01_1323110100;;false;false;30
+;Maintenance_enginetype;string;CH01_1323110100;;false;false;40
+;Maintenance_groundspeed;string;CH01_1323110100;;false;false;50
+;Maintenance_watertankcapacity;string;CH01_1323110100;;false;false;30
+;Maintenance_framematerial;string;CH01_1323110100;;false;false;30
+;Maintenance_hoselength;string;CH01_1323110100;;false;false;30
+;Maintenance_agitation;string;CH01_1323110100;;false;false;30
+;Maintenance_type;string;CH01_1323110100;;false;false;30
+;Maintenance_capacity;string;CH01_1323110100;;false;false;20
+;Maintenance_dimensions;string;CH01_1323110100;;false;false;100
+
+;Maintenance_framematerial;string;CH01_1323110101;;false;false;30
+;Maintenance_wheelmaterial;string;CH01_1323110101;;false;false;30
+;Maintenance_wheelsize;string;CH01_1323110101;;false;false;20
+;Maintenance_weight;string;CH01_1323110101;;false;false;30
+;Maintenance_weightempty;string;CH01_1323110101;;false;false;30
+;Maintenance_watertankcapacity;string;CH01_1323110101;;false;false;30
+;Maintenance_enginetype;string;CH01_1323110101;;false;false;40
+;Maintenance_groundspeed;string;CH01_1323110101;;false;false;50
+;Maintenance_capacity;string;CH01_1323110101;;false;false;20
+;Maintenance_type;string;CH01_1323110101;;false;false;30
+;Maintenance_dimensions;string;CH01_1323110101;;false;false;100
+
+;Maintenance_capacity;string;CH01_1323110102;;false;false;20
+;Maintenance_suitableforusewith;string;CH01_1323110102;;false;false;250
+;Maintenance_specifications;string;CH01_1323110102;;false;false;250
+
+;Maintenance_powersource;string;CH01_1323111101;;false;false;20
+;Maintenance_bladelength;string;CH01_1323111101;;false;false;30
+;Maintenance_batterycapacity;string;CH01_1323111101;;false;false;30
+;Maintenance_batterytype;string;CH01_1323111101;;false;false;30
+;Maintenance_voltagerating;string;CH01_1323111101;;false;false;20
+;Maintenance_amprating;string;CH01_1323111101;;false;false;20
+;Maintenance_weightempty;string;CH01_1323111101;;false;false;30
+;Maintenance_speed;string;CH01_1323111101;;false;false;20
+;Maintenance_soundpowerlevel;string;CH01_1323111101;;false;false;30
+;Maintenance_Nbrofspeeds;string;CH01_1323111101;;false;false;30
+;Maintenance_cfm;string;CH01_1323111101;;false;false;30
+;Maintenance_mph;string;CH01_1323111101;;false;false;30
+;Maintenance_runningtime;string;CH01_1323111101;;false;false;30
+;Maintenance_barlength;string;CH01_1323111101;;false;false;30
+;Maintenance_chargingsystem;string;CH01_1323111101;;false;false;40
+;Maintenance_dimensions;string;CH01_1323111101;;false;false;100
+
+;Maintenance_material;string;CH01_1323113100;;false;false;50
+;Maintenance_nbrofnozzles;string;CH01_1323113100;;false;false;30
+;Maintenance_type;string;CH01_1323113100;;false;false;30
+;Maintenance_dimensions;string;CH01_1323113100;;false;false;100
+;Maintenance_suitableforusewith;string;CH01_1323113100;;false;false;250
+;Maintenance_specifications;string;CH01_1323113100;;false;false;250
+
+;Maintenance_suitableforusewith;string;CH01_1323113101;;false;false;250
+;Maintenance_specifications;string;CH01_1323113101;;false;false;250
+
+;Maintenance_series;string;CH01_1323113102;;false;false;30
+;Maintenance_material;string;CH01_1323113102;;false;false;50
+;Maintenance_flowrate;string;CH01_1323113102;;false;false;30
+;Maintenance_pressurerating;string;CH01_1323113102;;false;false;30
+;Maintenance_type;string;CH01_1323113102;;false;false;30
+;Maintenance_dimensions;string;CH01_1323113102;;false;false;100
+;Maintenance_suitableforusewith;string;CH01_1323113102;;false;false;250
+;Maintenance_specifications;string;CH01_1323113102;;false;false;250
+
+;Maintenance_material;string;CH01_1323113103;;false;false;50
+;Maintenance_finish;string;CH01_1323113103;;false;false;50
+;Maintenance_type;string;CH01_1323113103;;false;false;30
+;Maintenance_dimensions;string;CH01_1323113103;;false;false;100
+;Maintenance_suitableforusewith;string;CH01_1323113103;;false;false;250
+;Maintenance_specifications;string;CH01_1323113103;;false;false;250
+
+;Maintenance_series;string;CH01_1323113104;;false;false;30
+;Maintenance_type;string;CH01_1323113104;;false;false;30
+;Maintenance_dimensions;string;CH01_1323113104;;false;false;100
+;Maintenance_suitableforusewith;string;CH01_1323113104;;false;false;250
+;Maintenance_specifications;string;CH01_1323113104;;false;false;250
+
+;Maintenance_series;string;CH01_1323113105;;false;false;30
+;Maintenance_material;string;CH01_1323113105;;false;false;50
+;Maintenance_finish;string;CH01_1323113105;;false;false;50
+;Maintenance_bladethickness;string;CH01_1323113105;;false;false;20
+;Maintenance_type;string;CH01_1323113105;;false;false;30
+;Maintenance_dimensions;string;CH01_1323113105;;false;false;100
+;Maintenance_suitableforusewith;string;CH01_1323113105;;false;false;250
+;Maintenance_specifications;string;CH01_1323113105;;false;false;250
+
+;Maintenance_material;string;CH01_1323113106;;false;false;50
+;Maintenance_type;string;CH01_1323113106;;false;false;30
+;Maintenance_dimensions;string;CH01_1323113106;;false;false;100
+;Maintenance_suitableforusewith;string;CH01_1323113106;;false;false;250
+;Maintenance_specifications;string;CH01_1323113106;;false;false;250
+;Maintenance_series;string;CH01_1323113108;;false;false;30
+;Maintenance_type;string;CH01_1323113108;;false;false;30
+;Maintenance_dimensions;string;CH01_1323113108;;false;false;100
+;Maintenance_suitableforusewith;string;CH01_1323113108;;false;false;250
+
+;Maintenance_series;string;CH01_1323113109;;false;false;30
+;Maintenance_wheelsize;string;CH01_1323113109;;false;false;20
+;Maintenance_type;string;CH01_1323113109;;false;false;30
+;Maintenance_dimensions;string;CH01_1323113109;;false;false;100
+;Maintenance_suitableforusewith;string;CH01_1323113109;;false;false;250
+;Maintenance_specifications;string;CH01_1323113109;;false;false;250
+
+;Maintenance_series;string;CH01_1323114101;;false;false;30
+;Maintenance_finish;string;CH01_1323114101;;false;false;50
+;Maintenance_framematerial;string;CH01_1323114101;;false;false;30
+;Maintenance_wheelmaterial;string;CH01_1323114101;;false;false;30
+;Maintenance_powersource;string;CH01_1323114101;;false;false;20
+;Maintenance_wheelsize;string;CH01_1323114101;;false;false;20
+;Maintenance_weight;string;CH01_1323114101;;false;false;30
+;Maintenance_totalweight;string;CH01_1323114101;;false;false;30
+;Maintenance_nbroftines;string;CH01_1323114101;;false;false;3
+;Maintenance_tinewidth;string;CH01_1323114101;;false;false;30
+;Maintenance_fueltankcapacity;string;CH01_1323114101;;false;false;30
+;Maintenance_enginetype;string;CH01_1323114101;;false;false;40
+;Maintenance_coredepth;string;CH01_1323114101;;false;false;50
+;Maintenance_groundspeed;string;CH01_1323114101;;false;false;50
+;Maintenance_seedingwidth;string;CH01_1323114101;;false;false;30
+;Maintenance_type;string;CH01_1323114101;;false;false;30
+;Maintenance_dimensions;string;CH01_1323114101;;false;false;100
+
+;Maintenance_series;string;CH01_1323114102;;false;false;30
+;Maintenance_type;string;CH01_1323114102;;false;false;30
+;Maintenance_suitableforusewith;string;CH01_1323114102;;false;false;250
+;Maintenance_specifications;string;CH01_1323114102;;false;false;250
+
+;Maintenance_material;string;CH01_1323114103;;false;false;50
+;Maintenance_framematerial;string;CH01_1323114103;;false;false;30
+;Maintenance_wheelmaterial;string;CH01_1323114103;;false;false;30
+;Maintenance_wheelsize;string;CH01_1323114103;;false;false;20
+;Maintenance_weight;string;CH01_1323114103;;false;false;30
+;Maintenance_cuttingdepth;string;CH01_1323114103;;false;false;30
+;Maintenance_weightempty;string;CH01_1323114103;;false;false;30
+;Maintenance_fueltankcapacity;string;CH01_1323114103;;false;false;30
+;Maintenance_enginetype;string;CH01_1323114103;;false;false;40
+;Maintenance_groundspeed;string;CH01_1323114103;;false;false;50
+;Maintenance_seedingwidth;string;CH01_1323114103;;false;false;30
+;Maintenance_seedhoppercpcty;string;CH01_1323114103;;false;false;30
+;Maintenance_nbrofblades;string;CH01_1323114103;;false;false;30
+;Maintenance_type;string;CH01_1323114103;;false;false;30
+;Maintenance_dimensions;string;CH01_1323114103;;false;false;100
+;Maintenance_suitableforusewith;string;CH01_1323114103;;false;false;250
+;Maintenance_capacity;string;CH01_1323114103;;false;false;20
+
+;Maintenance_series;string;CH01_1323115103;;false;false;30
+;Maintenance_material;string;CH01_1323115103;;false;false;50
+;Maintenance_bladethickness;string;CH01_1323115103;;false;false;20
+;Maintenance_specifications;string;CH01_1323115103;;false;false;250
+;Maintenance_type;string;CH01_1323115103;;false;false;30
+;Maintenance_dimensions;string;CH01_1323115103;;false;false;100
+
+;Maintenance_finish;string;CH01_1323115101;;false;false;50
+;Maintenance_weight;string;CH01_1323115101;;false;false;30
+;Maintenance_weightempty;string;CH01_1323115101;;false;false;30
+;Maintenance_watertankcapacity;string;CH01_1323115101;;false;false;30
+;Maintenance_hoselength;string;CH01_1323115101;;false;false;30
+;Maintenance_pumpspecification;string;CH01_1323115101;;false;false;100
+;Maintenance_enginetype;string;CH01_1323115101;;false;false;40
+;Maintenance_model;string;CH01_1323115101;;false;false;30
+;Maintenance_nbrofnozzles;string;CH01_1323115101;;false;false;30
+;Maintenance_type;string;CH01_1323115101;;false;false;30
+;Maintenance_dimensions;string;CH01_1323115101;;false;false;100
+;Maintenance_suitableforusewith;string;CH01_1323115101;;false;false;250
+
+;Maintenance_series;string;CH01_1323115102;;false;false;30
+;Maintenance_material;string;CH01_1323115102;;false;false;50
+;Maintenance_finish;string;CH01_1323115102;;false;false;50
+;Maintenance_framematerial;string;CH01_1323115102;;false;false;30
+;Maintenance_wheelmaterial;string;CH01_1323115102;;false;false;30
+;Maintenance_wheelsize;string;CH01_1323115102;;false;false;20
+;Maintenance_weight;string;CH01_1323115102;;false;false;30
+;Maintenance_weightempty;string;CH01_1323115102;;false;false;30
+;Maintenance_type;string;CH01_1323115102;;false;false;30
+;Maintenance_dimensions;string;CH01_1323115102;;false;false;100
+;Maintenance_suitableforusewith;string;CH01_1323115102;;false;false;250
+;Maintenance_capacity;string;CH01_1323115102;;false;false;20
+;Maintenance_specifications;string;CH01_1323115102;;false;false;250
+
+;Maintenance_series;string;CH01_1323116100;;false;false;30
+;Maintenance_framematerial;string;CH01_1323116100;;false;false;30
+;Maintenance_weight;string;CH01_1323116100;;false;false;30
+;Maintenance_totalweight;string;CH01_1323116100;;false;false;30
+;Maintenance_vibrationlevel;string;CH01_1323116100;;false;false;30
+;Maintenance_bladewidth;string;CH01_1323116100;;false;false;30
+;Maintenance_speed;string;CH01_1323116100;;false;false;20
+;Maintenance_enginetype;string;CH01_1323116100;;false;false;40
+;Maintenance_type;string;CH01_1323116100;;false;false;30
+;Maintenance_dimensions;string;CH01_1323116100;;false;false;100
+
+;Maintenance_series;string;CH01_1323116101;;false;false;30
+;Maintenance_framematerial;string;CH01_1323116101;;false;false;30
+;Maintenance_weight;string;CH01_1323116101;;false;false;30
+;Maintenance_totalweight;string;CH01_1323116101;;false;false;30
+;Maintenance_fueltankcapacity;string;CH01_1323116101;;false;false;30
+;Maintenance_enginetype;string;CH01_1323116101;;false;false;40
+;Maintenance_model;string;CH01_1323116101;;false;false;30
+;Maintenance_type;string;CH01_1323116101;;false;false;30
+;Maintenance_suitableforusewith;string;CH01_1323116101;;false;false;250
+
+;Maintenance_material;string;CH01_1323116102;;false;false;50
+;Maintenance_wheelmaterial;string;CH01_1323116102;;false;false;30
+;Maintenance_weight;string;CH01_1323116102;;false;false;30
+;Maintenance_suitableforusewith;string;CH01_1323116102;;false;false;250
+;Maintenance_specifications;string;CH01_1323116102;;false;false;250
+
+;Maintenance_series;string;CH01_1323116103;;false;false;30
+;Maintenance_material;string;CH01_1323116103;;false;false;50
+;Maintenance_finish;string;CH01_1323116103;;false;false;50
+;Maintenance_type;string;CH01_1323116103;;false;false;30
+;Maintenance_dimensions;string;CH01_1323116103;;false;false;100
+;Maintenance_suitableforusewith;string;CH01_1323116103;;false;false;250
+;Maintenance_specifications;string;CH01_1323116103;;false;false;250
+
+;Maintenance_series;string;CH01_1323116105;;false;false;30
+;Maintenance_framematerial;string;CH01_1323116105;;false;false;30
+;Maintenance_wheelmaterial;string;CH01_1323116105;;false;false;30
+;Maintenance_wheelsize;string;CH01_1323116105;;false;false;20
+;Maintenance_weight;string;CH01_1323116105;;false;false;30
+;Maintenance_weightempty;string;CH01_1323116105;;false;false;30
+;Maintenance_hoselength;string;CH01_1323116105;;false;false;30
+;Maintenance_fueltankcapacity;string;CH01_1323116105;;false;false;30
+;Maintenance_enginetype;string;CH01_1323116105;;false;false;40
+;Maintenance_type;string;CH01_1323116105;;false;false;30
+;Maintenance_dimensions;string;CH01_1323116105;;false;false;100
+;Maintenance_suitableforusewith;string;CH01_1323116105;;false;false;250
+;Maintenance_capacity;string;CH01_1323116105;;false;false;20
+;Maintenance_specifications;string;CH01_1323116105;;false;false;250
+
+;Maintenance_series;string;CH01_1323117100;;false;false;30
+;Maintenance_material;string;CH01_1323117100;;false;false;50
+;Maintenance_type;string;CH01_1323117100;;false;false;30
+;Maintenance_dimensions;string;CH01_1323117100;;false;false;100
+;Maintenance_suitableforusewith;string;CH01_1323117100;;false;false;250
+;Maintenance_specifications;string;CH01_1323117100;;false;false;250
+
+;Maintenance_series;string;CH01_1323117101;;false;false;30
+;Maintenance_material;string;CH01_1323117101;;false;false;50
+;Maintenance_handletype;string;CH01_1323117101;;false;false;30
+;Maintenance_framematerial;string;CH01_1323117101;;false;false;30
+;Maintenance_weight;string;CH01_1323117101;;false;false;30
+;Maintenance_pressurerating;string;CH01_1323117101;;false;false;30
+;Maintenance_weightempty;string;CH01_1323117101;;false;false;30
+;Maintenance_watertankcapacity;string;CH01_1323117101;;false;false;30
+;Maintenance_hoselength;string;CH01_1323117101;;false;false;30
+;Maintenance_pumpspecification;string;CH01_1323117101;;false;false;100
+;Maintenance_openingsize;string;CH01_1323117101;;false;false;30
+;Maintenance_spraydistance;string;CH01_1323117101;;false;false;30
+;Maintenance_type;string;CH01_1323117101;;false;false;30
+;Maintenance_dimensions;string;CH01_1323117101;;false;false;100
+;Maintenance_specifications;string;CH01_1323117101;;false;false;250
+
+;Maintenance_series;string;CH01_1323117102;;false;false;30
+;Maintenance_material;string;CH01_1323117102;;false;false;50
+;Maintenance_flowrate;string;CH01_1323117102;;false;false;30
+;Maintenance_framematerial;string;CH01_1323117102;;false;false;30
+;Maintenance_wheelmaterial;string;CH01_1323117102;;false;false;30
+;Maintenance_weight;string;CH01_1323117102;;false;false;30
+;Maintenance_weightempty;string;CH01_1323117102;;false;false;30
+;Maintenance_watertankcapacity;string;CH01_1323117102;;false;false;30
+;Maintenance_hoselength;string;CH01_1323117102;;false;false;30
+;Maintenance_pumpspecification;string;CH01_1323117102;;false;false;100
+;Maintenance_spraydistance;string;CH01_1323117102;;false;false;30
+;Maintenance_hosesize;string;CH01_1323117102;;false;false;30
+;Maintenance_nbrofnozzles;string;CH01_1323117102;;false;false;30
+;Maintenance_type;string;CH01_1323117102;;false;false;30
+;Maintenance_dimensions;string;CH01_1323117102;;false;false;100
+
+;Maintenance_material;string;CH01_1323117103;;false;false;50
+;Maintenance_finish;string;CH01_1323117103;;false;false;50
+;Maintenance_weight;string;CH01_1323117103;;false;false;30
+;Maintenance_weightempty;string;CH01_1323117103;;false;false;30
+;Maintenance_watertankcapacity;string;CH01_1323117103;;false;false;30
+;Maintenance_pumpspecification;string;CH01_1323117103;;false;false;100
+;Maintenance_fueltankcapacity;string;CH01_1323117103;;false;false;30
+;Maintenance_enginetype;string;CH01_1323117103;;false;false;40
+;Maintenance_model;string;CH01_1323117103;;false;false;30
+;Maintenance_pumptype;string;CH01_1323117103;;false;false;40
+;Maintenance_agitation;string;CH01_1323117103;;false;false;30
+;Maintenance_type;string;CH01_1323117103;;false;false;30
+;Maintenance_dimensions;string;CH01_1323117103;;false;false;100
+;Maintenance_capacity;string;CH01_1323117103;;false;false;20
+;Maintenance_framematerial;string;CH01_1323117103;;false;false;30
+
+;Maintenance_series;string;CH01_1323118104;;false;false;30
+;Maintenance_material;string;CH01_1323118104;;false;false;50
+;Maintenance_weight;string;CH01_1323118104;;false;false;30
+;Maintenance_type;string;CH01_1323118104;;false;false;30
+
+
+;Maintenance_material;string;CH01_1323118100;;false;false;50
+;Maintenance_weightempty;string;CH01_1323118100;;false;false;30
+;Maintenance_model;string;CH01_1323118100;;false;false;30
+;Maintenance_type;string;CH01_1323118100;;false;false;30
+;Maintenance_dimensions;string;CH01_1323118100;;false;false;100
+;Maintenance_capacity;string;CH01_1323118100;;false;false;20
+
+
+
+
+
+;Maintenance_material;string;CH01_1323118101;;false;false;50
+;Maintenance_finish;string;CH01_1323118101;;false;false;50
+;Maintenance_handletype;string;CH01_1323118101;;false;false;30
+;Maintenance_framematerial;string;CH01_1323118101;;false;false;30
+;Maintenance_weight;string;CH01_1323118101;;false;false;30
+;Maintenance_weightempty;string;CH01_1323118101;;false;false;30
+;Maintenance_type;string;CH01_1323118101;;false;false;30
+;Maintenance_dimensions;string;CH01_1323118101;;false;false;100
+;Maintenance_capacity;string;CH01_1323118101;;false;false;20
+
+
+;Maintenance_series;string;CH01_1323118103;;false;false;30
+;Maintenance_material;string;CH01_1323118103;;false;false;50
+;Maintenance_finish;string;CH01_1323118103;;false;false;50
+;Maintenance_handletype;string;CH01_1323118103;;false;false;30
+;Maintenance_framematerial;string;CH01_1323118103;;false;false;30
+;Maintenance_wheelmaterial;string;CH01_1323118103;;false;false;30
+;Maintenance_wheelsize;string;CH01_1323118103;;false;false;20
+;Maintenance_weight;string;CH01_1323118103;;false;false;30
+;Maintenance_weightempty;string;CH01_1323118103;;false;false;30
+;Maintenance_model;string;CH01_1323118103;;false;false;30
+;Maintenance_type;string;CH01_1323118103;;false;false;30
+;Maintenance_dimensions;string;CH01_1323118103;;false;false;100
+;Maintenance_capacity;string;CH01_1323118103;;false;false;20
+
+
+
+##-------------------------------------
+##--e
+$productCatalog=siteoneProductCatalog
+$catalogVersion=catalogversion(catalog(id[default='siteoneProductCatalog']),version[default='Staged'])[unique=true,default='siteoneProductCatalog:Staged']
+$classCatalogVersion=catalogversion(catalog(id[default='siteoneClassification']),version[default='1'])[unique=true,default='siteoneClassification:1']
+$supercategories=source(code, $classCatalogVersion)[unique=true]
+$categories=target(code, $catalogVersion)[unique=true]
+INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories
+;PH1323;CH01_1323;
+;PH1323110;CH01_1323110;
+;PH1323111;CH01_1323111;
+;PH1323112;CH01_1323112;
+;PH1323113;CH01_1323113;
+;PH1323114;CH01_1323114;
+;PH1323115;CH01_1323115;
+;PH1323116;CH01_1323116;
+;PH1323117;CH01_1323117;
+;PH1323118;CH01_1323118;
+;PH1323110100;CH01_1323110100;
+;PH1323110101;CH01_1323110101;
+;PH1323110102;CH01_1323110102;
+;PH1323111100;CH01_1323111100;
+;PH1323111101;CH01_1323111101;
+;PH1323111102;CH01_1323111102;
+;PH1323111103;CH01_1323111103;
+;PH1323112100;CH01_1323112100;
+;PH1323113100;CH01_1323113100;
+;PH1323113101;CH01_1323113101;
+;PH1323113102;CH01_1323113102;
+;PH1323113103;CH01_1323113103;
+;PH1323113104;CH01_1323113104;
+;PH1323113105;CH01_1323113105;
+;PH1323113106;CH01_1323113106;
+;PH1323113107;CH01_1323113107;
+;PH1323113108;CH01_1323113108;
+;PH1323113109;CH01_1323113109;
+;PH1323114100;CH01_1323114100;
+;PH1323114101;CH01_1323114101;
+;PH1323114102;CH01_1323114102;
+;PH1323114103;CH01_1323114103;
+;PH1323115100;CH01_1323115100;
+;PH1323115101;CH01_1323115101;
+;PH1323115102;CH01_1323115102;
+;PH1323115103;CH01_1323115103;
+;PH1323116100;CH01_1323116100;
+;PH1323116101;CH01_1323116101;
+;PH1323116102;CH01_1323116102;
+;PH1323116103;CH01_1323116103;
+;PH1323116104;CH01_1323116104;
+;PH1323116105;CH01_1323116105;
+;PH1323117100;CH01_1323117100;
+;PH1323117101;CH01_1323117101;
+;PH1323117102;CH01_1323117102;
+;PH1323117103;CH01_1323117103;
+;PH1323118100;CH01_1323118100;
+;PH1323118101;CH01_1323118101;
+;PH1323118102;CH01_1323118102;
+;PH1323118103;CH01_1323118103;
+;PH1323118104;CH01_1323118104;
+
+
+##----
+##--f
+
+$classCatalogVersion=catalogversion(catalog(id[default='siteoneClassification']),version[default='1'])[unique=true,default='siteoneClassification:1']
+$supercategories=source(code, $classCatalogVersion)[unique=true]
+$categories=target(code, $classCatalogVersion)[unique=true]
+INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories
+;CH01_1323110;CH01_1323;
+;CH01_1323111;CH01_1323;
+;CH01_1323112;CH01_1323;
+;CH01_1323113;CH01_1323;
+;CH01_1323114;CH01_1323;
+;CH01_1323115;CH01_1323;
+;CH01_1323116;CH01_1323;
+;CH01_1323117;CH01_1323;
+;CH01_1323118;CH01_1323;
+;CH01_1323110100;CH01_1323110;
+;CH01_1323110101;CH01_1323110;
+;CH01_1323110102;CH01_1323110;
+;CH01_1323111100;CH01_1323111;
+;CH01_1323111101;CH01_1323111;
+;CH01_1323111102;CH01_1323111;
+;CH01_1323111103;CH01_1323111;
+;CH01_1323113101;CH01_1323113;
+;CH01_1323113102;CH01_1323113;
+;CH01_1323113103;CH01_1323113;
+;CH01_1323113104;CH01_1323113;
+;CH01_1323113105;CH01_1323113;
+;CH01_1323113106;CH01_1323113;
+;CH01_1323113107;CH01_1323113;
+;CH01_1323113108;CH01_1323113;
+;CH01_1323113109;CH01_1323113;
+;CH01_1323114100;CH01_1323114;
+;CH01_1323114101;CH01_1323114;
+;CH01_1323114102;CH01_1323114;
+;CH01_1323114103;CH01_1323114;
+;CH01_1323115100;CH01_1323115;
+;CH01_1323115101;CH01_1323115;
+;CH01_1323115102;CH01_1323115;
+;CH01_1323115103;CH01_1323115;
+;CH01_1323116100;CH01_1323116;
+;CH01_1323116101;CH01_1323116;
+;CH01_1323116102;CH01_1323116;
+;CH01_1323116103;CH01_1323116;
+;CH01_1323116104;CH01_1323116;
+;CH01_1323116105;CH01_1323116;
+;CH01_1323117100;CH01_1323117;
+;CH01_1323117101;CH01_1323117;
+;CH01_1323117102;CH01_1323117;
+;CH01_1323117103;CH01_1323117;
+;CH01_1323118100;CH01_1323118;
+;CH01_1323118101;CH01_1323118;
+;CH01_1323118102;CH01_1323118;
+;CH01_1323118103;CH01_1323118;
+;CH01_1323118104;CH01_1323118;
+
+

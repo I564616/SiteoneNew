@@ -1,0 +1,33 @@
+$contentCatalog=siteoneContentCatalog
+$contentCatalogName=SiteOne Content Catalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$productCatalog=siteoneProductCatalog
+$productCatalogName=SiteOne Product Catalog
+$productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$picture=media(code, $contentCV);
+$image=image(code, $contentCV);
+$media=media(code, $contentCV);
+$page=page(uid, $contentCV);
+$contentPage=contentPage(uid, $contentCV);
+$product=product(code, $productCV)
+$category=category(code, $productCV)
+$siteResource=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/contentCatalogs/$contentCatalog
+$productResource=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/productCatalogs/$productCatalog
+$jarResourceCms=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/cockpits/cmscockpit
+$addonExtensionName=siteoneacceleratoraddon
+$medias=medias(code, $contentCV);
+$articleMedia=articleMedia(code, $contentCV);
+$mediaContainer=media(qualifier, $contentCV);
+$siteUid=siteone
+$lang=es
+
+INSERT_UPDATE  SiteOneArticleCategory[disable.UniqueAttributesValidator.for.types='SiteOneArticleCategory'];articleCategoryCode[unique=true];articleCategoryName[lang=$lang];numberOfArticles;articleCategoryContent[lang=$lang]
+
+;Lighting;Luces;3;"<h2>Brillamos por Nuestro Conocimiento</h2><p>En SiteOne Landscape Supply ofrecemos un rango total de productos de los mejores fabricantes de iluminación exterior. Pero en donde realmente somos excepcionales es dándote soluciones que funcionen en tu compañía. Nuestro equipo de expertos <link to Our Experts page> te mantendrá a la vanguardia de la iluminación de paisajes y de jardines con artículos detallándote las mejores prácticas y tecnologías que ayudarán a crecer tu negocio más fuerte.</p>"
+;Turf-Care;Cuidado del Césped;17;"<h2>Todo lo que Debes Saber para Hacer Crecer el Pasto.</h2><p>El césped de tus clientes es tu sustento. Harás todo lo posible para protegerlo y nosotros haremos lo mismo para ayudarte. Eso significa armarte con consejos de cuidado del césped necesarios para superar las plagas y enfermedades causadas por altas temperaturas al tiempo que construyes un mejor negocio. Nuestros expertos de la industria verde <link to Our Experts page> han dedicado sus carreras en comprender el césped, cómo hacerlo crecer, protegerlo y hacer que regrese siempre sano, año tras año.</p>"
+
+;Irrigation;Irrigación;18;"<h2>Innovaciones en la Industria y Consejo de los Expertos de SiteOne.</h2><p>Ya no estamos hablando del sistema de riego de tu padre. La innovación en la industria del riego se está expandiendo rápidamente. Desde la eficiencia del goteo hasta la conveniencia de tener controladores funcionando con Wi-Fi, hay más formas que nunca de regar fácilmente y de manera más responsable. Y SiteOne es la casa de una selección sin igual de estas soluciones de riego. Nuestros expertos de la industria verde saben cómo puedes darles el mejor uso.</p>"
+;Hardscapes-Outdoor-Living;Materiales Duros-Vida al Aire Libre;3;"<h2>Construyendo los Cimientos de un Negocio Más Fuerte.</h2><p>Los materiales duros y la vida en exteriores representan una de las oportunidades de más crecimiento en la industria verde. Y sin embargo, muchos contratistas de la jardinería y el paisajismo han sido incapaces de explotar este potencial debido a preocupaciones laborales y la falta de conocimiento sobre el tema por parte de los empleados. SiteOne y su equipo de expertos <link to Our Experts page> están aquí para reducir la curva de aprendizaje con técnicas y estrategias comprobadas, además de las más innovadoras soluciones.</p>"
+;Business-Tips;Consejos de Negocios;8;"<h2>Hagamos Crecer Juntos Tu Clientela.</h2><p>Trabajar con SiteOne es más que recibir productos de calidad y el mejor servicio de la industria; significa tener un verdadero socio de negocios, dedicado a tus necesidades y las de tu compañía. Con artículos que explican las últimas técnicas y soluciones de la industria, nuestro equipo de expertos están constantemente ayudando a subir el nivel, difundir las mejores prácticas y entregar al cliente mejores y más sostenibles jardines y paisajes.</p>" 
+;Tools-Equipment-Safety;Herramientas, Equipos y Seguridad;7;"<h2>Equipándote con los Temas de Tu Negocio.</h2><p>Es nuestro trabajo equiparte con el conocimiento y los insights que necesitas para hacer el tuyo más seguro, eficiente y productivo. Aquí encontrarás artículos de nuestro equipo de expertos <link to Our Experts page> cubriendo un rango de problemas relacionados con el equipamiento de herramientas y la seguridad. Y como esta industria cambia día a día, estamos añadiendo constantemente nuevos insumos a tu caja de herramientas.</p>" 
+;Nursery;Vivero;4;"<h2>Haciendo que el Conocimiento Eche Raíces.</h2><p>Así como para plantar se necesita agua y un suelo fértil, tu negocio necesita información para crecer. En SiteOne Landscape Supply encontrarás un equipo de expertos <link to Our Experts page> con una rica comprensión sobre los productos de vivero al igual que de toda la categoría. Y lo mejor de todo es que estamos añadiendo nuevo inventario en nuestro invernadero digital.</p>"

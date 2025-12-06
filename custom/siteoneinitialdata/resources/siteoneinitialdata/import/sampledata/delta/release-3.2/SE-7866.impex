@@ -1,0 +1,12 @@
+INSERT_UPDATE SolrIndexedProperty; solrIndexedType(identifier)[unique = true]; name[unique = true]; fieldValueProvider;
+								 ; siteoneProductType                        ; soInventoryFlag    ; productInventoryFlagCachingValueProvider
+								 ; siteoneProductType                        ; soIsStockAvailable ; stockLevelCachingValueProvider
+								 ; siteoneProductType                        ; isSellable         ; productInventoryHitCachingValueProvider
+								 ; siteoneProductType                        ; sostockForNLA      ; nlaProductStockCachingValueProvider
+
+
+#INSERT_UPDATE SolrIndexedProperty; solrIndexedType(identifier)[unique = true]; name[unique = true]; fieldValueProvider;
+#                                 ; siteoneProductType                        ; soInventoryFlag    ; productInventoryFlagValueProvider
+#                                 ; siteoneProductType                        ; soIsStockAvailable ; stockLevelValueProvider
+#                                 ; siteoneProductType                        ; isSellable         ; productInventoryHitValueProvider
+#                                 ; siteoneProductType                        ; sostockForNLA      ; nlaProductStockValueProvider

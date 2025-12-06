@@ -1,0 +1,5 @@
+#Enum;values;creation;;;;;;;
+#---------------------;;;;;;;;;
+INSERT_UPDATE classificationAttributeValue;code[unique=true];name[lang=en];systemVersion(catalog(id),version)[default=siteoneClassification:1];;;;;
+
+

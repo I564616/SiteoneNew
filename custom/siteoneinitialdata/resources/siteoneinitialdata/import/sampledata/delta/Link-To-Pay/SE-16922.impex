@@ -1,0 +1,21 @@
+$contentCatalog=siteoneContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+
+INSERT_UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);label;defaultPage[default='true'];approvalStatus(code)[default='approved'];homepage[default='false']
+
+;;linktopayverification;Pay Verification Page;MultiStepCheckoutSummaryPageTemplate;linktopayverification
+
+$contentCatalog=siteoneContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+
+INSERT_UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);label;defaultPage[default='true'];approvalStatus(code)[default='approved'];homepage[default='false']
+;;linkConfirmationPage;;SiteOneContentPageTemplate;/linkpayconfirmation;
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='linkConfirmationPage'];contentSlot(uid,$contentCV)[unique=true];;;
+;;Section3-linkConfirmationPage;Section3;;Section3Slot-linkConfirmationPage;;;
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef);;;
+;;Section3Slot-linkConfirmationPage;Section3 Slot for Link Pay Confirmation Page;true;linkpayConfirmationComponent01;;;
+
+INSERT_UPDATE JspIncludeComponent;$contentCV[unique=true];uid[unique=true];name;page;actions(uid,$contentCV);&componentRef
+;;linkpayConfirmationComponent01;Link To Pay Confirmation Component;linktopayconfirmation.jsp;;linkpayConfirmationComponent01

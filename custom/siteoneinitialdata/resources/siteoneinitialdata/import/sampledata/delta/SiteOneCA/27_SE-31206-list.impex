@@ -1,0 +1,32 @@
+$contentCatalog=siteoneContentCatalog
+$productCatalog=siteoneProductCatalog
+$productCatalogCA=siteoneCAProductCatalog
+$catalogVersions=catalogVersions(catalog(id),version);
+$serverConfigName=Default
+$indexConfigName=siteoneSolrIndexConfig
+$searchConfigName=siteonePageSize
+$facetSearchConfigName=siteoneIndex
+$facetSearchConfigDescription=SiteOne Solr Index
+$searchIndexNamePrefix=siteone
+$solrIndexedType=siteoneProductType
+$indexBaseSite=siteone
+$indexLanguages=en
+$indexCurrencies=USD
+
+$defaultLanguage=en
+$defaultCurrency=USD
+
+$solrListSearchIndexedType=siteoneListSearchType
+$listSearchConfigName=listSearchIndex
+$listSearchConfigDescription=List Search Solr Index 
+
+# Declare the indexed type List
+INSERT_UPDATE SolrIndexedType;identifier[unique=true];type(code);variant;
+;$solrListSearchIndexedType;Wishlist2Entry;false;
+
+# Declare the indexed type List(ListPage)
+INSERT_UPDATE SolrIndexedType;identifier[unique=true];type(code);variant;
+;$solrListSearchIndexedType;Wishlist2Entry;false;
+
+INSERT_UPDATE SolrFacetSearchConfig;name[unique=true];description;indexNamePrefix;languages(isocode);currencies(isocode);solrServerConfig(name);solrSearchConfig(description);solrIndexConfig(name);solrIndexedTypes(identifier);enabledLanguageFallbackMechanism;$catalogVersions
+;$listSearchConfigName;$listSearchConfigDescription;$searchIndexNamePrefix;$indexLanguages;$indexCurrencies;$serverConfigName;$searchConfigName;$indexConfigName;$solrListSearchIndexedType;true;$contentCatalog:Online,$contentCatalog:Staged,$productCatalog:Online,$productCatalog:Staged,$productCatalogCA:Online,$productCatalogCA:Staged

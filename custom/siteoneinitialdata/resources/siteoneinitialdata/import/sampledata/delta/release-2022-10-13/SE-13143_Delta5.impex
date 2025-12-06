@@ -1,0 +1,3001 @@
+INSERT_UPDATE B2BUnit;uid[unique=true];customerSegment
+;1885864_US;Retail & Other
+;1885865_US;Retail & Other
+;1885866_US;Target
+;1885867_US;Retail & Other
+;1885868_US;Retail & Other
+;1885871_US;Target
+;1885872_US;Retail & Other
+;1885873_US;Retail & Other
+;1885874_US;Retail & Other
+;1885880_US;Retail & Other
+;1885888_US;Retail & Other
+;1885890_US;Retail & Other
+;1885891_US;Retail & Other
+;1885893_US;Retail & Other
+;1885896_US;Retail & Other
+;1885898_US;Retail & Other
+;1885900_US;Target
+;1885909_US;Retail & Other
+;1885911_US;Retail & Other
+;1885918_US;Retail & Other
+;1885921_US;Retail & Other
+;1885923_US;Retail & Other
+;1885928_US;Retail & Other
+;1885931_US;Retail & Other
+;1885932_US;Target
+;1885934_US;Retail & Other
+;1885937_US;Retail & Other
+;1885941_US;Retail & Other
+;1885943_US;Retail & Other
+;1885950_US;Target
+;1885951_US;Target
+;1885954_US;Retail & Other
+;1885963_US;Retail & Other
+;1885966_US;Retail & Other
+;1885968_US;Target
+;1885972_US;Retail & Other
+;1885973_US;Retail & Other
+;1885988_US;Target
+;1885991_US;Retail & Other
+;1885994_US;Retail & Other
+;1885996_US;Retail & Other
+;1886000_US;Retail & Other
+;1886002_US;Target
+;1886004_US;Target
+;1886007_US;Retail & Other
+;1886008_US;Retail & Other
+;1886018_US;Emerging
+;1886021_US;Retail & Other
+;1886023_US;Retail & Other
+;1886028_US;Target
+;1886031_US;Retail & Other
+;1886033_US;Retail & Other
+;1886036_US;Emerging
+;1886037_US;Retail & Other
+;1886042_US;Retail & Other
+;1886048_US;Retail & Other
+;1886049_US;Target
+;1886052_US;Target
+;1886064_US;Retail & Other
+;1886066_US;Target
+;1886067_US;Retail & Other
+;1886072_US;Retail & Other
+;1886078_US;Target
+;1886081_US;Retail & Other
+;1886085_US;Retail & Other
+;1886092_US;Retail & Other
+;1886101_US;Retail & Other
+;1886105_US;Retail & Other
+;1886112_US;Retail & Other
+;1886125_US;Target
+;1886126_US;Retail & Other
+;1886127_US;Retail & Other
+;1886133_US;Retail & Other
+;1886137_US;Retail & Other
+;1886142_US;Retail & Other
+;1886158_US;Target
+;1886161_US;Retail & Other
+;1886165_US;Retail & Other
+;1886187_US;Target
+;1886193_US;Retail & Other
+;1886196_US;Emerging
+;1886198_US;Retail & Other
+;1886201_US;Retail & Other
+;1886204_US;Retail & Other
+;1886205_US;Retail & Other
+;1886215_US;Retail & Other
+;1886225_US;Target
+;1886228_US;Retail & Other
+;1886229_US;Retail & Other
+;1886236_US;Retail & Other
+;1886237_US;Retail & Other
+;1886241_US;Retail & Other
+;1886244_US;Retail & Other
+;1886245_US;Retail & Other
+;1886247_US;Retail & Other
+;1886248_US;Retail & Other
+;1886253_US;Retail & Other
+;1886257_US;Retail & Other
+;1886258_US;Retail & Other
+;1886260_US;Retail & Other
+;1886261_US;Retail & Other
+;1886264_US;Retail & Other
+;1886266_US;Retail & Other
+;1886267_US;Emerging
+;1886268_US;Retail & Other
+;1886271_US;Retail & Other
+;1886272_US;Retail & Other
+;1886273_US;Retail & Other
+;1886275_US;Retail & Other
+;1886276_US;Retail & Other
+;1886277_US;Retail & Other
+;1886279_US;Retail & Other
+;1886280_US;Retail & Other
+;1886283_US;Retail & Other
+;1886284_US;Retail & Other
+;1886285_US;Retail & Other
+;1886286_US;Retail & Other
+;1886288_US;Retail & Other
+;1886290_US;Retail & Other
+;1886291_US;Retail & Other
+;1886296_US;Retail & Other
+;1886297_US;Retail & Other
+;1886300_US;Retail & Other
+;1886305_US;Retail & Other
+;1886306_US;Retail & Other
+;1886314_US;Target
+;1886315_US;Target
+;1886316_US;Retail & Other
+;1886317_US;Emerging
+;1886325_US;Target
+;1886327_US;Retail & Other
+;1886329_US;Retail & Other
+;1886331_US;Retail & Other
+;1886332_US;Retail & Other
+;1886337_US;Retail & Other
+;1886339_US;Retail & Other
+;1886345_US;Retail & Other
+;1886353_US;Retail & Other
+;1886356_US;Emerging
+;1886360_US;Retail & Other
+;1886368_US;Target
+;1886373_US;Retail & Other
+;1886378_US;Retail & Other
+;1886381_US;Target
+;1886390_US;Retail & Other
+;1886398_US;Retail & Other
+;1886400_US;Retail & Other
+;1886405_US;Retail & Other
+;1886407_US;Retail & Other
+;1886411_US;Target
+;1886415_US;Retail & Other
+;1886416_US;Retail & Other
+;1886432_US;Retail & Other
+;1886439_US;Target
+;1886443_US;Retail & Other
+;1886448_US;Retail & Other
+;1886450_US;Target
+;1886460_US;Retail & Other
+;1886473_US;Retail & Other
+;1886481_US;Retail & Other
+;1886482_US;Retail & Other
+;1886485_US;Retail & Other
+;1886486_US;Retail & Other
+;1886493_US;Retail & Other
+;1886496_US;Retail & Other
+;1886510_US;Retail & Other
+;1886515_US;Retail & Other
+;1886523_US;Retail & Other
+;1886526_US;Target
+;1886529_US;Retail & Other
+;1886533_US;Retail & Other
+;1886534_US;Retail & Other
+;1886540_US;Retail & Other
+;1886541_US;Target
+;1886549_US;Retail & Other
+;1886556_US;Retail & Other
+;1886562_US;Retail & Other
+;1886570_US;Retail & Other
+;1886577_US;Target
+;1886580_US;Retail & Other
+;1886581_US;Retail & Other
+;1886584_US;Retail & Other
+;1886585_US;Retail & Other
+;1886587_US;Retail & Other
+;1886593_US;Retail & Other
+;1886594_US;Retail & Other
+;1886599_US;Retail & Other
+;1886602_US;Retail & Other
+;1886608_US;Retail & Other
+;1886618_US;Retail & Other
+;1886632_US;Retail & Other
+;1886633_US;Retail & Other
+;1886634_US;Retail & Other
+;1886635_US;Target
+;1886637_US;Retail & Other
+;1886638_US;Retail & Other
+;1886639_US;Retail & Other
+;1886640_US;Retail & Other
+;1886641_US;Retail & Other
+;1886643_US;Retail & Other
+;1886645_US;Retail & Other
+;1886646_US;Target
+;1886647_US;Retail & Other
+;1886648_US;Retail & Other
+;1886650_US;Retail & Other
+;1886651_US;Retail & Other
+;1886652_US;Retail & Other
+;1886653_US;Retail & Other
+;1886654_US;Retail & Other
+;1886657_US;Retail & Other
+;1886659_US;Retail & Other
+;1886660_US;Retail & Other
+;1886662_US;Retail & Other
+;1886663_US;Retail & Other
+;1886665_US;Retail & Other
+;1886666_US;Retail & Other
+;1886668_US;Retail & Other
+;1886670_US;Retail & Other
+;1886673_US;Emerging
+;1886676_US;Retail & Other
+;1886683_US;Emerging
+;1886688_US;Retail & Other
+;1887078_US;Retail & Other
+;1887080_US;Target
+;1887092_US;Retail & Other
+;1887093_US;Retail & Other
+;1887095_US;Target
+;1887107_US;Target
+;1887112_US;Target
+;1887113_US;Retail & Other
+;1887114_US;Emerging
+;1887117_US;Retail & Other
+;1887122_US;Retail & Other
+;1887124_US;Target
+;1887125_US;Retail & Other
+;1887135_US;Retail & Other
+;1887138_US;Retail & Other
+;1887155_US;Retail & Other
+;1887156_US;Target
+;1887165_US;Retail & Other
+;1887171_US;Retail & Other
+;1887172_US;Retail & Other
+;1887176_US;Retail & Other
+;1887177_US;Retail & Other
+;1887179_US;Retail & Other
+;1887181_US;Target
+;1887183_US;Retail & Other
+;1887192_US;Retail & Other
+;1887198_US;Target
+;1887199_US;Retail & Other
+;1887200_US;Emerging
+;1887201_US;Retail & Other
+;1887207_US;Retail & Other
+;1887213_US;Retail & Other
+;1887219_US;Retail & Other
+;1887220_US;Target
+;1887234_US;Retail & Other
+;1887254_US;Retail & Other
+;1887260_US;Retail & Other
+;1887262_US;Retail & Other
+;1887265_US;Retail & Other
+;1887267_US;Retail & Other
+;1887269_US;Target
+;1887273_US;Retail & Other
+;1887277_US;Retail & Other
+;1887283_US;Retail & Other
+;1887289_US;Retail & Other
+;1887297_US;Retail & Other
+;1887298_US;Retail & Other
+;1887300_US;Retail & Other
+;1887301_US;Retail & Other
+;1887308_US;Retail & Other
+;1887312_US;Retail & Other
+;1887316_US;Retail & Other
+;1887331_US;Target
+;1887335_US;Retail & Other
+;1887340_US;Retail & Other
+;1887345_US;Retail & Other
+;1887347_US;Retail & Other
+;1887348_US;Retail & Other
+;1887349_US;Retail & Other
+;1887359_US;Target
+;1887362_US;Retail & Other
+;1887372_US;Retail & Other
+;1887387_US;Retail & Other
+;1887388_US;Retail & Other
+;1887389_US;Retail & Other
+;1887391_US;Retail & Other
+;1887392_US;Target
+;1887393_US;Retail & Other
+;1887396_US;Retail & Other
+;1887397_US;Retail & Other
+;1887399_US;Retail & Other
+;1887400_US;Retail & Other
+;1887401_US;Retail & Other
+;1887402_US;Retail & Other
+;1887404_US;Retail & Other
+;1887405_US;Retail & Other
+;1887409_US;Retail & Other
+;1887410_US;Retail & Other
+;1887411_US;Retail & Other
+;1887414_US;Retail & Other
+;1887415_US;Retail & Other
+;1887416_US;Retail & Other
+;1887418_US;Target
+;1887419_US;Retail & Other
+;1887420_US;Retail & Other
+;1887424_US;Retail & Other
+;1887426_US;Retail & Other
+;1887427_US;Retail & Other
+;1887428_US;Retail & Other
+;1887429_US;Retail & Other
+;1887431_US;Retail & Other
+;1887433_US;Retail & Other
+;1887435_US;Retail & Other
+;1887436_US;Retail & Other
+;1887443_US;Retail & Other
+;1887445_US;Retail & Other
+;1887446_US;Target
+;1887448_US;Retail & Other
+;1887458_US;Retail & Other
+;1887465_US;Retail & Other
+;1887477_US;Retail & Other
+;1887480_US;Retail & Other
+;1887490_US;Retail & Other
+;1887494_US;Retail & Other
+;1887501_US;Retail & Other
+;1887504_US;Retail & Other
+;1887505_US;Retail & Other
+;1887513_US;Retail & Other
+;1887516_US;Retail & Other
+;1887518_US;Retail & Other
+;1887519_US;Retail & Other
+;1887520_US;Retail & Other
+;1887525_US;Retail & Other
+;1887527_US;Retail & Other
+;1887528_US;Retail & Other
+;1887530_US;Retail & Other
+;1887544_US;Retail & Other
+;1887553_US;Retail & Other
+;1887555_US;Retail & Other
+;1887559_US;Retail & Other
+;1887560_US;Retail & Other
+;1887563_US;Retail & Other
+;1887566_US;Retail & Other
+;1887568_US;Retail & Other
+;1887572_US;Retail & Other
+;1887576_US;Retail & Other
+;1887578_US;Target
+;1887580_US;Retail & Other
+;1887582_US;Retail & Other
+;1887583_US;Retail & Other
+;1887584_US;Retail & Other
+;1887586_US;Retail & Other
+;1887587_US;Retail & Other
+;1887588_US;Retail & Other
+;1887589_US;Retail & Other
+;1887590_US;Retail & Other
+;1887591_US;Retail & Other
+;1887592_US;Target
+;1887595_US;Retail & Other
+;1887596_US;Retail & Other
+;1887598_US;Retail & Other
+;1887599_US;Retail & Other
+;1887600_US;Retail & Other
+;1887601_US;Retail & Other
+;1887603_US;Retail & Other
+;1887605_US;Retail & Other
+;1887606_US;Retail & Other
+;1887607_US;Target
+;1887609_US;Retail & Other
+;1887610_US;Target
+;1887612_US;Retail & Other
+;1887613_US;Retail & Other
+;1887614_US;Retail & Other
+;1887616_US;Retail & Other
+;1887617_US;Retail & Other
+;1887618_US;Retail & Other
+;1887621_US;Retail & Other
+;1887623_US;Target
+;1887624_US;Retail & Other
+;1887628_US;Retail & Other
+;1887630_US;Target
+;1887631_US;Retail & Other
+;1887632_US;Retail & Other
+;1887636_US;Retail & Other
+;1887638_US;Retail & Other
+;1887639_US;Retail & Other
+;1887640_US;Retail & Other
+;1887642_US;Retail & Other
+;1887643_US;Retail & Other
+;1887645_US;Target
+;1887647_US;Retail & Other
+;1887648_US;Retail & Other
+;1887649_US;Retail & Other
+;1887651_US;Retail & Other
+;1887652_US;Retail & Other
+;1887654_US;Retail & Other
+;1887655_US;Target
+;1887657_US;Retail & Other
+;1887659_US;Retail & Other
+;1887665_US;Retail & Other
+;1887668_US;Retail & Other
+;1887669_US;Retail & Other
+;1887671_US;Retail & Other
+;1887674_US;Retail & Other
+;1887675_US;Retail & Other
+;1887677_US;Retail & Other
+;1887679_US;Retail & Other
+;1887680_US;Retail & Other
+;1887684_US;Retail & Other
+;1887685_US;Retail & Other
+;1887686_US;Retail & Other
+;1887688_US;Retail & Other
+;1887691_US;Retail & Other
+;1887692_US;Retail & Other
+;1887693_US;Retail & Other
+;1887695_US;Retail & Other
+;1887696_US;Retail & Other
+;1887699_US;Retail & Other
+;1887702_US;Retail & Other
+;1887705_US;Retail & Other
+;1887706_US;Retail & Other
+;1887708_US;Retail & Other
+;1887709_US;Retail & Other
+;1887710_US;Retail & Other
+;1887713_US;Retail & Other
+;1887714_US;Retail & Other
+;1887716_US;Retail & Other
+;1887717_US;Retail & Other
+;1887719_US;Emerging
+;1887721_US;Retail & Other
+;1887722_US;Retail & Other
+;1887723_US;Retail & Other
+;1887726_US;Retail & Other
+;1887727_US;Retail & Other
+;1887728_US;Retail & Other
+;1887729_US;Retail & Other
+;1887731_US;Target
+;1887734_US;Retail & Other
+;1887735_US;Retail & Other
+;1887738_US;Target
+;1887739_US;Retail & Other
+;1887741_US;Retail & Other
+;1887751_US;Retail & Other
+;1887765_US;Retail & Other
+;1887766_US;Retail & Other
+;1887776_US;Retail & Other
+;1887777_US;Retail & Other
+;1887779_US;Retail & Other
+;1887782_US;Retail & Other
+;1887783_US;Target
+;1887785_US;Retail & Other
+;1887788_US;Target
+;1887795_US;Retail & Other
+;1887803_US;Retail & Other
+;1887813_US;Target
+;1887814_US;Retail & Other
+;1887818_US;Retail & Other
+;1887819_US;Retail & Other
+;1887820_US;Retail & Other
+;1887832_US;Retail & Other
+;1887841_US;Target
+;1887844_US;Retail & Other
+;1887848_US;Retail & Other
+;1887852_US;Retail & Other
+;1887854_US;Retail & Other
+;1887859_US;Retail & Other
+;1887860_US;Retail & Other
+;1887867_US;Retail & Other
+;1887873_US;Retail & Other
+;1887875_US;Retail & Other
+;1887878_US;Emerging
+;1887880_US;Retail & Other
+;1887881_US;Retail & Other
+;1887885_US;Retail & Other
+;1887888_US;Retail & Other
+;1887890_US;Retail & Other
+;1887915_US;Retail & Other
+;1887917_US;Retail & Other
+;1887918_US;Retail & Other
+;1887927_US;Retail & Other
+;1887933_US;Retail & Other
+;1887942_US;Target
+;1887945_US;Retail & Other
+;1887949_US;Target
+;1887951_US;Target
+;1887964_US;Retail & Other
+;1887979_US;Retail & Other
+;1887984_US;Retail & Other
+;1887995_US;Retail & Other
+;1887997_US;Retail & Other
+;1887999_US;Retail & Other
+;1888002_US;Retail & Other
+;1888004_US;Retail & Other
+;1888005_US;Retail & Other
+;1888011_US;Retail & Other
+;1888013_US;Retail & Other
+;1888014_US;Small
+;1888016_US;Retail & Other
+;1888021_US;Retail & Other
+;1888022_US;Retail & Other
+;1888032_US;Retail & Other
+;1888033_US;Retail & Other
+;1888037_US;Retail & Other
+;1888038_US;Retail & Other
+;1888043_US;Retail & Other
+;1888047_US;Retail & Other
+;1888050_US;Retail & Other
+;1888053_US;Retail & Other
+;1888060_US;Retail & Other
+;1888063_US;Target
+;1888064_US;Retail & Other
+;1888070_US;Retail & Other
+;1888073_US;Retail & Other
+;1888074_US;Target
+;1888078_US;Retail & Other
+;1888079_US;Retail & Other
+;1888082_US;Target
+;1888084_US;Target
+;1888085_US;Retail & Other
+;1888087_US;Retail & Other
+;1888089_US;Retail & Other
+;1888091_US;Target
+;1888092_US;Retail & Other
+;1888093_US;Retail & Other
+;1888095_US;Retail & Other
+;1888096_US;Retail & Other
+;1888098_US;Retail & Other
+;1888104_US;Retail & Other
+;1888106_US;Retail & Other
+;1888109_US;Retail & Other
+;1888110_US;Retail & Other
+;1888111_US;Retail & Other
+;1888112_US;Retail & Other
+;1888113_US;Small
+;1888114_US;Target
+;1888115_US;Retail & Other
+;1888122_US;Emerging
+;1888123_US;Retail & Other
+;1888125_US;Retail & Other
+;1888126_US;Retail & Other
+;1888131_US;Target
+;1888135_US;Retail & Other
+;1888136_US;Target
+;1888138_US;Target
+;1888139_US;Retail & Other
+;1888140_US;Retail & Other
+;1888142_US;Target
+;1888143_US;Target
+;1888144_US;Target
+;1888146_US;Emerging
+;1888153_US;Retail & Other
+;1888161_US;Retail & Other
+;1888169_US;Retail & Other
+;1888192_US;Retail & Other
+;1888193_US;Retail & Other
+;1888197_US;Retail & Other
+;1888198_US;Retail & Other
+;1888204_US;Retail & Other
+;1888207_US;Retail & Other
+;1888209_US;Retail & Other
+;1888228_US;Retail & Other
+;1888234_US;Retail & Other
+;1888250_US;Retail & Other
+;1888278_US;Target
+;1888279_US;Target
+;1888280_US;Target
+;1888288_US;Retail & Other
+;1888294_US;Retail & Other
+;1888298_US;Retail & Other
+;1888300_US;Target
+;1888307_US;Target
+;1888309_US;Retail & Other
+;1888314_US;Target
+;1888318_US;Retail & Other
+;1888328_US;Retail & Other
+;1888332_US;Retail & Other
+;1888335_US;Retail & Other
+;1888336_US;Target
+;1888343_US;Emerging
+;1888353_US;Retail & Other
+;1888357_US;Retail & Other
+;1888361_US;Retail & Other
+;1888366_US;Retail & Other
+;1888369_US;Retail & Other
+;1888377_US;Target
+;1888380_US;Target
+;1888381_US;Retail & Other
+;1888397_US;Retail & Other
+;1888399_US;Target
+;1888400_US;Retail & Other
+;1888404_US;Retail & Other
+;1888405_US;Emerging
+;1888407_US;Retail & Other
+;1888410_US;Retail & Other
+;1888411_US;Retail & Other
+;1888415_US;Retail & Other
+;1888416_US;Retail & Other
+;1888418_US;Retail & Other
+;1888423_US;Target
+;1888425_US;Retail & Other
+;1888429_US;Retail & Other
+;1888432_US;Target
+;1888438_US;Retail & Other
+;1888442_US;Retail & Other
+;1888447_US;Retail & Other
+;1888448_US;Retail & Other
+;1888452_US;Target
+;1888453_US;Retail & Other
+;1888458_US;Target
+;1888459_US;Retail & Other
+;1888462_US;Target
+;1888463_US;Target
+;1888465_US;Target
+;1888466_US;Target
+;1888467_US;Retail & Other
+;1888468_US;Retail & Other
+;1888470_US;Emerging
+;1888471_US;Retail & Other
+;1888472_US;Retail & Other
+;1888473_US;Retail & Other
+;1888474_US;Retail & Other
+;1888476_US;Retail & Other
+;1888477_US;Retail & Other
+;1888479_US;Retail & Other
+;1888482_US;Retail & Other
+;1888484_US;Retail & Other
+;1888485_US;Retail & Other
+;1888487_US;Target
+;1888488_US;Target
+;1888490_US;Retail & Other
+;1888491_US;Retail & Other
+;1888493_US;Target
+;1888501_US;Target
+;1888503_US;Retail & Other
+;1888505_US;Target
+;1888509_US;Retail & Other
+;1888510_US;Retail & Other
+;1888511_US;Retail & Other
+;1888513_US;Target
+;1888515_US;Retail & Other
+;1888518_US;Retail & Other
+;1888520_US;Retail & Other
+;1888524_US;Retail & Other
+;1888539_US;Retail & Other
+;1888540_US;Retail & Other
+;1888541_US;Target
+;1888542_US;Retail & Other
+;1888553_US;Target
+;1888561_US;Retail & Other
+;1888562_US;Retail & Other
+;1888563_US;Retail & Other
+;1888564_US;Target
+;1888566_US;Target
+;1888569_US;Target
+;1888572_US;Retail & Other
+;1888573_US;Retail & Other
+;1888576_US;Retail & Other
+;1888586_US;Retail & Other
+;1888589_US;Target
+;1888590_US;Target
+;1888616_US;Target
+;1888618_US;Retail & Other
+;1888624_US;Retail & Other
+;1888627_US;Retail & Other
+;1888628_US;Retail & Other
+;1888632_US;Retail & Other
+;1888638_US;Retail & Other
+;1888640_US;Retail & Other
+;1888643_US;Target
+;1888655_US;Target
+;1888660_US;Retail & Other
+;1888674_US;Target
+;1888682_US;Target
+;1888689_US;Retail & Other
+;1888691_US;Retail & Other
+;1888692_US;Retail & Other
+;1888698_US;Retail & Other
+;1888707_US;Retail & Other
+;1888711_US;Retail & Other
+;1888715_US;Retail & Other
+;1888716_US;Target
+;1888719_US;Retail & Other
+;1888733_US;Target
+;1888739_US;Retail & Other
+;1888741_US;Target
+;1888743_US;Retail & Other
+;1888752_US;Retail & Other
+;1888754_US;Target
+;1888758_US;Retail & Other
+;1888764_US;Target
+;1888767_US;Retail & Other
+;1888772_US;Retail & Other
+;1888776_US;Retail & Other
+;1888780_US;Retail & Other
+;1888786_US;Target
+;1888787_US;Retail & Other
+;1888790_US;Retail & Other
+;1888792_US;Retail & Other
+;1888793_US;Retail & Other
+;1888794_US;Retail & Other
+;1888796_US;Retail & Other
+;1888798_US;Retail & Other
+;1888800_US;Retail & Other
+;1888801_US;Retail & Other
+;1888802_US;Retail & Other
+;1888803_US;Retail & Other
+;1888809_US;Retail & Other
+;1888810_US;Retail & Other
+;1888811_US;Emerging
+;1888813_US;Retail & Other
+;1888815_US;Retail & Other
+;1888819_US;Target
+;1888820_US;Retail & Other
+;1888823_US;Retail & Other
+;1888828_US;Retail & Other
+;1888831_US;Retail & Other
+;1888832_US;Retail & Other
+;1888836_US;Target
+;1888840_US;Target
+;1888853_US;Retail & Other
+;1888854_US;Retail & Other
+;1888855_US;Retail & Other
+;1888861_US;Target
+;1888864_US;Retail & Other
+;1888867_US;Target
+;1888868_US;Retail & Other
+;1888870_US;Emerging
+;1888873_US;Retail & Other
+;1888880_US;Retail & Other
+;1888890_US;Target
+;1888910_US;Target
+;1888912_US;Target
+;1888915_US;Retail & Other
+;1888950_US;Retail & Other
+;1888959_US;Retail & Other
+;1888961_US;Retail & Other
+;1888966_US;Retail & Other
+;1888970_US;Retail & Other
+;1888978_US;Retail & Other
+;1888979_US;Target
+;1888980_US;Retail & Other
+;1888985_US;Retail & Other
+;1888992_US;Retail & Other
+;1888999_US;Retail & Other
+;1889001_US;Retail & Other
+;1889002_US;Target
+;1889003_US;Retail & Other
+;1889005_US;Retail & Other
+;1889010_US;Target
+;1889013_US;Retail & Other
+;1889015_US;Target
+;1889020_US;Retail & Other
+;1889021_US;Retail & Other
+;1889024_US;Target
+;1889028_US;Target
+;1889038_US;Target
+;1889052_US;Retail & Other
+;1889055_US;Retail & Other
+;1889060_US;Retail & Other
+;1889063_US;Target
+;1889066_US;Target
+;1889068_US;Retail & Other
+;1889074_US;Retail & Other
+;1889077_US;Target
+;1889080_US;Retail & Other
+;1889087_US;Target
+;1889091_US;Retail & Other
+;1889102_US;Target
+;1889107_US;Retail & Other
+;1889108_US;Target
+;1889109_US;Retail & Other
+;1889110_US;Retail & Other
+;1889113_US;Retail & Other
+;1889115_US;Retail & Other
+;1889117_US;Retail & Other
+;1889122_US;Retail & Other
+;1889124_US;Retail & Other
+;1889126_US;Retail & Other
+;1889127_US;Retail & Other
+;1889129_US;Retail & Other
+;1889130_US;Retail & Other
+;1889135_US;Retail & Other
+;1889137_US;Retail & Other
+;1889138_US;Target
+;1889139_US;Target
+;1889141_US;Retail & Other
+;1889142_US;Retail & Other
+;1889143_US;Retail & Other
+;1889144_US;Retail & Other
+;1889146_US;Retail & Other
+;1889147_US;Retail & Other
+;1889148_US;Target
+;1889149_US;Retail & Other
+;1889150_US;Retail & Other
+;1889153_US;Retail & Other
+;1889154_US;Retail & Other
+;1889155_US;Retail & Other
+;1889157_US;Retail & Other
+;1889159_US;Retail & Other
+;1889160_US;Retail & Other
+;1889161_US;Retail & Other
+;1889162_US;Target
+;1889163_US;Retail & Other
+;1889165_US;Retail & Other
+;1889166_US;Retail & Other
+;1889168_US;Target
+;1889171_US;Retail & Other
+;1889182_US;Retail & Other
+;1889196_US;Target
+;1889197_US;Retail & Other
+;1889210_US;Retail & Other
+;1889213_US;Retail & Other
+;1889217_US;Target
+;1889223_US;Retail & Other
+;1889228_US;Target
+;1889233_US;Target
+;1889234_US;Retail & Other
+;1889237_US;Retail & Other
+;1889242_US;Retail & Other
+;1889245_US;Retail & Other
+;1889246_US;Target
+;1889250_US;Retail & Other
+;1889254_US;Retail & Other
+;1889264_US;Retail & Other
+;1889265_US;Retail & Other
+;1889267_US;Target
+;1889273_US;Retail & Other
+;1889274_US;Retail & Other
+;1889280_US;Retail & Other
+;1889293_US;Target
+;1889297_US;Retail & Other
+;1889302_US;Target
+;1889304_US;Target
+;1889305_US;Retail & Other
+;1889309_US;Retail & Other
+;1889317_US;Retail & Other
+;1889320_US;Retail & Other
+;1889322_US;Target
+;1889329_US;Retail & Other
+;1889341_US;Retail & Other
+;1889342_US;Retail & Other
+;1889343_US;Retail & Other
+;1889346_US;Retail & Other
+;1889347_US;Target
+;1889350_US;Retail & Other
+;1889355_US;Small
+;1889367_US;Retail & Other
+;1889373_US;Retail & Other
+;1889376_US;Retail & Other
+;1889379_US;Target
+;1889389_US;Retail & Other
+;1889394_US;Target
+;1889400_US;Retail & Other
+;1889410_US;Retail & Other
+;1889411_US;Retail & Other
+;1889412_US;Target
+;1889414_US;Retail & Other
+;1889423_US;Retail & Other
+;1889428_US;Retail & Other
+;1889444_US;Retail & Other
+;1889445_US;Retail & Other
+;1889448_US;Retail & Other
+;1889451_US;Retail & Other
+;1889455_US;Retail & Other
+;1889457_US;Retail & Other
+;1889458_US;Target
+;1889459_US;Retail & Other
+;1889468_US;Retail & Other
+;1889470_US;Target
+;1889475_US;Retail & Other
+;1889482_US;Retail & Other
+;1889484_US;Retail & Other
+;1889486_US;Target
+;1889491_US;Retail & Other
+;1889495_US;Emerging
+;1889497_US;Retail & Other
+;1889498_US;Retail & Other
+;1889501_US;Retail & Other
+;1889502_US;Retail & Other
+;1889505_US;Target
+;1889507_US;Retail & Other
+;1889508_US;Retail & Other
+;1889511_US;Retail & Other
+;1889512_US;Retail & Other
+;1889513_US;Retail & Other
+;1889516_US;Retail & Other
+;1889517_US;Retail & Other
+;1889519_US;Retail & Other
+;1889521_US;Retail & Other
+;1889523_US;Target
+;1889527_US;Retail & Other
+;1889531_US;Retail & Other
+;1889532_US;Retail & Other
+;1889533_US;Retail & Other
+;1889540_US;Retail & Other
+;1889541_US;Retail & Other
+;1889544_US;Target
+;1889551_US;Retail & Other
+;1889553_US;Target
+;1889559_US;Retail & Other
+;1889570_US;Retail & Other
+;1889578_US;Retail & Other
+;1889581_US;Retail & Other
+;1889582_US;Retail & Other
+;1889589_US;Retail & Other
+;1889601_US;Retail & Other
+;1889602_US;Retail & Other
+;1889619_US;Retail & Other
+;1889622_US;Retail & Other
+;1889623_US;Retail & Other
+;1889628_US;Retail & Other
+;1889629_US;Retail & Other
+;1889630_US;Target
+;1889631_US;Retail & Other
+;1889643_US;Retail & Other
+;1889644_US;Retail & Other
+;1889645_US;Retail & Other
+;1889648_US;Retail & Other
+;1889652_US;Retail & Other
+;1889655_US;Retail & Other
+;1889656_US;Retail & Other
+;1889657_US;Retail & Other
+;1889658_US;Retail & Other
+;1889662_US;Retail & Other
+;1889664_US;Target
+;1889665_US;Retail & Other
+;1889666_US;Retail & Other
+;1889668_US;Retail & Other
+;1889672_US;Target
+;1889673_US;Retail & Other
+;1889675_US;Retail & Other
+;1889677_US;Retail & Other
+;1889678_US;Retail & Other
+;1889680_US;Retail & Other
+;1889681_US;Target
+;1889683_US;Retail & Other
+;1889685_US;Retail & Other
+;1889686_US;Retail & Other
+;1889688_US;Retail & Other
+;1889689_US;Retail & Other
+;1889694_US;Retail & Other
+;1889695_US;Retail & Other
+;1889697_US;Target
+;1889698_US;Retail & Other
+;1889700_US;Retail & Other
+;1889705_US;Target
+;1889707_US;Retail & Other
+;1889708_US;Retail & Other
+;1889709_US;Retail & Other
+;1889711_US;Retail & Other
+;1889716_US;Retail & Other
+;1889717_US;Retail & Other
+;1889719_US;Retail & Other
+;1889721_US;Retail & Other
+;1889724_US;Retail & Other
+;1889727_US;Retail & Other
+;1889731_US;Retail & Other
+;1889732_US;Retail & Other
+;1889734_US;Retail & Other
+;1889735_US;Retail & Other
+;1889740_US;Retail & Other
+;1889741_US;Retail & Other
+;1889744_US;Retail & Other
+;1889746_US;Retail & Other
+;1889747_US;Retail & Other
+;1889748_US;Retail & Other
+;1889749_US;Retail & Other
+;1889751_US;Retail & Other
+;1889755_US;Retail & Other
+;1889757_US;Retail & Other
+;1889758_US;Retail & Other
+;1889759_US;Retail & Other
+;1889762_US;Retail & Other
+;1889763_US;Retail & Other
+;1889764_US;Retail & Other
+;1889765_US;Retail & Other
+;1889768_US;Retail & Other
+;1889769_US;Retail & Other
+;1889770_US;Retail & Other
+;1889771_US;Retail & Other
+;1889774_US;Retail & Other
+;1889775_US;Retail & Other
+;1889778_US;Retail & Other
+;1889779_US;Retail & Other
+;1889780_US;Retail & Other
+;1889788_US;Retail & Other
+;1889789_US;Retail & Other
+;1889830_US;Retail & Other
+;1889831_US;Retail & Other
+;1889835_US;Retail & Other
+;1889837_US;Target
+;1889839_US;Target
+;1889841_US;Target
+;1889843_US;Retail & Other
+;1889844_US;Retail & Other
+;1889849_US;Retail & Other
+;1889850_US;Retail & Other
+;1889862_US;Retail & Other
+;1889868_US;Retail & Other
+;1889873_US;Retail & Other
+;1889881_US;Target
+;1889886_US;Retail & Other
+;1889887_US;Retail & Other
+;1889891_US;Retail & Other
+;1889892_US;Retail & Other
+;1889902_US;Retail & Other
+;1889909_US;Retail & Other
+;1889910_US;Target
+;1889911_US;Target
+;1889932_US;Retail & Other
+;1889933_US;Retail & Other
+;1889938_US;Emerging
+;1889952_US;Emerging
+;1889953_US;Retail & Other
+;1889954_US;Retail & Other
+;1889955_US;Target
+;1889956_US;Retail & Other
+;1889957_US;Target
+;1889958_US;Retail & Other
+;1889966_US;Retail & Other
+;1889967_US;Target
+;1889969_US;Retail & Other
+;1889986_US;Retail & Other
+;1889996_US;Retail & Other
+;1890001_US;Retail & Other
+;1890011_US;Target
+;1890016_US;Retail & Other
+;1890018_US;Emerging
+;1890023_US;Retail & Other
+;1890033_US;Retail & Other
+;1890034_US;Retail & Other
+;1890038_US;Retail & Other
+;1890043_US;Retail & Other
+;1890046_US;Retail & Other
+;1890054_US;Retail & Other
+;1890068_US;Retail & Other
+;1890070_US;Retail & Other
+;1890073_US;Retail & Other
+;1890080_US;Target
+;1890082_US;Retail & Other
+;1890089_US;Retail & Other
+;1890092_US;Retail & Other
+;1890093_US;Retail & Other
+;1890095_US;Retail & Other
+;1890099_US;Retail & Other
+;1890106_US;Retail & Other
+;1890116_US;Retail & Other
+;1890124_US;Retail & Other
+;1890130_US;Retail & Other
+;1890132_US;Retail & Other
+;1890133_US;Target
+;1890138_US;Retail & Other
+;1890140_US;Retail & Other
+;1890145_US;Retail & Other
+;1890146_US;Retail & Other
+;1890147_US;Retail & Other
+;1890153_US;Retail & Other
+;1890158_US;Retail & Other
+;1890162_US;Retail & Other
+;1890165_US;Retail & Other
+;1890169_US;Retail & Other
+;1890172_US;Target
+;1890178_US;Retail & Other
+;1890180_US;Target
+;1890181_US;Retail & Other
+;1890184_US;Retail & Other
+;1890186_US;Target
+;1890190_US;Target
+;1890191_US;Retail & Other
+;1890193_US;Retail & Other
+;1890194_US;Retail & Other
+;1890197_US;Retail & Other
+;1890198_US;Retail & Other
+;1890199_US;Retail & Other
+;1890204_US;Retail & Other
+;1890205_US;Retail & Other
+;1890206_US;Retail & Other
+;1890207_US;Retail & Other
+;1890209_US;Target
+;1890210_US;Retail & Other
+;1890212_US;Retail & Other
+;1890215_US;Retail & Other
+;1890219_US;Retail & Other
+;1890224_US;Retail & Other
+;1890229_US;Retail & Other
+;1890237_US;Retail & Other
+;1890255_US;Retail & Other
+;1890267_US;Retail & Other
+;1890269_US;Retail & Other
+;1890270_US;Retail & Other
+;1890276_US;Retail & Other
+;1890278_US;Retail & Other
+;1890285_US;Retail & Other
+;1890289_US;Retail & Other
+;1890291_US;Retail & Other
+;1890300_US;Retail & Other
+;1890301_US;Target
+;1890302_US;Target
+;1890306_US;Retail & Other
+;1890310_US;Retail & Other
+;1890316_US;Retail & Other
+;1890318_US;Retail & Other
+;1890320_US;Retail & Other
+;1890321_US;Target
+;1890322_US;Retail & Other
+;1890323_US;Emerging
+;1890325_US;Target
+;1890330_US;Retail & Other
+;1890331_US;Target
+;1890343_US;Retail & Other
+;1890344_US;Retail & Other
+;1890347_US;Retail & Other
+;1890351_US;Retail & Other
+;1890352_US;Target
+;1890357_US;Retail & Other
+;1890362_US;Target
+;1890364_US;Retail & Other
+;1890371_US;Retail & Other
+;1890376_US;Small
+;1890379_US;Retail & Other
+;1890384_US;Retail & Other
+;1890386_US;Retail & Other
+;1890392_US;Retail & Other
+;1890394_US;Retail & Other
+;1890398_US;Retail & Other
+;1890400_US;Target
+;1890402_US;Emerging
+;1890417_US;Retail & Other
+;1890419_US;Retail & Other
+;1890424_US;Retail & Other
+;1890425_US;Retail & Other
+;189043_US;Emerging
+;1890432_US;Retail & Other
+;1890433_US;Retail & Other
+;1890449_US;Retail & Other
+;1890451_US;Target
+;1890456_US;Retail & Other
+;1890457_US;Retail & Other
+;1890471_US;Target
+;1890484_US;Emerging
+;1890487_US;Retail & Other
+;1890489_US;Retail & Other
+;1890498_US;Retail & Other
+;1890505_US;Retail & Other
+;1890506_US;Retail & Other
+;1890507_US;Retail & Other
+;1890509_US;Retail & Other
+;1890515_US;Retail & Other
+;1890516_US;Target
+;1890517_US;Retail & Other
+;1890522_US;Retail & Other
+;1890530_US;Retail & Other
+;1890531_US;Retail & Other
+;1890532_US;Retail & Other
+;1890536_US;Target
+;1890538_US;Target
+;1890539_US;Retail & Other
+;1890553_US;Retail & Other
+;1890558_US;Retail & Other
+;1890563_US;Retail & Other
+;1890564_US;Target
+;1890565_US;Retail & Other
+;1890566_US;Retail & Other
+;1890567_US;Retail & Other
+;1890568_US;Retail & Other
+;1890569_US;Retail & Other
+;1890570_US;Retail & Other
+;1890577_US;Retail & Other
+;1890579_US;Retail & Other
+;1890580_US;Retail & Other
+;1890582_US;Retail & Other
+;1890584_US;Retail & Other
+;1890586_US;Retail & Other
+;1890587_US;Retail & Other
+;1890588_US;Retail & Other
+;1890589_US;Retail & Other
+;1890591_US;Target
+;1890594_US;Retail & Other
+;1890595_US;Target
+;1890602_US;Emerging
+;1890603_US;Retail & Other
+;1890606_US;Target
+;1890607_US;Retail & Other
+;1890608_US;Target
+;1890610_US;Retail & Other
+;1890611_US;Retail & Other
+;1890612_US;Retail & Other
+;1890613_US;Target
+;1890616_US;Target
+;1890618_US;Target
+;1890619_US;Retail & Other
+;1890621_US;Retail & Other
+;1890624_US;Retail & Other
+;1890629_US;Retail & Other
+;1890632_US;Target
+;1890638_US;Retail & Other
+;1890640_US;Retail & Other
+;1890643_US;Retail & Other
+;1890647_US;Target
+;1890649_US;Retail & Other
+;1890656_US;Retail & Other
+;1890658_US;Target
+;1890659_US;Retail & Other
+;1890661_US;Retail & Other
+;1890664_US;Retail & Other
+;1890666_US;Retail & Other
+;1890670_US;Retail & Other
+;1890671_US;Target
+;1890673_US;Target
+;1890679_US;Retail & Other
+;1890687_US;Retail & Other
+;1890688_US;Retail & Other
+;1890694_US;Retail & Other
+;1890698_US;Target
+;1890699_US;Retail & Other
+;1890700_US;Retail & Other
+;1890715_US;Target
+;1890716_US;Retail & Other
+;1890724_US;Retail & Other
+;1890735_US;Target
+;1890739_US;Retail & Other
+;1890742_US;Retail & Other
+;1890759_US;Retail & Other
+;1890761_US;Retail & Other
+;1890770_US;Retail & Other
+;1890775_US;Retail & Other
+;1890778_US;Retail & Other
+;1890785_US;Retail & Other
+;1890786_US;Target
+;1890801_US;Retail & Other
+;1890807_US;Retail & Other
+;1890822_US;Retail & Other
+;1890826_US;Retail & Other
+;1890828_US;Retail & Other
+;1890842_US;Target
+;1890843_US;Retail & Other
+;1890847_US;Retail & Other
+;1890852_US;Retail & Other
+;1890859_US;Retail & Other
+;1890866_US;Target
+;1890870_US;Retail & Other
+;1890871_US;Retail & Other
+;1890873_US;Retail & Other
+;1890875_US;Target
+;1890880_US;Retail & Other
+;1890884_US;Retail & Other
+;1890888_US;Target
+;1890891_US;Target
+;1890893_US;Target
+;1890896_US;Target
+;1890902_US;Retail & Other
+;1890905_US;Target
+;1890906_US;Retail & Other
+;1890907_US;Target
+;1890914_US;Retail & Other
+;1890923_US;Retail & Other
+;1890924_US;Target
+;1890926_US;Retail & Other
+;1890927_US;Retail & Other
+;1890928_US;Target
+;1890932_US;Target
+;1890933_US;Retail & Other
+;1890936_US;Retail & Other
+;1890937_US;Retail & Other
+;1890938_US;Retail & Other
+;1890939_US;Retail & Other
+;1890941_US;Target
+;1890943_US;Target
+;1890945_US;Retail & Other
+;1890946_US;Retail & Other
+;1890947_US;Target
+;1890949_US;Retail & Other
+;1890951_US;Target
+;1890952_US;Retail & Other
+;1890954_US;Retail & Other
+;1890957_US;Retail & Other
+;1890958_US;Retail & Other
+;1890959_US;Retail & Other
+;1890960_US;Target
+;1890961_US;Retail & Other
+;1890962_US;Retail & Other
+;1890964_US;Retail & Other
+;1890965_US;Target
+;1890966_US;Retail & Other
+;1890967_US;Retail & Other
+;1890969_US;Target
+;1890970_US;Retail & Other
+;1890971_US;Retail & Other
+;1890973_US;Retail & Other
+;1890975_US;Target
+;1890977_US;Target
+;1890990_US;Retail & Other
+;1890999_US;Retail & Other
+;1891005_US;Retail & Other
+;1891007_US;Retail & Other
+;1891011_US;Retail & Other
+;1891023_US;Retail & Other
+;1891024_US;Retail & Other
+;1891026_US;Retail & Other
+;1891033_US;Target
+;1891036_US;Retail & Other
+;1891040_US;Target
+;1891045_US;Target
+;1891049_US;Retail & Other
+;1891050_US;Retail & Other
+;1891053_US;Retail & Other
+;1891054_US;Target
+;1891058_US;Retail & Other
+;1891061_US;Retail & Other
+;1891062_US;Retail & Other
+;1891063_US;Retail & Other
+;1891066_US;Retail & Other
+;1891076_US;Retail & Other
+;1891077_US;Target
+;1891081_US;Target
+;1891085_US;Retail & Other
+;1891089_US;Retail & Other
+;1891091_US;Retail & Other
+;1891092_US;Retail & Other
+;1891101_US;Target
+;1891102_US;Retail & Other
+;1891116_US;Target
+;1891120_US;Retail & Other
+;1891125_US;Target
+;1891126_US;Retail & Other
+;1891128_US;Target
+;1891130_US;Retail & Other
+;1891135_US;Retail & Other
+;1891136_US;Retail & Other
+;1891137_US;Retail & Other
+;1891142_US;Retail & Other
+;1891144_US;Retail & Other
+;1891147_US;Target
+;1891148_US;Retail & Other
+;1891156_US;Retail & Other
+;1891158_US;Retail & Other
+;1891159_US;Target
+;1891161_US;Retail & Other
+;1891163_US;Retail & Other
+;1891175_US;Retail & Other
+;1891178_US;Retail & Other
+;1891183_US;Target
+;1891186_US;Retail & Other
+;1891190_US;Retail & Other
+;1891194_US;Target
+;1891197_US;Retail & Other
+;1891201_US;Target
+;1891203_US;Target
+;1891204_US;Target
+;1891209_US;Retail & Other
+;1891217_US;Target
+;1891220_US;Target
+;1891227_US;Retail & Other
+;1891233_US;Retail & Other
+;1891235_US;Retail & Other
+;1891243_US;Target
+;1891244_US;Target
+;1891247_US;Retail & Other
+;1891250_US;Retail & Other
+;1891260_US;Retail & Other
+;1891261_US;Retail & Other
+;1891264_US;Target
+;1891269_US;Retail & Other
+;1891270_US;Retail & Other
+;1891274_US;Target
+;1891275_US;Retail & Other
+;1891286_US;Retail & Other
+;1891288_US;Retail & Other
+;1891291_US;Retail & Other
+;1891293_US;Retail & Other
+;1891294_US;Target
+;1891295_US;Target
+;1891299_US;Retail & Other
+;1891300_US;Retail & Other
+;1891301_US;Retail & Other
+;1891302_US;Retail & Other
+;1891303_US;Retail & Other
+;1891305_US;Retail & Other
+;1891307_US;Retail & Other
+;1891308_US;Target
+;1891309_US;Retail & Other
+;1891311_US;Retail & Other
+;1891312_US;Target
+;1891314_US;Retail & Other
+;1891321_US;Target
+;1891322_US;Retail & Other
+;1891324_US;Retail & Other
+;1891325_US;Retail & Other
+;1891326_US;Retail & Other
+;1891329_US;Retail & Other
+;1891331_US;Target
+;1891332_US;Target
+;1891333_US;Target
+;1891335_US;Target
+;1891336_US;Target
+;1891341_US;Target
+;1891345_US;Retail & Other
+;1891346_US;Retail & Other
+;1891353_US;Retail & Other
+;1891355_US;Retail & Other
+;1891357_US;Retail & Other
+;1891368_US;Retail & Other
+;1891370_US;Retail & Other
+;1891371_US;Retail & Other
+;1891372_US;Retail & Other
+;1891373_US;Retail & Other
+;1891383_US;Retail & Other
+;1891385_US;Retail & Other
+;1891387_US;Retail & Other
+;1891388_US;Retail & Other
+;1891390_US;Target
+;1891394_US;Retail & Other
+;1891402_US;Retail & Other
+;1891407_US;Target
+;1891409_US;Retail & Other
+;1891411_US;Retail & Other
+;1891416_US;Retail & Other
+;1891418_US;Retail & Other
+;1891421_US;Retail & Other
+;1891426_US;Target
+;1891427_US;Target
+;1891428_US;NULL
+;1891430_US;Retail & Other
+;1891432_US;Target
+;1891433_US;Retail & Other
+;1891442_US;Retail & Other
+;1891443_US;Target
+;1891446_US;Target
+;1891452_US;Retail & Other
+;1891453_US;Retail & Other
+;1891461_US;Retail & Other
+;1891463_US;Retail & Other
+;1891465_US;Target
+;1891466_US;Retail & Other
+;1891469_US;Retail & Other
+;1891474_US;Retail & Other
+;1891476_US;Retail & Other
+;1891482_US;Retail & Other
+;1891483_US;Emerging
+;1891488_US;Target
+;1891491_US;Retail & Other
+;1891495_US;Target
+;1891497_US;Target
+;1891498_US;Retail & Other
+;1891507_US;Emerging
+;1891513_US;Target
+;1891515_US;Retail & Other
+;1891520_US;Retail & Other
+;1891524_US;Retail & Other
+;1891526_US;Target
+;1891549_US;Retail & Other
+;1891550_US;Retail & Other
+;1891556_US;Retail & Other
+;1891563_US;Retail & Other
+;1891572_US;Retail & Other
+;1891576_US;Retail & Other
+;1891582_US;Target
+;1891586_US;Retail & Other
+;1891589_US;Target
+;1891591_US;Retail & Other
+;1891595_US;Target
+;1891598_US;Retail & Other
+;1891602_US;Retail & Other
+;1891604_US;Retail & Other
+;1891609_US;Retail & Other
+;1891614_US;Retail & Other
+;1891620_US;Target
+;1891621_US;Target
+;1891630_US;Retail & Other
+;1891631_US;Retail & Other
+;1891637_US;Retail & Other
+;1891642_US;Retail & Other
+;1891645_US;Retail & Other
+;1891660_US;Retail & Other
+;1891661_US;Retail & Other
+;1891665_US;Retail & Other
+;1891668_US;Retail & Other
+;1891671_US;Retail & Other
+;1891674_US;Retail & Other
+;1891675_US;Emerging
+;1891676_US;Retail & Other
+;1891679_US;Retail & Other
+;1891686_US;Retail & Other
+;1891687_US;Retail & Other
+;1891689_US;Retail & Other
+;1891690_US;Retail & Other
+;1891694_US;Retail & Other
+;1891695_US;Retail & Other
+;1891697_US;Retail & Other
+;1891698_US;Retail & Other
+;1891699_US;Retail & Other
+;1891700_US;Retail & Other
+;1891701_US;Retail & Other
+;1891702_US;Retail & Other
+;1891703_US;Target
+;1891708_US;Retail & Other
+;1891709_US;Retail & Other
+;1891710_US;Retail & Other
+;1891711_US;Retail & Other
+;1891714_US;Retail & Other
+;1891721_US;Retail & Other
+;1891722_US;Retail & Other
+;1891727_US;Retail & Other
+;1891735_US;Retail & Other
+;1891740_US;Retail & Other
+;1891741_US;Retail & Other
+;1891746_US;Retail & Other
+;1891747_US;Retail & Other
+;1891748_US;Retail & Other
+;1891749_US;Retail & Other
+;1891750_US;Retail & Other
+;1891754_US;Target
+;1891755_US;Retail & Other
+;1891756_US;Retail & Other
+;1891757_US;Retail & Other
+;1891760_US;Retail & Other
+;1891761_US;Retail & Other
+;1891772_US;Retail & Other
+;1891775_US;Retail & Other
+;1891779_US;Retail & Other
+;1891780_US;Retail & Other
+;1891781_US;Target
+;1891786_US;Retail & Other
+;1891788_US;Retail & Other
+;1891794_US;Retail & Other
+;1891795_US;Retail & Other
+;1891805_US;Retail & Other
+;1891806_US;Retail & Other
+;1891814_US;Retail & Other
+;1891815_US;Retail & Other
+;1891816_US;Retail & Other
+;1891817_US;Retail & Other
+;1891818_US;Retail & Other
+;1891823_US;Retail & Other
+;1891825_US;Retail & Other
+;1891827_US;Target
+;1891830_US;Retail & Other
+;1891838_US;Retail & Other
+;1891840_US;Retail & Other
+;1891841_US;Retail & Other
+;1891843_US;Retail & Other
+;1891846_US;Retail & Other
+;1891848_US;Retail & Other
+;1891849_US;Retail & Other
+;1891851_US;Retail & Other
+;1891852_US;Retail & Other
+;1891854_US;Retail & Other
+;1891856_US;Retail & Other
+;1891859_US;Retail & Other
+;1891860_US;Retail & Other
+;1891862_US;Retail & Other
+;1891863_US;Retail & Other
+;1891865_US;Target
+;1891867_US;Retail & Other
+;1891869_US;Retail & Other
+;1891870_US;Retail & Other
+;1891873_US;Retail & Other
+;1891875_US;Retail & Other
+;1891876_US;Retail & Other
+;1891877_US;Retail & Other
+;1891879_US;Target
+;1891883_US;Retail & Other
+;1891886_US;Retail & Other
+;1891887_US;Retail & Other
+;1891890_US;Retail & Other
+;1891892_US;Retail & Other
+;1891893_US;Target
+;1891894_US;Retail & Other
+;1891895_US;Retail & Other
+;1891897_US;Target
+;1891898_US;Retail & Other
+;1891899_US;Retail & Other
+;1891901_US;Retail & Other
+;1891904_US;Retail & Other
+;1891906_US;Retail & Other
+;1891908_US;Retail & Other
+;1891911_US;Retail & Other
+;1891912_US;Retail & Other
+;1891913_US;Retail & Other
+;1891914_US;Retail & Other
+;1891916_US;Retail & Other
+;1891917_US;Retail & Other
+;1891918_US;Target
+;1891920_US;Retail & Other
+;1891924_US;Retail & Other
+;1891926_US;Retail & Other
+;1891927_US;Retail & Other
+;1891928_US;Retail & Other
+;1891930_US;Retail & Other
+;1891931_US;Retail & Other
+;1891932_US;Retail & Other
+;1891935_US;Retail & Other
+;1891936_US;Retail & Other
+;1891937_US;Retail & Other
+;1891939_US;Target
+;1891941_US;Retail & Other
+;1891942_US;Target
+;1891943_US;Retail & Other
+;1891945_US;Retail & Other
+;1891946_US;Target
+;1891948_US;Retail & Other
+;1891950_US;Retail & Other
+;1891951_US;Retail & Other
+;1891954_US;Retail & Other
+;1891955_US;Retail & Other
+;1891957_US;Retail & Other
+;1891958_US;Retail & Other
+;1891959_US;Retail & Other
+;1891961_US;Retail & Other
+;1891962_US;Retail & Other
+;1891963_US;Retail & Other
+;1891964_US;Target
+;1891968_US;Retail & Other
+;1891969_US;Retail & Other
+;1891970_US;Retail & Other
+;1891972_US;Retail & Other
+;1891975_US;Retail & Other
+;1891976_US;Retail & Other
+;1891977_US;Retail & Other
+;1891978_US;Retail & Other
+;1891980_US;Retail & Other
+;1891981_US;Retail & Other
+;1891983_US;Retail & Other
+;1891986_US;Retail & Other
+;1891989_US;Target
+;1891990_US;Retail & Other
+;1891992_US;Retail & Other
+;1891993_US;Retail & Other
+;1891995_US;Retail & Other
+;1891998_US;Retail & Other
+;1892001_US;Retail & Other
+;1892002_US;Target
+;1892003_US;Retail & Other
+;1892016_US;Target
+;1892027_US;Emerging
+;1892029_US;Retail & Other
+;1892033_US;Retail & Other
+;1892040_US;Retail & Other
+;1892041_US;Retail & Other
+;1892045_US;Retail & Other
+;1892049_US;Retail & Other
+;1892054_US;Retail & Other
+;1892071_US;Retail & Other
+;1892072_US;Target
+;1892087_US;Retail & Other
+;1892092_US;Retail & Other
+;1892096_US;Retail & Other
+;1892098_US;Target
+;1892102_US;NULL
+;1892105_US;Retail & Other
+;1892106_US;Retail & Other
+;1892108_US;Retail & Other
+;1892120_US;Retail & Other
+;1892124_US;Target
+;1892127_US;Retail & Other
+;1892128_US;Retail & Other
+;1892131_US;Retail & Other
+;1892133_US;Target
+;1892136_US;Retail & Other
+;1892138_US;Target
+;1892140_US;Retail & Other
+;1892143_US;Retail & Other
+;1892145_US;Retail & Other
+;1892146_US;Retail & Other
+;1892149_US;Retail & Other
+;1892154_US;Target
+;1892161_US;Emerging
+;1892164_US;Target
+;1892187_US;Retail & Other
+;1892188_US;Target
+;1892195_US;Retail & Other
+;1892196_US;Retail & Other
+;1892203_US;Retail & Other
+;1892206_US;Small
+;1892207_US;Retail & Other
+;1892224_US;Target
+;1892226_US;Retail & Other
+;1892227_US;Retail & Other
+;1892237_US;Retail & Other
+;1892240_US;Emerging
+;1892242_US;Retail & Other
+;1892246_US;Retail & Other
+;1892250_US;Target
+;1892251_US;Retail & Other
+;1892258_US;Emerging
+;1892261_US;Retail & Other
+;1892262_US;Retail & Other
+;1892265_US;Target
+;1892266_US;Retail & Other
+;1892271_US;Retail & Other
+;1892275_US;Target
+;1892278_US;Retail & Other
+;1892286_US;Target
+;1892291_US;Retail & Other
+;1892293_US;Retail & Other
+;1892300_US;Retail & Other
+;1892303_US;Retail & Other
+;1892304_US;Retail & Other
+;1892305_US;Retail & Other
+;1892306_US;Retail & Other
+;1892309_US;Retail & Other
+;1892312_US;Retail & Other
+;1892315_US;Retail & Other
+;1892318_US;Retail & Other
+;1892327_US;Target
+;1892335_US;Retail & Other
+;1892337_US;Retail & Other
+;1892338_US;Retail & Other
+;1892342_US;Retail & Other
+;1892343_US;Retail & Other
+;1892346_US;Retail & Other
+;1892353_US;Target
+;1892359_US;Retail & Other
+;1892360_US;Retail & Other
+;1892378_US;Retail & Other
+;1892380_US;Retail & Other
+;1892385_US;Retail & Other
+;1892387_US;Retail & Other
+;1892389_US;Retail & Other
+;1892390_US;Retail & Other
+;1892392_US;Retail & Other
+;1892395_US;Retail & Other
+;1892396_US;Retail & Other
+;1892399_US;Retail & Other
+;1892400_US;Retail & Other
+;1892401_US;Retail & Other
+;1892402_US;Retail & Other
+;1892406_US;Retail & Other
+;1892407_US;Retail & Other
+;1892409_US;Retail & Other
+;1892411_US;Retail & Other
+;1892416_US;Target
+;1892421_US;Retail & Other
+;1892434_US;Retail & Other
+;1892437_US;Retail & Other
+;1892445_US;Retail & Other
+;1892446_US;Retail & Other
+;1892453_US;Retail & Other
+;1892458_US;Retail & Other
+;1892465_US;Retail & Other
+;1892466_US;Target
+;1892478_US;Emerging
+;1892480_US;Retail & Other
+;1892482_US;Retail & Other
+;1892485_US;Retail & Other
+;1892490_US;Retail & Other
+;1892493_US;Target
+;1892494_US;Retail & Other
+;1892499_US;Retail & Other
+;1892508_US;Retail & Other
+;1892510_US;Target
+;1892514_US;Target
+;1892520_US;Retail & Other
+;1892525_US;Retail & Other
+;1892535_US;Target
+;1892537_US;Target
+;1892556_US;Retail & Other
+;1892570_US;Retail & Other
+;1892571_US;Target
+;1892595_US;Retail & Other
+;1892598_US;Retail & Other
+;1892599_US;Retail & Other
+;1892603_US;Target
+;1892606_US;Retail & Other
+;1892607_US;Retail & Other
+;1892619_US;Retail & Other
+;1892622_US;Target
+;1892624_US;Retail & Other
+;1892631_US;Target
+;1892639_US;Retail & Other
+;1892640_US;Retail & Other
+;1892641_US;Retail & Other
+;1892642_US;Target
+;1892657_US;Retail & Other
+;1892666_US;Retail & Other
+;1892670_US;Retail & Other
+;1892671_US;Retail & Other
+;1892672_US;Retail & Other
+;1892677_US;Retail & Other
+;1892683_US;Retail & Other
+;1892693_US;Retail & Other
+;1892695_US;Target
+;1892699_US;Target
+;1892707_US;Target
+;1892709_US;Target
+;1892718_US;Retail & Other
+;1892721_US;Target
+;1892722_US;Retail & Other
+;1892724_US;Target
+;1892739_US;Retail & Other
+;1892745_US;Retail & Other
+;1892747_US;Retail & Other
+;1892748_US;Retail & Other
+;1892749_US;Retail & Other
+;1892750_US;Retail & Other
+;1892752_US;Retail & Other
+;1892753_US;Retail & Other
+;1892755_US;Retail & Other
+;1892756_US;Retail & Other
+;1892760_US;Retail & Other
+;1892763_US;Retail & Other
+;1892764_US;Retail & Other
+;1892765_US;Retail & Other
+;1892766_US;Target
+;1892771_US;Target
+;1892772_US;Target
+;1892773_US;Retail & Other
+;1892774_US;Retail & Other
+;1892775_US;Retail & Other
+;1892778_US;Retail & Other
+;1892779_US;Target
+;1892780_US;Retail & Other
+;1892781_US;Target
+;1892782_US;Retail & Other
+;1892783_US;Retail & Other
+;1892784_US;Retail & Other
+;1892785_US;Retail & Other
+;1892789_US;Target
+;1892791_US;Retail & Other
+;1892792_US;Target
+;1892793_US;Retail & Other
+;1892794_US;Retail & Other
+;1892796_US;Retail & Other
+;1892797_US;Retail & Other
+;1892798_US;Retail & Other
+;1892799_US;Retail & Other
+;1892801_US;Retail & Other
+;1892803_US;Retail & Other
+;1892805_US;Retail & Other
+;1892806_US;Retail & Other
+;1892809_US;Retail & Other
+;1892815_US;Retail & Other
+;1892818_US;Target
+;1892819_US;Emerging
+;1892829_US;Retail & Other
+;1892839_US;Retail & Other
+;1892841_US;Retail & Other
+;1892842_US;Retail & Other
+;1892845_US;Retail & Other
+;1892847_US;Target
+;1892849_US;Target
+;1892852_US;Retail & Other
+;1892856_US;Retail & Other
+;1892859_US;Retail & Other
+;1892862_US;Retail & Other
+;1892879_US;Retail & Other
+;1892880_US;Target
+;1892892_US;Target
+;1892893_US;Target
+;1892898_US;Retail & Other
+;1892899_US;Retail & Other
+;1892900_US;Target
+;1892901_US;Target
+;1892902_US;Target
+;1892910_US;Retail & Other
+;1892911_US;Retail & Other
+;1892915_US;Retail & Other
+;1892916_US;Retail & Other
+;1892918_US;Target
+;1892919_US;Retail & Other
+;1892920_US;Target
+;1892921_US;Retail & Other
+;1892923_US;Retail & Other
+;1892927_US;Target
+;1892931_US;Retail & Other
+;1892932_US;Retail & Other
+;1892937_US;Retail & Other
+;1892940_US;Retail & Other
+;1892945_US;Target
+;1892946_US;Retail & Other
+;1892947_US;Retail & Other
+;1892952_US;Retail & Other
+;1892957_US;Retail & Other
+;1892959_US;Retail & Other
+;1892964_US;Retail & Other
+;1892967_US;Emerging
+;1892968_US;Retail & Other
+;1892977_US;Retail & Other
+;1892980_US;Target
+;1892986_US;Retail & Other
+;1892987_US;Target
+;1892990_US;Target
+;1892994_US;Retail & Other
+;1892996_US;Retail & Other
+;1892997_US;Retail & Other
+;1893003_US;Retail & Other
+;1893004_US;Retail & Other
+;1893008_US;Retail & Other
+;1893012_US;Retail & Other
+;1893013_US;Retail & Other
+;1893019_US;Target
+;1893025_US;Retail & Other
+;1893028_US;Retail & Other
+;1893030_US;Retail & Other
+;1893038_US;Retail & Other
+;1893039_US;Retail & Other
+;1893044_US;Target
+;1893046_US;Target
+;1893049_US;Retail & Other
+;1893050_US;Retail & Other
+;1893052_US;Target
+;1893054_US;Retail & Other
+;1893055_US;Target
+;1893058_US;Retail & Other
+;1893063_US;Retail & Other
+;1893065_US;Retail & Other
+;1893067_US;Retail & Other
+;1893069_US;Retail & Other
+;1893074_US;Retail & Other
+;1893077_US;Retail & Other
+;1893078_US;Target
+;1893080_US;Retail & Other
+;1893089_US;Retail & Other
+;1893091_US;Retail & Other
+;1893093_US;Small
+;1893098_US;Retail & Other
+;1893101_US;Retail & Other
+;1893108_US;Target
+;1893109_US;Retail & Other
+;1893110_US;Target
+;1893111_US;Retail & Other
+;1893112_US;Retail & Other
+;1893113_US;Retail & Other
+;1893114_US;Target
+;1893115_US;Retail & Other
+;1893117_US;Retail & Other
+;1893119_US;Retail & Other
+;1893121_US;Target
+;1893124_US;Target
+;1893125_US;Retail & Other
+;1893126_US;Target
+;1893127_US;Retail & Other
+;1893129_US;Retail & Other
+;1893130_US;Retail & Other
+;1893132_US;Retail & Other
+;1893133_US;Retail & Other
+;1893136_US;Retail & Other
+;1893138_US;Retail & Other
+;1893140_US;Retail & Other
+;1893145_US;Small
+;1893156_US;Retail & Other
+;1893162_US;Target
+;1893163_US;Retail & Other
+;1893164_US;Retail & Other
+;1893165_US;Retail & Other
+;1893167_US;Retail & Other
+;1893169_US;Retail & Other
+;1893172_US;Target
+;1893173_US;Target
+;1893174_US;Retail & Other
+;1893178_US;Retail & Other
+;1893181_US;Retail & Other
+;1893185_US;Retail & Other
+;1893188_US;Retail & Other
+;1893189_US;Retail & Other
+;1893192_US;Retail & Other
+;1893195_US;Emerging
+;1893200_US;Retail & Other
+;1893202_US;Target
+;1893206_US;Target
+;1893212_US;Retail & Other
+;1893215_US;Retail & Other
+;1893216_US;Retail & Other
+;1893234_US;Emerging
+;1893237_US;Retail & Other
+;1893240_US;Retail & Other
+;1893243_US;Retail & Other
+;1893246_US;Retail & Other
+;1893248_US;Retail & Other
+;1893254_US;Retail & Other
+;1893256_US;Retail & Other
+;1893268_US;Retail & Other
+;1893270_US;Target
+;1893272_US;Retail & Other
+;1893273_US;Retail & Other
+;1893284_US;Retail & Other
+;1893292_US;Retail & Other
+;1893295_US;Retail & Other
+;1893317_US;Retail & Other
+;1893318_US;Retail & Other
+;1893325_US;Retail & Other
+;1893331_US;Target
+;1893333_US;Retail & Other
+;1893336_US;Emerging
+;1893348_US;Retail & Other
+;1893353_US;Retail & Other
+;1893357_US;Retail & Other
+;1893359_US;Retail & Other
+;1893368_US;Target
+;1893370_US;Retail & Other
+;1893373_US;NULL
+;1893374_US;Retail & Other
+;1893382_US;Retail & Other
+;1893383_US;Target
+;1893384_US;Retail & Other
+;1893386_US;Retail & Other
+;1893388_US;Retail & Other
+;1893389_US;Retail & Other
+;1893393_US;Retail & Other
+;1893395_US;Target
+;1893399_US;Retail & Other
+;1893400_US;Retail & Other
+;1893401_US;Retail & Other
+;1893409_US;Retail & Other
+;1893410_US;Retail & Other
+;1893412_US;Retail & Other
+;1893415_US;Retail & Other
+;1893416_US;Retail & Other
+;1893423_US;Retail & Other
+;1893429_US;Retail & Other
+;1893431_US;Retail & Other
+;1893432_US;Retail & Other
+;1893433_US;Retail & Other
+;1893434_US;Retail & Other
+;1893435_US;Retail & Other
+;1893436_US;Retail & Other
+;1893438_US;Retail & Other
+;1893439_US;Retail & Other
+;1893441_US;Retail & Other
+;1893443_US;Retail & Other
+;1893445_US;Retail & Other
+;1893447_US;Retail & Other
+;1893448_US;Target
+;1893449_US;Retail & Other
+;1893455_US;Retail & Other
+;1893464_US;Target
+;1893465_US;Retail & Other
+;1893466_US;Retail & Other
+;1893470_US;Retail & Other
+;1893471_US;Retail & Other
+;1893477_US;Retail & Other
+;1893481_US;Emerging
+;1893483_US;Retail & Other
+;1893484_US;Target
+;1893488_US;Target
+;1893492_US;Target
+;1893493_US;Retail & Other
+;1893501_US;Retail & Other
+;1893502_US;Retail & Other
+;1893506_US;Retail & Other
+;1893508_US;Retail & Other
+;1893516_US;Target
+;1893517_US;Retail & Other
+;1893526_US;Retail & Other
+;1893530_US;Retail & Other
+;1893532_US;Retail & Other
+;1893533_US;Target
+;1893540_US;Retail & Other
+;1893541_US;Target
+;1893550_US;Retail & Other
+;1893552_US;Retail & Other
+;1893554_US;Target
+;1893563_US;Retail & Other
+;1893565_US;Target
+;1893567_US;Retail & Other
+;1893568_US;Retail & Other
+;1893570_US;Retail & Other
+;1893572_US;Retail & Other
+;1893580_US;Retail & Other
+;1893581_US;Retail & Other
+;1893584_US;Retail & Other
+;1893585_US;Retail & Other
+;1893586_US;Retail & Other
+;1893597_US;Retail & Other
+;1893610_US;Retail & Other
+;1893611_US;Retail & Other
+;1893620_US;Emerging
+;1893624_US;Retail & Other
+;1893637_US;Retail & Other
+;1893641_US;Target
+;1893649_US;Retail & Other
+;1893650_US;Retail & Other
+;1893651_US;Retail & Other
+;1893653_US;Retail & Other
+;1893654_US;Retail & Other
+;1893655_US;Retail & Other
+;1893665_US;Retail & Other
+;1893667_US;Target
+;1893668_US;Retail & Other
+;1893669_US;Emerging
+;1893670_US;Retail & Other
+;1893671_US;Retail & Other
+;1893672_US;Retail & Other
+;1893673_US;Retail & Other
+;1893675_US;Retail & Other
+;1893677_US;Retail & Other
+;1893678_US;Retail & Other
+;1893679_US;Retail & Other
+;1893680_US;Retail & Other
+;1893682_US;Retail & Other
+;1893683_US;Retail & Other
+;1893684_US;Retail & Other
+;1893685_US;Retail & Other
+;1893687_US;Retail & Other
+;1893688_US;Retail & Other
+;1893689_US;Retail & Other
+;1893693_US;Target
+;1893696_US;Retail & Other
+;1893698_US;Retail & Other
+;1893700_US;Target
+;1893702_US;Retail & Other
+;1893705_US;Retail & Other
+;1893706_US;Retail & Other
+;1893707_US;Retail & Other
+;1893708_US;Retail & Other
+;1893710_US;Retail & Other
+;1893713_US;Retail & Other
+;1893715_US;Retail & Other
+;1893716_US;Retail & Other
+;1893717_US;Retail & Other
+;1893721_US;Retail & Other
+;1893729_US;Retail & Other
+;1893730_US;Small
+;1893733_US;Emerging
+;1893734_US;Retail & Other
+;1893735_US;Retail & Other
+;1893739_US;Retail & Other
+;1893743_US;Retail & Other
+;1893748_US;Retail & Other
+;1893750_US;Retail & Other
+;1893751_US;Retail & Other
+;1893754_US;Retail & Other
+;1893755_US;Retail & Other
+;1893756_US;Retail & Other
+;1893757_US;Retail & Other
+;1893761_US;Retail & Other
+;1893762_US;Retail & Other
+;1893763_US;Retail & Other
+;1893764_US;Target
+;1893765_US;Retail & Other
+;1893766_US;Retail & Other
+;1893768_US;Retail & Other
+;1893771_US;Target
+;1893772_US;Retail & Other
+;1893773_US;Retail & Other
+;1893778_US;Retail & Other
+;1893780_US;Retail & Other
+;1893782_US;Retail & Other
+;1893783_US;Target
+;1893786_US;Retail & Other
+;1893790_US;Retail & Other
+;1893791_US;Target
+;1893792_US;Retail & Other
+;1893793_US;Retail & Other
+;1893794_US;Target
+;1893795_US;Retail & Other
+;1893796_US;Retail & Other
+;1893797_US;Retail & Other
+;1893798_US;Retail & Other
+;1893799_US;Retail & Other
+;1893801_US;Retail & Other
+;1893803_US;Retail & Other
+;1893804_US;Retail & Other
+;1893805_US;Retail & Other
+;1893806_US;Retail & Other
+;1893809_US;Retail & Other
+;1893810_US;Target
+;1893811_US;Retail & Other
+;1893814_US;Retail & Other
+;1893817_US;Retail & Other
+;1893818_US;Retail & Other
+;1893819_US;Retail & Other
+;1893820_US;Target
+;1893823_US;Target
+;1893824_US;Retail & Other
+;1893825_US;Retail & Other
+;1893826_US;Retail & Other
+;1893828_US;Retail & Other
+;1893829_US;Retail & Other
+;1893830_US;Retail & Other
+;1893831_US;Retail & Other
+;1893832_US;Retail & Other
+;1893833_US;Retail & Other
+;1893834_US;Retail & Other
+;1893836_US;Retail & Other
+;1893841_US;Retail & Other
+;1893842_US;Retail & Other
+;1893844_US;Retail & Other
+;1893845_US;Retail & Other
+;1893848_US;Retail & Other
+;1893849_US;Retail & Other
+;1893850_US;Retail & Other
+;1893851_US;Retail & Other
+;1893852_US;Retail & Other
+;1893853_US;Retail & Other
+;1893856_US;Target
+;1893860_US;Retail & Other
+;1893861_US;Target
+;1893863_US;Retail & Other
+;1893864_US;Retail & Other
+;1893867_US;Retail & Other
+;1893868_US;Retail & Other
+;1893870_US;Retail & Other
+;1893871_US;Retail & Other
+;1893872_US;Retail & Other
+;1893875_US;Retail & Other
+;1893877_US;Retail & Other
+;1893879_US;Retail & Other
+;1893881_US;Target
+;1893882_US;Retail & Other
+;1893883_US;Target
+;1893884_US;Retail & Other
+;1893886_US;Retail & Other
+;1893887_US;Retail & Other
+;1893888_US;Retail & Other
+;1893889_US;Retail & Other
+;1893890_US;Retail & Other
+;1893891_US;Retail & Other
+;1893893_US;Retail & Other
+;1893895_US;Retail & Other
+;1893897_US;Retail & Other
+;1893898_US;Retail & Other
+;1893899_US;Retail & Other
+;1893906_US;Retail & Other
+;1893907_US;Retail & Other
+;1893909_US;Retail & Other
+;1893912_US;Retail & Other
+;1893915_US;Retail & Other
+;1893916_US;Retail & Other
+;1893918_US;Retail & Other
+;1893921_US;Target
+;1893923_US;Retail & Other
+;1893926_US;Retail & Other
+;1893928_US;Retail & Other
+;1893930_US;Retail & Other
+;1893932_US;Retail & Other
+;1893933_US;Retail & Other
+;1893934_US;Retail & Other
+;1893936_US;Retail & Other
+;1893937_US;Retail & Other
+;1893939_US;Retail & Other
+;1893941_US;Retail & Other
+;1893943_US;Retail & Other
+;1893944_US;Retail & Other
+;1893946_US;Retail & Other
+;1893947_US;Retail & Other
+;1893948_US;Target
+;1893949_US;Retail & Other
+;1893950_US;Retail & Other
+;1893951_US;Retail & Other
+;1893952_US;Retail & Other
+;1893955_US;Retail & Other
+;1893956_US;Retail & Other
+;1893958_US;Retail & Other
+;1893960_US;Retail & Other
+;1893961_US;Retail & Other
+;1893962_US;Target
+;1893963_US;Retail & Other
+;1893972_US;Target
+;1894003_US;Retail & Other
+;1894005_US;Retail & Other
+;1894006_US;Target
+;1894012_US;Retail & Other
+;1894014_US;Retail & Other
+;1894017_US;Retail & Other
+;1894023_US;Retail & Other
+;1894030_US;Retail & Other
+;1894036_US;Retail & Other
+;1894041_US;Retail & Other
+;1894050_US;Retail & Other
+;1894051_US;Retail & Other
+;1894061_US;Retail & Other
+;1894064_US;Target
+;1894072_US;Retail & Other
+;1894075_US;Retail & Other
+;1894083_US;Retail & Other
+;1894085_US;Retail & Other
+;1894087_US;Retail & Other
+;1894089_US;Retail & Other
+;1894091_US;Retail & Other
+;1894096_US;Retail & Other
+;1894099_US;Retail & Other
+;1894100_US;Retail & Other
+;1894106_US;Retail & Other
+;1894109_US;Retail & Other
+;1894112_US;Retail & Other
+;1894114_US;Retail & Other
+;1894121_US;Retail & Other
+;1894122_US;Retail & Other
+;1894137_US;Retail & Other
+;1894139_US;Retail & Other
+;1894141_US;Retail & Other
+;1894147_US;Retail & Other
+;1894156_US;Target
+;1894158_US;Retail & Other
+;1894161_US;Retail & Other
+;1894162_US;Retail & Other
+;1894166_US;Retail & Other
+;1894167_US;Retail & Other
+;1894179_US;Emerging
+;1894186_US;Target
+;1894188_US;Retail & Other
+;1894189_US;Retail & Other
+;1894191_US;Retail & Other
+;1894201_US;Target
+;1894207_US;Retail & Other
+;1894211_US;Retail & Other
+;1894214_US;Retail & Other
+;1894215_US;Retail & Other
+;1894216_US;Emerging
+;1894223_US;Target
+;1894227_US;Retail & Other
+;1894228_US;Retail & Other
+;1894231_US;Retail & Other
+;1894232_US;Retail & Other
+;1894235_US;Retail & Other
+;1894239_US;Retail & Other
+;1894243_US;Retail & Other
+;1894248_US;Retail & Other
+;1894249_US;Retail & Other
+;1894250_US;Target
+;1894253_US;Retail & Other
+;1894256_US;Target
+;1894257_US;Retail & Other
+;1894259_US;Target
+;1894260_US;Retail & Other
+;1894263_US;Retail & Other
+;1894265_US;Retail & Other
+;1894267_US;Retail & Other
+;1894270_US;Retail & Other
+;1894271_US;Retail & Other
+;1894273_US;Retail & Other
+;1894274_US;Retail & Other
+;1894278_US;Retail & Other
+;1894281_US;Retail & Other
+;1894283_US;Retail & Other
+;1894284_US;Retail & Other
+;1894285_US;Target
+;1894286_US;Retail & Other
+;1894287_US;Emerging
+;1894288_US;Retail & Other
+;1894291_US;Target
+;1894293_US;Target
+;1894294_US;Retail & Other
+;1894295_US;Retail & Other
+;1894296_US;Retail & Other
+;1894301_US;Retail & Other
+;1894306_US;Retail & Other
+;1894307_US;Retail & Other
+;1894311_US;Target
+;1894319_US;Target
+;1894322_US;Retail & Other
+;1894325_US;Retail & Other
+;1894327_US;Target
+;1894328_US;Retail & Other
+;1894332_US;Retail & Other
+;1894344_US;Retail & Other
+;1894346_US;Target
+;1894348_US;Target
+;1894356_US;Retail & Other
+;1894357_US;Retail & Other
+;1894366_US;Retail & Other
+;1894368_US;Retail & Other
+;1894370_US;Target
+;1894371_US;Retail & Other
+;1894373_US;Retail & Other
+;1894374_US;Retail & Other
+;1894377_US;Retail & Other
+;1894378_US;Retail & Other
+;1894385_US;Target
+;1894386_US;Target
+;1894387_US;Retail & Other
+;1894392_US;Emerging
+;1894393_US;Target
+;1894409_US;Retail & Other
+;1894413_US;Retail & Other
+;1894421_US;Retail & Other
+;1894425_US;Retail & Other
+;1894430_US;Retail & Other
+;1894431_US;Retail & Other
+;1894438_US;Retail & Other
+;1894444_US;Retail & Other
+;1894453_US;Retail & Other
+;1894459_US;Retail & Other
+;1894467_US;Emerging
+;1894474_US;Retail & Other
+;1894477_US;Retail & Other
+;1894496_US;Retail & Other
+;1894497_US;Retail & Other
+;1894498_US;Retail & Other
+;1894505_US;Retail & Other
+;1894509_US;Retail & Other
+;1894516_US;Retail & Other
+;1894530_US;Retail & Other
+;1894531_US;Retail & Other
+;1894539_US;Retail & Other
+;1894546_US;Retail & Other
+;1894550_US;Retail & Other
+;1894556_US;Retail & Other
+;1894557_US;Retail & Other
+;1894559_US;Retail & Other
+;1894561_US;Retail & Other
+;1894565_US;Retail & Other
+;1894568_US;Retail & Other
+;1894570_US;Retail & Other
+;1894576_US;Retail & Other
+;1894578_US;Retail & Other
+;1894585_US;Retail & Other
+;1894588_US;Retail & Other
+;1894589_US;Retail & Other
+;1894592_US;Retail & Other
+;1894595_US;Retail & Other
+;1894599_US;Retail & Other
+;1894603_US;Retail & Other
+;1894606_US;Retail & Other
+;1894607_US;Retail & Other
+;1894608_US;Retail & Other
+;1894609_US;Retail & Other
+;1894611_US;Retail & Other
+;1894617_US;Retail & Other
+;1894618_US;Retail & Other
+;1894620_US;Retail & Other
+;1894622_US;Retail & Other
+;1894623_US;Retail & Other
+;1894625_US;Retail & Other
+;1894626_US;Retail & Other
+;1894628_US;Retail & Other
+;1894629_US;Retail & Other
+;1894632_US;Retail & Other
+;1894633_US;Retail & Other
+;1894634_US;Retail & Other
+;1894635_US;Target
+;1894636_US;Retail & Other
+;1894637_US;Retail & Other
+;1894639_US;Retail & Other
+;1894645_US;Retail & Other
+;1894647_US;Retail & Other
+;1894650_US;Retail & Other
+;1894652_US;Retail & Other
+;1894659_US;Retail & Other
+;1894662_US;Target
+;1894664_US;Retail & Other
+;1894666_US;Retail & Other
+;1894669_US;Retail & Other
+;1894672_US;Emerging
+;1894674_US;Emerging
+;1894676_US;Retail & Other
+;1894682_US;Retail & Other
+;1894684_US;Retail & Other
+;1894689_US;Retail & Other
+;1894691_US;Retail & Other
+;1894695_US;Retail & Other
+;1894696_US;Target
+;1894697_US;Retail & Other
+;1894698_US;Retail & Other
+;1894703_US;Retail & Other
+;1894711_US;Retail & Other
+;1894715_US;Retail & Other
+;1894720_US;Retail & Other
+;1894721_US;Retail & Other
+;1894726_US;Target
+;1894735_US;Retail & Other
+;1894736_US;Retail & Other
+;1894740_US;Retail & Other
+;1894748_US;Retail & Other
+;1894755_US;Emerging
+;1894759_US;Retail & Other
+;1894761_US;Retail & Other
+;1894764_US;Retail & Other
+;1894767_US;Retail & Other
+;1894768_US;Retail & Other
+;1894770_US;Retail & Other
+;1894776_US;Retail & Other
+;1894777_US;Retail & Other
+;1894779_US;Retail & Other
+;1894780_US;Retail & Other
+;1894783_US;Retail & Other
+;1894784_US;Retail & Other
+;1894787_US;Retail & Other
+;1894790_US;Target
+;1894791_US;Target
+;1894795_US;Retail & Other
+;1894797_US;Retail & Other
+;1894798_US;Retail & Other
+;1894800_US;Retail & Other
+;1894801_US;Retail & Other
+;1894807_US;Retail & Other
+;1894810_US;Target
+;1894812_US;Retail & Other
+;1894813_US;Retail & Other
+;1894820_US;Retail & Other
+;1894821_US;Retail & Other
+;1894823_US;Retail & Other
+;1894826_US;Retail & Other
+;1894828_US;Retail & Other
+;1894841_US;Retail & Other
+;1894842_US;Retail & Other
+;1894844_US;Retail & Other
+;1894845_US;Retail & Other
+;1894850_US;Retail & Other
+;1894855_US;Retail & Other
+;1894864_US;Target
+;1894865_US;Retail & Other
+;1894867_US;Retail & Other
+;1894876_US;Target
+;1894883_US;Target
+;1894886_US;Retail & Other
+;1894887_US;Retail & Other
+;1894895_US;Retail & Other
+;1894896_US;Retail & Other
+;1894897_US;Retail & Other
+;1894908_US;Retail & Other
+;1894909_US;Retail & Other
+;1894915_US;Target
+;1894919_US;Retail & Other
+;1894922_US;Target
+;1894933_US;Retail & Other
+;1894934_US;Retail & Other
+;1894935_US;Target
+;1894939_US;Retail & Other
+;1894940_US;Retail & Other
+;1894941_US;Retail & Other
+;1894942_US;Retail & Other
+;1894945_US;Retail & Other
+;1894946_US;Retail & Other
+;1894948_US;Retail & Other
+;1894949_US;Retail & Other
+;1894951_US;Retail & Other
+;1894952_US;Retail & Other
+;1894953_US;Retail & Other
+;1894954_US;Retail & Other
+;1894956_US;Retail & Other
+;1894957_US;Retail & Other
+;1894959_US;Retail & Other
+;1894960_US;Retail & Other
+;1894961_US;Retail & Other
+;1894963_US;Retail & Other
+;1894964_US;Target
+;1894976_US;Retail & Other
+;1894978_US;Retail & Other
+;1894985_US;Retail & Other
+;1894992_US;Target
+;1894993_US;Retail & Other
+;1894995_US;Retail & Other
+;1894998_US;Retail & Other
+;1895007_US;Emerging
+;1895008_US;Retail & Other
+;1895011_US;Retail & Other
+;1895013_US;Target
+;1895016_US;Retail & Other
+;1895022_US;Retail & Other
+;1895029_US;Target
+;1895033_US;Retail & Other
+;1895035_US;Retail & Other
+;1895042_US;Retail & Other
+;1895043_US;Retail & Other
+;1895044_US;Retail & Other
+;1895052_US;Retail & Other
+;1895057_US;Retail & Other
+;1895062_US;Target
+;1895067_US;Medium
+;1895068_US;Retail & Other
+;1895076_US;Retail & Other
+;1895078_US;Retail & Other
+;1895085_US;Retail & Other
+;1895091_US;Retail & Other
+;1895102_US;Retail & Other
+;1895115_US;Target
+;1895116_US;Retail & Other
+;1895125_US;Retail & Other
+;1895155_US;Target
+;1895168_US;Retail & Other
+;1895172_US;Retail & Other
+;1895177_US;Retail & Other
+;1895181_US;Retail & Other
+;1895189_US;Retail & Other
+;1895190_US;Retail & Other
+;1895191_US;Retail & Other
+;1895193_US;Retail & Other
+;1895194_US;Retail & Other
+;1895199_US;Target
+;1895205_US;Target
+;1895206_US;Target
+;1895208_US;Retail & Other
+;1895209_US;Retail & Other
+;1895211_US;Retail & Other
+;1895220_US;Retail & Other
+;1895222_US;Retail & Other
+;1895223_US;Emerging
+;1895228_US;Retail & Other
+;1895229_US;Retail & Other
+;1895235_US;Retail & Other
+;1895244_US;Retail & Other
+;1895245_US;Retail & Other
+;1895259_US;Retail & Other
+;1895266_US;Retail & Other
+;1895267_US;Retail & Other
+;1895268_US;Retail & Other
+;1895279_US;Retail & Other
+;1895280_US;Retail & Other
+;1895281_US;Retail & Other
+;1895285_US;Retail & Other
+;1895286_US;Retail & Other
+;1895287_US;Target
+;1895288_US;Retail & Other
+;1895290_US;Retail & Other
+;1895292_US;Retail & Other
+;1895294_US;Retail & Other
+;1895296_US;Retail & Other
+;1895297_US;Retail & Other
+;1895299_US;Retail & Other
+;1895300_US;Retail & Other
+;1895301_US;Retail & Other
+;1895302_US;Retail & Other
+;1895304_US;Retail & Other
+;1895307_US;Retail & Other
+;1895309_US;Retail & Other
+;1895312_US;Retail & Other
+;1895315_US;Target
+;1895317_US;Retail & Other
+;1895319_US;Target
+;1895325_US;Retail & Other
+;1895328_US;Retail & Other
+;1895334_US;Retail & Other
+;1895337_US;Retail & Other
+;1895344_US;Retail & Other
+;1895350_US;Retail & Other
+;1895352_US;Retail & Other
+;1895356_US;Retail & Other
+;1895357_US;Retail & Other
+;1895358_US;Retail & Other
+;1895359_US;Retail & Other
+;1895365_US;Retail & Other
+;1895367_US;Retail & Other
+;1895374_US;Retail & Other
+;1895376_US;Retail & Other
+;1895379_US;Retail & Other
+;1895383_US;Retail & Other
+;1895384_US;Retail & Other
+;1895387_US;Target
+;1895388_US;Retail & Other
+;1895390_US;Target
+;1895391_US;Retail & Other
+;1895392_US;Retail & Other
+;1895393_US;Retail & Other
+;1895394_US;Retail & Other
+;1895397_US;Retail & Other
+;1895398_US;Retail & Other
+;1895399_US;Retail & Other
+;1895400_US;Retail & Other
+;1895404_US;Retail & Other
+;1895405_US;Retail & Other
+;1895407_US;Retail & Other
+;1895408_US;Retail & Other
+;1895410_US;Retail & Other
+;1895411_US;Retail & Other
+;1895413_US;Retail & Other
+;1895415_US;Retail & Other
+;1895416_US;Retail & Other
+;1895418_US;Retail & Other
+;1895421_US;Retail & Other
+;1895424_US;Retail & Other
+;1895429_US;Retail & Other
+;1895431_US;Retail & Other
+;1895435_US;Retail & Other
+;1895438_US;Retail & Other
+;1895439_US;Target
+;1895442_US;Retail & Other
+;1895443_US;Retail & Other
+;1895445_US;Retail & Other
+;1895446_US;Retail & Other
+;1895447_US;Retail & Other
+;1895449_US;Retail & Other
+;1895451_US;Target
+;1895452_US;Retail & Other
+;1895454_US;Retail & Other
+;1895455_US;Retail & Other
+;1895456_US;Retail & Other
+;1895457_US;Retail & Other
+;1895458_US;Retail & Other
+;1895459_US;Retail & Other
+;1895460_US;Retail & Other
+;1895462_US;Retail & Other
+;1895464_US;Retail & Other
+;1895466_US;Target
+;1895467_US;Retail & Other
+;1895469_US;Retail & Other
+;1895470_US;Retail & Other
+;1895471_US;Retail & Other
+;1895472_US;Retail & Other
+;1895473_US;Retail & Other
+;1895475_US;Retail & Other
+;1895476_US;Retail & Other
+;1895479_US;Retail & Other
+;1895481_US;Retail & Other
+;1895482_US;Target
+;1895483_US;Retail & Other
+;1895484_US;Retail & Other
+;1895485_US;Retail & Other
+;1895486_US;Retail & Other
+;1895489_US;Retail & Other
+;1895490_US;Retail & Other
+;1895491_US;Retail & Other
+;1895493_US;Retail & Other
+;1895495_US;Retail & Other
+;1895498_US;Retail & Other
+;1895499_US;Target
+;1895500_US;Target
+;1895501_US;Retail & Other
+;1895503_US;Retail & Other
+;1895504_US;Retail & Other
+;1895506_US;Retail & Other
+;1895507_US;Retail & Other
+;1895511_US;Retail & Other
+;1895514_US;Target
+;1895516_US;Retail & Other
+;1895517_US;Retail & Other
+;1895518_US;Retail & Other
+;1895520_US;Retail & Other
+;1895522_US;Retail & Other
+;1895524_US;Retail & Other
+;1895525_US;Retail & Other
+;1895526_US;Retail & Other
+;1895527_US;Target
+;1895532_US;Retail & Other
+;1895533_US;Retail & Other
+;1895536_US;Retail & Other
+;1895537_US;Target
+;1895543_US;Retail & Other
+;1895545_US;Retail & Other
+;1895546_US;Retail & Other
+;1895548_US;Retail & Other
+;1895549_US;Retail & Other
+;1895551_US;Retail & Other
+;1895552_US;Retail & Other
+;1895553_US;Retail & Other
+;1895554_US;Retail & Other
+;1895561_US;Retail & Other
+;1895562_US;Retail & Other
+;1895563_US;Target
+;1895564_US;Retail & Other
+;1895565_US;Retail & Other
+;1895570_US;Retail & Other
+;1895571_US;Retail & Other
+;1895572_US;Retail & Other
+;1895573_US;Retail & Other
+;1895574_US;Target
+;1895575_US;Target
+;1895578_US;Retail & Other
+;1895579_US;Retail & Other
+;1895581_US;Retail & Other
+;1895582_US;Retail & Other
+;1895583_US;Target
+;1895584_US;Retail & Other
+;1895585_US;Retail & Other
+;1895590_US;Retail & Other
+;1895591_US;Retail & Other
+;1895592_US;Target
+;1895595_US;Retail & Other
+;1895599_US;Retail & Other
+;1895606_US;Retail & Other
+;1895608_US;Retail & Other
+;1895617_US;Retail & Other
+;1895631_US;Retail & Other
+;1895635_US;Target
+;1895669_US;Retail & Other
+;1895670_US;Target
+;1895677_US;Retail & Other
+;1895682_US;Retail & Other
+;1895688_US;Retail & Other
+;1895695_US;Retail & Other
+;1895698_US;Target
+;1895707_US;Retail & Other
+;1895713_US;Retail & Other
+;1895718_US;Retail & Other
+;1895721_US;Retail & Other
+;1895726_US;Retail & Other
+;1895727_US;Retail & Other
+;1895728_US;Target
+;1895733_US;Retail & Other
+;1895736_US;Retail & Other
+;1895743_US;Retail & Other
+;1895757_US;Retail & Other
+;1895758_US;Retail & Other
+;1895762_US;Target
+;1895767_US;Retail & Other
+;1895770_US;Retail & Other
+;1895772_US;Target
+;1895773_US;Target
+;1895775_US;Retail & Other
+;1895776_US;Retail & Other
+;1895780_US;Retail & Other
+;1895782_US;Target
+;1895791_US;Target
+;1895792_US;Retail & Other
+;1895798_US;Retail & Other
+;1895815_US;Retail & Other
+;1895823_US;Retail & Other
+;1895825_US;Retail & Other
+;1895836_US;Retail & Other
+;1895838_US;Retail & Other
+;1895839_US;Retail & Other
+;1895840_US;Target
+;1895850_US;Target
+;1895859_US;Retail & Other
+;1895862_US;Retail & Other
+;1895869_US;Target
+;1895871_US;Retail & Other
+;1895872_US;Emerging
+;1895877_US;Target
+;1895881_US;Target
+;1895890_US;Target
+;1895893_US;Target
+;1895894_US;Retail & Other
+;1895900_US;Retail & Other
+;1895902_US;Retail & Other
+;1895907_US;Retail & Other
+;1895910_US;Retail & Other
+;1895918_US;Retail & Other
+;1895919_US;Target
+;1895921_US;Retail & Other
+;1895938_US;Retail & Other
+;1895944_US;Retail & Other
+;1895947_US;Retail & Other
+;1895950_US;Retail & Other
+;1895957_US;Retail & Other
+;1895961_US;Retail & Other
+;1895963_US;Retail & Other
+;1895964_US;Retail & Other
+;1895965_US;Retail & Other
+;1895972_US;Retail & Other
+;1895973_US;Retail & Other
+;1895974_US;Retail & Other
+;1895978_US;Target
+;1895980_US;Retail & Other
+;1895981_US;Retail & Other
+;1895983_US;Retail & Other
+;1895984_US;Retail & Other
+;1895986_US;Retail & Other
+;1895987_US;Retail & Other
+;1895988_US;Retail & Other
+;1895989_US;Retail & Other
+;1895990_US;Retail & Other
+;1895991_US;Retail & Other
+;1895993_US;Retail & Other
+;1895994_US;Retail & Other
+;1895996_US;Retail & Other
+;1895997_US;Retail & Other
+;1895998_US;Retail & Other
+;1896001_US;Retail & Other
+;1896003_US;Retail & Other
+;1896009_US;Retail & Other
+;1896022_US;Target
+;1896030_US;Target
+;1896033_US;Target
+;1896037_US;Retail & Other
+;1896043_US;Retail & Other
+;1896045_US;Emerging
+;1896047_US;Retail & Other
+;1896054_US;Retail & Other
+;1896059_US;Retail & Other
+;1896060_US;Retail & Other
+;1896065_US;Target
+;1896080_US;Retail & Other
+;1896088_US;Retail & Other
+;1896091_US;Retail & Other
+;1896099_US;Retail & Other
+;1896101_US;Retail & Other
+;1896108_US;Retail & Other
+;1896114_US;Retail & Other
+;1896118_US;Retail & Other
+;1896119_US;Retail & Other
+;1896120_US;Retail & Other
+;1896123_US;Target
+;1896126_US;Retail & Other
+;1896139_US;Target
+;1896144_US;Retail & Other
+;1896145_US;Retail & Other
+;1896150_US;Target
+;1896151_US;Retail & Other
+;1896152_US;Retail & Other
+;1896155_US;Target
+;1896167_US;Retail & Other
+;1896169_US;Retail & Other
+;1896170_US;Retail & Other
+;1896172_US;Retail & Other
+;1896174_US;Retail & Other
+;1896176_US;Retail & Other
+;1896177_US;Target
+;1896179_US;Retail & Other
+;1896184_US;Retail & Other
+;1896190_US;Target
+;1896195_US;Retail & Other
+;1896196_US;Retail & Other
+;1896197_US;Retail & Other
+;1896200_US;Retail & Other
+;1896201_US;Target
+;1896202_US;Emerging
+;1896212_US;Retail & Other
+;1896221_US;Retail & Other
+;1896223_US;Retail & Other
+;1896225_US;Retail & Other
+;1896232_US;Retail & Other
+;1896241_US;Retail & Other
+;1896245_US;Target
+;1896246_US;Target
+;1896249_US;Retail & Other
+;1896251_US;Retail & Other
+;1896254_US;Retail & Other
+;1896255_US;Retail & Other
+;1896259_US;Retail & Other
+;1896260_US;Target
+;1896262_US;Retail & Other
+;1896267_US;Retail & Other
+;1896268_US;Retail & Other
+;1896271_US;Target
+;1896276_US;Retail & Other
+;1896277_US;Target
+;1896279_US;Retail & Other
+;1896283_US;Retail & Other
+;1896292_US;Retail & Other
+;1896294_US;Retail & Other
+;1896295_US;Target
+;1896298_US;Target
+;1896300_US;Retail & Other
+;1896304_US;Target
+;1896306_US;Retail & Other
+;1896308_US;Retail & Other
+;1896310_US;Target
+;1896311_US;Retail & Other
+;1896312_US;Retail & Other
+;1896314_US;Retail & Other
+;1896315_US;Retail & Other
+;1896316_US;Retail & Other
+;1896324_US;Target
+;1896334_US;Target
+;1896335_US;Retail & Other
+;1896340_US;Retail & Other
+;1896341_US;Target
+;1896343_US;Retail & Other
+;1896355_US;Retail & Other
+;1896357_US;Retail & Other
+;1896360_US;Retail & Other
+;1896364_US;Target
+;1896367_US;Retail & Other
+;1896369_US;Retail & Other
+;1896370_US;Retail & Other
+;1896371_US;Retail & Other
+;1896380_US;Emerging
+;1896383_US;Retail & Other
+;1896386_US;Retail & Other
+;1896387_US;Retail & Other
+;1896389_US;Retail & Other
+;1896391_US;Retail & Other
+;1896399_US;Target
+;1896400_US;Target
+;1896401_US;Retail & Other
+;1896404_US;Target
+;1896410_US;Retail & Other
+;1896411_US;Retail & Other
+;1896417_US;Target
+;1896424_US;Retail & Other
+;1896426_US;Small
+;1896429_US;Target
+;1896430_US;Retail & Other
+;1896434_US;Retail & Other
+;1896440_US;Retail & Other
+;1896449_US;Target
+;1896452_US;Target
+;1896454_US;Retail & Other
+;1896456_US;Emerging
+;1896481_US;Retail & Other
+;1896483_US;Retail & Other
+;1896484_US;Retail & Other
+;1896487_US;Retail & Other
+;1896500_US;Target
+;1896502_US;Retail & Other
+;1896512_US;Retail & Other
+;1896514_US;Emerging
+;1896515_US;Retail & Other
+;1896516_US;Retail & Other
+;1896518_US;Retail & Other
+;1896519_US;Retail & Other
+;1896527_US;Retail & Other
+;1896532_US;Retail & Other
+;1896533_US;Retail & Other
+;1896535_US;Retail & Other
+;1896536_US;Target
+;1896545_US;Retail & Other
+;1896549_US;Retail & Other
+;1896553_US;Retail & Other
+;1896558_US;Target
+;1896565_US;Retail & Other
+;1896566_US;Target
+;1896577_US;Retail & Other
+;1896578_US;Retail & Other
+;1896589_US;Emerging
+;1896590_US;Retail & Other
+;1896592_US;Retail & Other
+;1896595_US;Retail & Other
+;1896599_US;Target
+;1896601_US;Retail & Other
+;1896602_US;Retail & Other
+;1896605_US;Retail & Other
+;1896606_US;Retail & Other
+;1896607_US;Emerging
+;1896609_US;Retail & Other
+;1896613_US;Retail & Other

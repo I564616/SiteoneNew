@@ -1,0 +1,1500 @@
+$contentCatalog=siteoneContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+
+INSERT_UPDATE SiteoneParagaraphComponent;$contentCV[unique=true];uid[unique=true];name;headline[lang=en];headline[lang=es];content[lang=en];content[lang=es]; 
+;;comp_000016FV;COVID19 top banner;;;"<p><style type=""text/css"">
+* {
+  box-sizing: border-box;
+}
+	
+/* Scale content width to 97% */
+.wrap {
+	width: 97%;
+	margin: auto
+}
+</style></p>
+<div class=""wrap"">
+<div class=""row""><img width=""100%"" src=""/medias/sys_master/root/h55/h11/8973916799006/Covid19-Masthead2-1690.jpg"" alt=""COVID-19"" /></div>
+</div>";"<p><style type=""text/css"">
+* {
+  box-sizing: border-box;
+}
+	
+/* Scale content width to 97% */
+.wrap {
+	width: 97%;
+	margin: auto
+}
+</style></p>
+<div class=""wrap"">
+<div class=""row""><img width=""100%"" src=""/medias/sys_master/root/h88/h74/8974199750686/Covid19-Masthead2-Spanish.jpg"" alt=""COVID-19"" /></div>
+</div>"
+;;comp_000016G0;COVID-19 Page Body;;;"<p><style type=""text/css"">
+* {
+  box-sizing: border-box;
+}
+	
+/* Scale content width to 97% */
+.wrap {
+	width: 97%;
+	margin: auto
+}
+
+/* Create One Column that spans */
+.column1 {
+  float: left;
+  width: 100%;
+  padding: 0px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: """";
+  display: table;
+  clear: both;
+}
+
+/* Create One Column that spans */
+.column90 {
+  float: none;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: """";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column1 {
+    width: 100%;
+  }
+}
+
+/* Create Two equal columns that float next to each other */
+.column2 {
+  float: left;
+  width: 50%;
+  padding: 0px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: """";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 950px) {
+  .column2 {
+    width: 100%;
+  }
+}
+
+/* Create three equal columns that float next to each other */
+.column33 {
+  float: left;
+  width: 33.33%;
+  padding-right: 20px;
+  margin-top: 5px;
+  margin-bottom: 15px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: """";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column33 {
+    width: 100%;
+  }
+}
+
+/* Create four equal columns that float next to each other */
+.column4 {
+  float: left;
+  width: 25%;
+  padding: 15px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: """";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the four columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 500px) {
+  .column4 {
+    width: 100%;
+  }
+}
+/* Create One Column for Products */
+.column1-product {
+  float: left;
+  width: 100%;
+  padding: 20px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: """";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column1-product {
+    width: 100%;
+  }
+}
+
+.video-responsive{
+    overflow:hidden;
+    padding-bottom: 56.25%;
+    position: relative;
+    height: 0;
+}
+.video-responsive iframe{
+    border: 0;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+}
+
+.visible-mobile {
+  display: none !important;
+}
+
+@media (max-width: 600px) {
+  .visible-mobile {
+    display: inline !important;
+  }
+  .hidden-mobile {
+    display: none !important;
+  }
+}
+.onestopbutton {
+  background-color: #799f37;
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 10px;
+  width: 100%;
+}
+
+.onestopbutton:hover {
+background-color: #8eb947;
+}
+
+.greenbar {
+  background-color: #799f37;
+  border: none;
+  padding: 0px;
+  width: 98.5%;
+  height: 7px;
+}
+.videotitle {
+  background-color: #799f37;
+  border: none;
+  padding: 12px;
+  width: 100%;
+}
+</style></p>
+<div class=""wrap"">
+<div class=""row"">
+<div class=""column90"">
+<div>As we all watch the current global situation with the coronavirus (COVID-19) and see the impact it is having on our daily lives, our primary objective during this uncertain period is doing everything possible to ensure the safety of our associates and customers.</div>
+<p>&nbsp;</p>
+<h3 class=""promo-heading"">Measures we're taking to promote health and safety in our branches:</h3>
+<br />
+<div style=""margin-left: 40px;"">
+<ul>
+    <li>Equipping all locations with additional cleaning and sanitizing supplies and instruction on how to properly disinfect frequently touched surfaces</li>
+    <li>Displaying hygiene reminder signage for associates and customers</li>
+    <li>Circulating CDC guidelines for personal hygiene and preventative measures to associates</li>
+    <li>Reducing non-essential travel for associates and canceling events and company gatherings to help limit exposure</li>
+    <li>Asking associates not to travel to any high-risk areas identified by the CDC, and for those that do, to remain away from the workplace for 14 days</li>
+    <li>Practice Social Distancing Using SiteOne.com</li>
+</ul>
+</div>
+<br />
+To do our part to manage the spread of the virus, we encourage you to use SiteOne.com or call your branch to place an order and schedule a time for pickup or delivery directly to the jobsite*.
+<p>&nbsp;</p>
+<h3 class=""promo-heading"">Use SiteOne.com to keep your projects on track with features such as:</h3>
+<br />
+<div style=""margin-left: 40px;"">
+<ul>
+    <li>Instant access to your pricing</li>
+    <li>Real-time product availability</li>
+    <li>24/7 Online ordering</li>
+    <li>See your order history</li>
+    <li>Online bill pay</li>
+</ul>
+</div>
+</div>
+</div>
+</div>";"<p><style type=""text/css"">
+* {
+  box-sizing: border-box;
+}
+	
+/* Scale content width to 97% */
+.wrap {
+	width: 97%;
+	margin: auto
+}
+
+/* Create One Column that spans */
+.column1 {
+  float: left;
+  width: 100%;
+  padding: 0px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: """";
+  display: table;
+  clear: both;
+}
+
+/* Create One Column that spans */
+.column90 {
+  float: none;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: """";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column1 {
+    width: 100%;
+  }
+}
+
+/* Create Two equal columns that float next to each other */
+.column2 {
+  float: left;
+  width: 50%;
+  padding: 0px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: """";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 950px) {
+  .column2 {
+    width: 100%;
+  }
+}
+
+/* Create three equal columns that float next to each other */
+.column33 {
+  float: left;
+  width: 33.33%;
+  padding-right: 20px;
+  margin-top: 5px;
+  margin-bottom: 15px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: """";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column33 {
+    width: 100%;
+  }
+}
+
+/* Create four equal columns that float next to each other */
+.column4 {
+  float: left;
+  width: 25%;
+  padding: 15px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: """";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the four columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 500px) {
+  .column4 {
+    width: 100%;
+  }
+}
+/* Create One Column for Products */
+.column1-product {
+  float: left;
+  width: 100%;
+  padding: 20px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: """";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column1-product {
+    width: 100%;
+  }
+}
+
+.video-responsive{
+    overflow:hidden;
+    padding-bottom: 56.25%;
+    position: relative;
+    height: 0;
+}
+.video-responsive iframe{
+    border: 0;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+}
+
+.visible-mobile {
+  display: none !important;
+}
+
+@media (max-width: 600px) {
+  .visible-mobile {
+    display: inline !important;
+  }
+  .hidden-mobile {
+    display: none !important;
+  }
+}
+.onestopbutton {
+  background-color: #799f37;
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 10px;
+  width: 100%;
+}
+
+.onestopbutton:hover {
+background-color: #8eb947;
+}
+
+.greenbar {
+  background-color: #799f37;
+  border: none;
+  padding: 0px;
+  width: 98.5%;
+  height: 7px;
+}
+.videotitle {
+  background-color: #799f37;
+  border: none;
+  padding: 12px;
+  width: 100%;
+}
+</style></p>
+<div class=""wrap"">
+<div class=""row"">
+<div class=""column90"">
+<div>Mientras todos vemos c&oacute;mo progresa la situaci&oacute;n global actual con el coronavirus (COVID-19) y vemos el impacto que est&aacute; teniendo en nuestra vida diaria, nuestro objetivo principal durante este per&iacute;odo de tanta incertidumbre es hacer todo lo posible para garantizar la seguridad de nuestros asociados y clientes.</div>
+<p>&nbsp;</p>
+<h3 class=""promo-heading"">Medidas que estamos tomando para promover la salud y seguridad en nuestras sucursales:</h3>
+<br />
+<div style=""margin-left: 40px;"">
+<ul>
+    <li>Hemos equipado cada sucursal con provisiones adicionales de limpieza y desinfecci&oacute;n, incluyendo instrucciones sobre c&oacute;mo desinfectar superficies de contacto frecuente</li>
+    <li>Instalamos letreros y carteles con recordatorios de higiene para asociados y clientes</li>
+    <li>Hemos distribuido gu&iacute;as del CDC para higiene personal y medidas preventivas a los asociados</li>
+    <li>Redujimos los viajes no esenciales para asociados y hemos cancelado eventos y encuentros de la compa&ntilde;&iacute;a para limitar la exposici&oacute;n</li>
+    <li>Hemos pedido a los asociados que no viajen a ning&uacute;n &aacute;rea de alto riesgo identificada por el CDC. Y si alguno viajara: que no vaya a su lugar de trabajo por 14 d&iacute;as</li>
+    <li>Incentivamos practicar el distanciamiento social utilizando SiteOne.com</li>
+</ul>
+</div>
+<br />
+Para hacer nuestra parte en el manejo del virus y limitar su propagaci&oacute;n, te exhortamos a que uses SiteOne.com o llames a tu sucursal local para hacer una orden y coordinar una hora de recogida o entrega directa a tu punto de trabajo*.
+<p>&nbsp;</p>
+<h3 class=""promo-heading"">Usa SiteOne.com para mantener tus proyectos andando con funcionalidades como:</h3>
+<br />
+<div style=""margin-left: 40px;"">
+<ul>
+    <li>Acceso instant&aacute;neo a tus precios</li>
+    <li>Verificaci&oacute;n de disponibilidad de productos en tiempo real</li>
+    <li>Orden en l&iacute;nea 24/7</li>
+    <li>Ver tu historial de compras</li>
+    <li>Pago en l&iacute;nea</li>
+</ul>
+</div>
+</div>
+</div>
+</div>"
+;;comp_000016G1;COVID-19 Disclaimer;;;"<div class=""wrap""><div class=""row""><div class=""column90""><div>We are <strong>prepared to support your business</strong> during this unique and challenging time. Earlier this year we leveraged our national distribution network to buy forward for select products and ensure that our branches remain well-stocked to support our customers. For any questions, please <a href=""/contactus"">contact the SiteOne Customer Service Team</a> at 1-800-SITEONE (1-800-748-3663). <p>&nbsp;</p> We will continue to monitor and update you on any changes to the situation in your local market. Thank you for allowing us to be your green industry partner.</div> <p>&nbsp;</p><br /> <div><span style=""font-size: smaller;"">*Note most SiteOne.com pickup orders can be prepared for pickup within half a business day. Delivery orders typically require 24 hours for preparation. Please contact your branch if your project has special timing considerations</span>.</div></div></div></div>";"<div class=""wrap""><div class=""row""><div class=""column90""><div>Estamos preparados para apoyar a tu negocio durante estos tiempos &uacute;nicos y retadores. A inicio de a&ntilde;o aprovechamos nuestra red de distribuci&oacute;n nacional para comprar por adelantado productos para asegurar que nuestras sucursales se mantengan bien suplidas para apoyar a nuestros clientes. Para cualquier pregunta, por favor <a href=""contactus"">comun&iacute;cate con el Equipo de Servicio al Cliente de SiteOne</a> al 1-800-SITEONE (1-800-748-3663). <p>&nbsp;</p> Continuaremos monitoreando y compartiendo cualquier actualizaci&oacute;n o cambio en la situaci&oacute;n en tu mercado local. Gracias por permitirnos ser tu socio en la industria verde.</div> <p>&nbsp;</p> <br /> <div><span style=""font-size: smaller;"">*Nota que la mayor&iacute;a de las &oacute;rdenes de recogida hechas a trav&eacute;s de SiteOne.com se pueden tener listas en medio d&iacute;a h&aacute;bil. Entregas por lo general requieren 24 horas para prepararse. Por favor comun&iacute;cate con tu sucursal si tu proyecto tiene consideraciones de tiempo especiales.</span></div></div></div></div>"
+;;comp_000016G2;COVID19 Video Row 1;;;"<div class=""wrap"">
+<div class=""row"">
+<div class=""column90"">
+<h3 class=""promo-heading"">Learn More About SiteOne Online</h3>
+<div class=""greenbar""><img width=""100%"" height=""2"" src=""/medias/sys_master/root/h9c/h81/8920869371934/spacer.png"" alt="""" /></div>
+<br />
+<!-- COLUMN 1 -->
+<div class=""column33"">
+<div class=""video-responsive""><iframe width=""420"" height=""315"" src=""https://www.youtube.com/embed/nsx-2V3IFB4"" frameborder=""0"" allow=""accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"" allowfullscreen=""""></iframe></div>
+<div class=""videotitle""><font color=""#ffffff""><b>Creating an Account</b></font></div>
+</div>
+<!-- COLUMN 2 -->
+<div class=""column33"">
+<div class=""video-responsive""><iframe width=""420"" height=""315"" src=""https://www.youtube.com/embed/MPAaJiuU2aA"" frameborder=""0"" allow=""accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"" allowfullscreen=""""></iframe></div>
+<div class=""videotitle""><font color=""#ffffff""><b>Search &amp; Browse</b></font></div>
+</div>
+<!-- COLUMN 3 -->
+<div class=""column33"">
+<div class=""video-responsive""><iframe width=""420"" height=""315"" src=""https://www.youtube.com/embed/gDBJiKsenq4"" frameborder=""0"" allow=""accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"" allowfullscreen=""""></iframe></div>
+<div class=""videotitle""><font color=""#ffffff""><b>Pricing &amp; Inventory</b></font></div>
+</div>
+</div>
+</div>
+</div>";"<div class=""wrap"">
+<div class=""row"">
+<div class=""column90"">
+<h3 class=""promo-heading"">Usando SiteOne en línea</h3>
+<div class=""greenbar""><img width=""100%"" height=""2"" src=""/medias/sys_master/root/h9c/h81/8920869371934/spacer.png"" alt="""" /></div>
+<br />
+<!-- COLUMN 1 -->
+<div class=""column33"">
+<div class=""video-responsive""><iframe width=""420"" height=""315"" src=""https://www.youtube.com/embed/nsx-2V3IFB4"" frameborder=""0"" allow=""accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"" allowfullscreen=""""></iframe></div>
+<div class=""videotitle""><font color=""#ffffff""><b>Creando una cuenta</b></font></div>
+</div>
+<!-- COLUMN 2 -->
+<div class=""column33"">
+<div class=""video-responsive""><iframe width=""420"" height=""315"" src=""https://www.youtube.com/embed/MPAaJiuU2aA"" frameborder=""0"" allow=""accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"" allowfullscreen=""""></iframe></div>
+<div class=""videotitle""><font color=""#ffffff""><b>Buscar y navegar</b></font></div>
+</div>
+<!-- COLUMN 3 -->
+<div class=""column33"">
+<div class=""video-responsive""><iframe width=""420"" height=""315"" src=""https://www.youtube.com/embed/gDBJiKsenq4"" frameborder=""0"" allow=""accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"" allowfullscreen=""""></iframe></div>
+<div class=""videotitle""><font color=""#ffffff""><b>Precios e inventario</b></font></div>
+</div>
+</div>
+</div>
+</div>"
+;;comp_000016G5;COVID-19-2 Top Content;;;"<p><style type=""text/css"">
+* {
+  box-sizing: border-box;
+}
+	
+/* Scale content width to 97% */
+.wrap {
+	width: 97%;
+	margin: auto
+}
+
+P.covid {
+   font-family: MetronicSlabProBold;
+   font-size: 24pt;
+   line-height: 1;
+   margin: 0px 0px 10px 0px;
+   color: #799f37;
+}
+
+/* Create One Column that spans */
+.column1 {
+  float: left;
+  width: 100%;
+  padding: 0px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: """";
+  display: table;
+  clear: both;
+}
+
+/* Create One Column that spans */
+.column90 {
+  float: none;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: """";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column1 {
+    width: 100%;
+  }
+}
+
+/* Create Two equal columns that float next to each other */
+.column2 {
+  float: left;
+  width: 50%;
+  padding: 0px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: """";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 950px) {
+  .column2 {
+    width: 100%;
+  }
+}
+
+/* Create three equal columns that float next to each other */
+.column33 {
+  float: left;
+  padding-right: 10px;
+  padding-left: 10px;
+  width: 33.33%;
+  margin-top: 5px;
+  margin-bottom: 15px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: """";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column33 {
+    width: 100%;
+  }
+}
+
+/* Create four equal columns that float next to each other */
+.column4 {
+  float: left;
+  width: 25%;
+  padding: 15px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: """";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the four columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 500px) {
+  .column4 {
+    width: 100%;
+  }
+}
+/* Create One Column for Products */
+.column1-product {
+  float: left;
+  width: 100%;
+  padding: 20px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: """";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column1-product {
+    width: 100%;
+  }
+}
+
+.video-responsive{
+    overflow:hidden;
+    padding-bottom: 56.25%;
+    position: relative;
+    height: 0;
+}
+.video-responsive iframe{
+    border: 0;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+}
+
+.visible-mobile {
+  display: none !important;
+}
+
+@media (max-width: 600px) {
+  .visible-mobile {
+    display: inline !important;
+  }
+  .hidden-mobile {
+    display: none !important;
+  }
+}
+.onestopbutton {
+  background-color: #799f37;
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 10px;
+  width: 100%;
+}
+
+.onestopbutton:hover {
+background-color: #8eb947;
+}
+
+.greenbar {
+  background-color: #799f37;
+  border: none;
+  padding: 0px;
+  width: 98.5%;
+  height: 7px;
+}
+.greenbar2 {
+  background-color: #799f37;
+  border: none;
+  padding: 0px;
+  width: 100%;
+  height: 7px;
+}
+.videotitle {
+  background-color: #799f37;
+  border: none;
+  padding: 12px;
+  width: 100%;
+}
+</style></p>
+<div class=""wrap"">
+<div class=""row"">
+<div class=""column90"">
+<div>As we all watch the current global situation with the coronavirus (COVID-19) and see the impact it is having on our daily lives, our primary objective during this uncertain period is doing everything possible to ensure the safety of our associates and customers.</div>
+<p>&nbsp;</p>
+<h3 class=""promo-heading"">Measures we're taking to promote health and safety in our branches:</h3>
+<br />
+<div style=""margin-left: 40px;"">
+<ul>
+    <li>Equipping all locations with additional cleaning and sanitizing supplies and instruction on how to properly disinfect frequently touched surfaces</li>
+    <li>Displaying hygiene reminder signage for associates and customers</li>
+    <li>Circulating CDC guidelines for personal hygiene and preventative measures to associates</li>
+    <li>Reducing non-essential travel for associates and canceling events and company gatherings to help limit exposure</li>
+    <li>Asking associates not to travel to any high-risk areas identified by the CDC, and for those that do, to remain away from the workplace for 14 days</li>
+    <li>Practice Social Distancing Using SiteOne.com</li>
+</ul>
+</div>
+<br />
+To do our part to manage the spread of the virus, we encourage you to use SiteOne.com or call your branch to place an order and schedule a time for pickup or delivery directly to the jobsite*.</div>
+</div>
+</div>";"<p><style type=""text/css"">
+* {
+  box-sizing: border-box;
+}
+	
+/* Scale content width to 97% */
+.wrap {
+	width: 97%;
+	margin: auto
+}
+
+P.covid {
+   font-family: MetronicSlabProBold;
+   font-size: 24pt;
+   line-height: 1;
+   margin: 0px 0px 10px 0px;
+   color: #799f37;
+}
+
+/* Create One Column that spans */
+.column1 {
+  float: left;
+  width: 100%;
+  padding: 0px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: """";
+  display: table;
+  clear: both;
+}
+
+/* Create One Column that spans */
+.column90 {
+  float: none;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: """";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column1 {
+    width: 100%;
+  }
+}
+
+/* Create Two equal columns that float next to each other */
+.column2 {
+  float: left;
+  width: 50%;
+  padding: 0px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: """";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 950px) {
+  .column2 {
+    width: 100%;
+  }
+}
+
+/* Create three equal columns that float next to each other */
+.column33 {
+  float: left;
+  padding-right: 10px;
+  padding-left: 10px;
+  width: 33.33%;
+  margin-top: 5px;
+  margin-bottom: 15px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: """";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column33 {
+    width: 100%;
+  }
+}
+
+/* Create four equal columns that float next to each other */
+.column4 {
+  float: left;
+  width: 25%;
+  padding: 15px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: """";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the four columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 500px) {
+  .column4 {
+    width: 100%;
+  }
+}
+/* Create One Column for Products */
+.column1-product {
+  float: left;
+  width: 100%;
+  padding: 20px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: """";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column1-product {
+    width: 100%;
+  }
+}
+
+.video-responsive{
+    overflow:hidden;
+    padding-bottom: 56.25%;
+    position: relative;
+    height: 0;
+}
+.video-responsive iframe{
+    border: 0;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+}
+
+.visible-mobile {
+  display: none !important;
+}
+
+@media (max-width: 600px) {
+  .visible-mobile {
+    display: inline !important;
+  }
+  .hidden-mobile {
+    display: none !important;
+  }
+}
+.onestopbutton {
+  background-color: #799f37;
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 10px;
+  width: 100%;
+}
+
+.onestopbutton:hover {
+background-color: #8eb947;
+}
+
+.greenbar {
+  background-color: #799f37;
+  border: none;
+  padding: 0px;
+  width: 98.5%;
+  height: 7px;
+}
+.greenbar2 {
+  background-color: #799f37;
+  border: none;
+  padding: 0px;
+  width: 100%;
+  height: 7px;
+}
+.videotitle {
+  background-color: #799f37;
+  border: none;
+  padding: 12px;
+  width: 100%;
+}
+</style></p>
+<div class=""wrap"">
+<div class=""row"">
+<div class=""column90"">
+<div>Mientras todos vemos c&oacute;mo progresa la situaci&oacute;n global actual con el coronavirus (COVID-19) y vemos el impacto que est&aacute; teniendo en nuestra vida diaria, nuestro objetivo principal durante este per&iacute;odo de tanta incertidumbre es hacer todo lo posible para garantizar la seguridad de nuestros asociados y clientes.</div>
+<p>&nbsp;</p>
+<h3 class=""promo-heading"">Medidas que estamos tomando para promover la salud y seguridad en nuestras sucursales:</h3>
+<br />
+<div style=""margin-left: 40px;"">
+<ul>
+    <li>Hemos equipado cada sucursal con provisiones adicionales de limpieza y desinfecci&oacute;n, incluyendo instrucciones sobre c&oacute;mo desinfectar superficies de contacto frecuente</li>
+    <li>Instalamos letreros y carteles con recordatorios de higiene para asociados y clientes</li>
+    <li>Hemos distribuido gu&iacute;as del CDC para higiene personal y medidas preventivas a los asociados</li>
+    <li>Redujimos los viajes no esenciales para asociados y hemos cancelado eventos y encuentros de la compa&ntilde;&iacute;a para limitar la exposici&oacute;n</li>
+    <li>Hemos pedido a los asociados que no viajen a ning&uacute;n &aacute;rea de alto riesgo identificada por el CDC. Y si alguno viajara: que no vaya a su lugar de trabajo por 14 d&iacute;as</li>
+    <li>Incentivamos practicar el distanciamiento social utilizando SiteOne.com</li>
+</ul>
+</div>
+<br />
+Para hacer nuestra parte en el manejo del virus y limitar su propagaci&oacute;n, te exhortamos a que uses SiteOne.com o llames a tu sucursal local para hacer una orden y coordinar una hora de recogida o entrega directa a tu punto de trabajo*.
+</div>
+</div>
+</div>"
+;;comp_000016G6;COVID-19-2 Communications Paragraph;;;"<div class=""wrap""><div class=""row""><div class=""column90""><h3 class=""promo-heading"">Customer Communication Resources<a name=""resources"" style=""visibility:hidden"">&nbsp;</a></h3> <br /> <p>With things changing rapidly during this time, maintaining open lines of communication with customers and relaying updates is more important than ever. Use the following templates to guide communications, help keep your customers informed, and business growing.</p> <div style=""margin-left: 40px;""><ul>     <li>Essential Business Email Template: <a href=""/medias/sys_master/root/h3d/ha3/8978010734622/SiteOne-Customer-Email-Template-v2.zip"" target=""_blank"">MS Word</a>&nbsp; |&nbsp; <a href=""/medias/sys_master/root/heb/h32/8978010800158/SiteOne-Customer-Email-Template-v2.pdf"" target=""_blank"">Adobe PDF</a></li>     <li>Essential Business Social Media Template - Short Version: <a href=""/medias/sys_master/root/hb6/h5c/8978015354910/Essential-Business-Social-Post-Short.zip"" target=""_blank"">MS Word</a>&nbsp; |&nbsp; <a href=""/medias/sys_master/root/h73/h79/8978015420446/Essential-Business-Social-Post-Short.pdf"" target=""_blank"">Adobe PDF</a></li>     <li>Essential Business Social Media Template - Full Version: <a href=""/medias/sys_master/root/h7d/hcd/8978101501982/Essential-Business-Social-Post-Full-Length.zip"" target=""_blank"">MS Word</a>&nbsp; |&nbsp; <a href=""/medias/sys_master/root/hff/h71/8978101633054/Essential-Business-Social-Post-Full-Length.pdf"" target=""_blank"">Adobe PDF</a></li> </ul></div></div></div></div>";"<div class=""wrap""><div class=""row""><div class=""column90""><h3 class=""promo-heading"">Recursos de comunicaci&oacute;n con clientes<a name=""resources"" style=""visibility:hidden"">&nbsp;</a></h3> <br /> <p>Con las cosas cambiando tan r&aacute;pidamente en estos d&iacute;as, mantener abiertas las l&iacute;neas de comunicaci&oacute;n con los clientes y seguir actualiz&aacute;ndolos con informaci&oacute;n pertinente es m&aacute;s importante que nunca. Usa las siguientes plantillas como gu&iacute;a para tus comunicaciones, para ayudar a tus clientes a permanecer informados y mantener tu negocio creciendo.</p> <div style=""margin-left: 40px;""><ul>     <li>Plantilla de email para negocios esenciales: <a href=""/medias/sys_master/root/h3d/ha3/8978010734622/SiteOne-Customer-Email-Template-v2.zip"" target=""_blank"">MS Word</a>&nbsp; |&nbsp; <a href=""/medias/sys_master/root/heb/h32/8978010800158/SiteOne-Customer-Email-Template-v2.pdf"" target=""_blank"">Adobe PDF</a></li>     <li>Plantilla esencial de redes sociales empresariales - Versi&oacute;n corta: <a href=""/medias/sys_master/root/hb6/h5c/8978015354910/Essential-Business-Social-Post-Short.zip"" target=""_blank"">MS Word</a>&nbsp; |&nbsp; <a href=""/medias/sys_master/root/h73/h79/8978015420446/Essential-Business-Social-Post-Short.pdf"" target=""_blank"">Adobe PDF</a></li>     <li>Plantilla esencial de redes sociales de negocios - Versi&oacute;n completa: <a href=""/medias/sys_master/root/h7d/hcd/8978101501982/Essential-Business-Social-Post-Full-Length.zip"" target=""_blank"">MS Word</a>&nbsp; |&nbsp; <a href=""/medias/sys_master/root/hff/h71/8978101633054/Essential-Business-Social-Post-Full-Length.pdf"" target=""_blank"">Adobe PDF</a></li> </ul></div></div></div></div>"
+;;comp_000016G8;COVID Resource Center Main Video;;;"<p><style type=""text/css"">
+
+/* Create Two equal columns that float next to each other */
+.column2 {
+  float: left;
+  width: 50%;
+  padding: 0px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: """";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 950px) {
+  .column2 {
+    width: 100%;
+  }
+}
+
+/* Create 65% column to pair with 33% collumn */
+.column65 {
+  float: left;
+  width: 65%;
+  height: 100%;
+  padding: 20px;
+  display: table-cell;
+  margin: auto;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: """";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column65 {
+    width: 100%;
+  }
+}
+
+/* Create three equal columns that float next to each other */
+.column35 {
+  float: left;
+  width: 35%;
+  padding: 25px;
+  display: table-cell;
+  margin: auto;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: """";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column35 {
+    width: 100%;
+  }
+}
+
+}
+</style></p>
+<div class=""wrap"">
+<div class=""row"">
+<div class=""column90"">
+<p class=""covid"">COVID-19 RESOURCE CENTER</p>
+<div class=""greenbar2""><img width=""100%"" height=""2"" src=""/medias/sys_master/root/h9c/h81/8920869371934/spacer.png"" alt="""" /></div>
+</div>
+</div>
+<br />
+<div class=""wrap"">
+<div class=""row"" style=""background-color:#ebebeb; width: 95%; margin-left: auto; margin-right: auto;"">
+<div class=""column2"">
+<div class=""video-responsive""><iframe width=""420"" height=""315"" src=""https://www.youtube.com/embed/EhmoWZTmp4w?rel=0"" frameborder=""0"" allow=""accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"" allowfullscreen=""""></iframe></div>
+</div>
+<div class=""column2""><br />
+<div class=""wrap"">
+<div style=""padding: 0px 30px 20px 30px; margin: auto;"">
+<h3 class=""promo-heading"">Beyond safety, we want to make sure your business stays healthy through this difficult time.</h3>
+<br />
+<p><font color=""#000000"">We've compiled resources and tips to help your business power through the uncommon obstacles you might face. Read on for pertinent information on the following topics:</font></p>
+<ul>
+    <li><a href=""#tools"">SiteOne Online Services and Tools</a></li>
+    <li><a href=""#financial"">Financial Resources</a></li>
+    <li><a href=""#resources"">Customer Communication Resources</a></li>
+    <li><a href=""#experts"">Industry Updates</a></li>
+</ul>
+<p>&nbsp;</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>";"<p><style type=""text/css"">
+
+/* Create Two equal columns that float next to each other */
+.column2 {
+  float: left;
+  width: 50%;
+  padding: 0px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: """";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 950px) {
+  .column2 {
+    width: 100%;
+  }
+}
+
+/* Create 65% column to pair with 33% collumn */
+.column65 {
+  float: left;
+  width: 65%;
+  height: 100%;
+  padding: 20px;
+  display: table-cell;
+  margin: auto;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: """";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column65 {
+    width: 100%;
+  }
+}
+
+/* Create three equal columns that float next to each other */
+.column35 {
+  float: left;
+  width: 35%;
+  padding: 25px;
+  display: table-cell;
+  margin: auto;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: """";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column35 {
+    width: 100%;
+  }
+}
+
+}
+</style></p>
+<div class=""wrap"">
+<div class=""row"">
+<div class=""column90"">
+<p class=""covid"">Centro de Recursos para COVID-19</p>
+<div class=""greenbar2""><img width=""100%"" height=""2"" src=""/medias/sys_master/root/h9c/h81/8920869371934/spacer.png"" alt="""" /></div>
+</div>
+</div>
+<br />
+<div class=""wrap"">
+<div class=""row"" style=""background-color:#ebebeb; width: 95%; margin-left: auto; margin-right: auto;"">
+<div class=""column2"">
+<div class=""video-responsive""><iframe width=""420"" height=""315"" src=""https://www.youtube.com/embed/EhmoWZTmp4w?rel=0"" frameborder=""0"" allow=""accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"" allowfullscreen=""""></iframe></div>
+</div>
+<div class=""column2""><br />
+<div class=""wrap"">
+<div style=""padding: 0px 30px 20px 30px; margin: auto;"">
+<h3 class=""promo-heading"">M&aacute;s all&aacute; de la seguridad, queremos asegurarnos de que tu negocio se mantenga saludable durante estos tiempos tan dif&iacute;ciles.</h3>
+<br />
+<p><font color=""#000000"">Hemos reunido recursos y consejos para ayudar a tu negocio a fortalecerse frente los obst&aacute;culos inesperados que puedas enfrentar. Contin&uacute;a leyendo para recibir informaci&oacute;n pertinente en los siguientes temas:</font></p>
+<ul>
+    <li><a href=""#tools"">Servicios y herramientas de SiteOne</a></li>
+    <li><a href=""#financial"">Recursos financieros</a></li>
+    <li><a href=""#resources"">Recursos para comunicaci&oacute;n con clientes</a></li>
+    <li><a href=""#experts"">Actualizaciones de la industria</a></li>
+</ul>
+<p>&nbsp;</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>"
+;;comp_000016GA;COVID19 Resource Videos;;;"<div class=""wrap"">
+<div class=""row"">
+<div class=""column90"">
+<h3 class=""promo-heading""><a name=""tools"" style=""visibility:hidden"">&nbsp;</a>SiteOne Online Services and Tools</h3>
+<!-- COLUMN 1 -->
+<div class=""column33"">
+<div class=""video-responsive""><iframe width=""420"" height=""315"" src=""https://www.youtube.com/embed/nsx-2V3IFB4?rel=0"" frameborder=""0"" allow=""accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"" allowfullscreen=""""></iframe></div>
+<div class=""videotitle""><font color=""#ffffff""><b>Creating an Account</b></font></div>
+</div>
+<!-- COLUMN 2 -->
+<div class=""column33"">
+<div class=""video-responsive""><iframe width=""420"" height=""315"" src=""https://www.youtube.com/embed/MPAaJiuU2aA?rel=0"" frameborder=""0"" allow=""accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"" allowfullscreen=""""></iframe></div>
+<div class=""videotitle""><font color=""#ffffff""><b>Search &amp; Browse</b></font></div>
+</div>
+<!-- COLUMN 3 -->
+<div class=""column33"">
+<div class=""video-responsive""><iframe width=""420"" height=""315"" src=""https://www.youtube.com/embed/gDBJiKsenq4?rel=0"" frameborder=""0"" allow=""accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"" allowfullscreen=""""></iframe></div>
+<div class=""videotitle""><font color=""#ffffff""><b>Pricing &amp; Inventory</b></font></div>
+</div>
+</div>
+</div>
+</div>
+</div><div class=""wrap""><div class=""row"">
+<div class=""column90""><!-- COLUMN 1 -->
+<div class=""column33"">
+<div class=""video-responsive""><iframe width=""420"" height=""315"" src=""https://www.youtube.com/embed/_a4STiZXxak?rel=0"" frameborder=""0"" allow=""accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"" allowfullscreen=""""></iframe></div>
+<div class=""videotitle""><font color=""#ffffff""><b>Accessing Account Information</b></font></div>
+</div>
+<!-- COLUMN 2 -->
+<div class=""column33"">
+<div class=""video-responsive""><iframe width=""420"" height=""315"" src=""https://www.youtube.com/embed/xMLcDF_uQ9s?rel=0"" frameborder=""0"" allow=""accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"" allowfullscreen=""""></iframe></div>
+<div class=""videotitle""><font color=""#ffffff""><b>Checkout</b></font></div>
+</div>
+<!-- COLUMN 3 -->
+<div class=""column33"">
+<p>&nbsp;</p>
+</div>
+</div>
+</div>
+</div>";"<div class=""wrap"">
+<div class=""row"">
+<div class=""column90"">
+<h3 class=""promo-heading""><a name=""tools"" style=""visibility:hidden"">&nbsp;</a>Servicios y herramientas en l&iacute;nea de SiteOne</h3>
+<!-- COLUMN 1 -->
+<div class=""column33"">
+<div class=""video-responsive""><iframe width=""420"" height=""315"" src=""https://www.youtube.com/embed/nsx-2V3IFB4?rel=0"" frameborder=""0"" allow=""accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"" allowfullscreen=""""></iframe></div>
+<div class=""videotitle""><font color=""#ffffff""><b>Creando una cuenta</b></font></div>
+</div>
+<!-- COLUMN 2 -->
+<div class=""column33"">
+<div class=""video-responsive""><iframe width=""420"" height=""315"" src=""https://www.youtube.com/embed/MPAaJiuU2aA?rel=0"" frameborder=""0"" allow=""accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"" allowfullscreen=""""></iframe></div>
+<div class=""videotitle""><font color=""#ffffff""><b>Buscar y navegar</b></font></div>
+</div>
+<!-- COLUMN 3 -->
+<div class=""column33"">
+<div class=""video-responsive""><iframe width=""420"" height=""315"" src=""https://www.youtube.com/embed/gDBJiKsenq4?rel=0"" frameborder=""0"" allow=""accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"" allowfullscreen=""""></iframe></div>
+<div class=""videotitle""><font color=""#ffffff""><b>Precios e inventario</b></font></div>
+</div>
+</div>
+</div>
+</div>
+<div class=""wrap"">
+<div class=""row"">
+<div class=""column90""><!-- COLUMN 1 -->
+<div class=""column33"">
+<div class=""video-responsive""><iframe width=""420"" height=""315"" src=""https://www.youtube.com/embed/_a4STiZXxak?rel=0"" frameborder=""0"" allow=""accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"" allowfullscreen=""""></iframe></div>
+<div class=""videotitle""><font color=""#ffffff""><b>Acceder a la información de la cuenta</b></font></div>
+</div>
+<!-- COLUMN 2 -->
+<div class=""column33"">
+<div class=""video-responsive""><iframe width=""420"" height=""315"" src=""https://www.youtube.com/embed/xMLcDF_uQ9s?rel=0"" frameborder=""0"" allow=""accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"" allowfullscreen=""""></iframe></div>
+<div class=""videotitle""><font color=""#ffffff""><b>Pago en línea</b></font></div>
+</div>
+<!-- COLUMN 3 -->
+<div class=""column33"">
+<p>&nbsp;</p>
+</div>
+</div>
+</div>
+</div>"
+;;comp_000016GB;COVID19 Resource Videos 2;;;"<div class=""wrap"">
+<div class=""row"">
+<div class=""column90"">
+<h3 class=""promo-heading""><a name=""tools"" style=""visibility:hidden"">&nbsp;</a>SiteOne Online Services and Tools</h3>
+<!-- COLUMN 1 -->
+<div class=""column33"">
+<div class=""video-responsive""><iframe width=""420"" height=""315"" src=""https://www.youtube.com/embed/nsx-2V3IFB4?rel=0"" frameborder=""0"" allow=""accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"" allowfullscreen=""""></iframe></div>
+<div class=""videotitle""><font color=""#ffffff""><b>Creating an Account</b></font></div>
+</div>
+<!-- COLUMN 2 -->
+<div class=""column33"">
+<div class=""video-responsive""><iframe width=""420"" height=""315"" src=""https://www.youtube.com/embed/MPAaJiuU2aA?rel=0"" frameborder=""0"" allow=""accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"" allowfullscreen=""""></iframe></div>
+<div class=""videotitle""><font color=""#ffffff""><b>Search &amp; Browse</b></font></div>
+</div>
+<!-- COLUMN 3 -->
+<div class=""column33"">
+<div class=""video-responsive""><iframe width=""420"" height=""315"" src=""https://www.youtube.com/embed/gDBJiKsenq4?rel=0"" frameborder=""0"" allow=""accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"" allowfullscreen=""""></iframe></div>
+<div class=""videotitle""><font color=""#ffffff""><b>Pricing &amp; Inventory</b></font></div>
+</div>
+</div>
+</div>
+</div><div class=""wrap""><div class=""row"">
+<div class=""column90""><!-- COLUMN 1 -->
+<div class=""column33"">
+<div class=""video-responsive""><iframe width=""420"" height=""315"" src=""https://www.youtube.com/embed/_a4STiZXxak?rel=0"" frameborder=""0"" allow=""accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"" allowfullscreen=""""></iframe></div>
+<div class=""videotitle""><font color=""#ffffff""><b>Accessing Account Information</b></font></div>
+</div>
+<!-- COLUMN 2 -->
+<div class=""column33"">
+<div class=""video-responsive""><iframe width=""420"" height=""315"" src=""https://www.youtube.com/embed/xMLcDF_uQ9s?rel=0"" frameborder=""0"" allow=""accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"" allowfullscreen=""""></iframe></div>
+<div class=""videotitle""><font color=""#ffffff""><b>Checkout</b></font></div>
+</div>
+<!-- COLUMN 3 -->
+<div class=""column33"">
+<p>&nbsp;</p>
+</div>
+</div>
+</div>
+</div>";"<div class=""wrap"">
+<div class=""row"">
+<div class=""column90"">
+<h3 class=""promo-heading"">Servicios y herramientas en l&iacute;nea de SiteOne</h3>
+<div class=""greenbar""><img width=""100%"" height=""2"" src=""/medias/sys_master/root/h9c/h81/8920869371934/spacer.png"" alt="""" /></div>
+<br />
+<!-- COLUMN 1 -->
+<div class=""column33"">
+<div class=""video-responsive""><iframe width=""420"" height=""315"" src=""https://www.youtube.com/embed/nsx-2V3IFB4"" frameborder=""0"" allow=""accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"" allowfullscreen=""""></iframe></div>
+<div class=""videotitle""><font color=""#ffffff""><b>Creando una cuenta</b></font></div>
+</div>
+<!-- COLUMN 2 -->
+<div class=""column33"">
+<div class=""video-responsive""><iframe width=""420"" height=""315"" src=""https://www.youtube.com/embed/MPAaJiuU2aA"" frameborder=""0"" allow=""accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"" allowfullscreen=""""></iframe></div>
+<div class=""videotitle""><font color=""#ffffff""><b>Buscar y navegar</b></font></div>
+</div>
+<!-- COLUMN 3 -->
+<div class=""column33"">
+<div class=""video-responsive""><iframe width=""420"" height=""315"" src=""https://www.youtube.com/embed/gDBJiKsenq4"" frameborder=""0"" allow=""accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"" allowfullscreen=""""></iframe></div>
+<div class=""videotitle""><font color=""#ffffff""><b>Precios e inventario</b></font></div>
+</div>
+</div>
+</div>
+</div>
+<div class=""wrap"">
+<div class=""row"">
+<div class=""column90""><!-- COLUMN 1 -->
+<div class=""column33"">
+<div class=""video-responsive""><iframe width=""420"" height=""315"" src=""https://www.youtube.com/embed/_a4STiZXxak?rel=0"" frameborder=""0"" allow=""accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"" allowfullscreen=""""></iframe></div>
+<div class=""videotitle""><font color=""#ffffff""><b>Acceder a la información de la cuenta</b></font></div>
+</div>
+<!-- COLUMN 2 -->
+<div class=""column33"">
+<div class=""video-responsive""><iframe width=""420"" height=""315"" src=""https://www.youtube.com/embed/xMLcDF_uQ9s?rel=0"" frameborder=""0"" allow=""accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"" allowfullscreen=""""></iframe></div>
+<div class=""videotitle""><font color=""#ffffff""><b>Pago en línea</b></font></div>
+</div>
+<!-- COLUMN 3 -->
+<div class=""column33"">
+<p>&nbsp;</p>
+</div>
+</div>
+</div>
+</div>"
+;;comp_000016GB;COVID19 Resource Videos 2;;;"<div class=""wrap"">
+<div class=""row"">
+<div class=""column90"">
+<h3 class=""promo-heading""><a name=""tools"" style=""visibility:hidden"">&nbsp;</a>SiteOne Online Services and Tools</h3>
+<!-- COLUMN 1 -->
+<div class=""column33"">
+<div class=""video-responsive""><iframe width=""420"" height=""315"" src=""https://www.youtube.com/embed/nsx-2V3IFB4?rel=0"" frameborder=""0"" allow=""accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"" allowfullscreen=""""></iframe></div>
+<div class=""videotitle""><font color=""#ffffff""><b>Creating an Account</b></font></div>
+</div>
+<!-- COLUMN 2 -->
+<div class=""column33"">
+<div class=""video-responsive""><iframe width=""420"" height=""315"" src=""https://www.youtube.com/embed/MPAaJiuU2aA?rel=0"" frameborder=""0"" allow=""accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"" allowfullscreen=""""></iframe></div>
+<div class=""videotitle""><font color=""#ffffff""><b>Search &amp; Browse</b></font></div>
+</div>
+<!-- COLUMN 3 -->
+<div class=""column33"">
+<div class=""video-responsive""><iframe width=""420"" height=""315"" src=""https://www.youtube.com/embed/gDBJiKsenq4?rel=0"" frameborder=""0"" allow=""accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"" allowfullscreen=""""></iframe></div>
+<div class=""videotitle""><font color=""#ffffff""><b>Pricing &amp; Inventory</b></font></div>
+</div>
+</div>
+</div>
+</div>
+<div class=""wrap"">
+<div class=""row"">
+<div class=""column90""><!-- COLUMN 1 -->
+<div class=""column33"">
+<div class=""video-responsive""><iframe width=""420"" height=""315"" src=""https://www.youtube.com/embed/_a4STiZXxak?rel=0"" frameborder=""0"" allow=""accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"" allowfullscreen=""""></iframe></div>
+<div class=""videotitle""><font color=""#ffffff""><b>Accessing Account Information</b></font></div>
+</div>
+<!-- COLUMN 2 -->
+<div class=""column33"">
+<div class=""video-responsive""><iframe width=""420"" height=""315"" src=""https://www.youtube.com/embed/xMLcDF_uQ9s?rel=0"" frameborder=""0"" allow=""accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"" allowfullscreen=""""></iframe></div>
+<div class=""videotitle""><font color=""#ffffff""><b>Checkout</b></font></div>
+</div>
+<!-- COLUMN 3 -->
+<div class=""column33"">
+<p>&nbsp;</p>
+</div>
+</div>
+</div>
+</div>";"<div class=""wrap"">
+<div class=""row"">
+<div class=""column90"">
+<h3 class=""promo-heading"">Servicios y herramientas en l&iacute;nea de SiteOne</h3>
+<div class=""greenbar""><img width=""100%"" height=""2"" src=""/medias/sys_master/root/h9c/h81/8920869371934/spacer.png"" alt="""" /></div>
+<br />
+<!-- COLUMN 1 -->
+<div class=""column33"">
+<div class=""video-responsive""><iframe width=""420"" height=""315"" src=""https://www.youtube.com/embed/nsx-2V3IFB4"" frameborder=""0"" allow=""accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"" allowfullscreen=""""></iframe></div>
+<div class=""videotitle""><font color=""#ffffff""><b>Creando una cuenta</b></font></div>
+</div>
+<!-- COLUMN 2 -->
+<div class=""column33"">
+<div class=""video-responsive""><iframe width=""420"" height=""315"" src=""https://www.youtube.com/embed/MPAaJiuU2aA"" frameborder=""0"" allow=""accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"" allowfullscreen=""""></iframe></div>
+<div class=""videotitle""><font color=""#ffffff""><b>Buscar y navegar</b></font></div>
+</div>
+<!-- COLUMN 3 -->
+<div class=""column33"">
+<div class=""video-responsive""><iframe width=""420"" height=""315"" src=""https://www.youtube.com/embed/gDBJiKsenq4"" frameborder=""0"" allow=""accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"" allowfullscreen=""""></iframe></div>
+<div class=""videotitle""><font color=""#ffffff""><b>Precios e inventario</b></font></div>
+</div>
+</div>
+</div>
+</div>
+<div class=""wrap"">
+<div class=""row"">
+<div class=""column90""><!-- COLUMN 1 -->
+<div class=""column33"">
+<div class=""video-responsive""><iframe width=""420"" height=""315"" src=""https://www.youtube.com/embed/_a4STiZXxak?rel=0"" frameborder=""0"" allow=""accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"" allowfullscreen=""""></iframe></div>
+<div class=""videotitle""><font color=""#ffffff""><b>Acceder a la información de la cuenta</b></font></div>
+</div>
+<!-- COLUMN 2 -->
+<div class=""column33"">
+<div class=""video-responsive""><iframe width=""420"" height=""315"" src=""https://www.youtube.com/embed/xMLcDF_uQ9s?rel=0"" frameborder=""0"" allow=""accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"" allowfullscreen=""""></iframe></div>
+<div class=""videotitle""><font color=""#ffffff""><b>Pago en línea</b></font></div>
+</div>
+<!-- COLUMN 3 -->
+<div class=""column33"">
+<p>&nbsp;</p>
+</div>
+</div>
+</div>
+</div>"
+;;comp_000016GC;COVID-19-2 Industry Experts Paragraph;;;"<div class=""wrap""><div class=""row""><div class=""column90""><h3 class=""promo-heading"">Industry Updates<a name=""experts"" style=""visibility:hidden"">&nbsp;</a></h3> <br /> <p>The busy season is here; with the added requirements of COVID-19 precautions, there is not much time to spare. Use these trusted industry resources to stay abreast of developments and tips from our experts to keep business moving.</p> <div style=""margin-left: 40px;""><ul>     <li><a href=""/articles/article/Here-to-Help-You-Provide-Essential-Services"">Article: Providing Essential Services to Your Customers</a></li><li><a href=""https://www.landscapeprofessionals.org/Coronavirus/"" target=""_blank"">NALP</a></li>     <li><a href=""https://www.landscapeprofessionals.org/Coronavirus/State_by_State_COVID_Guidance.aspx"" target=""_blank"">NALP State by State Guidance</a></li>     <li><a href=""https://blog.landscapeprofessionals.org/wp-content/uploads/2020/03/Landscape-Essential-Services-Letter-3_20_20.pdf?_zs=kX7Ah1&amp;_zl=2Nic6"" target=""_blank"">NALP Letter to Government Leaders Addressing Essential Services</a></li> </ul></div></div></div></div> <p>&nbsp;</p>";"<div class=""wrap""><div class=""row""><div class=""column90""><h3 class=""promo-heading"">Actualizaciones de la industria<a name=""experts"" style=""visibility:hidden"">&nbsp;</a></h3> <br /> <p>La temporada m&aacute;s ocupada ya est&aacute; aqu&iacute;; con los requerimientos a&ntilde;adidos por precauciones frente al COVID, tenemos el tiempo contado. Usa estos consejos de nuestros expertos para mantener tu negocio en movimiento con los &uacute;ltimos productos y programas.</p> <div style=""margin-left: 40px;""><ul>     <li><a href=""https://www.landscapeprofessionals.org/Coronavirus/"" target=""_blank"">NALP</a></li>     <li><a href=""https://www.landscapeprofessionals.org/Coronavirus/State_by_State_COVID_Guidance.aspx"" target=""_blank"">Pautas de NALP por estado</a></li>     <li><a href=""https://blog.landscapeprofessionals.org/wp-content/uploads/2020/03/Landscape-Essential-Services-Letter-3_20_20.pdf?_zs=kX7Ah1&amp;_zl=2Nic6"" target=""_blank"">Carta de NALP a los l&iacute;deres gubernamentales que abordan los servicios esenciales</a></li> </ul></div></div></div></div> <p>&nbsp;</p>"
+;;comp_000016GC;COVID-19-2 Industry Experts Paragraph;;;"<div class=""wrap""><div class=""row""><div class=""column90""><h3 class=""promo-heading"">Industry Updates<a name=""experts"" style=""visibility:hidden"">&nbsp;</a></h3> <br /> <p>The busy season is here; with the added requirements of COVID-19 precautions, there is not much time to spare. Use these trusted industry resources to stay abreast of developments and tips from our experts to keep business moving.</p> <div style=""margin-left: 40px;""><ul>     <li><a href=""/articles/article/Here-to-Help-You-Provide-Essential-Services"">Article: Providing Essential Services to Your Customers</a></li><li><a href=""https://www.landscapeprofessionals.org/Coronavirus/"" target=""_blank"">NALP</a></li>     <li><a href=""https://www.landscapeprofessionals.org/Coronavirus/State_by_State_COVID_Guidance.aspx"" target=""_blank"">NALP State by State Guidance</a></li>     <li><a href=""https://blog.landscapeprofessionals.org/wp-content/uploads/2020/03/Landscape-Essential-Services-Letter-3_20_20.pdf?_zs=kX7Ah1&amp;_zl=2Nic6"" target=""_blank"">NALP Letter to Government Leaders Addressing Essential Services</a></li> </ul></div></div></div></div> <p>&nbsp;</p>";"<div class=""wrap""><div class=""row""><div class=""column90""><h3 class=""promo-heading"">Actualizaciones de la industria<a name=""experts"" style=""visibility:hidden"">&nbsp;</a></h3> <br /> <p>La temporada m&aacute;s ocupada ya est&aacute; aqu&iacute;; con los requerimientos a&ntilde;adidos por precauciones frente al COVID, tenemos el tiempo contado. Usa estos consejos de nuestros expertos para mantener tu negocio en movimiento con los &uacute;ltimos productos y programas.</p> <div style=""margin-left: 40px;""><ul>     <li><a href=""https://www.landscapeprofessionals.org/Coronavirus/"" target=""_blank"">NALP</a></li>     <li><a href=""https://www.landscapeprofessionals.org/Coronavirus/State_by_State_COVID_Guidance.aspx"" target=""_blank"">Pautas de NALP por estado</a></li>     <li><a href=""https://blog.landscapeprofessionals.org/wp-content/uploads/2020/03/Landscape-Essential-Services-Letter-3_20_20.pdf?_zs=kX7Ah1&amp;_zl=2Nic6"" target=""_blank"">Carta de NALP a los l&iacute;deres gubernamentales que abordan los servicios esenciales</a></li> </ul></div></div></div></div> <p>&nbsp;</p>"
+;;comp_000016GE;COVID-19-2 Video Paragraph;;;"<div class=""wrap"">
+<div class=""row"">
+<div class=""column90"">
+<p><strong>&nbsp;Use SiteOne.com to keep your projects on track with features such as:</strong></p>
+<div style=""margin-left: 40px;"">
+<ul>
+    <li>Instant access to your pricing</li>
+    <li>Real-time product availability</li>
+    <li>24/7 online ordering</li>
+    <li>See your order history</li>
+    <li>Online bill pay</li>
+</ul>
+</div>
+</div>
+</div>
+</div>";"<div class=""wrap"">
+<div class=""row"">
+<div class=""column90"">
+<p><strong>&nbsp;Usa SiteOne.com para mantener tus proyectos andando con funcionalidades como:</strong></p>
+<div style=""margin-left: 40px;"">
+<ul>
+    <li>Acceso instantáneo a tus precios</li>
+    <li>Verificación de disponibilidad de productos en tiempo real</li>
+    <li>Orden en línea 24/7</li>
+    <li>Ver tu historial de compras</li>
+    <li>Pago en línea</li>
+</ul>
+</div>
+</div>
+</div>
+</div>"
+;;comp_000016GE;COVID-19-2 Video Paragraph;;;"<div class=""wrap"">
+<div class=""row"">
+<div class=""column90"">
+<p><strong>&nbsp;Use SiteOne.com to keep your projects on track with features such as:</strong></p>
+<div style=""margin-left: 40px;"">
+<ul>
+    <li>Instant access to your pricing</li>
+    <li>Real-time product availability</li>
+    <li>24/7 online ordering</li>
+    <li>See your order history</li>
+    <li>Online bill pay</li>
+</ul>
+</div>
+</div>
+</div>
+</div>";"<div class=""wrap"">
+<div class=""row"">
+<div class=""column90"">
+<p><strong>&nbsp;Usa SiteOne.com para mantener tus proyectos andando con funcionalidades como:</strong></p>
+<div style=""margin-left: 40px;"">
+<ul>
+    <li>Acceso instantáneo a tus precios</li>
+    <li>Verificación de disponibilidad de productos en tiempo real</li>
+    <li>Orden en línea 24/7</li>
+    <li>Ver tu historial de compras</li>
+    <li>Pago en línea</li>
+</ul>
+</div>
+</div>
+</div>
+</div>"
+;;comp_000016GF;COVID-19 New Disclaimer;;;"<div class=""wrap""><div class=""row""><div class=""column90""><div>We are <strong>prepared to support your business</strong> during this unique and challenging time. Earlier this year we leveraged our national distribution network to buy forward for select products and ensure that our branches remain well-stocked to support our customers. For any questions, please <a href=""/contactus"">contact the SiteOne Customer Service Team</a> at 1-800-SITEONE (1-800-748-3663). <p>&nbsp;</p> We will continue to monitor and update you on any changes to the situation in your local market. Thank you for allowing us to be your green industry partner.</div> <p>&nbsp;</p><br /> <div><span style=""font-size: smaller;"">*Note most SiteOne.com pickup orders can be prepared for pickup within half a business day. Delivery orders typically require 24 hours for preparation. Please contact your branch if your project has special timing considerations</span>.</div></div></div></div>";"<div>&nbsp;</div>"
+;;comp_000016GF;COVID-19 New Disclaimer;;;"<div class=""wrap""><div class=""row""><div class=""column90""><div>We are <strong>prepared to support your business</strong> during this unique and challenging time. Earlier this year we leveraged our national distribution network to buy forward for select products and ensure that our branches remain well-stocked to support our customers. For any questions, please <a href=""/contactus"">contact the SiteOne Customer Service Team</a> at 1-800-SITEONE (1-800-748-3663). <p>&nbsp;</p> We will continue to monitor and update you on any changes to the situation in your local market. Thank you for allowing us to be your green industry partner.</div> <p>&nbsp;</p><br /> <div><span style=""font-size: smaller;"">*Note most SiteOne.com pickup orders can be prepared for pickup within half a business day. Delivery orders typically require 24 hours for preparation. Please contact your branch if your project has special timing considerations</span>.</div></div></div></div>";"<div>&nbsp;</div>"
+;;comp_000016GH;COVID-19-2 Financial Resources Paragraph;;;"<div class=""wrap""><div class=""row""><div class=""column90""><h3 class=""promo-heading"">Financial Resources<a name=""financial"" style=""visibility:hidden"">&nbsp;</a></h3> <br /> <p>During this uncertain time there are several financial resources being made available to small businesses in the green industry. The following are some links to help you navigate the various programs and services available.</p> <div style=""margin-left: 40px;""><ul>     <li><a href=""https://home.treasury.gov/cares"" target=""_blank"">US Department of Treasury CARES ACT and Paycheck Protection Program (PPP)</a></li>     <li><a href=""https://www.landscapeprofessionals.org/Coronavirus/Coronavirus/Financial_Resources.aspx"" target=""_blank"">NALP Financial Resources Guide</a></li>     <li><a href=""https://home.treasury.gov/policy-issues/top-priorities/cares-act/assistance-for-small-businesses"" target=""_blank"">US Department of Treasury Small Business Assistance Resources</a></li>     <li><a href=""https://www.sba.gov/funding-programs/loans/coronavirus-relief-options"" target=""_blank"">US Small Business Administration Loan and Debt Relief Options</a></li> </ul></div></div></div></div>";"<div class=""wrap""><div class=""row""><div class=""column90""><h3 class=""promo-heading"">Recursos financieros<a name=""financial"" style=""visibility:hidden"">&nbsp;</a></h3> <br /> <p>Los siguientes son algunos enlaces para ayudarlo a navegar por los diversos programas y servicios disponibles.</p> <div style=""margin-left: 40px;""><ul> <li><a href=""https://home.treasury.gov/cares"" target=""_blank"">Departamento de Tesorer&iacute;a CARES ACT y Programa de Protecci&oacute;n de Cheques</a></li>     <li><a href=""https://www.landscapeprofessionals.org/Coronavirus/Coronavirus/Financial_Resources.aspx"" target=""_blank"">Gu&iacute;a de recursos financieros de NALP</a></li>     <li><a href=""https://home.treasury.gov/policy-issues/top-priorities/cares-act/assistance-for-small-businesses"" target=""_blank"">Recursos de asistencia para peque&ntilde;as empresas del Departamento del Tesoro de EE. UU.</a></li>     <li><a href=""https://www.sba.gov/funding-programs/loans/coronavirus-relief-options"" target=""_blank"">Opciones de alivio de deuda y pr&eacute;stamos de la Administraci&oacute;n de Peque&ntilde;as Empresas de EE. UU.</a></li> </ul></div></div></div></div> <p>&nbsp;</p>"
+;;comp_000016GH;COVID-19-2 Financial Resources Paragraph;;;"<div class=""wrap""><div class=""row""><div class=""column90""><h3 class=""promo-heading"">Financial Resources<a name=""financial"" style=""visibility:hidden"">&nbsp;</a></h3> <br /> <p>During this uncertain time there are several financial resources being made available to small businesses in the green industry. The following are some links to help you navigate the various programs and services available.</p> <div style=""margin-left: 40px;""><ul>     <li><a href=""https://home.treasury.gov/cares"" target=""_blank"">US Department of Treasury CARES ACT and Paycheck Protection Program (PPP)</a></li>     <li><a href=""https://www.landscapeprofessionals.org/Coronavirus/Coronavirus/Financial_Resources.aspx"" target=""_blank"">NALP Financial Resources Guide</a></li>     <li><a href=""https://home.treasury.gov/policy-issues/top-priorities/cares-act/assistance-for-small-businesses"" target=""_blank"">US Department of Treasury Small Business Assistance Resources</a></li>     <li><a href=""https://www.sba.gov/funding-programs/loans/coronavirus-relief-options"" target=""_blank"">US Small Business Administration Loan and Debt Relief Options</a></li> </ul></div></div></div></div>";"<div class=""wrap""><div class=""row""><div class=""column90""><h3 class=""promo-heading"">Recursos financieros<a name=""financial"" style=""visibility:hidden"">&nbsp;</a></h3> <br /> <p>Los siguientes son algunos enlaces para ayudarlo a navegar por los diversos programas y servicios disponibles.</p> <div style=""margin-left: 40px;""><ul> <li><a href=""https://home.treasury.gov/cares"" target=""_blank"">Departamento de Tesorer&iacute;a CARES ACT y Programa de Protecci&oacute;n de Cheques</a></li>     <li><a href=""https://www.landscapeprofessionals.org/Coronavirus/Coronavirus/Financial_Resources.aspx"" target=""_blank"">Gu&iacute;a de recursos financieros de NALP</a></li>     <li><a href=""https://home.treasury.gov/policy-issues/top-priorities/cares-act/assistance-for-small-businesses"" target=""_blank"">Recursos de asistencia para peque&ntilde;as empresas del Departamento del Tesoro de EE. UU.</a></li>     <li><a href=""https://www.sba.gov/funding-programs/loans/coronavirus-relief-options"" target=""_blank"">Opciones de alivio de deuda y pr&eacute;stamos de la Administraci&oacute;n de Peque&ntilde;as Empresas de EE. UU.</a></li> </ul></div></div></div></div> <p>&nbsp;</p>"

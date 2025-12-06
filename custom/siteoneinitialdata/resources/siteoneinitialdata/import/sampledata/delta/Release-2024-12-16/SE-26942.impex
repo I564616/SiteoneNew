@@ -1,0 +1,3 @@
+INSERT_UPDATE SiteOneFeatureSwitch;key[unique=true];value;longValue
+;EnableP2BackorderLogic;On;On
+;EnableP3BackorderLogic;Off;Off

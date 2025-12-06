@@ -1,0 +1,722 @@
+## messageSource=classpath:/siteonecore/messages/email-invoiceDetailEmail_$lang.properties
+#macro( genHtmlBoldFont $text )
+<font color="#000000" ><b>$text</b></font>
+#end
+#macro(genHtmlLinkStartTag $url)
+<a href="$url"><font color="#000000">
+#end
+#macro(genHtmlLinkEndTag)
+</font></a>
+#end
+#macro(genHtmlLink $url $textColor $bodyContent)
+<a href="$url"><font color="$textColor">$bodyContent</font></a>
+#end
+
+<div style="display:none !important;
+            visibility:hidden;
+            mso-hide:all;
+            font-size:1px;
+            color:#ffffff;
+            line-height:1px;
+            max-height:0px;
+            max-width:0px;
+            opacity:0;
+            overflow:hidden;">${ctx.messages.preHeader}</div>
+<html>
+	<head>
+	<style>
+	table{
+	font-family: Arial;
+    font-size:12pt;
+    }
+    </style>
+	</head>
+	<body bgcolor="#ffffff">
+		<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#ffffff">
+			<tr>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<td align="center" valign="top">
+					<table width="610" border="0" align="center" cellpadding="0" cellspacing="0" bordercolor="#fff">
+						<tr>
+							<td align="center" valign="top" bgcolor="#FFFFFF" style="border:1px solid #51585c;">
+								<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#ffffff">
+									<tr>
+										<td>
+											<table width="100%" cellpadding="0" cellspacing="0">
+												<tr>
+													<td valign="left" style="padding:15px;">
+														<a href="${ctx.baseThemeUrl}" style="text-decoration:none;">
+															<img title="SiteoneLogo" src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/SiteoneLogo.jpg" alt="SiteoneLogo" style="outline:0;border:none;">
+														</a>
+													</td>
+													<td valign="right" align="right" style="padding:15px;" >
+														<span class="col-xs-6 col-md-12">
+															<a href="https://www.facebook.com/SiteOneLandscape/" style="text-decoration:none;">
+																<img src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/Print_facebook_color.png" alt="Facebook" title="Facebook" style="outline:0;border:none;"  width="30" height="30">
+															</a>
+															<a href="https://www.instagram.com/siteonesupply/"  style="text-decoration:none;">
+																<img src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/Print_instagram_color.png" alt="Instagram" title="Instagram" style="outline:0;border:none;"  width="30" height="30">
+															</a>
+															<a href="https://twitter.com/SiteOneSupply"   style="text-decoration:none;">
+																<img src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/Print_twitter_color.png" alt="Twitter" title="Twitter" style="outline:0;border:none;"  width="30" height="30">
+															</a>
+														</span>
+													</td>
+												</tr>
+											</table>
+										</td>
+									</tr>
+									<tr>
+										<td align="left" valign="top">
+											<table width="100%" cellpadding="0" cellspacing="0">
+												<tr>
+													<td width="100%" colspan="4" height="19" align="left" bgcolor="#CCCCCC"></td>
+												</tr>
+											</table>
+											<table width="100%" cellpadding="0" cellspacing="0">
+												<tr>
+													<td>
+														<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" bordercolor="#51585c" class="products">
+															<tr>
+																<td style="padding:0px 29px;">
+																	<table width="100%">
+																		<tr>
+																			<td>
+																				<table width="100%">
+																					<tr>
+																						<td width="33%" valign="top" style="padding-left: 5px;">
+																							<br/>
+																							<font color="#333">
+																								<b>${ctx.messages.invoiceNo}</b>
+																							</font>
+																							<p style="margin:3px 0">
+																								<font color="#000000">
+																									${ctx.invoiceDetails.invoiceNumber}
+																									<br/>
+																								</font>
+																							</p>
+																						</td>
+																						<td width="34%" valign="top"  style="padding-left: 4%;">
+																							<br/>
+																							<font color="#333">
+																								<b>${ctx.messages.datePlaced}</b>
+																							</font>
+																							#if(${ctx.invoicedDate})
+																							<p style="margin:3px 0">
+																								<font color="#000000">
+																									${ctx.invoicedDate}
+																									<br/>
+																								</font>
+																							</p>
+																							#end
+																						</td>
+																					</tr>
+																					<tr>
+																						<td width="33%" valign="top"  style="padding-left: 5px;">
+																							<br/>
+																							<font color="#333">
+																								<b>${ctx.messages.orderedBy}</b>
+																							</font>
+																							<p style="margin:3px 0">
+																								<font color="#000000">
+																								#if(${ctx.invoiceDetails.user})
+																									#if(${ctx.userName})${ctx.userName}#end
+																									<br/>
+																								   #if(${ctx.invoiceDetails.user})${ctx.invoiceDetails.user}#end
+																								#else
+																									${ctx.messages.blankFieldValue}#end
+																									<br/>																									
+																								</font>
+																							</p>
+																						</td>
+																						<td width="34%" valign="top"  style="padding-left: 4%;">
+																							<br/>
+																							<font color="#333">
+																								<b>${ctx.messages.billingterms}</b>
+																							</font>
+																							<p style="margin:3px 0">
+																								<font color="#000000">
+																									#if(${ctx.invoiceDetails.billingTerms})
+																										${ctx.invoiceDetails.billingTerms}
+																										<br/>
+																									#else ${ctx.messages.blankFieldValue}
+																										<br/>
+																									#end
+																								</font>
+																							</p>
+																						</td>
+																					</tr>
+																					<tr>
+																						<td width="34%" valign="top" rowspan="2">
+																							&nbsp;
+																						</td>
+																					</tr>
+																				</table>
+																			</td>
+																		</tr>
+																		<tr>
+																			<td>
+																				#if(${ctx.invoiceDetails.deliveryMode} == "Customer Pick up" || ${ctx.invoiceDetails.deliveryMode} == "pickup")
+																				
+																				<table width="100%" cellpadding="0" cellspacing="0">
+																					<tr>
+																						<td style="padding-left:5px" height="25" width="100%" colspan="4" align="left" bgcolor="#CCCCCC">
+																							<font color="#000000">
+																								<p style="font-weight:bold;text-transform:capitalize;">
+																									${ctx.messages.pickupInfoHeading}
+																								</p>
+																							</font>
+																						</td>
+																					</tr>
+																					<tr>
+																						<td>
+																							<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" bordercolor="#51585c" class="products" >
+																								<tr>
+																									<td style="padding-top: 7px;">
+																										<table>
+																											<tr>
+																												<td width="33%" valign="top" rowspan="2" style="padding-left: 5px;">
+																													<font color="#333">
+																														<b>${ctx.messages.accountNo}</b> 
+																														${ctx.accountNumber}
+																													</font>
+																													</br>
+																													<p style="margin-bottom: 2px;">
+																														<font color="#333">
+																															<b>${ctx.messages.pickupLocation}</b>
+																														</font>
+																													</p>
+																													<p style="margin-top: 8px;">
+																														<font color="#000000">
+																															#if(${ctx.invoiceDetails.storeName}) ${ctx.invoiceDetails.storeName} #end
+																															<br/>
+																															#if(${ctx.storeTitle}) ${ctx.storeTitle} #else ${ctx.messages.blankFieldValue}  #end <br/>
+																															#if(${ctx.invoiceDetails.branchAddress.line1}) ${ctx.invoiceDetails.branchAddress.line1},
+																															<br/> #end
+																															 #if(${ctx.invoiceDetails.branchAddress.town}) ${ctx.invoiceDetails.branchAddress.town},#end #if(${ctx.invoiceDetails.branchAddress.region.isocodeShort}) ${ctx.invoiceDetails.branchAddress.region.isocodeShort} #end #if(${ctx.invoiceDetails.branchAddress.postalcode}) ${ctx.invoiceDetails.branchAddress.postalcode} #end
+																															<br/>
+																															 #if(${ctx.invoiceDetails.branchAddress.phone1}) ${ctx.invoiceDetails.branchAddress.phone1} #end
+																														</font>
+																													</p>
+																												</td>
+																												<td width="34%" valign="top" style="padding-left:4%;padding-top:0%">
+																													<br/><br/>
+																													<font color="#333">
+																														<b>${ctx.messages.pickupContact}</b>
+																													</font>
+																													<p style="margin-top: 8px;">
+																														<font color="#000000">
+																															${ctx.invoiceDetails.contact_firstName} &nbsp;
+																																<br/>
+																															#if(${ctx.invoiceDetails.contact_phone}) ${ctx.invoiceDetails.contact_phone} #else ${ctx.messages.blankFieldValue} #end
+																																<br/>
+																															#if(${ctx.invoiceDetails.user}) ${ctx.invoiceDetails.user} #else ${ctx.messages.blankFieldValue} #end
+																														</font>
+																													</p>
+																												</td>
+																											</tr>
+																										</table>
+																										<br>
+																										<table>
+																											<tr>
+																												<p style="margin-bottom: 10px;padding-left: 5px;margin-top:0px;">
+																													<font color="#333">
+																														<b>${ctx.messages.pickupInfo}</b>
+																														<br/>
+																													</font>
+																												</p>
+																												<p style="margin:3px 0">
+																													<font color="#333" style="padding-left: 5px;font-weight:bold;">${ctx.messages.dateandtime}
+																														<br/>
+																													</font>
+																													<font color="#000000">
+																														<font color="#000000" style="padding-left: 5px;">
+																															#if(${ctx.pickupDeliveryDate}) ${ctx.pickupDeliveryDate} #else ${ctx.messages.blankFieldValue} #end
+																															<br/>
+																														</font>
+																													</font>
+																												</p>
+																												<br/>
+																												<p style="padding-left: 6px;margin-bottom: 15px;margin-top: 0px;">
+																													<font color="#333">
+																														<b style="font-weight:bold">${ctx.messages.msgForBrnch}</b>
+																														<br/>
+																													</font>
+																													<font color="#000000">
+																													  #if(${ctx.invoiceDetails.instructionsText}) ${ctx.invoiceDetails.instructionsText} #else ${ctx.messages.blankFieldValue} #end
+																														<br/>
+																													</font>
+																												</p>
+																											</tr>
+																										</table>
+																									</td>
+																								</tr>
+																							</table>
+																							<table width="100%" cellpadding="0" cellspacing="0">
+																								<tr>
+																									<td width="100%" height="25" colspan="4" align="left" bgcolor="#CCCCCC" style="padding-left:5px" >
+																										<font color="#000000">
+																											<b style="font-weight:bold;text-transform:capitalize;padding-left: 1px;">${ctx.messages.poHeading}</b>
+																										</font>
+																									</td>
+																								</tr>
+
+                                                                                                <tr>
+                                                                                                    <td width="100%" colspan="4" align="left" bgcolor="#FFFFFF" style="padding-top:10px;padding-left:5px;padding-bottom: 15px;">
+                                                                                                        <font color="#333">
+                                                                                                            <b>${ctx.messages.poNo}</b>
+                                                                                                            #if(${ctx.invoiceDetails.purchaseOrderNumber})
+                                                                                                                ${ctx.invoiceDetails.purchaseOrderNumber}
+                                                                                                            #end
+                                                                                                        </font>
+                                                                                                    </td>
+                                                                                                </tr>
+
+																							</table>
+																						</td>
+																					</tr>
+																				</table>
+																				#else
+																				
+																				<table width="100%" cellpadding="0" cellspacing="0">
+																					<tr>
+																						<td width="100%" colspan="4" height="30" align="left" bgcolor="#CCCCCC" style="padding-left:5px">
+																							<font color="#000000">
+																								<b style="font-weight:bold;" style="text-transform:capitalize;">${ctx.messages.deliveryInfoHeading}</b>
+																							</font>
+																						</td>
+																					</tr>
+																					<tr>
+																						<td>
+																							<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" bordercolor="#51585c" class="products">
+																								<tr>
+																									<td style="padding-top: 7px;">
+																										<table>
+																											<tr>
+																												<td width="33%" valign="top" rowspan="2" style="padding-left: 5px;>
+																													<font color="#333" size="3">
+																														<b>${ctx.messages.accountNo}</b>
+																													  ${ctx.invoiceDetails.accountNumber}
+																													</font>
+																													</br>
+																													<p style="margin-bottom: 2px;">
+																														<font color="#333">
+																															<b>${ctx.messages.deliveryLocation}</b>
+																														</font>
+																													</p>
+																													<p style="margin-top: 9px;padding-left: 1px;">
+																														<font color="#000000">
+																															#if(${ctx.invoiceDetails.address})
+																															#if(${ctx.invoiceDetails.address.town}) ${ctx.invoiceDetails.address.town},&nbsp; #end #if(${ctx.invoiceDetails.address.region.isocodeShort}) ${ctx.invoiceDetails.address.region.isocodeShort} #end #${ctx.invoiceDetails.branchNumber}
+																																<br/>
+																															#if(${ctx.invoiceDetails.address.company}) ${ctx.invoiceDetails.address.company} #end
+																																<br/>
+																															#if(${ctx.invoiceDetails.address.line1}) ${ctx.invoiceDetails.address.line1} #end
+																																<br/>
+																															#if(${ctx.invoiceDetails.address.town})${ctx.invoiceDetails.address.town},&nbsp; #end #if(${ctx.invoiceDetails.address.region.isocodeShort}) ${ctx.invoiceDetails.address.region.isocodeShort} #end #if(${ctx.invoiceDetails.address.postalcode}) ${ctx.invoiceDetails.address.postalcode} #end
+																															#else 
+																															 ${ctx.messages.blankFieldValue} #end
+																																<br/>
+																															#if(${ctx.invoiceDetails.address.phone1}) ${ctx.invoiceDetails.address.phone1} #else ${ctx.messages.blankFieldValue} #end
+																														</font>
+																													</p>
+																												</td>
+																												<td width="34%" valign="top" style="padding-left:4%;padding-top:0%">
+																													<br/><br/>
+																													<font color="#333">
+																														<b>${ctx.messages.deliveryContact}</b>
+																													</font>
+																													<p style="margin-top: 8px;">
+																														<font color="#000000">
+																															${ctx.invoiceDetails.contact_firstName} &nbsp;
+																															<br/>
+																															#if($ctx.invoiceDetails.contact_phone)
+																															${ctx.invoiceDetails.contact_phone}
+																															<br/>
+																															#else ${ctx.messages.blankFieldValue}
+																															<br/>
+																															#end
+																															#if(${ctx.invoiceDetails.user}) ${ctx.invoiceDetails.user} #else ${ctx.messages.blankFieldValue} #end
+																														</font>
+																													</p>
+																												</td>
+																											</tr>
+																										</table>
+																										<br>
+																										<table>
+																											<tr>
+																												<p style="margin-bottom: 9px;padding-left: 5px;margin-top:0px;">
+																													<font color="#333">
+																														<b>${ctx.messages.deliveryInfo}</b>
+																														<br/>
+																													</font>
+																												</p>
+																												<p style="margin:3px 0">
+																													<font color="#333" style="padding-left: 5px;font-weight:bold;">${ctx.messages.dateandtime}
+																													<br/>
+																													</font>
+																													<font color="#000000" style="padding-left: 5px;">
+																														#if(${ctx.pickupDeliveryDate}) ${ctx.pickupDeliveryDate} #else ${ctx.messages.blankFieldValue} #end
+																														<br/>
+																													</font>
+																												</p>
+																												<br/>
+																												<p style="padding-left: 6px;margin-bottom: 15px;margin-top: 0px;">
+																													<font color="#333">
+																														<b style="font-weight:bold">${ctx.messages.msgForBrnch}</b>
+																														<br/>
+																													</font>
+																													<font color="#000000">
+																														#if(${ctx.invoiceDetails.instructionsText}) ${ctx.invoiceDetails.instructionsText} #else ${ctx.messages.blankFieldValue} #end
+																														<br/>
+																														<br/>
+																													</font>
+																												</p>
+																											</tr>
+																										</table>
+																									</td>
+																								</tr>
+																							</table>
+																						</td>
+																					</tr>
+																					<tr>
+																						<td>
+																							<table width="100%" cellpadding="0" cellspacing="0">
+																								<tr>
+																									<td width="100%" height="25" colspan="4" align="left" bgcolor="#CCCCCC" style="padding-left:5px" >
+																										<font color="#000000">
+																											<b style="font-weight:bold;text-transform:capitalize;padding-left: 1px;">${ctx.messages.poHeading}</b>
+																										</font>
+																									</td>
+																								</tr>
+																								<tr>
+																									<td width="100%" colspan="4" align="left" bgcolor="#FFFFFF" style="padding-top:10px;padding-left:5px;padding-bottom: 15px;">
+																										<font color="#333">
+																											<b>${ctx.messages.poNo}</b>
+																											${ctx.invoiceDetails.purchaseOrderNumber}
+																										</font>
+																									</td>
+																								</tr>
+																							</table>
+																						</td>
+																					</tr>
+																				</table>
+																				#end
+																				#if ($ctx.invoiceDetails.entries.size() > 0)
+																				<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" bordercolor="#51585c" class="products">
+																					<tr>
+																						<td>
+																							<table width="100%" cellpadding="0" cellspacing="0">
+																								<tr>
+																									<td width="100%" colspan="4" height="30" align="left" bgcolor="#CCCCCC" style="padding-left:5px">
+																										<font color="#000000">
+																											<b style="font-weight:bold;text-transform:capitalize;">
+																												${ctx.messages.order}
+																											</b>
+																										</font>
+																									</td>
+																								</tr>
+																								#foreach( $entry in ${ctx.invoiceDetails.entries} )
+																								<tr bgcolor="#e0e0e0">
+																									<td width="50%">
+																										<font color="#000000" >&nbsp;<b style="font-weight:bold;">${ctx.messages.productInformation}</b></font>
+																									</td>
+																									<td width="17%" height="30" align="center">
+																										<font color="#000000" ><b style="font-weight:bold;">${ctx.messages.itemPrice}</b></font>
+																									</td>
+																									<td width="17%" height="30" align="center">
+																										<font color="#000000" ><b style="font-weight:bold;">${ctx.messages.quantity}</b></font>
+																									</td>
+																									<td width="16%" height="30" align="right" style="padding-right:4%;">
+																										<font color="#000000" ><b style="font-weight:bold;">${ctx.messages.total}
+																											<b/>
+																										</font>
+																									</td>
+																								</tr>
+																								<tr>
+																									<td colspan="4" style="padding-top:2%;padding-bottom:2%;">
+																										<table width="100%" border="0" cellpadding="0" cellspacing="0">
+																											<tr>
+																												<td height="120px" valign="top" width="50%">
+																													<span>
+																													#set($i = 0)
+																													#foreach($product in ${ctx.products}) #if($i == 0 && $product.itemNumber == $entry.productItemNumber)
+																																
+																														<a href="${ctx.baseUrl}${product.url}" style="text-decoration:none">
+																														#if(${product.images})
+																													         
+																															
+																															#foreach($image in ${product.images}) #if($image.imageType == "PRIMARY" && $image.format == "thumbnail" )
+																																<img src="${ctx.baseThemeUrl}$image.url" alt="" title="$product.name"/>
+																																#set($i = 1)
+																															#end #end
+																															#else
+																															<img src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/missing_product_EN_300x300.jpg" width="110" height="110"  style="border: 1px solid #cccccc;padding: 15px 0px;" alt="image not available" >
+																															#end
+																															
+																														</a>
+																														#end #end
+																													</span>																												<span>
+																														<p style="padding-left: 5px;color:#78a22f;">
+
+																																<font >
+																																	$entry.description
+																																	
+																																</font>
+
+																														</p>
+																														<p style="padding-left: 5px;">
+																															<font color="#000000" >
+																																<font color="#000000">$entry.productItemNumber</font>
+																															</font>
+																														</p>
+																													</span>
+																												</td>
+																												<td valign="top" width="17%" align="center" style="font-color:#000000">$$entry.basePriceText</td>
+																												<td valign="top" width="17%" align="center" style="font-color:#000000;">$entry.quantityText</td>
+																												<td valign="top" width="16%" align="right" style="padding-right:20px;font-color:#000000;">$$entry.extpriceText</td>
+																											</tr>
+																										</table>
+																									</td>
+																								</tr>
+																								#end
+																							</table>
+																						</td>
+																					</tr>
+																				</table>
+																				#end
+																			</td>
+																		</tr>
+																		<tr>
+																			<td>
+																				<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" bordercolor="#51585c" style="border-top:1px solid #000;" class="products">
+																					<tr>
+																						<td valign="top">
+																							<table width="100%" style="padding-top: 10px;">
+																								<tr>
+																									<td width="30%">&nbsp;</td>
+																									<td width="20%">&nbsp;</td>
+																									<td valign="top">
+																									 &nbsp;
+																									</td>
+																									<td valign="top">
+																										<table width="100%" cellpadding="0" cellspacing="0">
+																											<tr>
+																												<td valign="top" width="45%">
+																													<p style="margin: 0">
+																														<font color="#000000" >${ctx.messages.subtotal}</font>
+																													</p>
+																												</td>
+																												<td valign="top" width="20%">&nbsp;</td>
+																												<td valign="top" width="45%" align="right" style="padding-right: 4%;">
+																													<p style="margin: 0">
+																														<font color="#000000" ><b style="font-weight:normal;">
+																															#if($ctx.invoiceDetails.subTotalText && !$ctx.invoiceDetails.subTotalText.isEmpty())
+																																$${ctx.invoiceDetails.subTotalText}
+																															#else
+																				  												$
+																				  											#end
+																														</font>
+																													</p>
+																												</td>
+																											</tr>
+
+																											#if(${ctx.invoiceDetails.deliveryMode} != "Customer Pick up")
+                                                                                                                #if (${ctx.invoiceDetails.freight})
+                                                                                                                <tr>
+                                                                                                                    <td valign="top" width="45%">
+                                                                                                                        <p style="margin: 0">
+                                                                                                                            <font color="#000000" >${ctx.messages.freight}</font>
+                                                                                                                        </p>
+                                                                                                                    </td>
+                                                                                                                    <td valign="top" width="20%">&nbsp;</td>
+                                                                                                                    <td valign="top" width="45%" align="right" style="padding-right: 4%;">
+                                                                                                                        <p style="margin: 0">
+                                                                                                                            <font color="#000000" >
+                                                                                                                                <b style="font-weight:normal;">$${ctx.invoiceDetails.freight}</b>
+                                                                                                                            </font>
+                                                                                                                        </p>
+                                                                                                                    </td>
+                                                                                                                </tr>
+                                                                                                                #end
+																											#end
+																											<tr>
+																												<td valign="top">
+																													<p style="margin: 0;text-transform:capitalize;">
+																														<font color="#000000" >${ctx.messages.tax}</font>
+																													</p>
+																												</td>
+																												<td valign="top">&nbsp;</td>
+																												<td valign="top" align="right" style="padding-right: 4%;">
+																													<p style="margin: 0">
+																														<font color="#000000" >
+																															<b style="font-weight:normal;">$</b>${ctx.invoiceDetails.totalTaxText}
+																														</font>
+																													</p>
+																												</td>
+																											</tr>
+																											<tr>
+																												<td valign="top">
+																													<p style="margin: 0">
+																														<font color="#000000" >
+																															<b>${ctx.messages.total}</b>
+																														</font>
+																													</p>
+																												</td>
+																												<td valign="top">&nbsp;</td>
+																												<td valign="top" align="right" style="padding-right: 4%;">
+																													<p style="margin: 0">
+																														<font color="#000000" >
+																															<b>$${ctx.invoiceDetails.orderTotalPriceText}</b>
+
+																														</font>
+																													</p>
+																												</td>
+																											</tr>
+																											<tr>
+																												<td valign="top">
+																													<p style="margin: 0">
+																														<font color="#000000" >
+																															${ctx.messages.totalPayment}
+																														</font>
+																													</p>
+																												</td>
+																												<td valign="top">&nbsp;</td>
+																												<td valign="top" align="right" style="padding-right: 4%;">
+																													<p style="margin: 0">
+																														<font color="#000000" >
+																														#if($ctx.invoiceDetails.totalPayment && !$ctx.invoiceDetails.totalPayment.isEmpty())
+																				      											  $${ctx.invoiceDetails.totalPayment}
+																				   										 
+																				  										#else
+																				  												$0.00
+																				  										#end
+									
+																														</font>
+																													</p>
+																												</td>
+																											</tr>
+																											
+																											<tr>
+																												<td valign="top">
+																													<p style="margin: 0">
+																														<font color="#000000" >
+																															${ctx.messages.amountDue}
+																														</font>
+																													</p>
+																												</td>
+																												<td valign="top">&nbsp;</td>
+																												<td valign="top" align="right" style="padding-right: 4%;">
+																													<p style="margin: 0">
+																														<font color="#000000" >
+																															#if($ctx.invoiceDetails.amountDue && !$ctx.invoiceDetails.amountDue.isEmpty())
+																				      											  $${ctx.invoiceDetails.amountDue}
+																				   				
+																				  										#else
+																				  												$0.00
+																				  										#end
+
+																														</font>
+																													</p>
+																												</td>
+																											</tr>
+											
+																										</table>
+																										<br/>
+																									</td>
+																								</tr>
+																							</table>
+																						</td>
+																					</tr>
+																					<table width="100%" cellpadding="0" cellspacing="0">
+																					<tr>
+																						<td style="padding-left:5px" height="25" width="100%" colspan="4" align="left" bgcolor="#CCCCCC">
+																							<font color="#000000">
+																								<b style="font-weight:bold;" style="text-transform:capitalize;">${ctx.messages.payment}</b>
+																							</font>
+																						</td>
+																					</tr>
+																					#if(${ctx.paymentType} == "2")
+																						<tr>
+																						<td colspan="6" style="padding: 10px 20px 0px 5px;"><b>${ctx.messages.payatbranch}</b></td>
+																						</tr>
+																						<tr>
+																						<td colspan="6" style="padding: 10px 20px 0px 5px;"> <b> ${ctx.messages.branch} </b>  ${ctx.invoiceDetails.branchAddress.town} ${ctx.invoiceDetails.storeId}</td>
+																						</tr>
+																						<tr>
+																						<td colspan="6" style="padding: 10px 20px 0px 5px;"> <b> ${ctx.messages.amount}</b> $${ctx.invoiceDetails.orderTotalPriceText} </td>
+																						</tr>
+																					#elseif(${ctx.paymentType} == "3")
+																						<tr>
+																						<td colspan="6" style="padding: 10px 20px 0px 5px;"><b>${ctx.messages.creditcard}</b></td>
+																						</tr>
+																						<tr>
+																						<td colspan="6" style="padding: 10px 20px 0px 5px;"> <b>${ctx.messages.cardNumber} </b>	${ctx.cardNumber} </td>
+																						</tr>
+																						<tr>
+																						<td colspan="6" style="padding: 10px 20px 0px 5px;"> <b> ${ctx.messages.amount}</b> $${ctx.invoiceDetails.orderTotalPriceText}</td>
+																						</tr>
+																					#else
+																						<tr>
+																						<td colspan="6" style="padding: 10px 20px 0px 5px;"><b>${ctx.messages.payatbranch}</b></td>
+																						</tr>
+																						<tr>
+																						<td colspan="6" style="padding: 10px 20px 0px 5px;"> <b> ${ctx.messages.branch} </b>  ${ctx.invoiceDetails.branchAddress.town} ${ctx.invoiceDetails.storeId}</td>
+																						</tr>
+																						<tr>
+																						<td colspan="6" style="padding: 10px 20px 0px 5px;"> <b> ${ctx.messages.amount}</b> $${ctx.invoiceDetails.orderTotalPriceText} </td>
+																						</tr>
+																					#end
+																					</table>
+																					<br>
+																					<tr>
+																						<td>
+																							<p style="margin:2px 0">
+																								<font color="#000000" >${ctx.messages.billingsubmsg},<br>
+																									<a href="${ctx.baseThemeUrl}/store/${ctx.invoiceDetails.branchNumber}">#if(${ctx.invoiceDetails.branchAddress.town}) ${ctx.invoiceDetails.branchAddress.town} #end ${ctx.invoiceDetails.branchNumber}</a> at
+																									<a href="tel:${ctx.invoiceDetails.branchAddress.phone1}">#if(${ctx.invoiceDetails.branchAddress.phone1}) ${ctx.invoiceDetails.branchAddress.phone1} #end</a>.
+																									<br/>
+																									<br/>
+																									${ctx.messages.contactUsMsg}
+																									<a  href="${ctx.baseThemeUrl}/contactus">${ctx.messages.contactUs}</a>.
+																								</font>
+																							</p>
+																						</td>
+																					</tr>
+																					<tr>
+																						<td>
+																							<br/>
+																							<p style="margin-bottom:0%;margin-top:0%;">
+																								<font color="#000000" >${ctx.messages.complimentaryClose}</font>
+																							</p>
+																							<p style="margin-top:0%;">
+																								<font color="#000000" >${ctx.messages.signaturename}</font>
+																							</p>
+																						</td>
+																					</tr>
+																				</table>
+																			</td>
+																		</tr>
+																	</table>
+																</td>
+															</tr>
+														</table>
+													</td>
+												</tr>
+											</table>
+										</td>
+									</tr>
+									<tr>
+										<td>&nbsp;</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>

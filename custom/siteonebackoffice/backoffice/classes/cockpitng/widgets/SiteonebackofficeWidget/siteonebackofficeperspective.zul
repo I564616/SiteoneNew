@@ -1,0 +1,28 @@
+<widget xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.zkoss.org/2005/zul">
+    <style src="${wr}/default.css"/>
+    <div>
+    <hbox align="center" style="color:white;">
+    <vbox>
+       FileUpload 
+       <button id="up" upload="true" label="Upload File" />
+       </vbox>
+    	</hbox>
+    	
+    	<hbox align="center" style="color:white;">
+    	Enter Number of Lines: 
+       <textbox id="searchLinesTextbox" />
+        <button id="search" label="Search"/>
+        </hbox>
+        
+        <hbox style="margin-top:50px">
+        <vbox>
+         <label id="lbl" style="color:white;" />
+         <textbox id="searchResult" rows="4" cols="40" width="370px;" tabindex="11" />
+         
+         
+        </vbox>
+        </hbox>
+        
+    	   	
+    </div>
+</widget>

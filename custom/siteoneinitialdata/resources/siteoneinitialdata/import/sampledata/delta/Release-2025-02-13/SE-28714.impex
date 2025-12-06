@@ -1,0 +1,37 @@
+# Macros / Replacement Parameter definitions
+$productCatalog=siteoneProductCatalog
+$productCatalogName=SiteOne Product Catalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Online'])[unique=true,default=$productCatalog:Online]
+$contentCatalog=siteoneContentCatalog
+$contentCatalogName=SiteOne Content Catalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Online])[default=$contentCatalog:Online]
+$siteResource=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/contentCatalogs/$contentCatalog
+$marketingBanner=marketingBanner(code, $contentCV);
+
+
+INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];mime;realfilename;@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator][forceWrite=true];folder(qualifier)[default='images'];altText
+;;L2_SH1111-1;text/jpg;L2_SH1111-1.jpg;$siteResource/images/banners/homepage/responsive/banner1.jpg;;"url1"
+;;L2_SH1111-2;text/jpg;L2_SH1111-2.jpg;$siteResource/images/banners/homepage/responsive/banner1.jpg;;"url2"
+#;;L2_SH1112;text/jpg;L2_SH1112.jpg;$siteResource/images/banners/homepage/responsive/banner2.jpg;;"url1"
+;;L2_SH1113-1;text/jpg;L2_SH1113-1.jpg;$siteResource/images/banners/homepage/responsive/banner3.jpg;;"url1"
+;;L2_SH1113-2;text/jpg;L2_SH1113-2.jpg;$siteResource/images/banners/homepage/responsive/banner3.jpg;;"url2"
+;;L2_SH1113-3;text/jpg;L2_SH1113-3.jpg;$siteResource/images/banners/homepage/responsive/banner3.jpg;;"url3"
+;;L2_SH1114-1;text/jpg;L2_SH1114-1.jpg;$siteResource/images/banners/homepage/responsive/banner4.jpg;;"url1"
+
+INSERT_UPDATE SiteOneMarketingBannerComponent;$contentCV[unique=true];uid[unique=true];$marketingBanner;
+;;SH1111-1;L2_SH1111-1;
+;;SH1111-2;L2_SH1111-2;
+#;;SH1112;L2_SH1112;
+;;SH1113-1;L2_SH1113-1;
+;;SH1113-2;L2_SH1113-2;
+;;SH1113-3;L2_SH1113-3;
+;;SH1114-1;L2_SH1114-1;
+
+UPDATE Category;code[unique=true];$catalogVersion;bannerList(uid,$contentCV)
+;SH1111;;"SH1111-1,SH1111-2"
+#;SH1112;;
+;SH1113;;"SH1113-1,SH1113-2,SH1113-3"
+;SH1114;;"SH1114-1"
+
+
+

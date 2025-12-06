@@ -1,0 +1,214 @@
+$contentCatalog=siteoneContentCatalog
+$contentCatalogName=SiteOne Content Catalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$productCatalog=siteoneProductCatalog
+$productCatalogName=SiteOne Product Catalog
+$productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$picture=media(code, $contentCV);
+$image=image(code, $contentCV);
+$media=media(code, $contentCV);
+$page=page(uid, $contentCV);
+$contentPage=contentPage(uid, $contentCV);
+$product=product(code, $productCV)
+$category=category(code, $productCV)
+$siteResource=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/contentCatalogs/$contentCatalog
+$productResource=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/productCatalogs/$productCatalog
+$jarResourceCms=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/cockpits/cmscockpit
+$addonExtensionName=siteoneacceleratoraddon
+$medias=medias(code, $contentCV);
+$articleMedia=articleMedia(code, $contentCV);
+$mediaContainer=media(qualifier, $contentCV);
+$siteUid=siteone
+$lang=en
+$storeImage=storeImage(qualifier, $contentCV)
+
+
+## Sample Images
+INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];mime;realfilename;@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator][forceWrite=true];folder(qualifier)[default='images']
+;;AmericanBuildersSupply-Bakersfield-promo.jpg;text/jpg;AmericanBuildersSupply-Bakersfield-promo.jpg;$siteResource/images/banners/site/stonecenter/AmericanBuildersSupply-Bakersfield-promo.jpg
+;;AmericanBuildersSupply-CanogaPark-promo.jpg;text/jpg;AmericanBuildersSupply-CanogaPark-promo.jpg;$siteResource/images/banners/site/stonecenter/AmericanBuildersSupply-CanogaPark-promo.jpg
+;;AmericanBuildersSupply-Farmersville-promo.jpg;text/jpg;AmericanBuildersSupply-Farmersville-promo.jpg;$siteResource/images/banners/site/stonecenter/AmericanBuildersSupply-Farmersville-promo.jpg
+;;AmericanBuildersSupply-Oxnard-promo.jpg;text/jpg;AmericanBuildersSupply-Oxnard-promo.jpg;$siteResource/images/banners/site/stonecenter/AmericanBuildersSupply-Oxnard-promo.jpg
+;;AmericanBuildersSupply-Pacoima-promo.jpg;text/jpg;AmericanBuildersSupply-Pacoima-promo.jpg;$siteResource/images/banners/site/stonecenter/AmericanBuildersSupply-Pacoima-promo.jpg
+;;AmericanBuildersSupply-Palmdale-promo.jpg;text/jpg;AmericanBuildersSupply-Palmdale-promo.jpg;$siteResource/images/banners/site/stonecenter/AmericanBuildersSupply-Palmdale-promo.jpg
+;;AmericanBuildersSupply-PasoRobles-promo.jpg;text/jpg;AmericanBuildersSupply-PasoRobles-promo.jpg;$siteResource/images/banners/site/stonecenter/AmericanBuildersSupply-PasoRobles-promo.jpg
+;;AmericanBuildersSupply-SantaClarita-promo.jpg;text/jpg;AmericanBuildersSupply-SantaClarita-promo.jpg;$siteResource/images/banners/site/stonecenter/AmericanBuildersSupply-SantaClarita-promo.jpg
+;;AmericanBuildersSupply-SunValley-promo.jpg;text/jpg;AmericanBuildersSupply-SunValley-promo.jpg;$siteResource/images/banners/site/stonecenter/AmericanBuildersSupply-SunValley-promo.jpg
+;;Aspen-Valley-HomerGlen-promo.jpg;text/jpg;Aspen-Valley-HomerGlen-promo.jpg;$siteResource/images/banners/site/stonecenter/Aspen-Valley-HomerGlen-promo.jpg
+;;Aspen-Valley-ParkCity-promo.jpg;text/jpg;Aspen-Valley-ParkCity-promo.jpg;$siteResource/images/banners/site/stonecenter/Aspen-Valley-ParkCity-promo.jpg
+;;Marshall-Stone-Colfax-promo.jpg;text/jpg;Marshall-Stone-Colfax-promo.jpg;$siteResource/images/banners/site/stonecenter/Marshall-Stone-Colfax-promo.jpg
+;;Marshall-Stone-RockyMount-promo.jpg;text/jpg;Marshall-Stone-RockyMount-promo.jpg;$siteResource/images/banners/site/stonecenter/Marshall-Stone-RockyMount-promo.jpg
+;;SantaYnez-Solvang-promo.jpg;text/jpg;SantaYnez-Solvang-promo.jpg;$siteResource/images/banners/site/stonecenter/SantaYnez-Solvang-promo.jpg
+;;SiteOneStone-Charleston-promo.jpg;text/jpg;SiteOneStone-Charleston-promo.jpg;$siteResource/images/banners/site/stonecenter/SiteOneStone-Charleston-promo.jpg
+;;SiteOneStone-Charlotte-promo.jpg;text/jpg;SiteOneStone-Charlotte-promo.jpg;$siteResource/images/banners/site/stonecenter/SiteOneStone-Charlotte-promo.jpg
+;;SiteOneStone-Columbia-promo.jpg;text/jpg;SiteOneStone-Columbia-promo.jpg;$siteResource/images/banners/site/stonecenter/SiteOneStone-Columbia-promo.jpg
+;;SiteOneStone-IndianTrail-promo.jpg;text/jpg;SiteOneStone-IndianTrail-promo.jpg;$siteResource/images/banners/site/stonecenter/SiteOneStone-IndianTrail-promo.jpg
+;;SiteOneStone-JohnsIsland-promo.jpg;text/jpg;SiteOneStone-JohnsIsland-promo.jpg;$siteResource/images/banners/site/stonecenter/SiteOneStone-JohnsIsland-promo.jpg
+;;SiteOneStone-Kennesaw-promo.jpg;text/jpg;SiteOneStone-Kennesaw-promo.jpg;$siteResource/images/banners/site/stonecenter/SiteOneStone-Kennesaw-promo.jpg
+;;SiteOneStone-Pingree-promo.jpg;text/jpg;SiteOneStone-Pingree-promo.jpg;$siteResource/images/banners/site/stonecenter/SiteOneStone-Pingree-promo.jpg
+;;SiteOneStone-Raleigh-promo.jpg;text/jpg;SiteOneStone-Raleigh-promo.jpg;$siteResource/images/banners/site/stonecenter/SiteOneStone-Raleigh-promo.jpg
+;;South-Coast-Huntington-promo.jpg;text/jpg;South-Coast-Huntington-promo.jpg;$siteResource/images/banners/site/stonecenter/South-Coast-Huntington-promo.jpg
+;;South-Coast-LosAlamitos-promo.jpg;text/jpg;South-Coast-LosAlamitos-promo.jpg;$siteResource/images/banners/site/stonecenter/South-Coast-LosAlamitos-promo.jpg
+;;Terrazo-Stone-Bellevue-promo.jpg;text/jpg;Terrazo-Stone-Bellevue-promo.jpg;$siteResource/images/banners/site/stonecenter/Terrazo-Stone-Bellevue-promo.jpg
+;;Terrazo-Stone-Marysville-promo.jpg;text/jpg;Terrazo-Stone-Marysville-promo.jpg;$siteResource/images/banners/site/stonecenter/Terrazo-Stone-Marysville-promo.jpg
+
+INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];mime;realfilename;@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator][forceWrite=true];folder(qualifier)[default='images']
+;;hardscapes-trio-ask-experts.jpg;image/jpg;hardscapes-trio-ask-experts.jpg;$siteResource/images/banners/site/stonecenter/hardscapes-trio-ask-experts.jpg
+;;hardscapes-trio-inspiration-gallery.jpg;image/jpg;hardscapes-trio-inspiration-gallery.jpg;$siteResource/images/banners/site/stonecenter/hardscapes-trio-inspiration-gallery.jpg
+;;hardscapes-trio-partners-program.jpg;image/jpg;hardscapes-trio-partners-program.jpg;$siteResource/images/banners/site/stonecenter/hardscapes-trio-partners-program.jpg
+
+INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];mime;realfilename;@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator][forceWrite=true];folder(qualifier)[default='images']
+;;promolander-topbanner-single-photo.jpg;text/jpg;promolander-topbanner-single-photo.jpg;$siteResource/images/banners/site/stonecenter/promolander-topbanner-single-photo.jpg
+;;promolander-bottombanner-image.jpg;text/jpg;promolander-bottombanner-image.jpg;$siteResource/images/banners/site/stonecenter/promolander-bottombanner-image.jpg
+
+# Store details page images
+INSERT_UPDATE Media;mediaFormat(qualifier);$contentCV[unique=true];code[unique=true];mime[default='image/jpeg'];@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator][forceWrite=true];folder(qualifier)[default='images']
+;365Wx246H;;/365Wx246H/branch_sample_cobrand;;$siteResource/images/banners/site/stonecenter/branch-sample-cobrand.jpg
+
+INSERT_UPDATE MediaContainer;qualifier[unique=true];$medias;$contentCV[unique=true]
+;branch_sample_cobrand;/365Wx246H/branch_sample_cobrand;
+
+
+# stonecenter First block
+INSERT_UPDATE SiteOneGalleryHeaderComponent;$contentCV[unique=true];uid[unique=true];name;headline[lang=$lang];isImageRightAligned;$picture[lang=$lang];content[lang=$lang];buttonLabel;buttonURL;&componentRef
+;;StonecenterHeaderComponent3;Stonecenter Header Component3;Make Your Vision a Reality;true;promolander-topbanner-single-photo.jpg;At these SiteOne Stone Centers you can expect to find a curated selection of natural stone, manufactured pavers, bulk products and all the materials you need make your vision a reality.;Ask the Experts;/contactus/hardscapes;StonecenterHeaderComponent3
+
+# stonecenter Last block
+INSERT_UPDATE SiteOneGalleryHeaderComponent;$contentCV[unique=true];uid[unique=true];name;headline[lang=$lang];$picture[lang=$lang];content[lang=$lang];buttonLabel;buttonURL;&componentRef
+;;Stonecenter1FooterComponent5;Stonecenter Footer Component5;From Start to Finish, We're Here For You.;promolander-bottombanner-image.jpg;Have a question about product availability, delivery, or pricing? Need to find your Nearest SiteOne Stone Center? Let us help.;Ask the Experts;/contactus/hardscapes;Stonecenter1FooterComponent5
+
+#stonecenter content page
+INSERT_UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);label;defaultPage[default='true'];approvalStatus(code)[default='approved'];homepage[default='false']
+;;stonecenterLander;StoneCenter;SiteOneContentPageTemplate;/stonecenter;
+
+#stonecenter middle block
+INSERT_UPDATE SiteOneToolsListComponent;$contentCV[unique=true];uid[unique=true];name;toolsList(uid,$contentCV);&componentRef
+;;siteOneToolsListComponent01;Tools Page Component List;SteoneCenterLocation1,SteoneCenterLocation2,SteoneCenterLocation3,SteoneCenterLocation4,SteoneCenterLocation5,SteoneCenterLocation6,SteoneCenterLocation7,SteoneCenterLocation8,SteoneCenterLocation9,SteoneCenterLocation10,SteoneCenterLocation11,SteoneCenterLocation12,SteoneCenterLocation13,SteoneCenterLocation14,SteoneCenterLocation15,SteoneCenterLocation16,SteoneCenterLocation17,SteoneCenterLocation18,SteoneCenterLocation19,SteoneCenterLocation20,SteoneCenterLocation21,SteoneCenterLocation22,SteoneCenterLocation23,SteoneCenterLocation24,SteoneCenterLocation25,SteoneCenterLocation26;siteOneToolsListComponent01
+
+#content slot
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef);;;
+;;Section3Slot-stonecenterLander;Section3 Slot for StonecenterLanderPage;true;StonecenterHeaderComponent3;;;
+;;Section1Slot-stonecenterLander;Section1 Slot for StonecenterLanderPage;true;siteOneToolsListComponent01;;;
+;;Section5Slot-stonecenterLander;Section5 Slot for StonecenterLanderPage;true;Stonecenter1FooterComponent5;;;
+
+#content slot for page
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='stonecenterLander'];contentSlot(uid,$contentCV)[unique=true];;;
+;;Section3-stonecenterLander;Section3;;Section3Slot-stonecenterLander;;;
+;;Section1-stonecenterLander;Section1;;Section1Slot-stonecenterLander;;;
+;;Section5-stonecenterLander;Section5;;Section5Slot-stonecenterLander;;;
+
+
+# middle block for hardscape
+INSERT_UPDATE HomePageToolsComponent;$contentCV[unique=true];uid[unique=true];name;urlLink;&componentRef;title;description[lang=$lang];buttonName[lang=$lang];$picture[lang=$lang]
+;;SteoneCenterLocation1;SteoneCenterLocation1;/store/430;SteoneCenterLocation1;American Builders Supply<br/>Bakersfiled, California;"Started in 1987, American Builders Supply has 10 locations in metro Los Angeles and 2 locations in Las Vegas. AB Supply is a leader in the distribution of hardscapes, natural stone and related products to landscape professionals.";"Learn more &#8594;";AmericanBuildersSupply-Bakersfield-promo.jpg
+;;SteoneCenterLocation2;SteoneCenterLocation2;/store/432;SteoneCenterLocation2;American Builders Supply<br/>Canoga Park, California;"Started in 1987, American Builders Supply has 10 locations in metro Los Angeles and 2 locations in Las Vegas. AB Supply is a leader in the distribution of hardscapes, natural stone and related products to landscape professionals.";"Learn more &#8594;";AmericanBuildersSupply-CanogaPark-promo.jpg
+;;SteoneCenterLocation3;SteoneCenterLocation3;/store/434;SteoneCenterLocation3;American Builders Supply<br/>Oxnard, California;"Started in 1987, American Builders Supply has 10 locations in metro Los Angeles and 2 locations in Las Vegas. AB Supply is a leader in the distribution of hardscapes, natural stone and related products to landscape professionals.";"Learn more &#8594;";AmericanBuildersSupply-Oxnard-promo.jpg
+;;SteoneCenterLocation4;SteoneCenterLocation4;/store/450;SteoneCenterLocation4;American Builders Supply<br/>Pacoima, CA;"Started in 1987, American Builders Supply has 10 locations in metro Los Angeles and 2 locations in Las Vegas. AB Supply is a leader in the distribution of hardscapes, natural stone and related products to landscape professionals.";"Learn more &#8594;";AmericanBuildersSupply-Pacoima-promo.jpg
+;;SteoneCenterLocation5;SteoneCenterLocation5;/store/451;SteoneCenterLocation5;American Builders Supply<br/>Palmdale, CA;"Started in 1987, American Builders Supply has 10 locations in metro Los Angeles and 2 locations in Las Vegas. AB Supply is a leader in the distribution of hardscapes, natural stone and related products to landscape professionals.";"Learn more &#8594;";AmericanBuildersSupply-Palmdale-promo.jpg
+;;SteoneCenterLocation6;SteoneCenterLocation6;/store/452;SteoneCenterLocation6;American Builders Supply<br/>Paso Robles, CA;"Started in 1987, American Builders Supply has 10 locations in metro Los Angeles and 2 locations in Las Vegas. AB Supply is a leader in the distribution of hardscapes, natural stone and related products to landscape professionals.";"Learn more &#8594;";AmericanBuildersSupply-PasoRobles-promo.jpg
+;;SteoneCenterLocation7;SteoneCenterLocation7;/store/457;SteoneCenterLocation7;American Builders Supply<br/>Santa Clarita, CA;"Started in 1987, American Builders Supply has 10 locations in metro Los Angeles and 2 locations in Las Vegas. AB Supply is a leader in the distribution of hardscapes, natural stone and related products to landscape professionals.";"Learn more &#8594;";AmericanBuildersSupply-SantaClarita-promo.jpg
+;;SteoneCenterLocation8;SteoneCenterLocation8;/store/466;SteoneCenterLocation8;American Builders Supply<br/>Sun Valley, CA;"Started in 1987, American Builders Supply has 10 locations in metro Los Angeles and 2 locations in Las Vegas. AB Supply is a leader in the distribution of hardscapes, natural stone and related products to landscape professionals.";"Learn more &#8594;";AmericanBuildersSupply-SunValley-promo.jpg
+;;SteoneCenterLocation9;SteoneCenterLocation9;/store/472;SteoneCenterLocation9;American Builders Supply<br/>Farmersville, CA;"Started in 1987, American Builders Supply has 10 locations in metro Los Angeles and 2 locations in Las Vegas. AB Supply is a leader in the distribution of hardscapes, natural stone and related products to landscape professionals.";"Learn more &#8594;";AmericanBuildersSupply-Farmersville-promo.jpg
+;;SteoneCenterLocation10;SteoneCenterLocation10;/store/20;SteoneCenterLocation10;Aspen Valley<br/>Homer Glen, IL;"Aspen Valley Landscape Supply, Inc. Started in 1987, Aspen Valley has three locations in the Chicago metropolitan area and is a leader in the distribution of hardscapes and landscape supplies to the professional market.";"Learn more &#8594;";Aspen-Valley-HomerGlen-promo.jpg
+;;SteoneCenterLocation11;SteoneCenterLocation11;/store/24;SteoneCenterLocation11;Aspen Valley<br/>Park City, IL;"Aspen Valley Landscape Supply, Inc. Started in 1987, Aspen Valley has three locations in the Chicago metropolitan area and is a leader in the distribution of hardscapes and landscape supplies to the professional market.";"Learn more &#8594;";Aspen-Valley-ParkCity-promo.jpg
+;;SteoneCenterLocation12;SteoneCenterLocation12;/store/166;SteoneCenterLocation12;Marshall Stone<br/>Colfax, NC;"Marshall Stone, started in 2006, has two locations in the greater Greensboro, NC and Roanoke, VA markets, and is a leader in the distribution of natural stone and hardscape material.";"Learn more &#8594;";Marshall-Stone-Colfax-promo.jpg
+;;SteoneCenterLocation13;SteoneCenterLocation13;/store/167;SteoneCenterLocation13;Marshall Stone<br/>Rocky Mount, VA;"Marshall Stone, started in 2006, has two locations in the greater Greensboro, NC and Roanoke, VA markets, and is a leader in the distribution of natural stone and hardscape material.";"Learn more &#8594;";Marshall-Stone-RockyMount-promo.jpg
+;;SteoneCenterLocation14;SteoneCenterLocation14;/store/408;SteoneCenterLocation14;Santa Ynez Stone & Topsoil<br/>Solvang, CA;"Santa Ynez Stone & Topsoil is your # 1 provider of stones, ground covers, soil amendments, and various other landscape and masonry products in Santa Barbara County.";"Learn more &#8594;";SantaYnez-Solvang-promo.jpg
+;;SteoneCenterLocation15;SteoneCenterLocation15;/store/22;SteoneCenterLocation15;SiteOne Stone Center<br/>Pingree Grove, IL;"SiteOne Stone Center is your source for the finest materials, backed by the most knowledgeable hardscape experts in your market.";"Learn more &#8594;";SiteOneStone-Pingree-promo.jpg
+;;SteoneCenterLocation16;SteoneCenterLocation16;/store/802;SteoneCenterLocation16;SiteOne Stone Center<br/>Charlotte, NC;"Formerly Blue Max Materials. SiteOne Stone Center is your source for the finest materials, backed by the most knowledgeable hardscape experts in your market.";"Learn more &#8594;";SiteOneStone-Charlotte-promo.jpg
+;;SteoneCenterLocation17;SteoneCenterLocation17;/store/187;SteoneCenterLocation17;SiteOne Stone Center<br/>Raleigh, NC;"SiteOne Stone Center is your source for the finest materials, backed by the most knowledgeable hardscape experts in your market.";"Learn more &#8594;";SiteOneStone-Raleigh-promo.jpg
+;;SteoneCenterLocation18;SteoneCenterLocation18;/store/803;SteoneCenterLocation18;SiteOne Stone Center<br/>Indian Trail, NC;"Formerly Blue Max Materials. SiteOne Stone Center is your source for the finest materials, backed by the most knowledgeable hardscape experts in your market.";"Learn more &#8594;";SiteOneStone-IndianTrail-promo.jpg
+;;SteoneCenterLocation19;SteoneCenterLocation19;/store/804;SteoneCenterLocation19;SiteOne Stone Center<br/>Columbia, SC;"Formerly Blue Max Materials. SiteOne Stone Center is your source for the finest materials, backed by the most knowledgeable hardscape experts in your market.";"Learn more &#8594;";SiteOneStone-Columbia-promo.jpg
+;;SteoneCenterLocation20;SteoneCenterLocation20;/store/806;SteoneCenterLocation20;SiteOne Stone Center<br/>Charleston, SC;"Formerly Blue Max Materials. SiteOne Stone Center is your source for the finest materials, backed by the most knowledgeable hardscape experts in your market.";"Learn more &#8594;";SiteOneStone-Charleston-promo.jpg;
+;;SteoneCenterLocation21;SteoneCenterLocation21;/store/805;SteoneCenterLocation21;SiteOne Stone Center<br/>John’s Island, SC;"Formerly Blue Max Materials. SiteOne Stone Center is your source for the finest materials, backed by the most knowledgeable hardscape experts in your market.";"Learn more &#8594;";SiteOneStone-JohnsIsland-promo.jpg
+;;SteoneCenterLocation22;SteoneCenterLocation22;/store/173;SteoneCenterLocation22;SiteOne Stone Center<br/>Kennesaw, GA;"Formerly Stone Forest. SiteOne Stone Center is your source for the finest materials, backed by the most knowledgeable hardscape experts in your market.";"Learn more &#8594;";SiteOneStone-Kennesaw-promo.jpg
+;;SteoneCenterLocation23;SteoneCenterLocation23;/store/148;SteoneCenterLocation23;South Coast Supply<br/>Huntington Beach, CA;"South Coast Supply, specializing in landscaping and masonry building materials, has been serving the Southern California area with two locations for over 37 years with a commitment to customer service.";"Learn more &#8594;";South-Coast-Huntington-promo.jpg
+;;SteoneCenterLocation24;SteoneCenterLocation24;/store/147;SteoneCenterLocation24;South Coast Supply<br/>Los Alamitos, CA;"South Coast Supply, specializing in landscaping and masonry building materials, has been serving the Southern California area with two locations for over 37 years with a commitment to customer service.";"Learn more &#8594;";South-Coast-LosAlamitos-promo.jpg
+;;SteoneCenterLocation25;SteoneCenterLocation25;/store/94;SteoneCenterLocation25;Terrazzo & Stone Supply Company<br/>Bellevue, WA;"Terrazzo & Stone Supply, founded in 1956, is a leader in the distribution of natural stone and hardscapes products with locations in Bellevue and Marysville, Washington.";"Learn more &#8594;";Terrazo-Stone-Bellevue-promo.jpg
+;;SteoneCenterLocation26;SteoneCenterLocation26;/store/95;SteoneCenterLocation26;Terrazzo & Stone Supply Company<br/>Marysville, WA;"Terrazzo & Stone Supply, founded in 1956, is a leader in the distribution of natural stone and hardscapes products with locations in Bellevue and Marysville, Washington.";"Learn more &#8594;";Terrazo-Stone-Marysville-promo.jpg
+
+
+INSERT_UPDATE SiteOneStoreDetailsPromoComponent;$contentCV[unique=true];uid[unique=true];name;headline[lang=en];&componentRef;urlLink;$picture[lang=$lang];promotionalText;subheadText;buttonLabel;buttonURL;icon
+;;HardscapePromoBannerComponent1;Hardscape Banner detail1;<p>VISIT OUR NEW STONE CENTER LOCATIONS</p>;HardscapePromoBannerComponent1;;promolander-bottombanner-image.jpg;<p>We've acquired some of the best names in hardscape supplies to better serve your needs. We can't wait for you to meet the new members of our growing family.</p>;;New Locations;/stonecenter;
+
+#heading for middle block for hardscape
+INSERT_UPDATE SiteonePageTitleBannerComponent;$contentCV[unique=true];uid[unique=true];name;headline;&componentRef
+;;galleryPageTitleBannerComponent01;Gallery  Page Title Component;Everything You Need from Start to Finish;galleryPageTitleBannerComponent01
+;;galleryPageTitleBannerComponent02;Gallery  Page Title Component2;Professional-Grade Products;galleryPageTitleBannerComponent02
+
+
+INSERT_UPDATE HomePageToolsComponent;$contentCV[unique=true];uid[unique=true];name;urlLink;&componentRef;title;description;buttonName;$picture[lang=$lang]
+;;AskTheExperts;AskTheExperts;/contactus/hardscapes;AskTheExperts;"Ask the Expert";"Have a question about product availability, delivery or pricing? We can help.";"Contact us &#8594;";hardscapes-trio-ask-experts.jpg
+;;InspirationGallery;InspirationGallery;/galleryImage;InspirationGallery;"Inspiration Gallery";"No matter what you have in mind, we have the materials and expertise you need to bring it to life.";"Get Started &#8594;";hardscapes-trio-inspiration-gallery.jpg
+;;PartnersProgram;PartnersProgram;/partnersprogram;PartnersProgram;"Partners Program";"Our Partners Program lets you earn points with every purchase and use them to grow your business.";"Learn more &#8594;";hardscapes-trio-partners-program.jpg
+
+#content slot modification for hardscape
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef);;;
+;;Section4Slot-hardscapesLander;Section4 Slot for Hardscapes Lander Page;true;HardscapePromoBannerComponent1,galleryPageTitleBannerComponent01;;;
+;;Section4ASlot-hardscapesLander;Section4A Slot for Hardscapes Lander Page;true;AskTheExperts;;;
+;;Section4BSlot-hardscapesLander;Section4B Slot for Hardscapes Lander Page;true;InspirationGallery;;;
+;;Section4CSlot-hardscapesLander;Section4C Slot for Hardscapes Lander Page;true;PartnersProgram;;;
+
+
+#content slot page modification for hardscape
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='hardscapesLander'];contentSlot(uid,$contentCV)[unique=true];;;
+;;Section4-hardscapesLander;Section4;;Section4Slot-hardscapesLander;;;
+;;Section4A-hardscapesLander;Section4A;;Section4ASlot-hardscapesLander;;;
+;;Section4B-hardscapesLander;Section4B;;Section4BSlot-hardscapesLander;;;
+;;Section4C-hardscapesLander;Section4C;;Section4CSlot-hardscapesLander;;;
+
+#remove last block in hardscape page
+REMOVE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='hardscapesLander'];contentSlot(uid,$contentCV)[unique=true];;;
+;;Section5-hardscapesLander;Section5;;Section5Slot-hardscapesLander;;;
+
+$lang=es
+
+INSERT_UPDATE HomePageToolsComponent;$contentCV[unique=true];uid[unique=true];name;urlLink;&componentRef;title;description[lang=$lang];buttonName[lang=$lang];$picture[lang=$lang]
+;;SteoneCenterLocation1;SteoneCenterLocation1;/store/430;SteoneCenterLocation1;American Builders Supply<br/>Bakersfiled, California;"Fundada en 1987, American Builders Supply tiene 10 sucursales en el área metropolitana de Los Ángeles y 2 en Las Vegas. AB Supply es líder en la distribución de materiales duros, piedra natural y productos relacionados a los profesionales del paisajismo.";"Conoce más &#8594;";AmericanBuildersSupply-Bakersfield-promo.jpg
+;;SteoneCenterLocation2;SteoneCenterLocation2;/store/432;SteoneCenterLocation2;American Builders Supply<br/>Canoga Park, California;"Fundada en 1987, American Builders Supply tiene 10 sucursales en el área metropolitana de Los Ángeles y 2 en Las Vegas. AB Supply es líder en la distribución de materiales duros, piedra natural y productos relacionados a los profesionales del paisajismo.";"Conoce más &#8594;";AmericanBuildersSupply-CanogaPark-promo.jpg
+;;SteoneCenterLocation3;SteoneCenterLocation3;/store/434;SteoneCenterLocation3;American Builders Supply<br/>Oxnard, California;"Fundada en 1987, American Builders Supply tiene 10 sucursales en el área metropolitana de Los Ángeles y 2 en Las Vegas. AB Supply es líder en la distribución de materiales duros, piedra natural y productos relacionados a los profesionales del paisajismo.";"Conoce más &#8594;";AmericanBuildersSupply-Oxnard-promo.jpg
+;;SteoneCenterLocation4;SteoneCenterLocation4;/store/450;SteoneCenterLocation4;American Builders Supply<br/>Pacoima, CA;"Fundada en 1987, American Builders Supply tiene 10 sucursales en el área metropolitana de Los Ángeles y 2 en Las Vegas. AB Supply es líder en la distribución de materiales duros, piedra natural y productos relacionados a los profesionales del paisajismo.";"Conoce más &#8594;";AmericanBuildersSupply-Pacoima-promo.jpg
+;;SteoneCenterLocation5;SteoneCenterLocation5;/store/451;SteoneCenterLocation5;American Builders Supply<br/>Palmdale, CA;"Fundada en 1987, American Builders Supply tiene 10 sucursales en el área metropolitana de Los Ángeles y 2 en Las Vegas. AB Supply es líder en la distribución de materiales duros, piedra natural y productos relacionados a los profesionales del paisajismo.";"Conoce más &#8594;";AmericanBuildersSupply-Palmdale-promo.jpg
+;;SteoneCenterLocation6;SteoneCenterLocation6;/store/452;SteoneCenterLocation6;American Builders Supply<br/>Paso Robles, CA;"Fundada en 1987, American Builders Supply tiene 10 sucursales en área metropolitana de Los Ángeles y 2 en Las Vegas. AB Supply es líder en la distribución de materiales duros, piedra natural y productos relacionados a los profesionales del paisajismo.";"Conoce más &#8594;";AmericanBuildersSupply-PasoRobles-promo.jpg
+;;SteoneCenterLocation7;SteoneCenterLocation7;/store/457;SteoneCenterLocation7;American Builders Supply<br/>Santa Clarita, CA;"Fundada en 1987, American Builders Supply tiene 10 sucursales en el área metropolitana de Los Ángeles y 2 en Las Vegas. AB Supply es líder en la distribución de materiales duros, piedra natural y productos relacionados a los profesionales del paisajismo.";"Conoce más &#8594;";AmericanBuildersSupply-SantaClarita-promo.jpg
+;;SteoneCenterLocation8;SteoneCenterLocation8;/store/466;SteoneCenterLocation8;American Builders Supply<br/>Sun Valley, CA;"Fundada en 1987, American Builders Supply tiene 10 sucursales en el área metropolitana de Los Ángeles y 2 en Las Vegas. AB Supply es líder en la distribución de materiales duros, piedra natural y productos relacionados a los profesionales del paisajismo.";"Conoce más &#8594;";AmericanBuildersSupply-SunValley-promo.jpg
+;;SteoneCenterLocation9;SteoneCenterLocation9;/store/472;SteoneCenterLocation9;American Builders Supply<br/>Farmersville, CA;"Fundada en 1987, American Builders Supply tiene 10 sucursales en el área metropolitana de Los Ángeles y 2 en Las Vegas. AB Supply es líder en la distribución de materiales duros, piedra natural y productos relacionados a los profesionales del paisajismo.";"Conoce más &#8594;";AmericanBuildersSupply-Farmersville-promo.jpg
+;;SteoneCenterLocation10;SteoneCenterLocation10;/store/20;SteoneCenterLocation10;Aspen Valley<br/>Homer Glen, IL;"Aspen Valley Landscape Supply, Inc. se fundó en 1987 y cuenta con 3 sucursales en el área metropolitana de Chicago y es líder en distribución de materiales duros y suministros de paisajismo para el mercado profesional.";"Conoce más &#8594;";Aspen-Valley-HomerGlen-promo.jpg
+;;SteoneCenterLocation11;SteoneCenterLocation11;/store/24;SteoneCenterLocation11;Aspen Valley<br/>Park City, IL;"Aspen Valley Landscape Supply, Inc. se fundó en 1987 y cuenta con 3 sucursales en el área metropolitana de Chicago y es líder en distribución de materiales duros y suministros de paisajismo para el mercado profesional.";"Conoce más &#8594;";Aspen-Valley-ParkCity-promo.jpg
+;;SteoneCenterLocation12;SteoneCenterLocation12;/store/166;SteoneCenterLocation12;Marshall Stone<br/>Colfax, NC;"Marshall Stone, fundada en 2006, tiene dos sucursales en los mercados del área metropolitana de Greensboro, NC y Roanoke, VA y es líder en la distribución de piedra natural y materiales duros.";"Conoce más &#8594;";Marshall-Stone-Colfax-promo.jpg
+;;SteoneCenterLocation13;SteoneCenterLocation13;/store/167;SteoneCenterLocation13;Marshall Stone<br/>Rocky Mount, VA;"Marshall Stone, fundada en 2006, tiene dos sucursales en los mercados del área metropolitana de Greensboro, NC y Roanoke, VA y es líder en la distribución de piedra natural y materiales duros.";"Conoce más &#8594;";Marshall-Stone-RockyMount-promo.jpg
+;;SteoneCenterLocation14;SteoneCenterLocation14;/store/408;SteoneCenterLocation14;Santa Ynez Stone & Topsoil<br/>Solvang, CA;"Santa Ynez Stone & Topsoil es tu proveedor #1 de piedras, cubiertas y mejoras del suelo, y otros productos de paisajismo y albañilería en Santa Barbara County.";"Conoce más &#8594;";SantaYnez-Solvang-promo.jpg
+;;SteoneCenterLocation15;SteoneCenterLocation15;/store/22;SteoneCenterLocation15;SiteOne Stone Center<br/>Pingree Grove, IL;"SiteOne Stone Center es tu fuente para conseguir los mejores materiales, con el respaldo de los más reconocidos expertos en materiales duros de tu mercado.";"Conoce más &#8594;";SiteOneStone-Pingree-promo.jpg
+;;SteoneCenterLocation16;SteoneCenterLocation16;/store/802;SteoneCenterLocation16;SiteOne Stone Center<br/>Charlotte, NC;"Anteriormente, Blue Max Materials. SiteOne Stone Center es tu fuente para conseguir los mejores materiales, con el respaldo de los más reconocidos expertos en materiales duros de tu mercado.";"Conoce más &#8594;";SiteOneStone-Charlotte-promo.jpg
+;;SteoneCenterLocation17;SteoneCenterLocation17;/store/187;SteoneCenterLocation17;SiteOne Stone Center<br/>Raleigh, NC;"SiteOne Stone Center es tu fuente para conseguir los mejores materiales, con el respaldo de los más reconocidos expertos en materiales duros de tu mercado.";"Conoce más &#8594;";SiteOneStone-Raleigh-promo.jpg
+;;SteoneCenterLocation18;SteoneCenterLocation18;/store/803;SteoneCenterLocation18;SiteOne Stone Center<br/>Indian Trail, NC;"Anteriormente, Blue Max Materials. SiteOne Stone Center es tu fuente para conseguir los mejores materiales, con el respaldo de los más reconocidos expertos en materiales duros de tu mercado.";"Conoce más &#8594;";SiteOneStone-IndianTrail-promo.jpg
+;;SteoneCenterLocation19;SteoneCenterLocation19;/store/804;SteoneCenterLocation19;SiteOne Stone Center<br/>Columbia, SC;"Anteriormente, Blue Max Materials. SiteOne Stone Center es tu fuente para conseguir los mejores materiales, con el respaldo de los más reconocidos expertos en materiales duros de tu mercado.";"Conoce más &#8594;";SiteOneStone-Columbia-promo.jpg
+;;SteoneCenterLocation20;SteoneCenterLocation20;/store/806;SteoneCenterLocation20;SiteOne Stone Center<br/>Charleston, SC;"Anteriormente, Blue Max Materials. SiteOne Stone Center es tu fuente para conseguir los mejores materiales, con el respaldo de los más reconocidos expertos en materiales duros de tu mercado.";"Conoce más &#8594;";SiteOneStone-Charleston-promo.jpg;
+;;SteoneCenterLocation21;SteoneCenterLocation21;/store/805;SteoneCenterLocation21;SiteOne Stone Center<br/>John’s Island, SC;"Anteriormente, Blue Max Materials. SiteOne Stone Center es tu fuente para conseguir los mejores materiales, con el respaldo de los más reconocidos expertos en materiales duros de tu mercado.";"Conoce más &#8594;";SiteOneStone-JohnsIsland-promo.jpg
+;;SteoneCenterLocation22;SteoneCenterLocation22;/store/173;SteoneCenterLocation22;SiteOne Stone Center<br/>Kennesaw, GA;"Anteriormente, Stone Forest. SiteOne Stone Center es tu fuente para conseguir los mejores materiales, con el respaldo de los más reconocidos expertos en materiales duros de tu mercado.";"Conoce más &#8594;";SiteOneStone-Kennesaw-promo.jpg
+;;SteoneCenterLocation23;SteoneCenterLocation23;/store/148;SteoneCenterLocation23;South Coast Supply<br/>Huntington Beach, CA;"South Coast Supply, especializado en materiales de construcción para paisajismo y mampostería, ha brindado servicio en el área del sur de California con dos sucursales por más de 37 años con un gran compromiso por el servicio al cliente.";"Conoce más &#8594;";South-Coast-Huntington-promo.jpg
+;;SteoneCenterLocation24;SteoneCenterLocation24;/store/147;SteoneCenterLocation24;South Coast Supply<br/>Los Alamitos, CA;"South Coast Supply, especializado en materiales de construcción para paisajismo y mampostería, ha brindado servicio en el área del sur de California con dos sucursales por más de 37 años con un gran compromiso por el servicio al cliente.";"Conoce más &#8594;";South-Coast-LosAlamitos-promo.jpg
+;;SteoneCenterLocation25;SteoneCenterLocation25;/store/94;SteoneCenterLocation25;Terrazzo & Stone Supply Company<br/>Bellevue, WA;"Terrazzo & Stone Supply, fundado en 1956, es líder en la distribución de piedra natural y productos de materiales duros con sucursales en Bellevue y Marysville, Washington.";"Conoce más &#8594;";Terrazo-Stone-Bellevue-promo.jpg
+;;SteoneCenterLocation26;SteoneCenterLocation26;/store/95;SteoneCenterLocation26;Terrazzo & Stone Supply Company<br/>Marysville, WA;"Terrazzo & Stone Supply, fundado en 1956, es líder en la distribución de piedra natural y productos de materiales duros con sucursales en Bellevue y Marysville, Washington.";"Conoce más &#8594;";Terrazo-Stone-Marysville-promo.jpg
+
+# stonecenter First block
+INSERT_UPDATE SiteOneGalleryHeaderComponent;$contentCV[unique=true];uid[unique=true];name;headline[lang=$lang];isImageRightAligned;$picture[lang=$lang];content[lang=$lang];buttonLabel[lang=$lang];buttonURL;&componentRef
+;;StonecenterHeaderComponent3;Stonecenter Header Component3;Haga de su visión una realidad;true;promolander-topbanner-single-photo.jpg;En estos SiteOne Stone Centers puedes esperar encontrar una selección curada de piedra natural, adoquines de fábrica, productos al por mayor y todos los materiales que necesitas para hacer realidad tu visión.;Pregunta a los Expertos;/contactus/hardscapes;StonecenterHeaderComponent3
+
+# stonecenter Last block
+INSERT_UPDATE SiteOneGalleryHeaderComponent;$contentCV[unique=true];uid[unique=true];name;headline[lang=$lang];$picture[lang=$lang];content[lang=$lang];buttonLabel[lang=$lang];buttonURL;&componentRef
+;;Stonecenter1FooterComponent5;Stonecenter Footer Component5;De Inicio a Fin, Estamos Aquí para Ti.;promolander-bottombanner-image.jpg;¿Tienes preguntas sobre disponibilidad de producto, envíos o precios? ¿Necesitas encontrar tu SiteOne Stone Center más cercano? Déjanos ayudarte.;Pregunta a los Expertos;/contactus/hardscapes;Stonecenter1FooterComponent5
+
+INSERT_UPDATE SiteOneStoreDetailsPromoComponent;$contentCV[unique=true];uid[unique=true];name;headline[lang=$lang];&componentRef;urlLink;$picture[lang=$lang];promotionalText[lang=$lang];subheadText;buttonLabel[lang=$lang];buttonURL;icon
+;;HardscapePromoBannerComponent1;Hardscape Banner detail1;<p>VISITA NUESTRO NUEVO STONE CENTER</p>;HardscapePromoBannerComponent1;;promolander-bottombanner-image.jpg;<p>Hemos adquirido algunos de los mayores nombres en el suministro de materiales duros para servir mejor a tus necesidades. Estamos ansiosos de que conozcas a los nuevos miembros de nuestra creciente familia.</p>;;Nuevas Sucursales;/stonecenter;
+
+#heading for middle block for hardscape
+INSERT_UPDATE SiteonePageTitleBannerComponent;$contentCV[unique=true];uid[unique=true];name;headline[lang=$lang];&componentRef
+;;galleryPageTitleBannerComponent01;Gallery  Page Title Component;Todo lo que Necesitas de Inicio a Fin;galleryPageTitleBannerComponent01
+;;galleryPageTitleBannerComponent02;Gallery  Page Title Component2;Productos de Nivel Profesional;galleryPageTitleBannerComponent02
+
+INSERT_UPDATE HomePageToolsComponent;$contentCV[unique=true];uid[unique=true];name;urlLink;&componentRef;title[lang=$lang];description[lang=$lang];buttonName[lang=$lang];$picture[lang=$lang]
+;;AskTheExperts;AskTheExperts;/contactus/hardscapes;AskTheExperts;"Pregunta al Experto";"¿Tienes preguntas sobre disponibilidad de producto, envíos o precios? Podemos ayudarte.";"Contáctanos &#8594;";hardscapes-trio-ask-experts.jpg
+;;InspirationGallery;InspirationGallery;/galleryImage;InspirationGallery;"Galería de Inspiración";"No importa qué tengas en mente, tenemos los materiales y la experiencia que necesitas para hacerlo realidad.";"Empieza Ya &#8594;";hardscapes-trio-inspiration-gallery.jpg
+;;PartnersProgram;PartnersProgram;/partnersprogram;PartnersProgram;"Programa de Socios";"Nuestro Programa de Socios te permite recibir puntos por cada compra y usarlos para hacer crecer tu negocio.";"Conoce más &#8594;";hardscapes-trio-partners-program.jpg
+

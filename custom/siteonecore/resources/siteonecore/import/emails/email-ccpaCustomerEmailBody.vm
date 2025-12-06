@@ -1,0 +1,257 @@
+## messageSource=classpath:/siteonecore/messages/email-CCPACustomerEmail_$lang.properties
+#macro( genHtmlBoldFont $text )
+<font color="#414a4f" size="2" face="Arial, Helvetica, sans-serif"><b>$text</b></font>
+#end
+#macro(genHtmlLinkStartTag $url)
+<a href="$url"><font color="#666666">
+#end
+#macro(genHtmlLinkEndTag)
+</font></a>
+#end
+#macro(genHtmlLink $url $textColor $bodyContent)
+<a href="$url"><font color="$textColor">$bodyContent</font></a>
+#end
+
+<div style="display:none !important;
+            visibility:hidden;
+            mso-hide:all;
+            font-size:1px;
+            line-height:1px;
+            max-height:0px;
+            max-width:0px;
+            opacity:0;
+            overflow:hidden;">${ctx.messages.preHeader}</div>
+<html>
+	<body bgcolor="#ffffff">
+	#if(${ctx.countryBaseSiteID} == "siteone-ca")
+		<table width="550" align="center" cellpadding="0" cellspacing="0">
+			<tr>
+				<td align="center" valign="top">
+					<table width="610" border="0" align="center" cellpadding="0" cellspacing="0">
+						<tr>
+							<td align="center" valign="top" style="border: 1px solid #51585c;"> 
+								<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="padding:15px;" valign="left">
+											<a style="text-decoration:none;" href="${ctx.baseThemeUrl}">
+												<img title="SiteoneLogo" src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/SiteoneLogo.jpg" alt="SiteoneLogo" style="outline:0;border:none;">
+											</a>
+										</td>
+											<td style="padding:20px;" align="right">
+												<span class="col-xs-6 col-md-12">
+													<a style="text-decoration:none;" href="https://www.facebook.com/siteonesupplycanada/">
+														<img src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/Print_facebook_color.png" alt="Facebook" title="Facebook" style="outline:0;border:none;" width="30" height="30">
+														</a>&nbsp;
+														
+														<a style="text-decoration:none;" href="https://www.instagram.com/Siteonesupplycanada/">
+															<img src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/Print_instagram_color.png" alt="Instagram" title="Instagram" style="outline:0;border:none;" width="30" height="30">
+															</a>&nbsp;
+															
+															<a style="text-decoration:none;" href="https://x.com/SiteOneCanada">
+																<img src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/Print_twitter_color.png" alt="X" title="X" style="outline:0;border:none;" width="30" height="30">
+																</a>
+															</span>
+														</td>
+													</tr>
+													<div class="green_border"></div>
+									<tr>
+										<td colspan="2">
+											<table width="100%" cellpadding="10" cellspacing="0">
+												<tr>
+													<td>
+														<table width="100%" border="0" align="center" cellpadding="10" cellspacing="0" class="products">
+															<tr>
+																<td style="padding:5px;" colspan="2">
+																	<table>
+																		<tr>
+																			<td width="34%" valign="top" style="padding-top:10px;font-size:12pt;font-family:Arial">
+																				<font color="#333">${ctx.firstName},</font>
+																				<p style="margin:3px 0"></p>
+																			</td>
+																		</tr>
+																		<tr>
+																			<td width="34%" valign="top" style="font-size:12pt;font-family:Arial;">
+																				<br/>
+																				<font color="#000000">${ctx.messages.message}
+																					
+																				</font>
+																			</td>
+																		</tr>
+																		<tr>
+																			<td style="font-size:12pt;font-family:Arial;">
+																				<br/>
+																				<p style="margin-top: 0px;margin-bottom: 0px;">
+																					<font color="#000000">${ctx.messages.complimentaryClose}
+																						<br>
+																						<b>
+																							<i>${ctx.messages.signaturename}</i>
+																						</b>
+																					</font>
+																				</p>
+																			</td>
+																		</tr>
+																	</table>
+																</td>
+															</tr>																														
+															<tr>
+																<td colspan="2" style="padding:0px 15px;">
+																	<hr color="black" align="center" width="100%">
+																</td>
+															</tr>								
+															<tr>
+																<td colspan="2" height="0" align="right" valign="middle">
+																		<tr>
+																			<td colspan="2" style="padding: 10px;margin: 0px;font-size:11pt;font-family:Arial;">
+																				<center>
+																					<font color="#000">${ctx.messages.toensurethatyoucontinuetoreceiveyouremails}<br><a href="mailto:${ctx.messages.infoEmailAddress}">${ctx.messages.infoEmailAddress}</a> ${ctx.messages.afterinfoEmailAddress}</font>
+																				</center>
+																			</td>
+																		</tr>
+																		<tr>
+																			<td colspan="2" style="padding: 10px;margin: 0px;font-size:11pt;font-family:Arial;">
+																				<center>
+																					<font color="#000">${ctx.messages.address}</font>
+																				</center>
+																			</td>
+																		</tr>
+																		<tr>												
+																			<td colspan="2" style="padding: 10px 10px 30px 10px;margin: 0px;font-size:11pt;font-family:Arial;">
+																				<center>
+																					<font><a href="${ctx.baseThemeUrl}/privacypolicy">${ctx.messages.privacyPolicy}</a> | <a href="${ctx.baseurl}mailMediaUrl">${ctx.messages.viewinBrowser}</a></font>
+																				</center>
+																			</td>
+																		</tr>
+																	
+																</td>
+															</tr>
+
+														</table>
+													</td>
+												</tr>
+											</table>
+										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+		#else
+		<table width="550" align="center" cellpadding="0" cellspacing="0">
+			<tr>
+				<td align="center" valign="top">
+					<table width="610" border="0" align="center" cellpadding="0" cellspacing="0">
+						<tr>
+							<td align="center" valign="top" style="border: 1px solid #51585c;"> 
+								<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="padding:15px;" valign="left">
+											<a style="text-decoration:none;" href="${ctx.baseThemeUrl}">
+												<img title="SiteoneLogo" src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/SiteoneLogo.jpg" alt="SiteoneLogo" style="outline:0;border:none;">
+											</a>
+										</td>
+											<td style="padding:20px;" align="right">
+												<span class="col-xs-6 col-md-12">
+													<a style="text-decoration:none;" href="https://www.facebook.com/SiteOneLandscape/">
+														<img src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/Print_facebook_color.png" alt="Facebook" title="Facebook" style="outline:0;border:none;" width="30" height="30">
+														</a>&nbsp;
+														
+														<a style="text-decoration:none;" href="https://www.instagram.com/siteonesupply/">
+															<img src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/Print_instagram_color.png" alt="Instagram" title="Instagram" style="outline:0;border:none;" width="30" height="30">
+															</a>&nbsp;
+															
+															<a style="text-decoration:none;" href="https://x.com/SiteOneSupply">
+																<img src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/Print_twitter_color.png" alt="X" title="X" style="outline:0;border:none;" width="30" height="30">
+																</a>
+															</span>
+														</td>
+													</tr>
+													<div class="green_border"></div>
+									<tr>
+										<td colspan="2">
+											<table width="100%" cellpadding="10" cellspacing="0">
+												<tr>
+													<td>
+														<table width="100%" border="0" align="center" cellpadding="10" cellspacing="0" class="products">
+															<tr>
+																<td style="padding:5px;" colspan="2">
+																	<table>
+																		<tr>
+																			<td width="34%" valign="top" style="padding-top:10px;font-size:12pt;font-family:Arial">
+																				<font color="#333">${ctx.firstName},</font>
+																				<p style="margin:3px 0"></p>
+																			</td>
+																		</tr>
+																		<tr>
+																			<td width="34%" valign="top" style="font-size:12pt;font-family:Arial;">
+																				<br/>
+																				<font color="#000000">${ctx.messages.message}
+																					
+																				</font>
+																			</td>
+																		</tr>
+																		<tr>
+																			<td style="font-size:12pt;font-family:Arial;">
+																				<br/>
+																				<p style="margin-top: 0px;margin-bottom: 0px;">
+																					<font color="#000000">${ctx.messages.complimentaryClose}
+																						<br>
+																						<b>
+																							<i>${ctx.messages.signaturename}</i>
+																						</b>
+																					</font>
+																				</p>
+																			</td>
+																		</tr>
+																	</table>
+																</td>
+															</tr>																														
+															<tr>
+																<td colspan="2" style="padding:0px 15px;">
+																	<hr color="black" align="center" width="100%">
+																</td>
+															</tr>								
+															<tr>
+																<td colspan="2" height="0" align="right" valign="middle">
+																		<tr>
+																			<td colspan="2" style="padding: 10px;margin: 0px;font-size:11pt;font-family:Arial;">
+																				<center>
+																					<font color="#000">${ctx.messages.toensurethatyoucontinuetoreceiveyouremails}<br><a href="mailto:${ctx.messages.infoEmailAddress}">${ctx.messages.infoEmailAddress}</a> ${ctx.messages.afterinfoEmailAddress}</font>
+																				</center>
+																			</td>
+																		</tr>
+																		<tr>
+																			<td colspan="2" style="padding: 10px;margin: 0px;font-size:11pt;font-family:Arial;">
+																				<center>
+																					<font color="#000">${ctx.messages.address}</font>
+																				</center>
+																			</td>
+																		</tr>
+																		<tr>												
+																			<td colspan="2" style="padding: 10px 10px 30px 10px;margin: 0px;font-size:11pt;font-family:Arial;">
+																				<center>
+																					<font><a href="${ctx.baseThemeUrl}/privacypolicy">${ctx.messages.privacyPolicy}</a> | <a href="${ctx.baseurl}mailMediaUrl">${ctx.messages.viewinBrowser}</a></font>
+																				</center>
+																			</td>
+																		</tr>
+																	
+																</td>
+															</tr>
+
+														</table>
+													</td>
+												</tr>
+											</table>
+										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>

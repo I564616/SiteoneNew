@@ -1,0 +1,29 @@
+$solrIndexedType=siteoneProductType
+
+INSERT_UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true];name[unique=true];type(code);sortableType(code);currency[default=false];localized[default=false];multiValue[default=false];useForSpellchecking[default=false];useForAutocomplete[default=false];fieldValueProvider;valueProviderParameter;ftsPhraseQuery[default=false];ftsPhraseQueryBoost;ftsQuery[default=false];ftsQueryBoost;ftsFuzzyQuery[default=false];ftsFuzzyQueryBoost;ftsWildcardQuery[default=false];ftsWildcardQueryType(code)[default=POSTFIX];ftsWildcardQueryBoost;ftsWildcardQueryMinTermLength
+;$solrIndexedType;sodeliveryAlwaysEnabledBranches;string;         ;    ;    ;    ;    ;    ;springELValueProvider              ;deliveryAlwaysEnabledBranches  ;    ;   ;	;	 ;    ;  ;	;	;	;
+
+$productCatalog=siteoneProductCatalog
+$catalogVersion=catalogVersion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+
+INSERT_UPDATE Product;code[unique=true];deliveryAlwaysEnabledBranches;$catalogVersion
+;41170;1075,1076,1077,1078,1079,1080,1081,1082,1083,1084,1085,1086,1087
+;807692;1075,1076,1077,1078,1079,1080,1081,1082,1083,1084,1085,1086,1087
+;662314;1075,1076,1077,1078,1079,1080,1081,1082,1083,1084,1085,1086,1087
+;662312;1075,1076,1077,1078,1079,1080,1081,1082,1083,1084,1085,1086,1087
+;108529;1075,1076,1077,1078,1079,1080,1081,1082,1083,1084,1085,1086,1087
+;662389;1075,1076,1077,1078,1079,1080,1081,1082,1083,1084,1085,1086,1087
+;702557;1075,1076,1077,1078,1079,1080,1081,1082,1083,1084,1085,1086,1087
+
+
+$productCatalog=siteoneProductCatalog
+$catalogVersion=catalogVersion(catalog(id[default=$productCatalog]),version[default='Online'])[unique=true,default=$productCatalog:Online]
+
+INSERT_UPDATE Product;code[unique=true];deliveryAlwaysEnabledBranches;$catalogVersion
+;41170;1075,1076,1077,1078,1079,1080,1081,1082,1083,1084,1085,1086,1087
+;807692;1075,1076,1077,1078,1079,1080,1081,1082,1083,1084,1085,1086,1087
+;662314;1075,1076,1077,1078,1079,1080,1081,1082,1083,1084,1085,1086,1087
+;662312;1075,1076,1077,1078,1079,1080,1081,1082,1083,1084,1085,1086,1087
+;108529;1075,1076,1077,1078,1079,1080,1081,1082,1083,1084,1085,1086,1087
+;662389;1075,1076,1077,1078,1079,1080,1081,1082,1083,1084,1085,1086,1087
+;702557;1075,1076,1077,1078,1079,1080,1081,1082,1083,1084,1085,1086,1087

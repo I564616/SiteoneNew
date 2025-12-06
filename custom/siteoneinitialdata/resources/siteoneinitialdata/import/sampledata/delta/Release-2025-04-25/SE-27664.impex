@@ -1,0 +1,51 @@
+#--------------------------SIMPLE/BASE Product IntegrationObject-----------------------#
+
+INSERT_UPDATE IntegrationObjectItem; integrationObject(code)[unique = true]; code[unique = true]; type(code); root[default = false]
+                                   ; SiteOneProduct ; SiteOneProductSavingsCenterAttribute	; SiteOneProductSavingsCenterAttribute	; 	; 	;
+
+INSERT_UPDATE IntegrationObjectItemAttribute; integrationObjectItem(integrationObject(code), code)[unique = true]; attributeName[unique = true]; attributeDescriptor(enclosingType(code), qualifier); returnIntegrationObjectItem(integrationObject(code), code); unique[default = false]
+                                            ; SiteOneProduct:SiteOneProductSavingsCenterAttribute	; id                     ; SiteOneProductSavingsCenterAttribute:id	;; true	;
+                                            ; SiteOneProduct:SiteOneProductSavingsCenterAttribute	; text                   ; SiteOneProductSavingsCenterAttribute:text	;; true	;
+                                            ; SiteOneProduct:Product                    	        ; savingsCenterAttribute ; Product:savingsCenterAttribute                      ; SiteOneProduct:SiteOneProductSavingsCenterAttribute	; 	;
+
+
+INSERT_UPDATE IntegrationObjectItem; integrationObject(code)[unique = true]; code[unique = true]; type(code)
+                                   ; SiteOneGenericVariantProduct	; SiteOneProductSavingsCenterAttribute	; SiteOneProductSavingsCenterAttribute	; 	; 	;
+
+INSERT_UPDATE IntegrationObjectItemAttribute; integrationObjectItem(integrationObject(code), code)[unique = true]; attributeName[unique = true]; attributeDescriptor(enclosingType(code), qualifier); returnIntegrationObjectItem(integrationObject(code), code); unique[default = false]
+                                            ; SiteOneGenericVariantProduct:SiteOneProductSavingsCenterAttribute  ; id                      ; SiteOneProductSavingsCenterAttribute:id	;; true	;
+                                            ; SiteOneGenericVariantProduct:SiteOneProductSavingsCenterAttribute  ; text                    ; SiteOneProductSavingsCenterAttribute:text	;; true	;
+                                            ; SiteOneGenericVariantProduct:GenericVariantProduct                 ; savingsCenterAttribute  ; GenericVariantProduct:savingsCenterAttribute ; SiteOneGenericVariantProduct:SiteOneProductSavingsCenterAttribute	; 	;
+
+
+$START_USERRIGHTS
+Type ; UID ; MemberOfGroups ; Password ; Target ; read ; change ; create ; remove
+UserGroup ; integrationadmingroup ; ; ; ; ; ; ;
+
+# Access Rights for IntegrationAdministrator Users
+; ; ; ; SiteOneProductSavingsCenterAttribute ; + ; + ; + ; +
+$END_USERRIGHTS
+
+
+
+# [y] hybris Platform
+#
+# Copyright (c) 2017 SAP SE or an SAP affiliate company.  All rights reserved.
+#
+# This software is the confidential and proprietary information of SAP
+# ("Confidential Information"). You shall not disclose such Confidential
+# Information and shall use it only in accordance with the terms of the
+# license agreement you entered into with SAP.
+# -----------------------------------------------------------------------
+$classCatalogVersion=catalogversion(catalog(id[default='siteoneClassification']),version[default='1'])[unique=true,default='siteoneClassification:1']
+$classSystemVersion=systemversion(catalog(id[default='siteoneClassification']),version[default='1'])[unique=true,default='siteoneClassification:1']
+$classAttribute=classificationAttribute(code,$classSystemVersion)
+$classClass=classificationClass(code,$classCatalogVersion)
+$classAttributeAssignment=classAttributeAssignments($classClass,$classAttribute,$classSystemVersion)
+
+$facetSearchConfigName=siteoneIndex
+$solrIndexedType=siteoneProductType
+$lang=en
+
+INSERT_UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true];name[unique=true];displayName   ;type(code);multiValue[default=true];facet[default=true];facetType(code);facetSort(code);priority;visible;fieldValueProvider        ;topValuesProvider
+                                 ;$solrIndexedType                        ;sosavingsCenter  ;Savings Center;string    ;true                    ;true               ;MultiSelectOr  ;Alpha          ;9996    ;true   ;savingsCenterValueProvider;defaultTopValuesProvider

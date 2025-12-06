@@ -1,0 +1,34 @@
+import de.hybris.platform.servicelayer.impex.impl.StreamBasedImpExResource
+import de.hybris.platform.servicelayer.impex.ImportConfig
+
+def importService = spring.getBean("importService")
+def mediaService = spring.getBean("mediaService")
+
+def importCSVFromResources(fileName) {
+    final def config = new ImportConfig()
+    config.setScript(new StreamBasedImpExResource(new File(fileName).newInputStream(), "utf-8"))
+    config.setEnableCodeExecution(true)
+    // Now use Config object
+    final def result = importService.importData(config)
+    if (result.hasUnresolvedLines()) {
+        println "***** " + fileName + " hasUnresolvedLines!!!"
+        def importResults = new String(mediaService.getDataFromMedia(result.getUnresolvedLines()));
+        println importResults
+    }
+    println "Import of " + fileName + " was successful: " + result.isSuccessful() + "    with error: " + result.isError()
+}
+
+
+def rootFolder = "/opt/hybris/bin/modules/integration-apis"
+
+importCSVFromResources(rootFolder + "/integrationservices/resources/impex/essentialdata-integrationservices.impex");
+
+importCSVFromResources(rootFolder + "/odata2services/resources/impex/essentialdata-odata2services.impex");
+
+importCSVFromResources(rootFolder + "/odata2webservices/resources/impex/essentialdata-odata2webservices.impex");
+
+importCSVFromResources(rootFolder + "/integrationbackoffice/resources/impex/essentialdata-integration-roles.impex");
+
+importCSVFromResources(rootFolder + "/inboundservices/resources/impex/essentialdata-inboundservices.impex");
+
+importCSVFromResources(rootFolder + "/integrationmonitoringbackoffice/resources/impex/essentialdata-integrationmonitoringbackoffice.impex");

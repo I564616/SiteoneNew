@@ -1,0 +1,1487 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- [y] hybris Platform Copyright (c) 2017 SAP SE or an SAP affiliate company. 
+	All rights reserved. This software is the confidential and proprietary information 
+	of SAP ("Confidential Information"). You shall not disclose such Confidential 
+	Information and shall use it only in accordance with the terms of the license 
+	agreement you entered into with SAP. -->
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="beans.xsd">
+
+	<bean class="de.hybris.platform.commercefacades.product.data.ProductData">
+		<property name="genders"
+			type="java.util.List&lt;com.siteone.facades.product.data.GenderData>" />
+		<!-- <property name="inStockFlag" type="Boolean"/> -->
+		<property name="variantCount" type="Integer" />
+		<property name="productShortDesc" type="String" />
+		<property name="vendorPartNumber" type="String" />
+		<property name="productBrandName" type="String" />
+		<property name="stores" type="java.util.List&lt;String>" />
+		<property name="isRegulateditem" type="Boolean" />
+		<property name="isProductDiscontinued" type="Boolean" />
+		<property name="multiUOMDesc" type="String"/>
+		<property name="regulatoryStates" type="java.util.List&lt;String>" />
+		<property name="sds" type="java.util.List&lt;String>" />
+		<property name="label" type="java.util.List&lt;String>" />
+		<property name="productLongDesc" type="String" />
+		<property name="productPromotion" type="String" />
+		<property name="dataSheetList"
+			type="java.util.Map&lt;String,java.util.List&lt;com.siteone.facades.product.data.DataSheetData>>" />
+		<property name="stockAvailabilityMessage" type="String" />
+		<property name="isSellable" type="Boolean" />
+		<property name="customerPrice"
+			type="de.hybris.platform.commercefacades.product.data.PriceData"></property>
+		<property name="savedListComment" type="java.lang.String" />
+		<property name="salePrice" type="java.lang.String" />
+		<property name="sellableUoms"
+			type="java.util.List&lt;com.siteone.facades.product.data.InventoryUOMData>" />
+		<property name="itemNumber" type="String" />
+		<property name="featureBullets" type="String" />
+		<property name="sellableUomsCount" type="Integer" />
+		<property name="isSellableInventoryHit" type="Boolean" />
+		<property name="availableStatus" type="Boolean" />
+		<property name="sostockForNLA" type="Boolean" />
+		<property name="IsBuyable" type="Boolean" />
+		<property name="isProductOffline" type="Boolean" />
+		<property name="level1Category" type="String" />
+		<property name="level2Category" type="String" />
+		<property name="sellableUomDesc" type="String"/>
+		<property name="isStockAvailable" type="Boolean"/>
+		<property name="hideList" type="Boolean"/>
+		<property name="hideCSP" type="Boolean"/>
+		<property name="hideUom" type="Boolean"/>
+		<property name="inventoryUPCID" type="String"/>
+		<property name="inventoryMultiplier" type="Float" />
+		<property name="singleUom" type="Boolean" />
+		<property name="singleUomDescription" type="String" />
+		<property name="singleUomMeasure" type="String" />
+		<property name="inventoryCheck" type="Boolean"/>
+		<property name="inventoryFlag" type="Boolean"/>
+    <property name="isHardscapeProduct" type="Boolean"/>
+		<property name="nearestStore" type="de.hybris.platform.commercefacades.storelocator.data.PointOfServiceData"></property>
+		<property name="nearestStoreStockLevel" type="Long" />
+		<property name="nearestBackorderableStore" type="de.hybris.platform.commercefacades.storelocator.data.PointOfServiceData"></property>
+		<property name="storeStockAvailabilityMsg" type="java.lang.String" />
+		<property name="inStockImage" type="Boolean"/>
+		<property name="notInStockImage" type="Boolean"/>
+		<property name="outOfStockImage" type="Boolean"/>
+		<property name="isStockInNearbyBranch" type="Boolean"/>
+		<property name="productType" type="String"/>
+		<property name="couponCode" type="String"/>
+		<property name="promoDetails" type="String"/>
+		<property name="isPromoDescriptionEnabled" type="java.lang.Boolean"/>
+		<property name="stockAvailExtendedMessage" type="String" />
+		<property name="isEligibleForBackorder" type="Boolean"/>
+		<property name ="isShippable" type ="Boolean"/>
+		<property name ="maxShippableDollarAmount" type ="java.lang.Double"/>
+		<property name ="maxShippableQuantity" type ="java.lang.Integer"/>
+	  <property name="isEligibleForDelivery" type="Boolean"/>
+		<property name="nearbyStoresAvailableQty" type="java.lang.Integer"/>
+		<property name="homeStoreAvailableQty" type="java.lang.Integer"/>
+		<property name="hubStoresAvailableQty" type="java.lang.Integer"/>
+		<property name="validationMessage" type="String"/>
+		<property name="isAvailableInHub" type="java.lang.Boolean"/>
+		<property name="freeShippingThreshold" type="String" />
+		<property name="fullfillmentStoreId" type="String" />
+		<property name="fullfilledStoreType" type="String" />
+		<property name="stockAvailableOnlyHubStore" type="java.lang.Boolean" />
+		<property name="parentCategory" type="String" />
+		<property name="isBackorderAndShippable" type="java.lang.Boolean" />
+		<property name="isRegulatoryLicenseCheckFailed" type="java.lang.Boolean" />
+		<property name="isRegulatedAndNotSellable" type="java.lang.Boolean" />
+		<property name="pickupHomeStoreInfo" type="com.siteone.facade.StoreLevelStockInfoData" />
+		<property name="pickupNearbyStoreInfo" type="com.siteone.facade.StoreLevelStockInfoData" />
+		<property name="deliveryStoreInfo" type="com.siteone.facade.StoreLevelStockInfoData" />
+		<property name="shippingStoreInfo" type="com.siteone.facade.StoreLevelStockInfoData" />
+		<property name="askAnExpertEnable" type="java.lang.Boolean"/>
+		<property name="clickTrackingURL" type="String" />
+		<property name="isDeliverable" type="java.lang.Boolean" />
+		<property name="isNurseryProduct" type="java.lang.Boolean" />
+		<property name="isTransferrable" type="java.lang.Boolean" />
+		<property name="bulkUOMCode" type="String" />
+		<property name="bulkUOMPrice" type="String" />
+		<property name="bulkUOMCustomerPrice" type="String" />
+		<property name="couponEnabled" type="java.lang.Boolean" />
+		<property name="variantSkus" type="java.util.List&lt;String>" />
+		<property name="salientBullets" type="String" />
+		<property name="calcUrl" type="String"/>
+		<property name="photoCredit" type="String" />
+		<property name="isForceInStock" type="java.lang.Boolean" />
+		<property name="orderQuantityInterval" type="java.lang.Integer" />
+		<property name="secretSku" type="java.lang.Boolean" />
+		<property name="isNationalShippingPDP" type="java.lang.Boolean" />
+		<property name="isRUPTrainingSku" type="java.lang.Boolean" />
+		<property name="eeee" type="java.lang.Boolean" />
+		<property name="purchasedCount" type="Integer" />
+		<property name="orderCount" type="Integer" />
+		<property name="purchasedQuantity" type="Integer" />
+		<property name="unitPrice"
+			type="de.hybris.platform.commercefacades.product.data.PriceData"></property>
+		<property name="minOrderQuantity" type="java.lang.Integer" />
+		<property name="deliveryAlwaysEnabledBranches" type="String" />
+		<property name="bulkCalculatorType" type="String" />
+		<property name="bulkFlag" type="java.lang.Boolean" />
+		<property name="weighAndPayEnabled" type="java.lang.Boolean" />
+		<property name="isSellableForB2BUnit" type="java.lang.Boolean"/>
+		<property name="variantCodes" type="java.util.List&lt;String>" />
+		<property name="variantProductOptions" type="String" />
+		<property name="holidayLightingCalcType" type="String" />
+		<property name="productQRCodeMedia" type="de.hybris.platform.cmsfacades.data.MediaData" />
+    </bean>
+
+	<bean class="com.siteone.facades.product.data.InventoryUOMData">
+		<property name="inventoryUOMID" type="String" />
+		<property name="name" type="String" />
+		<property name="description" type="String" />
+		<property name="inventoryMultiplier" type="Float" />
+		<property name="parentInventoryUOMID" type="String" />
+		<property name="inventoryUOMDesc" type="String" />
+		<property name="measure" type="String" />
+		<property name="isDisplayPallet" type="Integer"/>
+		<property name="hideUOMOnline" type="Boolean" />
+		<property name="newUomPrice" type="Float" />		
+		<property name="height" type="String" />
+		<property name="weight" type="String" />
+		<property name="length" type="String" />
+		<property name="vendorEDINumber" type="String" />
+		<property name="vendorPartNumber" type="String" />
+		<property name="code" type="String" />
+		<property name="price"
+			type="de.hybris.platform.commercefacades.product.data.PriceData"></property>
+		<property name="customerPrice"
+			type="de.hybris.platform.commercefacades.product.data.PriceData"></property>
+		<property name="stockQuantity" type="Long"/>
+		<property name="unitPrice"
+			type="de.hybris.platform.commercefacades.product.data.PriceData"></property>
+	</bean>
+
+	<bean
+		class="de.hybris.platform.commerceservices.service.data.CommerceCartParameter">
+		<property name="inventoryUOM" type="com.siteone.core.model.InventoryUPCModel" />
+		<property name="isBaseUom" type="Boolean" />
+	</bean>
+
+	<bean class="com.siteone.facades.product.data.DataSheetData"
+		extends="de.hybris.platform.commercefacades.product.data.ImageData">
+		<property name="label" type="String" />
+		<property name="mimeType" type="String" />
+		<property name="sheetType" type="String" />
+		<property name="sds" type="String" />
+		<property name="sdsLabel" type="String" />
+	</bean>
+	
+	<bean class="de.hybris.platform.commercefacades.product.data.ProductHighlights">
+	<property name="name" type="String" />
+        <property name="value" type="String" />
+	</bean>
+	
+	<bean class="com.siteone.facades.quote.data.QuotesData">
+        <property name="quoteId" type="String" />
+        <property name="quoteNumber" type="String" />
+        <property name="jobName" type="String" />
+        <property name="lastModfDate" type="String" />
+        <property name="dateSubmitted" type="String" />
+        <property name="expirationDate" type="String" />
+        <property name="status" type="String" />     
+        <property name="isQuoteApproved" type="Boolean"/>
+        <property name="notes" type="String" />
+        <property name="accountName" type="String" />
+        <property name="accountNumber" type="String" />
+        <property name="totalPrice" type="de.hybris.platform.commercefacades.product.data.PriceData" />
+        <property name="accountManagerEmail" type="String" />
+        <property name="branchManagerEmail" type="String" />
+        <property name="isFullQuoteApproved" type="Boolean" />
+        <property name="quoteCount" type="Integer" />
+        <property name="pageSize" type="Integer" />
+    </bean>
+
+	<bean class="de.hybris.platform.solrfacetsearch.config.IndexedProperty">
+		<property name="classAttributeAssignments"
+			type="java.util.List&lt;de.hybris.platform.catalog.model.classification.ClassAttributeAssignmentModel>" />
+	</bean>
+
+	<bean class="com.siteone.facades.product.data.GenderData">
+		<property name="code" type="String" />
+		<property name="name" type="String" />
+	</bean>
+
+
+	<bean class="com.siteone.facades.product.data.SiteOneProductWrapperData"
+		extends="de.hybris.platform.acceleratorfacades.product.data.ProductWrapperData">
+		<property name="productDataList"
+			type="java.util.List&lt;de.hybris.platform.commercefacades.product.data.ProductData>" />
+	</bean>
+
+	<bean
+		class="de.hybris.platform.commercefacades.storelocator.data.PointOfServiceData">
+		<property name="storeId" type="String" />
+		<property name="isPreferredStore" type="Boolean" />
+		<property name="isInMyStore" type="Boolean" />
+		<property name="storeStatus" type="String" />
+		<property name="isActive" type="Boolean" />
+		<property name="specialText" type="String" />
+		<property name="storeSpecialities" type="java.util.List&lt;String>" />
+		<property name="storeNotes" type="String" />
+		<property name="timeZoneId" type="String" />
+		<property name="title" type="String" />
+		<property name="isLicensed" type="Boolean" />
+		<property name="storeDivision" type="java.lang.String" />
+		<property name="metroStatArea" type="java.lang.String" />
+		<property name="timezoneId" type="java.lang.String" />
+    	<property name="isNearbyStoreSelected" type="Boolean" />
+		<property name="distance" type="Double" />
+		<property name="longDescription" type="String" />
+		<property name="regionId" type="java.lang.String" />
+		<property name="areaId" type="java.lang.String" />
+		<property name="hubStores" type="java.util.List&lt;String>" />
+		<property name="distributedBranches" type="java.util.List&lt;String>" />
+		<property name="nurseryOfferURL" type="java.lang.String"/>
+		<property name="supplyChainNodeId" type="java.lang.String" />
+		<property name="supportProductScanner" type="Boolean" />
+		<property name="nearbyStoreSearchRadius" type="java.lang.Integer" />
+		<property name="storeSpecialityDetails" type="java.util.List&lt;com.siteone.facade.StoreLocatorFeatureData>" />
+		<property name="acquisitionOrCoBrandedBranch" type="Boolean" />
+		<property name="stockDetail" type="java.lang.String"/>
+		<property name="pickupfullfillment" type="Boolean" />
+		<property name="deliveryfullfillment" type="Boolean" />
+		<property name="shippingfullfillment" type="Boolean" />
+		<property name="excludeBranches" type="java.lang.String" />
+		<property name="deliveryThresholdForContractor" type="java.lang.String"/>
+		<property name="deliveryThresholdForHomeownerOrGuest" type="java.lang.String"/>
+		<property name="shippingThresholdForContractor" type="java.lang.String"/>
+		<property name="shippingThresholdForHomeownerOrGuest" type="java.lang.String"/>
+		<property name="shippingFeeForContractor" type="java.lang.String"/>
+		<property name="shippingFeeForHomeownerOrGuest" type="java.lang.String"/>
+		<property name="customerRetailId" type="java.lang.String"/>
+		<property name="bigBag" type="Boolean" />
+		<property name="nurseryBuyingGroup" type="java.lang.String"/>
+		<property name="siteOneHolidays" type="java.util.List&lt;String>" />
+		<property name="enableOnlineFulfillment" type="Boolean" />
+	</bean>
+
+	<bean class="de.hybris.platform.commercefacades.product.data.CategoryData">
+		<property name="productCount" type="java.lang.Integer" />
+		<property name="subCategories"
+			type="java.util.List&lt;de.hybris.platform.commercefacades.product.data.CategoryData>" />
+		<property name="urlLink" type="java.lang.String"/>
+		<property name="seoEditableText" type="java.lang.String"/>
+	    <property name="marketingBanner"
+			type="de.hybris.platform.commercefacades.product.data.ImageData" />
+		<property name="marketingBannerLink" type="java.lang.String"/>
+		<property name="marketingBannerList" 	type="java.util.List&lt;de.hybris.platform.commercefacades.product.data.ImageData>" />		
+	</bean>
+
+	<bean class="com.siteone.facades.storelocator.data.MilesData">
+		<property name="code" type="String" />
+		<property name="name" type="String" />
+	</bean>
+
+	<bean class="de.hybris.platform.commercefacades.user.data.RegionData">
+		<property name="storeCount" type="Integer" />
+	</bean>
+
+	<bean
+		class="com.siteone.facades.emailsubscriptions.data.EmailSubscriptionsData">
+		<property name="Email" type="String" />
+		<property name="postalcode" type="String" />
+		<property name="userType" type="String" />
+	</bean>
+
+	<bean class="de.hybris.platform.commercefacades.user.data.CustomerData">
+		<property name="invoicePermissions" type="Boolean" />
+		<property name="partnerProgramPermissions" type="Boolean" />
+		<property name="assignedShipTos" type="java.util.Collection&lt;String>" />
+		<property name="accountOverviewForParent" type="Boolean" />
+		<property name="accountOverviewForShipTos" type="Boolean" />
+		<property name="payBillOnline" type="Boolean" />
+		<property name="placeOrder" type="Boolean" />
+		<property name="guid" type="String"/>
+		<property name="recentCartIds" type="java.util.Collection&lt;String>" />
+		<property name="currentCartId" type="String"/>
+		<property name="langPreference" type="de.hybris.platform.core.model.c2l.LanguageModel"/>
+		<property name="homeBranch" type="String"/>
+		<property name="vaultToken" type="java.util.Set&lt;com.siteone.core.model.SiteoneEwalletCreditCardModel&gt;"/>
+		<property name="enableAddModifyDeliveryAddress" type="Boolean"/>
+		<property name="needsOrderApproval" type="Boolean"/>
+		<property name="isPunchoutFlow" type="Boolean"/>
+	</bean>
+
+	<bean class="de.hybris.platform.commercefacades.user.data.AddressData">
+		<property name="projectName" type="String" />
+		<property name="deliveryInstructions" type="String" />
+		<property name="unitId" type="String" />
+		<property name="geoCode" type="String" />
+		<property name="defaultUserAddress" type="Boolean" />
+	</bean>
+
+	<bean class="de.hybris.platform.b2bcommercefacades.company.data.B2BUnitData">
+		<property name="defaultBillingAddress"
+			type="de.hybris.platform.commercefacades.user.data.AddressData" />
+		<property name="defaultShippingAddress"
+			type="de.hybris.platform.commercefacades.user.data.AddressData" />
+		<property name="isBillingAccount" type="Boolean" />
+		<property name="isOrderingAccount" type="Boolean" />
+		<property name="orderType" type="java.util.List&lt;String>" />
+		<property name="phoneNumber" type="String" />
+		<property name="phoneId" type="String" />
+		<property name="isPunchOutAccount" type="Boolean"/>
+		<property name="payBillOnline" type="Boolean"/>
+		<property name="isPONumberRequired" type="Boolean" />
+	    <property name="poRegex" type="String" />
+	    <property name="tradeClass" type="String"/>
+	    <property name="customerSegment" type="String"/>
+	    <property name="subTradeClass" type="String"/>
+	    <property name="nurseryClassCode" type="String"/>
+	    <property name="priceClassCode" type="String"/>
+	    <property name="customerLogo"
+			type="de.hybris.platform.commercefacades.product.data.ImageData" />
+		<property name="exemptDeliveryFee" type="boolean" />
+		<property name="homeBranch" type="String"/>
+		<property name="shippingThreshold" type="String"/>
+	    <property name="shippingFee" type="String"/>
+	</bean>
+	<bean class="de.hybris.platform.b2bcommercefacades.company.data.B2BUnitData">
+		<property name="displayId" type="String" />
+	</bean>
+
+
+	<bean class="de.hybris.platform.b2bcommercefacades.company.data.B2BUnitData">
+		<property name="modifiedTime" type="java.util.Date" />
+	</bean>
+
+	<bean
+		class="com.siteone.facades.address.data.SiteOneAddressVerificationStatusData">
+		<property name="code" type="String" />
+		<property name="description" type="String" />
+		<property name="internalCode" type="String" />
+	</bean>
+	
+	<bean class="com.siteone.facades.quote.data.QuoteItemDetailsData">	
+	    <property name="itemNumber" type="String" />
+		<property name="lineNumber" type="Integer" />
+		<property name="itemDescription" type="String" />
+		<property name="quantity" type="Double" />
+		<property name="unitPrice" type="Double" />
+		<property name="UOM" type="String" />
+		<property name="extPrice" type="Double" />		
+		<property name="notes" type="String" />
+		<property name="quoteDetailID" type="String" />
+		<property name="approvedQty" type="Integer" />
+		<property name="approvalCheck" type="String" />
+		<property name="approvalDate" type="String" />
+		<property name="totalApprovedQty" type="Integer" />
+		<property name="itemLastModfDate" type="String" />
+		<property name="skuId" type="String" />
+		<property name="approvalHistoryCount" type="Integer" />
+	</bean>
+	<bean class="com.siteone.facades.quote.data.QuoteDetailsData">
+		<property name="branchInfo" type="de.hybris.platform.commercefacades.storelocator.data.PointOfServiceData" />
+		<property name="accountInfo" type="de.hybris.platform.commercefacades.user.data.AddressData" />
+		<property name="shipToInfo" type="de.hybris.platform.commercefacades.user.data.AddressData" />
+		<property name="quoteNumber" type="Integer" />
+		<property name="jobName" type="String" />
+		<property name="lastModfDate" type="String" />
+		<property name="dateSubmitted" type="String" />
+		<property name="expDate" type="String" />
+		<property name="status" type="String" />
+		<property name="quoteId" type="String" />
+		<property name="bidTotal" type="String" />
+		<property name="remainingBidTotal" type="String" />
+		<property name="writer" type="String" />
+		<property name="accountName" type="String" />
+	    <property name="accountManager" type="String" />
+        <property name="accountManagerEmail" type="String" />
+        <property name="branchManagerEmail" type="String" />
+        <property name="writerEmail" type="String" />
+        <property name="pricerEmail" type="String" />
+        <property name="branchManagerNodeID" type="String" />
+        <property name="branchManagerID" type="String" />
+        <property name="branchManager" type="String" />
+        <property name="phoneNumber" type="String" />
+        <property name="accountId" type="String" />
+        <property name="customerNumber" type="String" />
+        <property name="salesRepEmail" type="String" />
+        <property name="legalDisclaimer" type="Boolean" />
+        <property name="showOnline" type="Boolean" />
+        <property name="isFullApproval" type="Boolean" />
+		<property name="itemDetails" type="java.util.List&lt;com.siteone.facades.quote.data.QuoteItemDetailsData>" />
+		<property name="modifiedItemDetails" type="java.util.List&lt;com.siteone.facades.quote.data.QuoteItemDetailsData>" />
+		<property name="deliveryDetails" type="com.siteone.facades.quote.data.DeviveryAddressQuoteData" />
+	</bean>
+	
+	 <bean class="com.siteone.facades.quote.data.ShiptoquoteData">
+        <property name="CustomerNumber" type="String" />
+        <property name="CustomerName" type="String" />
+        <property name="QuoteCount" type="String" />
+    </bean>
+    
+    <bean class="com.siteone.facades.quote.data.ShiptoitemData">
+       <property name="itemDetails" type="java.util.List&lt;com.siteone.facades.quote.data.ShiptoquoteData>"/>
+    </bean>
+    
+    <bean class="com.siteone.facades.quote.data.QuoteApprovalHistoryData">
+        <property name="quoteDetailID" type="String" />
+        <property name="approvalDate" type="String" />
+        <property name="approvedQty" type="Integer" />
+    </bean>
+    
+    <bean class="com.siteone.facades.quote.data.QuoteApprovalItemData">
+       <property name="itemDetails" type="java.util.List&lt;com.siteone.facades.quote.data.QuoteApprovalHistoryData>"/>
+    </bean>
+    
+    <bean class="com.siteone.facades.project.services.data.PsDashboardInfoData">
+    	<property name="projectID" type="Integer" />
+		<property name="projectName" type="String" />
+		<property name="projectNumber" type="Integer" />
+		<property name="associatedPSNumber" type="Integer" />
+		<property name="associatedProjectID" type="Integer" />
+		<property name="planName" type="String" />	
+		<property name="projectCity" type="String" />
+		<property name="projectState" type="String" />
+		<property name="projectZip" type="String" />		
+		<property name="submittedByUserId" type="String" />
+		<property name="cityStateZip" type="String" />
+		<property name="cityZip" type="String" />		
+		<property name="state" type="String" />
+		<property name="branch" type="String" />
+		<property name="region" type="Integer" />	
+		<property name="bidDateTime" type="String" />
+		<property name="bidDate" type="String" />
+		<property name="projectDueDateTime" type="String" />		
+		<property name="projectDueDate" type="String" />
+		<property name="createdOnDateTime" type="String" />
+		<property name="createdOn" type="String" />		
+		<property name="isPrivate" type="Boolean" />
+		<property name="isTakeoff" type="Boolean" />
+		<property name="isSubmittal" type="Boolean" />		
+		<property name="isPublic" type="Boolean" />
+		<property name="isGcLead" type="Boolean" />
+		<property name="isQuoteOnly" type="Boolean" />		
+		<property name="isFollowUp" type="Boolean" />
+		<property name="isContractorTo" type="Boolean" />
+		<property name="isUnqualifiedLead" type="Boolean" />		
+		<property name="isPasswordProtected" type="Boolean" />
+		<property name="isHiddenFromDashboard" type="Boolean" />
+		<property name="isFavorite" type="Boolean" />		
+		<property name="isHiddenProject" type="Boolean" />		
+		<property name="duplicateProjectNumber" type="String" />	
+		<property name="projectType" type="String" />
+		<property name="projectTypeOverride" type="String" />
+		<property name="projectStatusOverride" type="String" />		
+		<property name="projectStatus" type="String" />
+		<property name="projectStatusStr" type="String" />
+		<property name="projectSubStatus" type="String" />
+		<property name="isBidding" type="Boolean" />
+	</bean>
+    
+    <bean class="com.siteone.facades.project.services.data.PsDashboardData">
+    	<property name="itemTotal" type="Integer" />
+    	<property name="info" type="java.util.List&lt;com.siteone.facades.project.services.data.PsDashboardInfoData>" />
+	</bean>
+
+	<bean class="com.siteone.facades.address.data.SiteOneAddressVerificationData">
+		<property name="isAddressValid" type="Boolean" />
+		<property name="isAddressCorrected" type="Boolean" />
+		<property name="city" type="String" />
+		<property name="county" type="String" />
+		<property name="state" type="String" />
+		<property name="street" type="String" />
+		<property name="street2" type="String" />
+		<property name="zipcode" type="String" />
+		<property name="status"
+			type="com.siteone.facades.address.data.SiteOneAddressVerificationStatusData" />
+	</bean>
+
+	<bean class="de.hybris.platform.commercefacades.user.data.CustomerData">
+		<property name="emailOptIn" type="String" />
+		<property name="smsOptIn" type="String" />
+		<property name="isAdmin" type="Boolean" />
+		<property name="encodedPass" type="String" />
+		<property name="roleName" type="String" />
+	</bean>
+
+	<bean class="de.hybris.platform.commercefacades.order.data.AbstractOrderData">
+		<property name="pointOfService"
+			type="de.hybris.platform.commercefacades.storelocator.data.PointOfServiceData" />
+		<property name="orderType" type="String" />
+		<property name="contactPerson"
+			type="de.hybris.platform.commercefacades.user.data.CustomerData" />
+		<property name="deliveryContactPerson"
+			type="de.hybris.platform.commercefacades.user.data.CustomerData" />
+		<property name="shippingContactPerson"
+			type="de.hybris.platform.commercefacades.user.data.CustomerData" />
+		<property name="requestedDate" type="java.util.Date" />
+		<property name="specialInstruction" type="String" />
+		<property name="pickupInstruction" type="String" />
+		<property name="deliveryInstruction" type="String" />
+		<property name="shippingInstruction" type="String" />
+		<property name="orderingAccount"
+			type="de.hybris.platform.b2bcommercefacades.company.data.B2BUnitData" />
+		<property name="requestedMeridian" type="String" />
+		<property name="invoiceNumber" type="String" />
+		<property name="storeContact" type="String" />
+		<property name="storeUserName" type="String" />
+		<property name="billingAddress"
+			type="de.hybris.platform.commercefacades.user.data.AddressData" />
+		<property name="shippingAddress"
+			type="de.hybris.platform.commercefacades.user.data.AddressData" />
+			<property name="pickupAddress"
+			type="de.hybris.platform.commercefacades.user.data.AddressData" />
+		<property name="hybrisOrderNumber" type="String" />
+		<property name="freight" type="String" />
+		<property name="isHybrisOrder" type="Boolean" />
+		<property name="isReminderEmailSent" type="Boolean" />
+		<property name="isTampaBranch" type="Boolean" />
+		<property name="isLABranch" type="Boolean" />
+		<property name="isShippingFeeBranch" type="Boolean" />
+		<property name="isItemLevelShippingFeeBranch" type="Boolean" />
+		<property name="isServicedByDC" type="Boolean" />
+		<property name="freeShippingThreshold" type="String" />
+		<property name="deliveryEligibilityThreshold" type="String" />
+		<property name="branchNumber" type="String" />
+		<property name="itemCount" type="Integer" />
+		<property name="isDeliveryTampaBranch" type="Boolean" />
+		<property name="isPickupaAllowedBranch" type="Boolean" />
+		<property name="totalDiscountAmount"
+			type="de.hybris.platform.commercefacades.product.data.PriceData" />
+		<property name="siteOnePaymentInfoData"
+			type="de.hybris.platform.commercefacades.user.data.SiteOnePaymentInfoData"/>
+		<property name="siteOnePOAPaymentInfoData"
+			type="de.hybris.platform.commercefacades.user.data.SiteOnePOAPaymentInfoData"/>
+		<property name="isExpedited" type="Boolean" />
+		<property name="chooseLift" type="Boolean" />
+		<property name="guestContactPerson"
+			type="de.hybris.platform.commercefacades.user.data.CustomerData" />
+<property name="guestDeliveryContactPerson"
+			type="de.hybris.platform.commercefacades.user.data.CustomerData" />
+<property name="guestShippingContactPerson"
+			type="de.hybris.platform.commercefacades.user.data.CustomerData" />
+
+		<property name="isDeliveryLABranch" type="Boolean" />
+		<property name="isShippingHubOnly"  type="java.lang.Boolean" />
+		<property name="stockAvailableOnlyHubStore" type="java.lang.Boolean" />
+		<property name="deliveryModeAndBranchOrderGroups" type="java.util.List&lt;de.hybris.platform.commercefacades.order.data.DeliveryModeAndBranchOrderEntryGroupData>" />
+		<property name="isSameaddressforParcelShip" type="java.lang.Boolean" />
+		<property name="isSameaddressforDelivery" type="java.lang.Boolean" />
+		<property name="shippingCost" type="de.hybris.platform.commercefacades.product.data.PriceData"/>
+		<property name="deliveryFreight" type="String" />
+		<property name="shippingFreight" type="String" />
+		<property name="shipmentCount" type="Integer" />
+		<property name="isPartOfMasterHybrisOrder" type="java.lang.Boolean" />
+		<property name="showDeliveryFeeMessage" type="java.lang.Boolean" />
+		<property name="isInDeliveryFeePilot" type="java.lang.Boolean" />
+		<property name="cartToggleResponseData" type="com.siteone.facade.CartToggleResponseData" />
+		<property name="isNationalShipping" type="Boolean" />
+		<property name="uid" type="String"/>
+		<property name="invoiceCode" type="String"/>
+		<property name="shipmentCodes" type="java.util.List&lt;String>"/>
+		<property name="pickupAndDeliveryEntries"
+		          type="java.util.List&lt;de.hybris.platform.commercefacades.order.data.OrderEntryData>"/>
+		<property name="shippingOnlyEntries"
+		          type="java.util.List&lt;de.hybris.platform.commercefacades.order.data.OrderEntryData>"/>
+		<property name="quoteNumber" type="String" />
+		<property name="shipmentNumber" type="String" />
+	</bean>
+	
+	<bean class="com.siteone.facades.quote.data.DeviveryAddressQuoteData">
+        <property name="deliveryCity" type="String" />
+        <property name="deliveryStreet" type="String" />
+        <property name="deliveryState" type="String" />
+        <property name="deliveryZip" type="String" />
+        <property name="customerName" type="String" />
+    </bean>
+
+	<enum class="de.hybris.platform.commercefacades.product.ProductOption">
+		<value>DATA_SHEET</value>
+		<value>AVAILABILITY_MESSAGE</value>
+		<value>CUSTOMER_PRICE</value>
+		<value>STORE_POPUP</value>
+	</enum>
+
+	<bean class="com.siteone.facades.customer.price.SiteOneCspResponse">
+		<property name="isSuccess" type="boolean" />
+		<property name="price"
+			type="de.hybris.platform.commercefacades.product.data.PriceData" />
+		<property name="priceRange"
+			type="de.hybris.platform.acceleratorfacades.order.data.PriceRangeData" />
+			
+		<property name="errorMessageToDisplay" type="String" />
+	</bean>
+	<bean class="com.siteone.facades.customer.price.SiteOnePdpPriceDataUom">
+		<property name="isSuccess" type="boolean" />
+	    <property name="unitPrice" type="de.hybris.platform.commercefacades.product.data.PriceData" />
+		<property name="totalPrice" type="de.hybris.platform.commercefacades.product.data.PriceData" />
+		<property name="retailPrice" type="de.hybris.platform.commercefacades.product.data.PriceData" />
+		<property name="noOfUnits" type="java.lang.Integer" />
+		<property name="uomPrice" type="de.hybris.platform.commercefacades.product.data.PriceData" />
+	</bean>
+	<bean class="com.siteone.facades.customer.price.SiteOneCartCSPProductData">
+	    <property name="itemPrice" type="java.lang.Double" />
+		<property name="itemTotal" type="java.lang.Double" />
+		<property name="listPrice"
+			type="java.lang.Double" />
+		<property name="productCode" type="String" />
+	</bean>
+	<bean class="com.siteone.facades.customer.price.SiteOneCartCspPriceData">
+		<property name="subTotal" type="java.lang.Double" />
+		<property name="totalPrice" type="java.lang.Double" />
+		<property name="sequenceNo" type="String" />
+		<property name="products" type="java.util.List&lt;com.siteone.facades.customer.price.SiteOneCartCSPProductData>" />
+	</bean>
+
+	<bean class="com.siteone.facades.savedList.data.SavedListEntryData">
+		<property name="product"
+			type="de.hybris.platform.commercefacades.product.data.ProductData" />
+		<property name="qty" type="java.lang.Integer" />
+		<property name="entryComment" type="java.lang.String" />
+		<property name="inventoryUom" type="java.lang.Integer" />
+		<property name="hidePrice"  type="java.lang.Boolean" />
+		<property name="totalPrice" type="de.hybris.platform.commercefacades.product.data.PriceData" />
+	    <property name="images" type="de.hybris.platform.commercefacades.product.data.ImageData"/>
+		<property name="inventoryUomDesc" type="java.lang.String" />
+	</bean>
+<bean class="com.siteone.facades.savedList.data.UploadProductListErrorData">
+		<property name="productCode"
+			type="java.lang.String" />
+		<property name="qty" type="java.lang.String" />
+		<property name="errorComment" type="java.lang.String" />
+	</bean>
+	<bean class="com.siteone.facades.savedList.data.CustomerPriceData">
+		<property name="code" type="String" />
+		<property name="price" type="String" />
+	</bean>
+
+
+	<bean class="com.siteone.facades.savedList.data.SavedListData">
+		<property name="name" type="java.lang.String" />
+		<property name="description" type="java.lang.String" />
+		<property name="user" type="java.lang.String" />
+		<property name="modifiedTime" type="java.util.Date" />
+		<property name="entries"
+			type="java.util.List&lt;com.siteone.facades.savedList.data.SavedListEntryData&gt;" />
+		<property name="totalEntries" type="java.lang.Integer" />	
+		<property name="isShared" type="java.lang.String" />
+		<property name="createdBy" type="java.lang.String" />
+		<property name="isModified" type="java.lang.Boolean" />
+		<property name="isViewEdit" type="java.lang.Boolean" />
+		<property name="code" type="java.lang.String" />
+		<property name="customerPriceData"
+			type="java.util.List&lt;com.siteone.facades.savedList.data.CustomerPriceData&gt;" />
+		<property name="removedProductNameList" type="java.util.List&lt;String>" />	
+		<property name="listTotalPrice" type="de.hybris.platform.commercefacades.product.data.PriceData" />	
+		<property name="retailPriceData"
+			type="java.util.List&lt;com.siteone.facades.savedList.data.CustomerPriceData&gt;" />	
+	</bean>
+	
+	<bean class="com.siteone.facades.savedList.data.SavedListEntryUpdatedUOMData">
+	    <property name="orderQuantityInterval" type="java.lang.Integer" />
+	    <property name="price"  type="de.hybris.platform.commercefacades.product.data.PriceData" />
+	    <property name="customerPrice"  type="de.hybris.platform.commercefacades.product.data.PriceData" />
+	    <property name="totalPrice" type="de.hybris.platform.commercefacades.product.data.PriceData" />
+		<property name="listTotalPrice" type="Double" />
+	</bean>
+
+
+	<bean class="com.siteone.facades.wishlist.data.WishlistAddData">
+		<property name="message" type="String" />
+		<property name="added_to_wishlist" type="String" />
+
+		<property name="loginHTML" type="String" />
+
+	</bean>
+
+	<bean class="com.siteone.facades.savedList.data.ShareCustomerData">
+		<property name="text" type="java.lang.String" />
+		<property name="value" type="java.lang.String" />
+	</bean>
+
+  <bean class="com.siteone.facade.NearbyStoreSearchPageData&lt;STATE, RESULT>"
+		  extends="de.hybris.platform.commerceservices.search.facetdata.FacetSearchPageData&lt;STATE, RESULT>">
+		<description>POJO containing the result page for store search.</description>
+		<property name="freeTextSearch" type="String" />
+		<property name="categoryCode" type="String" />
+		<property name="keywordRedirectUrl" type="String" />
+		<property name="spellingSuggestion"
+				  type="de.hybris.platform.commerceservices.search.facetdata.SpellingSuggestionData&lt;STATE>" />
+	</bean>
+
+	<bean class="com.siteone.facade.EventTypeData">
+		<property name="name" type="String" />
+	</bean>
+
+	<bean class="com.siteone.facade.EventSearchPageData&lt;STATE, RESULT>"
+		extends="de.hybris.platform.commerceservices.search.facetdata.FacetSearchPageData&lt;STATE, RESULT>">
+		<description>POJO containing the result page for event search.</description>
+		<property name="freeTextSearch" type="String" />
+		<property name="categoryCode" type="String" />
+		<property name="keywordRedirectUrl" type="String" />
+		<property name="spellingSuggestion"
+			type="de.hybris.platform.commerceservices.search.facetdata.SpellingSuggestionData&lt;STATE>" />
+	</bean>
+	
+		<bean class="com.siteone.facade.ListSearchPageData&lt;STATE, RESULT>"
+		extends="de.hybris.platform.commerceservices.search.facetdata.FacetSearchPageData&lt;STATE, RESULT>">
+		<description>POJO containing the result page for list search.</description>
+		<property name="freeTextSearch" type="String" />
+		<property name="categoryCode" type="String" />
+		<property name="keywordRedirectUrl" type="String" />
+		<property name="spellingSuggestion"
+			type="de.hybris.platform.commerceservices.search.facetdata.SpellingSuggestionData&lt;STATE>" />
+	</bean>
+
+	<bean class="com.siteone.facade.EventData">
+		<property name="image"
+			type="de.hybris.platform.commercefacades.product.data.ImageData" />
+		<property name="division" type="String" />
+		<property name="code" type="String" />
+		<property name="name" type="String" />
+		<property name="type" type="String" />
+		<property name="shortDescription" type="String" />
+		<property name="longDescription" type="String" />
+		<property name="eventRegistrationUrl" type="String" />
+		<property name="time" type="String" />
+		<property name="title" type="String" />
+		<property name="location" type="String" />
+		<property name="venue" type="String" />
+		<property name="document"
+			type="de.hybris.platform.commercefacades.product.data.ImageData" />
+		<property name="isPartnerProgramEvent" type="Boolean" />
+		<property name="registrationStartDate" type="String" />
+		<property name="registrationEndDate" type="String" />
+		<property name="registrationMessage" type="String" />
+		<property name="description" type="String" />
+		<property name="eventEndDate" type="String" />
+		<property name="eventExpiryMessage" type="String" />
+		<property name="eventStartDate" type="String" />
+		<property name="typeGroupName" type="String" />
+		<property name="learnMoreUrl" type="String" />
+		<property name="isRegistrationOpen" type="Boolean" />
+	</bean>
+
+	<bean class="de.hybris.platform.commercefacades.product.data.PromotionData">
+		<property name="notes" type="String"></property>
+		<property name="displayName" type="String"></property>
+
+	</bean>
+
+	<bean class="de.hybris.platform.commercefacades.order.data.OrderHistoryData">
+		<property name="orderType" type="String" />
+		<property name="hybrisOrderNumber" type="String" />
+		<property name="isHybrisOrder" type="Boolean" />
+		<property name="totalPriceWithTax" type="de.hybris.platform.commercefacades.product.data.PriceData" />
+        <property name="invoiceNumber" type="String"/>
+        <property name="shipmentNumber" type="String"/>
+        <property name="branchNumber" type="String"/>
+        <property name="entries"
+		          type="java.util.List&lt;de.hybris.platform.commercefacades.order.data.OrderEntryData>"/>
+		<property name="consignments"
+		          type="java.util.List&lt;de.hybris.platform.commercefacades.order.data.ConsignmentData>"/>
+		<property name="siteOnePaymentInfoData"
+			type="de.hybris.platform.commercefacades.user.data.SiteOnePaymentInfoData"/>
+		<property name="siteOnePOAPaymentInfoData"
+			type="de.hybris.platform.commercefacades.user.data.SiteOnePOAPaymentInfoData"/>
+		<property name="isPartOfMasterHybrisOrder" type="java.lang.Boolean" />
+	</bean>
+
+	<bean class="com.siteone.facade.InvoiceData">
+		<property name="invoiceNumber" type="String" />
+		<property name="invoiceDate" type="java.util.Date" />
+		<property name="orderNumber" type="String" />
+		<property name="accountNumber" type="String" />
+		<property name="shipToAccountNumber" type="String" />
+		<property name="purchaseOrderNumber" type="String" />
+		<property name="orderTotalPrice" type="String" />
+		<property name="status" type="String" />
+
+		<property name="user" type="String" />
+		<property name="userName" type="String" />
+		<property name="currency" type="String" />
+		<property name="billingTerms" type="String" />
+		<property name="totalTax" type="String" />
+		<property name="subTotal" type="String" />
+
+		<property name="storeId" type="String" />
+		<property name="storeName" type="String" />
+		<property name="deliveryMode" type="String" />
+
+		<property name="invoiceEntryList"
+			type="java.util.List&lt;com.siteone.facade.InvoiceEntryData>" />
+
+		<property name="address"
+			type="de.hybris.platform.commercefacades.user.data.AddressData" />
+
+		<property name="contact_firstName" type="String" />
+		<property name="contact_phone" type="String" />
+		<property name="contact_emailId" type="String" />
+		<property name="pickupOrDeliveryDateTime" type="java.util.Date" />
+		<property name="instructions" type="String" />
+
+		<property name="freight" type="String" />
+
+		<property name="totalPayment" type="String" />
+		<property name="amountDue" type="String" />
+		<property name="salesAssociate" type="String" />
+		<property name="terms" type="String" />
+		<property name="remitaddress"
+			type="de.hybris.platform.commercefacades.user.data.AddressData" />
+		<property name="orderedDate" type="java.util.Date" />
+
+		<property name="billingaddress"
+			type="de.hybris.platform.commercefacades.user.data.AddressData" />
+		<property name="billingAccNumber" type="String" />
+		<property name="paymentType" type="String" />
+		<property name="ccNumberLastFour" type="String" />
+		<property name="creditCardType" type="String" />
+
+		<property name="requestedFor" type="String" />
+		<property name="shipVia" type="String" />
+		<property name="authNumber" type="String" />
+
+		<property name="branchNumber" type="String"></property>
+		<property name="branchAddress"
+			type="de.hybris.platform.commercefacades.user.data.AddressData" />
+		<property name="deliveryBranchNumber" type="String"></property>
+		<property name="customerObsessedContactName" type="String"></property>
+		<property name="customerObsessedPhoneNumber" type="String"></property>
+		<property name="customerObsessedEmail" type="String"></property>
+		<property name="customerObsessedContactTitle" type="String"></property>
+		<property name="lineNumber" type="String"></property>
+		<property name="storeTitle" type="String"></property>
+		<property name="orderShipmentActualId" type="String" />
+		<property name="accountDisplay" type="String" />
+		<property name="siteOnePaymentInfoData"
+			type="de.hybris.platform.commercefacades.user.data.SiteOnePaymentInfoData"/>
+		<property name="siteOnePOAPaymentInfoData"
+			type="de.hybris.platform.commercefacades.user.data.SiteOnePOAPaymentInfoData"/>
+		
+		
+	</bean>
+	<bean class="com.siteone.facade.InvoiceEntryData">
+		<property name="quantity" type="String" />
+		<property name="unit" type="String" />
+		<property name="basePrice" type="String" />
+		<property name="productItemNumber" type="String" />
+
+		<property name="images"
+			type="java.util.Collection&lt;de.hybris.platform.commercefacades.product.data.ImageData>" />
+		<property name="categories"
+			type="java.util.Collection&lt;de.hybris.platform.commercefacades.product.data.CategoryData>" />
+		<property name="isBaseProduct" type="String"></property>
+
+		<property name="qtyShipped" type="Integer"></property>
+		<property name="qtyOpen" type="Integer"></property>
+		<property name="description" type="String"></property>
+		<property name="netPrice" type="String"></property>
+		<property name="extPrice" type="String"></property>
+		<property name="productUrl" type="String"></property>
+		<property name="actualItemCost" type="String" />
+		<property name="uomMeasure" type="String" />		
+	</bean>
+
+	<bean class="com.siteone.facade.LeadGenarationData">
+		<property name="firstname" type="String" />
+		<property name="lastname" type="String" />
+		<property name="company" type="String" />
+		<property name="Email" type="String" />
+		<property name="phone" type="String" />
+		<property name="postalcode" type="String" />
+		<property name="accountNo" type="String" />
+		<property name="promotionId" type="String" />
+	</bean>
+
+	<bean class="com.siteone.facade.NewsData">
+		<property name="newsMedia"
+			type="de.hybris.platform.commercefacades.product.data.ImageData" />
+		<property name="newsCode" type="String" />
+		<property name="newsURL" type="String" />
+		<property name="title" type="String" />
+		<property name="shortDesc" type="String" />
+		<property name="longDescription" type="String" />
+		<property name="newsPublishDate" type="java.util.Date" />
+		<property name="previousNews" type="String" />
+		<property name="previousNewsTitle" type="String" />
+		<property name="nextNews" type="String" />
+		<property name="nextNewsTitle" type="String" />
+	</bean>
+
+	<bean
+		class="de.hybris.platform.commercefacades.storelocator.data.OpeningDayData">
+		<property name="formattedClosingTime" type="String"></property>
+		<property name="formattedOpeningTime" type="String"></property>
+	</bean>
+
+	<bean
+		class="de.hybris.platform.commercefacades.storelocator.data.WeekdayOpeningDayData"
+		extends="de.hybris.platform.commercefacades.storelocator.data.OpeningDayData">
+		<property name="formattedWeekDay" type="String" />
+	</bean>
+
+
+	<!-- Account overview customer information -->
+	<bean class="com.siteone.facade.customer.info.SiteOneCustInfoData">
+		<property name="custTreeNodeID" type="String" />
+		<property name="customerCreditInfo"
+			type="com.siteone.facade.customer.info.CustomerCreditInfoData" />
+		<property name="customerRewardsPointsInfo"
+			type="com.siteone.facade.customer.info.CustomerRewardsPointsInfoData" />
+		<property name="customerSalesInfo"
+			type="com.siteone.facade.customer.info.CustomerSalesInfoData" />
+		<property name="loyaltyProgramInfo"
+			type="com.siteone.facade.customer.info.LoyaltyProgramInfoData" />
+		<property name="status"
+			type="com.siteone.facade.customer.info.CustomerInfoStatusData" />
+		<property name="profile"
+			type="com.siteone.facade.customer.info.CustomerLoyaltyProfileData" />
+	</bean>
+	
+	<bean class="com.siteone.facade.customer.info.CustomerLoyaltyProfileData">
+		<property name="id" type="String" />
+		<property name="attributes" type="com.siteone.facade.customer.info.CustomerLoyaltyAttributesData" />
+	</bean>
+
+	<bean class="com.siteone.facade.customer.info.CustomerLoyaltyAttributesData">
+		<property name="customerID" type="String" />
+		<property name="tradeClass" type="String" />
+		<property name="partnerProgramAdminEmail" type="String" />
+	</bean>
+	
+	<bean class="com.siteone.facade.customer.info.SiteOneContrPrimaryBusinessData">
+	    <property name="code" type="String" />
+		<property name="description" type="String" />
+	</bean>
+	<bean class="com.siteone.facade.reports.SiteOneJobsStatusData">
+		<property name="jobName" type="String" />
+		<property name="lastStatus" type="String" />
+		<property name="lastStartTime"  type="java.util.Date" />
+		<property name="lastEndTime"  type="java.util.Date" />
+	</bean>
+
+	<bean class="com.siteone.facade.customer.info.CustomerCreditInfoData">
+		<property name="arType" type="String" />
+		<property name="balance" type="Double" />
+		<property name="creditTermDescription" type="String" />
+		<property name="futureAR" type="Double"/>
+		<property name="arFor0to30Days" type="Double"/>
+		<property name="arFor30to60Days" type="Double"/>
+		<property name="arFor60to90Days" type="Double"/>
+		<property name="arFor90to120Days" type="Double"/>
+		<property name="arForOver120Days" type="Double"/>
+		<property name="lastPaymentReceivedOn" type="String"/>
+		<property name="lastInvoiceOn" type="String"/>
+		<property name ="creditCode" type="String"/>
+		<property name="openToBuy" type="Double"/>
+		<property name="creditTermCode" type="String"/>
+		<property name="creditLimit" type="Double"/>
+		<property name="creditRepName" type="String"/>
+		<property name="credRepContact" type="String"/>
+		<property name="maxOpenToBuy" type="Double"/>
+	</bean>
+
+	<bean class="com.siteone.facade.customer.info.CustomerRewardsPointsInfoData">
+		<property name="availablePoints" type="String" />
+		<property name="enrolledInCurrentYearProgram" type="Boolean" />
+		<property name="expiringPoints" type="String" />
+		<property name="lastYearPendingPoints" type="String" />
+		<property name="pendingPoints" type="String" />
+		<property name="totalAvailablePoints" type="String" />
+	</bean>
+
+	<bean class="com.siteone.facade.customer.info.CustomerSalesInfoData">
+		<property name="lastYtdSales" type="Double" />
+		<property name="twelveMonthSales" type="Double" />
+		<property name="ytdSales" type="Double" />
+	</bean>
+
+	<bean class="com.siteone.facade.customer.info.CustomerInfoStatusData">
+		<property name="code" type="String" />
+		<property name="description" type="String" />
+		<property name="internalCode" type="String" />
+	</bean>
+
+	
+	<bean class="com.siteone.facade.InspirationData">
+		<property name="inspirationMedia"
+			type="de.hybris.platform.commercefacades.product.data.ImageData" />
+		<property name="inspirationCode" type="String" />
+		<property name="inspirationURL" type="String" />
+		<property name="title" type="String" />
+		<property name="location" type="String" />
+		<property name="designedBy" type="String" />
+		<property name="snippetOfTheStory" type="String" />
+	</bean>
+
+	<bean class="de.hybris.platform.commercefacades.product.data.StockData">
+		<property name="inventoryHit" type="java.lang.Integer" />
+		<property name="isMSAStockAvailable" type="java.lang.Boolean" />
+    <property name="storeName" type="java.lang.String" />
+    <property name="isHomeStoreInventoryHit" type="java.lang.Boolean" />
+		<property name="isHomeStoreStockAvailable" type="java.lang.Boolean" />
+		<property name="isNearbyStoreStockAvailable" type="java.lang.Boolean" />
+		<property name="storeId" type="java.lang.String" />
+		<property name="fullfillmentStoreId" type="String" />
+		<property name="fullfilledStoreType" type="String" />
+		<property name="stockAvailableOnlyHubStore" type="java.lang.Boolean" />
+		<property name="isBackorderAndShippable" type="java.lang.Boolean" />
+		<property name="nearestBackorderableStore" type="de.hybris.platform.commercefacades.storelocator.data.PointOfServiceData" />
+		<property name="isForceInStock" type="java.lang.Boolean" />
+		<property name="dcBranchStock" type="java.lang.Boolean" />
+	</bean>
+	
+	<bean class="de.hybris.platform.commercefacades.bag.data.BagInfoData">
+		<property name="unitPrice" type="String" />
+		<property name="numberOfBags" type="Integer" />
+		<property name="totalPrice" type="String" />
+		<property name="UOM" type="String" />
+		<property name="isChecked" type="Boolean" />
+	</bean>
+
+	<bean class="de.hybris.platform.commercefacades.order.data.OrderEntryData">
+		<property name="quantityText" type="String" />
+		<property name="discountAmount"
+			type="de.hybris.platform.commercefacades.product.data.PriceData" />
+		<property name="actualItemCost"
+			type="de.hybris.platform.commercefacades.product.data.PriceData" />
+		<property name="couponDescription" type="java.lang.String" />
+		<property name="listPrice" type="java.math.BigDecimal" />
+		<property name="isCustomerPrice" type="java.lang.Boolean" />
+		<property name="uomMeasure" type="java.lang.String" />
+		<property name="uomPrice" type="java.math.BigDecimal" />
+		<property name="fullfillmentStoreId" type="String" />
+		<property name="fullfilledStoreType" type="String" />
+		<property name="defaultFulfillmentType" type="String"/>
+		<property name="maxShippingMessage" type="String"/>
+		<property name="uomId" type="java.lang.String" />
+		<property name="uomMultiplier" type="java.lang.Float" />
+		<property name="storeProductCode" type="java.lang.String" />
+		<property name="storeProductItemNumber" type="java.lang.String" />
+		<property name="storeProductDesc" type="java.lang.String" />
+		<property name="bigBagInfo" type="de.hybris.platform.commercefacades.bag.data.BagInfoData" />
+</bean>
+
+	<bean class="com.siteone.facades.customer.price.SiteOneCspWithSaleResponse">
+		<property name="cspResponse"
+			type="com.siteone.facades.customer.price.SiteOneCspResponse" />
+		<property name="salePrice" type="String" />
+	</bean>
+
+	<bean class="de.hybris.platform.commercefacades.order.data.OrderEntryData">
+		<property name="saleprice" type="Double" />
+		<property name="isPromotionApplied" type="Boolean" />
+	</bean>
+	
+	<bean class="de.hybris.platform.acceleratorfacades.order.data.PriceRangeData">
+        <property name="minLSPPrice" type="de.hybris.platform.commercefacades.product.data.PriceData"/>
+        <property name="maxLSPPrice" type="de.hybris.platform.commercefacades.product.data.PriceData"/>
+    </bean>
+    
+    <bean class="de.hybris.platform.commercefacades.ewallet.data.SiteOneEwalletData">
+	    <property name="correlationId" type="String"/>
+		<property name="externalSystemId" type="String"/>
+		<property name="createdDate" type="String"/>
+		<property name="custTreeNodeId" type="String"/>
+		<property name="valutToken" type="String"/>
+		<property name="last4CreditcardDigits" type="String"/>
+		<property name="creditCardType" type="String"/>
+		<property name="nameOnCard" type="String"/>
+		<property name="nickName" type="String"/>
+		<property name="cardExpirationDate" type="String"/>
+		<property name="zipCode" type="String"/>
+		<property name="streetAddress" type="String"/>
+	    <property name="creditcardId" type="String"/>
+		<property name="operationType" type="String"/>
+		<property name="active" type="Boolean"/>
+		<property name="unitName" type="String"/>
+		<property name="customerUid" type="java.util.Set&lt;String&gt;"/>
+   </bean>
+    <bean class="de.hybris.platform.commercefacades.user.data.SiteOneGuestUserData">
+      <property name="customerData" type="de.hybris.platform.commercefacades.user.data.CustomerData"/>
+      <property name="addressData" type="de.hybris.platform.commercefacades.user.data.AddressData"/>
+      <property name="errorMessage" type="String"/>
+      <property name="recaptchaChallengeAnswered" type="Boolean"/>
+      <property name="isSameAsContactInfo" type="Boolean"/>
+	  <property name="isShippingStateValid" type="Boolean"/>
+	  <property name="isCreditPaymentBlocked" type="String" />
+    </bean>
+    <bean class="de.hybris.platform.commercefacades.user.data.ChangeContactData">
+      <property name="customerData" type="de.hybris.platform.commercefacades.user.data.CustomerData"/>
+      <property name="isSuccess" type="Boolean"/>
+      <property name="errorMessage" type="String"/>
+    </bean>
+<bean class="de.hybris.platform.commercefacades.ewallet.data.SiteOneAddEwalletData">
+	    <property name="ewalletData" type="de.hybris.platform.commercefacades.ewallet.data.SiteOneEwalletData"/>
+	    <property name="vaultToken" type="String" />
+	    <property name="isSuccessfull" type="Boolean"/>
+	    <property name="isUserCancelled" type="Boolean"/>
+	    <property name="isRedirectToOrderSummary" type="Boolean"/>
+	    <property name="errorMessage" type="String" />
+   </bean>  
+     <bean class="de.hybris.platform.commercefacades.user.data.SiteoneFulfilmentData">
+      <property name="cartData" type="de.hybris.platform.commercefacades.order.data.CartData"/>
+      <property name="isSuccess" type="Boolean"/>
+      <property name="errorMessage" type="String"/>
+		 <property name="isShippingStateValid" type="Boolean"/>
+		 <property name="isNationalShipping" type="java.lang.Boolean" />
+		 <property name="taxForCA" type="java.util.Map&lt;String,Double>"/>
+    </bean>
+    <bean class="de.hybris.platform.commercefacades.user.data.EmailValidationData">
+		<property name="isMailAvailable" type="Boolean" />
+		<property name="isSuccess" type="Boolean" />
+		<property name="errorMessage" type="String" />
+	</bean>
+	<bean class="de.hybris.platform.commercefacades.order.data.CartData">
+		<property name="orderDate" type="Date" />
+		<property name="bigBagInstruction" type="String"/>
+		<property name="deliveryThresholdCheckData" type="com.siteone.facade.ThresholdCheckResponseData"/>
+		<property name="shippingThresholdCheckData" type="com.siteone.facade.ThresholdCheckResponseData"/>
+		<property name="deliveryEligibleTotal" type="Double"/>
+	</bean>
+    <bean class="de.hybris.platform.commercefacades.user.data.SiteOnePaymentInfoData">
+		<property name="status" type="String" />
+		<property name="refID" type="String" />
+		<property name="token" type="String" />
+		<property name="authCode" type="String" />
+		<property name="cardType" type="String" />
+		<property name="cardNumber" type="String" />
+		<property name="expDate" type="String" />
+		<property name="avs" type="String" />
+		<property name="cvv" type="String" />
+		<property name="entryMode" type="String" />
+		<property name="validationKey" type="String" />
+		<property name="address" type="String" />
+		<property name="zipCode" type="String" />
+		<property name="vaultToken" type="String" />
+		<property name="applicationLabel" type="String" />
+		<property name="supplyChainNodeId" type="String" />
+		<property name="transRefNumber" type="String" />
+		<property name="transportKey" type="String" />
+		<property name="nickName" type="String" />
+		<property name="saveCard" type="Boolean" />
+		<property name="nameOnCard" type="String" />
+		<property name="custtreeNodeCreditId" type="String" />
+		<property name="paymentType" type="String" />
+		<property name="amountCharged" type="Double" />
+		<property name="iseWalletCard" type="Boolean" />
+		<property name="globalAuthToken" type="String" />
+	</bean>
+	 
+	<bean class="de.hybris.platform.commercefacades.ewallet.data.SelectOptionforPaymentData">
+      <property name="code" type="String" />
+      <property name="name" type="String" />
+      <property name="description" type="String" />
+      <property name="checked" type="String" />
+      </bean>
+      
+      <bean class="de.hybris.platform.commercefacades.ewallet.data.PaymentconfigData">
+    <property name="payWithEwallet" type="Boolean" />
+    <property name="payWithCC" type="Boolean" />
+    <property name="isPOAEnabled" type="Boolean" />
+    </bean>
+        
+    <bean class="de.hybris.platform.commercefacades.ewallet.data.SiteOnePaymentUserData">
+      <property name="creditCode" type="String" />
+      <property name="webApi" type="String" />
+      <property name="ewalletAddError" type="String" /> 
+      <property name="checkoutValidationError" type="String" />      
+      <property name="asm" type="Boolean"/>
+      <property name="isGuestUser" type="Boolean"/>
+      <property name="totalPrice" type="de.hybris.platform.commercefacades.product.data.PriceData"/>
+      <property name="paymentInfos" type="java.util.List&lt;de.hybris.platform.commercefacades.order.data.CCPaymentInfoData>"/>
+      <property name="ewalletData" type="de.hybris.platform.commercefacades.ewallet.data.SiteOneEwalletData"/>
+      <property name="deliveryAddress" type="de.hybris.platform.commercefacades.user.data.AddressData"/>
+      <property name="paymentOption"
+			type="java.util.List&lt;de.hybris.platform.commercefacades.ewallet.data.SelectOptionforPaymentData>" />	
+	  <property name="siteOneCardTypes"
+			type="java.util.Collection&lt;de.hybris.platform.commercefacades.order.data.CardTypeData>" />
+	  <property name="eWallet"
+			type="java.util.List&lt;de.hybris.platform.commercefacades.ewallet.data.SiteOneEwalletData>"/>
+	  <property name="paymentconfigData"	type="de.hybris.platform.commercefacades.ewallet.data.PaymentconfigData"/>
+						
+      <property name="isPOAEnabled" type="Boolean"/>
+      <property name="isCreditPaymentBlocked" type="Boolean" /> 
+    </bean>
+	
+	 <bean class="de.hybris.platform.commercefacades.user.data.SiteOnePOAPaymentInfoData">
+		<property name="termsCode" type="String" />
+		<property name="applicationLabel" type="String" />
+		<property name="transRefNumber" type="String" />
+		<property name="paymentType" type="String" />
+		<property name="amountCharged" type="Double" />
+	</bean>
+	
+ <bean class="com.siteone.facade.BuyItAgainSearchPageData&lt;STATE, RESULT>"
+		extends="de.hybris.platform.commerceservices.search.facetdata.FacetSearchPageData&lt;STATE, RESULT>">
+		<description>POJO containing the result page for buy it again search.</description>
+		<property name="freeTextSearch" type="String" />
+		<property name="categoryCode" type="String" />
+		<property name="keywordRedirectUrl" type="String" />
+		<property name="spellingSuggestion"
+			type="de.hybris.platform.commerceservices.search.facetdata.SpellingSuggestionData&lt;STATE>" />
+	</bean>
+    
+    <bean class="com.siteone.facade.BuyItAgainData">
+    	<property name="productCode" type="String" />
+    	<property name="productDescription" type="String" />
+    	<property name="productItemNumber" type="String" />
+    	<property name="lastPurchasedDate" type="java.util.Date" />
+    	<property name="isOnlineProduct" type="Boolean" />
+    	<property name="image" type="de.hybris.platform.commercefacades.product.data.ImageData"/>
+    	<property name="unitPath" type="String" />
+    	<property name="categoryName" type="String" />
+    	<property name="purchasedCount" type="int" />
+    	<property name="orderCount" type="int" />
+    	<property name="purchasedQuantity" type="int" />
+    	<property name="productCount" type="int" />
+		<property name="productUOMCode" type="String" />
+		<property name="productUOMUPCID" type="String" />
+		<property name="productUOMSHortDesc" type="String" />
+		<property name="orderNumber" type="String" />
+    </bean>
+    
+    <bean class="de.hybris.platform.commercefacades.product.data.VariantOptionData">
+    	<property name="itemNumber" type="String" />
+    	<property name="customerPrice"
+			type="com.siteone.facades.savedList.data.CustomerPriceData" />
+		<property name="variantValueCategory"
+		    type="java.util.Map&lt;String,String>"/>
+		<property name="parentVariantCategoryList" type="java.util.List&lt;String>"/>
+		<property name="productType" type="String"/>
+		<property name="stockAvailabilityMessage" type="String"/>
+		<property name="isAddToCartDisabled" type="Boolean"/>
+		<property name="inStockImage" type="Boolean"/>
+		<property name="outOfStockImage" type="Boolean"/>
+		<property name="notInStockImage" type="Boolean"/>
+		<property name="isRegulatedItem" type="Boolean"/>
+		<property name="stockLevel" type="Long"/>
+		<property name="hideList" type="Boolean"/>
+		<property name="hideCSP" type="Boolean"/>
+		<property name="inventoryCheck" type="Boolean"/>
+		<property name="inventoryFlag" type="Boolean"/>
+		<property name="stores" type="java.util.List&lt;String>" />
+		<property name="regulatoryStates" type="java.util.List&lt;String>" />
+		<property name="singleUomMeasure" type="String" />
+		<property name="stockAvailExtendedMessage" type="String"/>
+		<property name="isStockInNearbyBranch" type="Boolean"/>
+		<property name="isEligibleForDelivery" type="Boolean"/>
+		<property name ="isShippable" type ="Boolean"/>
+		<property name="couponCode" type="String"/>
+		<property name="promoDetails" type="String"/>
+		<property name="isPromoDescriptionEnabled" type="java.lang.Boolean"/>
+		<property name="potentialPromotions"
+		          type="java.util.Collection&lt;de.hybris.platform.commercefacades.product.data.PromotionData>"/>
+		<property name="stockAvailableOnlyHubStore" type="java.lang.Boolean" />
+		<property name="hubStoreStockLevel" type="Long"></property>
+		<property name="sellableUoms"
+			type="java.util.List&lt;com.siteone.facades.product.data.InventoryUOMData>" />	
+		<property name="hideUom" type="Boolean"/>
+		<property name="bulkUOMCode" type="String" />
+		<property name="bulkUOMPrice" type="String" />
+		<property name="bulkUOMCustomerPrice" type="String" />
+		<property name="images"
+			type="java.util.Collection&lt;de.hybris.platform.commercefacades.product.data.ImageData>" />
+		<property name="isForceInStock" type="java.lang.Boolean" />
+		<property name="orderQuantityInterval" type="java.lang.Integer" />
+	</bean>
+
+	<bean class="de.hybris.platform.commerceservices.search.facetdata.FacetValueData&lt;STATE>">
+		<property name="imageUrl" type="String" />
+	</bean>
+	<bean class="de.hybris.platform.commercefacades.order.data.ConsignmentData">
+		<property name="trackingUrl" type="java.net.URL" />
+		<property name="total" type="String" />
+		<property name="invoiceNumber" type="String" />
+		<property name="shipmentNumber" type="String"/>
+		<property name="requestedDate" type="java.util.Date" />
+		<property name="requestedMeridian" type="String" />
+		<property name="deliveryMode" type="String" />
+		<property name="specialInstructions" type="String" />
+		<property name="freight" type="String" />
+		<property name="tax" type="String" />
+		<property name="subTotal" type="String" />
+		<property name="pointOfService"
+			type="de.hybris.platform.commercefacades.storelocator.data.PointOfServiceData" />
+		<property name="consignmentAddress" type="de.hybris.platform.commercefacades.user.data.AddressData"/>
+		<property name="trackingLink" type="String" />
+	</bean>
+	<!-- <bean class="de.hybris.platform.ruleengineservices.rao.PromotionCategoryRAO" template="resources/stdrao-template.vm">
+		<property name="code" type="String" equals="true"/>
+		<property name="productList" type="java.util.List&lt;de.hybris.platform.ruleengineservices.rao.ProductRAO>" />
+	</bean> -->
+	<bean class="de.hybris.platform.commercefacades.search.data.AutocompleteResultData">
+		<property name="contents"  type="java.util.List&lt;com.siteone.contentsearch.ContentData>"/>
+	</bean>
+
+	<bean class="de.hybris.platform.commerceservices.search.pagedata.PaginationData"
+		  extends="de.hybris.platform.commerceservices.search.pagedata.PageableData"
+		  deprecated="use de.hybris.platform.core.servicelayer.data.PaginationData instead" deprecatedSince="6.5">
+		<description>POJO representation of search results pagination.</description>
+		<property name="inStockCount" type="int" />
+		<property name="shippableCount" type="int" />
+	</bean>
+	
+	<bean class="com.siteone.facade.SiteoneRequestAccountData">
+    	<property name="companyName" type="String" />
+    	<property name="accountNumber" type="String" />
+    	<property name="firstName" type="String" />
+    	<property name="lastName" type="String" />
+    	<property name="addressLine1" type="String" />
+    	<property name="addressLine2" type="String" />
+    	<property name="city" type="String" />
+    	<property name="state" type="String" />
+    	<property name="zipcode" type="String" />
+    	<property name="phoneNumber" type="String" />
+    	<property name="emailAddress" type="String" />
+    	<property name="typeOfCustomer" type="String" />
+    	<property name="contrYearsInBusiness" type="String" />
+    	<property name="contrEmpCount" type="String" />
+    	<property name="contrPrimaryBusiness" type="String" />
+    	<property name="languagePreference" type="String" />
+    	<property name="uuid" type="String" />
+    	<property name="hasAccountNumber" type="Boolean" />
+    	<property name="isAccountOwner" type="Boolean" />
+    	<property name="storeNumber" type="String" />
+    	<property name="enrollInPartnersProgram" type="Boolean" />
+		<property name="tradeClass" type="String" />
+		<property name="subTradeClass" type="String" />
+		<property name="creditCode" type="String" />
+		<property name="creditTerms" type="String" />
+		<property name="acctGroupCode" type="String" />
+		<property name="uuidType" type="String" />
+		<property name="landscapingIndustry" type="Boolean" />
+    </bean>
+
+	<bean class="com.siteone.facade.StoreLevelStockInfoData">
+    	<property name="storeName" type="String" />
+    	<property name="storeId" type="String" />
+    	<property name="stockAvailablityMessage" type="String" />
+    	<property name="onHandQuantity" type="long" />
+    	<property name="inventoryHit" type="java.lang.Integer" />
+    	<property name="distanceFromHomebranch" type="java.lang.Double" />
+    	<property name="isEnabled" type="Boolean" />
+    	<property name="showInPDP" type="Boolean" />
+    	<property name="isEligibleForBackorder" type="Boolean" />
+    </bean>
+    
+    <bean class="com.siteone.facade.ThresholdCheckResponseData">
+    	<property name="differenceAmount" type="java.lang.Double" />
+    	<property name="selectedItemTotal" type="java.lang.Double" />
+    	<property name="differenceAmountShipping" type="java.lang.Double" />
+    	<property name="selectedItemTotalShipping" type="java.lang.Double" />
+    	<property name="differenceAmountShippingEntireCartTotal" type="java.lang.Double" />
+    	<property name="maxShippingMessage" type="String"/>
+    	<property name="isMaxShippingExceeded" type="boolean"/>
+        <property name="basePrice" type="de.hybris.platform.commercefacades.product.data.PriceData" />
+    	<property name="entryTotalPrice" type="de.hybris.platform.commercefacades.product.data.PriceData" />
+    	<property name="subTotal" type="de.hybris.platform.commercefacades.product.data.PriceData" />
+    	<property name="totalDiscounts" type="de.hybris.platform.commercefacades.product.data.PriceData" />
+    	<property name="discountBasePrice" type="de.hybris.platform.commercefacades.product.data.PriceData" />
+    	<property name="cartTotalPrice" type="de.hybris.platform.commercefacades.product.data.PriceData" />
+    	<property name="showDeliveryFeeMessage" type="java.lang.Boolean" />
+    </bean>
+    
+     <bean class="de.hybris.platform.commercefacades.order.data.DeliveryModeAndBranchOrderEntryGroupData" 
+			extends="de.hybris.platform.commercefacades.order.data.OrderEntryGroupData">
+     	<property name="deliveryMode" type="de.hybris.platform.commercefacades.order.data.DeliveryModeData" />
+     	<property name="pointOfService" type="de.hybris.platform.commercefacades.storelocator.data.PointOfServiceData" />
+     </bean>
+
+	<bean class="com.siteone.facade.MasterHybrisOrderData">
+		<property name="masterOrderNumber" type="String" />
+		<property name="pickupInstructions" type="String" />
+		<property name="deliveryInstructions" type="String" />
+		<property name="shippingInstructions" type="String" />
+		<property name="pickupContact"
+			type="de.hybris.platform.commercefacades.user.data.CustomerData" />
+		<property name="deliveryContact"
+			type="de.hybris.platform.commercefacades.user.data.CustomerData" />
+		<property name="shippingContact"
+			type="de.hybris.platform.commercefacades.user.data.CustomerData" />
+		<property name="deliveryAddress"
+			type="de.hybris.platform.commercefacades.user.data.AddressData" />
+		<property name="shippingAddress"
+			type="de.hybris.platform.commercefacades.user.data.AddressData" />
+		<property name="billingAddress"
+			type="de.hybris.platform.commercefacades.user.data.AddressData" />
+		<property name="pickupEntries"
+			type="java.util.Map&lt;String,java.util.List&lt;de.hybris.platform.commercefacades.order.data.ConsignmentEntryData>>" />
+		<property name="deliveryEntries"
+			type="java.util.Map&lt;String,java.util.List&lt;de.hybris.platform.commercefacades.order.data.ConsignmentEntryData>>" />
+		<property name="shippingEntries"
+			type="java.util.List&lt;de.hybris.platform.commercefacades.order.data.ConsignmentEntryData>" />
+		<property name="deliveryFee" type="java.math.BigDecimal" />
+		<property name="shippingFee" type="java.math.BigDecimal" />
+		<property name="tax" type="java.lang.Double" />
+		<property name="subtotal" type="java.lang.Double" />
+		<property name="total" type="java.lang.Double" />
+		<property name="totalDiscountAmount"
+			type="de.hybris.platform.commercefacades.product.data.PriceData" />
+		<property name="siteOnePaymentInfoData"
+			type="de.hybris.platform.commercefacades.user.data.SiteOnePaymentInfoData" />
+		<property name="siteOnePOAPaymentInfoData"
+			type="de.hybris.platform.commercefacades.user.data.SiteOnePOAPaymentInfoData" />
+
+	</bean>
+
+	<bean class="com.siteone.facade.AddToCartResponseData">
+    	<property name="product" type="de.hybris.platform.commercefacades.product.data.ProductData"/>
+      	<property name="lineItemsCount" type="int"/>
+      	<property name="isGuestCheckoutEnabled" type="boolean"/>
+      	<property name="guid" type="String"/>
+      	<property name="code" type="String"/>
+      	<property name="errorMsg" type="String"/>
+		<property name="totalPrice" type="de.hybris.platform.commercefacades.product.data.PriceData" />
+    </bean>
+    
+    <bean class="com.siteone.facade.StoreLocatorFeatureData">
+		<property name="code" type="String" />
+		<property name="name" type="String" />
+		<property name="icon" type="de.hybris.platform.commercefacades.product.data.ImageData" />
+		<property name="description" type="String" />
+		<property name="image" type="de.hybris.platform.commercefacades.product.data.ImageData" />
+	</bean>
+	
+	<bean class="com.siteone.facade.customer.info.LoyaltyProgramInfoData">
+		<property name="availablePoints" type="Float" />
+		<property name="minimumSpentThreshold" type="Float" />
+		<property name="expiringPoints" type="Float" />
+		<property name="lastYearPendingPoints" type="Float" />
+		<property name="pendingPoints" type="Float" />
+		<property name="totalAvailablePoints" type="Float" />
+		<property name="value" type="Float" />
+	</bean>
+	<bean class="com.siteone.facade.customer.info.MyAccountUserInfo">
+		<property name="isAdminUser" type="Boolean" />
+		<property name="isInPartnersProgramPilot" type="Boolean" />
+		<property name="isPartnersProgramEnrolled" type="Boolean" />
+		<property name="isPartnersProgramRetail" type="Boolean" />		
+	</bean>
+	<bean class="com.siteone.facades.wishlist.data.CreateWishlistResponseData">
+		<property name="isDuplicate" type="Boolean" />
+		<property name="wishListCode" type="String" />
+	</bean>
+	<bean class="com.siteone.facades.wishlist.data.CreateWishlistAndResponseAllData">
+		<property name="isDuplicate" type="Boolean" />
+		<property name="allWishlist" type="java.util.List&lt;com.siteone.facades.savedList.data.SavedListData>" />
+	</bean>
+	<bean class="com.siteone.facade.CartToggleResponseData">
+		<property name="enablePickup" type="boolean" />
+		<property name="enableDelivery" type="boolean" />
+		<property name="showDeliveryThresholdMsg" type="boolean" />
+		<property name="showShippingThresholdMsg" type="boolean" />
+    	<property name="showNationalShippingFeeMsg" type="boolean" />
+    	<property name="pickupOrDeliveryOnlyAlertEntries" type="java.util.Set&lt;Integer&gt;"/>
+    	<property name="shippingOnlyAlertEntries" type="java.util.Set&lt;Integer&gt;"/>
+    </bean>
+    <bean class="com.siteone.facades.savedList.data.RecommendedListData">
+		<property name="categoryName" type="java.lang.String" />
+		<property name="modifiedTime" type="java.util.Date" />
+		<property name="productCount" type="Long" />
+	</bean>
+	<bean class="com.siteone.facades.savedList.data.ListHeaderData">
+		<property name="code" type="String" />
+		<property name="name" type="String" />
+		<property name="modifiedTime" type="java.util.Date" />
+	</bean>
+	<bean class="com.siteone.facades.savedList.data.AllListsData">
+		<property name="savedLists" type="java.util.List&lt;com.siteone.facades.savedList.data.ListHeaderData>" />
+		<property name="recommendedLists" type="java.util.List&lt;com.siteone.facades.savedList.data.RecommendedListData>" />
+	</bean>
+</beans>

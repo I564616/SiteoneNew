@@ -1,0 +1,35 @@
+$contentCatalog=siteoneContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$jarEmailResource=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/coredata/contentCatalogs/siteoneContentCatalog/emails
+$wideContent=CMSImageComponent,BannerComponent
+
+# Import config properties into impex macros for modulegen
+UPDATE GenericItem[processor=de.hybris.platform.commerceservices.impex.impl.ConfigPropertyImportProcessor];pk[unique=true]
+$emailResource=$config-emailResourceValue
+$jarResourceCms=$config-jarResourceCmsValue
+$emailPackageName=$config-emailContextPackageName
+# Language
+$lang=en
+
+# Email Pages
+INSERT_UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);defaultPage;approvalStatus(code)[default='approved']
+;;managerEmail;Manager Email;ManagerEmailTemplate;true;
+
+UPDATE RendererTemplate;code[unique=true];description[lang=$lang];templateScript[lang=$lang,translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+;siteone_Email_managerEmail_Subject;"Manager Email Template";$emailResource/email-managerEmailSubject.vm
+;siteone_Email_managerEmail_Body;"Manager Email Template";$emailResource/email-managerEmailBody.vm
+
+# Email Pages
+UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];fromEmail[lang=$lang];fromName[lang=$lang]
+;;managerEmail;"customersupport@ec.siteone.com";"SiteOne"
+
+INSERT_UPDATE RendererTemplate;code[unique=true];contextClass;rendererType(code)[default='velocity']
+;siteone_Email_managerEmail_Subject;$emailPackageName.RequestAccountEmailContext
+;siteone_Email_managerEmail_Body;$emailPackageName.RequestAccountEmailContext
+
+# Email page Template
+INSERT_UPDATE EmailPageTemplate;$contentCV[unique=true];uid[unique=true];name;active;frontendTemplateName;subject(code);htmlTemplate(code);restrictedPageTypes(code)
+;;ManagerEmailTemplate;Manager Email Template;true;ManagerEmailTemplate;siteone_Email_managerEmail_Subject;siteone_Email_managerEmail_Body;EmailPage
+
+UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];previewImage(code, $contentCV)
+;;managerEmail;EmailPageModel_preview

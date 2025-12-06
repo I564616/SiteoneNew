@@ -1,0 +1,48 @@
+$contentCatalog=siteoneContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Online])[default=$contentCatalog:Online]
+$wideContent=CMSImageComponent,BannerComponent
+$jarEmailResource=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/coredata/contentCatalogs/siteoneContentCatalog/emails
+
+# Import modulegen config properties into impex macros
+UPDATE GenericItem[processor=de.hybris.platform.commerceservices.impex.impl.ConfigPropertyImportProcessor];pk[unique=true]
+$jarResourceCms=$config-jarResourceCmsValue
+$emailPackageName=$config-emailContextPackageName
+$emailResource=$config-emailResourceValue
+
+INSERT_UPDATE RendererTemplate;code[unique=true];contextClass;rendererType(code)[default='velocity']
+;siteone_LinkToPay_Confirm_Email_Notification_Subject;$emailPackageName.LinkToPayEmailContext
+;siteone_LinkToPay_Confirm_Email_Notification_Body;$emailPackageName.LinkToPayEmailContext
+
+# Email page Template
+INSERT_UPDATE EmailPageTemplate;$contentCV[unique=true];uid[unique=true];name;active;frontendTemplateName;subject(code);htmlTemplate(code);restrictedPageTypes(code)
+;;LinkToPayEmailTemplate;LinkToPay Email Template;true;linkToPayEmail;siteone_LinkToPay_Confirm_Email_Notification_Subject;siteone_LinkToPay_Confirm_Email_Notification_Body;EmailPage
+
+# Templates for CMS Cockpit Page Edit
+UPDATE EmailPageTemplate;$contentCV[unique=true];uid[unique=true];velocityTemplate[translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+;;LinkToPayEmailTemplate;$jarResourceCms/structure-view/mobile/structure_linkToPayEmailTemplate .vm
+
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='LinkToPayEmailTemplate'];validComponentTypes(code)
+;SiteLogo;;;logo
+;TopContent;;$wideContent;
+;BottomContent;;$wideContent;
+
+# Bind Content Slots to Email Page Templates
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='LinkToPayEmailTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;SiteLogo-linkToPayEmail;SiteLogo;;EmailSiteLogoSlot;true
+;;TopContent-linkToPayEmail;TopContent;;EmailTopSlot;true
+;;BottomContent-linkToPayEmail;BottomContent;;EmailBottomSlot;true
+
+# Email Pages
+INSERT_UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);defaultPage;approvalStatus(code)[default='approved']
+;;linkToPayEmail;linkToPay Email;LinkToPayEmailTemplate;true
+
+UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];previewImage(code, $contentCV)
+;;linkToPayEmail;EmailPageModel_preview
+
+# CMS components and Email velocity templates
+UPDATE RendererTemplate;code[unique=true];description[lang=en];templateScript[lang=en,translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+;siteone_LinkToPay_Confirm_Email_Notification_Subject;"linkToPay Email subject";$emailResource/email-linkToPayEmailSubject.vm
+;siteone_LinkToPay_Confirm_Email_Notification_Body;"linkToPay Email body";$emailResource/email-linkTopayEmailBody.vm
+
+UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];fromEmail[lang=en];fromName[lang=en]
+;;linkToPayEmail;"customersupport@ec.siteone.com";"SiteOne"

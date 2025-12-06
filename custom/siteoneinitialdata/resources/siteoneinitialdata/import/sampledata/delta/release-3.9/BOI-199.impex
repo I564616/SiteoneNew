@@ -1,0 +1,18 @@
+##For Add success Ewallet popup
+$contentCatalog=siteoneContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+
+INSERT_UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);label;defaultPage[default='true'];approvalStatus(code)[default='approved'];homepage[default='false'];
+;;addEwalletPopup;E-Wallet Popup Page;AccountPageTemplate;addEwalletPopup
+
+INSERT_UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];name;title[lang=en];title[lang=es]
+;;addEwalletPopup;E-Wallet Popup Page;E-Wallet Popup Page;E-Wallet Popup Page_es
+
+$contentCatalog=siteoneContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Online])[default=$contentCatalog:Online]
+
+INSERT_UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);label;defaultPage[default='true'];approvalStatus(code)[default='approved'];homepage[default='false'];
+;;addEwalletPopup;E-Wallet Popup Page;AccountPageTemplate;addEwalletPopup
+
+INSERT_UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];name;title[lang=en];title[lang=es]
+;;addEwalletPopup;E-Wallet Popup Page;E-Wallet Popup Page;E-Wallet Popup Page_es

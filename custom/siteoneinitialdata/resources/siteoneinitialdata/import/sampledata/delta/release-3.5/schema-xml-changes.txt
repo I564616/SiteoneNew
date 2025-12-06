@@ -1,0 +1,8 @@
+Add at around line 51 in fieldType area where <types> starts.
+<fieldType name="location" class="solr.LatLonPointSpatialField" docValues="true"/>
+  
+Add below at around line 358 where     <fields> area starts.
+<field name="soLatLong_string" type="location" indexed="true" stored="true" multiValued="false"/>
+    
+    
+  

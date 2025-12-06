@@ -1,0 +1,42 @@
+
+$contentCatalog=siteoneContentCatalog
+$contentCatalogName=SiteOne Content Catalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$productCatalog=siteoneProductCatalog
+$productCatalogName=SiteOne Product Catalog
+$productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$picture=media(code, $contentCV);
+$image=image(code, $contentCV);
+$media=media(code, $contentCV);
+$page=page(uid, $contentCV);
+$contentPage=contentPage(uid, $contentCV);
+$product=product(code, $productCV)
+$category=category(code, $productCV)
+$siteResource=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/contentCatalogs/$contentCatalog
+$productResource=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/productCatalogs/$productCatalog
+$jarResourceCms=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/cockpits/cmscockpit
+$addonExtensionName=siteoneacceleratoraddon
+$medias=medias(code, $contentCV);
+$articleMedia=articleMedia(code, $contentCV);
+$mediaContainer=media(qualifier, $contentCV);
+$siteUid=siteone
+$lang=en
+
+INSERT_UPDATE HomePagePromoBannerComponent;$contentCV[unique=true];uid[unique=true];name;$picture[lang=en];$picture[lang=es];urllink
+;;SiteOneHomepageMobilePromoComp;Store Homepage Mobile Promo Component;2020.3196_Homepage-Banners-OneStop-1500x540_V02.jpg:siteoneContentCatalog:Online;promo-onestop-spanish-mobiile.jpg:siteoneContentCatalog:Online;/onestop?icid=home-promo-onestop
+;;SiteOneHomepagePromoComp1;Store Homepage Promo1 Component;2020.3196_Homepage-Banners-OneStop-1280x135_V02.jpg:siteoneContentCatalog:Online;promo-onestop-spanish-desktop.jpg:siteoneContentCatalog:Online;/onestop?icid=home-promo-onestop
+;;comp_000011T8;NDS Homepage Promo1 Component;NDS-homepromo-desktop2.jpg:siteoneContentCatalog:Online;;/nds?icid=home-main-4
+;;comp_000011T9;NDS Homepage Mobile Promo Component;NDS-homepromo-mobile.jpg:siteoneContentCatalog:Online;;/nds?icid=home-main-4-mobile
+INSERT_UPDATE SiteOneStoreDetailsPromoComponent;$contentCV[unique=true];uid[unique=true];name;headline[lang=en];urlLink;promotionalText[lang=en];buttonLabel[lang=en];buttonURL;promotionalText[lang=es];buttonLabel[lang=es];icon;&componentRef
+;;COVID-19-Mobile-Carousel;COVID-19 Mobile Carousel;;/covid-19?icid=home-carousel-mobile-1-covid19;;;;;;1;COVID-19-Mobile-Carousel 
+;;Hardscapes-Carousel;Hardscapes Carousel;;/hardscapes?icid=home-carousel-4-hardscapes;;;;;;4;Hardscapes-Carousel
+;;Pay-Online-Carousel;Pay Online Carousel;;/payonline?icid=home-carousel-2-payonline;;;;;;2;Pay-Online-Carousel
+;;Pay-Online-Mobile-Carousel;Pay Online Mobile Carousel;;/payonline?icid=home-mobile-carousel-2-payonline;;;;;;3;Pay-Online-Mobile-Carousel
+;;ReelPro-Desktop-Carousel;ReelPro Desktop Carousel;;/reelpro?icid=home-carousel-1-reelpro;;;;;;1;ReelPro-Desktop-Carousel
+;;ReelPro-Mobile-Carousel;ReelPro Mobile Carousel;;/reelpro?icid=home-carousel-mobile-1-reelpro;;;;;;2;ReelPro-Mobile-Carousel
+;;hardscapes-mobile-carousel;Hardscapes Mobile Carousel;;/hardscapes?icid=home-carousel-mobile-4-hardscapes;;;;;;4;hardscapes-mobile-carousel
+;;protrade-carousel;pro-trade carousel;;/protrade?icid=home-carousel-2-protrade-lighting;;;;;;3;protrade-carousel
+
+INSERT_UPDATE HomePageRotatingBannerComponent;$contentCV[unique=true];uid[unique=true];name;rotatingBanner(&componentRef);&componentRef
+;;siteoneCarouselComponent;Siteone Homepage Component;ReelPro-Desktop-Carousel,Pay-Online-Carousel,protrade-carousel,Hardscapes-Carousel;siteoneCarouselComponent
+;;siteoneMobileCarouselComponent;Siteone Mobile Homepage Component;COVID-19-Mobile-Carousel,ReelPro-Mobile-Carousel,Pay-Online-Mobile-Carousel,hardscapes-mobile-carousel;siteoneMobileCarouselComponent

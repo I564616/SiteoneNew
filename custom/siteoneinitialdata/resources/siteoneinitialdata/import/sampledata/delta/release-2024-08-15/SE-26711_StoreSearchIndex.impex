@@ -1,0 +1,8 @@
+$searchIndexNamePrefix=siteone
+$solrStoreSearchIndexedType=siteoneStoreSearchType
+
+
+# Create the queries that will be used to extract data for Solr
+INSERT_UPDATE SolrIndexerQuery;solrIndexedType(identifier)[unique=true];identifier[unique=true];type(code);injectCurrentDate[default=true];injectCurrentTime[default=true];injectLastIndexTime[default=true];query;user(uid)
+;$solrStoreSearchIndexedType;$searchIndexNamePrefix-store-fullQuery;full;;;false;"select {pk} from {pointofservice} where {isactive}  = 1 AND ({AcquisitionOrCoBrandedBranch} is null OR {AcquisitionOrCoBrandedBranch}=0) AND {isDCBranch}!=1";anonymous
+;$solrStoreSearchIndexedType;$searchIndexNamePrefix-store-updateQuery;update;;;;"select {pk} from {pointofservice} where {isactive}  = 1 AND ({AcquisitionOrCoBrandedBranch} is null OR {AcquisitionOrCoBrandedBranch}=0) AND {isDCBranch}!=1 AND {modifiedtime} >=?lastIndexTime";anonymous

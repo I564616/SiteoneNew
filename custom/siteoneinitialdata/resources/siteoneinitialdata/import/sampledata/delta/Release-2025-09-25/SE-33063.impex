@@ -1,0 +1,17 @@
+# Import config properties into impex macros for modulegen
+UPDATE GenericItem[processor=de.hybris.platform.commerceservices.impex.impl.ConfigPropertyImportProcessor];pk[unique=true]
+$emailResource=$config-emailResourceValue
+$emailPackageName=$config-emailContextPackageName
+
+# Language
+$lang=en
+
+UPDATE RendererTemplate;code[unique=true];description[lang=$lang];templateScript[lang=$lang,translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+;SiteOne_Email_Cart_Abandonment_Body;"Cart Abandonment Template";$emailResource/email-cartAbandonmentBody.vm
+
+
+$lang=es
+
+UPDATE RendererTemplate;code[unique=true];description[lang=$lang];templateScript[lang=$lang,translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+;SiteOne_Email_Cart_Abandonment_Body;"Cart Abandonment Template";$emailResource/email-cartAbandonmentBody.vm
+

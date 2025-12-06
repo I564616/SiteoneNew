@@ -1,0 +1,80 @@
+﻿$contentCatalog=siteoneContentCatalog
+$contentCatalogName=SiteOne Content Catalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$productCatalog=siteoneProductCatalog
+$productCatalogName=SiteOne Product Catalog
+$productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$picture=media(code, $contentCV);
+$image=image(code, $contentCV);
+$media=media(code, $contentCV);
+$page=page(uid, $contentCV);
+$contentPage=contentPage(uid, $contentCV);
+$product=product(code, $productCV)
+$category=category(code, $productCV)
+$siteResource=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/contentCatalogs/$contentCatalog
+$productResource=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/productCatalogs/$productCatalog
+$jarResourceCms=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/cockpits/cmscockpit
+$addonExtensionName=siteoneacceleratoraddon
+$medias=medias(code, $contentCV);
+$articleMedia=articleMedia(code, $contentCV);
+$mediaContainer=media(qualifier, $contentCV);
+$siteUid=siteone
+$lang=en
+$storeImage=storeImage(qualifier, $contentCV)
+
+INSERT_UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];name;title[lang=$lang];masterTemplate(uid,$contentCV);label;defaultPage[default='true'];approvalStatus(code)[default='approved'];homepage[default='false']
+;;siteonemobileappshopcategoryl1page;MobileAppShopCategoryL1Page;siteonemobileappshopcategoryl1page;CategoryLandingPageTemplate;/mobileappshopcategoryl1page;
+
+
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef)
+;;SectionS1Slot-SiteOneMAShopCategoryPage;SectionS1 Slot for SiteOneMAShopCategoryPage;true;SiteoneHomePageMACarouselComponent
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='siteonemobileappshopcategoryl1page'];contentSlot(uid,$contentCV)[unique=true]
+;;SectionS1-SiteOneMAShopCategoryPage;SectionS1;;SectionS1Slot-SiteOneMAShopCategoryPage
+
+
+INSERT_UPDATE HomePageRotatingBannerComponent;$contentCV[unique=true];uid[unique=true];name;rotatingBanner(uid,$contentCV);&componentRef
+;;SiteoneHomePageMACarouselComponent;Siteone Homepage MA Component;Carousel-Seed-EOP,Carousel-Lighting-Demand,Carousel-Drainage-Demand;SiteoneHomePageMACarouselComponent
+
+INSERT_UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];name;title[lang=$lang];masterTemplate(uid,$contentCV);label;defaultPage[default='true'];approvalStatus(code)[default='approved'];homepage[default='false']
+;;siteonemobileappshopcategoryl2agropage;MobileAppShopCategoryL2AgroPage;siteonemobileappshopcategoryl2agropage;CategoryLandingPageTemplate;/mobileappshopcategoryl2agropage;
+;;siteonemobileappshopcategoryl2irripage;MobileAppShopCategoryL2IrriPage;siteonemobileappshopcategoryl2irripage;CategoryLandingPageTemplate;/mobileappshopcategoryl2irripage;
+;;siteonemobileappshopcategoryl2landpage;MobileAppShopCategoryL2LandPage;siteonemobileappshopcategoryl2landpage;CategoryLandingPageTemplate;/mobileappshopcategoryl2landpage;
+;;siteonemobileappshopcategoryl2lighpage;MobileAppShopCategoryL2LighPage;siteonemobileappshopcategoryl2lighpage;CategoryLandingPageTemplate;/mobileappshopcategoryl2lighpage;
+;;siteonemobileappshopcategoryl2nurspage;MobileAppShopCategoryL2NursPage;siteonemobileappshopcategoryl2nurspage;CategoryLandingPageTemplate;/mobileappshopcategoryl2nurspage;
+;;siteonemobileappshopcategoryl2toolpage;MobileAppShopCategoryL2ToolPage;siteonemobileappshopcategoryl2toolpage;CategoryLandingPageTemplate;/mobileappshopcategoryl2toolpage;
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef)
+;;SectionS1Slot-SiteOneMAShopCategoryL2AgroPage;SectionS1 Slot for SiteOneMAShopCategoryL2AgroPage;true;SiteoneAgronomicMaintenanceCategoryMACarouselComponent
+;;SectionS1Slot-SiteOneMAShopCategoryL2IrriPage;SectionS1 Slot for SiteOneMAShopCategoryL2IrriPage;true;SiteoneIrrigationCategoryMACarouselComponent
+;;SectionS1Slot-SiteOneMAShopCategoryL2LandPage;SectionS1 Slot for SiteOneMAShopCategoryL2LandPage;true;SiteoneLandscapeSupplyCategoryMACarouselComponent
+;;SectionS1Slot-SiteOneMAShopCategoryL2LighPage;SectionS1 Slot for SiteOneMAShopCategoryL2LighPage;true;LightingCategoryMACarouselComponent
+;;SectionS1Slot-SiteOneMAShopCategoryL2NursPage;SectionS1 Slot for SiteOneMAShopCategoryL2NursPage;true;SiteoneNurseryCategoryMACarouselComponent
+;;SectionS1Slot-SiteOneMAShopCategoryL2ToolPage;SectionS1 Slot for SiteOneMAShopCategoryL2ToolPage;true;SiteoneToolsEquipmentCategoryMACarouselComponent
+
+
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default=''];contentSlot(uid,$contentCV)[unique=true]
+;;SectionS1-SiteOneMAShopCategoryL2AgroPage;SectionS1;siteonemobileappshopcategoryl2agropage;SectionS1Slot-SiteOneMAShopCategoryL2AgroPage
+;;SectionS1-SiteOneMAShopCategoryL2IrriPage;SectionS1;siteonemobileappshopcategoryl2irripage;SectionS1Slot-SiteOneMAShopCategoryL2IrriPage
+;;SectionS1-SiteOneMAShopCategoryL2LandPage;SectionS1;siteonemobileappshopcategoryl2landpage;SectionS1Slot-SiteOneMAShopCategoryL2LandPage
+;;SectionS1-SiteOneMAShopCategoryL2LighPage;SectionS1;siteonemobileappshopcategoryl2lighpage;SectionS1Slot-SiteOneMAShopCategoryL2LighPage
+;;SectionS1-SiteOneMAShopCategoryL2NursPage;SectionS1;siteonemobileappshopcategoryl2nurspage;SectionS1Slot-SiteOneMAShopCategoryL2NursPage
+;;SectionS1-SiteOneMAShopCategoryL2ToolPage;SectionS1;siteonemobileappshopcategoryl2toolpage;SectionS1Slot-SiteOneMAShopCategoryL2ToolPage
+
+
+INSERT_UPDATE CategoryLandingPageRotatingBannerComponent;$contentCV[unique=true];uid[unique=true];name;rotatingBanner(uid,$contentCV);&componentRef
+;;SiteoneAgronomicMaintenanceCategoryMACarouselComponent;Siteone Agronomic Maintenance MA Component;AgronomicsBrand1 Carousel,DrainageDemand Carousel,cmsitem_00025008,SiteOneCategoryPageTopBannerComponentMASB1,SiteOneCategoryPageTopBannerComponentMASB2;SiteoneAgronomicMaintenanceCategoryMACarouselComponent
+;;SiteoneIrrigationCategoryMACarouselComponent;Siteone Irrigation Category MA Component;SiteOneCategoryPageTopBannerComponent13,DrainageDemand Carousel,cmsitem_00025008,SiteOneCategoryPageTopBannerComponentMASB1,SiteOneCategoryPageTopBannerComponentMASB2;SiteoneIrrigationCategoryMACarouselComponent
+;;SiteoneLandscapeSupplyCategoryMACarouselComponent;Siteone LandscapeSupply Category MA Component;cmsitem_00025010,cmsitem_00025008,DrainageDemand Carousel,SiteOneCategoryPageTopBannerComponentMASB1,SiteOneCategoryPageTopBannerComponentMASB2;SiteoneLandscapeSupplyCategoryMACarouselComponent
+;;LightingCategoryMACarouselComponent;Siteone Lighting Category MA Component;SiteOneCategoryPageTopBannerComponent1,cmsitem_00025008,SiteOneCategoryPageTopBannerComponentMASB1,SiteOneCategoryPageTopBannerComponentMASB2;LightingCategoryMACarouselComponent
+;;SiteoneNurseryCategoryMACarouselComponent;Siteone Nursery Category MA Component;SiteOneCategoryPageTopBannerComponent17,cmsitem_00025006,SiteOneCategoryPageTopBannerComponentMANsrySB1;SiteoneNurseryCategoryMACarouselComponent
+;;SiteoneToolsEquipmentCategoryMACarouselComponent;Siteone Tools Category MA Component;SiteOneCategoryPageTopBannerComponent21,SiteOneCategoryPageTopBannerComponentMASB1,SiteOneCategoryPageTopBannerComponentMASB2;SiteoneToolsEquipmentCategoryMACarouselComponent
+
+
+
+INSERT_UPDATE SiteOneCategoryPageTopBannerComponent;$contentCV[unique=true];uid[unique=true];name;subheadText;&componentRef;urlForLink;$picture[lang=$lang];headline[lang=en];buttonLabel;buttonURL;icon
+;;SiteOneCategoryPageTopBannerComponentMASB1;Banner MA SB detail1;;SiteOneCategoryPageTopBannerComponentMASB1;/savestrong?icid=home-promo-save-strong;PromoBanner-SaveStrong-Mobile1;;;;4  
+;;SiteOneCategoryPageTopBannerComponentMASB2;Banner MA SB detail2;;SiteOneCategoryPageTopBannerComponentMASB2;/lesco?icid=home-2-sidebar-lesco;LESCO-L1-Sidebar;;;;5  
+;;SiteOneCategoryPageTopBannerComponentMANsrySB1;Banner MA Nsry SB detail1;;SiteOneCategoryPageTopBannerComponentMANsrySB1;/portfolio?icid=L1-sidebar-portfolio;SideBar-Portfolio;;;;3

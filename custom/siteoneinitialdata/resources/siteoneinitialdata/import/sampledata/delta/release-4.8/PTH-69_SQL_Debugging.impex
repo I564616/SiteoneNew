@@ -1,0 +1,80 @@
+Product catalog - 8796093088344
+Staged - 8796093121113
+Online - 8796093153881
+
+Content catalog - 8796093186648
+Staged - 8796093252185
+Online - 8796093284953
+
+// Cart Entries with Inventory UOM Null
+select * from {Cartentry} where {inventoryuom} is null order by {creationtime} desc
+
+// Cart Entries with "InventoryUOM" attribute Type "InventoryUOM" instead of "InventoryUPC"
+select * From cartentries item_t0 JOIN inventoryuom item_t3 ON  item_t0.p_inventoryuom  = item_t3.PK   
+
+// Products with UPC Data not set
+select * from products where  p_upcdata is null and p_catalogversion ='8796093153881'
+
+// Cart Entries with UPC not mathcing with existing UOM
+select item_t0.pk,item_t1.p_code, item_t2.p_code,item_t3.p_name, item_t0.p_inventoryuom
+From cartentries item_t0 
+LEFT JOIN products item_t1 ON  item_t0.p_product  =  item_t1.PK  JOIN inventoryupc item_t2 ON  item_t1.p_upcdata  like concat('%',CONCAT( item_t2.PK ,'%')) JOIN inventoryuom item_t3 ON  item_t0.p_inventoryuom  =  item_t3.PK  AND  item_t2.p_code != item_t3.p_name 
+WHERE ( item_t2.p_hideupconline  =0 and  item_t1.p_catalogversion ='8796093153881') 
+
+// To find last sequence number for variant category and update
+select max({VariantValueCategory.sequence}) from {VariantValueCategory},{catalog},{catalogversion} where {VariantValueCategory.catalogversion}={catalogversion.PK} AND {catalogversion.catalog}={catalog.PK} AND {catalog.id} = 'siteoneProductCatalog' AND {catalogversion.version}='Staged' and upper({VariantValueCategory.code}) like upper({0})
+
+select {Code},{sequence},{creationtime},{modifiedtime} from {VariantValueCategory},{catalog},{catalogversion} where {VariantValueCategory.catalogversion}={catalogversion.PK} AND {catalogversion.catalog}={catalog.PK} AND {catalog.id} = 'siteoneProductCatalog' AND {catalogversion.version}='Staged' and upper({VariantValueCategory.code}) like upper('%nrsryContainerSize%') order by {VariantValueCategory.sequence} desc
+
+#update categories set p_sequence = 152 WHERE (upper(p_code ) like upper('nrsryContainerSize18count'))
+
+
+
+1)To fetch Simple and Variant Products with upcdata and without inventoryupcid for staged version:
+
+Select * from {Product} Where {inventoryupcid} IS NULL and {upcdata} IS NOT NULL and {catalogversion}='8796093121113'
+
+
+2)To fetch Simple Products loaded filtered by inventoryupcid for staged version: 
+
+Select * from {Product as p} where {p.inventoryupcid} IS NOT NULL and {p.catalogversion}='8796093121113' and {p.variantType} IS NULL and {p.code} NOT IN ({{Select {gp.code} from {GenericVariantProduct as gp} where {gp.inventoryupcid} IS NOT NULL and {gp.catalogversion}='8796093121113'}})
+
+
+3)To fetch Base Products  for staged version:
+
+Select * from {Product} where {variantType} IS NOT NULL and {catalogversion}='8796093121113' and {modifiedtime} > '2021-10-18 00:00:00.00'
+
+[In the above query , modifiedtime value should be replaced with the time at which load takes place]
+
+
+4)To fetch GenericVariantProducts loaded filtered by inventoryupcid for staged version:
+
+Select * from {GenericVariantProduct} where {inventoryupcid} IS NOT NULL and {catalogversion}='8796093121113'
+                                                        [OR]
+Select * from {VariantProduct} where {inventoryupcid} IS NOT NULL and {catalogversion}='8796093121113'
+
+
+5)To fetch Simple Products that is loaded as Base Products filtered by variantType for staged version:
+
+Select * from {Product as p} where {p.code}  NOT LIKE '%/_%' ESCAPE '/' and {p.inventoryupcid} IS NOT NULL and {p.catalogversion}='8796093121113' and {p.variantType} IS NOT NULL and {p.code} NOT IN ({{Select {gp.code} from {GenericVariantProduct as gp} where {gp.code} NOT LIKE '%/_%' ESCAPE '/' and {gp.inventoryupcid} IS NOT NULL and {gp.catalogversion}='8796093121113'}})
+
+Inorder to update such products:
+
+#Update Products SET p_varianttype = NULL Where p_code='' and p_catalogversion='8796093121113'
+
+
+6)To fetch the total products that is loaded for staged version:
+
+Count:
+
+Select Count(*) from {Product} where {catalogversion}='8796093121113' 
+
+
+7)To fetch the active products for staged version:
+
+Select * from {product} where {catalogversion} like '8796093153881' and {code} not like '%_a'and {code} not like '%_b' and {code} not like '%_c'
+
+                                                  
+8)To fetch the inactive products for staged version:
+
+Select * from {product} where {catalogversion} like '8796093153881' and ({code}  like '%_a' or  {code} like '%_b' or {code}  like '%_c')

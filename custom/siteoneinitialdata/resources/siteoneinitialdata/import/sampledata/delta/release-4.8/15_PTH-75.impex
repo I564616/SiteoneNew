@@ -1,0 +1,8 @@
+UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true];name[unique=true]      ;type(code)
+                          ;siteoneProductType                            ;irgNumberofConductors  ;string
+                          ;siteoneProductType                            ;lndscpNumberofPieces   ;string
+                          ;siteoneProductType                            ;lndscpNumberofWheels   ;string
+                          ;siteoneProductType                            ;lndscpNumberofTines    ;string
+                          ;siteoneProductType                            ;lndscpNumberofLamps    ;string
+                          ;siteoneProductType                            ;lndscpNumberofTeeth    ;string
+                          ;siteoneProductType                            ;lndscpNumberofOpenings ;string                                                                                                                       

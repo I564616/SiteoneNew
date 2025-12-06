@@ -1,0 +1,344 @@
+INSERT_UPDATE SiteOneFeatureSwitch;key[unique=true];longValue
+;SiteoneDeliveryFeeFeatureSwitch;1,4,23,34,99,123,124,575,670,2,39,58,384,534,579,658,737,757,12,61,170,236,468,492,504,556,645,661,782,106,109,125,126,129,145,146,154,318,323,326,327,388,130,135,140,274,313,314,316,331,363,382,403,404,405,466
+
+
+Insert_Update SiteoneDeliveryFees; branchId[unique=true]; lineOfBusiness[unique=true]; retailFee; proFee
+;1 ;Irrigation ;75.00 ;75.00 
+;1 ;Agronomics ;75.00 ;75.00
+;1 ;Nursery ;200.00 ;200.00
+;1 ;Hardscape ;200.00 ;200.00
+;1 ;Landscape Supply ;75.00 ;75.00
+;1 ;Outdoor Lighting ;75.00 ;75.00
+;4 ;Irrigation ;75.00 ;75.00
+;4 ;Agronomics ;75.00 ;75.00
+;4 ;Nursery ;200.00 ;200.00
+;4 ;Hardscape ;200.00 ;200.00
+;4 ;Landscape Supply ;75.00 ;75.00
+;4 ;Outdoor Lighting ;75.00 ;75.00
+;23 ;Irrigation ;75.00 ;75.00
+;23 ;Agronomics ;75.00 ;75.00
+;23 ;Nursery ;200.00 ;200.00
+;23 ;Hardscape ;200.00 ;200.00
+;23 ;Landscape Supply ;75.00 ;75.00
+;23 ;Outdoor Lighting ;75.00 ;75.00
+;34 ;Irrigation ;75.00 ;75.00
+;34 ;Agronomics ;75.00 ;75.00
+;34 ;Nursery ;200.00 ;200.00
+;34 ;Hardscape ;200.00 ;200.00
+;34 ;Landscape Supply ;75.00 ;75.00
+;34 ;Outdoor Lighting ;75.00 ;75.00
+;99 ;Irrigation ;75.00 ;75.00
+;99 ;Agronomics ;75.00 ;75.00
+;99 ;Nursery ;200.00 ;200.00
+;99 ;Hardscape ;200.00 ;200.00
+;99 ;Landscape Supply ;75.00 ;75.00
+;99 ;Outdoor Lighting ;75.00 ;75.00
+;123 ;Irrigation ;75.00 ;75.00
+;123 ;Agronomics ;75.00 ;75.00
+;123 ;Nursery ;200.00 ;200.00
+;123 ;Hardscape ;200.00 ;200.00
+;123 ;Landscape Supply ;75.00 ;75.00
+;123 ;Outdoor Lighting ;75.00 ;75.00
+;124 ;Irrigation ;75.00 ;75.00
+;124 ;Agronomics ;75.00 ;75.00
+;124 ;Nursery ;200.00 ;200.00
+;124 ;Hardscape ;200.00 ;200.00
+;124 ;Landscape Supply ;75.00 ;75.00
+;124 ;Outdoor Lighting ;75.00 ;75.00
+;575 ;Irrigation ;75.00 ;75.00
+;575 ;Agronomics ;75.00 ;75.00
+;575 ;Nursery ;200.00 ;200.00
+;575 ;Hardscape ;200.00 ;200.00
+;575 ;Landscape Supply ;75.00 ;75.00
+;575 ;Outdoor Lighting ;75.00 ;75.00
+;670 ;Irrigation ;75.00 ;75.00
+;670 ;Agronomics ;75.00 ;75.00
+;670 ;Nursery ;200.00 ;200.00
+;670 ;Hardscape ;200.00 ;200.00
+;670 ;Landscape Supply ;75.00 ;75.00
+;670 ;Outdoor Lighting ;75.00 ;75.00
+;2 ;Irrigation ;75.00 ;75.00
+;2 ;Agronomics ;75.00 ;75.00
+;2 ;Nursery ;200.00 ;200.00
+;2 ;Hardscape ;200.00 ;200.00
+;2 ;Landscape Supply ;75.00 ;75.00
+;2 ;Outdoor Lighting ;75.00 ;75.00
+;39 ;Irrigation ;75.00 ;75.00
+;39 ;Agronomics ;75.00 ;75.00
+;39 ;Nursery ;200.00 ;200.00
+;39 ;Hardscape ;200.00 ;200.00
+;39 ;Landscape Supply ;75.00 ;75.00
+;39 ;Outdoor Lighting ;75.00 ;75.00
+;58 ;Irrigation ;75.00 ;75.00
+;58 ;Agronomics ;75.00 ;75.00
+;58 ;Nursery ;200.00 ;200.00
+;58 ;Hardscape ;200.00 ;200.00
+;58 ;Landscape Supply ;75.00 ;75.00
+;58 ;Outdoor Lighting ;75.00 ;75.00
+;384 ;Irrigation ;75.00 ;75.00
+;384 ;Agronomics ;75.00 ;75.00
+;384 ;Nursery ;200.00 ;200.00
+;384 ;Hardscape ;200.00 ;200.00
+;384 ;Landscape Supply ;75.00 ;75.00
+;384 ;Outdoor Lighting ;75.00 ;75.00
+;534 ;Irrigation ;75.00 ;75.00
+;534 ;Agronomics ;75.00 ;75.00
+;534 ;Nursery ;200.00 ;200.00
+;534 ;Hardscape ;200.00 ;200.00
+;534 ;Landscape Supply ;75.00 ;75.00
+;534 ;Outdoor Lighting ;75.00 ;75.00
+;579 ;Irrigation ;75.00 ;75.00
+;579 ;Agronomics ;75.00 ;75.00
+;579 ;Nursery ;200.00 ;200.00
+;579 ;Hardscape ;200.00 ;200.00
+;579 ;Landscape Supply ;75.00 ;75.00
+;579 ;Outdoor Lighting ;75.00 ;75.00
+;658 ;Irrigation ;75.00 ;75.00
+;658 ;Agronomics ;75.00 ;75.00
+;658 ;Nursery ;200.00 ;200.00
+;658 ;Hardscape ;200.00 ;200.00
+;658 ;Landscape Supply ;75.00 ;75.00
+;658 ;Outdoor Lighting ;75.00 ;75.00
+;737 ;Irrigation ;75.00 ;75.00
+;737 ;Agronomics ;75.00 ;75.00
+;737 ;Nursery ;200.00 ;200.00
+;737 ;Hardscape ;200.00 ;200.00
+;737 ;Landscape Supply ;75.00 ;75.00
+;737 ;Outdoor Lighting ;75.00 ;75.00
+;757 ;Irrigation ;75.00 ;75.00
+;757 ;Agronomics ;75.00 ;75.00
+;757 ;Nursery ;200.00 ;200.00
+;757 ;Hardscape ;200.00 ;200.00
+;757 ;Landscape Supply ;75.00 ;75.00
+;757 ;Outdoor Lighting ;75.00 ;75.00
+;12 ;Irrigation ;75.00 ;75.00
+;12 ;Agronomics ;75.00 ;75.00
+;12 ;Nursery ;200.00 ;200.00
+;12 ;Hardscape ;200.00 ;200.00
+;12 ;Landscape Supply ;75.00 ;75.00
+;12 ;Outdoor Lighting ;75.00 ;75.00
+;61 ;Irrigation ;75.00 ;75.00
+;61 ;Agronomics ;75.00 ;75.00
+;61 ;Nursery ;200.00 ;200.00
+;61 ;Hardscape ;200.00 ;200.00
+;61 ;Landscape Supply ;75.00 ;75.00
+;61 ;Outdoor Lighting ;75.00 ;75.00
+;170 ;Irrigation ;75.00 ;75.00
+;170 ;Agronomics ;75.00 ;75.00
+;170 ;Nursery ;200.00 ;200.00
+;170 ;Hardscape ;200.00 ;200.00
+;170 ;Landscape Supply ;75.00 ;75.00
+;170 ;Outdoor Lighting ;75.00 ;75.00
+;236 ;Irrigation ;75.00 ;75.00
+;236 ;Agronomics ;75.00 ;75.00
+;236 ;Nursery ;200.00 ;200.00
+;236 ;Hardscape ;200.00 ;200.00
+;236 ;Landscape Supply ;75.00 ;75.00
+;236 ;Outdoor Lighting ;75.00 ;75.00
+;468 ;Irrigation ;75.00 ;75.00
+;468 ;Agronomics ;75.00 ;75.00
+;468 ;Nursery ;200.00 ;200.00
+;468 ;Hardscape ;200.00 ;200.00
+;468 ;Landscape Supply ;75.00 ;75.00
+;468 ;Outdoor Lighting ;75.00 ;75.00
+;492 ;Irrigation ;75.00 ;75.00
+;492 ;Agronomics ;75.00 ;75.00
+;492 ;Nursery ;200.00 ;200.00
+;492 ;Hardscape ;200.00 ;200.00
+;492 ;Landscape Supply ;75.00 ;75.00
+;492 ;Outdoor Lighting ;75.00 ;75.00
+;504 ;Irrigation ;75.00 ;75.00
+;504 ;Agronomics ;75.00 ;75.00
+;504 ;Nursery ;200.00 ;200.00
+;504 ;Hardscape ;200.00 ;200.00
+;504 ;Landscape Supply ;75.00 ;75.00
+;504 ;Outdoor Lighting ;75.00 ;75.00
+;556 ;Irrigation ;75.00 ;75.00
+;556 ;Agronomics ;75.00 ;75.00
+;556 ;Nursery ;200.00 ;200.00
+;556 ;Hardscape ;200.00 ;200.00
+;556 ;Landscape Supply ;75.00 ;75.00
+;556 ;Outdoor Lighting ;75.00 ;75.00
+;645 ;Irrigation ;75.00 ;75.00
+;645 ;Agronomics ;75.00 ;75.00
+;645 ;Nursery ;200.00 ;200.00
+;645 ;Hardscape ;200.00 ;200.00
+;645 ;Landscape Supply ;75.00 ;75.00
+;645 ;Outdoor Lighting ;75.00 ;75.00
+;661 ;Irrigation ;75.00 ;75.00
+;661 ;Agronomics ;75.00 ;75.00
+;661 ;Nursery ;200.00 ;200.00
+;661 ;Hardscape ;200.00 ;200.00
+;661 ;Landscape Supply ;75.00 ;75.00
+;661 ;Outdoor Lighting ;75.00 ;75.00
+;782 ;Irrigation ;75.00 ;75.00
+;782 ;Agronomics ;75.00 ;75.00
+;782 ;Nursery ;200.00 ;200.00
+;782 ;Hardscape ;200.00 ;200.00
+;782 ;Landscape Supply ;75.00 ;75.00
+;782 ;Outdoor Lighting ;75.00 ;75.00
+;106 ;Irrigation ;79.00 ;0.00
+;106 ;Agronomics ;79.00 ;0.00
+;106 ;Nursery ;79.00 ;0.00
+;106 ;Hardscape ;79.00 ;0.00
+;106 ;Landscape Supply ;79.00 ;0.00
+;106 ;Outdoor Lighting ;79.00 ;0.00
+;109 ;Irrigation ;79.00 ;0.00
+;109 ;Agronomics ;79.00 ;0.00
+;109 ;Nursery ;79.00 ;0.00
+;109 ;Hardscape ;79.00 ;0.00
+;109 ;Landscape Supply ;79.00 ;0.00
+;109 ;Outdoor Lighting ;79.00 ;0.00
+;125 ;Irrigation ;79.00 ;0.00
+;125 ;Agronomics ;79.00 ;0.00
+;125 ;Nursery ;79.00 ;0.00
+;125 ;Hardscape ;79.00 ;0.00
+;125 ;Landscape Supply ;79.00 ;0.00
+;125 ;Outdoor Lighting ;79.00 ;0.00
+;126 ;Irrigation ;79.00 ;0.00
+;126 ;Agronomics ;79.00 ;0.00
+;126 ;Nursery ;79.00 ;0.00
+;126 ;Hardscape ;79.00 ;0.00
+;126 ;Landscape Supply ;79.00 ;0.00
+;126 ;Outdoor Lighting ;79.00 ;0.00
+;129 ;Irrigation ;79.00 ;0.00
+;129 ;Agronomics ;79.00 ;0.00
+;129 ;Nursery ;79.00 ;0.00
+;129 ;Hardscape ;79.00 ;0.00
+;129 ;Landscape Supply ;79.00 ;0.00
+;129 ;Outdoor Lighting ;79.00 ;0.00
+;145 ;Irrigation ;79.00 ;0.00
+;145 ;Agronomics ;79.00 ;0.00
+;145 ;Nursery ;79.00 ;0.00
+;145 ;Hardscape ;79.00 ;0.00
+;145 ;Landscape Supply ;79.00 ;0.00
+;145 ;Outdoor Lighting ;79.00 ;0.00
+;146 ;Irrigation ;79.00 ;0.00
+;146 ;Agronomics ;79.00 ;0.00
+;146 ;Nursery ;79.00 ;0.00
+;146 ;Hardscape ;79.00 ;0.00
+;146 ;Landscape Supply ;79.00 ;0.00
+;146 ;Outdoor Lighting ;79.00 ;0.00
+;154 ;Irrigation ;79.00 ;0.00
+;154 ;Agronomics ;79.00 ;0.00
+;154 ;Nursery ;79.00 ;0.00
+;154 ;Hardscape ;79.00 ;0.00
+;154 ;Landscape Supply ;79.00 ;0.00
+;154 ;Outdoor Lighting ;79.00 ;0.00
+;318 ;Irrigation ;79.00 ;0.00
+;318 ;Agronomics ;79.00 ;0.00
+;318 ;Nursery ;79.00 ;0.00
+;318 ;Hardscape ;79.00 ;0.00
+;318 ;Landscape Supply ;79.00 ;0.00
+;318 ;Outdoor Lighting ;79.00 ;0.00
+;323 ;Irrigation ;79.00 ;0.00
+;323 ;Agronomics ;79.00 ;0.00
+;323 ;Nursery ;79.00 ;0.00
+;323 ;Hardscape ;79.00 ;0.00
+;323 ;Landscape Supply ;79.00 ;0.00
+;323 ;Outdoor Lighting ;79.00 ;0.00
+;326 ;Irrigation ;79.00 ;0.00
+;326 ;Agronomics ;79.00 ;0.00
+;326 ;Nursery ;79.00 ;0.00
+;326 ;Hardscape ;79.00 ;0.00
+;326 ;Landscape Supply ;79.00 ;0.00
+;326 ;Outdoor Lighting ;79.00 ;0.00
+;327 ;Irrigation ;79.00 ;0.00
+;327 ;Agronomics ;79.00 ;0.00
+;327 ;Nursery ;79.00 ;0.00
+;327 ;Hardscape ;79.00 ;0.00
+;327 ;Landscape Supply ;79.00 ;0.00
+;327 ;Outdoor Lighting ;79.00 ;0.00
+;388 ;Irrigation ;79.00 ;0.00
+;388 ;Agronomics ;79.00 ;0.00
+;388 ;Nursery ;79.00 ;0.00
+;388 ;Hardscape ;79.00 ;0.00
+;388 ;Landscape Supply ;79.00 ;0.00
+;388 ;Outdoor Lighting ;79.00 ;0.00
+;130 ;Irrigation ;79.00 ;0.00
+;130 ;Agronomics ;79.00 ;0.00
+;130 ;Nursery ;79.00 ;0.00
+;130 ;Hardscape ;79.00 ;0.00
+;130 ;Landscape Supply ;79.00 ;0.00
+;130 ;Outdoor Lighting ;79.00 ;0.00
+;135 ;Irrigation ;79.00 ;0.00
+;135 ;Agronomics ;79.00 ;0.00
+;135 ;Nursery ;79.00 ;0.00
+;135 ;Hardscape ;79.00 ;0.00
+;135 ;Landscape Supply ;79.00 ;0.00
+;135 ;Outdoor Lighting ;79.00 ;0.00
+;140 ;Irrigation ;79.00 ;0.00
+;140 ;Agronomics ;79.00 ;0.00
+;140 ;Nursery ;79.00 ;0.00
+;140 ;Hardscape ;79.00 ;0.00
+;140 ;Landscape Supply ;79.00 ;0.00
+;140 ;Outdoor Lighting ;79.00 ;0.00
+;274 ;Irrigation ;79.00 ;0.00
+;274 ;Agronomics ;79.00 ;0.00
+;274 ;Nursery ;79.00 ;0.00
+;274 ;Hardscape ;79.00 ;0.00
+;274 ;Landscape Supply ;79.00 ;0.00
+;274 ;Outdoor Lighting ;79.00 ;0.00
+;313 ;Irrigation ;79.00 ;0.00
+;313 ;Agronomics ;79.00 ;0.00
+;313 ;Nursery ;79.00 ;0.00
+;313 ;Hardscape ;79.00 ;0.00
+;313 ;Landscape Supply ;79.00 ;0.00
+;313 ;Outdoor Lighting ;79.00 ;0.00
+;314 ;Irrigation ;79.00 ;0.00
+;314 ;Agronomics ;79.00 ;0.00
+;314 ;Nursery ;79.00 ;0.00
+;314 ;Hardscape ;79.00 ;0.00
+;314 ;Landscape Supply ;79.00 ;0.00
+;314 ;Outdoor Lighting ;79.00 ;0.00
+;316 ;Irrigation ;79.00 ;0.00
+;316 ;Agronomics ;79.00 ;0.00
+;316 ;Nursery ;79.00 ;0.00
+;316 ;Hardscape ;79.00 ;0.00
+;316 ;Landscape Supply ;79.00 ;0.00
+;316 ;Outdoor Lighting ;79.00 ;0.00
+;331 ;Irrigation ;79.00 ;0.00
+;331 ;Agronomics ;79.00 ;0.00
+;331 ;Nursery ;79.00 ;0.00
+;331 ;Hardscape ;79.00 ;0.00
+;331 ;Landscape Supply ;79.00 ;0.00
+;331 ;Outdoor Lighting ;79.00 ;0.00
+;363 ;Irrigation ;79.00 ;0.00
+;363 ;Agronomics ;79.00 ;0.00
+;363 ;Nursery ;79.00 ;0.00
+;363 ;Hardscape ;79.00 ;0.00
+;363 ;Landscape Supply ;79.00 ;0.00
+;363 ;Outdoor Lighting ;79.00 ;0.00
+;382 ;Irrigation ;79.00 ;0.00
+;382 ;Agronomics ;79.00 ;0.00
+;382 ;Nursery ;79.00 ;0.00
+;382 ;Hardscape ;79.00 ;0.00
+;382 ;Landscape Supply ;79.00 ;0.00
+;382 ;Outdoor Lighting ;79.00 ;0.00
+;403 ;Irrigation ;79.00 ;0.00
+;403 ;Agronomics ;79.00 ;0.00
+;403 ;Nursery ;79.00 ;0.00
+;403 ;Hardscape ;79.00 ;0.00
+;403 ;Landscape Supply ;79.00 ;0.00
+;403 ;Outdoor Lighting ;79.00 ;0.00
+;404 ;Irrigation ;79.00 ;0.00
+;404 ;Agronomics ;79.00 ;0.00
+;404 ;Nursery ;79.00 ;0.00
+;404 ;Hardscape ;79.00 ;0.00
+;404 ;Landscape Supply ;79.00 ;0.00
+;404 ;Outdoor Lighting ;79.00 ;0.00
+;405 ;Irrigation ;79.00 ;0.00
+;405 ;Agronomics ;79.00 ;0.00
+;405 ;Nursery ;79.00 ;0.00
+;405 ;Hardscape ;79.00 ;0.00
+;405 ;Landscape Supply ;79.00 ;0.00
+;405 ;Outdoor Lighting ;79.00 ;0.00
+;466 ;Irrigation ;79.00 ;0.00
+;466 ;Agronomics ;79.00 ;0.00
+;466 ;Nursery ;79.00 ;0.00
+;466 ;Hardscape ;79.00 ;0.00
+;466 ;Landscape Supply ;79.00 ;0.00
+;466 ;Outdoor Lighting ;79.00 ;0.00
+
+
+

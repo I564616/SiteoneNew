@@ -1,0 +1,8 @@
+INSERT_UPDATE ServicelayerJob; code[unique=true];springid[unique=true]
+;webServiceAuditLogCleanUpCronJob;webServiceAuditLogCleanUpCronJob;
+
+INSERT_UPDATE WebServiceAuditLogCleanUpCronJob;code[unique=true];job(code)[default=webServiceAuditLogCleanUpCronJob];sessionLanguage(isoCode)[default=en]
+;webServiceAuditLogCleanUpCronJob
+
+INSERT_UPDATE Trigger;cronJob(code)[unique=true];cronExpression;relative;active;maxAcceptableDelay
+                     ;webServiceAuditLogCleanUpCronJob;0 0 20 * * ?;false;true;-1

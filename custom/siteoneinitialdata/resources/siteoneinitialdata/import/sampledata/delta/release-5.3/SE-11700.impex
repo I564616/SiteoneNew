@@ -1,0 +1,39 @@
+$contentCatalog=siteoneContentCatalog
+$contentCatalogName=SiteOne Content Catalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$productCatalog=siteoneProductCatalog
+$productCatalogName=SiteOne Product Catalog
+$productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+
+INSERT_UPDATE SiteOneFeatureProductComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef;title;products(code,$productCV)
+;;siteOneHomePageFeatureProductComponent1;SiteOne Homepage Feature Product Component 1;siteOneHomePageFeatureProductComponent1;homePageTop;
+;;siteOneHomePageFeatureProductComponent2;SiteOne Homepage Feature Product Component 2;siteOneHomePageFeatureProductComponent2;homePageBottom;
+;;siteOneProductDetailsFeatureProductComponent1;SiteOne PDP Feature Product Component 1;siteOneProductDetailsFeatureProductComponent1;PDPTop;
+;;siteOneProductDetailsFeatureProductComponent2;SiteOne PDP Feature Product Component 2;siteOneProductDetailsFeatureProductComponent2;PDPBottom;
+;;siteOneProductGridFeatureProductComponent;SiteOne PLP Feature Product Component;siteOneProductGridFeatureProductComponent;PGP;
+;;siteOneProductListFeatureProductComponent;SiteOne PLP Feature Product Component;siteOneProductListFeatureProductComponent;PLP;
+;;lightingCategoryPageProductComponent;SiteOne Feature Category Product Component;lightingCategoryPageProductComponent;Featured Lighting Fixtures;
+
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true];validComponentTypes(code);compTypeGroup(code)
+;Section5H1;SiteOneHomePageTemplate;SiteOneFeatureProductComponent;
+;Section5H2;SiteOneHomePageTemplate;SiteOneFeatureProductComponent;
+;Section5D1;ProductDetailsPageTemplate;SiteOneFeatureProductComponent;
+;Section5D2;ProductDetailsPageTemplate;SiteOneFeatureProductComponent;
+;RecommendedProductSlot;ProductGridPageTemplate;SiteOneFeatureProductComponent;
+;RecommendedProductSlot;ProductListPageTemplate;SiteOneFeatureProductComponent;
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef)
+;;Section5H1Slot-SiteOneHomePage;Section5H1 Slot for SiteOneHomePage;true;siteOneHomePageFeatureProductComponent1
+;;Section5H2Slot-SiteOneHomePage;Section5H2 Slot for SiteOneHomePage;true;siteOneHomePageFeatureProductComponent2
+;;Section5D1Slot-SiteOneProductDetails;Section5D1 Slot for SiteOneProductDetails;true;siteOneProductDetailsFeatureProductComponent1
+;;Section5D2Slot-SiteOneProductDetails;Section5D2 Slot for SiteOneProductDetails;true;siteOneProductDetailsFeatureProductComponent2
+;;RecommendedProductSlot-SiteOneProductGrid;RecommendedProduct Slot for SiteOneProductGrid;true;siteOneProductGridFeatureProductComponent
+;;RecommendedProductSlot-SiteOneProductList;RecommendedProduct Slot for SiteOneProductList;true;siteOneProductListFeatureProductComponent
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true];contentSlot(uid,$contentCV)[unique=true]
+;;Section5H1-SiteOneHomePage;Section5H1;siteonehomepage;Section5H1Slot-SiteOneHomePage
+;;Section5H2-SiteOneHomePage;Section5H2;siteonehomepage;Section5H2Slot-SiteOneHomePage
+;;Section5D1-SiteOneProductDetails;Section5D1;productDetails;Section5D1Slot-SiteOneProductDetails
+;;Section5D2-SiteOneProductDetails;Section5D2;productDetails;Section5D2Slot-SiteOneProductDetails
+;;RecommendedProduct-SiteOneProductGrid;RecommendedProductSlot;productGrid;RecommendedProductSlot-SiteOneProductGrid
+;;RecommendedProduct-SiteOneProductList;RecommendedProductSlot;productList;RecommendedProductSlot-SiteOneProductList

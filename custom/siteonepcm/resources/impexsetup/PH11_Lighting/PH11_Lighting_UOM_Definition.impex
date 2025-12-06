@@ -1,0 +1,19 @@
+INSERT_UPDATE ClassificationAttributeUnit;code[unique=true];name[lang=en];symbol;externalID;conversionFactor;systemVersion(catalog(id),version)[default=siteoneClassification:1]
+;VAC;VAC;VAC;VAC;1;
+;VDC;VDC;VDC;VDC;1;
+;V;V;V;V;1;
+;AWG;AWG;AWG;AWG;1;
+;ga;ga;ga;ga;1;
+;A;A;A;A;1;
+;W;W;W;W;1;
+;Inch;Inch;Inch;Inch;1;
+;ft;ft;ft;ft;1;
+;mm;mm;mm;mm;1;
+;cm;cm;cm;cm;1;
+;m;m;m;m;1;
+;deg C;deg C;deg C;deg C;1;
+;deg F;deg F;deg F;deg F;1;
+;VA;VA;VA;VA;1;
+;K;K;K;K;1;
+;hr;hr;hr;hr;1;
+;deg;deg;deg;deg;1;

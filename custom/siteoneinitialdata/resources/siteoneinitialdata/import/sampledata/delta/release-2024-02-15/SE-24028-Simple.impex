@@ -1,0 +1,48 @@
+#--------------------------SIMPLE/BASE Product IntegrationObject-----------------------#
+
+INSERT_UPDATE IntegrationObject; code[unique = true]; integrationType(code)
+; SiteOneProduct; INBOUND
+ 
+INSERT_UPDATE IntegrationObjectItem; integrationObject(code)[unique = true]; code[unique = true]; type(code); root[default = false]
+; SiteOneProduct ; Product              ; Product ; true
+;SiteOneProduct;SiteOneOwnersManual ; SiteOneOwnersManual
+;SiteOneProduct;SiteOneInstallationInstructions ; SiteOneInstallationInstructions
+;SiteOneProduct;SiteOneTechnicalDrawing ; SiteOneTechnicalDrawing
+;SiteOneProduct;SiteOnePartsDiagram ; SiteOnePartsDiagram
+;SiteOneProduct;SiteOneWarrantyInformation ; SiteOneWarrantyInformation
+;SiteOneProduct;SiteOneDataSheet ; SiteOneDataSheet;
+
+INSERT_UPDATE IntegrationObjectItemAttribute; integrationObjectItem(integrationObject(code), code)[unique = true]; attributeName[unique = true]; attributeDescriptor(enclosingType(code), qualifier); returnIntegrationObjectItem(integrationObject(code), code); unique[default = false]
+; SiteOneProduct:SiteOneOwnersManual	; id     ; SiteOneOwnersManual:id	    ;; true	; 
+; SiteOneProduct:SiteOneOwnersManual	; mimetype  ; SiteOneOwnersManual:mimetype	;; true	; 
+; SiteOneProduct:SiteOneOwnersManual	; fullpath     ; SiteOneOwnersManual:fullpath	    ;; true	; 
+; SiteOneProduct:SiteOneOwnersManual	; priority  ; SiteOneOwnersManual:priority	;; true	; 
+
+; SiteOneProduct:SiteOneInstallationInstructions	; id     ; SiteOneInstallationInstructions:id	    ;; true	; 
+; SiteOneProduct:SiteOneInstallationInstructions	; mimetype  ; SiteOneInstallationInstructions:mimetype	;; true	; 
+; SiteOneProduct:SiteOneInstallationInstructions	; fullpath     ; SiteOneInstallationInstructions:fullpath	    ;; true	; 
+; SiteOneProduct:SiteOneInstallationInstructions	; priority  ; SiteOneInstallationInstructions:priority	;; true	;
+
+; SiteOneProduct:SiteOneTechnicalDrawing	; id     ; SiteOneTechnicalDrawing:id	    ;; true	; 
+; SiteOneProduct:SiteOneTechnicalDrawing	; mimetype  ; SiteOneTechnicalDrawing:mimetype	;; true	; 
+; SiteOneProduct:SiteOneTechnicalDrawing	; fullpath     ; SiteOneTechnicalDrawing:fullpath	    ;; true	; 
+; SiteOneProduct:SiteOneTechnicalDrawing	; priority  ; SiteOneTechnicalDrawing:priority	;; true	;
+
+; SiteOneProduct:SiteOnePartsDiagram	; id     ; SiteOnePartsDiagram:id	    ;; true	; 
+; SiteOneProduct:SiteOnePartsDiagram	; mimetype  ; SiteOnePartsDiagram:mimetype	;; true	; 
+; SiteOneProduct:SiteOnePartsDiagram	; fullpath     ; SiteOnePartsDiagram:fullpath	    ;; true	; 
+; SiteOneProduct:SiteOnePartsDiagram	; priority  ; SiteOnePartsDiagram:priority	;; true	;
+
+; SiteOneProduct:SiteOneWarrantyInformation	; id     ; SiteOneWarrantyInformation:id	    ;; true	; 
+; SiteOneProduct:SiteOneWarrantyInformation	; mimetype  ; SiteOneWarrantyInformation:mimetype	;; true	; 
+; SiteOneProduct:SiteOneWarrantyInformation	; fullpath     ; SiteOneWarrantyInformation:fullpath	    ;; true	; 
+; SiteOneProduct:SiteOneWarrantyInformation	; priority  ; SiteOneWarrantyInformation:priority	;; true	;
+
+; SiteOneProduct:SiteOneDataSheet	; ownersManual  ; SiteOneDataSheet:ownersManual	; SiteOneProduct:SiteOneOwnersManual ;; 
+; SiteOneProduct:SiteOneDataSheet	; installationInstructions  ; SiteOneDataSheet:installationInstructions	; SiteOneProduct:SiteOneInstallationInstructions ;; 
+; SiteOneProduct:SiteOneDataSheet	; technicalDrawing  ; SiteOneDataSheet:technicalDrawing	; SiteOneProduct:SiteOneTechnicalDrawing ;; 
+; SiteOneProduct:SiteOneDataSheet	; partsDiagram  ; SiteOneDataSheet:partsDiagram	; SiteOneProduct:SiteOnePartsDiagram ;; 
+; SiteOneProduct:SiteOneDataSheet	; warrantyInformation  ; SiteOneDataSheet:warrantyInformation	; SiteOneProduct:SiteOneWarrantyInformation ;; 
+; SiteOneProduct:SiteOneDataSheet	; id  ; SiteOneDataSheet:id	;  ;true; 
+; SiteOneProduct:Product	        ; sheets          ; Product:sheets 	; SiteOneProduct:SiteOneDataSheet ; 
+

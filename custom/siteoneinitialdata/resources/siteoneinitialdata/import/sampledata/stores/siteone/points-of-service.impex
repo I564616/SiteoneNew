@@ -1,0 +1,339 @@
+# -----------------------------------------------------------------------
+# [y] hybris Platform
+#
+# Copyright (c) 2017 SAP SE or an SAP affiliate company.  All rights reserved.
+#
+# This software is the confidential and proprietary information of SAP
+# ("Confidential Information"). You shall not disclose such Confidential
+# Information and shall use it only in accordance with the terms of the
+# license agreement you entered into with SAP.
+# -----------------------------------------------------------------------
+# ImpEx for SiteOne Points of Service
+#% impex.setLocale( Locale.GERMAN );
+
+#$storeUid=siteone
+#$siteUid=siteone
+#$productCatalog=siteoneProductCatalog
+#$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+#$storeImage=storeImage(qualifier, $catalogVersion)
+#
+#$oklahomaHours=oklahoma-standard-hours
+#$indianaHours=indiana-standard-hours
+#$floridaHours=florida-standard-hours
+#$californiaHours=california-standard-hours
+#$washingtonHours=washington-standard-hours
+#
+#INSERT_UPDATE OpeningSchedule;code[unique=true]
+#;$oklahomaHours
+#;$indianaHours
+#;$floridaHours
+#;$californiaHours
+#;$washingtonHours
+#
+#INSERT_UPDATE WeekdayOpeningDay;openingSchedule(code)[unique=true];dayOfWeek(code)[unique=true];openingTime[dateformat=hh:mm];closingTime[dateformat=hh:mm]
+#;$oklahomaHours;MONDAY   ; 08:00; 17:00
+#;$oklahomaHours;TUESDAY  ; 08:00; 17:00
+#;$oklahomaHours;WEDNESDAY; 08:00; 17:00
+#;$oklahomaHours;THURSDAY ; 08:00; 17:00
+#;$oklahomaHours;FRIDAY   ; 08:00; 17:00
+#;$oklahomaHours;SATURDAY ; 08:00; 12:00
+#
+#;$indianaHours;MONDAY   ; 08:30; 17:00
+#;$indianaHours;TUESDAY  ; 08:30; 17:00
+#;$indianaHours;WEDNESDAY; 08:30; 17:00
+#;$indianaHours;THURSDAY ; 08:30; 17:00
+#;$indianaHours;FRIDAY   ; 08:30; 17:00
+#;$indianaHours;SATURDAY ; 08:30; 12:00
+#
+#;$floridaHours;MONDAY   ; 08:00; 17:00
+#;$floridaHours;TUESDAY  ; 08:00; 17:00
+#;$floridaHours;WEDNESDAY; 08:00; 17:00
+#;$floridaHours;THURSDAY ; 08:00; 17:00
+#;$floridaHours;FRIDAY   ; 08:00; 17:00
+#;$floridaHours;SATURDAY ; 08:00; 12:00
+#
+#;$californiaHours;MONDAY   ; 08:00; 21:00
+#;$californiaHours;TUESDAY  ; 08:00; 21:00
+#;$californiaHours;WEDNESDAY; 08:00; 21:00
+#;$californiaHours;THURSDAY ; 08:00; 21:00
+#;$californiaHours;FRIDAY   ; 08:00; 21:00
+#;$californiaHours;SATURDAY ; 08:00; 21:00
+#;$californiaHours;SUNDAY   ; 19:00; 18:00
+#
+#;$washingtonHours;MONDAY   ; 08:00; 21:00
+#;$washingtonHours;TUESDAY  ; 08:00; 21:00
+#;$washingtonHours;WEDNESDAY; 08:00; 21:00
+#;$washingtonHours;THURSDAY ; 08:00; 21:00
+#;$washingtonHours;FRIDAY   ; 08:00; 21:00
+#;$washingtonHours;SATURDAY ; 08:00; 21:00
+#;$washingtonHours;SUNDAY   ; 19:00; 18:00
+#
+#INSERT_UPDATE SpecialOpeningDay;openingSchedule(code)[unique=true];date[unique=true,dateformat=dd.MM.yyyy];closed[default=true];openingTime[dateformat=hh:mm];closingTime[dateformat=hh:mm]
+#;$oklahomaHours;	01.01.2013
+#;$oklahomaHours;	04.07.2013
+#;$oklahomaHours;	02.09.2013
+#;$oklahomaHours;	11.11.2013
+#;$oklahomaHours;	21.01.2013
+#;$oklahomaHours;	18.02.2013
+#;$oklahomaHours;	27.11.2013
+#;$oklahomaHours;	28.11.2013
+#;$oklahomaHours;	25.12.2013
+#;$oklahomaHours;	27.05.2013
+#
+#;$indianaHours;		01.01.2013
+#;$indianaHours;		04.07.2013
+#;$indianaHours;		02.09.2013
+#;$indianaHours;		05.11.2013
+#;$indianaHours;		14.10.2013
+#;$indianaHours;		11.11.2013
+#;$indianaHours;		21.01.2013
+#;$indianaHours;		18.02.2013
+#;$indianaHours;		27.11.2013
+#;$indianaHours;		12.02.2013
+#;$indianaHours;		25.12.2013
+#;$indianaHours;		27.05.2013
+#                     
+#;$floridaHours;		01.01.2013
+#;$floridaHours;		03.06.2013
+#;$floridaHours;		02.04.2013
+#;$floridaHours;		04.07.2013
+#;$floridaHours;		02.09.2013
+#;$floridaHours;		12.10.2013
+#;$floridaHours;		11.11.2013
+#;$floridaHours;		12.02.2013
+#;$floridaHours;		14.06.2013
+#;$floridaHours;		15.02.2013
+#;$floridaHours;		21.01.2013
+#;$floridaHours;		19.01.2013
+#;$floridaHours;		18.02.2013
+#;$floridaHours;		05.11.2013
+#;$floridaHours;		27.11.2013
+#;$floridaHours;		25.12.2013
+#;$floridaHours;		22.04.2013
+#;$floridaHours;		27.05.2013
+#
+#;$californiaHours;	01.01.2013
+#;$californiaHours;	04.07.2013
+#;$californiaHours;	02.09.2013
+#;$californiaHours;	11.11.2013
+#;$californiaHours;	21.01.2013
+#;$californiaHours;	18.02.2013
+#;$californiaHours;	27.11.2013
+#;$californiaHours;	25.12.2013
+#;$californiaHours;	27.05.2013
+#;$californiaHours;	31.03.2013
+#
+#;$washingtonHours;	01.01.2013
+#;$washingtonHours;	04.07.2013
+#;$washingtonHours;	02.09.2013
+#;$washingtonHours;	11.11.2013
+#;$washingtonHours;	21.01.2013
+#;$washingtonHours;	18.02.2013
+#;$washingtonHours;	27.11.2013
+#;$washingtonHours;	25.12.2013
+#;$washingtonHours;	27.05.2013
+#
+#INSERT_UPDATE StoreLocatorFeature;code[unique=true]
+#
+## -----------------------------------------------------------------------
+## [y] hybris Platform
+##
+## Copyright (c) 2017 SAP SE or an SAP affiliate company.  All rights reserved.
+##
+## This software is the confidential and proprietary information of SAP
+## ("Confidential Information"). You shall not disclose such Confidential
+## Information and shall use it only in accordance with the terms of the
+## license agreement you entered into with SAP.
+## -----------------------------------------------------------------------
+## ImpEx for SiteOne Points of Service
+##% impex.setLocale( Locale.GERMAN );
+#
+#$storeUid=siteone
+#$siteUid=siteone
+#$productCatalog=siteoneProductCatalog
+#$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+#$storeImage=storeImage(qualifier, $catalogVersion)
+#
+#$oklahomaHours=oklahoma-standard-hours
+#$indianaHours=indiana-standard-hours
+#$floridaHours=florida-standard-hours
+#$californiaHours=california-standard-hours
+#$washingtonHours=washington-standard-hours
+#
+#INSERT_UPDATE OpeningSchedule;code[unique=true]
+#;$oklahomaHours
+#;$indianaHours
+#;$floridaHours
+#;$californiaHours
+#;$washingtonHours
+#
+#INSERT_UPDATE WeekdayOpeningDay;openingSchedule(code)[unique=true];dayOfWeek(code)[unique=true];openingTime[dateformat=hh:mm];closingTime[dateformat=hh:mm]
+#;$oklahomaHours;MONDAY   ; 08:00; 17:00
+#;$oklahomaHours;TUESDAY  ; 08:00; 17:00
+#;$oklahomaHours;WEDNESDAY; 08:00; 17:00
+#;$oklahomaHours;THURSDAY ; 08:00; 17:00
+#;$oklahomaHours;FRIDAY   ; 08:00; 17:00
+#;$oklahomaHours;SATURDAY ; 08:00; 12:00
+#
+#;$indianaHours;MONDAY   ; 08:30; 17:00
+#;$indianaHours;TUESDAY  ; 08:30; 17:00
+#;$indianaHours;WEDNESDAY; 08:30; 17:00
+#;$indianaHours;THURSDAY ; 08:30; 17:00
+#;$indianaHours;FRIDAY   ; 08:30; 17:00
+#;$indianaHours;SATURDAY ; 08:30; 12:00
+#
+#;$floridaHours;MONDAY   ; 08:00; 17:00
+#;$floridaHours;TUESDAY  ; 08:00; 17:00
+#;$floridaHours;WEDNESDAY; 08:00; 17:00
+#;$floridaHours;THURSDAY ; 08:00; 17:00
+#;$floridaHours;FRIDAY   ; 08:00; 17:00
+#;$floridaHours;SATURDAY ; 08:00; 12:00
+#
+#;$californiaHours;MONDAY   ; 08:00; 21:00
+#;$californiaHours;TUESDAY  ; 08:00; 21:00
+#;$californiaHours;WEDNESDAY; 08:00; 21:00
+#;$californiaHours;THURSDAY ; 08:00; 21:00
+#;$californiaHours;FRIDAY   ; 08:00; 21:00
+#;$californiaHours;SATURDAY ; 08:00; 21:00
+#;$californiaHours;SUNDAY   ; 19:00; 18:00
+#
+#;$washingtonHours;MONDAY   ; 08:00; 21:00
+#;$washingtonHours;TUESDAY  ; 08:00; 21:00
+#;$washingtonHours;WEDNESDAY; 08:00; 21:00
+#;$washingtonHours;THURSDAY ; 08:00; 21:00
+#;$washingtonHours;FRIDAY   ; 08:00; 21:00
+#;$washingtonHours;SATURDAY ; 08:00; 21:00
+#;$washingtonHours;SUNDAY   ; 19:00; 18:00
+#
+#INSERT_UPDATE SpecialOpeningDay;openingSchedule(code)[unique=true];date[unique=true,dateformat=dd.MM.yyyy];closed[default=true];openingTime[dateformat=hh:mm];closingTime[dateformat=hh:mm]
+#;$oklahomaHours;	01.01.2013
+#;$oklahomaHours;	04.07.2013
+#;$oklahomaHours;	02.09.2013
+#;$oklahomaHours;	11.11.2013
+#;$oklahomaHours;	21.01.2013
+#;$oklahomaHours;	18.02.2013
+#;$oklahomaHours;	27.11.2013
+#;$oklahomaHours;	28.11.2013
+#;$oklahomaHours;	25.12.2013
+#;$oklahomaHours;	27.05.2013
+#
+#;$indianaHours;		01.01.2013
+#;$indianaHours;		04.07.2013
+#;$indianaHours;		02.09.2013
+#;$indianaHours;		05.11.2013
+#;$indianaHours;		14.10.2013
+#;$indianaHours;		11.11.2013
+#;$indianaHours;		21.01.2013
+#;$indianaHours;		18.02.2013
+#;$indianaHours;		27.11.2013
+#;$indianaHours;		12.02.2013
+#;$indianaHours;		25.12.2013
+#;$indianaHours;		27.05.2013
+#                     
+#;$floridaHours;		01.01.2013
+#;$floridaHours;		03.06.2013
+#;$floridaHours;		02.04.2013
+#;$floridaHours;		04.07.2013
+#;$floridaHours;		02.09.2013
+#;$floridaHours;		12.10.2013
+#;$floridaHours;		11.11.2013
+#;$floridaHours;		12.02.2013
+#;$floridaHours;		14.06.2013
+#;$floridaHours;		15.02.2013
+#;$floridaHours;		21.01.2013
+#;$floridaHours;		19.01.2013
+#;$floridaHours;		18.02.2013
+#;$floridaHours;		05.11.2013
+#;$floridaHours;		27.11.2013
+#;$floridaHours;		25.12.2013
+#;$floridaHours;		22.04.2013
+#;$floridaHours;		27.05.2013
+#
+#;$californiaHours;	01.01.2013
+#;$californiaHours;	04.07.2013
+#;$californiaHours;	02.09.2013
+#;$californiaHours;	11.11.2013
+#;$californiaHours;	21.01.2013
+#;$californiaHours;	18.02.2013
+#;$californiaHours;	27.11.2013
+#;$californiaHours;	25.12.2013
+#;$californiaHours;	27.05.2013
+#;$californiaHours;	31.03.2013
+#
+#;$washingtonHours;	01.01.2013
+#;$washingtonHours;	04.07.2013
+#;$washingtonHours;	02.09.2013
+#;$washingtonHours;	11.11.2013
+#;$washingtonHours;	21.01.2013
+#;$washingtonHours;	18.02.2013
+#;$washingtonHours;	27.11.2013
+#;$washingtonHours;	25.12.2013
+#;$washingtonHours;	27.05.2013
+#
+#INSERT_UPDATE PointOfService;name[unique=true];type(code);address(&addrID);latitude;longitude;geocodeTimestamp[dateformat=dd-MM-yyyy];$storeImage;openingSchedule(code);basestore(uid)[default=$storeUid];features(code);storeId[unique=true];specialText;storeSpecialities
+#;Landscape Supplies 1;STORE;addr1;33.91932;-84.3064221;01-10-2011;powertools_store_01;$oklahomaHours;;;454
+#;Landscape Supplies 2;STORE;addr2;33.986514;-84.5815656;01-10-2011;powertools_store_01;$oklahomaHours;;;177
+#;Landscape Supplies 3;STORE;addr3;33.9839955;-84.5342877;01-10-2011;powertools_store_01;$oklahomaHours;;;19
+#;Landscape Supplies 4;STORE;addr4;33.5374704;-84.629059;01-10-2011;powertools_store_01;$oklahomaHours;;;850
+#;Landscape Supplies 5;STORE;addr5;34.0713533;-81.0937401;01-10-2011;powertools_store_01;$oklahomaHours;;;804
+#;Landscape Supplies 6;STORE;addr6;34.06743;-81.1119779;01-10-2011;powertools_store_02;$indianaHours;;;525
+#;Landscape Supplies 7;STORE;addr7;35.8457414;-86.5497352;01-10-2011;powertools_store_06;$floridaHours;;;366
+#;Landscape Supplies 8;STORE;addr8;35.4633546;-82.5284353;01-10-2011;powertools_store_04;$californiaHours;;;284
+#;Landscape Supplies 9;STORE;addr9;35.9527539;-84.087878;01-10-2011;powertools_store_05;$washingtonHours;;;473
+#;Landscape Supplies 10;STORE;addr10;34.7788453;-86.6626812;01-10-2011;powertools_store_01;$oklahomaHours;;;107
+#;Landscape Supplies 11;STORE;addr11;34.894523;-82.2348397;01-10-2011;powertools_store_01;$oklahomaHours;;;522
+#;Landscape Supplies 12;STORE;addr12;34.8589385;-82.2677159;01-10-2011;powertools_store_01;$oklahomaHours;;;191
+#;Landscape Supplies 13;STORE;addr13;32.4021029;-86.2175467;01-10-2011;powertools_store_01;$oklahomaHours;;;65
+#;Landscape Supplies 14;STORE;addr14;33.4449339;-86.8489106;01-10-2011;powertools_store_01;$oklahomaHours;;;471
+#;Landscape Supplies 15;STORE;addr15;35.7557343;-84.1077834;01-10-2011;powertools_store_02;$indianaHours;;;772
+#;Landscape Supplies 16;STORE;addr16;40.7834328;-111.7376178;01-10-2011;powertools_store_02;$indianaHours;;;775
+#;Landscape Supplies 17;STORE;addr17;41.6557343;-110.877834;01-10-2011;powertools_store_02;$indianaHours;;;774
+#;Landscape Supplies 18;STORE;addr18;40.576665;-110.911111;01-10-2011;powertools_store_02;$indianaHours;;;776
+#;Landscape Supplies 19;STORE;addr19;40.486665;-111.621111;01-10-2011;powertools_store_02;$indianaHours;;;777
+#;Landscape Supplies 20;STORE;addr20;40.396665;-111.541111;01-10-2011;powertools_store_02;$indianaHours;;;778
+#
+#;Landscape Supplies Chennai1;STORE;addr21;12.9490626;80.2314355;01-10-2011;powertools_store_02;$indianaHours;;;Chennai1
+#;Landscape Supplies Karapakkam;STORE;addr22;12.919263;80.229099;01-10-2011;powertools_store_02;$indianaHours;;;Karapakkam
+#
+#INSERT_UPDATE Address;&addrID;streetnumber[unique=true];streetname;town;region(country(isocode),isocode);country(isocode);postalcode[unique=true];phone1;owner(PointOfService.storeId)[unique=true]
+#;addr1;2425;Weaver Way;Atlanta;US:US-GA;US;30340;(800) 331-3333;454
+#;addr2;930;Mountain Industrial Dr NW;Marietta;US:US-GA;US;30060;(800) 331-3334;177
+#;addr3;1536;Cobb Industrial Dr;Marietta;US:US-GA;US;30066;(800) 331-3335;19
+#;addr4;7980;Spence Rd;Fairburn;US:US-GA;US;30213;(800) 331-3336;850
+#;addr5;6320;Fairfield Rd;Columbia;US:US-SC;US;29203;(800) 331-3337;804
+#;addr6;100;Sunbelt Blvd;Columbia;US:US-SC;US;29203;(800) 551-5555;525
+#;addr7;9216;Franklin Rd;Murfreesboro;US:US-TN;US;37128;(800) 237-0000;366
+#;addr8;140;Glenn Bridge Rd;Arden;US:US-CA;US;28704;(619) 444-3333;284
+#;addr9;1337;E Weisgarber Rd;Knoxville;US:US-TN;US;37909;(253) 777-5555;473
+#;addr10;201;Dan Tibbs Road;Huntsville;US:US-AL;US;35806;(800) 331-3333;107
+#;addr11;7;Northway Ct;Greer;US:US-SC;US;29651;(800) 331-3334;522
+#;addr12;1165;Brockman McClimon Rd;Greer;US:US-SC;US;29651;(800) 331-3335;191
+#;addr13;700;Enterprise Ct;Montgomery;US:US-AL;US;36117;(800) 331-3336;65
+#;addr14;121;Distribution Dr;Homewood;US:US-AL;US;35209;(800) 331-3337;471
+#;addr15;2128;W Lamar Alexander Pkwy;Maryville;US:US-TN;US;37801;(800) 551-5555;772
+#;addr16;699;Donner Hill Cir;Salt Lake City;US:US-TN;US;84108;(800) 551-5555;775
+#;addr17;5000;5462 N SR-16;Randolph;US:US-UT;US;84064;(800) 551-5555;774
+#;addr18;6000;Forest 033;Kamas;US:US-UT;US;84036;(800) 551-5555;776
+#;addr19;7000;FR 306;Vernal;US:US-UT;US;84078;(800) 551-5555;777
+#;addr20;8000;Brockman Road;Garland;US:US-UT;US;84312;(800) 551-5555;778
+#
+#;addr21;120;Chennai 1,Thoraipakkam,Chennai;Tamil Nadu;US:US-UT;US;600097;(800) 551-5555;Chennai1
+#;addr22;121;Digital Zone, Karapakkam,Chennai;Tamil Nadu;US:US-UT;US;600097;(800) 551-5555;Karapakkam
+#
+#
+#INSERT_UPDATE PointOfService;name[unique=true];type(code);address(&addrID);latitude;longitude;geocodeTimestamp[dateformat=dd-MM-yyyy];$storeImage;openingSchedule(code);basestore(uid)[default=$storeUid];features(code);storeId[unique=true];storetype;specialtext;storeNotes;isactive;storeSpecialities
+#;Hybris Powertools El Cajon;STORE;hyaddr10;32.79505;-116.94078;01-10-2011;powertools_store_04;$californiaHours;;;172;"Nursery";"All Nursery";"";TRUE;Hardscapes Showroom,Nursery Center,Equipment Rental,Tool Rental;
+#
+#INSERT_UPDATE Address;&addrID;streetnumber[unique=true];streetname;town;region(country(isocode),isocode);country(isocode);postalcode[unique=true];phone1;owner(PointOfService.name)[unique=true]
+#;hyaddr10;5610;Mcginnis Ferry Rd Bldg 1;Alpharetta;US:US-CA;US;30005;(770) 442-8881;Hybris Powertools El Cajon
+#
+#UPDATE CMSSite;uid[unique=true];defaultStore(storeId)
+#;$siteUid;172
+#
+#UPDATE B2BCustomer;uid[unique=true];preferredStore(storeId)
+#;mark.rivers@rustic-hw.com;454
+#;mark.rivers@pronto-hw.com;177
+
+
+#UPDATE PointOfService;name[unique=true];storeSpecialities;
+#;Hybris Powertools El Cajon;Hardscape Showroom,Nursery Center,Equipment Rental,Tool Rental,Licensed Pesticide Distributor,Delivery,Golf Experts;

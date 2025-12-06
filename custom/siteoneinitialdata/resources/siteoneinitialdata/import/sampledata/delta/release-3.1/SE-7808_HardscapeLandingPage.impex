@@ -1,0 +1,74 @@
+$contentCatalog=siteoneContentCatalog
+$contentCatalogName=SiteOne Content Catalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$productCatalog=siteoneProductCatalog
+$productCatalogName=SiteOne Product Catalog
+$productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$picture=media(code, $contentCV);
+$image=image(code, $contentCV);
+$media=media(code, $contentCV);
+$page=page(uid, $contentCV);
+$contentPage=contentPage(uid, $contentCV);
+$product=product(code, $productCV)
+$category=category(code, $productCV)
+$siteResource=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/contentCatalogs/$contentCatalog
+$productResource=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/productCatalogs/$productCatalog
+$jarResourceCms=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/cockpits/cmscockpit
+$addonExtensionName=siteoneacceleratoraddon
+$medias=medias(code, $contentCV);
+$articleMedia=articleMedia(code, $contentCV);
+$mediaContainer=media(qualifier, $contentCV);
+$siteUid=siteone
+$lang=en
+
+
+
+
+INSERT_UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);label;defaultPage[default='true'];approvalStatus(code)[default='approved'];homepage[default='false']
+;;hardscapesLander;Hardscapes;SiteOneContentPageTemplate;/hardscapesLander;
+
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='hardscapesLander'];contentSlot(uid,$contentCV)[unique=true];;;
+;;Section3-hardscapesLander;Section3;;Section3Slot-hardscapesLander;;;
+;;Section1-hardscapesLander;Section1;;Section1Slot-hardscapesLander;;;
+;;Section4-hardscapesLander;Section4;;Section4Slot-hardscapesLander;;;
+;;Section5-hardscapesLander;Section5;;Section5Slot-hardscapesLander;;;
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef);;;
+;;Section3Slot-hardscapesLander;Section3 Slot for Hardscapes Lander Page;true;hardscapesHeaderComponent01;;;
+;;Section1Slot-hardscapesLander;Section1 Slot for Hardscapes Lander Page;true;galleryPageTitleBannerComponent02,HardscapesBannerComponent1,HardscapesBannerComponent2,HardscapesBannerComponent3,HardscapesBannerComponent4;;;
+;;Section4Slot-hardscapesLander;Section4 Slot for Hardscapes Lander Page;true;HardscapePromoBannerComponent1;;;
+;;Section5Slot-hardscapesLander;Section5 Slot for Hardscapes Lander Page;true;GalleryPromoComponent31,GalleryPromoComponent32;;;
+
+INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];mime;label;galleryImages(code);realfilename;@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator][forceWrite=true];folder(qualifier)[default='images']
+;;hardscapesbanner;image/jpeg;Landscaping;;;$siteResource/images/banners/site/gallery/Hardscapes_MainImage_710x400.jpg
+;;naturalstone;image/jpeg;Landscaping;;;$siteResource/images/banners/site/gallery/Product-Natural-Stone.jpg
+;;outdoorliving;image/jpeg;Landscaping;;;$siteResource/images/banners/site/gallery/Product-Outdoor_Living.jpg
+;;pavers;image/jpeg;Landscaping;;;$siteResource/images/banners/site/gallery/Product-Pavers.jpg
+;;toolsequipment;image/jpeg;Landscaping;;;$siteResource/images/banners/site/gallery/Product-Tools.jpg
+;;galleryCallout;image/jpeg;Landscaping;;;$siteResource/images/banners/site/gallery/Hardscapes-Gallery-Callout.jpg
+;;askexperts1;image/jpeg;Patios;;;$siteResource/images/banners/site/gallery/Callout-Ask-Experts.jpg
+;;projectshowcase1;image/jpeg;Patios;;;$siteResource/images/banners/site/gallery/Callout-Partners-Program.jpg
+;;circleIcon;image/jpeg;Patios;;;$siteResource/images/banners/site/gallery/Hardscapes-Circle-Icon.png
+
+
+
+INSERT_UPDATE SiteOneGalleryParagraphComponent;$contentCV[unique=true];uid[unique=true];name;headline[lang=en];&componentRef;promotionalText;buttonLabel;buttonURL;image(code, $contentCV)
+;;GalleryPromoComponent31;Gallery Banner detail1;Ask the Experts;GalleryPromoComponent31;<p>Have a question about product availability,delivery or pricing? We can help.</p>;Contact us ->;/contactus/hardscapes;askexperts1
+;;GalleryPromoComponent32;Gallery Banner detail2;Join the Partners Program;GalleryPromoComponent32;<p>Have a hardscapes installation you're really proud of? Show the world by submitting photos of your work to our Project Showcase.Follow the link below for details</p>;Learn more->;/partnersprogram;projectshowcase1
+
+
+INSERT_UPDATE SiteOneGalleryHeaderComponent;$contentCV[unique=true];uid[unique=true];name;headline[lang=$lang];$picture[lang=$lang];icon(code, $contentCV);content[lang=$lang];&componentRef
+;;hardscapesHeaderComponent01;Hardscapes Header Component1;BUILD WITH THE BEST;hardscapesbanner;circleIcon;Your customers demand excellance. Why not demand the same from your hardscape supplier? Your nearest SiteOne Stone Center is your source for the finest materials, backed by the most knowledgeable harscape experts in your market. Along with the latest design trends, insights and techniques, you'll find everything from manufactured pavers to exclusive natural stone collections.;hardscapesHeaderComponent01
+
+INSERT_UPDATE PromotionImageComponent;$contentCV[unique=true];uid[unique=true];name;title;&componentRef;urlLink;$picture[lang=$lang];promotionalText;buttonLabel;buttonURL;
+;;HardscapesBannerComponent1;Hardscape Banner detail1;Natural Stone;HardscapesBannerComponent1;;naturalstone;<p>Premium natural stone products for patios, retaining walls, driveways, outdoor living spaces, and more</p>;;
+;;HardscapesBannerComponent2;Hardscape Banner detail2;Outdoor Living;HardscapesBannerComponent2;;outdoorliving;<p>Lorem ipsum fivel novellum ito soreyle vexecp bysrle diusw smaie nmeiw deviq. Lorem ipsum fivel novellum ito soreyle. </p>;;
+;;HardscapesBannerComponent3;Hardscape Banner detail3;Pavers & Edging;HardscapesBannerComponent3;;pavers;<p>Lorem ipsum fivel novellum ito soreyle vexecp bysrle diusw smaie nmeiw deviq. Lorem ipsum fivel novellum ito soreyle. </p>;;
+;;HardscapesBannerComponent4;Hardscape Banner detail4;Tools, Equipment & Accessories;HardscapesBannerComponent4;;toolsequipment;<p>Lorem ipsum fivel novellum ito soreyle vexecp bysrle diusw smaie nmeiw deviq. Lorem ipsum fivel novellum ito soreyle. </p>;;
+
+INSERT_UPDATE SiteOneStoreDetailsPromoComponent;$contentCV[unique=true];uid[unique=true];name;headline[lang=en];&componentRef;urlLink;$picture[lang=$lang];promotionalText;subheadText;buttonLabel;buttonURL;icon
+;;HardscapePromoBannerComponent1;Hardscape Banner detail1;<p>YOU DREAM IT.</p><p>WE CAN HELP CREATE IT.</p>;HardscapePromoBannerComponent1;;galleryCallout;<p>No matter what you have in mind, we have made the materials and expertise you need to bring it to life. From outdoor kitchens to pools and fire pits, the possibilities are endless.</p>;;View Gallery;/galleryImage;
+
+INSERT_UPDATE SiteonePageTitleBannerComponent;$contentCV[unique=true];uid[unique=true];name;headline;&componentRef
+;;galleryPageTitleBannerComponent01;Gallery  Page Title Component;Let's Build Something Great;galleryPageTitleBannerComponent01
+;;galleryPageTitleBannerComponent02;Gallery  Page Title Component2;Professional-Grade Products;galleryPageTitleBannerComponent02

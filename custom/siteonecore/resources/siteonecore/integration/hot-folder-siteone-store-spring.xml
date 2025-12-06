@@ -1,0 +1,409 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ [y] hybris Platform
+
+ Copyright (c) 2000-2016 SAP SE or an SAP affiliate company.
+ All rights reserved.
+
+ This software is the confidential and proprietary information of SAP
+ ("Confidential Information"). You shall not disclose such Confidential
+ Information and shall use it only in accordance with the terms of the
+ license agreement you entered into with SAP.
+-->
+
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:int="http://www.springframework.org/schema/integration"
+	xmlns:file="http://www.springframework.org/schema/integration/file"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/integration
+	http://www.springframework.org/schema/integration/spring-integration.xsd
+	http://www.springframework.org/schema/integration/file
+	http://www.springframework.org/schema/integration/file/spring-integration-file.xsd
+	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+	http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<context:annotation-config/>
+
+	<bean id="azureHotfolderStoreRemotePath" class="java.lang.String">
+		<constructor-arg name="value"
+			value="${azure.hotfolder.storage.container.hotfolder}/siteonestore"/>
+	</bean>
+
+	<bean id="azureHotfolderStoreLocalPath" class="java.lang.String">
+		<constructor-arg name="value"
+			value="#{azureHotfolderLocalDirectoryBase}/#{azureHotfolderStoreRemotePath}"/>
+	</bean>
+
+	<bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+		<property name="targetObject" ref="hotfolderInboundFileChannelMappings"/>
+		<property name="targetMethod" value="put"/>
+		<property name="arguments">
+			<list>
+				<bean class="java.util.regex.Pattern" factory-method="compile">
+					<constructor-arg value="^(siteonestore)_(\d+)(\S+)_(\d+)(\S+)\.(?i)txt"/>
+				</bean>
+				<ref bean="SiteOneStoreBatchFilesCloudHotFolderProc"/>
+			</list>
+		</property>
+	</bean>
+
+	<int:channel id="SiteOneStoreBatchFilesCloudHotFolderProc"/>
+
+	<int:service-activator input-channel="SiteOneStoreBatchFilesCloudHotFolderProc" output-channel="batchSiteOneFilesHeaderInit"
+		ref="SiteOneStoreCloudHotFolderHeaderSetupTask" method="execute">
+	</int:service-activator>
+
+	<!-- Reviews :: Azure Inbound File Synchronizer and Channel Adapter -->
+	<bean id="SiteOneStoreAzureBlobInboundSynchronizer"
+		class="de.hybris.platform.cloud.azure.hotfolder.remote.inbound.AzureBlobInboundSynchronizer">
+		<constructor-arg name="sessionFactory" ref="azureBlobSessionFactory"/>
+		<property name="remoteDirectory" value="#{azureHotfolderStoreRemotePath}"/>
+		<property name="moveToRemoteDirectory" value="#{azureHotfolderStoreRemotePath}/processing"/>
+		<property name="deleteRemoteFiles" value="${azure.hotfolder.storage.delete.remote.files}"/>
+		<property name="preserveTimestamp" value="true"/>
+		<property name="filter" ref="azureHotfolderFileFilter"/>
+		<property name="comparator" ref="azureHotFolderFileComparator"/>
+	</bean>
+
+	<bean id="SiteOneStoreAzureBlobSynchronizingMessageSource"
+		class="de.hybris.platform.cloud.azure.hotfolder.remote.inbound.AzureBlobSynchronizingMessageSource">
+		<constructor-arg name="synchronizer" ref="SiteOneStoreAzureBlobInboundSynchronizer"/>
+		<property name="autoCreateLocalDirectory" value="true"/>
+		<property name="localDirectory" value="#{azureHotfolderStoreLocalPath}/processing/"/>
+		<property name="maxFetchSize" value="${azure.hotfolder.storage.polling.fetch.batch-size}"/>
+	</bean>
+
+	<bean id="azureStoreChannelAdapterTaskExecutor"
+		class="de.hybris.platform.cloud.commons.scheduling.HybrisAwareThreadPoolTaskExecutor">
+		<property name="waitForTasksToCompleteOnShutdown" value="true"/>
+		<property name="threadNamePrefix" value="AzureStoreIntegrationTaskExecutorThread-${tenantId}-"/>
+		<property name="threadGroupName" value="AzureStoreIntegrationTaskExecutorThread-${tenantId}"/>
+		<property name="corePoolSize" value="${azure.hotfolder.storage.polling.core-pool-size}"/>
+		<property name="maxPoolSize" value="${azure.hotfolder.storage.polling.max-pool-size}"/>
+		<property name="queueCapacity" value="-1"/>
+		<property name="keepAliveSeconds" value="60"/>
+		<property name="rejectedExecutionHandler">
+			<bean class="java.util.concurrent.ThreadPoolExecutor$DiscardPolicy"/>
+		</property>
+		<property name="role" value="integration"/>
+		<property name="autoStartup" value="false"/>
+		<property name="phase" value="10"/>
+		<property name="awaitTerminationSeconds" value="60"/>
+	</bean>
+
+
+	<bean id="SiteOneStoreCloudHotFolderHeaderSetupTask" class="de.hybris.platform.acceleratorservices.dataimport.batch.task.HeaderSetupTask">
+		<property name="catalog" value="${cloud.hotfolder.default.mapping.header.catalog}"/>
+		<property name="net" value="${cloud.hotfolder.default.mapping.header.net}" />
+		<property name="storeBaseDirectory" value="#{azureHotfolderStoreRemotePath}/processing" />
+	</bean>
+
+	<int:inbound-channel-adapter id="SiteOneStoreAzureInboundChannelAdapter"
+		auto-startup="false"
+		role="${cloud.hotfolder.storage.services.role}"
+		phase="50"
+		ref="SiteOneStoreAzureBlobSynchronizingMessageSource"
+		channel="siteOneStoreCloudHotFolderInboundFileHeaderEnricherChannel">
+		<int:poller fixed-rate="${azure.hotfolder.storage.polling.fixed.rate}"
+			task-executor="azureStoreChannelAdapterTaskExecutor"
+			max-messages-per-poll="${azure.hotfolder.storage.polling.fetch.batch-size}">
+		</int:poller>
+	</int:inbound-channel-adapter>
+	
+	<int:channel id="siteOneStoreCloudHotFolderInboundFileHeaderEnricherChannel">
+        <int:interceptors>
+           <ref bean="siteOneStoreHotFolderRoutingChannelInterceptor"/>
+        </int:interceptors>
+    </int:channel>
+
+
+    <bean id="siteOneStoreHotFolderRoutingChannelInterceptor" class="de.hybris.platform.cloud.hotfolder.interceptor.HotFolderRouterChannelInterceptor">
+      <property name="successChannel" ref="SiteOneStoreAzureArchiveOutboundChannelAdapter"/>
+      <property name="failureChannel" ref="SiteOneStoreAzureErrorOutboundChannelAdapter"/>
+    </bean>
+
+    <int:header-enricher id="siteOneStoreCloudHotFolderInboundFileNameHeaderEnricherChannel"
+                input-channel="siteOneStoreCloudHotFolderInboundFileHeaderEnricherChannel"
+                output-channel="hotfolderInboundFileChannel">
+        <int:header name="#{fileNameHeaderKey}" expression="payload.getName()"/>
+        <int:header name="#{fileLastModifiedHeaderKey}" expression="payload.lastModified()"/>
+   </int:header-enricher>
+
+	<!-- Store :: Azure Outbound Channel adapters for moving remote files into archive/error folders -->
+	<bean id="SiteOneStoreAzureArchiveMessageHandler" parent="abstractAzureMoveMessageHandler">
+		<property name="remoteDirectory" value="#{azureHotfolderStoreRemotePath}/archive"/>
+	</bean>
+
+	<bean id="SiteOneStoreAzureErrorMessageHandler" parent="abstractAzureMoveMessageHandler">
+		<property name="remoteDirectory" value="#{azureHotfolderStoreRemotePath}/error"/>
+	</bean>
+
+	<int:outbound-channel-adapter id="SiteOneStoreAzureArchiveOutboundChannelAdapter"
+		ref="SiteOneStoreAzureArchiveMessageHandler">
+	</int:outbound-channel-adapter>
+
+	<int:outbound-channel-adapter id="SiteOneStoreAzureErrorOutboundChannelAdapter"
+		ref="SiteOneStoreAzureErrorMessageHandler" >
+	</int:outbound-channel-adapter>
+
+
+	<!--Start-->
+	<file:inbound-channel-adapter id="azureLocalStoreErrorInboundChannelAdapter"
+		directory="#{azureHotfolderStoreLocalPath}/error"
+		filter="azureLocalStoreErrorHotFolderFileFilter">
+		<int:poller fixed-rate="10000"/>
+	</file:inbound-channel-adapter>
+
+	<bean id="azureLocalStoreErrorHotFolderFileFilter"
+		class="de.hybris.platform.cloud.commons.spring.integration.file.filters.ChainFileListFilter">
+		<constructor-arg name="fileFilters" ref="azureLocalStoreErrorFolderFileListFilter"/>
+	</bean>
+
+	<util:list id="azureLocalStoreErrorFolderFileListFilter">
+		<ref bean="azureLocalStoreErrorRegexPatternFileListFilter"/>
+		<ref bean="azureFileSystemPersistentAcceptOnceListFilter"/>
+	</util:list>
+
+	<bean id="azureLocalStoreErrorRegexPatternFileListFilter"
+		class="org.springframework.integration.file.filters.RegexPatternFileListFilter">
+		<constructor-arg name="pattern" value="^error_siteonestore.*$"/>
+	</bean>
+
+	<bean id="azureFileSystemPersistentAcceptOnceListFilter" class="org.springframework.integration.file.filters.FileSystemPersistentAcceptOnceFileListFilter">
+		<constructor-arg name="store" ref="hotfolderMetadataStore"/>
+		<constructor-arg name="prefix" value="${azure.hotfolder.storage.metadatastore.prefix}"/>
+	</bean>
+
+	<int:outbound-channel-adapter id="azureLocalStoreErrorOutboundChannelAdapter"
+		channel="azureLocalStoreErrorInboundChannelAdapter" ref="azureStoreBlobMessageHandler"/>
+
+	<bean id="azureStoreBlobMessageHandler" class="de.hybris.platform.cloud.azure.hotfolder.remote.outbound.AzureBlobMessageHandler">
+		<constructor-arg ref="azureBlobSessionFactory"/>
+		<property name="remoteDirectory" ref="azureStoreHotfolderErrorRemotePath"/>
+		<property name="fileNameGenerator" ref="azureTimestampFileNameGenerator"/>
+		<property name="deleteSourceFiles" value="true"/>
+	</bean>
+
+	<bean id="azureStoreHotfolderErrorRemotePath" class="java.lang.String">
+		<constructor-arg name="value"
+			value="#{azureHotfolderStoreRemotePath}/error"/>
+	</bean>
+
+
+	<!-- Store Starts -->
+	<bean id="batchSiteOneOpeningScheduleConverterMapping"
+		class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping"
+		p:mapping="siteonestore"
+		p:converter-ref="batchSiteOneOpeningScheduleConverter" />
+
+	<bean id="batchSiteOneOpeningScheduleConverter"
+		class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>
+				INSERT_UPDATE OpeningSchedule;code[unique=true];
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>;siteone-standard-hours-{+0};</value>
+		</property>
+	</bean>
+
+	<bean id="batchSiteOneStoreConverterMapping"
+		class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping"
+		p:mapping="siteonestore"
+		p:converter-ref="batchSiteOneStoreConverter" />
+
+	<bean id="batchSiteOneStoreConverter" class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>
+				INSERT_UPDATE PointOfService;storeId[unique=true];name[cellDecorator=com.siteone.core.batch.decorator.StoreNameCellDecorator];type(code);basestore(uid)[cellDecorator=com.siteone.core.batch.decorator.CountryBaseStoreCellDecorator];latitude;longitude;storeType;specialText;isActive[translator=com.siteone.core.translator.StoreStatusTranslator,adapter=pointOfServiceAdaptor];division(uid)[cellDecorator=com.siteone.core.batch.decorator.CountryDivisionCellDecorator];storeSpecialities;storeNotes;supplyChainNodeId;title;metroStatArea;parentId;area[translator=com.siteone.core.translator.AreaTranslator,adapter=areaImportAdapter];regionId[translator=com.siteone.core.translator.RegionIdTranslator,adapter=regionIdImportAdapter];branchManagerEmail;customerRetailId;bigBag;bigBagSize[translator=com.siteone.core.translator.BigBagSizeTranslator,adapter=bigBagSizeAdapter];nurseryBuyingGroup;enableOnlineFulfillment;areaName;regionName
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>;{+0};{+1};STORE;{16};{2};{3};{5};{6};{9};{16};{19};{18};{17};{20};{21};{23};{23};{23};{24};{25};{26};{27};{28};{29};{30};{31}
+			</value>
+		</property>
+		<property name="rowFilter">
+			<bean
+				class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexRowFilter">
+				<property name="expression"
+					value="('true'.equalsIgnoreCase(row[9])  &amp;&amp; row[2]!='' &amp;&amp; row[3]!='') || ('false'.equalsIgnoreCase(row[9]))" />
+			</bean>
+		</property>
+
+	</bean>
+
+	<bean id="batchSiteOneStoreOpeningScheduleConverterMapping"
+		class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping"
+		p:mapping="siteonestore"
+		p:converter-ref="batchSiteOneStoreOpeningScheduleConverter" />
+
+	<bean id="batchSiteOneStoreOpeningScheduleConverter"
+		class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>
+				UPDATE PointOfService;storeId[unique=true];name[cellDecorator=com.siteone.core.batch.decorator.StoreNameCellDecorator];type(code);openingSchedule(code)
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>;{+0};{+1};STORE;siteone-standard-hours-{+0};</value>
+		</property>
+	</bean>
+
+	<bean id="storeSpecialtyAdapter" class="com.siteone.core.batch.adapter.impl.DefaultStoreSpecialtyAdapter" >
+		<property name="pointOfServiceDao" ref="pointOfServiceDao" />
+		<property name="modelService" ref="modelService" />
+	</bean>
+	<bean id="regionIdImportAdapter" class="com.siteone.core.adapter.impl.DefaultRegionIdImportAdapter" />
+
+	<bean id="areaImportAdapter" class="com.siteone.core.adapter.impl.DefaultAreaImportAdapter" />
+	
+	<bean id="pointOfServiceAdaptor" class="com.siteone.core.adapter.impl.DefaultPointOfServiceAdaptor" />
+
+	<bean id="bigBagSizeAdapter" class="com.siteone.core.adapter.impl.DefaultBigBagSizeAdapter" />
+
+	<bean id="weekDayOpeningDayImportAdapter" class="com.siteone.core.batch.adapter.impl.DefaultWeekDayOpeningDayImportAdapter" >
+		<property name="modelService" ref="modelService" />
+	</bean>
+	<bean id="batchSiteOneStoreWeekDayOpeningDayConverterMapping"
+		class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping"
+		p:mapping="siteonestore"
+		p:converter-ref="batchSiteOneStoreWeekDayOpeningDayConverter" />
+		
+	<bean id="batchSiteOneStoreWeekDayOpeningDayConverter" class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>
+				UPDATE PointOfService;storeId[unique=true];@WeekDayOpeningDay[translator=com.siteone.core.batch.translator.WeekDayOpeningDayTranslator,adapter=weekDayOpeningDayImportAdapter]
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>;{+0};{7}</value>
+		</property>
+	</bean>
+	
+	<bean id="specialOpeningOrClosingAdapter" class="com.siteone.core.batch.adapter.impl.DefaultSpecialOpeningOrClosingAdapter" >
+		<property name="modelService" ref="modelService" />
+	</bean>
+	<bean id="batchSiteOneStoreSpecialOpeningOrClosingConverterMapping"
+		class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping"
+		p:mapping="siteonestore"
+		p:converter-ref="batchSiteOneStoreSpecialOpeningOrClosingConverter" />
+
+	<bean id="batchSiteOneStoreSpecialOpeningOrClosingConverter" class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>
+				UPDATE PointOfService;storeId[unique=true];@SpecialOpeningOrClosingDay[translator=com.siteone.core.batch.translator.SpecialOpeningOrClosingTranslator,adapter=specialOpeningOrClosingAdapter]
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>;{+0};{8}</value>
+		</property>
+	</bean>
+	
+	<bean id="batchSiteOneStoreStoreLocatorConverterMapping"
+		class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping"
+		p:mapping="siteonestore"
+		p:converter-ref="batchSiteOneStoreStoreLocatorConverter" />
+
+	<bean id="batchSiteOneStoreStoreLocatorConverter" class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>
+				UPDATE PointOfService;storeId[unique=true];@StoreLocation2StoreLocatorFeature[translator=com.siteone.core.batch.translator.StoreSpecialtyTranslator,adapter=storeSpecialtyAdapter]
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>;{+0};{19}</value>
+		</property>
+	</bean>	
+	
+	<!-- store Ends -->
+
+	<!-- warehouse starts -->
+	<bean id="batchSiteOneWarehouseConverterMapping"
+		class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping"
+		p:mapping="siteonestore"
+		p:converter-ref="batchSiteOneWarehouseConverter" />
+
+	<bean id="batchSiteOneWarehouseConverter" class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>
+				INSERT_UPDATE Warehouse;code[unique=true];name[lang=en];vendor(code)[default=siteone];pointsOfService(storeId)
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>;{+0};{+0}-Warehouse;;{+0}</value>
+		</property>
+	</bean>
+	<!-- warehouse ends -->
+
+	<!-- warehouse and pointofservice relation starts -->
+
+	<bean id="batchSiteOnePoS2WarehouseRelConverterMapping"
+		class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping"
+		p:mapping="siteonestore"
+		p:converter-ref="batchSiteOnePoS2WarehouseRelConverter" />
+
+	<bean id="batchSiteOnePoS2WarehouseRelConverter" class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>
+				INSERT_UPDATE PoS2WarehouseRel;source(storeId)[unique=true];target(code)[unique=true]
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>;{+0};{+0};</value>
+		</property>
+		<property name="rowFilter">
+			<bean
+				class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexRowFilter">
+				<property name="expression"
+					value="(row[1]!='' &amp;&amp;  (('true'.equalsIgnoreCase(row[9]) &amp;&amp; row[2]!='' &amp;&amp; row[3]!='') || ('false'.equalsIgnoreCase(row[9]))) )" />
+			</bean>
+		</property>
+	</bean>
+
+	<!-- warehouse and pointofservice relation ends -->
+
+	<!-- store Address  -->
+
+	<bean id="batchSiteOneStoreAddressConverterMapping"
+		class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping"
+		p:mapping="siteonestore"
+		p:converter-ref="batchSiteOneStoreAddressUnitConverter" />
+
+	<bean id="batchSiteOneStoreAddressUnitConverter" class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>
+				INSERT_UPDATE Address;guid[unique=true];streetname;streetnumber;postalcode;town;country(isocode);region(isocode);phone1[cellDecorator=com.siteone.core.batch.decorator.PhoneNumberCellDecorator];owner(PointOfService.storeId)[unique=true];district;
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>;StoreAddress{+0};{+11};{10};{+14};{12};{15};{15}-{13};{4};{+0};;</value>
+		</property>
+	</bean>
+
+	<!-- store Address  -->
+
+	<bean id="batchSiteOneStoreDefaultAddressConverterMapping"
+		class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping"
+		p:mapping="siteonestore"
+		p:converter-ref="batchSiteOneStoreDefaultAddressUnitConverter" />
+
+	<bean id="batchSiteOneStoreDefaultAddressUnitConverter" class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>
+				UPDATE PointOfService;storeId[unique=true];Address(owner(PointOfService.storeId),guid[unique=true])
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>;{+0};{+0}:StoreAddress{+0}</value>
+		</property>
+	</bean>
+
+</beans>

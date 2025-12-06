@@ -1,0 +1,7 @@
+INSERT_UPDATE SiteOneFeatureSwitch;key[unique=true];value
+;StatesAllowedforBOL;All
+;BranchesAllowedforBOL;All
+;PaywithEwallet;false
+;PaywithCC;false
+;EwalletAccess;false
+;isPOAEnabled;false

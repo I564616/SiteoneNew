@@ -1,0 +1,945 @@
+##Primary Hierarchy
+#New Categories
+$supercategories=supercategories( code, catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Staged']));;;;;;;;;
+$catalogVersion=catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Staged'])[unique=true,default='siteoneProductCatalog:Staged'];;;;;;;;;
+;;;;;;;;;
+
+INSERT_UPDATE Category;code[unique=true];name[lang=en];name[lang=es];$supercategories;$catalogVersion;allowedPrincipals(uid)
+;PH1323119 ;Service Parts;Piezas de Mantenimiento;PH1323;siteoneProductCatalog:Staged;admingroup
+;PH1323115104;Truck Spreader/Sprayer;Esparcidor/Rociador para camión;PH1323115;siteoneProductCatalog:Staged;admingroup
+;PH1323120 ;Consumables;Consumibles;PH1323;siteoneProductCatalog:Staged;admingroup
+;PH1323120100;Air Filters;Filtros de Aire;PH1323120;siteoneProductCatalog:Staged;admingroup
+;PH1323120101;Belts;Correas;PH1323120;siteoneProductCatalog:Staged;admingroup
+;PH1323120102;Blades;Cuchillas;PH1323120;siteoneProductCatalog:Staged;admingroup
+;PH1323120103;Fuels & Lubricants;Combustibles y Lubricantes;PH1323120;siteoneProductCatalog:Staged;admingroup
+;PH1323120104;Spark Plugs;Bujías;PH1323120;siteoneProductCatalog:Staged;admingroup
+;PH1323120105;Spray Jet Nozzles;Boquillas de Pulverización a Presión;PH1323120;siteoneProductCatalog:Staged;admingroup
+;PH1323120106;Trimmer Line;Hilo de Desbrozadora;PH1323120;siteoneProductCatalog:Staged;admingroup
+;PH1323121 ;Sports & Turf;Céspedes y Deportes;PH1323;siteoneProductCatalog:Staged;admingroup
+;PH1323121100;Sports & Turf Accessories;Accesorios para Césped y Deportes;PH1323121;siteoneProductCatalog:Staged;admingroup
+;PH1323121101;Sports & Turf Equipment;Equipos para Césped y Deportes;PH1323121;siteoneProductCatalog:Staged;admingroup
+;PH1323122 ;Stand on Spreader/Sprayer;Esparcidor/Rociador para Conducir de Pie;PH1323;siteoneProductCatalog:Staged;admingroup
+;PH1323122100;Machine;Máquina;PH1323122;siteoneProductCatalog:Staged;admingroup
+;PH1323122101;Parts & Accessories;Partes y Accesorios;PH1323122;siteoneProductCatalog:Staged;admingroup
+;PH1324 ;Hardscapes Equipment;Equipos para Materiales Duros;PH13;siteoneProductCatalog:Staged;admingroup
+;PH1324110;Hardscapes Equipment;Equipos para Materiales Duros;PH1324;siteoneProductCatalog:Staged;admingroup
+;PH1324110100;Hardscapes Equipment;Equipos para Materiales Duros;PH1324110;siteoneProductCatalog:Staged;admingroup
+;PH1324111;Hardscapes Parts & Accessories;Partes y Accesorios para Materiales Duros;PH1324;siteoneProductCatalog:Staged;admingroup
+;PH1324111100;Hardscapes Parts & Accessories;Partes y Accesorios para Materiales Duros;PH1324111;siteoneProductCatalog:Staged;admingroup
+;PH1325 ;Irrigation Equipment;Equipos para Irrigación;PH13;siteoneProductCatalog:Staged;admingroup
+;PH1325110;Irrigation Equipment;Equipos para Irrigación;PH1325;siteoneProductCatalog:Staged;admingroup
+;PH1325110100;Irrigation Equipment;Equipos para Irrigación;PH1325110;siteoneProductCatalog:Staged;admingroup
+;PH1325111;Irrigation Parts & Accessories;Partes y Accesorios para Irrigación;PH1325;siteoneProductCatalog:Staged;admingroup
+;PH1325111100;Irrigation Parts & Accessories;Partes y Accesorios para Irrigación;PH1325111;siteoneProductCatalog:Staged;admingroup
+
+
+
+##---------------------------------------------------------------------------------------------
+
+##Sales Hierarchy
+
+#New Categories
+$supercategories=supercategories( code, catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Staged']));;;;;;;;;
+$catalogVersion=catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Staged'])[unique=true,default='siteoneProductCatalog:Staged'];;;;;;;;;
+;;;;;;;;;
+INSERT_UPDATE Category;code[unique=true];name[lang=en];name[lang=es];$supercategories;$catalogVersion;allowedPrincipals(uid)
+;SH1323119 ;Service Parts;Piezas de Mantenimiento;SH1323;siteoneProductCatalog:Staged;admingroup
+;SH1323115104;Truck Spreader/Sprayer;Esparcidor/Rociador para camión;SH1323115;siteoneProductCatalog:Staged;admingroup
+;SH1323120 ;Consumables;Consumibles;SH1323;siteoneProductCatalog:Staged;admingroup
+;SH1323120100;Air Filters;Filtros de Aire;SH1323120;siteoneProductCatalog:Staged;admingroup
+;SH1323120101;Belts;Correas;SH1323120;siteoneProductCatalog:Staged;admingroup
+;SH1323120102;Blades;Cuchillas;SH1323120;siteoneProductCatalog:Staged;admingroup
+;SH1323120103;Fuels & Lubricants;Combustibles y Lubricantes;SH1323120;siteoneProductCatalog:Staged;admingroup
+;SH1323120104;Spark Plugs;Bujías;SH1323120;siteoneProductCatalog:Staged;admingroup
+;SH1323120105;Spray Jet Nozzles;Boquillas de Pulverización a Presión;SH1323120;siteoneProductCatalog:Staged;admingroup
+;SH1323120106;Trimmer Line;Hilo de Desbrozadora;SH1323120;siteoneProductCatalog:Staged;admingroup
+;SH1323121 ;Sports & Turf;Céspedes y Deportes;SH1323;siteoneProductCatalog:Staged;admingroup
+;SH1323121100;Sports & Turf Accessories;Accesorios para Césped y Deportes;SH1323121;siteoneProductCatalog:Staged;admingroup
+;SH1323121101;Sports & Turf Equipment;Equipos para Césped y Deportes;SH1323121;siteoneProductCatalog:Staged;admingroup
+;SH1323122 ;Stand on Spreader/Sprayer;Esparcidor/Rociador para Conducir de Pie;SH1323;siteoneProductCatalog:Staged;admingroup
+;SH1323122100;Machine;Máquina;SH1323122;siteoneProductCatalog:Staged;admingroup
+;SH1323122101;Parts & Accessories;Partes y Accesorios;SH1323122;siteoneProductCatalog:Staged;admingroup
+;SH1324 ;Hardscapes Equipment;Equipos para Materiales Duros;SH13;siteoneProductCatalog:Staged;admingroup
+;SH1324110;Hardscapes Equipment;Equipos para Materiales Duros;SH1324;siteoneProductCatalog:Staged;admingroup
+;SH1324110100;Hardscapes Equipment;Equipos para Materiales Duros;SH1324110;siteoneProductCatalog:Staged;admingroup
+;SH1324111;Hardscapes Parts & Accessories;Partes y Accesorios para Materiales Duros;SH1324;siteoneProductCatalog:Staged;admingroup
+;SH1324111100;Hardscapes Parts & Accessories;Partes y Accesorios para Materiales Duros;SH1324111;siteoneProductCatalog:Staged;admingroup
+;SH1325 ;Irrigation Equipment;Equipos para Irrigación;SH13;siteoneProductCatalog:Staged;admingroup
+;SH1325110;Irrigation Equipment;Equipos para Irrigación;SH1325;siteoneProductCatalog:Staged;admingroup
+;SH1325110100;Irrigation Equipment;Equipos para Irrigación;SH1325110;siteoneProductCatalog:Staged;admingroup
+;SH1325111;Irrigation Parts & Accessories;Partes y Accesorios para Irrigación;SH1325;siteoneProductCatalog:Staged;admingroup
+;SH1325111100;Irrigation Parts & Accessories;Partes y Accesorios para Irrigación;SH1325111;siteoneProductCatalog:Staged;admingroup
+
+#-----------SH17_Tools&Equipment------------------------#
+
+#New Categories
+$supercategories=supercategories( code, catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Staged']));;;;;;;;;
+$catalogVersion=catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Staged'])[unique=true,default='siteoneProductCatalog:Staged'];;;;;;;;;
+;;;;;;;;;
+
+INSERT_UPDATE Category;code[unique=true];name[lang=en];name[lang=es];$supercategories;$catalogVersion;allowedPrincipals(uid)
+;SH1711118 ;Service Parts;Piezas de Mantenimiento;SH1711;siteoneProductCatalog:Staged;admingroup
+;SH1711119 ;Consumables;Consumibles;SH1711;siteoneProductCatalog:Staged;admingroup
+;SH1711119100;Air Filters;Filtros de Aire;SH1711119;siteoneProductCatalog:Staged;admingroup
+;SH1711119101;Belts;Correas;SH1711119;siteoneProductCatalog:Staged;admingroup
+;SH1711119102;Blades;Cuchillas;SH1711119;siteoneProductCatalog:Staged;admingroup
+;SH1711119103;Fuels & Lubricants;Combustibles y Lubricantes;SH1711119;siteoneProductCatalog:Staged;admingroup
+;SH1711119104;Spark Plugs;Bujías;SH1711119;siteoneProductCatalog:Staged;admingroup
+;SH1711119105;Spray Jet Nozzles;Boquillas de Pulverización a Presión;SH1711119;siteoneProductCatalog:Staged;admingroup
+;SH1711119106;Trimmer Line;Hilo de Desbrozadora;SH1711119;siteoneProductCatalog:Staged;admingroup
+;SH1711120 ;Sports & Turf;Céspedes y Deportes;SH1711;siteoneProductCatalog:Staged;admingroup
+;SH1711120100;Sports & Turf Accessories;Accesorios para Césped y Deportes;SH1711120;siteoneProductCatalog:Staged;admingroup
+;SH1711120101;Sports & Turf Equipment;Equipos para Césped y Deportes;SH1711120;siteoneProductCatalog:Staged;admingroup
+;SH1711121 ;Stand on Spreader/Sprayer;Esparcidor/Rociador para Conducir de Pie;SH1711;siteoneProductCatalog:Staged;admingroup
+;SH1711121100;Machine;Máquina;SH1711121;siteoneProductCatalog:Staged;admingroup
+;SH1711121101;Parts & Accessories;Partes y Accesorios;SH1711121;siteoneProductCatalog:Staged;admingroup
+;SH1714 ;Hardscapes Equipment;Equipos para Materiales Duros;SH17;siteoneProductCatalog:Staged;admingroup
+;SH1714110;Hardscapes Equipment;Equipos para Materiales Duros;SH1714;siteoneProductCatalog:Staged;admingroup
+;SH1714110100;Hardscapes Equipment;Equipos para Materiales Duros;SH1714110;siteoneProductCatalog:Staged;admingroup
+;SH1714111;Hardscapes Parts & Accessories;Partes y Accesorios para Materiales Duros;SH1714;siteoneProductCatalog:Staged;admingroup
+;SH1714111100;Hardscapes Parts & Accessories;Partes y Accesorios para Materiales Duros;SH1714111;siteoneProductCatalog:Staged;admingroup
+;SH1715 ;Irrigation Equipment;Equipos para Irrigación;SH17;siteoneProductCatalog:Staged;admingroup
+;SH1715110;Irrigation Equipment;Equipos para Irrigación;SH1715;siteoneProductCatalog:Staged;admingroup
+;SH1715110100;Irrigation Equipment;Equipos para Irrigación;SH1715110;siteoneProductCatalog:Staged;admingroup
+;SH1715111;Irrigation Parts & Accessories;Partes y Accesorios para Irrigación;SH1715;siteoneProductCatalog:Staged;admingroup
+;SH1715111100;Irrigation Parts & Accessories;Partes y Accesorios para Irrigación;SH1715111;siteoneProductCatalog:Staged;admingroup
+
+##------------------------------------------
+#----------Name Change Impex-------------------
+
+#Existing Categories
+$supercategories=supercategories( code, catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Staged']));;;;;;;;;
+$catalogVersion=catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Staged'])[unique=true,default='siteoneProductCatalog:Staged'];;;;;;;;;
+;;;;;;;;;
+INSERT_UPDATE Category;code[unique=true];name[lang=en];name[lang=es];$catalogVersion;allowedPrincipals(uid)
+
+;PH1323111100;Handheld Battery Powered Equipment;Equipos de Mano Alimentados con Batería;siteoneProductCatalog:Staged;admingroup
+;PH1323111101;Handheld Battery Powered Parts & Accessories;Partes y Accesorios de Mano Alimentados con Batería;siteoneProductCatalog:Staged;admingroup
+;PH1323111102;Handheld Gas Powered Equipment;Equipos de Mano Alimentados a Gas;siteoneProductCatalog:Staged;admingroup
+;PH1323111103;Handheld Gas Powered Parts & Accessories;Partes y Accesorios de Mano Alimentados a Gas;siteoneProductCatalog:Staged;admingroup
+;PH1323114102;Renovation Parts & Accessories;Accesorios y Piezas para Renovación;siteoneProductCatalog:Staged;admingroup
+;PH1323115101;Push Spreader/Sprayer;Esparcidor/Rociador de Empuje;siteoneProductCatalog:Staged;admingroup
+;PH1323115102;Stand On Equipment;Equipos para Conducir de Pie;siteoneProductCatalog:Staged;admingroup
+;PH1323115103;Parts & Accessories;Partes y Accesorios;siteoneProductCatalog:Staged;admingroup
+;PH1323117100;Parts & Accessories;Partes y Accesorios;siteoneProductCatalog:Staged;admingroup
+;PH1323117101;Handheld Sprayer;Rociador de Mano;siteoneProductCatalog:Staged;admingroup
+;PH1323117102;Truck Mount & Large Sprayers;Rociadores Grandes y Montables para Camión;siteoneProductCatalog:Staged;admingroup
+
+;PH1323118102;Hydro Seed Spreader;Hydro Seed Spreader;siteoneProductCatalog:Staged;admingroup
+;PH1323118104;Parts & Accessories;Parts & Accessories;siteoneProductCatalog:Staged;admingroup
+
+
+;SH1323111100;Handheld Battery Powered Equipment;Equipos de Mano Alimentados con Batería;siteoneProductCatalog:Staged;admingroup
+;SH1323111101;Handheld Battery Powered Parts & Accessories;Partes y Accesorios de Mano Alimentados con Batería;siteoneProductCatalog:Staged;admingroup
+;SH1323111102;Handheld Gas Powered Equipment;Equipos de Mano Alimentados a Gas;siteoneProductCatalog:Staged;admingroup
+;SH1323111103;Handheld Gas Powered Parts & Accessories;Partes y Accesorios de Mano Alimentados a Gas;siteoneProductCatalog:Staged;admingroup
+;SH1323114102;Renovation Parts & Accessories;Accesorios y Piezas para Renovación;siteoneProductCatalog:Staged;admingroup
+;SH1323115101;Push Spreader/Sprayer;Esparcidor/Rociador de Empuje;siteoneProductCatalog:Staged;admingroup
+;SH1323115102;Stand On Equipment;Equipos para Conducir de Pie;siteoneProductCatalog:Staged;admingroup
+;SH1323115103;Parts & Accessories;Partes y Accesorios;siteoneProductCatalog:Staged;admingroup
+;SH1323117100;Parts & Accessories;Partes y Accesorios;siteoneProductCatalog:Staged;admingroup
+;SH1323117101;Handheld Sprayer;Rociador de Mano;siteoneProductCatalog:Staged;admingroup
+;SH1323117102;Truck Mount & Large Sprayers;Rociadores Grandes y Montables para Camión;siteoneProductCatalog:Staged;admingroup
+;SH1323118102;Hydro Seed Spreader;Hydro Seed Spreader;siteoneProductCatalog:Staged;admingroup
+;SH1323118104;Parts & Accessories;Parts & Accessories;siteoneProductCatalog:Staged;admingroup
+
+
+#-----------------------------------SH17_Tools&Equipments--------------------------------------#
+
+#Existing Categories
+$supercategories=supercategories( code, catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Staged']));;;;;;;;;
+$catalogVersion=catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Staged'])[unique=true,default='siteoneProductCatalog:Staged'];;;;;;;;;
+;;;;;;;;;
+INSERT_UPDATE Category;code[unique=true];name[lang=en];name[lang=es];$catalogVersion;allowedPrincipals(uid)
+
+;SH1711111100;Handheld Battery Powered Equipment;Equipos de Mano Alimentados con Batería;siteoneProductCatalog:Staged;admingroup
+;SH1711111101;Handheld Battery Powered Parts & Accessories;Partes y Accesorios de Mano Alimentados con Batería;siteoneProductCatalog:Staged;admingroup
+;SH1711111102;Handheld Gas Powered Equipment;Equipos de Mano Alimentados a Gas;siteoneProductCatalog:Staged;admingroup
+;SH1711111103;Handheld Gas Powered Parts & Accessories;Partes y Accesorios de Mano Alimentados a Gas;siteoneProductCatalog:Staged;admingroup
+;SH1711114102;Renovation Parts & Accessories;Accesorios y Piezas para Renovación;siteoneProductCatalog:Staged;admingroup
+;SH1711116101;Parts & Accessories;Partes y Accesorios;siteoneProductCatalog:Staged;admingroup
+;SH1711116102;Handheld Sprayer;Rociador de Mano;siteoneProductCatalog:Staged;admingroup
+;SH1711116103;Truck Mount & Large Sprayers;Rociadores Grandes y Montables para Camión;siteoneProductCatalog:Staged;admingroup
+;SH1711117103;Hydro Seed Spreader;Hydro Seed Spreader;siteoneProductCatalog:Staged;admingroup
+;SH1711117105;Parts & Accessories;Parts & Accessories;siteoneProductCatalog:Staged;admingroup
+
+
+##------------------------------------------
+##primary hierarchy - sales hierarchy mapping ------------------------------------
+
+$productCatalog=siteoneProductCatalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+INSERT_UPDATE category;code[unique=true];salescategorymapping;$catalogVersion;
+
+;PH1323119 ;SH1323119:SH1711118;
+;PH1323115104;SH1323115104;
+;PH1323120 ;SH1323120:SH1711119 ;
+;PH1323120100;SH1323120100:SH1711119100;
+;PH1323120101;SH1323120101:SH1711119101;
+;PH1323120102;SH1323120102:SH1711119102;
+;PH1323120103;SH1323120103:SH1711119103;
+;PH1323120104;SH1323120104:SH1711119104;
+;PH1323120105;SH1323120105:SH1711119105;
+;PH1323120106;SH1323120106:SH1711119106;
+;PH1323121 ;SH1323121:SH1711120 ;
+;PH1323121100;SH1323121100:SH1711120100;
+;PH1323121101;SH1323121101:SH1711120101;
+;PH1323122 ;SH1323122:SH1711121 ;
+;PH1323122100;SH1323122100:SH1711121100;
+;PH1323122101;SH1323122101:SH1711121101;
+;PH1324 ;SH1324:SH1714 ;
+;PH1324110;SH1324110:SH1714110;
+;PH1324110100;SH1324110100:SH1714110100;
+;PH1324111;SH1324111:SH1714111;
+;PH1324111100;SH1324111100:SH1714111100;
+;PH1325 ;SH1325:SH1715 ;
+;PH1325110;SH1325110:SH1715110;
+;PH1325110100;SH1325110100:SH1715110100;
+;PH1325111;SH1325111:SH1715111;
+;PH1325111100;SH1325111100:SH1715111100;
+
+## ---c
+#Classifying;Class;creation;;;;;;;
+#-----------------------------;;;;;;;;;
+
+INSERT_UPDATE classificationclass;code[unique=true];name[lang=en];catalogVersion(catalog(id),version);;;;;
+;CH01_1323119 ;Product Details;siteoneClassification:1;;;;;
+;CH01_1323115104;Product Details;siteoneClassification:1;;;;;
+;CH01_1323120 ;Product Details;siteoneClassification:1;;;;;
+;CH01_1323120100;Product Details;siteoneClassification:1;;;;;
+;CH01_1323120101;Product Details;siteoneClassification:1;;;;;
+;CH01_1323120102;Product Details;siteoneClassification:1;;;;;
+;CH01_1323120103;Product Details;siteoneClassification:1;;;;;
+;CH01_1323120104;Product Details;siteoneClassification:1;;;;;
+;CH01_1323120105;Product Details;siteoneClassification:1;;;;;
+;CH01_1323120106;Product Details;siteoneClassification:1;;;;;
+;CH01_1323121 ;Product Details;siteoneClassification:1;;;;;
+;CH01_1323121100;Product Details;siteoneClassification:1;;;;;
+;CH01_1323121101;Product Details;siteoneClassification:1;;;;;
+;CH01_1323122 ;Product Details;siteoneClassification:1;;;;;
+;CH01_1323122100;Product Details;siteoneClassification:1;;;;;
+;CH01_1323122101;Product Details;siteoneClassification:1;;;;;
+;CH01_1324 ;Product Details;siteoneClassification:1;;;;;
+;CH01_1324110;Product Details;siteoneClassification:1;;;;;
+;CH01_1324110100;Product Details;siteoneClassification:1;;;;;
+;CH01_1324111;Product Details;siteoneClassification:1;;;;;
+;CH01_1324111100;Product Details;siteoneClassification:1;;;;;
+;CH01_1325 ;Product Details;siteoneClassification:1;;;;;
+;CH01_1325110;Product Details;siteoneClassification:1;;;;;
+;CH01_1325110100;Product Details;siteoneClassification:1;;;;;
+;CH01_1325111;Product Details;siteoneClassification:1;;;;;
+;CH01_1325111100;Product Details;siteoneClassification:1;;;;;
+
+
+##---a
+#Classifying Attribute;Creation;;;;;;;
+#-----------------------------;;;;;;;;;
+
+INSERT_UPDATE classificationAttribute;code[unique=true];name[lang=en];name[lang=es];systemVersion(catalog(id),version);;;;;
+;Maintenance_wattagerating;Wattage Rating;Capacidad Nominal de Voltios;siteoneClassification:1;;;;;
+;Maintenance_averagelife;Average Life;Vida Promedio;siteoneClassification:1;;;;;
+;Maintenance_soundpressurelevel;Sound Pressure Level;Nivel de Presión Sonora;siteoneClassification:1;;;;;
+;Maintenance_length;Length;Largo;siteoneClassification:1;;;;;
+;Maintenance_airflow;Airflow;Flujo de Aire;siteoneClassification:1;;;;;
+;Maintenance_wheelspecifications;Wheel Specifications;Especificaciones de la Rueda;siteoneClassification:1;;;;;
+;Maintenance_wingwidth;Wing Width;Ancho de Ala;siteoneClassification:1;;;;;
+;Maintenance_bladematerial;Blade Material;Material de la Cuchilla;siteoneClassification:1;;;;;
+;Maintenance_teethperinch;Teeth Per Inch;Dientes por Pulgada;siteoneClassification:1;;;;;
+;Maintenance_compactiondepth;Compaction Depth;Profundidad de Compactación;siteoneClassification:1;;;;;
+
+##d
+##-------------------------------------------------------------------------	
+
+$classCatalogVersion=catalogversion(catalog(id[default='siteoneClassification']),version[default='1'])[unique=true,default='siteoneClassification:1']
+$classSystemVersion=systemversion(catalog(id[default='siteoneClassification']),version[default='1'])[unique=true,default='siteoneClassification:1']
+INSERT_UPDATE classAttributeAssignment;classificationAttribute(code,$classSystemVersion)[unique=true];attributeType(code);classificationClass(code,$classCatalogVersion)[unique=true];attributeValues(code)[mode=append];multiValued(code);mandatory(code);formatDefinition
+
+#Impex is created grouped on the basis of which Attributes assigned to each Category
+#Below is the Assignment for Newly Created Categories
+
+#Item
+;Maintenance_item;string;CH01_1323119;;false;false;50;
+;Maintenance_item;string;CH01_1323115104;;false;false;50;
+;Maintenance_item;string;CH01_1323120100;;false;false;50;
+;Maintenance_item;string;CH01_1323120101;;false;false;50;
+;Maintenance_item;string;CH01_1323120102;;false;false;50;
+;Maintenance_item;string;CH01_1323120103;;false;false;50;
+;Maintenance_item;string;CH01_1323120104;;false;false;50;
+;Maintenance_item;string;CH01_1323120105;;false;false;50;
+;Maintenance_item;string;CH01_1323120106;;false;false;50;
+;Maintenance_item;string;CH01_1323121100;;false;false;50;
+;Maintenance_item;string;CH01_1323121101;;false;false;50;
+;Maintenance_item;string;CH01_1323122100;;false;false;50;
+;Maintenance_item;string;CH01_1323122101;;false;false;50;
+;Maintenance_item;string;CH01_1324110100;;false;false;50;
+;Maintenance_item;string;CH01_1324111100;;false;false;50;
+;Maintenance_item;string;CH01_1325110100;;false;false;50;
+;Maintenance_item;string;CH01_1325111100;;false;false;50;
+
+#ExistingCategories
+;Maintenance_item;string;CH01_1323114103;;false;false;50;
+;Maintenance_item;string;CH01_1323115100;;false;false;50;
+;Maintenance_item;string;CH01_1323115101;;false;false;50;
+;Maintenance_item;string;CH01_1323115102;;false;false;50;
+;Maintenance_item;string;CH01_1323115103;;false;false;50;
+
+#Type
+;Maintenance_type;string;CH01_1323119;;false;false;50;
+;Maintenance_type;string;CH01_1323115104;;false;false;50;
+;Maintenance_type;string;CH01_1323120100;;false;false;50;
+;Maintenance_type;string;CH01_1323120101;;false;false;50;
+;Maintenance_type;string;CH01_1323120102;;false;false;50;
+;Maintenance_type;string;CH01_1323120103;;false;false;50;
+;Maintenance_type;string;CH01_1323120104;;false;false;50;
+;Maintenance_type;string;CH01_1323120105;;false;false;50;
+;Maintenance_type;string;CH01_1323120106;;false;false;50;
+;Maintenance_type;string;CH01_1323121100;;false;false;50;
+;Maintenance_type;string;CH01_1323121101;;false;false;50;
+;Maintenance_type;string;CH01_1323122100;;false;false;50;
+;Maintenance_type;string;CH01_1323122101;;false;false;50;
+;Maintenance_type;string;CH01_1324110100;;false;false;50;
+;Maintenance_type;string;CH01_1324111100;;false;false;50;
+;Maintenance_type;string;CH01_1325110100;;false;false;50;
+;Maintenance_type;string;CH01_1325111100;;false;false;50;
+
+#-------------------
+;Maintenance_type;string;CH01_1323114103;;false;false;50;
+;Maintenance_type;string;CH01_1323115100;;false;false;50;
+;Maintenance_type;string;CH01_1323115101;;false;false;50;
+;Maintenance_type;string;CH01_1323115102;;false;false;50;
+;Maintenance_type;string;CH01_1323115103;;false;false;50;
+
+#Suitablefor Use With
+;Maintenance_suitableforusewith;string;CH01_1323119;;false;false;50;
+
+;Maintenance_suitableforusewith;string;CH01_1323120100;;false;false;50;
+;Maintenance_suitableforusewith;string;CH01_1323120101;;false;false;50;
+;Maintenance_suitableforusewith;string;CH01_1323120102;;false;false;50;
+;Maintenance_suitableforusewith;string;CH01_1323120103;;false;false;50;
+;Maintenance_suitableforusewith;string;CH01_1323120104;;false;false;50;
+;Maintenance_suitableforusewith;string;CH01_1323120105;;false;false;50;
+;Maintenance_suitableforusewith;string;CH01_1323120106;;false;false;50;
+;Maintenance_suitableforusewith;string;CH01_1323121100;;false;false;50;
+;Maintenance_suitableforusewith;string;CH01_1323121101;;false;false;50;
+;Maintenance_suitableforusewith;string;CH01_1323122100;;false;false;50;
+;Maintenance_suitableforusewith;string;CH01_1323122101;;false;false;50;
+;Maintenance_suitableforusewith;string;CH01_1324110100;;false;false;50;
+;Maintenance_suitableforusewith;string;CH01_1324111100;;false;false;50;
+;Maintenance_suitableforusewith;string;CH01_1325110100;;false;false;50;
+;Maintenance_suitableforusewith;string;CH01_1325111100;;false;false;50;
+
+#--------------
+;Maintenance_suitableforusewith;string;CH01_1323114103;;false;false;50;
+
+#Width
+;Maintenance_width;string;CH01_1323115104;;false;false;50;
+#----------------
+;Maintenance_width;string;CH01_1323115100;;false;false;50;
+;Maintenance_width;string;CH01_1323115101;;false;false;50;
+;Maintenance_width;string;CH01_1323115102;;false;false;50;
+;Maintenance_width;string;CH01_1323115103;;false;false;50;
+
+#Dimensions
+;Maintenance_dimensions;string;CH01_1323119;;false;false;50;
+;Maintenance_dimensions;string;CH01_1323115104;;false;false;50;
+;Maintenance_dimensions;string;CH01_1323121100;;false;false;50;
+;Maintenance_dimensions;string;CH01_1323121101;;false;false;50;
+;Maintenance_dimensions;string;CH01_1323122100;;false;false;50;
+;Maintenance_dimensions;string;CH01_1323122101;;false;false;50;
+;Maintenance_dimensions;string;CH01_1324110100;;false;false;50;
+;Maintenance_dimensions;string;CH01_1324111100;;false;false;50;
+;Maintenance_dimensions;string;CH01_1325110100;;false;false;50;
+;Maintenance_dimensions;string;CH01_1325111100;;false;false;50;
+#------------------
+;Maintenance_dimensions;string;CH01_1323114103;;false;false;50;
+;Maintenance_dimensions;string;CH01_1323115100;;false;false;50;
+;Maintenance_dimensions;string;CH01_1323115101;;false;false;50;
+;Maintenance_dimensions;string;CH01_1323115102;;false;false;50;
+;Maintenance_dimensions;string;CH01_1323115103;;false;false;50;
+
+
+
+#Specifications
+;Maintenance_specifications;string;CH01_1323119;;false;false;50;
+;Maintenance_specifications;string;CH01_1323115104;;false;false;50;
+;Maintenance_specifications;string;CH01_1323120100;;false;false;50;
+;Maintenance_specifications;string;CH01_1323120101;;false;false;50;
+;Maintenance_specifications;string;CH01_1323120102;;false;false;50;
+;Maintenance_specifications;string;CH01_1323120103;;false;false;50;
+;Maintenance_specifications;string;CH01_1323120104;;false;false;50;
+;Maintenance_specifications;string;CH01_1323120105;;false;false;50;
+;Maintenance_specifications;string;CH01_1323120106;;false;false;50;
+;Maintenance_specifications;string;CH01_1323121100;;false;false;50;
+;Maintenance_specifications;string;CH01_1323121101;;false;false;50;
+;Maintenance_specifications;string;CH01_1323122100;;false;false;50;
+;Maintenance_specifications;string;CH01_1323122101;;false;false;50;
+;Maintenance_specifications;string;CH01_1324110100;;false;false;50;
+;Maintenance_specifications;string;CH01_1324111100;;false;false;50;
+;Maintenance_specifications;string;CH01_1325110100;;false;false;50;
+;Maintenance_specifications;string;CH01_1325111100;;false;false;50;
+#--------------------------------
+;Maintenance_specifications;string;CH01_1323114103;;false;false;50;
+;Maintenance_specifications;string;CH01_1323115100;;false;false;50;
+;Maintenance_specifications;string;CH01_1323115101;;false;false;50;
+;Maintenance_specifications;string;CH01_1323115102;;false;false;50;
+;Maintenance_specifications;string;CH01_1323115103;;false;false;50;
+
+#Height
+;Maintenance_height;string;CH01_1323111100;;false;false;50;
+;Maintenance_height;string;CH01_1323111101;;false;false;50;
+;Maintenance_height;string;CH01_1323111102;;false;false;50;
+;Maintenance_height;string;CH01_1323111103;;false;false;50;
+;Maintenance_height;string;CH01_1323115100;;false;false;50;
+
+#Includes
+;Maintenance_includes;string;CH01_1323114103;;false;false;50;
+
+#Capacity
+;Maintenance_capacity;string;CH01_1323114103;;false;false;50;
+
+#AmpRating
+;Maintenance_amprating;string;CH01_1323111100;;false;false;50;
+;Maintenance_amprating;string;CH01_1323111101;;false;false;50;
+;Maintenance_amprating;string;CH01_1323111102;;false;false;50;
+;Maintenance_amprating;string;CH01_1323111103;;false;false;50;
+
+#BarLength
+;Maintenance_barlength;string;CH01_1323111100;;false;false;50;
+;Maintenance_barlength;string;CH01_1323111101;;false;false;50;
+;Maintenance_barlength;string;CH01_1323111102;;false;false;50;
+;Maintenance_barlength;string;CH01_1323111103;;false;false;50;
+
+#BatteryCapacity
+;Maintenance_batterycapacity;string;CH01_1323111100;;false;false;50;
+;Maintenance_batterycapacity;string;CH01_1323111101;;false;false;50;
+;Maintenance_batterycapacity;string;CH01_1323111102;;false;false;50;
+;Maintenance_batterycapacity;string;CH01_1323111103;;false;false;50;
+
+#BatteryType
+;Maintenance_batterytype;string;CH01_1323111100;;false;false;50;
+;Maintenance_batterytype;string;CH01_1323111101;;false;false;50;
+;Maintenance_batterytype;string;CH01_1323111102;;false;false;50;
+;Maintenance_batterytype;string;CH01_1323111103;;false;false;50;
+
+#BladeLength
+;Maintenance_bladelength;string;CH01_1324110100;;false;false;50;
+;Maintenance_bladelength;string;CH01_1324111100;;false;false;50;
+;Maintenance_bladelength;string;CH01_1325110100;;false;false;50;
+;Maintenance_bladelength;string;CH01_1325111100;;false;false;50;
+#----------------------
+;Maintenance_bladelength;string;CH01_1323111100;;false;false;50;
+;Maintenance_bladelength;string;CH01_1323111101;;false;false;50;
+;Maintenance_bladelength;string;CH01_1323111102;;false;false;50;
+;Maintenance_bladelength;string;CH01_1323111103;;false;false;50;
+;Maintenance_bladelength;string;CH01_1323115100;;false;false;50;
+
+#BladeWidth
+;Maintenance_bladewidth;string;CH01_1324110100;;false;false;50;
+;Maintenance_bladewidth;string;CH01_1324111100;;false;false;50;
+;Maintenance_bladewidth;string;CH01_1325110100;;false;false;50;
+;Maintenance_bladewidth;string;CH01_1325111100;;false;false;50;
+#---------------------------------
+;Maintenance_bladewidth;string;CH01_1323111100;;false;false;50;
+;Maintenance_bladewidth;string;CH01_1323111101;;false;false;50;
+;Maintenance_bladewidth;string;CH01_1323111102;;false;false;50;
+;Maintenance_bladewidth;string;CH01_1323111103;;false;false;50;
+;Maintenance_bladewidth;string;CH01_1323114102;;false;false;50;
+;Maintenance_bladewidth;string;CH01_1323114103;;false;false;50;
+
+#BladeThickness
+;Maintenance_bladethickness;string;CH01_1323115100;;false;false;50;
+;Maintenance_bladethickness;string;CH01_1323115101;;false;false;50;
+
+#CFM
+;Maintenance_cfm;string;CH01_1323111100;;false;false;50;
+;Maintenance_cfm;string;CH01_1323111101;;false;false;50;
+;Maintenance_cfm;string;CH01_1323111102;;false;false;50;
+;Maintenance_cfm;string;CH01_1323111103;;false;false;50;
+
+#ChargingSystem
+;Maintenance_chargingsystem;string;CH01_1323111100;;false;false;50;
+;Maintenance_chargingsystem;string;CH01_1323111101;;false;false;50;
+;Maintenance_chargingsystem;string;CH01_1323111102;;false;false;50;
+;Maintenance_chargingsystem;string;CH01_1323111103;;false;false;50;
+
+#EngineType
+;Maintenance_enginetype;string;CH01_1324110100;;false;false;50;
+;Maintenance_enginetype;string;CH01_1324111100;;false;false;50;
+;Maintenance_enginetype;string;CH01_1325110100;;false;false;50;
+;Maintenance_enginetype;string;CH01_1325111100;;false;false;50;
+#--------------
+;Maintenance_enginetype;string;CH01_1323111100;;false;false;50;
+;Maintenance_enginetype;string;CH01_1323111101;;false;false;50;
+;Maintenance_enginetype;string;CH01_1323111102;;false;false;50;
+;Maintenance_enginetype;string;CH01_1323111103;;false;false;50;
+;Maintenance_enginetype;string;CH01_1323114103;;false;false;50;
+
+#Finish
+;Maintenance_finish;string;CH01_1323115104;;false;false;50;
+;Maintenance_finish;string;CH01_1323120100;;false;false;50;
+;Maintenance_finish;string;CH01_1323120101;;false;false;50;
+;Maintenance_finish;string;CH01_1323120102;;false;false;50;
+;Maintenance_finish;string;CH01_1323120103;;false;false;50;
+;Maintenance_finish;string;CH01_1323120104;;false;false;50;
+;Maintenance_finish;string;CH01_1323120105;;false;false;50;
+;Maintenance_finish;string;CH01_1323120106;;false;false;50;
+;Maintenance_finish;string;CH01_1323121100;;false;false;50;
+;Maintenance_finish;string;CH01_1323121101;;false;false;50;
+;Maintenance_finish;string;CH01_1323122100;;false;false;50;
+;Maintenance_finish;string;CH01_1323122101;;false;false;50;
+;Maintenance_finish;string;CH01_1324110100;;false;false;50;
+;Maintenance_finish;string;CH01_1324111100;;false;false;50;
+;Maintenance_finish;string;CH01_1325110100;;false;false;50;
+;Maintenance_finish;string;CH01_1325111100;;false;false;50;
+#---------------------------
+;Maintenance_finish;string;CH01_1323111100;;false;false;50;
+;Maintenance_finish;string;CH01_1323111101;;false;false;50;
+;Maintenance_finish;string;CH01_1323111102;;false;false;50;
+;Maintenance_finish;string;CH01_1323111103;;false;false;50;
+;Maintenance_finish;string;CH01_1323115100;;false;false;50;
+;Maintenance_finish;string;CH01_1323115101;;false;false;50;
+;Maintenance_finish;string;CH01_1323115102;;false;false;50;
+;Maintenance_finish;string;CH01_1323115103;;false;false;50;
+
+#FrameMaterial
+;Maintenance_framematerial;string;CH01_1324110100;;false;false;50;
+;Maintenance_framematerial;string;CH01_1324111100;;false;false;50;
+;Maintenance_framematerial;string;CH01_1325110100;;false;false;50;
+;Maintenance_framematerial;string;CH01_1325111100;;false;false;50;
+#---------------------------------
+;Maintenance_framematerial;string;CH01_1323114103;;false;false;50;
+;Maintenance_framematerial;string;CH01_1323115100;;false;false;50;
+
+#FuelTankCapacity
+;Maintenance_fueltankcapacity;string;CH01_1323114103;;false;false;50;
+
+#GroundSpeed
+;Maintenance_groundspeed;string;CH01_1324110100;;false;false;50;
+;Maintenance_groundspeed;string;CH01_1324111100;;false;false;50;
+;Maintenance_groundspeed;string;CH01_1325110100;;false;false;50;
+;Maintenance_groundspeed;string;CH01_1325111100;;false;false;50;
+#-------------------
+;Maintenance_groundspeed;string;CH01_1323114103;;false;false;50;
+
+#HandleType
+;Maintenance_handletype;string;CH01_1324110100;;false;false;50;
+;Maintenance_handletype;string;CH01_1324111100;;false;false;50;
+;Maintenance_handletype;string;CH01_1325110100;;false;false;50;
+;Maintenance_handletype;string;CH01_1325111100;;false;false;50;
+
+#Hoselength
+;Maintenance_hoselength;string;CH01_1323115104;;false;false;50;
+#------------------
+;Maintenance_hoselength;string;CH01_1323115100;;false;false;50;
+;Maintenance_hoselength;string;CH01_1323115101;;false;false;50;
+;Maintenance_hoselength;string;CH01_1323115102;;false;false;50;
+;Maintenance_hoselength;string;CH01_1323115103;;false;false;50;
+
+#Material
+;Maintenance_material;string;CH01_1323115104;;false;false;50;
+;Maintenance_material;string;CH01_1323120100;;false;false;50;
+;Maintenance_material;string;CH01_1323120101;;false;false;50;
+;Maintenance_material;string;CH01_1323120102;;false;false;50;
+;Maintenance_material;string;CH01_1323120103;;false;false;50;
+;Maintenance_material;string;CH01_1323120104;;false;false;50;
+;Maintenance_material;string;CH01_1323120105;;false;false;50;
+;Maintenance_material;string;CH01_1323120106;;false;false;50;
+;Maintenance_material;string;CH01_1323121100;;false;false;50;
+;Maintenance_material;string;CH01_1323121101;;false;false;50;
+;Maintenance_material;string;CH01_1323122100;;false;false;50;
+;Maintenance_material;string;CH01_1323122101;;false;false;50;
+;Maintenance_material;string;CH01_1324110100;;false;false;50;
+;Maintenance_material;string;CH01_1324111100;;false;false;50;
+;Maintenance_material;string;CH01_1325110100;;false;false;50;
+;Maintenance_material;string;CH01_1325111100;;false;false;50;
+#----------------------------
+;Maintenance_material;string;CH01_1323114103;;false;false;50;
+;Maintenance_material;string;CH01_1323115100;;false;false;50;
+;Maintenance_material;string;CH01_1323115101;;false;false;50;
+;Maintenance_material;string;CH01_1323115102;;false;false;50;
+;Maintenance_material;string;CH01_1323115103;;false;false;50;
+
+#Model
+;Maintenance_model;string;CH01_1323115104;;false;false;50;
+#---------------
+;Maintenance_model;string;CH01_1323114103;;false;false;50;
+;Maintenance_model;string;CH01_1323115100;;false;false;50;
+;Maintenance_model;string;CH01_1323115101;;false;false;50;
+;Maintenance_model;string;CH01_1323115102;;false;false;50;
+;Maintenance_model;string;CH01_1323115103;;false;false;50;
+
+#MPH
+;Maintenance_mph;string;CH01_1323115104;;false;false;50;
+#--------------------------
+;Maintenance_mph;string;CH01_1323111100;;false;false;50;
+;Maintenance_mph;string;CH01_1323111101;;false;false;50;
+;Maintenance_mph;string;CH01_1323111102;;false;false;50;
+;Maintenance_mph;string;CH01_1323111103;;false;false;50;
+;Maintenance_mph;string;CH01_1323114103;;false;false;50;
+;Maintenance_mph;string;CH01_1323115101;;false;false;50;
+;Maintenance_mph;string;CH01_1323115102;;false;false;50;
+;Maintenance_mph;string;CH01_1323115103;;false;false;50;
+
+#NumberOfBlades
+;Maintenance_nbrofblades;string;CH01_1323114103;;false;false;50;
+
+#NumberOFSpeeds
+;Maintenance_Nbrofspeeds;string;CH01_1323111100;;false;false;50;
+;Maintenance_Nbrofspeeds;string;CH01_1323111101;;false;false;50;
+;Maintenance_Nbrofspeeds;string;CH01_1323111102;;false;false;50;
+;Maintenance_Nbrofspeeds;string;CH01_1323111103;;false;false;50;
+
+#PowerSource
+;Maintenance_powersource;string;CH01_1323111100;;false;false;50;
+;Maintenance_powersource;string;CH01_1323111101;;false;false;50;
+;Maintenance_powersource;string;CH01_1323111102;;false;false;50;
+;Maintenance_powersource;string;CH01_1323111103;;false;false;50;
+
+#PressureRating
+;Maintenance_pressurerating;string;CH01_1323115104;;false;false;50;
+#----------------
+;Maintenance_pressurerating;string;CH01_1323115100;;false;false;50;
+;Maintenance_pressurerating;string;CH01_1323115101;;false;false;50;
+;Maintenance_pressurerating;string;CH01_1323115102;;false;false;50;
+;Maintenance_pressurerating;string;CH01_1323115103;;false;false;50;
+
+#RunningTime
+;Maintenance_runningtime;string;CH01_1323111100;;false;false;50;
+;Maintenance_runningtime;string;CH01_1323111101;;false;false;50;
+;Maintenance_runningtime;string;CH01_1323111102;;false;false;50;
+;Maintenance_runningtime;string;CH01_1323111103;;false;false;50;
+
+#SeedHopperCapacity
+;Maintenance_seedhoppercpcty;string;CH01_1323114103;;false;false;50;
+
+#SeedingWidth
+;Maintenance_seedingwidth;string;CH01_1323114103;;false;false;50;
+
+#Series
+;Maintenance_series;string;CH01_1323119;;false;false;50;
+;Maintenance_series;string;CH01_1323115104;;false;false;50;
+;Maintenance_series;string;CH01_1323120100;;false;false;50;
+;Maintenance_series;string;CH01_1323120101;;false;false;50;
+;Maintenance_series;string;CH01_1323120102;;false;false;50;
+;Maintenance_series;string;CH01_1323120103;;false;false;50;
+;Maintenance_series;string;CH01_1323120104;;false;false;50;
+;Maintenance_series;string;CH01_1323120105;;false;false;50;
+;Maintenance_series;string;CH01_1323120106;;false;false;50;
+;Maintenance_series;string;CH01_1323121100;;false;false;50;
+;Maintenance_series;string;CH01_1323121101;;false;false;50;
+;Maintenance_series;string;CH01_1323122100;;false;false;50;
+;Maintenance_series;string;CH01_1323122101;;false;false;50;
+;Maintenance_series;string;CH01_1324110100;;false;false;50;
+;Maintenance_series;string;CH01_1324111100;;false;false;50;
+;Maintenance_series;string;CH01_1325110100;;false;false;50;
+;Maintenance_series;string;CH01_1325111100;;false;false;50;
+#---------------------------------
+;Maintenance_series;string;CH01_1323115100;;false;false;50;
+;Maintenance_series;string;CH01_1323115101;;false;false;50;
+;Maintenance_series;string;CH01_1323115102;;false;false;50;
+;Maintenance_series;string;CH01_1323115103;;false;false;50;
+
+#SoundPowerLevel
+;Maintenance_soundpowerlevel;string;CH01_1323111100;;false;false;50;
+;Maintenance_soundpowerlevel;string;CH01_1323111101;;false;false;50;
+;Maintenance_soundpowerlevel;string;CH01_1323111102;;false;false;50;
+;Maintenance_soundpowerlevel;string;CH01_1323111103;;false;false;50;
+
+#Speed
+;Maintenance_speed;string;CH01_1324110100;;false;false;50;
+;Maintenance_speed;string;CH01_1324111100;;false;false;50;
+;Maintenance_speed;string;CH01_1325110100;;false;false;50;
+;Maintenance_speed;string;CH01_1325111100;;false;false;50;
+#-------------------------------
+;Maintenance_speed;string;CH01_1323111100;;false;false;50;
+;Maintenance_speed;string;CH01_1323111101;;false;false;50;
+;Maintenance_speed;string;CH01_1323111102;;false;false;50;
+;Maintenance_speed;string;CH01_1323111103;;false;false;50;
+;Maintenance_speed;string;CH01_1323114102;;false;false;50;
+;Maintenance_speed;string;CH01_1323114103;;false;false;50;
+
+#VibrationLevel
+;Maintenance_vibrationlevel;string;CH01_1324110100;;false;false;50;
+;Maintenance_vibrationlevel;string;CH01_1324111100;;false;false;50;
+;Maintenance_vibrationlevel;string;CH01_1325110100;;false;false;50;
+;Maintenance_vibrationlevel;string;CH01_1325111100;;false;false;50;
+#------------------------------
+;Maintenance_vibrationlevel;string;CH01_1323111100;;false;false;50;
+;Maintenance_vibrationlevel;string;CH01_1323111101;;false;false;50;
+;Maintenance_vibrationlevel;string;CH01_1323111102;;false;false;50;
+;Maintenance_vibrationlevel;string;CH01_1323111103;;false;false;50;
+
+#VoltageRating
+;Maintenance_voltagerating;string;CH01_1323111100;;false;false;50;
+;Maintenance_voltagerating;string;CH01_1323111101;;false;false;50;
+;Maintenance_voltagerating;string;CH01_1323111102;;false;false;50;
+;Maintenance_voltagerating;string;CH01_1323111103;;false;false;50;
+
+#Weight
+;Maintenance_weight;string;CH01_1323120100;;false;false;50;
+;Maintenance_weight;string;CH01_1323120101;;false;false;50;
+;Maintenance_weight;string;CH01_1323120102;;false;false;50;
+;Maintenance_weight;string;CH01_1323120103;;false;false;50;
+;Maintenance_weight;string;CH01_1323120104;;false;false;50;
+;Maintenance_weight;string;CH01_1323120105;;false;false;50;
+;Maintenance_weight;string;CH01_1323120106;;false;false;50;
+;Maintenance_weight;string;CH01_1324110100;;false;false;50;
+;Maintenance_weight;string;CH01_1324111100;;false;false;50;
+;Maintenance_weight;string;CH01_1325110100;;false;false;50;
+;Maintenance_weight;string;CH01_1325111100;;false;false;50;
+#-------------------------------
+;Maintenance_weight;string;CH01_1323111100;;false;false;50;
+;Maintenance_weight;string;CH01_1323111101;;false;false;50;
+;Maintenance_weight;string;CH01_1323111102;;false;false;50;
+;Maintenance_weight;string;CH01_1323111103;;false;false;50;
+;Maintenance_weight;string;CH01_1323114103;;false;false;50;
+;Maintenance_weight;string;CH01_1323115100;;false;false;50;
+
+#WheelMaterial
+;Maintenance_wheelmaterial;string;CH01_1324110100;;false;false;50;
+;Maintenance_wheelmaterial;string;CH01_1324111100;;false;false;50;
+;Maintenance_wheelmaterial;string;CH01_1325110100;;false;false;50;
+;Maintenance_wheelmaterial;string;CH01_1325111100;;false;false;50;
+#----------------------
+;Maintenance_wheelmaterial;string;CH01_1323114103;;false;false;50;
+
+#WheelSize
+;Maintenance_wheelsize;string;CH01_1323119;;false;false;50;
+;Maintenance_wheelsize;string;CH01_1324110100;;false;false;50;
+;Maintenance_wheelsize;string;CH01_1324111100;;false;false;50;
+;Maintenance_wheelsize;string;CH01_1325110100;;false;false;50;
+;Maintenance_wheelsize;string;CH01_1325111100;;false;false;50;
+#--------------------------
+;Maintenance_wheelsize;string;CH01_1323114103;;false;false;50;
+
+#WattageRating
+;Maintenance_wattagerating;string;CH01_1323111100;;false;false;50;
+;Maintenance_wattagerating;string;CH01_1323111101;;false;false;50;
+;Maintenance_wattagerating;string;CH01_1323111102;;false;false;50;
+;Maintenance_wattagerating;string;CH01_1323111103;;false;false;50;
+
+#AverageLife
+;Maintenance_averagelife;string;CH01_1323111100;;false;false;50;
+;Maintenance_averagelife;string;CH01_1323111101;;false;false;50;
+;Maintenance_averagelife;string;CH01_1323111102;;false;false;50;
+;Maintenance_averagelife;string;CH01_1323111103;;false;false;50;
+
+#SounPressureLevel
+;Maintenance_soundpressurelevel;string;CH01_1323111100;;false;false;50;
+;Maintenance_soundpressurelevel;string;CH01_1323111101;;false;false;50;
+;Maintenance_soundpressurelevel;string;CH01_1323111102;;false;false;50;
+;Maintenance_soundpressurelevel;string;CH01_1323111103;;false;false;50;
+
+#Length
+;Maintenance_length;string;CH01_1323111100;;false;false;50;
+;Maintenance_length;string;CH01_1323111101;;false;false;50;
+;Maintenance_length;string;CH01_1323111102;;false;false;50;
+;Maintenance_length;string;CH01_1323111103;;false;false;50;
+
+#Airflow
+;Maintenance_airflow;string;CH01_1323111100;;false;false;50;
+;Maintenance_airflow;string;CH01_1323111101;;false;false;50;
+;Maintenance_airflow;string;CH01_1323111102;;false;false;50;
+;Maintenance_airflow;string;CH01_1323111103;;false;false;50;
+
+#WingWidth
+;Maintenance_wingwidth;string;CH01_1323114102;;false;false;50;
+;Maintenance_wingwidth;string;CH01_1323114103;;false;false;50;
+
+#BladeMaterial
+;Maintenance_bladematerial;string;CH01_1324110100;;false;false;50;
+;Maintenance_bladematerial;string;CH01_1324111100;;false;false;50;
+;Maintenance_bladematerial;string;CH01_1325110100;;false;false;50;
+;Maintenance_bladematerial;string;CH01_1325111100;;false;false;50;
+
+#TeethPerInch
+;Maintenance_teethperinch;string;CH01_1324110100;;false;false;50;
+;Maintenance_teethperinch;string;CH01_1324111100;;false;false;50;
+;Maintenance_teethperinch;string;CH01_1325110100;;false;false;50;
+;Maintenance_teethperinch;string;CH01_1325111100;;false;false;50;
+
+#CompactionDepth
+;Maintenance_compactiondepth;string;CH01_1324110100;;false;false;50;
+;Maintenance_compactiondepth;string;CH01_1324111100;;false;false;50;
+;Maintenance_compactiondepth;string;CH01_1325110100;;false;false;50;
+;Maintenance_compactiondepth;string;CH01_1325111100;;false;false;50;
+
+#WheelSpecifications
+;Maintenance_wheelspecifications;string;CH01_1324110100;;false;false;50;
+;Maintenance_wheelspecifications;string;CH01_1324111100;;false;false;50;
+;Maintenance_wheelspecifications;string;CH01_1325110100;;false;false;50;
+;Maintenance_wheelspecifications;string;CH01_1325111100;;false;false;50;
+#-------------------------------
+;Maintenance_wheelspecifications;string;CH01_1323114102;;false;false;50;
+;Maintenance_wheelspecifications;string;CH01_1323114103;;false;false;50;
+
+
+
+ ##-------------------------------------
+##--e with Staged catalog version 
+$productCatalog=siteoneProductCatalog
+$catalogVersion=catalogversion(catalog(id[default='siteoneProductCatalog']),version[default='Staged'])[unique=true,default='siteoneProductCatalog:Staged']
+$classCatalogVersion=catalogversion(catalog(id[default='siteoneClassification']),version[default='1'])[unique=true,default='siteoneClassification:1']
+$supercategories=source(code, $classCatalogVersion)[unique=true]
+$categories=target(code, $catalogVersion)[unique=true]
+INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories
+
+;PH1323119;CH01_1323119;
+;PH1323115104;CH01_1323115104;
+;PH1323120;CH01_1323120;
+;PH1323120100;CH01_1323120100;
+;PH1323120101;CH01_1323120101;
+;PH1323120102;CH01_1323120102;
+;PH1323120103;CH01_1323120103;
+;PH1323120104;CH01_1323120104;
+;PH1323120105;CH01_1323120105;
+;PH1323120106;CH01_1323120106;
+;PH1323121;CH01_1323121;
+;PH1323121100;CH01_1323121100;
+;PH1323121101;CH01_1323121101;
+;PH1323122;CH01_1323122;
+;PH1323122100;CH01_1323122100;
+;PH1323122101;CH01_1323122101;
+;PH1324;CH01_1324;
+;PH1324110;CH01_1324110;
+;PH1324110100;CH01_1324110100;
+;PH1324111;CH01_1324111;
+;PH1324111100;CH01_1324111100;
+;PH1325;CH01_1325;
+;PH1325110;CH01_1325110;
+;PH1325110100;CH01_1325110100;
+;PH1325111;CH01_1325111;
+;PH1325111100;CH01_1325111100;
+
+##-------------------------------------
+##--e with online catalog version 
+$productCatalog=siteoneProductCatalog
+$catalogVersion=catalogversion(catalog(id[default='siteoneProductCatalog']),version[default='Online'])[unique=true,default='siteoneProductCatalog:Online']
+$classCatalogVersion=catalogversion(catalog(id[default='siteoneClassification']),version[default='1'])[unique=true,default='siteoneClassification:1']
+$supercategories=source(code, $classCatalogVersion)[unique=true]
+$categories=target(code, $catalogVersion)[unique=true]
+INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories
+
+;PH1323119;CH01_1323119;
+;PH1323115104;CH01_1323115104;
+;PH1323120;CH01_1323120;
+;PH1323120100;CH01_1323120100;
+;PH1323120101;CH01_1323120101;
+;PH1323120102;CH01_1323120102;
+;PH1323120103;CH01_1323120103;
+;PH1323120104;CH01_1323120104;
+;PH1323120105;CH01_1323120105;
+;PH1323120106;CH01_1323120106;
+;PH1323121;CH01_1323121;
+;PH1323121100;CH01_1323121100;
+;PH1323121101;CH01_1323121101;
+;PH1323122;CH01_1323122;
+;PH1323122100;CH01_1323122100;
+;PH1323122101;CH01_1323122101;
+;PH1324;CH01_1324;
+;PH1324110;CH01_1324110;
+;PH1324110100;CH01_1324110100;
+;PH1324111;CH01_1324111;
+;PH1324111100;CH01_1324111100;
+;PH1325;CH01_1325;
+;PH1325110;CH01_1325110;
+;PH1325110100;CH01_1325110100;
+;PH1325111;CH01_1325111;
+;PH1325111100;CH01_1325111100;
+
+##-----------------------------------------------------------------------------------
+##--f
+
+$classCatalogVersion=catalogversion(catalog(id[default='siteoneClassification']),version[default='1'])[unique=true,default='siteoneClassification:1']
+$supercategories=source(code, $classCatalogVersion)[unique=true]
+$categories=target(code, $classCatalogVersion)[unique=true]
+
+INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories
+;CH01_1323119;CH01_1323;
+;CH01_1323115104;CH01_1323115;
+;CH01_1323120;CH01_1323;
+;CH01_1323120100;CH01_1323120;
+;CH01_1323120101;CH01_1323120;
+;CH01_1323120102;CH01_1323120;
+;CH01_1323120103;CH01_1323120;
+;CH01_1323120104;CH01_1323120;
+;CH01_1323120105;CH01_1323120;
+;CH01_1323120106;CH01_1323120;
+;CH01_1323121;CH01_1323;
+;CH01_1323121100;CH01_1323121;
+;CH01_1323121101;CH01_1323121;
+;CH01_1323122;CH01_1323;
+;CH01_1323122100;CH01_1323122;
+;CH01_1323122101;CH01_1323122;
+;CH01_1324110;CH01_1324;
+;CH01_1324110100;CH01_1324110;
+;CH01_1324111;CH01_1324;
+;CH01_1324111100;CH01_1324111;
+;CH01_1325110;CH01_1325;
+;CH01_1325110100;CH01_1325110;
+;CH01_1325111;CH01_1325;
+;CH01_1325111100;CH01_1325111;
+
+
+
+ #--navigation nodes -------------------------------
+
+#CMS Impexes for category nav nodes in header-------------------------
+
+$contentCatalog=siteoneContentCatalog
+$contentCatalogName=SiteOne Content Catalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$productCatalog=siteoneProductCatalog
+$productCatalogName=SiteOne Product Catalog
+$productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$picture=media(code, $contentCV);
+$image=image(code, $contentCV);
+$media=media(code, $contentCV);
+$page=page(uid, $contentCV);
+$contentPage=contentPage(uid, $contentCV);
+$product=product(code, $productCV)
+$category=category(code, $productCV)
+$siteResource=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/contentCatalogs/$contentCatalog
+$productResource=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/productCatalogs/$productCatalog
+$jarResourceCms=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/cockpits/cmscockpit
+$addonExtensionName=siteoneacceleratoraddon
+$medias=medias(code, $contentCV);
+$articleMedia=articleMedia(code, $contentCV);
+$mediaContainer=media(qualifier, $contentCV);
+$siteUid=siteone
+$lang=en
+
+INSERT_UPDATE GlobalProductNavigationNode;$contentCV[unique=true];uid[unique=true];name;parent(uid, $contentCV);category(code, $productCV);&nodeRef;sequenceNumber;
+
+#----------------SH13 Agronomic Maintenance--------------------------
+
+;;AgroServicePartsNavNode;AgroServicePartsNavNode;AgroEquipmentNavNode;SH1323119;AgroServicePartsNavNode;10
+;;AgroConsumablesNavNode;AgroConsumablesNavNode;AgroEquipmentNavNode;SH1323120;AgroConsumablesNavNode;11
+;;AgroSports&TurfNavNode;AgroSports&TurfNavNode;AgroEquipmentNavNode;SH1323121;AgroSports&TurfNavNode;12
+;;AgroStandonSpreaderSprayerNavNode;AgroStandonSpreaderSprayerNavNode;AgroEquipmentNavNode;SH1323122;AgroStandonSpreaderSprayerNavNode;13
+;;AgroHardscapesEquipmentL2NavNode;AgroHardscapesEquipmentL2NavNode;AgronomicMaintenanceNavNode;SH1324;AgroHardscapesEquipmentL2NavNode;13
+;;AgroHardscapesEquipmentL3NavNode;AgroHardscapesEquipmentL3NavNode;AgroHardscapesEquipmentL2NavNode;SH1324110;AgroHardscapesEquipmentL3NavNode;1
+;;AgroHardscapesParts&AccessoriesNavNode;AgroHardscapesParts&AccessoriesNavNode;AgroHardscapesEquipmentL2NavNode;SH1324111;AgroHardscapesParts&AccessoriesNavNode;2
+;;AgroIrrigationEquipmentL2NavNode;AgroIrrigationEquipmentL2NavNode;AgronomicMaintenanceNavNode;SH1325;AgroIrrigationEquipmentL2NavNode;14
+;;AgroIrrigationEquipmentL3NavNode;AgroIrrigationEquipmentL3NavNode;AgroIrrigationEquipmentL2NavNode;SH1325110;AgroIrrigationEquipmentL3NavNode;1
+;;AgroIrrigationParts&AccessoriesNavNode;AgroIrrigationParts&AccessoriesNavNode;AgroIrrigationEquipmentL2NavNode;SH1325111;AgroIrrigationParts&AccessoriesNavNode;2
+
+#----------------SH17 Tools, Equipment & Safety --------------------------
+;;EquipmentServicePartsNavNode;EquipmentServicePartsNavNode;EquipmentNavNode;SH1711118;EquipmentServicePartsNavNode;10
+;;EquipmentConsumablesNavNode;EquipmentConsumablesNavNode;EquipmentNavNode;SH1711119;EquipmentConsumablesNavNode;11
+;;EquipmentSports&TurfNavNode;EquipmentSportsAndTurfNavNode;EquipmentNavNode;SH1711120;EquipmentSportsAndTurfNavNode;12
+;;EquipmentStandOnSpreaderSprayerNavNode;EquipmentStandOnSpreaderSprayerNavNode;EquipmentNavNode;SH1711121;EquipmentStandOnSpreaderSprayerNavNode;13
+;;HardscapesEquipmentL2NavNode;HardscapesEquipmentL2NavNode;ToolsEquipment&SafetyNavNode;SH1714;HardscapesEquipmentL2NavNode;4
+;;HardscapesEquipmentL3NavNode;HardscapesEquipmentL3NavNode;HardscapesEquipmentL2NavNode;SH1714110;HardscapesEquipmentL3NavNode;1
+;;HardscapesPartsAccessoriesL3NavNode;HardscapesPartsAccessoriesL3NavNode;HardscapesEquipmentL2NavNode;SH1714111;HardscapesPartsAccessoriesL3NavNode;2
+;;IrrigationEquipmentL2NavNode;IrrigationEquipmentL2NavNode;ToolsEquipment&SafetyNavNode;SH1715;IrrigationEquipmentL2NavNode;5
+;;IrrigationEquipmentL3NavNode;IrrigationEquipmentL3NavNode;IrrigationEquipmentL2NavNode;SH1715110;IrrigationEquipmentL3NavNode;1
+;;IrrigationPartsAccessoriesL3NavNode;IrrigationPartsAccessoriesL3NavNode;HardscapesEquipmentL2NavNode;SH1715111;IrrigationPartsAccessoriesL3NavNode;2
+
+#-----------------Hide Categories--------------------------
+INSERT_UPDATE GlobalProductNavigationNode;$contentCV[unique=true];uid[unique=true];visible
+;;AgroEnginePoweredSpreaderNavNode;false
+;;AgroPartsNavNode;false
+;;AgroSpecialityEquipmentNavNode;false
+;;EquipmentEnginePoweredSpreader/SprayerNavNode;false
+;;EquipmentPartsNavNode;false

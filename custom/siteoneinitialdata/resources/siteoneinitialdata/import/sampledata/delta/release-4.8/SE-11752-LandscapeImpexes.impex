@@ -1,0 +1,387 @@
+
+##------------------ Landscape Impexes for PTH-90 ------------------
+
+##------------------ RENAME ------------------
+
+## --- Primary Hierarchy ---
+## Define supercategories and catalogVersion 
+$supercategories=supercategories(code, catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Staged']));;;;;;;;;
+$catalogVersion=catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Staged'])[unique=true,default='siteoneProductCatalog:Staged'];;;;;;;;;;;;;;;;;;
+
+## Landscape Supply>Sports & Turf>Athletic Field
+## Landscape Supply>Sports & Turf>Other Sports & Turf
+## Rename level 2 and Level 3 categories
+UPDATE category;code[unique=true];name[lang=en];$catalogVersion
+;PH1214;Sports & Turf;
+;PH1214100;Athletic Field;
+;PH1214101;Other Sports & Turf;
+
+## --- Sales Hierarchy ---
+## Define supercategories and catalogVersion 
+$supercategories=supercategories(code, catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Staged']));;;;;;;;;
+$catalogVersion=catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Staged'])[unique=true,default='siteoneProductCatalog:Staged'];;;;;;;;;;;;;;;;;;
+
+## Landscape Supply>Sports & Turf>Athletic Field
+## Landscape Supply>Sports & Turf>Other Sports & Turf
+## Rename level 2 and Level 3 categories
+UPDATE category;code[unique=true];name[lang=en];$catalogVersion
+;SH1214;Sports & Turf;
+;SH1214100;Athletic Field;
+;SH1214101;Other Sports & Turf;
+
+
+##------------------ NEW CATEGORIES
+
+## --- Primary Hierarchy ---
+## Define supercategories and catalogVersion 
+$supercategories=supercategories(code, catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Staged']));;;;;;;;;
+$catalogVersion=catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Staged'])[unique=true,default='siteoneProductCatalog:Staged'];;;;;;;;;;;;;;;;;;
+
+## Landscape Supply>Sports & Turf>Parks & Recreation
+## Create Level 3 category
+INSERT_UPDATE Category;code[unique=true];name[lang=en];$supercategories;$catalogVersion;allowedPrincipals(uid)
+;PH1214102;Parks & Recreation;PH1214;siteoneProductCatalog:Staged;admingroup
+
+## Landscape Supply>Job Site Essentials>Clean Up>Liners
+## Landscape Supply>Job Site Essentials>Clean Up>Specialty
+## Landscape Supply>Job Site Essentials>Clean Up>Towels
+## Landscape Supply>Job Site Essentials>Clean Up>Trash Cans
+## Landscape Supply>Job Site Essentials>Tarps>Burlap
+## Landscape Supply>Job Site Essentials>Tarps>Poly Tarps
+## Landscape Supply>Job Site Essentials>Tarps>Shade Tarps
+## Landscape Supply>Job Site Essentials>Tarps>Straps & Chains
+## Create level 3 and level 4 Categories
+;PH1224110;Cleanup;PH1224;siteoneProductCatalog:Staged;admingroup
+;PH1224110110;Liners;PH1224110;siteoneProductCatalog:Staged;admingroup
+;PH1224110111;Specialty;PH1224110;siteoneProductCatalog:Staged;admingroup
+;PH1224110112;Towels;PH1224110;siteoneProductCatalog:Staged;admingroup
+;PH1224110113;Trash Cans;PH1224110;siteoneProductCatalog:Staged;admingroup
+;PH1224111;Tarps;PH1224;siteoneProductCatalog:Staged;admingroup
+;PH1224111110;Burlap;PH1224111;siteoneProductCatalog:Staged;admingroup
+;PH1224111111;Poly Tarps;PH1224111;siteoneProductCatalog:Staged;admingroup
+;PH1224111112;Shade Tarps;PH1224111;siteoneProductCatalog:Staged;admingroup
+;PH1224111113;Straps & Chains;PH1224111;siteoneProductCatalog:Staged;admingroup
+
+## Landscape Supply>Stormwater>Fittings
+## Create category level 3
+;PH1218104;Fittings;PH1218;siteoneProductCatalog:Staged;admingroup
+
+
+## --- Sales Hierarchy ---
+## Define supercategories and catalogVersion 
+$supercategories=supercategories(code, catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Staged']));;;;;;;;;
+$catalogVersion=catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Staged'])[unique=true,default='siteoneProductCatalog:Staged'];;;;;;;;;;;;;;;;;;
+
+## Landscape Supply>Sports & Turf>Parks & Recreation
+## Create Level 3 category
+INSERT_UPDATE Category;code[unique=true];name[lang=en];$supercategories;$catalogVersion;allowedPrincipals(uid)
+;SH1214102;Parks & Recreation;SH1214;siteoneProductCatalog:Staged;admingroup
+
+## Landscape Supply>Job Site Essentials>Clean Up>Liners
+## Landscape Supply>Job Site Essentials>Clean Up>Specialty
+## Landscape Supply>Job Site Essentials>Clean Up>Towels
+## Landscape Supply>Job Site Essentials>Clean Up>Trash Cans
+## Landscape Supply>Job Site Essentials>Tarps>Burlap
+## Landscape Supply>Job Site Essentials>Tarps>Poly Tarps
+## Landscape Supply>Job Site Essentials>Tarps>Shade Tarps
+## Landscape Supply>Job Site Essentials>Tarps>Straps & Chains
+## Create level 3 and level 4 Categories
+;SH1224110;Clean Up;SH1224;siteoneProductCatalog:Staged;admingroup
+;SH1224110110;Liners;SH1224110;siteoneProductCatalog:Staged;admingroup
+;SH1224110111;Specialty;SH1224110;siteoneProductCatalog:Staged;admingroup
+;SH1224110112;Towels;SH1224110;siteoneProductCatalog:Staged;admingroup
+;SH1224110113;Trash Cans;SH1224110;siteoneProductCatalog:Staged;admingroup
+;SH1224111;Tarps;SH1224;siteoneProductCatalog:Staged;admingroup
+;SH1224111110;Burlap;SH1224111;siteoneProductCatalog:Staged;admingroup
+;SH1224111111;Poly Tarps;SH1224111;siteoneProductCatalog:Staged;admingroup
+;SH1224111112;Shade Tarps;SH1224111;siteoneProductCatalog:Staged;admingroup
+;SH1224111113;Straps & Chains;SH1224111;siteoneProductCatalog:Staged;admingroup
+
+## Landscape Supply>Stormwater>Fittings
+## Create category level 3
+;SH1218104;Fittings;SH1218;siteoneProductCatalog:Staged;admingroup
+
+
+##----------------------------------------------------------------------------------------------
+
+## Primary hierarchy - Sales hierarchy Mapping
+$productCatalog=siteoneProductCatalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+INSERT_UPDATE category;code[unique=true];salescategorymapping;$catalogVersion;
+;PH1214102;SH1214102;
+;PH1224110;SH1224110;
+;PH1224110110;SH1224110110;
+;PH1224110111;SH1224110111;
+;PH1224110112;SH1224110112;
+;PH1224110113;SH1224110113;
+;PH1224111;SH1224111;
+;PH1224111110;SH1224111110;
+;PH1224111111;SH1224111111;
+;PH1224111112;SH1224111112;
+;PH1224111113;SH1224111113;
+;PH1214101;SH1214101;
+
+
+##----------------------------------------------------------------------------------------------
+
+## Classifying Class creation
+INSERT_UPDATE classificationclass;code[unique=true];name[lang=en];catalogVersion(catalog(id),version);;;;;
+;CH01_1511113;Product Details;siteoneClassification:1;;;;;
+
+;CH01_1214102;Product Details;siteoneClassification:1;;;;;
+;CH01_1224110;Product Details;siteoneClassification:1;;;;;
+;CH01_1224110110;Product Details;siteoneClassification:1;;;;;
+;CH01_1224110111;Product Details;siteoneClassification:1;;;;;
+;CH01_1224110112;Product Details;siteoneClassification:1;;;;;
+;CH01_1224110113;Product Details;siteoneClassification:1;;;;;
+;CH01_1224111;Product Details;siteoneClassification:1;;;;;
+;CH01_1224111110;Product Details;siteoneClassification:1;;;;;
+;CH01_1224111111;Product Details;siteoneClassification:1;;;;;
+;CH01_1224111112;Product Details;siteoneClassification:1;;;;;
+;CH01_1224111113;Product Details;siteoneClassification:1;;;;;
+
+
+$productCatalog=siteoneProductCatalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+INSERT_UPDATE classificationclass;code[unique=true];name[lang=en];$catalogVersion;;;;;
+;CH01_1218104;Product Details;siteoneClassification:1;;;;;
+
+
+
+##----------------------------------------------------------------------------------------------
+
+## Class attribute assignment
+
+$classCatalogVersion=catalogversion(catalog(id[default='siteoneClassification']),version[default='1'])[unique=true,default='siteoneClassification:1']
+$classSystemVersion=systemversion(catalog(id[default='siteoneClassification']),version[default='1'])[unique=true,default='siteoneClassification:1']
+
+INSERT_UPDATE classAttributeAssignment;classificationAttribute(code,$classSystemVersion)[unique=true];attributeType(code);classificationClass(code,$classCatalogVersion)[unique=true];attributeValues(code)[mode=append];multiValued(code);mandatory(code);formatDefinition
+
+## Parks & Recreation
+##;lndscpItem;string;CH01_1214102;;false;false;30;
+##;lndscpType;string;CH01_1214102;;false;false;30;
+##;lndscpSeries;string;CH01_1214102;;false;false;30;
+;lndscpDimensions;string;CH01_1214102;;false;false;30;
+;lndscpColor;string;CH01_1214102;;false;false;30;
+;lndscpMaterial;string;CH01_1214102;;false;false;30;
+;lndscpFinish;string;CH01_1214102;;false;false;30;
+##;lndscpSuitableForUseWith;string;CH01_1214102;;false;false;30;
+;lndscpSpecifications;string;CH01_1214102;;false;false;30;
+;lndscpWidth;string;CH01_1214102;;false;false;30;
+;lndscpNumberofPieces;string;CH01_1214102;;false;false;30;
+
+## Liners
+;lndscpItem;string;CH01_1224110110;;false;false;30;
+;lndscpType;string;CH01_1224110110;;false;false;30;
+;lndscpSeries;string;CH01_1224110110;;false;false;30;
+;lndscpDimensions;string;CH01_1224110110;;false;false;30;
+;lndscpColor;string;CH01_1224110110;;false;false;30;
+;lndscpMaterial;string;CH01_1224110110;;false;false;30;
+;lndscpFinish;string;CH01_1224110110;;false;false;30;
+;lndscpShape;string;CH01_1224110110;;false;false;30;
+;lndscpHeight;string;CH01_1224110110;;false;false;30;
+;lndscpContainerSize;string;CH01_1224110110;;false;false;30;
+;lndscpLength;string;CH01_1224110110;;false;false;30;
+;lndscpStorageCapacity;string;CH01_1224110110;;false;false;30;
+;lndscpSize;string;CH01_1224110110;;false;false;30;
+;lndscpCapacity;string;CH01_1224110110;;false;false;30;
+;lndscpContainerType;string;CH01_1224110110;;false;false;30;
+;lndscpWidth;string;CH01_1224110110;;false;false;30;
+;lndscpThickness;string;CH01_1224110110;;false;false;30;
+
+## Specialty
+;lndscpItem;string;CH01_1224110111;;false;false;30;
+;lndscpType;string;CH01_1224110111;;false;false;30;
+;lndscpSeries;string;CH01_1224110111;;false;false;30;
+;lndscpColor;string;CH01_1224110111;;false;false;30;
+;lndscpFinish;string;CH01_1224110111;;false;false;30;
+;lndscpSuitableForUseWith;string;CH01_1224110111;;false;false;30;
+;lndscpFrameMaterial;string;CH01_1224110111;;false;false;30;
+;lndscpHandleLength;string;CH01_1224110111;;false;false;30;
+;lndscpHandleMaterial;string;CH01_1224110111;;false;false;30;
+;lndscpBladeMaterial;string;CH01_1224110111;;false;false;30;
+;lndscpBladeSize;string;CH01_1224110111;;false;false;30;
+;lndscpBladeType;string;CH01_1224110111;;false;false;30;
+;lndscpHandleDiameter;string;CH01_1224110111;;false;false;30;
+
+## Towels
+;lndscpItem;string;CH01_1224110112;;false;false;30;
+;lndscpType;string;CH01_1224110112;;false;false;30;
+;lndscpSeries;string;CH01_1224110112;;false;false;30;
+;lndscpDimensions;string;CH01_1224110112;;false;false;30;
+;lndscpColor;string;CH01_1224110112;;false;false;30;
+;lndscpMaterial;string;CH01_1224110112;;false;false;30;
+;lndscpSuitableForUseWith;string;CH01_1224110112;;false;false;30;
+;lndscpLength;string;CH01_1224110112;;false;false;30;
+;lndscpSize;string;CH01_1224110112;;false;false;30;
+
+## Trash Cans
+;lndscpItem;string;CH01_1224110113;;false;false;30;
+;lndscpType;string;CH01_1224110113;;false;false;30;
+;lndscpSeries;string;CH01_1224110113;;false;false;30;
+;lndscpDimensions;string;CH01_1224110113;;false;false;30;
+;lndscpColor;string;CH01_1224110113;;false;false;30;
+;lndscpMaterial;string;CH01_1224110113;;false;false;30;
+;lndscpFinish;string;CH01_1224110113;;false;false;30;
+;lndscpHeight;string;CH01_1224110113;;false;false;30;
+;lndscpSuitableForUseWith;string;CH01_1224110113;;false;false;30;
+;lndscpContainerSize;string;CH01_1224110113;;false;false;30;
+;lndscpLength;string;CH01_1224110113;;false;false;30;
+;lndscpStorageCapacity;string;CH01_1224110113;;false;false;30;
+;lndscpSize;string;CH01_1224110113;;false;false;30;
+;lndscpCapacity;string;CH01_1224110113;;false;false;30;
+;lndscpContainerType;string;CH01_1224110113;;false;false;30;
+;lndscpWidth;string;CH01_1224110113;;false;false;30;
+
+## Burlap
+;lndscpItem;string;CH01_1224111110;;false;false;30;
+;lndscpType;string;CH01_1224111110;;false;false;30;
+;lndscpSeries;string;CH01_1224111110;;false;false;30;
+;lndscpDimensions;string;CH01_1224111110;;false;false;30;
+;lndscpColor;string;CH01_1224111110;;false;false;30;
+;lndscpMaterial;string;CH01_1224111110;;false;false;30;
+;lndscpFinish;string;CH01_1224111110;;false;false;30;
+;lndscpHeight;string;CH01_1224111110;;false;false;30;
+;lndscpSuitableForUseWith;string;CH01_1224111110;;false;false;30;
+;lndscpLength;string;CH01_1224111110;;false;false;30;
+;lndscpSize;string;CH01_1224111110;;false;false;30;
+;lndscpWidth;string;CH01_1224111110;;false;false;30;
+;lndscpCoverageArea;string;CH01_1224111110;;false;false;30;
+;lndscpThickness;string;CH01_1224111110;;false;false;30;
+;lndscpPattern;string;CH01_1224111110;;false;false;30;
+
+## Poly Tarps
+;lndscpItem;string;CH01_1224111111;;false;false;30;
+;lndscpType;string;CH01_1224111111;;false;false;30;
+;lndscpSeries;string;CH01_1224111111;;false;false;30;
+;lndscpDimensions;string;CH01_1224111111;;false;false;30;
+;lndscpColor;string;CH01_1224111111;;false;false;30;
+;lndscpMaterial;string;CH01_1224111111;;false;false;30;
+;lndscpFinish;string;CH01_1224111111;;false;false;30;
+;lndscpHeight;string;CH01_1224111111;;false;false;30;
+;lndscpSuitableForUseWith;string;CH01_1224111111;;false;false;30;
+;lndscpLength;string;CH01_1224111111;;false;false;30;
+;lndscpSize;string;CH01_1224111111;;false;false;30;
+;lndscpWidth;string;CH01_1224111111;;false;false;30;
+;lndscpCoverageArea;string;CH01_1224111111;;false;false;30;
+;lndscpThickness;string;CH01_1224111111;;false;false;30;
+;lndscpPattern;string;CH01_1224111111;;false;false;30;
+
+## Shade Tarps
+;lndscpItem;string;CH01_1224111112;;false;false;30;
+;lndscpType;string;CH01_1224111112;;false;false;30;
+;lndscpSeries;string;CH01_1224111112;;false;false;30;
+;lndscpDimensions;string;CH01_1224111112;;false;false;30;
+;lndscpColor;string;CH01_1224111112;;false;false;30;
+;lndscpMaterial;string;CH01_1224111112;;false;false;30;
+;lndscpFinish;string;CH01_1224111112;;false;false;30;
+;lndscpHeight;string;CH01_1224111112;;false;false;30;
+;lndscpSuitableForUseWith;string;CH01_1224111112;;false;false;30;
+;lndscpLength;string;CH01_1224111112;;false;false;30;
+;lndscpSize;string;CH01_1224111112;;false;false;30;
+;lndscpWidth;string;CH01_1224111112;;false;false;30;
+;lndscpCoverageArea;string;CH01_1224111112;;false;false;30;
+;lndscpThickness;string;CH01_1224111112;;false;false;30;
+;lndscpPattern;string;CH01_1224111112;;false;false;30;
+
+## Straps & Chains
+;lndscpItem;string;CH01_1224111113;;false;false;30;
+;lndscpType;string;CH01_1224111113;;false;false;30;
+;lndscpSeries;string;CH01_1224111113;;false;false;30;
+;lndscpDimensions;string;CH01_1224111113;;false;false;30;
+;lndscpColor;string;CH01_1224111113;;false;false;30;
+;lndscpMaterial;string;CH01_1224111113;;false;false;30;
+;lndscpSuitableForUseWith;string;CH01_1224111113;;false;false;30;
+;lndscpLength;string;CH01_1224111113;;false;false;30;
+;lndscpBuckleType;string;CH01_1224111113;;false;false;30;
+;lndscpWidth;string;CH01_1224111113;;false;false;30;
+;lndscpDiameter;string;CH01_1224111113;;false;false;30;
+;lndscpLoadCapacity;string;CH01_1224111113;;false;false;30;
+;lndscpHookMaterial;string;CH01_1224111113;;false;false;30;
+
+## Fittings
+##;lndscpItem;string;CH01_1218104;;false;false;30;
+##;lndscpType;string;CH01_1218104;;false;false;30;
+##;lndscpSeries;string;CH01_1218104;;false;false;30;
+##;lndscpDimensions;string;CH01_1218104;;false;false;30;
+;lndscpColor;string;CH01_1218104;;false;false;30;
+##;lndscpMaterial;string;CH01_1218104;;false;false;30;
+##;lndscpFinish;string;CH01_1218104;;false;false;30;
+;lndscpWallThickness;string;CH01_1218104;;false;false;30;
+;lndscpFlowRate;string;CH01_1218104;;false;false;30;
+##;lndscpSuitableForUseWith;string;CH01_1218104;;false;false;30;
+;lndscpLength;string;CH01_1218104;;false;false;30;
+;lndscpDiameter;string;CH01_1218104;;false;false;30;
+;lndscpNominalSize;string;CH01_1218104;;false;false;30;
+;lndscpThickness;string;CH01_1218104;;false;false;30;
+;lndscpPressureRating;string;CH01_1218104;;false;false;30;
+;lndscpInsideDiameter;string;CH01_1218104;;false;false;30;
+;lndscpOutsideDiameter;string;CH01_1218104;;false;false;30;
+;lndscpIncludes;string;CH01_1218104;;false;false;30;
+
+
+##----------------------------------------------------------------------------------------------
+
+##--e with Staged catalog version 
+$productCatalog=siteoneProductCatalog
+$catalogVersion=catalogversion(catalog(id[default='siteoneProductCatalog']),version[default='Staged'])[unique=true,default='siteoneProductCatalog:Staged']
+$classCatalogVersion=catalogversion(catalog(id[default='siteoneClassification']),version[default='1'])[unique=true,default='siteoneClassification:1']
+$supercategories=source(code, $classCatalogVersion)[unique=true]
+$categories=target(code, $catalogVersion)[unique=true]
+INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories
+;PH1214102;CH01_1214102;
+;PH1224110;CH01_1224110;
+;PH1224110110;CH01_1224110110;
+;PH1224110111;CH01_1224110111;
+;PH1224110112;CH01_1224110112;
+;PH1224110113;CH01_1224110113;
+;PH1224111;CH01_1224111;
+;PH1224111110;CH01_1224111110;
+;PH1224111111;CH01_1224111111;
+;PH1224111112;CH01_1224111112;
+;PH1224111113;CH01_1224111113;
+;PH1218104;CH01_1218104;
+
+
+##----------------------------------------------------------------------------------------------
+
+##------------------------------------- OK
+##--e with online catalog version 
+$productCatalog=siteoneProductCatalog
+$catalogVersion=catalogversion(catalog(id[default='siteoneProductCatalog']),version[default='Online'])[unique=true,default='siteoneProductCatalog:Online']
+$classCatalogVersion=catalogversion(catalog(id[default='siteoneClassification']),version[default='1'])[unique=true,default='siteoneClassification:1']
+$supercategories=source(code, $classCatalogVersion)[unique=true]
+$categories=target(code, $catalogVersion)[unique=true]
+INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories
+;PH1214102;CH01_1214102;
+;PH1224110;CH01_1224110;
+;PH1224110110;CH01_1224110110;
+;PH1224110111;CH01_1224110111;
+;PH1224110112;CH01_1224110112;
+;PH1224110113;CH01_1224110113;
+;PH1224111;CH01_1224111;
+;PH1224111110;CH01_1224111110;
+;PH1224111111;CH01_1224111111;
+;PH1224111112;CH01_1224111112;
+;PH1224111113;CH01_1224111113;
+
+
+##-----------------------------------------------------------------------------------
+##--f
+
+$classCatalogVersion=catalogversion(catalog(id[default='siteoneClassification']),version[default='1'])[unique=true,default='siteoneClassification:1']
+$supercategories=source(code, $classCatalogVersion)[unique=true]
+$categories=target(code, $classCatalogVersion)[unique=true]
+INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories
+;CH01_1214102;CH01_1214;
+;CH01_1224110;CH01_1224;
+;CH01_1224110110;CH01_1224110;
+;CH01_1224110111;CH01_1224110;
+;CH01_1224110112;CH01_1224110;
+;CH01_1224110113;CH01_1224110;
+;CH01_1224111;CH01_1224;
+;CH01_1224111110;CH01_1224111;
+;CH01_1224111111;CH01_1224111;
+;CH01_1224111112;CH01_1224111;
+;CH01_1224111113;CH01_1224111;
+;CH01_1218104;CH01_1218;

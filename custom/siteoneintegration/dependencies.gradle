@@ -1,0 +1,4 @@
+ext {
+	libraries = []
+}
+libraries << "com.windowsazure:Notification-Hubs-java-sdk:1.1.0"

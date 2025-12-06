@@ -1,0 +1,494 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ [y] hybris Platform
+
+ Copyright (c) 2000-2016 SAP SE or an SAP affiliate company.
+ All rights reserved.
+
+ This software is the confidential and proprietary information of SAP
+ ("Confidential Information"). You shall not disclose such Confidential
+ Information and shall use it only in accordance with the terms of the
+ license agreement you entered into with SAP.
+-->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:int="http://www.springframework.org/schema/integration"
+	xmlns:file="http://www.springframework.org/schema/integration/file"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/integration
+	http://www.springframework.org/schema/integration/spring-integration.xsd
+	http://www.springframework.org/schema/integration/file
+	http://www.springframework.org/schema/integration/file/spring-integration-file.xsd
+	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+	http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<context:annotation-config/>
+
+	<bean id="azureHotfolderCustomerRemotePath" class="java.lang.String">
+		<constructor-arg name="value"
+			value="${azure.hotfolder.storage.container.hotfolder}/siteonecustomer"/>
+	</bean>
+
+	<bean id="azureHotfolderCustomerLocalPath" class="java.lang.String">
+		<constructor-arg name="value"
+			value="#{azureHotfolderLocalDirectoryBase}/#{azureHotfolderCustomerRemotePath}"/>
+	</bean>
+
+	<bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+		<property name="targetObject" ref="hotfolderInboundFileChannelMappings"/>
+		<property name="targetMethod" value="put"/>
+		<property name="arguments">
+			<list>
+				<bean class="java.util.regex.Pattern" factory-method="compile">
+					<constructor-arg value="^(siteonecustomer)_(\d+)(\S+)_(\d+)(\S+)\.(?i)txt"/>
+				</bean>
+				<ref bean="SiteOneCustomerBatchFilesCloudHotFolderProc"/>
+			</list>
+		</property>
+	</bean>
+
+	<int:channel id="SiteOneCustomerBatchFilesCloudHotFolderProc"/>
+
+	<int:service-activator input-channel="SiteOneCustomerBatchFilesCloudHotFolderProc" output-channel="batchSiteOneFilesHeaderInit"
+		ref="SiteOneCustomerCloudHotFolderHeaderSetupTask" method="execute">
+	</int:service-activator>
+
+	<!--  Azure Inbound File Synchronizer and Channel Adapter -->
+	<bean id="SiteOneCustomerAzureBlobInboundSynchronizer"
+		class="de.hybris.platform.cloud.azure.hotfolder.remote.inbound.AzureBlobInboundSynchronizer">
+		<constructor-arg name="sessionFactory" ref="azureBlobSessionFactory"/>
+		<property name="remoteDirectory" value="#{azureHotfolderCustomerRemotePath}"/>
+		<property name="moveToRemoteDirectory" value="#{azureHotfolderCustomerRemotePath}/processing"/>
+		<property name="deleteRemoteFiles" value="${azure.hotfolder.storage.delete.remote.files}"/>
+		<property name="preserveTimestamp" value="true"/>
+		<property name="filter" ref="azureHotfolderFileFilter"/>
+		<property name="comparator" ref="azureHotFolderFileComparator"/>
+	</bean>
+
+	<bean id="SiteOneCustomerAzureBlobSynchronizingMessageSource"
+		class="de.hybris.platform.cloud.azure.hotfolder.remote.inbound.AzureBlobSynchronizingMessageSource">
+		<constructor-arg name="synchronizer" ref="SiteOneCustomerAzureBlobInboundSynchronizer"/>
+		<property name="autoCreateLocalDirectory" value="true"/>
+		<property name="localDirectory" value="#{azureHotfolderCustomerLocalPath}/processing/"/>
+		<property name="maxFetchSize" value="${azure.hotfolder.storage.polling.fetch.batch-size}"/>
+	</bean>
+
+	<bean id="azureCustomerChannelAdapterTaskExecutor"
+		class="de.hybris.platform.cloud.commons.scheduling.HybrisAwareThreadPoolTaskExecutor">
+		<property name="waitForTasksToCompleteOnShutdown" value="true"/>
+		<property name="threadNamePrefix" value="AzureCustomerIntegrationTaskExecutorThread-${tenantId}-"/>
+		<property name="threadGroupName" value="AzureCustomerIntegrationTaskExecutorThread-${tenantId}"/>
+		<property name="corePoolSize" value="${azure.hotfolder.storage.polling.core-pool-size}"/>
+		<property name="maxPoolSize" value="${azure.hotfolder.storage.polling.max-pool-size}"/>
+		<property name="queueCapacity" value="-1"/>
+		<property name="keepAliveSeconds" value="60"/>
+		<property name="rejectedExecutionHandler">
+			<bean class="java.util.concurrent.ThreadPoolExecutor$DiscardPolicy"/>
+		</property>
+		<property name="role" value="integration"/>
+		<property name="autoStartup" value="false"/>
+		<property name="phase" value="10"/>
+		<property name="awaitTerminationSeconds" value="60"/>
+	</bean>
+
+
+	<bean id="SiteOneCustomerCloudHotFolderHeaderSetupTask" class="de.hybris.platform.acceleratorservices.dataimport.batch.task.HeaderSetupTask">
+		<property name="catalog" value="${cloud.hotfolder.default.mapping.header.catalog}"/>
+		<property name="net" value="${cloud.hotfolder.default.mapping.header.net}" />
+		<property name="storeBaseDirectory" value="#{azureHotfolderCustomerRemotePath}/processing" />
+	</bean>
+
+	<int:inbound-channel-adapter id="SiteOneCustomerAzureInboundChannelAdapter"
+		auto-startup="false"
+		role="${cloud.hotfolder.storage.services.role}"
+		phase="50"
+		ref="SiteOneCustomerAzureBlobSynchronizingMessageSource"
+		channel="siteOneCustomerCloudHotFolderInboundFileHeaderEnricherChannel">
+		<int:poller fixed-rate="${azure.hotfolder.storage.polling.fixed.rate}"
+			task-executor="azureCustomerChannelAdapterTaskExecutor"
+			max-messages-per-poll="${azure.hotfolder.storage.polling.fetch.batch-size}">
+		</int:poller>
+	</int:inbound-channel-adapter>
+	
+	<int:channel id="siteOneCustomerCloudHotFolderInboundFileHeaderEnricherChannel">
+        <int:interceptors>
+           <ref bean="siteOneCustomerHotFolderRoutingChannelInterceptor"/>
+        </int:interceptors>
+    </int:channel>
+
+
+    <bean id="siteOneCustomerHotFolderRoutingChannelInterceptor" class="de.hybris.platform.cloud.hotfolder.interceptor.HotFolderRouterChannelInterceptor">
+      <property name="successChannel" ref="SiteOneCustomerAzureArchiveOutboundChannelAdapter"/>
+      <property name="failureChannel" ref="SiteOneCustomerAzureErrorOutboundChannelAdapter"/>
+    </bean>
+
+    <int:header-enricher id="siteOneCustCloudHotFolderInboundFileNameHeaderEnricherChannel"
+                input-channel="siteOneCustomerCloudHotFolderInboundFileHeaderEnricherChannel"
+                output-channel="hotfolderInboundFileChannel">
+        <int:header name="#{fileNameHeaderKey}" expression="payload.getName()"/>
+        <int:header name="#{fileLastModifiedHeaderKey}" expression="payload.lastModified()"/>
+   </int:header-enricher>
+
+
+	<!-- Customer :: Azure Outbound Channel adapters for moving remote files into archive/error folders -->
+	<bean id="SiteOneCustomerAzureArchiveMessageHandler" parent="abstractAzureMoveMessageHandler">
+		<property name="remoteDirectory" value="#{azureHotfolderCustomerRemotePath}/archive"/>
+	</bean>
+
+	<bean id="SiteOneCustomerAzureErrorMessageHandler" parent="abstractAzureMoveMessageHandler">
+		<property name="remoteDirectory" value="#{azureHotfolderCustomerRemotePath}/error"/>
+	</bean>
+
+	<int:outbound-channel-adapter id="SiteOneCustomerAzureArchiveOutboundChannelAdapter"
+		ref="SiteOneCustomerAzureArchiveMessageHandler">
+	</int:outbound-channel-adapter>
+
+	<int:outbound-channel-adapter id="SiteOneCustomerAzureErrorOutboundChannelAdapter"
+		ref="SiteOneCustomerAzureErrorMessageHandler" >
+	</int:outbound-channel-adapter>
+
+
+	<!--Start-->
+	<file:inbound-channel-adapter id="azureLocalCustomerErrorInboundChannelAdapter"
+		directory="#{azureHotfolderCustomerLocalPath}/error"
+		filter="azureLocalCustomerErrorHotFolderFileFilter">
+		<int:poller fixed-rate="10000"/>
+	</file:inbound-channel-adapter>
+
+	<bean id="azureLocalCustomerErrorHotFolderFileFilter"
+		class="de.hybris.platform.cloud.commons.spring.integration.file.filters.ChainFileListFilter">
+		<constructor-arg name="fileFilters" ref="azureLocalCustomerErrorFolderFileListFilter"/>
+	</bean>
+
+	<util:list id="azureLocalCustomerErrorFolderFileListFilter">
+		<ref bean="azureLocalCustomerErrorRegexPatternFileListFilter"/>
+		<ref bean="azureFileSystemPersistentAcceptOnceListFilter"/>
+	</util:list>
+
+	<bean id="azureLocalCustomerErrorRegexPatternFileListFilter"
+		class="org.springframework.integration.file.filters.RegexPatternFileListFilter">
+		<constructor-arg name="pattern" value="^error_siteonecustomer.*$"/>
+	</bean>
+
+	<bean id="azureFileSystemPersistentAcceptOnceListFilter" class="org.springframework.integration.file.filters.FileSystemPersistentAcceptOnceFileListFilter">
+		<constructor-arg name="store" ref="hotfolderMetadataStore"/>
+		<constructor-arg name="prefix" value="${azure.hotfolder.storage.metadatastore.prefix}"/>
+	</bean>
+
+	<int:outbound-channel-adapter id="azureLocalCustomerErrorOutboundChannelAdapter"
+		channel="azureLocalCustomerErrorInboundChannelAdapter" ref="azureCustomerBlobMessageHandler"/>
+
+	<bean id="azureCustomerBlobMessageHandler" class="de.hybris.platform.cloud.azure.hotfolder.remote.outbound.AzureBlobMessageHandler">
+		<constructor-arg ref="azureBlobSessionFactory"/>
+		<property name="remoteDirectory" ref="azureCustomerHotfolderErrorRemotePath"/>
+		<property name="fileNameGenerator" ref="azureTimestampFileNameGenerator"/>
+		<property name="deleteSourceFiles" value="true"/>
+	</bean>
+
+	<bean id="azureCustomerHotfolderErrorRemotePath" class="java.lang.String">
+		<constructor-arg name="value"
+			value="#{azureHotfolderCustomerRemotePath}/error"/>
+	</bean>
+
+	<!-- B2BUnit Starts -->
+	<!-- Parent B2BUnit Starts -->
+	<bean id="batchSiteOneParentB2BUnitConverterMapping"
+		class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping"
+		p:mapping="siteonecustomer"
+		p:converter-ref="batchSiteOneParentB2BUnitConverter" />
+
+	<bean id="batchSiteOneParentB2BUnitConverter" class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>
+				INSERT_UPDATE B2BUnit;uid[unique=true];name[cellDecorator=com.siteone.core.batch.decorator.DoubleQuoteCellDecorator];division(uid);locName[lang=en][cellDecorator=com.siteone.core.batch.decorator.DoubleQuoteCellDecorator];active;groups(uid);isLargeAccount;reportingOrganization(uid);guid[unique=true];accountManagerName;isBillingAccount[default=false];isOrderingAccount[default=false];phoneNumber;phoneId;payBillOnline[default=false];isPONumberRequired[default=false];poRegex[cellDecorator=com.siteone.core.batch.decorator.PORegexCellDecorator];tradeClass;tradeclassname;subtradeclass;subtradeclassname;customersegment;isPayOnAccount;creditCode;creditTermCode;accountGroupCode;accountManagerEmail;insideSalesRepEmail;homeBranch
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>;{+0}_{+4};{1};{+4};{1};{6};;{23};{0}_{4};{+2};{20};{21};{22};{11};{27};{30};{31};{32};{36};{38};{39};{40};{41};{42};{43};{44};{45};{46};{47};{37}</value>
+		</property>
+		<property name="rowFilter">
+			<bean class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexRowFilter">
+				<property name="expression" value="row[3]=='primary_account'"/>
+			</bean>
+		</property>
+		<property name="type" value="B2BUnit"/>
+	</bean>
+
+	<!-- Parent B2BUnit Ends -->
+
+
+	<!-- Ship-To B2BUnit Starts -->
+
+	<bean id="batchSiteOneShipToB2BUnitConverterMapping"
+		class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping"
+		p:mapping="siteonecustomer"
+		p:converter-ref="batchSiteOneShipToB2BUnitConverter" />
+
+	<bean id="batchSiteOneShipToB2BUnitConverter" class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>
+				INSERT_UPDATE B2BUnit;uid[unique=true];name[cellDecorator=com.siteone.core.batch.decorator.DoubleQuoteCellDecorator];division(uid);locName[lang=en][cellDecorator=com.siteone.core.batch.decorator.DoubleQuoteCellDecorator];active;groups(uid);reportingOrganization(uid);guid[unique=true];accountManagerName;isBillingAccount[default=false];isOrderingAccount[default=false];phoneNumber;phoneId;payBillOnline[default=false];isPONumberRequired[default=false];poRegex[cellDecorator=com.siteone.core.batch.decorator.PORegexCellDecorator];tradeClass;tradeclassname;subtradeclass;subtradeclassname;customersegment;isPayOnAccount;creditCode;creditTermCode;accountGroupCode;accountManagerEmail;insideSalesRepEmail;homeBranch
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>;{+0}_{+4};{1};{+4};{1};{6};{5}_{4};{5}_{4};{+2};{20};{21};{22};{11};{27};{30};{31};{32};{36};{38};{39};{40};{41};{42};{43};{44};{45};{46};{47};{37}</value>
+		</property>
+		<property name="rowFilter">
+			<bean class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexRowFilter">
+				<property name="expression" value="row[3]=='shipto_account'"/>
+			</bean>
+		</property>
+		<property name="type" value="B2BUnit"/>
+	</bean>
+	<!-- Ship-To B2BUnit Ends -->
+
+	<!-- B2BUnit Ends -->
+
+	<!-- B2B Customer admin grp Starts -->
+	<bean id="firstTimeUserImportAdapter" class="com.siteone.core.adapter.impl.DefaultFirstTimeUserImportAdapter" >
+		<property name="modelService" ref="modelService" />
+		<property name="userService"  ref="userService" />
+	</bean>
+
+	<bean id="updateEmailStatusAdapter" class="com.siteone.core.adapter.impl.DefaultUpdateEmailStatusAdapter" >
+		<property name="modelService" ref="modelService" />
+		<property name="userService"  ref="userService" />
+	</bean>
+
+
+	<bean id="batchSiteOneB2BCustomerForParentB2BUnitConverterMapping"
+		class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping"
+		p:mapping="siteonecustomer"
+		p:converter-ref="batchSiteOneB2BCustomerForParentB2BUnitConverter" />
+
+	<bean id="batchSiteOneB2BCustomerForParentB2BUnitConverter" class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>
+				INSERT_UPDATE B2BCustomer;uid[cellDecorator=com.siteone.core.batch.decorator.UserIdCellDecorator];email[cellDecorator=com.siteone.core.batch.decorator.UserIdCellDecorator];name;firstName;lastName;groups(uid);defaultB2BUnit(uid);isTransactionEmailOpted;isSmsTextOpted;isNewsLetterOpted;guid[unique=true];title(name[lang=en]);isFirstTimeUser[translator=com.siteone.core.translator.FirstTimeUserTranslator];active;partnerProgramPermissions;passwordEncoding;payBillOnline[translator=com.siteone.core.translator.UpdateUserBilltrustGroupinOktaTranslator];updateEmailFlag[translator=com.siteone.core.translator.EmailUpdateStatusTranslator];isAccountOwner[default=false];languagePreference(isocode)[cellDecorator=com.siteone.core.batch.decorator.LanguagePreferenceCellDecorator];homeBranch;loginDisabled[default=false]
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>;{+10};{10};{7} {8};{7};{8};b2badmingroup;{5}_{4};{24};{25};{26};{+2};{28};{+10};{6};{29};okta;{30};{10};{33};{35};{37};0</value>
+		</property>
+		<property name="rowFilter">
+			<bean class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexRowFilter">
+				<property name="expression" value="row[3]=='contact' &amp;&amp; ((row[33]!='' &amp;&amp;'true'.equalsIgnoreCase(row[33])) || (row[34]!='' &amp;&amp;'true'.equalsIgnoreCase(row[34])))"/>
+			</bean>
+		</property>
+		<property name="type" value="B2BCustomer"/>
+	</bean>
+
+	<!-- B2B Customer Ends -->
+
+
+	<!-- B2B Customer user grp Starts -->
+
+	<bean id="batchSiteOneB2BCustomerForShipToB2BUnitConverterMapping"
+		class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping"
+		p:mapping="siteonecustomer"
+		p:converter-ref="batchSiteOneB2BCustomerForShipToB2BUnitConverter" />
+
+	<bean id="batchSiteOneB2BCustomerForShipToB2BUnitConverter" class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>
+				INSERT_UPDATE B2BCustomer;uid[cellDecorator=com.siteone.core.batch.decorator.UserIdCellDecorator];email[cellDecorator=com.siteone.core.batch.decorator.UserIdCellDecorator];name;firstName;lastName;@groups[translator=com.siteone.core.translator.SiteOneB2BGroupsSpecialValueTranslator];defaultB2BUnit(uid);isTransactionEmailOpted;isSmsTextOpted;isNewsLetterOpted;guid[unique=true];title(name[lang=en]);isFirstTimeUser[translator=com.siteone.core.translator.FirstTimeUserTranslator];active;partnerProgramPermissions;passwordEncoding;payBillOnline[translator=com.siteone.core.translator.UpdateUserBilltrustGroupinOktaTranslator];updateEmailFlag[translator=com.siteone.core.translator.EmailUpdateStatusTranslator];isAccountOwner[default=false];languagePreference(isocode)[cellDecorator=com.siteone.core.batch.decorator.LanguagePreferenceCellDecorator];homeBranch;loginDisabled[default=false]
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>;{+10};{10};{7} {8};{7};{8};{5}_{4};{5}_{4};{24};{25};{26};{+2};{28};{+10};{6};{29};okta;{30};{10};{33};{35};{37};0</value>
+		</property>
+		<property name="rowFilter">
+			<bean class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexRowFilter">
+				<property name="expression" value="row[3]=='contact' &amp;&amp; ((row[33]=='' || 'false'.equalsIgnoreCase(row[33])) || (row[34]=='' || 'false'.equalsIgnoreCase(row[34]))) "/>
+			</bean>
+		</property>
+		<property name="type" value="B2BCustomer"/>
+	</bean>
+
+	<!-- B2B Customer Ends -->
+	
+	<!-- Project services Starts -->
+
+	<bean id="batchSiteOneB2BCustomerForProjectServicesMapping"
+		class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping"
+		p:mapping="siteonecustomer"
+		p:converter-ref="batchSiteOneB2BCustomerForProjectServices" />
+
+	<bean id="batchSiteOneB2BCustomerForProjectServices" class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>
+				INSERT_UPDATE B2BCustomer;uid[unique=true,cellDecorator=com.siteone.core.batch.decorator.UserIdCellDecorator];isProjectServicesEnabled[default=false]
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>;{10};{49}</value>
+		</property>
+		<property name="type" value="B2BCustomer"/>
+	</bean>
+
+	<!-- Project services Ends -->
+
+
+	<!-- B2BUnit Billing Address for US,CA Starts -->
+
+	<bean id="batchSiteOneBillAddressConverterMapping"
+		class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping"
+		p:mapping="siteonecustomer"
+		p:converter-ref="batchSiteOneBillAddressUnitConverter" />
+
+	<bean id="batchSiteOneBillAddressUnitConverter" class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>
+				INSERT_UPDATE Address;guid[unique=true];line1;line2;district;postalcode;town;country(isocode)[cellDecorator=com.siteone.core.batch.decorator.CountryIsocodeCellDecorator];region(isocode)[cellDecorator=com.siteone.core.batch.decorator.RegionIsocodeCellDecorator];owner(B2BUnit.uid)[unique=true];phone1[cellDecorator=com.siteone.core.batch.decorator.PhoneNumberCellDecorator];billingAddress;
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>;{+2};{14};{13};{15};{18};{16};{19};{19}-{17};{5}_{4};{11};TRUE;</value>
+		</property>
+		<property name="rowFilter">
+			<bean class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexRowFilter">
+				<property name="expression" value="row[3]=='billing_address'"/>
+			</bean>
+		</property>
+		<property name="type" value="Address"/>
+	</bean>
+
+	<!-- B2BUnit Billing Address for US,CA Ends -->
+
+
+	<!-- B2BUnit Shipping Address for US,CA-->
+
+	<bean id="batchSiteOneShippingAddressConverterMapping"
+		class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping"
+		p:mapping="siteonecustomer"
+		p:converter-ref="batchSiteOneShippingAddressConverter" />
+
+	<bean id="batchSiteOneShippingAddressConverter" class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>
+				INSERT_UPDATE Address;guid[unique=true];line1;line2;district;postalcode;town;country(isocode)[cellDecorator=com.siteone.core.batch.decorator.CountryIsocodeCellDecorator];region(isocode)[cellDecorator=com.siteone.core.batch.decorator.RegionIsocodeCellDecorator];owner(B2BUnit.uid)[unique=true];phone1[cellDecorator=com.siteone.core.batch.decorator.PhoneNumberCellDecorator];shippingAddress;
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>;{+2};{14};{13};{15};{18};{16};{19};{19}-{17};{5}_{4};{11};TRUE;</value>
+		</property>
+		<property name="rowFilter">
+			<bean class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexRowFilter">
+				<property name="expression" value="row[3]=='shipping_address'"/>
+			</bean>
+		</property>
+		<property name="type" value="Address"/>
+	</bean>
+
+	<!-- B2BUnit Shipping Address for US,CA  -->
+
+
+	<!-- B2B Customer Contact Info Starts -->
+
+	<!-- Phone -->
+	<bean id="batchSiteOnePhoneContactConverterMapping"
+		class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping"
+		p:mapping="siteonecustomer"
+		p:converter-ref="batchSiteOnePhoneContactConverter" />
+
+	<bean id="batchSiteOnePhoneContactConverter" class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>
+				INSERT_UPDATE PhoneContactInfo;user(uid)[unique=true][cellDecorator=com.siteone.core.batch.decorator.UserIdCellDecorator];code(uid);phoneNumber[unique=true][cellDecorator=com.siteone.core.batch.decorator.PhoneNumberCellDecorator];type(code);phoneId[unique=true]
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>;{+10};{10};{11};MOBILE;{27}</value>
+		</property>
+		<property name="rowFilter">
+			<bean class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexRowFilter">
+				<property name="expression" value="row[3]=='contact' &amp;&amp; row[11]!='' "/>
+			</bean>
+		</property>
+		<property name="type" value="PhoneContactInfo"/>
+	</bean>
+
+	<!-- Phone ends -->
+
+	<!-- Need to get default address flag from feed and add it in row filter -->
+	<!-- Set Default Shipping Address Ends -->
+	<bean id="batchSiteOneDefaultShippingAddressConverterMapping"
+		class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping"
+		p:mapping="siteonecustomer"
+		p:converter-ref="batchSiteOneDefaultShippingAddressUnitConverter" />
+
+	<bean id="batchSiteOneDefaultShippingAddressUnitConverter" class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>
+				UPDATE B2Bunit;uid[unique=true];shippingAddress(owner(B2BUnit.uid),guid,shippingAddress)
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>;{+5}_{4};{5}_{4}:{+2}:TRUE</value>
+		</property>
+		<property name="rowFilter">
+			<bean class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexRowFilter">
+				<property name="expression" value="row[3]=='shipping_address'"/>
+			</bean>
+		</property>
+		<property name="type" value="B2BUnit"/>
+	</bean>
+
+	<!-- Set Default Shipping Address Ends -->
+
+	<!-- Need to get default address flag from feed and add it in row filter -->
+	<!-- Set Default Billing Address Ends -->
+	<bean id="batchSiteOneDefaultBillingAddressConverterMapping"
+		class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping"
+		p:mapping="siteonecustomer"
+		p:converter-ref="batchSiteOneDefaultBillingAddressUnitConverter" />
+
+	<bean id="batchSiteOneDefaultBillingAddressUnitConverter" class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>
+				UPDATE B2Bunit;uid[unique=true];billingAddress(owner(B2BUnit.uid),guid,billingAddress)
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>;{+5}_{4};{5}_{4}:{+2}:TRUE</value>
+		</property>
+		<property name="rowFilter">
+			<bean class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexRowFilter">
+				<property name="expression" value="row[3]=='billing_address'"/>
+			</bean>
+		</property>
+		<property name="type" value="B2BUnit"/>
+	</bean>
+
+	<!-- Set Default Billing Address Ends -->
+
+	<!-- Create dummy contact for every account which will be mapped in order for store contact -->
+
+	<bean id="batchSiteOneStoreContactConverterMapping"
+		class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping"
+		p:mapping="siteonecustomer"
+		p:converter-ref="batchSiteOneStoreContactConverter" />
+
+	<bean id="batchSiteOneStoreContactConverter" class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>
+				INSERT_UPDATE B2BCustomer;uid[unique=true][cellDecorator=com.siteone.core.batch.decorator.UserIdCellDecorator];email;defaultB2BUnit(uid);name;payBillOnline[default=false];loginDisabled[default=false]
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>;storecontact-{0}_{4};storecontact@{0}_{4}.com;{0}_{4};storecontact-{0}_{4};{30};0</value>
+		</property>
+		<property name="rowFilter">
+			<bean class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexRowFilter">
+				<property name="expression" value="row[3]=='primary_account' || row[3]=='shipto_account'"/>
+			</bean>
+		</property>
+	</bean>
+
+</beans>

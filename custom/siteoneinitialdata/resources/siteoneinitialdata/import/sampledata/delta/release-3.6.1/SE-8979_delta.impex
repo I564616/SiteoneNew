@@ -1,0 +1,30 @@
+$contentCatalog=siteoneContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+
+# Import config properties into impex macros for modulegen
+UPDATE GenericItem[processor=de.hybris.platform.commerceservices.impex.impl.ConfigPropertyImportProcessor];pk[unique=true]
+$emailResource=$config-emailResourceValue
+$emailPackageName=$config-emailContextPackageName
+
+# Language
+$lang=en
+
+INSERT_UPDATE RendererTemplate;code[unique=true];description[lang=$lang];rendererType(code)[default='velocity'];contextClass;templateScript[lang=$lang,translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+;siteone_Email_Ready_For_Pickup_Body;"Ready For Pickup Email Body";;$emailPackageName.ReadyForPickupEmailContext;$emailResource/email-readyForPickupBody.vm
+;siteone_Email_Ready_For_Pickup_Subject;"Ready For Pickup Email Subject";;$emailPackageName.ReadyForPickupEmailContext;$emailResource/email-readyForPickupSubject.vm
+;SiteOne_Email_OrderReadyForPickUp_Body;"Order Ready For PickUp Template";;$emailPackageName.OrderReadyToPickUpEmailContext;$emailResource/email-orderReadyOrScheduledEmailBody.vm
+
+# Language
+$lang=es
+
+INSERT_UPDATE RendererTemplate;code[unique=true];description[lang=$lang];rendererType(code)[default='velocity'];contextClass;templateScript[lang=$lang,translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+;siteone_Email_Ready_For_Pickup_Body;"Ready For Pickup Email Body";;$emailPackageName.ReadyForPickupEmailContext;$emailResource/email-readyForPickupBody.vm
+;siteone_Email_Ready_For_Pickup_Subject;"Ready For Pickup Email Subject";;$emailPackageName.ReadyForPickupEmailContext;$emailResource/email-readyForPickupSubject.vm
+;SiteOne_Email_OrderReadyForPickUp_Body;"Order Ready For PickUp Template";;$emailPackageName.OrderReadyToPickUpEmailContext;$emailResource/email-orderReadyOrScheduledEmailBody.vm
+
+REMOVE RendererTemplate;code[unique=true]
+;powertools_Email_Ready_For_Pickup_Body
+;powertools_Email_Ready_For_Pickup_Subject
+
+INSERT_UPDATE EmailPageTemplate;$contentCV[unique=true];uid[unique=true];name;active;frontendTemplateName;subject(code);htmlTemplate(code);restrictedPageTypes(code)
+;;ReadyForPickupEmailTemplate;Ready For Pickup Email Template;true;readyForPickupEmail;siteone_Email_Ready_For_Pickup_Subject;siteone_Email_Ready_For_Pickup_Body;EmailPage

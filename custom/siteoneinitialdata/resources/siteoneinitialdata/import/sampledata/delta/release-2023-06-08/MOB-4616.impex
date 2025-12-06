@@ -1,0 +1,20 @@
+
+$contentCatalog=siteoneContentCatalog
+$contentCatalogName=SiteOne Content Catalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+
+INSERT_UPDATE SiteOneStoreDetailPromoComponent;$contentCV[unique=true];uid[unique=true];name
+;;MobileAppHomePageBannerComponent12;MobileApp HomePage Banner detail12;;
+;;MobileAppHomePageBannerComponent13;MobileApp HomePage Banner detail13;;
+;;MobileAppHomePageBannerComponent14;MobileApp HomePage Banner detail14;;
+
+INSERT_UPDATE HomePageRotatingBannerComponent;$contentCV[unique=true];uid[unique=true];name;rotatingBanner(uid,$contentCV);&componentRef
+;;siteoneMobileAppHomePageCarouselComponent12;Siteone Mobileapp Homepage Component12;MobileAppHomePageBannerComponent12;siteoneMobileAppHomePageCarouselComponent12
+;;siteoneMobileAppHomePageCarouselComponent13;Siteone Mobileapp Homepage Component13;MobileAppHomePageBannerComponent13;siteoneMobileAppHomePageCarouselComponent13
+;;siteoneMobileAppHomePageCarouselComponent14;Siteone Mobileapp Homepage Component14;MobileAppHomePageBannerComponent14;siteoneMobileAppHomePageCarouselComponent14
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(uid, $contentCV)
+;;SectionS1Slot-SiteOneMAHomePage;SectionS1 Slot for SiteOneMAHomePage;true;siteoneMobileAppHomePageCarouselComponent1,siteoneMobileAppHomePageCarouselComponent2,siteoneMobileAppHomePageCarouselComponent3A,siteoneMobileAppHomePageCarouselComponent4,siteoneMobileAppHomePageCarouselComponent5,siteoneMobileAppHomePageCarouselComponent6,siteoneMobileAppHomePageCarouselComponent7,siteoneMobileAppHomePageCarouselComponent8,siteoneMobileAppHomePageCarouselComponent9,siteoneMobileAppHomePageCarouselComponent10,siteoneMobileAppHomePageCarouselComponent11,siteoneMobileAppHomePageCarouselComponent12,siteoneMobileAppHomePageCarouselComponent13,siteoneMobileAppHomePageCarouselComponent14
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='siteonemobileapphomepage'];contentSlot(uid,$contentCV)[unique=true]
+;;SectionS1-SiteOneMAHomePage;SectionS1;;SectionS1Slot-SiteOneMAHomePage

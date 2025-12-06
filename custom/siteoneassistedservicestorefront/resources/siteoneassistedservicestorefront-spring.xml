@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ [y] hybris Platform
+
+ Copyright (c) 2017 SAP SE or an SAP affiliate company.  All rights reserved.
+
+ This software is the confidential and proprietary information of SAP
+ ("Confidential Information"). You shall not disclose such Confidential
+ Information and shall use it only in accordance with the terms of the
+ license agreement you entered into with SAP.
+-->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/aop
+           http://www.springframework.org/schema/aop/spring-aop.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context.xsd">
+           
+    <context:annotation-config/> 
+
+	<bean id="siteoneassistedservicestorefrontCoreDataImportedEventListener" parent="abstractCoreDataImportedEventListener">
+		<property name="supportedChannels">
+			<list value-type="de.hybris.platform.commerceservices.enums.SiteChannel">
+				<value>B2C</value>
+				<value>B2B</value>
+			</list>
+		</property>
+		<property name="addonExtensionMetadata">
+			<bean class="de.hybris.platform.addonsupport.data.AddonExtensionMetadata">
+				<property name="suffixChannel" value="false"/>
+				<property name="baseExtensionName" value="siteoneassistedservicestorefront"/>
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="siteoneassistedservicestorefrontSampleDataEventListener" parent="abstractGenericAddOnSampleDataEventListener"  >
+		<property name="extensionName" value="siteoneassistedservicestorefront" />
+	</bean>
+
+	<!-- Path restrictions for ASM agents-->
+	<!-- Place order -->
+ 	<bean id="asmPathRestrictionPlaceOrder" depends-on="asmSalesGroupRestrictedPathsList" parent="listMergeDirective">
+		<property name="add" value="/checkout/multi/order-summary/placeOrder"/>
+	</bean>
+	<!-- Redirect to partner program -->
+	<bean id="asmPathRestrictionPartnerProgram" depends-on="asmAllAgentsRestrictedPathsList" parent="listMergeDirective">
+		<property name="add" value="/my-account/partner-program"/>
+	</bean>
+	<!-- Redirect to pay online -->
+	<bean id="asmPathRestrictionPayOnline" depends-on="asmAllAgentsRestrictedPathsList" parent="listMergeDirective">
+		<property name="add" value="/my-account/pay-account-online"/>
+	</bean>
+	 <!-- Manage Ewallet starts -->
+	
+	<bean id="asmPathRestrictionManageEwallet" depends-on="asmAllAgentsRestrictedPathsList" parent="listMergeDirective">
+		<property name="add" value="/my-account/ewallet/**"/>
+	</bean>
+	
+	<bean id="asmPathRestrictionEwalletCheckOut" depends-on="asmSalesGroupRestrictedPathsList" parent="listMergeDirective">
+		<property name="add" value="/checkout/multi/order-summary/view"/>
+	</bean>
+	
+	<bean id="asmPathRestrictionEwalletCheckOutCC" depends-on="asmAllAgentsRestrictedPathsList" parent="listMergeDirective">
+		<property name="add" value="/checkout/multi/siteone-payment/getAuthorizeTransportKey"/>
+	</bean>
+	
+	<!-- Manage Ewallet Ends -->
+	<!-- Update password -->
+	<bean id="asmPathRestrictionUpdatePassword" depends-on="asmAllAgentsRestrictedPathsList" parent="listMergeDirective">
+		<property name="add" value="POST:/my-account/update-password"/>
+	</bean>
+	<!-- Delivery address -->
+	<bean id="asmPathRestrictionAddAddress" depends-on="asmAllAgentsRestrictedPathsList" parent="listMergeDirective">
+		<property name="add" value="POST:/my-account/add-address/**"/>
+	</bean>
+	<bean id="asmPathRestrictionRemoveAddress" depends-on="asmAllAgentsRestrictedPathsList" parent="listMergeDirective">
+		<property name="add" value="/my-account/remove-address/**"/>
+	</bean>
+	<bean id="asmPathRestrictionEditAddress" depends-on="asmAllAgentsRestrictedPathsList" parent="listMergeDirective">
+		<property name="add" value="POST:/my-account/edit-address/**"/>
+	</bean>
+	<!-- User Management -->
+	<bean id="asmPathRestrictionCreateUser" depends-on="asmAllAgentsRestrictedPathsList" parent="listMergeDirective">
+		<property name="add" value="POST:/my-company/organization-management/manage-users/create**"/>
+	</bean>
+	<bean id="asmPathRestrictionEditUser" depends-on="asmAllAgentsRestrictedPathsList" parent="listMergeDirective">
+		<property name="add" value="POST:/my-company/organization-management/manage-users/edit**"/>
+	</bean>
+	<bean id="asmPathRestrictionDisableUser" depends-on="asmAllAgentsRestrictedPathsList" parent="listMergeDirective">
+		<property name="add" value="POST:/my-company/organization-management/manage-users/disable**"/>
+	</bean>
+	<bean id="asmPathRestrictionEnableUser" depends-on="asmAllAgentsRestrictedPathsList" parent="listMergeDirective">
+		<property name="add" value="POST:/my-company/organization-management/manage-users/enable**"/>
+	</bean>
+	<!-- Email preferences -->
+	<bean id="asmPathRestrictionEmailPreferences" depends-on="asmAllAgentsRestrictedPathsList" parent="listMergeDirective">
+		<property name="add" value="/my-account/update-siteonepreference"/>
+	</bean>
+
+</beans>

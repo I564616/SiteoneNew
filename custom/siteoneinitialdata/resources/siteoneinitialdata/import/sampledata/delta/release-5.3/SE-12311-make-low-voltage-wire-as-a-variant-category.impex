@@ -1,0 +1,20 @@
+# Macros / Replacement Parameter definitions
+$productCatalog=siteoneProductCatalog
+$productCatalogName=SiteOne Product Catalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$supercategories=supercategories(code, $catalogVersion)
+$baseProduct=baseProduct(code,$catalogVersion)
+$approved=approvalstatus(code)[default='approved']
+
+# Language
+$lang=en
+
+INSERT_UPDATE VariantCategory      ; code[unique=true] ; name         ; $supercategories ; hasImage ; $catalogVersion ; allowedPrincipals(uid)[default='customergroup']
+                                   ; lghtLength        ; Length       ;                  ; false
+
+
+
+$catalogVersion=catalogversion(catalog(id[default='siteoneProductCatalog']),version[default='Staged'])[unique=true,default='siteoneProductCatalog:Staged']
+
+INSERT_UPDATE Category;code[unique=true];variantCategoryList;$catalogVersion
+;PH1116100;lghtLength;

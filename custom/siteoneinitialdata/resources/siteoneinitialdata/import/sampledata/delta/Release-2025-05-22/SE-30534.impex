@@ -1,0 +1,7 @@
+$contentCatalog=siteoneContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$lang=en
+
+INSERT_UPDATE ContentPage;$contentCV[unique=true];pk[unique=true];includeinsitemap
+;;8800385664048;1
+;;8796191392816;0

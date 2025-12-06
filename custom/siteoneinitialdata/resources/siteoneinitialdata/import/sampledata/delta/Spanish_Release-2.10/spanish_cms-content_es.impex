@@ -1,0 +1,143 @@
+# -----------------------------------------------------------------------
+# [y] hybris Platform
+#
+# Copyright (c) 2017 SAP SE or an SAP affiliate company.  All rights reserved.
+#
+# This software is the confidential and proprietary information of SAP
+# ("Confidential Information"). You shall not disclose such Confidential
+# Information and shall use it only in accordance with the terms of the
+# license agreement you entered into with SAP.
+# -----------------------------------------------------------------------
+
+$contentCatalog=siteoneContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$picture=media(code, $contentCV);
+$siteResource=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/contentCatalogs/$contentCatalog
+$medias=medias(code, $contentCV);
+$mediaContainer=media(qualifier, $contentCV)[lang=$lang];
+
+
+# Language
+$lang=es
+
+# Footer Navigation Links #
+UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=$lang]
+;;AboutUsLink                                 ;"Sobre Nosotros";
+;;CareersLink                                 ;"Carreras";
+;;InvestorRelationsLink                       ;"Relaciones con Inversionistas";
+;;OurBrandsLink                               ;"Nuestras Marcas";
+;;PressRoomLink                               ;"Noticias";
+;;Spreader&SprayerCalibrationSettingsLink     ;"Calibración de Esparcidores y Pulverizadores";
+;;SoilAmendmentCoverageRatesLink              ;"Tasas de Cobertura en Mejora del Suelo";
+;;SafetyDataSheet&LabelSearchLink             ;"Datos de Seguridad y Búsqueda de Etiquetas";
+;;HomeownersLink                              ;"Dueños de Casa";
+;;EventsLink                                  ;"Eventos";
+;;CatalogsLink                                ;"Catálogos";
+;;BuisnessResourcesLink                       ;"Recursos para tu Negocio";
+;;PartnersProgramLink                         ;"Programa de Socios";
+;;ProjectServicesLink                         ;"Servicios para Proyectos";
+;;NurseryDirectLink                           ;"Vivero Directo";
+;;LineOfCreditLink                            ;"Línea de Crédito";
+;;IrrigationDesignLink                        ;"Diseño de Irrigación";
+;;GreenTechLink                               ;"GreenTech";
+;;AboutSiteOneLink                            ;"Sobre SiteOne";
+;;SiteOnecomHelp&InfoLink                     ;"SiteOne.com Ayuda e Información";
+;;GolfSalesLink                               ;"Ventas de Golf";
+;;FAQsLink                                    ;"Preguntas Frecuentes";
+;;DirectSalesLink                             ;"Ventas Directas";
+;;RequestAnOnlineAccountLink                  ;"Solicitar una Cuenta en Línea";
+;;ContactUsLink                               ;"Contáctanos";
+;;link_00000OPB                         ;"Aprende con Nosotros";
+;;link_00000LLW                          	  ;"Responsabilidad";
+;;link_00000NYV                            ;"Testimonios";
+
+# Nav Nodes #
+UPDATE CMSNavigationNode;$contentCV[unique=true];uid[unique=true];title[lang=$lang]
+;;CompanyServiceNavNode                       ;"Servicios de la Compañía";
+;;ContractorServicesNavNode                   ;"Servicios a Contratistas";
+;;Tools&ResourcesNavNode                      ;"Herramientas y Recursos";
+;;CompanyInfoNavNode                          ;"Información de la Compañía";
+
+## Copyright text##
+# CMS Footer Component
+UPDATE FooterNavigationComponent;$contentCV[unique=true];uid[unique=true];extendedNotice[lang=es]
+;;FooterNavigationComponent;Las marcas registradas en esta página web son propiedad de SiteOne Landscape Supply, Inc. Y Lesco, Inc. Nada de lo aquí establecido debe interpretarse para otorgar licencia de uso de las marcas comerciales sin el permiso previo por escrito del propietario de la marca comercial.
+
+######Request an Account dropdown######
+# Load Primary Business L1 & L2
+
+INSERT_UPDATE SiteOneContrPrimaryBusiness;PrimaryBusinessL1[unique=true];PrimaryBusinessL2[collection-delimiter=|];PrimaryBusinessL1_ES[unique=true];PrimaryBusinessL2_ES[collection-delimiter=|]
+;Installation;Hardscapes, Irrigation, Lighting & Nursery|Hardscapes only|Irrigation only|Lighting only|Nursery only;Instalación;Materiales Duros, Irrigación, Iluminación y Vivero|Solo Materiales Duros|Solo Irrigación|Solo Iluminación|Solo Vivero;
+;Maintenance;Agronomics & Irrigation|Agronomics only|Irrigation only;Mantenimiento;Agronómicos e Irrigación|Solo Agronómicos|Solo Irrigación;
+;Full Service (Installation & Maintenance);Hardscapes, Irrigation & Agronomics|Hardscapes only|Irrigation only|Agronomics only;Servicio Completo (Instalación y Mantenimiento);Materiales Duros, Irrigación y Agronómicos|Solo Materiales Duros|Solo Irrigación|Solo Agronómicos;
+;Specialty;Pest Control|Erosion Control|Snow Removal|Tree Care;Especialidad;Control de Plagas|Control de Erosión|Remoción de Nieve|Cuidado de Árboles;
+;Municipalities/Institutional;;Municipalidades/Institucional;
+;Golf;;Golf;
+;Distribution/Reseller;;Distribución/Revendedor;
+
+##### Page Title Impex #####
+$contentCatalog=siteoneContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Online])[default=$contentCatalog:Online]
+$lang=es
+
+UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];title[lang=$lang];isIndexable[default=false];contentTags;description
+ ;;account;"Mi Cuenta";
+ ;;add-edit-address;"Agregar / Editar dirección";
+ ;;address-book;"Mis Direcciones para Envíos";
+ ;;cartPage;"Tu carrito de compra";
+ ;;checkout-login;"Pasar por la caja";
+ ;;faq;"Preguntas Frecuentes";true;Questions,Answers;"The content is added via a custom post type, so you have full access to the tinyMCE editor. This allows you to easily add images, text, and links to your random content.";
+ ;;siteonehomepage;"Página principal";true;Homepage;"The content is added via a custom post type, so you have full access to the tinyMCE editor. This allows you to easily add images, text, and links to your random content.";
+ ;;login;"Iniciar Sesión";
+ ;;multiStepCheckoutSummaryPage;"Resumen de pedido";
+ ;;notFound;"NO ENCONTRADA";
+ ;;order;"Detalles de Orden";
+ ;;orders;"Historial de Órdenes";
+ ;;payment-details;"Detalles del pago";
+ ;;profile;"Perfil";
+ ;;quickOrderPage;"Orden Rápida";
+ ;;quoteEditPage;"Cita Editar";
+
+ ;;saved-carts;"Salvado Carrito";
+
+
+ ;;searchEmpty;"No resultados.";
+ ;;storefinderPage;"Suministro para Césped & Jardín más cercano";
+ ;;termsAndCondition;"Términos y Condiciones ";true;Conditions,Questions;"The content is added via a custom post type, so you have full access to the tinyMCE editor. This allows you to easily add images, text, and links to your random content.";
+ ;;update-email;"Actualizar Email";
+ ;;update-profile;"Actualización del perfil";
+ ;;updatePassword;"Actualizar contraseña olvidada";
+ ;;storeDirectoryStateListPage;"Tiendas de Materiales de Riego, Jardinería y Paisajismo";
+ ;;accountDashboardPage;"Cuenta Dashboard";
+ ;;shipToPage;"Todas Destinos de envío";
+ ;;accountOverviewPage;"Página de resumen de cuenta";
+ ;;setPasswordPage;"Establecer Contraseña";
+ ;;contactUs;"Contáctanos"
+ 
+ UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];title[lang=$lang];isIndexable[default=false];contentTags;description
+;;openorderspage;"Órdenes Abiertas";
+;;invoicelistingpage;"Facturas";
+;;invoicedetailspage;"Detalle de factura";
+;;purchasedProductPage;"Productos Comprados";
+;;my-stores;"Mis tiendas";
+;;assemblyPage;"Crear un Nuevo Ensamblaje";
+;;editAssemblyPage;"Editar Ensamblaje";
+;;detailsAssemblyPage;"Detalle de Ensamblaje ";
+;;accountinfo;"Información de la Cuenta";
+;;saved-carts;"Carritos guardados";
+;;savedListPage;"Crear un nuevo lista";
+;;editSavedListPage;"Editar lista";
+;;detailsSavedListPage;"Detalle de Lista";
+;;siteoneupdate-profile;"Información de Contacto";
+;;siteoneupdate-preference;"Preferencias";
+;;manageUsergroups;"Administrar usuarios";
+;;my-company;"Administrar usuarios";
+;;sds-search;"Buscador de Fichas de Datos de Seguridad / Etiquetas";
+;;organizationManagement;"Crear nuevo Usario";
+ 
+INSERT_UPDATE SiteoneContactUsComponent;$contentCV[unique=true];uid[unique=true];name;headline[lang=$lang];content[lang=$lang];&componentRef
+;;contactUsConfirmationComponent;Contact Us Confirmation Component;¡Tu mensaje ha sido enviado!;Tendrás respuesta de nosotros en dos días laborales.;contactUsConfirmationComponent
+ 
+INSERT_UPDATE SiteoneParagaraphComponent;$contentCV[unique=true];uid[unique=true];name;headline;content[lang=es];&componentRef
+;;mailSussessfulSentComp;mailSussessfulSentComp;;Gracias por solicitar ayuda para elegir un contratista. Pronto nos pondremos en contacto contigo.;mailSussessfulSentComp
+ 

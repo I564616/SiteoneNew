@@ -1,0 +1,5 @@
+modelService = spring.getBean('modelService')
+typeService = spring.getBean('typeService')
+type = typeService.getComposedTypeForCode('DroolsKIEModuleMedia')
+de.hybris.platform.jalo.JaloSession.getCurrentSession().setAttribute('disableItemCheckBeforeRemovable', Boolean.TRUE)
+modelService.remove(type)

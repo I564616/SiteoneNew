@@ -1,0 +1,96 @@
+$supercategories=supercategories( code, catalogVersion(catalog(id[default='siteoneCAProductCatalog']),version[default='Staged']));;;;;;;;;
+$catalogVersion=catalogVersion(catalog(id[default='siteoneCAProductCatalog']),version[default='Staged'])[unique=true,default='siteoneCAProductCatalog:Staged'];;;;;;;;;
+;;;;;;;;;
+INSERT_UPDATE Category;code[unique=true];name[lang=en];$supercategories;$catalogVersion;allowedPrincipals(uid)
+;SH1;Primary;;siteoneCAProductCatalog:Staged;admingroup
+;SH17;Tools, Equipment & Safety;SH1;siteoneCAProductCatalog:Staged;admingroup 
+;SH1711;Equipment;SH17;siteoneCAProductCatalog:Staged;admingroup 
+;SH1712;Safety;SH17;siteoneCAProductCatalog:Staged;admingroup 
+;SH1713;Tools;SH17;siteoneCAProductCatalog:Staged;admingroup 
+;SH1711110;Engine Powered Spreader / Sprayer;SH1711;siteoneCAProductCatalog:Staged;admingroup 
+;SH1711111;Handheld Power Equipment;SH1711;siteoneCAProductCatalog:Staged;admingroup 
+;SH1711112;Hardscapes;SH1711;siteoneCAProductCatalog:Staged;admingroup 
+;SH1711113;Parts;SH1711;siteoneCAProductCatalog:Staged;admingroup 
+;SH1711114;Renovation;SH1711;siteoneCAProductCatalog:Staged;admingroup 
+;SH1711115;Specialty Equipment;SH1711;siteoneCAProductCatalog:Staged;admingroup 
+;SH1711116;Sprayers;SH1711;siteoneCAProductCatalog:Staged;admingroup 
+;SH1711117;Spreaders;SH1711;siteoneCAProductCatalog:Staged;admingroup 
+;SH1712110;Gloves;SH1712;siteoneCAProductCatalog:Staged;admingroup 
+;SH1712111;Head & Face Protection;SH1712;siteoneCAProductCatalog:Staged;admingroup 
+;SH1712112;Hearing Protection;SH1712;siteoneCAProductCatalog:Staged;admingroup 
+;SH1712113;Hi-Viz Clothing & Vests;SH1712;siteoneCAProductCatalog:Staged;admingroup 
+;SH1712114;Other Safety;SH1712;siteoneCAProductCatalog:Staged;admingroup 
+;SH1712115;Protective Clothing;SH1712;siteoneCAProductCatalog:Staged;admingroup 
+;SH1712116;Rain Suits;SH1712;siteoneCAProductCatalog:Staged;admingroup 
+;SH1712117;Respirator;SH1712;siteoneCAProductCatalog:Staged;admingroup 
+;SH1712118;Sunscreen;SH1712;siteoneCAProductCatalog:Staged;admingroup 
+;SH1712119;Traffic Cones;SH1712;siteoneCAProductCatalog:Staged;admingroup 
+;SH1713110;Handheld Tools;SH1713;siteoneCAProductCatalog:Staged;admingroup 
+;SH1713111;Hardscape Tools;SH1713;siteoneCAProductCatalog:Staged;admingroup 
+;SH1713112;Hauling Tools;SH1713;siteoneCAProductCatalog:Staged;admingroup 
+;SH1713113;Irrigation Tools;SH1713;siteoneCAProductCatalog:Staged;admingroup 
+;SH1713114;Long Handled Tools;SH1713;siteoneCAProductCatalog:Staged;admingroup 
+;SH1713115;Ladders;SH1713;siteoneCAProductCatalog:Staged;admingroup 
+;SH1713116;Measuring Tools;SH1713;siteoneCAProductCatalog:Staged;admingroup 
+;SH1711110100;Multi Purpose ;SH1711110;siteoneCAProductCatalog:Staged;admingroup 
+;SH1711110101;Single Purpose;SH1711110;siteoneCAProductCatalog:Staged;admingroup 
+;SH1711110102;Spreader / Sprayer Accessories;SH1711110;siteoneCAProductCatalog:Staged;admingroup 
+;SH1711111100;Handheld Batttery Powered Accessories;SH1711111;siteoneCAProductCatalog:Staged;admingroup 
+;SH1711111101;Handheld Battery Powered Equipment;SH1711111;siteoneCAProductCatalog:Staged;admingroup 
+;SH1711111102;Handheld Gas Powered Accessories;SH1711111;siteoneCAProductCatalog:Staged;admingroup 
+;SH1711111103;Handheld Gas Powered Equipment;SH1711111;siteoneCAProductCatalog:Staged;admingroup 
+;SH1711112100;Hardscapes Accessories;SH1711112;siteoneCAProductCatalog:Staged;admingroup 
+;SH1711113100;Backpack & Handheld Sprayer;SH1711113;siteoneCAProductCatalog:Staged;admingroup 
+;SH1711113101;Engine ;SH1711113;siteoneCAProductCatalog:Staged;admingroup 
+;SH1711113102;Engine Sprayer;SH1711113;siteoneCAProductCatalog:Staged;admingroup 
+;SH1711113103;Handheld Power Equipment;SH1711113;siteoneCAProductCatalog:Staged;admingroup 
+;SH1711113104;Lubrication & Fuel Treatment;SH1711113;siteoneCAProductCatalog:Staged;admingroup 
+;SH1711113105;Miscellaneous;SH1711113;siteoneCAProductCatalog:Staged;admingroup 
+;SH1711113106;Renovation Equipment;SH1711113;siteoneCAProductCatalog:Staged;admingroup 
+;SH1711113107;Sports & Turf Equipment;SH1711113;siteoneCAProductCatalog:Staged;admingroup 
+;SH1711113108;Spreader;SH1711113;siteoneCAProductCatalog:Staged;admingroup 
+;SH1711113109;Spreader / Sprayer;SH1711113;siteoneCAProductCatalog:Staged;admingroup 
+;SH1711114100;Aerating Accessories;SH1711114;siteoneCAProductCatalog:Staged;admingroup 
+;SH1711114101;Aerating Equipment;SH1711114;siteoneCAProductCatalog:Staged;admingroup 
+;SH1711114102;Renovation Accessories;SH1711114;siteoneCAProductCatalog:Staged;admingroup 
+;SH1711114103;Renovation Equipment;SH1711114;siteoneCAProductCatalog:Staged;admingroup 
+;SH1711115100;Hardscapes Equipment;SH1711115;siteoneCAProductCatalog:Staged;admingroup 
+;SH1711115101;Irrigation Equipment;SH1711115;siteoneCAProductCatalog:Staged;admingroup 
+;SH1711115102;Other Specialty Equipment;SH1711115;siteoneCAProductCatalog:Staged;admingroup 
+;SH1711115103;Power Takeoff;SH1711115;siteoneCAProductCatalog:Staged;admingroup 
+;SH1711115104;Sports / Turf Accessories;SH1711115;siteoneCAProductCatalog:Staged;admingroup 
+;SH1711115105;Sports / Turf Equipment;SH1711115;siteoneCAProductCatalog:Staged;admingroup 
+;SH1711116100;Snow & Ice Sprayer;SH1711116;siteoneCAProductCatalog:Staged;admingroup 
+;SH1711117100;Snow & Ice Spreader;SH1711117;siteoneCAProductCatalog:Staged;admingroup 
+;SH1711116101;Accessories;SH1711116;siteoneCAProductCatalog:Staged;admingroup 
+;SH1711116102;Backpack & Handheld Sprayer;SH1711116;siteoneCAProductCatalog:Staged;admingroup 
+;SH1711116103;Electric Sprayer;SH1711116;siteoneCAProductCatalog:Staged;admingroup 
+;SH1711116104;Tank Sprayer;SH1711116;siteoneCAProductCatalog:Staged;admingroup 
+;SH1711117101;Electric Spreader;SH1711117;siteoneCAProductCatalog:Staged;admingroup 
+;SH1711117102;Handheld Spreader;SH1711117;siteoneCAProductCatalog:Staged;admingroup 
+;SH1711117103;Hydro Spreader;SH1711117;siteoneCAProductCatalog:Staged;admingroup 
+;SH1711117104;Push Spreader;SH1711117;siteoneCAProductCatalog:Staged;admingroup 
+;SH1711117105;Accessories;SH1711117;siteoneCAProductCatalog:Staged;admingroup 
+;SH1713110100;Hand Pruners;SH1713110;siteoneCAProductCatalog:Staged;admingroup 
+;SH1713110101;Loppers;SH1713110;siteoneCAProductCatalog:Staged;admingroup 
+;SH1713110102;Parts & Accessories;SH1713110;siteoneCAProductCatalog:Staged;admingroup 
+;SH1713110103;Pruners & Shears;SH1713110;siteoneCAProductCatalog:Staged;admingroup 
+;SH1713110104;Pruning Saws;SH1713110;siteoneCAProductCatalog:Staged;admingroup 
+;SH1713110105;Striking Tools;SH1713110;siteoneCAProductCatalog:Staged;admingroup 
+;SH1713111100;Masonry;SH1713111;siteoneCAProductCatalog:Staged;admingroup 
+;SH1713111101;Other Hardscape Tools;SH1713111;siteoneCAProductCatalog:Staged;admingroup 
+;SH1713111102;Paver & Wall;SH1713111;siteoneCAProductCatalog:Staged;admingroup 
+;SH1713112100;Ball & Hand Carts;SH1713112;siteoneCAProductCatalog:Staged;admingroup 
+;SH1713112101;Wheelbarrows;SH1713112;siteoneCAProductCatalog:Staged;admingroup 
+;SH1713113100;Other Irrigation Tools;SH1713113;siteoneCAProductCatalog:Staged;admingroup 
+;SH1713113101;Pipe Cutters;SH1713113;siteoneCAProductCatalog:Staged;admingroup 
+;SH1713113102;Pipe Saws;SH1713113;siteoneCAProductCatalog:Staged;admingroup 
+;SH1713114100;Brooms;SH1713114;siteoneCAProductCatalog:Staged;admingroup 
+;SH1713114101;Hoes & Forks;SH1713114;siteoneCAProductCatalog:Staged;admingroup 
+;SH1713114102;Miscellaneous;SH1713114;siteoneCAProductCatalog:Staged;admingroup 
+;SH1713114103;Picks;SH1713114;siteoneCAProductCatalog:Staged;admingroup 
+;SH1713114104;Rakes;SH1713114;siteoneCAProductCatalog:Staged;admingroup 
+;SH1713114105;Shovels;SH1713114;siteoneCAProductCatalog:Staged;admingroup 
+;SH1713114106;Snow & Ice;SH1713114;siteoneCAProductCatalog:Staged;admingroup 
+
+

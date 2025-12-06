@@ -1,0 +1,214 @@
+## messageSource=classpath:/siteonecore/messages/email-sharedProductEmail_$lang.properties
+#macro(genHtmlLinkStartTag $url)
+<a href="$url"><font color="#666666">
+#end
+#macro(genHtmlLinkEndTag)
+</font></a>
+#end
+#macro(genHtmlLink $url $textColor $bodyContent)
+<a href="$url"><font color="$textColor">$bodyContent</font></a>
+#end
+
+<div style="display:none !important;
+            visibility:hidden;
+            mso-hide:all;
+            font-size:1px;
+            color:#ffffff;
+            line-height:1px;
+            max-height:0px;
+            max-width:0px;
+            opacity:0;
+            overflow:hidden;">${ctx.messages.preHeader}</div>​
+<html>
+	<head>
+	<style>
+		td {
+			font-family: Arial;
+			font-size: 12pt;
+		}
+	</style>
+	</head>
+	<body bgcolor="#ffffff">
+	#if(${ctx.countryBaseSiteID} == "siteone-ca")
+	  <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#ffffff">
+		<tr>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td align="center" valign="top">
+				<table width="610" border="0" align="center" cellpadding="0" cellspacing="0" bordercolor="#fff">
+					<tr>
+						<td align="center" valign="top" bgcolor="#FFFFFF">
+							<table width="570" cellpadding="0" cellspacing="0" border="0" align="center" style="border: 1px solid;">
+										<tr>
+											<td style="padding:15px;" valign="left">
+													<a style="text-decoration:none;" href="${ctx.baseThemeUrl}">
+													    <img title="SiteoneLogo" src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/SiteoneLogo.jpg" alt="SiteoneLogo" style="outline:0;border:none;">
+													</a>
+											</td>
+											<td style="padding:15px;" align="right">
+													<span class="col-xs-6 col-md-12">
+													 <a style="text-decoration:none;" href="https://www.facebook.com/siteonesupplycanada/">
+													     <img src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/Print_facebook_color.png" alt="Facebook" title="Facebook" style="outline:0;border:none;" width="30" height="30">
+													 </a>&nbsp;
+													<a style="text-decoration:none;" href="https://www.instagram.com/Siteonesupplycanada/">
+													    <img src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/Print_instagram_color.png" alt="Instagram" title="Instagram" style="outline:0;border:none;" width="30" height="30">
+													</a>&nbsp;
+													<a style="text-decoration:none;" href="https://x.com/SiteOneCanada">
+													     <img src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/Print_twitter_color.png" alt="X" title="X" style="outline:0;border:none;" width="30" height="30">
+													</a>
+													</span>
+													</td></tr>
+												
+								<tr>
+									<td colspan="2" style="background-color: #cccccc;">&nbsp;</td>
+								</tr>
+								<tr>
+									<td colspan="2" style="padding: 20px;">
+										#if (${ctx.username}== "Anonymous") 
+											${ctx.messages.siteoneShared} 
+											#else  ${ctx.username} ${ctx.messages.hasshared} 
+											<a href="${ctx.baseurl}${ctx.product.url}?cid=${ctx.product.code}">${ctx.messages.clickhere}</a> ${ctx.messages.toview} 
+										#end
+									</td>
+								</tr>
+								<tr>
+									<td width="20%" valign="top" style="padding: 0px 30px;"> 
+										<a href="${ctx.baseurl}${ctx.product.url}?cid=${ctx.product.code}" style="display: block;">
+										
+										#if($ctx.product.images.isEmpty() != 'false')
+                                 <img src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/missing_product_EN_300x300.jpg" width="110" height="110" alt="image not available" style="border:none;">
+                                        #else
+											#if(${ctx.product.images[0].imageType} == "PRIMARY")
+			                             <img src="${ctx.baseThemeUrl}${ctx.product.images[0].url}" alt="${ctx.product.name}" title="${ctx.product.name}" width="110" height="110" style="border:none;">
+											 #end
+										#end
+										</a>
+									</td>
+									<td  width="80%">
+										<p style="margin-top: 0px;font-weight: bold;"><a style="text-decoration: none;color: #78a22f;" href="${ctx.baseurl}${ctx.product.url}?cid=${ctx.product.code}">${ctx.product.name}</a></p>
+										<span style="color: #000000;font-size:10pt">${ctx.product.itemNumber}</span><br><br>
+										#if(${ctx.product.productLongDesc})<span>${ctx.messages.description}</span><br><br>
+										<span style="font-size:10pt">${ctx.product.productLongDesc}</span>#end<br><br>
+											<table>
+											<tr>
+											<td align="center" style="background: #78a22f;height: 40px;width: 200px;font-weight:normal;">
+													<a href="${ctx.baseurl}${ctx.product.url}?cid=${ctx.product.code}" style="text-decoration:none;color: #fff;display: block;width: 100%;">${ctx.messages.viewitemdetails}</a>
+											   </td>
+											 </tr>
+									  </table>
+									
+									</td>
+								</tr>
+								<tr>
+									<td colspan="2" style="padding: 10px 20px 10px 20px;">
+									<hr color="#000000" align="center" width="100%">
+								</td>
+								</tr>
+								<tr>
+									<td colspan="2" style="padding-top:5px;padding-left:20px;">${ctx.messages.questionsCA} <a  href="${ctx.baseThemeUrl}/${ctx.messages.contactus}">${ctx.messages.contactyou}</a>.</td>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="2" style="padding: 20px 20px 45px 20px;">${ctx.messages.thanks} <br><span style="font-weight: bold; font-style: italic;">${ctx.messages.supply}</span></td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+  #else
+	<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#ffffff">
+		<tr>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td align="center" valign="top">
+				<table width="610" border="0" align="center" cellpadding="0" cellspacing="0" bordercolor="#fff">
+					<tr>
+						<td align="center" valign="top" bgcolor="#FFFFFF">
+							<table width="570" cellpadding="0" cellspacing="0" border="0" align="center" style="border: 1px solid;">
+										<tr>
+											<td style="padding:15px;" valign="left">
+													<a style="text-decoration:none;" href="${ctx.baseThemeUrl}">
+													    <img title="SiteoneLogo" src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/SiteoneLogo.jpg" alt="SiteoneLogo" style="outline:0;border:none;">
+													</a>
+											</td>
+											<td style="padding:15px;" align="right">
+													<span class="col-xs-6 col-md-12">
+													 <a style="text-decoration:none;" href="https://www.facebook.com/SiteOneLandscape/">
+													     <img src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/Print_facebook_color.png" alt="Facebook" title="Facebook" style="outline:0;border:none;" width="30" height="30">
+													 </a>&nbsp;
+													<a style="text-decoration:none;" href="https://www.instagram.com/siteonesupply/">
+													    <img src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/Print_instagram_color.png" alt="Instagram" title="Instagram" style="outline:0;border:none;" width="30" height="30">
+													</a>&nbsp;
+													<a style="text-decoration:none;" href="https://x.com/SiteOneSupply">
+													     <img src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/Print_twitter_color.png" alt="X" title="X" style="outline:0;border:none;" width="30" height="30">
+													</a>
+													</span>
+													</td></tr>
+												
+								<tr>
+									<td colspan="2" style="background-color: #cccccc;">&nbsp;</td>
+								</tr>
+								<tr>
+									<td colspan="2" style="padding: 20px;">
+										#if (${ctx.username}== "Anonymous") 
+											${ctx.messages.siteoneShared} 
+											#else  ${ctx.username} ${ctx.messages.hasshared} 
+											<a href="${ctx.baseurl}${ctx.product.url}?cid=${ctx.product.code}">${ctx.messages.clickhere}</a> ${ctx.messages.toview} 
+										#end
+									</td>
+								</tr>
+								<tr>
+									<td width="20%" valign="top" style="padding: 0px 30px;"> 
+										<a href="${ctx.baseurl}${ctx.product.url}?cid=${ctx.product.code}" style="display: block;">
+										
+										#if($ctx.product.images.isEmpty() != 'false')
+                                 <img src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/missing_product_EN_300x300.jpg" width="110" height="110" alt="image not available" style="border:none;">
+                                        #else
+											#if(${ctx.product.images[0].imageType} == "PRIMARY")
+			                             <img src="${ctx.baseThemeUrl}${ctx.product.images[0].url}" alt="${ctx.product.name}" title="${ctx.product.name}" width="110" height="110" style="border:none;">
+											 #end
+										#end
+										</a>
+									</td>
+									<td  width="80%">
+										<p style="margin-top: 0px;font-weight: bold;"><a style="text-decoration: none;color: #78a22f;" href="${ctx.baseurl}${ctx.product.url}?cid=${ctx.product.code}">${ctx.product.name}</a></p>
+										<span style="color: #000000;font-size:10pt">${ctx.product.itemNumber}</span><br><br>
+										#if(${ctx.product.productLongDesc})<span>${ctx.messages.description}</span><br><br>
+										<span style="font-size:10pt">${ctx.product.productLongDesc}</span>#end<br><br>
+											<table>
+											<tr>
+											<td align="center" style="background: #78a22f;height: 40px;width: 200px;font-weight:normal;">
+													<a href="${ctx.baseurl}${ctx.product.url}?cid=${ctx.product.code}" style="text-decoration:none;color: #fff;display: block;width: 100%;">${ctx.messages.viewitemdetails}</a>
+											   </td>
+											 </tr>
+									  </table>
+									
+									</td>
+								</tr>
+								<tr>
+									<td colspan="2" style="padding: 10px 20px 10px 20px;">
+									<hr color="#000000" align="center" width="100%">
+								</td>
+								</tr>
+								<tr>
+									<td colspan="2" style="padding-top:5px;padding-left:20px;">${ctx.messages.questions} <a  href="${ctx.baseThemeUrl}/${ctx.messages.contactus}">${ctx.messages.contactyou}</a>.</td>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="2" style="padding: 20px 20px 45px 20px;">${ctx.messages.thanks} <br><span style="font-weight: bold; font-style: italic;">${ctx.messages.supply}</span></td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+  #end
+</body>
+</html>

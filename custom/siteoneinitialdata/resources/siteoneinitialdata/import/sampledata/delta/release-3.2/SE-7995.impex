@@ -1,0 +1,8 @@
+##############################################################################
+# SE-7995:  Wrong Taxonomy Showing on Siteone.com
+# ---------------------------------------------------------------------------
+
+$productCatalog=siteoneProductCatalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+INSERT_UPDATE category;code[unique=true];salescategorymapping;$catalogVersion;
+;PH1220105105;SH1220105105:SH1713114106;

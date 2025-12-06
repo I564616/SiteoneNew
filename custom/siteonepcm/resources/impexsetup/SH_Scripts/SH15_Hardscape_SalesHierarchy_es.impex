@@ -1,0 +1,55 @@
+$supercategories=supercategories( code, catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Staged']));;;;;;;;;
+$catalogVersion=catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Staged'])[unique=true,default='siteoneProductCatalog:Staged'];;;;;;;;;
+;;;;;;;;;
+INSERT_UPDATE Category;code[unique=true];name[lang=es];$supercategories;$catalogVersion;allowedPrincipals(uid)
+;SH1;Primary;;siteoneProductCatalog:Staged;admingroup
+;SH15;Hardscapes & Outdoor Living;SH1;siteoneProductCatalog:Staged;admingroup 
+;SH1511;Architectural products;SH15;siteoneProductCatalog:Staged;admingroup 
+;SH1512;Lumber;SH15;siteoneProductCatalog:Staged;admingroup 
+;SH1513;Outdoor Living;SH15;siteoneProductCatalog:Staged;admingroup 
+;SH1514;Stones, Pavers & Edging;SH15;siteoneProductCatalog:Staged;admingroup 
+;SH1515;Tools, Equipment & Accessories;SH15;siteoneProductCatalog:Staged;admingroup 
+;SH1511110;Benches;SH1511;siteoneProductCatalog:Staged;admingroup 
+;SH1511111;Tables;SH1511;siteoneProductCatalog:Staged;admingroup 
+;SH1511112;Tree Grates;SH1511;siteoneProductCatalog:Staged;admingroup 
+;SH1512110;Crossties & Timbers;SH1512;siteoneProductCatalog:Staged;admingroup 
+;SH1513110;Fireplaces & Fire Pits;SH1513;siteoneProductCatalog:Staged;admingroup 
+;SH1513111;Furniture;SH1513;siteoneProductCatalog:Staged;admingroup 
+;SH1513112;Grills & Accessories;SH1513;siteoneProductCatalog:Staged;admingroup 
+;SH1513113;Kits;SH1513;siteoneProductCatalog:Staged;admingroup 
+;SH1513114;Lighting;SH1513;siteoneProductCatalog:Staged;admingroup 
+;SH1513115;Pottery;SH1513;siteoneProductCatalog:Staged;admingroup 
+;SH1514110;Construction Products;SH1514;siteoneProductCatalog:Staged;admingroup 
+;SH1514111;Edging;SH1514;siteoneProductCatalog:Staged;admingroup 
+;SH1514112;Manufactured Hardscape Products;SH1514;siteoneProductCatalog:Staged;admingroup 
+;SH1514113;Natural Stone;SH1514;siteoneProductCatalog:Staged;admingroup 
+;SH1515110;Adhesives;SH1515;siteoneProductCatalog:Staged;admingroup 
+;SH1515111;Blades;SH1515;siteoneProductCatalog:Staged;admingroup 
+;SH1515112;Polymeric Sand;SH1515;siteoneProductCatalog:Staged;admingroup 
+;SH1515113;Sealers & Cleaners;SH1515;siteoneProductCatalog:Staged;admingroup 
+;SH1513116;Fountains & Aerators;SH1513;siteoneProductCatalog:Staged;admingroup 
+;SH1515114;Masonry Tools;SH1515;siteoneProductCatalog:Staged;admingroup
+;SH1515115;Paver & Wall Tools;SH1515;siteoneProductCatalog:Staged;admingroup
+;SH1514110100;Bagged;SH1514110;siteoneProductCatalog:Staged;admingroup 
+;SH1514110101;Block;SH1514110;siteoneProductCatalog:Staged;admingroup 
+;SH1514110102;Bulk;SH1514110;siteoneProductCatalog:Staged;admingroup 
+;SH1514111100;Landscape Edging;SH1514111;siteoneProductCatalog:Staged;admingroup 
+;SH1514111101;Edging Accessories;SH1514111;siteoneProductCatalog:Staged;admingroup 
+;SH1514111102;Paver Restraints;SH1514111;siteoneProductCatalog:Staged;admingroup 
+;SH1514112100;Clay & Brick Pavers;SH1514112;siteoneProductCatalog:Staged;admingroup 
+;SH1514112101;Manufactured & Cultured Stones;SH1514112;siteoneProductCatalog:Staged;admingroup 
+;SH1514112102;Pavers;SH1514112;siteoneProductCatalog:Staged;admingroup 
+;SH1514112103;Permeable Pavers;SH1514112;siteoneProductCatalog:Staged;admingroup 
+;SH1514112104;Porcelain;SH1514112;siteoneProductCatalog:Staged;admingroup 
+;SH1514112105;Wall Blocks;SH1514112;siteoneProductCatalog:Staged;admingroup 
+;SH1514113100;Boulders & River Rocks;SH1514113;siteoneProductCatalog:Staged;admingroup 
+;SH1514113101;Bulk;SH1514113;siteoneProductCatalog:Staged;admingroup 
+;SH1514113102;Dimensional Stones;SH1514113;siteoneProductCatalog:Staged;admingroup 
+;SH1514113103;Bagged Decorative Stones;SH1514113;siteoneProductCatalog:Staged;admingroup 
+;SH1514113104;Flagstone;SH1514113;siteoneProductCatalog:Staged;admingroup 
+;SH1514113105;Building & Stacked Stones;SH1514113;siteoneProductCatalog:Staged;admingroup 
+;SH1514113106;Stepping Stones & Treads;SH1514113;siteoneProductCatalog:Staged;admingroup 
+;SH1514113107;Veneer;SH1514113;siteoneProductCatalog:Staged;admingroup 
+;SH1513116100;Fountains;SH1513116;siteoneProductCatalog:Staged;admingroup 
+;SH1513116101;Aerators;SH1513116;siteoneProductCatalog:Staged;admingroup 
+;SH1513116102;Parts & Accessories;SH1513116;siteoneProductCatalog:Staged;admingroup

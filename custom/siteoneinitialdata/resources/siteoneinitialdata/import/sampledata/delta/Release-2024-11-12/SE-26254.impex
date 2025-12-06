@@ -1,0 +1,4 @@
+INSERT_UPDATE B2bUnit;uid[unique=true];shippingThresholdAndFee(key(code),value(code))[map-delimiter=|]
+;1426183_US;shippingThreshold -> 600|shippingFee -> 35.00
+;1426183-3033_US;shippingThreshold -> 600|shippingFee -> 35.00
+;1426183-3032_US;shippingThreshold -> 600|shippingFee -> 35.00

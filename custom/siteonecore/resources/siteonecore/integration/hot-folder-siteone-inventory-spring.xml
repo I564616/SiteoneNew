@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ [y] hybris Platform
+
+ Copyright (c) 2000-2016 SAP SE or an SAP affiliate company.
+ All rights reserved.
+
+ This software is the confidential and proprietary information of SAP
+ ("Confidential Information"). You shall not disclose such Confidential
+ Information and shall use it only in accordance with the terms of the
+ license agreement you entered into with SAP.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:int="http://www.springframework.org/schema/integration"
+	xmlns:file="http://www.springframework.org/schema/integration/file"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/integration
+	http://www.springframework.org/schema/integration/spring-integration.xsd
+	http://www.springframework.org/schema/integration/file
+	http://www.springframework.org/schema/integration/file/spring-integration-file.xsd
+	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+	http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<context:annotation-config/>
+
+	<bean id="azureHotfolderInventoryRemotePath" class="java.lang.String">
+		<constructor-arg name="value"
+			value="${azure.hotfolder.storage.container.hotfolder}/siteoneinventory"/>
+	</bean>
+
+	<bean id="azureLocalInventoryErrorRegexPatternFileListFilter"
+		class="org.springframework.integration.file.filters.RegexPatternFileListFilter">
+		<constructor-arg name="pattern" value="^(error_siteoneinventoryChanges|error_siteoneinventoryuom).*$"/>
+	</bean>
+
+	<bean id="azureHotfolderInventoryLocalPath" class="java.lang.String">
+		<constructor-arg name="value"
+			value="#{azureHotfolderLocalDirectoryBase}/#{azureHotfolderInventoryRemotePath}"/>
+	</bean>
+
+	<bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+		<property name="targetObject" ref="hotfolderInboundFileChannelMappings"/>
+		<property name="targetMethod" value="put"/>
+		<property name="arguments">
+			<list>
+				<bean class="java.util.regex.Pattern" factory-method="compile">
+					<constructor-arg value="^(siteoneinventoryChanges|siteoneinventoryuom)_(\d+)(\S+)_(\d+)(\S+)\.(?i)txt"/>
+				</bean>
+				<ref bean="SiteOneInventoryBatchFilesCloudHotFolderProc"/>
+			</list>
+		</property>
+	</bean>
+
+	<int:channel id="SiteOneInventoryBatchFilesCloudHotFolderProc"/>
+
+	<int:service-activator input-channel="SiteOneInventoryBatchFilesCloudHotFolderProc" output-channel="batchSiteOneFilesHeaderInit"
+		ref="SiteOneInventoryCloudHotFolderHeaderSetupTask" method="execute">
+	</int:service-activator>
+
+	<!--  Azure Inbound File Synchronizer and Channel Adapter -->
+	<bean id="SiteOneInventoryAzureBlobInboundSynchronizer"
+		class="de.hybris.platform.cloud.azure.hotfolder.remote.inbound.AzureBlobInboundSynchronizer">
+		<constructor-arg name="sessionFactory" ref="azureBlobSessionFactory"/>
+		<property name="remoteDirectory" value="#{azureHotfolderInventoryRemotePath}"/>
+		<property name="moveToRemoteDirectory" value="#{azureHotfolderInventoryRemotePath}/processing"/>
+		<property name="deleteRemoteFiles" value="${azure.hotfolder.storage.delete.remote.files}"/>
+		<property name="preserveTimestamp" value="true"/>
+		<property name="filter" ref="azureHotfolderFileFilter"/>
+		<property name="comparator" ref="azureHotFolderFileComparator"/>
+	</bean>
+
+	<bean id="SiteOneInventoryAzureBlobSynchronizingMessageSource"
+		class="de.hybris.platform.cloud.azure.hotfolder.remote.inbound.AzureBlobSynchronizingMessageSource">
+		<constructor-arg name="synchronizer" ref="SiteOneInventoryAzureBlobInboundSynchronizer"/>
+		<property name="autoCreateLocalDirectory" value="true"/>
+		<property name="localDirectory" value="#{azureHotfolderInventoryLocalPath}/processing/"/>
+		<property name="maxFetchSize" value="${azure.hotfolder.storage.polling.fetch.batch-size}"/>
+	</bean>
+
+	<bean id="azureInventoryChannelAdapterTaskExecutor"
+		class="de.hybris.platform.cloud.commons.scheduling.HybrisAwareThreadPoolTaskExecutor">
+		<property name="waitForTasksToCompleteOnShutdown" value="true"/>
+		<property name="threadNamePrefix" value="AzureInventoryIntegrationTaskExecutorThread-${tenantId}-"/>
+		<property name="threadGroupName" value="AzureInventoryIntegrationTaskExecutorThread-${tenantId}"/>
+		<property name="corePoolSize" value="${azure.hotfolder.storage.polling.core-pool-size}"/>
+		<property name="maxPoolSize" value="${azure.hotfolder.storage.polling.max-pool-size}"/>
+		<property name="queueCapacity" value="-1"/>
+		<property name="keepAliveSeconds" value="60"/>
+		<property name="rejectedExecutionHandler">
+			<bean class="java.util.concurrent.ThreadPoolExecutor$DiscardPolicy"/>
+		</property>
+		<property name="role" value="integration"/>
+		<property name="autoStartup" value="false"/>
+		<property name="phase" value="10"/>
+		<property name="awaitTerminationSeconds" value="60"/>
+	</bean>
+
+
+	<bean id="SiteOneInventoryCloudHotFolderHeaderSetupTask" class="de.hybris.platform.acceleratorservices.dataimport.batch.task.HeaderSetupTask">
+		<property name="catalog" value="${cloud.hotfolder.default.mapping.header.catalog}"/>
+		<property name="net" value="${cloud.hotfolder.default.mapping.header.net}" />
+		<property name="storeBaseDirectory" value="#{azureHotfolderInventoryRemotePath}/processing" />
+	</bean>
+
+	<int:inbound-channel-adapter id="SiteOneInventoryAzureInboundChannelAdapter"
+		auto-startup="false"
+		role="${cloud.hotfolder.storage.services.role}"
+		phase="50"
+		ref="SiteOneInventoryAzureBlobSynchronizingMessageSource"
+		channel="siteOneInventoryCloudHotFolderInboundFileHeaderEnricherChannel">
+		<int:poller fixed-rate="${azure.hotfolder.storage.polling.fixed.rate}"
+			task-executor="azureInventoryChannelAdapterTaskExecutor"
+			max-messages-per-poll="${azure.hotfolder.storage.polling.fetch.batch-size}">
+		</int:poller>
+	</int:inbound-channel-adapter>
+	
+	<int:channel id="siteOneInventoryCloudHotFolderInboundFileHeaderEnricherChannel">
+        <int:interceptors>
+           <ref bean="siteOneInventoryHotFolderRoutingChannelInterceptor"/>
+        </int:interceptors>
+    </int:channel>
+
+
+    <bean id="siteOneInventoryHotFolderRoutingChannelInterceptor" class="de.hybris.platform.cloud.hotfolder.interceptor.HotFolderRouterChannelInterceptor">
+      <property name="successChannel" ref="SiteOneInventoryAzureArchiveOutboundChannelAdapter"/>
+      <property name="failureChannel" ref="SiteOneInventoryAzureErrorOutboundChannelAdapter"/>
+    </bean>
+
+    <int:header-enricher id="siteOneInventoryCloudHotFolderInboundFileNameHeaderEnricherChannel"
+                input-channel="siteOneInventoryCloudHotFolderInboundFileHeaderEnricherChannel"
+                output-channel="hotfolderInboundFileChannel">
+        <int:header name="#{fileNameHeaderKey}" expression="payload.getName()"/>
+        <int:header name="#{fileLastModifiedHeaderKey}" expression="payload.lastModified()"/>
+   </int:header-enricher>
+
+	<!-- Inventory :: Azure Outbound Channel adapters for moving remote files into archive/error folders -->
+	<bean id="SiteOneInventoryAzureArchiveMessageHandler" parent="abstractAzureMoveMessageHandler">
+		<property name="remoteDirectory" value="#{azureHotfolderInventoryRemotePath}/archive"/>
+	</bean>
+
+	<bean id="SiteOneInventoryAzureErrorMessageHandler" parent="abstractAzureMoveMessageHandler">
+		<property name="remoteDirectory" value="#{azureHotfolderInventoryRemotePath}/error"/>
+	</bean>
+
+	<int:outbound-channel-adapter id="SiteOneInventoryAzureArchiveOutboundChannelAdapter"
+		ref="SiteOneInventoryAzureArchiveMessageHandler">
+	</int:outbound-channel-adapter>
+
+	<int:outbound-channel-adapter id="SiteOneInventoryAzureErrorOutboundChannelAdapter"
+		ref="SiteOneInventoryAzureErrorMessageHandler" >
+	</int:outbound-channel-adapter>
+
+
+	<!--Start-->
+	<file:inbound-channel-adapter id="azureLocalInventoryErrorInboundChannelAdapter"
+		directory="#{azureHotfolderInventoryLocalPath}/error"
+		filter="azureLocalInventoryErrorHotFolderFileFilter">
+		<int:poller fixed-rate="10000"/>
+	</file:inbound-channel-adapter>
+
+	<bean id="azureLocalInventoryErrorHotFolderFileFilter"
+		class="de.hybris.platform.cloud.commons.spring.integration.file.filters.ChainFileListFilter">
+		<constructor-arg name="fileFilters" ref="azureLocalInventoryErrorFolderFileListFilter"/>
+	</bean>
+
+	<util:list id="azureLocalInventoryErrorFolderFileListFilter">
+		<ref bean="azureLocalInventoryErrorRegexPatternFileListFilter"/>
+		<ref bean="azureFileSystemPersistentAcceptOnceListFilter"/>
+	</util:list>
+
+	<bean id="azureFileSystemPersistentAcceptOnceListFilter" class="org.springframework.integration.file.filters.FileSystemPersistentAcceptOnceFileListFilter">
+		<constructor-arg name="store" ref="hotfolderMetadataStore"/>
+		<constructor-arg name="prefix" value="${azure.hotfolder.storage.metadatastore.prefix}"/>
+	</bean>
+
+	<int:outbound-channel-adapter id="azureLocalInventoryErrorOutboundChannelAdapter"
+		channel="azureLocalInventoryErrorInboundChannelAdapter" ref="azureInventoryBlobMessageHandler"/>
+
+	<bean id="azureInventoryBlobMessageHandler" class="de.hybris.platform.cloud.azure.hotfolder.remote.outbound.AzureBlobMessageHandler">
+		<constructor-arg ref="azureBlobSessionFactory"/>
+		<property name="remoteDirectory" ref="azureInventoryHotfolderErrorRemotePath"/>
+		<property name="fileNameGenerator" ref="azureTimestampFileNameGenerator"/>
+		<property name="deleteSourceFiles" value="true"/>
+	</bean>
+
+	<bean id="azureInventoryHotfolderErrorRemotePath" class="java.lang.String">
+		<constructor-arg name="value"
+			value="#{azureHotfolderInventoryRemotePath}/error"/>
+	</bean>
+
+	<bean id="batchSiteOneInventoryConverterMapping"
+		class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping"
+		p:mapping="siteoneinventoryChanges"
+		p:converter-ref="batchSiteOneInventoryConverter" />
+
+	<bean id="batchSiteOneInventoryConverter" class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>#{defaultImpexProductHeader}
+				INSERT_UPDATE StockLevel;productCode(productCode,division)[translator=com.siteone.core.batch.translator.StocklevelDivisionTranslator][unique=true];available[translator=com.siteone.core.batch.translator.AvailableQuantityTranslator];warehouse(code)[unique=true];inStockStatus(code)[default=forceInStock];inventoryHit[translator=com.siteone.core.batch.translator.SiteOneProductInventoryHitTranslator];lastFeedTimeStamp[dateformat='yyyy-MM-dd HH:mm:ss.SSS',cellDecorator=com.siteone.core.batch.decorator.LastFeedTimeCellDecorator];reserved;onHand;committed;incomingPO;incTransfer;quantityLevel[translator=com.siteone.core.batch.translator.SiteOneProductQuantityLevelTranslator];isNurseryCoreSku
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>;{+0}:{+2};{3};{+1};;{0}_{4}_{2};;0;{5};{6};{7};{8};{0}_{9}_{2}_{10};{10}</value>
+		</property>
+		<property name="type" value="StockLevel"/>
+	</bean>
+
+	<bean id="batchSiteOneInventoryUOMConverterMapping"
+		class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping"
+		p:mapping="siteoneinventoryuom"
+		p:converter-ref="batchSiteOneInventoryUOMConverter" />
+
+	<bean id="batchSiteOneInventoryUOMConverter" class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>#{defaultImpexProductHeader}
+				INSERT_UPDATE InventoryUOM;inventoryUOMID[unique=true];name;description;inventoryMultiplier[default=1.0];parentInventoryUOMID;inventoryUOMDesc;hideUOMOnline
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>;{+0};{1};{2};{3};{5};{8};{9}</value>
+		</property>
+		<property name="type" value="InventoryUOM"/>
+	</bean>
+
+
+</beans>

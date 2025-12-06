@@ -1,0 +1,50 @@
+
+## Impexes for category nav nodes in header
+
+$contentCatalog=siteoneContentCatalog
+$contentCatalogName=SiteOne Content Catalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$productCatalog=siteoneProductCatalog
+$productCatalogName=SiteOne Product Catalog
+$productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$picture=media(code, $contentCV);
+$image=image(code, $contentCV);
+$media=media(code, $contentCV);
+$page=page(uid, $contentCV);
+$contentPage=contentPage(uid, $contentCV);
+$product=product(code, $productCV)
+$category=category(code, $productCV)
+$siteResource=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/contentCatalogs/$contentCatalog
+$productResource=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/productCatalogs/$productCatalog
+$jarResourceCms=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/cockpits/cmscockpit
+$addonExtensionName=siteoneacceleratoraddon
+$medias=medias(code, $contentCV);
+$articleMedia=articleMedia(code, $contentCV);
+$mediaContainer=media(qualifier, $contentCV);
+$siteUid=siteone
+$lang=en
+
+
+## Lighting
+INSERT_UPDATE GlobalProductNavigationNode;$contentCV[unique=true];uid[unique=true];name;parent(uid, $contentCV);category(code, $productCV);&nodeRef;sequenceNumber;
+;;12VLEDMR8LampsNavNode;12VLEDMR8LampsNavNode;LampsNavNode;SH1114109;12VLEDMR8LampsNavNode;9;
+
+## Irrigation
+;;LinersNavNode;LinersNavNode;Fountains&AeratorsNavNode;SH1419113;LinersNavNode;4;
+;;FountainsPumpsNavNode;FountainsPumpsNavNode;Fountains&AeratorsNavNode;SH1419114;FountainsPumpsNavNode;5;
+;;WaterfallKitsNavNode;WaterfallKitsNavNode;Fountains&AeratorsNavNode;SH1419115;WaterfallKitsNavNode;6;
+;;Ponds&PondEquipmentNavNode;Ponds&PondEquipmentNavNode;IrrigationNavNode;SH1433;Ponds&PondEquipmentNavNode;22;
+
+## Landscape
+## Update Category 
+UPDATE GlobalProductNavigationNode;pk[unique=true];uid;name
+;8796094628928;LandscapeSupplySports&TurfNavNode;LandscapeSupplySports&TurfNavNode
+;8796095382592;AthleticFieldNavNode;AthleticFieldNavNode ## Before GolfSupplyNavNode
+;8796095415360;OtherSports&TurfNavNode;OtherSports&TurfNavNode ## Before Sports&TurfNavNode
+
+INSERT_UPDATE GlobalProductNavigationNode;$contentCV[unique=true];uid[unique=true];name;parent(uid, $contentCV);category(code, $productCV);&nodeRef;sequenceNumber;
+;;Parks&RecreationNavNode;Parks&RecreationNavNode;LandscapeSupplySports&TurfNavNode;SH1214102;Parks&RecreationNavNode;3;
+;;LandscapeSupplyCleanUpNavNode;LandscapeSupplyCleanUpNavNode;LandscapeSupplyJobSiteEssentialsNavNode;SH1224110;LandscapeSupplyCleanUpNavNode;11;
+;;LandscapeSupplyTarpsNavNode;LandscapeSupplyTarpsNavNode;LandscapeSupplyJobSiteEssentialsNavNode;SH1224111;LandscapeSupplyTarpsNavNode;12;
+;;LandscapeSupplyFittingsNavNode;LandscapeSupplyFittingsNavNode;StormwaterNavNode;SH1218104;LandscapeSupplyFittingsNavNode;5;
+

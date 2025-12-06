@@ -1,0 +1,8 @@
+INSERT_UPDATE ServicelayerJob; code[unique=true];springid[unique=true]
+;oldInvoiceAddressRemovalCronjob;oldInvoiceAddressRemovalCronjob;
+
+INSERT_UPDATE OldInvoiceAddressRemovalCronjob;code[unique=true];job(code)[default=oldInvoiceAddressRemovalCronjob];sessionLanguage(isoCode)[default=en]
+;oldInvoiceAddressRemovalCronjob
+
+INSERT_UPDATE Trigger;cronJob(code)[unique=true];cronExpression;relative;active;maxAcceptableDelay
+                     ;oldInvoiceAddressRemovalCronjob;0 50 20 * * ?;false;true;-1

@@ -1,0 +1,69 @@
+$contentCatalog=siteoneContentCatalog
+$contentCatalogName=SiteOne Content Catalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+
+
+
+INSERT_UPDATE SiteoneFAQ;$contentCV[unique=true];uid[unique=true];name;question[lang=en];question[lang=es];answer[lang=en];answer[lang=es]
+;;siteoneFAQ11;QA11;"How do I create an online account?
+";¿Cómo creo una cuenta en línea?;To create an online account, complete the Request an Account form in the top right corner of the screen. You'll need your SiteOne customer number. If you are not currently a SiteOne customer and would like to become one, please contact us. ;"Para crear una cuenta en línea, completa el formulario de ""Solicitar Cuenta"" que verás en la esquina derecha de arriba de la pantalla. Necesitarás tu número de cliente SiteOne. Si no eres un cliente y te gustaría convertirte en uno, por favor contáctanos."
+
+;;siteoneFAQ12;QA12;"How do I add users to my account?
+";"¿Cómo añado más usuarios a mi cuenta?
+";If you are an administrator on your customer account, you will see a manage users link on the Account Dashboard. Here you can add additional administrator level users or team members.;"Si eres el administrador de tu cuenta de cliente, verás en tu cuenta un enlace que dice ""Administrar usuarios"". Allí podrás agregar usuarios adicionales de nivel de administrador o miembros del equipo."
+
+;;siteoneFAQ13;QA13;How do I reset my password?;¿Cómo restablecer mi contraseña?;"Click the reset password link on the home page to reset your password. We'll send a link to your email address on file that you can use to create a new password.
+";"Haz clic al enlace de ""Restablecer Contraseña"" en la página de inicio. Te enviaremos un enlace al email que tengamos en el sistema y con él podrás crear una nueva contraseña.
+"
+
+;;siteoneFAQ14;QA14;"My account is locked. What do I do?
+";Mi cuenta está bloqueada. ¿Qué puedo hacer?;"Please contact us, and we will unlock your account for you.
+";"Por favor contáctanos y la desbloquearemos por ti.
+"
+
+;;siteoneFAQ15;QA15;"How do I remove a user from my account?
+";"Por favor contáctanos y la desbloquearemos por ti.
+";If you are an administrator, you can log in and disable a user on the manage users page on the Account Dashboard. You can also contact us for help.;"Si eres un administrador, puedes iniciar sesión y deshabilitar al usuario en la página ""Administrar usuarios"" en tu cuenta. También puedes contactarnos para que te ayudemos."
+
+;;siteoneFAQ21;QA11;Are all of your products available online?;"¿Están todos sus productos disponibles en línea?
+";Yes, the majority of our products are online. If you are looking for an item and cannot find it, you can add a note on your order when you check out or contact us.;"Sí, la mayoría de nuestros productos están en línea. Si buscas un artículo y no puedes encontrarlo, puedes añadir una nota en tu orden cuando finalices la compra o cuando te pongas en contacto con nosotros.tros.
+"
+
+;;siteoneFAQ22;QA12;"How does search work?
+";"¿Cómo funciona el buscador?
+";You may search on a keyword or product number and then use the facets on the left to refine your search. If your search returns too many results, you may want to modify your search to be more specific. ;Puedes poner una palabra clave o un número de producto y luego utilizar los filtros a tu izquierda para refinar la búsqueda. Si te aparecen demasiados resultados, puedes hacer tu búsqueda con palabras más específicas.
+
+;;siteoneFAQ23;QA13;How are search results organized?;¿Cómo están organizados los resultados de búsqueda?;"Search results are organized by items in stock at the branch first. 
+";"Los resultados mostrarán primero los artículos disponibles en tu sucursal.
+"
+
+;;siteoneFAQ24;QA14;What do I do if I cannot find what I'm looking for?;¿Qué puedo hacer si no encuentro lo que estoy buscando?;"Please contact your local branch. If you are placing an order with other items, you can include a message to the branch with your order. 
+";Por favor contacta tu sucursal local.  Si estás haciendo un pedido con otros artículos, puedes incluir un mensaje a la sucursal con tu orden.
+
+;;siteoneFAQ25;QA15;"I am a vendor and would like to update my product information online and/or add an item.
+";"Soy un proveedor y me gustaría actualizar la información en línea de mi producto y/o añadir un producto.
+";"Please contact us, and we will connect you with your product team.
+";Por favor contáctanos y te conectaremos con el equipo encargado de tu producto.
+
+;;siteoneFAQ31;QA11;"How do I place an order?
+";¿Cómo hago una orden?;"To place an order, log-in, confirm your selected branch, and then add products to your cart. Once you have added items to your cart, then move to checkout. You may place an order for pickup or delivery. 
+";"Para realizar una orden,inicia sesión,confirma tu sucursal seleccionada y luego agrega productos a tu carrito de compras.Una vez hayas añadido los artículos al carrito,ve a ""Finalizar Compra"".Puedes elegir entre recoger tu pedido o que te lo enviemos."
+
+;;siteoneFAQ32;QA12;"When will my order be ready?
+";"¿Cuándo estará lista mi orden?
+";"You can enter your requested pickup or delivery time at checkout. If you would like your order fulfilled the same day, please contact the branch to confirm your order.
+";"En ""Finalizar Compra"" podrás ver el tiempo de envío o para cuándo solicitaste recoger tu compra. Si quieres que la orden se cumpla el mismo día, por favor contacta a la sucursal para confirmar tu orden. 
+"
+;;siteoneFAQ33;QA13;"I have backorders and would like those added to my order.
+";"Tengo órdenes pendientes y me gustaría añadirlas a mi orden.
+";"When you checkout, note that in the ""Message for branch"" section. 
+";"Cuando finalices tu compra, deja ese comentario en una nota en la sección ""Mensaje para la sucursal"".
+"
+;;siteoneFAQ34;QA14;"I would like to pickup my order / have my order delivered at a specific time.
+";Me gustaría recoger mi pedido / que mi pedido sea enviado y entregado a una hora específica.;Please note this in the Message for Branch section when you checkout. The branch will let you know if we can accommodate your request when they call to confirm your order. Please contact the branch for same day orders.;"Por favor deja eso claro en la sección ""Mensaje para la sucursal"" cuando finalices la compra.
+"
+
+;;siteoneFAQ35;QA15;"I placed an order and would like to know the status.
+";"Realicé una orden y me gustaría saber su estado.
+";"You can see order status on the Open Orders and the Order History pages in the Account Dashboard. This will include all orders, not just those placed online. For more details on a pending order, please contact your selected branch.
+";"Puedes ver el estado de tu orden en las páginas ""Órdenes Abiertas"" e ""Historial de Órdenes"" de tu cuenta."

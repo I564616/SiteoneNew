@@ -1,0 +1,10 @@
+INSERT_UPDATE ServicelayerJob; code[unique=true];springid[unique=true]
+;convertedProductMappingCronJob;convertedProductMappingCronJob;
+
+
+INSERT_UPDATE ConvertedProductMappingCronJob;code[unique=true];job(code)[default=convertedProductMappingCronJob];sessionLanguage(isoCode)[default=en]
+;convertedProductMappingCronJob
+
+INSERT_UPDATE Trigger;cronjob(code)[unique=true];active;cronExpression
+#Fires at 06:00 AM
+;convertedProductMappingCronJob;true;0 */30 * * * ?

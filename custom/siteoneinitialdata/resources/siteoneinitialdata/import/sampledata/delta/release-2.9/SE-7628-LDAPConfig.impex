@@ -1,0 +1,2 @@
+INSERT_UPDATE Employee; uid[unique = true]           ; name                 ; ldaplogin                                                     ; ldapaccount
+                      ; hybris-ldap-prod@siteone.com ; LDAP Service Account ; uid=hybris-ldap-prod@siteone.com,dc=siteoneint,dc=okta,dc=com ; 1

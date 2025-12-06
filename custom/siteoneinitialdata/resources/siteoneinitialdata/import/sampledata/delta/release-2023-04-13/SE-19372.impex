@@ -1,0 +1,23 @@
+$contentCatalog=siteoneContentCatalog
+$contentCatalogName=SiteOne Content Catalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+
+INSERT_UPDATE SiteOneStoreDetailPromoComponent;$contentCV[unique=true];uid[unique=true];promotionalText[lang=es];headline[lang=es];buttonLabel[lang=es]
+;;MobileAppHomePageBannerComponent5A;Ahorra hoy mismo en el mejor esparcidor de 50 lb. En la industria.;ESPARCIDOR DE 50 LB LESCO<br />MENOS DE $300;Guardar ahora
+;;MobileAppHomePageBannerComponent5B;SiteOne es tu lugar ideal para herramientas de mango largo;HERRAMIENTAS PRO-TRADE<br />DESDE $17.99;Conoce más
+;;MobileAppHomePageBannerComponent5C;Pro-Trade Lighting® ofrece un rendimiento en el que puedes confiar;CONFIADO NOCHE<br />TRAS NOCHE;Conoce más
+;;MobileAppHomePageBannerComponent6;Encuentra las respuestas cuando más las necesitas;EXPLORA Y APRENDE;Conoce más
+;;MobileAppHomePageBannerComponent7;;TODO LO QUE<br />NECESITAS SABER<br />ACERCA DEL CÉSPED;Conoce más
+;;MobileAppHomePageBannerComponent8;;OBTÉN<br>PUNTOS DEL PARTNERS PROGRAM<br>CON CADA<br />COMPRA;Conoce más
+;;MobileApp HomePage Banner detail9;Lleva tu campo al siguiente nivel<br />con SiteOne Golf.;EL LUGAR PARA LOS PROFESIONALES DE LA INDUSTRIA DEL GOLF;SiteOne Golf
+
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Online])[default=$contentCatalog:Online]
+
+INSERT_UPDATE SiteOneStoreDetailPromoComponent;$contentCV[unique=true];uid[unique=true];promotionalText[lang=es];headline[lang=es];buttonLabel[lang=es]
+;;MobileAppHomePageBannerComponent5A;Ahorra hoy mismo en el mejor esparcidor de 50 lb. En la industria.;ESPARCIDOR DE 50 LB LESCO<br />MENOS DE $300;Guardar ahora
+;;MobileAppHomePageBannerComponent5B;SiteOne es tu lugar ideal para herramientas de mango largo;HERRAMIENTAS PRO-TRADE<br />DESDE $17.99;Conoce más
+;;MobileAppHomePageBannerComponent5C;Pro-Trade Lighting® ofrece un rendimiento en el que puedes confiar;CONFIADO NOCHE<br />TRAS NOCHE;Conoce más
+;;MobileAppHomePageBannerComponent6;Encuentra las respuestas cuando más las necesitas;EXPLORA Y APRENDE;Conoce más
+;;MobileAppHomePageBannerComponent7;;TODO LO QUE<br />NECESITAS SABER<br />ACERCA DEL CÉSPED;Conoce más
+;;MobileAppHomePageBannerComponent8;;OBTÉN<br>PUNTOS DEL PARTNERS PROGRAM<br>CON CADA<br />COMPRA;Conoce más
+;;MobileApp HomePage Banner detail9;Lleva tu campo al siguiente nivel<br />con SiteOne Golf.;EL LUGAR PARA LOS PROFESIONALES DE LA INDUSTRIA DEL GOLF;SiteOne Golf

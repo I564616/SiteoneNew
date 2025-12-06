@@ -1,0 +1,1088 @@
+# -----------------------------------------------------------------------
+# [y] hybris Platform
+#
+# Copyright (c) 2017 SAP SE or an SAP affiliate company.  All rights reserved.
+#
+# This software is the confidential and proprietary information of SAP
+# ("Confidential Information"). You shall not disclose such Confidential
+# Information and shall use it only in accordance with the terms of the
+# license agreement you entered into with SAP.
+# -----------------------------------------------------------------------
+#
+# Import the CMS content for the SiteOne Website emails
+#
+$contentCatalog=siteoneContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$wideContent=CMSImageComponent,BannerComponent
+$jarEmailResource=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/coredata/contentCatalogs/siteoneContentCatalog/emails
+
+# Import modulegen config properties into impex macros
+UPDATE GenericItem[processor=de.hybris.platform.commerceservices.impex.impl.ConfigPropertyImportProcessor];pk[unique=true]
+$jarResourceCms=$config-jarResourceCmsValue
+$emailPackageName=$config-emailContextPackageName
+
+# Email page Template
+INSERT_UPDATE EmailPageTemplate;$contentCV[unique=true];uid[unique=true];name;active;frontendTemplateName;subject(code);htmlTemplate(code);restrictedPageTypes(code)
+;;CustomerRegistrationEmailTemplate;Customer Registration Email Template;true;customerRegistrationEmail;powertools_Email_Customer_Registration_Subject;powertools_Email_Customer_Registration_Body;EmailPage
+;;ForgottenPasswordEmailTemplate;Forgotten Password Email Template;true;forgottenPasswordEmail;powertools_Email_Forgotten_Password_Subject;powertools_Email_Forgotten_Password_Body;EmailPage
+;;OrderConfirmationEmailTemplate;Order Confirmation Email Template;true;orderConfirmationEmail;powertools_Email_Order_Confirmation_Subject;powertools_Email_Order_Confirmation_Body;EmailPage
+;;DeliverySentEmailTemplate;Delivery Sent Email Template;true;deliverySentEmail;powertools_Email_Delivery_Sent_Subject;powertools_Email_Delivery_Sent_Body;EmailPage
+;;ReadyForPickupEmailTemplate;Ready For Pickup Email Template;true;readyForPickupEmail;powertools_Email_Ready_For_Pickup_Subject;powertools_Email_Ready_For_Pickup_Body;EmailPage
+;;OrderCancelledEmailTemplate;Order Cancelled Email Template;true;orderCancelledEmail;powertools_Email_Order_Cancelled_Subject;powertools_Email_Order_Cancelled_Body;EmailPage
+;;OrderRefundEmailTemplate;Order Refund Email Template;true;orderRefundEmail;powertools_Email_Order_Refund_Subject;powertools_Email_Order_Refund_Body;EmailPage
+;;OrderCollectionReminderEmailTemplate;Order Collection Reminder Email Template;true;orderCollectionReminderEmail;powertools_Email_Order_Collection_Reminder_Subject;powertools_Email_Order_Collection_Reminder_Body;EmailPage
+;;OrderMoveToCsEmailTemplate;Order Moved To CS Email Template;true;orderMoveToCsEmail;powertools_Email_Order_Move_To_CS_Subject;powertools_Email_Order_Move_To_CS_Body;EmailPage
+;;OrderPartiallyCanceledEmailTemplate;Order Partially Canceled Email Template;true;orderPartiallyCanceledEmail;powertools_Email_Order_Partially_Canceled_Subject;powertools_Email_Order_Partially_Canceled_Body;EmailPage
+;;OrderPartiallyRefundedEmailTemplate;Order Partially Refunded Email Template;true;orderPartiallyRefundedEmail;powertools_Email_Order_Partially_Refunded_Subject;powertools_Email_Order_Partially_Refunded_Body;EmailPage
+;;NotPickedUpConsignmentCanceledEmailTemplate;Not Picked Up Consignment Canceled Email Template;true;notPickedUpConsignmentCanceledEmail;powertools_Email_NotPickedUpConsignment_Canceled_Subject;powertools_Email_NotPickedUpConsignment_Canceled_Body;EmailPage
+;;OrderApprovalRejectionEmailTemplate;Order Approval Rejection Email Template;true;orderApprovalRejectionEmail;powertools_Email_Order_ApprovalRejection_Subject;powertools_Email_Order_ApprovalRejection_Body;EmailPage
+;;OrderPendingApprovalEmailTemplate;Order Pending Approval Email Template;true;orderPendingApprovalEmail;powertools_Email_Order_PendingApproval_Subject;powertools_Email_Order_PendingApproval_Body;EmailPage
+;;ReplenishmentOrderPlacedEmailTemplate;Replenishment Order Placed Email Template;true;replenishmentOrderPlacedEmail;powertools_Email_Replenishment_Order_Placed_Subject;powertools_Email_Replenishment_Order_Placed_Body;EmailPage
+;;QuoteOrderApproveEmailTemplate;Quote Order Approval Email Template;true;QuoteOrderApproveEmail;powertools_Email_Quote_Order_Approve_Subject;powertools_Email_Quote_Order_Approve_Body;EmailPage
+;;QuoteOrderRejectEmailTemplate;Quote Order Rejection Email Template;true;QuoteOrderRejectEmail;powertools_Email_Quote_Order_Reject_Subject;powertools_Email_Quote_Order_Reject_Body;EmailPage
+;;ReplenishmentOrderConfirmationEmailTemplate;Replenishment Order Confirmation Email Template;true;replenishmentOrderConfirmationEmail;powertools_Email_Replenishment_Order_Confirmation_Subject;powertools_Email_Replenishment_Order_Confirmation_Body;EmailPage
+;;BatchNotificationEmailTemplate;Batch Notification Email Template;true;batchNotificationEmail;SiteOne_Email_Batch_Notification_Subject;SiteOne_Email_Batch_Notification_Body;EmailPage
+;;RequestAccountEmailTemplate;Request Account Email Template;true;requestAccountEmail;siteone_Email_Request_Account_Subject;siteone_Email_Request_Account_Body;EmailPage
+;;RequestAccountCustomerEmailTemplate;Request Account Customer Email Template;true;requestAccountCustomerEmail;siteone_Email_Request_Account_Customer_Subject;siteone_Email_Request_Account_Customer_Body;EmailPage
+;;SharedProductEmailTemplate;Shared Productr Email Template;true;SharedProductEmail;siteone_Email_Shared_Product_Subject;siteone_Email_Shared_Product_Body;EmailPage
+;;OrderFailureEmailTemplate;Order Failure notification email template;true;OrderFailureEmail;siteone_Email_Order_Failure_Subject;siteone_Email_Order_Failure_Body;EmailPage
+
+
+# Templates for CMS Cockpit Page Edit
+UPDATE EmailPageTemplate;$contentCV[unique=true];uid[unique=true];velocityTemplate[translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+;;CustomerRegistrationEmailTemplate;$jarResourceCms/structure-view/structure_customerRegistrationEmailTemplate.vm
+;;ForgottenPasswordEmailTemplate;$jarResourceCms/structure-view/structure_forgottenPasswordEmailTemplate.vm
+;;OrderConfirmationEmailTemplate;$jarResourceCms/structure-view/structure_orderConfirmationEmailTemplate.vm
+;;DeliverySentEmailTemplate;$jarResourceCms/structure-view/structure_deliverySentEmailTemplate.vm
+;;ReadyForPickupEmailTemplate;$jarResourceCms/structure-view/structure_readyForPickupEmailTemplate.vm
+;;OrderCancelledEmailTemplate;$jarResourceCms/structure-view/structure_orderCancelledEmailTemplate.vm
+;;OrderRefundEmailTemplate;$jarResourceCms/structure-view/structure_orderRefundEmailTemplate.vm
+;;OrderCollectionReminderEmailTemplate;$jarResourceCms/structure-view/structure_orderCollectionReminderEmailTemplate.vm
+;;OrderMoveToCsEmailTemplate;$jarResourceCms/structure-view/structure_orderMoveToCSEmailTemplate.vm
+;;OrderPartiallyCanceledEmailTemplate;$jarResourceCms/structure-view/structure_orderPartiallyCanceledEmailTemplate.vm
+;;OrderPartiallyRefundedEmailTemplate;$jarResourceCms/structure-view/structure_orderPartiallyRefundedEmailTemplate.vm
+;;NotPickedUpConsignmentCanceledEmailTemplate;$jarResourceCms/structure-view/structure_notPickedUpConsignmentCanceledEmailTemplate.vm
+;;OrderApprovalRejectionEmailTemplate;$jarEmailResource/structure-view/structure_orderApprovalRejectionEmailTemplate.vm
+;;OrderPendingApprovalEmailTemplate;$jarEmailResource/structure-view/structure_orderPendingApprovalEmailTemplate.vm
+;;ReplenishmentOrderPlacedEmailTemplate;$jarEmailResource/structure-view/structure_replenishmentOrderPlacedEmailTemplate.vm
+;;QuoteOrderApproveEmailTemplate;$jarEmailResource/structure-view/structure_quoteOrderApproveEmailTemplate.vm
+;;QuoteOrderRejectEmailTemplate;$jarEmailResource/structure-view/structure_quoteOrderRejectEmailTemplate.vm
+;;ReplenishmentOrderConfirmationEmailTemplate;$jarEmailResource/structure-view/structure_replenishmentOrderConfirmationEmailTemplate.vm
+;;RequestAccountEmailTemplate;$jarResourceCms/structure-view/structure_requestAccountEmailTemplate.vm
+;;RequestAccountCustomerEmailTemplate;$jarResourceCms/structure-view/structure_requestAccountCustomerEmailTemplate.vm
+;;SharedProductEmailTemplate;$jarResourceCms/structure-view/structure_sharedProductEmailTemplate.vm
+;;OrderFailureEmailTemplate;$jarResourceCms/structure-view/structure_orderFailureEmailTemplate.vm
+
+
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='SharedProductEmailTemplate'];validComponentTypes(code)
+;SiteLogo;;;logo
+;TopContent;;$wideContent;
+;BottomContent;;$wideContent;
+
+
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='RequestAccountCustomerEmailTemplate'];validComponentTypes(code)
+;SiteLogo;;;logo
+;TopContent;;$wideContent;
+;BottomContent;;$wideContent;
+
+
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='RequestAccountEmailTemplate'];validComponentTypes(code)
+;SiteLogo;;;logo
+;TopContent;;$wideContent;
+;BottomContent;;$wideContent;
+
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='CustomerRegistrationEmailTemplate'];validComponentTypes(code)
+;SiteLogo;;;logo
+;TopContent;;$wideContent;
+;BottomContent;;$wideContent;
+
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='ForgottenPasswordEmailTemplate'];validComponentTypes(code)
+;SiteLogo;;;logo
+;TopContent;;$wideContent;
+;BottomContent;;$wideContent;
+
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='OrderConfirmationEmailTemplate'];validComponentTypes(code)
+;SiteLogo;;;logo
+;TopContent;;$wideContent;
+;BottomContent;;$wideContent;
+
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='OrderCancelledEmailTemplate'];validComponentTypes(code)
+;SiteLogo;;;logo
+;TopContent;;$wideContent;
+;BottomContent;;$wideContent;
+
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='OrderRefundEmailTemplate'];validComponentTypes(code)
+;SiteLogo;;;logo
+;TopContent;;$wideContent;
+;BottomContent;;$wideContent;
+
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='DeliverySentEmailTemplate'];validComponentTypes(code)
+;SiteLogo;;;logo
+;TopContent;;$wideContent;
+;BottomContent;;$wideContent;
+
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='ReadyForPickupEmailTemplate'];validComponentTypes(code)
+;SiteLogo;;;logo
+;TopContent;;$wideContent;
+;BottomContent;;$wideContent;
+
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='OrderCollectionReminderEmailTemplate'];validComponentTypes(code)
+;SiteLogo;;;logo
+;TopContent;;$wideContent;
+;BottomContent;;$wideContent;
+
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='OrderMoveToCsEmailTemplate'];validComponentTypes(code)
+;SiteLogo;;;logo
+;TopContent;;$wideContent;
+;BottomContent;;$wideContent;
+
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='OrderPartiallyCanceledEmailTemplate'];validComponentTypes(code)
+;SiteLogo;;;logo
+;TopContent;;$wideContent;
+;BottomContent;;$wideContent;
+
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='OrderPartiallyRefundedEmailTemplate'];validComponentTypes(code)
+;SiteLogo;;;logo
+;TopContent;;$wideContent;
+;BottomContent;;$wideContent;
+
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='NotPickedUpConsignmentCanceledEmailTemplate'];validComponentTypes(code)
+;SiteLogo;;;logo
+;TopContent;;$wideContent;
+;BottomContent;;$wideContent;
+
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='OrderApprovalRejectionEmailTemplate'];validComponentTypes(code)
+;SiteLogo;;;logo
+;TopContent;;$wideContent;
+;BottomContent;;$wideContent;
+
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='QuoteOrderApproveEmailTemplate'];validComponentTypes(code)
+;SiteLogo;;;logo
+;TopContent;;$wideContent;
+;BottomContent;;$wideContent;
+
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='QuoteOrderRejectEmailTemplate'];validComponentTypes(code)
+;SiteLogo;;;logo
+;TopContent;;$wideContent;
+;BottomContent;;$wideContent;
+
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='OrderPendingApprovalEmailTemplate'];validComponentTypes(code)
+;SiteLogo;;;logo
+;TopContent;;$wideContent;
+;BottomContent;;$wideContent;
+
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='ReplenishmentOrderPlacedEmailTemplate'];validComponentTypes(code)
+;SiteLogo;;;logo
+;TopContent;;$wideContent;
+;BottomContent;;$wideContent;
+
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='ReplenishmentOrderConfirmationEmailTemplate'];validComponentTypes(code)
+;SiteLogo;;;logo
+;TopContent;;$wideContent;
+;BottomContent;;$wideContent;
+
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='OrderFailureEmailTemplate'];validComponentTypes(code)
+;SiteLogo;;;SiteLogoComponent
+;TopContent;;$wideContent;
+;BottomContent;;$wideContent;
+
+
+# Create Content Slots
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active
+;;EmailTopSlot;Default Email Top Slot;true
+;;EmailBottomSlot;Default Email Bottom Slot;true
+;;EmailSiteLogoSlot;Default Email Site Slot;true
+
+
+# Bind Content Slots to Email Page Templates
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='SharedProductEmailTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;SiteLogo-SharedProductEmail;SiteLogo;;EmailSiteLogoSlot;true
+;;TopContent-SharedProductEmail;TopContent;;EmailTopSlot;true
+;;BottomContent-SharedProductEmail;BottomContent;;EmailBottomSlot;true
+
+
+# Bind Content Slots to Email Page Templates
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='RequestAccountCustomerEmailTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;SiteLogo-RequestAccountCustomerEmail;SiteLogo;;EmailSiteLogoSlot;true
+;;TopContent-RequestAccountCustomerEmail;TopContent;;EmailTopSlot;true
+;;BottomContent-RequestAccountCustomerEmail;BottomContent;;EmailBottomSlot;true
+
+
+# Bind Content Slots to Email Page Templates
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='RequestAccountEmailTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;SiteLogo-RequestAccountEmail;SiteLogo;;EmailSiteLogoSlot;true
+;;TopContent-RequestAccountEmail;TopContent;;EmailTopSlot;true
+;;BottomContent-RequestAccountEmail;BottomContent;;EmailBottomSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='CustomerRegistrationEmailTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;SiteLogo-CustomerRegistrationEmail;SiteLogo;;EmailSiteLogoSlot;true
+;;TopContent-CustomerRegistrationEmail;TopContent;;EmailTopSlot;true
+;;BottomContent-CustomerRegistrationEmail;BottomContent;;EmailBottomSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ForgottenPasswordEmailTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;SiteLogo-ForgottenPasswordEmail;SiteLogo;;EmailSiteLogoSlot;true
+;;TopContent-ForgottenPasswordEmail;TopContent;;EmailTopSlot;true
+;;BottomContent-ForgottenPasswordEmail;BottomContent;;EmailBottomSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='OrderConfirmationEmailTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;SiteLogo-OrderConfirmationEmail;SiteLogo;;EmailSiteLogoSlot;true
+;;TopContent-OrderConfirmationEmail;TopContent;;EmailTopSlot;true
+;;BottomContent-OrderConfirmationEmail;BottomContent;;EmailBottomSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='OrderCancelledEmailTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;SiteLogo-OrderCancelledEmail;SiteLogo;;EmailSiteLogoSlot;true
+;;TopContent-OrderCancelledEmail;TopContent;;EmailTopSlot;true
+;;BottomContent-OrderCancelledEmail;BottomContent;;EmailBottomSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='OrderRefundEmailTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;SiteLogo-OrderRefundEmail;SiteLogo;;EmailSiteLogoSlot;true
+;;TopContent-OrderRefundEmail;TopContent;;EmailTopSlot;true
+;;BottomContent-OrderRefundEmail;BottomContent;;EmailBottomSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='DeliverySentEmailTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;SiteLogo-DeliverySentEmail;SiteLogo;;EmailSiteLogoSlot;true
+;;TopContent-DeliverySentEmail;TopContent;;EmailTopSlot;true
+;;BottomContent-DeliverySentEmail;BottomContent;;EmailBottomSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ReadyForPickupEmailTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;SiteLogo-ReadyForPickupEmail;SiteLogo;;EmailSiteLogoSlot;true
+;;TopContent-ReadyForPickupEmail;TopContent;;EmailTopSlot;true
+;;BottomContent-ReadyForPickupEmail;BottomContent;;EmailBottomSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='OrderPartiallyCanceledEmailTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;SiteLogo-OrderPartiallyCanceledEmail;SiteLogo;;EmailSiteLogoSlot;true
+;;TopContent-OrderPartiallyCanceledEmail;TopContent;;EmailTopSlot;true
+;;BottomContent-OrderPartiallyCanceledEmail;BottomContent;;EmailBottomSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='OrderPartiallyRefundedEmailTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;SiteLogo-OrderPartiallyRefundedEmail;SiteLogo;;EmailSiteLogoSlot;true
+;;TopContent-OrderPartiallyRefundedEmail;TopContent;;EmailTopSlot;true
+;;BottomContent-OrderPartiallyRefundedEmail;BottomContent;;EmailBottomSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='NotPickedUpConsignmentCanceledEmailTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;SiteLogo-NotPickedUpConsignmentCanceledEmail;SiteLogo;;EmailSiteLogoSlot;true
+;;TopContent-NotPickedUpConsignmentCanceledEmail;TopContent;;EmailTopSlot;true
+;;BottomContent-NotPickedUpConsignmentCanceledEmail;BottomContent;;EmailBottomSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='OrderCollectionReminderEmailTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;SiteLogo-OrderCollectionReminderEmail;SiteLogo;;EmailSiteLogoSlot;true
+;;TopContent-OrderCollectionReminderEmail;TopContent;;EmailTopSlot;true
+;;BottomContent-OrderCollectionReminderEmail;BottomContent;;EmailBottomSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='OrderApprovalRejectionEmailTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;SiteLogo-OrderApprovalRejectionEmail;SiteLogo;;SiteLogoSlot;true
+;;TopContent-OrderApprovalRejectionEmail;TopContent;;EmailTopSlot;true
+;;BottomContent-OrderApprovalRejectionEmail;BottomContent;;EmailBottomSlot;true
+
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='QuoteOrderApproveEmailTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;SiteLogo-QuoteOrderApproveEmail;SiteLogo;;SiteLogoSlot;true
+;;TopContent-QuoteOrderApproveEmail;TopContent;;EmailTopSlot;true
+;;BottomContent-QuoteOrderApproveEmail;BottomContent;;EmailBottomSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='QuoteOrderRejectEmailTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;SiteLogo-QuoteOrderRejectEmail;SiteLogo;;SiteLogoSlot;true
+;;TopContent-QuoteOrderRejectEmail;TopContent;;EmailTopSlot;true
+;;BottomContent-QuoteOrderRejectEmail;BottomContent;;EmailBottomSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='OrderPendingApprovalEmailTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;SiteLogo-OrderPendingApprovalEmail;SiteLogo;;SiteLogoSlot;true
+;;TopContent-OrderPendingApprovalEmail;TopContent;;EmailTopSlot;true
+;;BottomContent-OrderPendingApprovalEmail;BottomContent;;EmailBottomSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ReplenishmentOrderConfirmationEmailTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;SiteLogo-ReplenishmentOrderConfirmationEmail;SiteLogo;;SiteLogoSlot;true
+;;TopContent-ReplenishmentOrderConfirmationEmail;TopContent;;EmailTopSlot;true
+;;BottomContent-ReplenishmentOrderConfirmationEmail;BottomContent;;EmailBottomSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ReplenishmentOrderPlacedEmailTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;SiteLogo-ReplenishmentOrderPlacedEmail;SiteLogo;;SiteLogoSlot;true
+;;TopContent-ReplenishmentOrderPlacedEmail;TopContent;;EmailTopSlot;true
+;;BottomContent-ReplenishmentOrderPlacedEmail;BottomContent;;EmailBottomSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='OrderFailureEmailTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;SiteLogo-OrderFailureEmail;SiteLogo;;EmailSiteLogoSlot;true
+;;TopContent-OrderFailureEmail;TopContent;;EmailTopSlot;true
+;;BottomContent-OrderFailureEmail;BottomContent;;EmailBottomSlot;true
+
+# Email Pages
+INSERT_UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);defaultPage;approvalStatus(code)[default='approved']
+;;CustomerRegistrationEmail;Customer Registration Email;CustomerRegistrationEmailTemplate;true;
+;;ForgottenPasswordEmail;Forgotten Password Email;ForgottenPasswordEmailTemplate;true;
+;;OrderConfirmationEmail;Order Confirmation Email;OrderConfirmationEmailTemplate;true;
+;;DeliverySentEmail;Delivery Sent Email;DeliverySentEmailTemplate;true;
+;;ReadyForPickupEmail;Ready For Pickup Email;ReadyForPickupEmailTemplate;true;
+;;OrderCancelledEmail;Order Cancelled Email;OrderCancelledEmailTemplate;true;
+;;OrderRefundEmail;Order Refund Email;OrderRefundEmailTemplate;true;
+;;OrderCollectionReminderEmail;Order Collection Reminder Email;OrderCollectionReminderEmailTemplate;true;;customerservices@hybris.com;Customer Services Team
+;;OrderMoveToCsEmail;Order Move To CS Email;OrderMoveToCsEmailTemplate;true;;customerservices@hybris.com;Customer Services Team
+;;OrderPartiallyCanceledEmail;Order Partially Canceled Email;OrderPartiallyCanceledEmailTemplate;true;
+;;OrderPartiallyRefundedEmail;Order Partially Refunded Email;OrderPartiallyRefundedEmailTemplate;true;
+;;NotPickedUpConsignmentCanceledEmail;Not Picked Up Consignment Canceled Email;NotPickedUpConsignmentCanceledEmailTemplate;true;
+;;OrderApprovalRejectionEmail;Order Approval Rejection Email;OrderApprovalRejectionEmailTemplate;true;;customerservices@hybris.com;Customer Services Team
+;;OrderPendingApprovalEmail;Order Pending Approval Email;OrderPendingApprovalEmailTemplate;true;;customerservices@hybris.com;Customer Services Team
+;;ReplenishmentOrderPlacedEmail;Order Confirmation Email;ReplenishmentOrderPlacedEmailTemplate;true;;customerservices@hybris.com;Customer Services Team
+;;QuoteOrderApproveEmail;Quote Order Approval Email;QuoteOrderApproveEmailTemplate;true;;customerservices@hybris.com;Customer Services Team
+;;QuoteOrderRejectEmail;Quote Order Rejection Email;QuoteOrderRejectEmailTemplate;true;;customerservices@hybris.com;Customer Services Team
+;;ReplenishmentOrderConfirmationEmail;Order Confirmation Email;ReplenishmentOrderConfirmationEmailTemplate;true;;customerservices@hybris.com;Customer Services Team
+;;BatchNotificationEmail;Batch Notification Email;BatchNotificationEmailTemplate;true;
+;;RequestAccountEmail;Request Account Email;RequestAccountEmailTemplate;true;
+;;RequestAccountCustomerEmail;Request Account Customer Email;RequestAccountCustomerEmailTemplate;true;
+;;SharedProductEmail;Shared Product Email;SharedProductEmailTemplate;true;
+;;OrderFailureEmail;Order Failure Email;OrderFailureEmailTemplate;true;
+
+# CMS components velocity templates
+INSERT_UPDATE RendererTemplate;code[unique=true];contextClass;rendererType(code)[default='velocity']
+;powertools-CMSImageComponent-template;java.util.Map
+;powertools-BannerComponent-template;java.util.Map
+;powertools-SimpleBannerComponent-template;java.util.Map
+;powertools-CMSLinkComponent-template;java.util.Map
+;powertools-CMSParagraphComponent-template;java.util.Map
+;siteone-CMSImageComponent-template;java.util.Map
+
+# Email velocity templates
+INSERT_UPDATE RendererTemplate;code[unique=true];contextClass;rendererType(code)[default='velocity']
+;powertools_Email_Customer_Registration_Body;$emailPackageName.CustomerEmailContext
+;powertools_Email_Forgotten_Password_Body;$emailPackageName.ForgottenPasswordEmailContext
+;powertools_Email_Order_Confirmation_Body;$emailPackageName.OrderNotificationEmailContext
+;powertools_Email_Delivery_Sent_Body;$emailPackageName.DeliverySentEmailContext
+;powertools_Email_Ready_For_Pickup_Body;$emailPackageName.ReadyForPickupEmailContext
+;powertools_Email_Order_Cancelled_Body;$emailPackageName.OrderCancelledEmailContext
+;powertools_Email_Order_Refund_Body;$emailPackageName.OrderRefundEmailContext
+;powertools_Email_Order_Collection_Reminder_Body;$emailPackageName.ConsignmentCollectionReminderEmailContext
+;powertools_Email_Order_Move_To_CS_Body;$emailPackageName.ConsignmentCollectionReminderEmailContext
+;powertools_Email_Order_Partially_Canceled_Body;$emailPackageName.OrderPartiallyCanceledEmailContext
+;powertools_Email_Order_Partially_Refunded_Body;$emailPackageName.OrderPartiallyRefundedEmailContext
+;powertools_Email_NotPickedUpConsignment_Canceled_Body;$emailPackageName.NotPickedUpConsignmentCanceledEmailContext
+;powertools_Email_Customer_Registration_Subject;$emailPackageName.CustomerEmailContext
+;powertools_Email_Forgotten_Password_Subject;$emailPackageName.ForgottenPasswordEmailContext
+;powertools_Email_Order_Confirmation_Subject;$emailPackageName.OrderNotificationEmailContext
+;powertools_Email_Delivery_Sent_Subject;$emailPackageName.DeliverySentEmailContext
+;powertools_Email_Ready_For_Pickup_Subject;$emailPackageName.ReadyForPickupEmailContext
+;powertools_Email_Order_Cancelled_Subject;$emailPackageName.OrderCancelledEmailContext
+;powertools_Email_Order_Refund_Subject;$emailPackageName.OrderRefundEmailContext
+;powertools_Email_Order_Collection_Reminder_Subject;$emailPackageName.ConsignmentCollectionReminderEmailContext
+;powertools_Email_Order_Move_To_CS_Subject;$emailPackageName.ConsignmentCollectionReminderEmailContext
+;powertools_Email_Order_Partially_Canceled_Subject;$emailPackageName.OrderPartiallyCanceledEmailContext
+;powertools_Email_Order_Partially_Refunded_Subject;$emailPackageName.OrderPartiallyRefundedEmailContext
+;powertools_Email_NotPickedUpConsignment_Canceled_Subject;$emailPackageName.NotPickedUpConsignmentCanceledEmailContext
+;powertools_Email_Order_ApprovalRejection_Body;$emailPackageName.OrderNotificationEmailContext
+;powertools_Email_Order_ApprovalRejection_Subject;$emailPackageName.OrderNotificationEmailContext
+;powertools_Email_Quote_Order_Approve_Body;$emailPackageName.OrderNotificationEmailContext
+;powertools_Email_Quote_Order_Approve_Subject;$emailPackageName.OrderNotificationEmailContext
+;powertools_Email_Quote_Order_Reject_Body;$emailPackageName.OrderNotificationEmailContext
+;powertools_Email_Quote_Order_Reject_Subject;$emailPackageName.OrderNotificationEmailContext
+;powertools_Email_Order_PendingApproval_Subject;$emailPackageName.OrderNotificationEmailContext
+;powertools_Email_Order_PendingApproval_Body;$emailPackageName.OrderNotificationEmailContext
+;powertools_Email_Replenishment_Order_Placed_Body;de.hybris.platform.siteoneacceleratoraddon.proccess.email.context.OrderReplenishmentEmailContext
+;powertools_Email_Replenishment_Order_Placed_Subject;de.hybris.platform.siteoneacceleratoraddon.proccess.email.context.OrderReplenishmentEmailContext
+;powertools_Email_Replenishment_Order_Confirmation_Subject;$emailPackageName.OrderNotificationEmailContext
+;powertools_Email_Replenishment_Order_Confirmation_Body;$emailPackageName.OrderNotificationEmailContext
+
+;SiteOne_Email_Batch_Notification_Body;$emailPackageName.BatchNotificationEmailContext
+;SiteOne_Email_Batch_Notification_Subject;$emailPackageName.BatchNotificationEmailContext
+
+;siteone_Email_Request_Account_Customer_Subject;$emailPackageName.RequestAccountCustomerEmailContext
+;siteone_Email_Request_Account_Customer_Body;$emailPackageName.RequestAccountCustomerEmailContext
+
+;siteone_Email_Request_Account_Body;$emailPackageName.RequestAccountEmailContext
+;siteone_Email_Request_Account_Subject;$emailPackageName.RequestAccountEmailContext
+
+;siteone_Email_Shared_Product_Subject;$emailPackageName.SharedProductEmailContext
+;siteone_Email_Shared_Product_Body;$emailPackageName.SharedProductEmailContext
+
+;siteone_Email_Order_Failure_Body;$emailPackageName.OrderFailureEmailContext
+;siteone_Email_Order_Failure_Subject;$emailPackageName.OrderFailureEmailContext
+
+
+# Preview Image for use in the CMS Cockpit
+INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];mime;realfilename;@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator][forceWrite=true]
+;;EmailPageModel_preview;text/gif;EmailPageModel_preview.gif;$jarResourceCms/preview-images/EmailPageModel_preview.gif
+
+UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];previewImage(code, $contentCV)
+;;CustomerRegistrationEmail;EmailPageModel_preview
+;;ForgottenPasswordEmail;EmailPageModel_preview
+;;OrderConfirmationEmail;EmailPageModel_preview
+;;DeliverySentEmail;EmailPageModel_preview
+;;ReadyForPickupEmail;EmailPageModel_preview
+;;OrderCancelledEmail;EmailPageModel_preview
+;;OrderRefundEmail;EmailPageModel_preview
+;;OrderCollectionReminderEmail;EmailPageModel_preview
+;;OrderMoveToCsEmail;EmailPageModel_preview
+;;OrderPartiallyCanceledEmail;EmailPageModel_preview
+;;OrderPartiallyRefundedEmail;EmailPageModel_preview
+;;NotPickedUpConsignmentCanceledEmail;EmailPageModel_preview
+;;OrderApprovalRejectionEmail;EmailPageModel_preview
+;;OrderPendingApprovalEmail;EmailPageModel_preview
+;;ReplenishmentOrderPlacedEmail;EmailPageModel_preview
+;;QuoteOrderApproveEmail;EmailPageModel_preview
+;;QuoteOrderRejectEmail;EmailPageModel_preview
+;;ReplenishmentOrderConfirmationEmail;EmailPageModel_preview
+;;RequestAccountEmail;EmailPageModel_preview
+;;RequestAccountCustomerEmail;EmailPageModel_preview
+;;SharedProductEmail;EmailPageModel_preview
+;;OrderFailureEmail;EmailPageModel_preview
+
+#Create Password Email
+# Email page Template
+INSERT_UPDATE EmailPageTemplate;$contentCV[unique=true];uid[unique=true];name;active;frontendTemplateName;subject(code);htmlTemplate(code);restrictedPageTypes(code)
+;;CreatePasswordEmailTemplate;Create Password Email Template;true;createPasswordEmail;SiteOne_Email_Create_Password_Subject;SiteOne_Email_Create_Password_Body;EmailPage
+
+# Templates for CMS Cockpit Page Edit
+UPDATE EmailPageTemplate;$contentCV[unique=true];uid[unique=true];velocityTemplate[translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+;;CreatePasswordEmailTemplate;$jarResourceCms/structure-view/structure_createPasswordEmailTemplate.vm
+
+
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='CreatePasswordEmailTemplate'];validComponentTypes(code)
+;SiteLogo;;;logo
+;TopContent;;$wideContent;
+;BottomContent;;$wideContent;
+
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='CreatePasswordEmailTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;SiteLogo-CreatePasswordEmail;SiteLogo;;EmailSiteLogoSlot;true
+;;TopContent-CreatePasswordEmail;TopContent;;EmailTopSlot;true
+;;BottomContent-CreatePasswordEmail;BottomContent;;EmailBottomSlot;true
+
+
+# Email Pages
+INSERT_UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);defaultPage;approvalStatus(code)[default='approved']
+;;CreatePasswordEmail;Create Password Email;CreatePasswordEmailTemplate;true;
+
+# Email velocity templates
+INSERT_UPDATE RendererTemplate;code[unique=true];contextClass;rendererType(code)[default='velocity']
+
+;SiteOne_Email_Create_Password_Body;$emailPackageName.CreatePasswordEmailContext
+;SiteOne_Email_Create_Password_Subject;$emailPackageName.CreatePasswordEmailContext
+
+
+UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];previewImage(code, $contentCV)
+;;CreatePasswordEmail;EmailPageModel_preview
+#############################Points For Equipment Email###############
+INSERT_UPDATE RendererTemplate;code[unique=true];contextClass;rendererType(code)[default='velocity']
+;siteone_Email_Points_For_Equipment_Subject;$emailPackageName.PointsForEquipmentEmailContext
+;siteone_Email_Points_For_Equipment_Body;$emailPackageName.PointsForEquipmentEmailContext
+
+# Email page Template
+INSERT_UPDATE EmailPageTemplate;$contentCV[unique=true];uid[unique=true];name;active;frontendTemplateName;subject(code);htmlTemplate(code);restrictedPageTypes(code)
+;;PointsForEquipmentEmailTemplate;Points For Equipment Email Template;true;pointsForEquipmentEmail;siteone_Email_Points_For_Equipment_Subject;siteone_Email_Points_For_Equipment_Body;EmailPage
+
+
+# Templates for CMS Cockpit Page Edit
+UPDATE EmailPageTemplate;$contentCV[unique=true];uid[unique=true];velocityTemplate[translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+;;PointsForEquipmentEmailTemplate;$jarResourceCms/structure-view/structure_pointsForEquipmentEmailTemplate.vm
+
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='PointsForEquipmentEmailTemplate'];validComponentTypes(code)
+;SiteLogo;;;logo
+;TopContent;;$wideContent;
+;BottomContent;;$wideContent;
+
+
+# Bind Content Slots to Email Page Templates
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='PointsForEquipmentEmailTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;SiteLogo-PointsForEquipmentEmail;SiteLogo;;EmailSiteLogoSlot;true
+;;TopContent-PointsForEquipmentEmail;TopContent;;EmailTopSlot;true
+;;BottomContent-PointsForEquipmentEmail;BottomContent;;EmailBottomSlot;true
+
+# Email Pages
+INSERT_UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);defaultPage;approvalStatus(code)[default='approved']
+;;PointsForEquipmentEmail;Points For Equipment Email;PointsForEquipmentEmailTemplate;true;
+
+UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];previewImage(code, $contentCV)
+;;PointsForEquipmentEmail;EmailPageModel_preview
+#############################Points For Equipment Email###############
+
+################ request_account_customer_email_start ##############
+
+# Email page Template
+INSERT_UPDATE EmailPageTemplate;$contentCV[unique=true];uid[unique=true];name;active;frontendTemplateName;subject(code);htmlTemplate(code);restrictedPageTypes(code)
+;;RequestAccountCustomerEmailTemplate;Request Account Customer Email Template;true;requestAccountCustomerEmail;siteone_Email_Request_Account_Customer_Subject;siteone_Email_Request_Account_Customer_Body;EmailPage
+
+
+# Templates for CMS Cockpit Page Edit
+UPDATE EmailPageTemplate;$contentCV[unique=true];uid[unique=true];velocityTemplate[translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+;;RequestAccountCustomerEmailTemplate;$jarResourceCms/structure-view/structure_requestAccountCustomerEmailTemplate.vm
+
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='RequestAccountCustomerEmailTemplate'];validComponentTypes(code)
+;SiteLogo;;;logo
+;TopContent;;$wideContent;
+;BottomContent;;$wideContent;
+
+# Create Content Slots
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active
+;;EmailTopSlot;Default Email Top Slot;true
+;;EmailBottomSlot;Default Email Bottom Slot;true
+;;EmailSiteLogoSlot;Default Email Site Slot;true
+
+
+
+# Bind Content Slots to Email Page Templates
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='RequestAccountCustomerEmailTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;SiteLogo-RequestAccountCustomerEmail;SiteLogo;;EmailSiteLogoSlot;true
+;;TopContent-RequestAccountCustomerEmail;TopContent;;EmailTopSlot;true
+;;BottomContent-RequestAccountCustomerEmail;BottomContent;;EmailBottomSlot;true
+
+
+INSERT_UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);defaultPage;approvalStatus(code)[default='approved']
+;;RequestAccountCustomerEmail;Request Account Customer Email;RequestAccountCustomerEmailTemplate;true;
+
+
+# Preview Image for use in the CMS Cockpit
+INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];mime;realfilename;@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator][forceWrite=true]
+;;EmailPageModel_preview;text/gif;EmailPageModel_preview.gif;$jarResourceCms/preview-images/EmailPageModel_preview.gif
+	
+
+
+UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];previewImage(code, $contentCV)
+;;RequestAccountCustomerEmail;EmailPageModel_preview
+
+#Unlock User Email
+# Email page Template
+INSERT_UPDATE EmailPageTemplate;$contentCV[unique=true];uid[unique=true];name;active;frontendTemplateName;subject(code);htmlTemplate(code);restrictedPageTypes(code)
+;;UnlockUserEmailTemplate;Unlock User Email Template;true;unlockUserEmail;SiteOne_Email_UnlockUser_Subject;SiteOne_Email_UnlockUser_Body;EmailPage
+
+# Templates for CMS Cockpit Page Edit
+UPDATE EmailPageTemplate;$contentCV[unique=true];uid[unique=true];velocityTemplate[translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+;;UnlockUserEmailTemplate;$jarResourceCms/structure-view/structure_unlockUserEmailTemplate.vm
+
+
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='UnlockUserEmailTemplate'];validComponentTypes(code)
+;SiteLogo;;;logo
+;TopContent;;$wideContent;
+;BottomContent;;$wideContent;
+
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='UnlockUserEmailTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;SiteLogo-UnlockUserEmail;SiteLogo;;EmailSiteLogoSlot;true
+;;TopContent-UnlockUserEmail;TopContent;;EmailTopSlot;true
+;;BottomContent-UnlockUserEmail;BottomContent;;EmailBottomSlot;true
+
+
+# Email Pages
+INSERT_UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);defaultPage;approvalStatus(code)[default='approved']
+;;UnlockUserEmail;Unlock User Email;UnlockUserEmailTemplate;true;
+
+# Email velocity templates
+INSERT_UPDATE RendererTemplate;code[unique=true];contextClass;rendererType(code)[default='velocity']
+
+;SiteOne_Email_UnlockUser_Body;$emailPackageName.UnlockUserEmailContext
+;SiteOne_Email_UnlockUser_Subject;$emailPackageName.UnlockUserEmailContext
+
+
+UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];previewImage(code, $contentCV)
+;;UnlockUserEmail;EmailPageModel_preview
+
+
+#############################Contact Us Email###############
+INSERT_UPDATE RendererTemplate;code[unique=true];contextClass;rendererType(code)[default='velocity']
+;siteone_Email_Contact_Us_Subject;$emailPackageName.ContactUsContext
+;siteone_Email_Contact_US_Body;$emailPackageName.ContactUsContext
+
+# Email page Template
+INSERT_UPDATE EmailPageTemplate;$contentCV[unique=true];uid[unique=true];name;active;frontendTemplateName;subject(code);htmlTemplate(code);restrictedPageTypes(code)
+;;ContactUsEmailTemplate;Contact Us Email Template;true;contactUsEmail;siteone_Email_Contact_Us_Subject;siteone_Email_Contact_US_Body;EmailPage
+
+
+# Templates for CMS Cockpit Page Edit
+UPDATE EmailPageTemplate;$contentCV[unique=true];uid[unique=true];velocityTemplate[translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+;;ContactUsEmailTemplate;$jarResourceCms/structure-view/structure_contactUsEmailTemplate.vm
+
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='ContactUsEmailTemplate'];validComponentTypes(code)
+;SiteLogo;;;logo
+;TopContent;;$wideContent;
+;BottomContent;;$wideContent;
+
+
+# Bind Content Slots to Email Page Templates
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ContactUsEmailTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;SiteLogo-ContactUsEmail;SiteLogo;;EmailSiteLogoSlot;true
+;;TopContent-ContactUsEmail;TopContent;;EmailTopSlot;true
+;;BottomContent-ContactUsEmail;BottomContent;;EmailBottomSlot;true
+
+# Email Pages
+INSERT_UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);defaultPage;approvalStatus(code)[default='approved']
+;;ContactUsEmail;Contact Us Email;ContactUsEmailTemplate;true;
+
+UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];previewImage(code, $contentCV)
+;;ContactUsEmail;EmailPageModel_preview
+#############################Contatc Us Email###############
+
+#############################Order Detail Email###############
+
+# Email page Template
+INSERT_UPDATE EmailPageTemplate;$contentCV[unique=true];uid[unique=true];name;active;frontendTemplateName;subject(code);htmlTemplate(code);restrictedPageTypes(code)
+;;SendorderDetailEmailTemplate;Send Order Detail Email Template;true;sendorderDetailEmail;siteone_Email_Send_Order_Detail_Subject;siteone_Email_Send_Order_Detail_Body;EmailPage
+
+# Templates for CMS Cockpit Page Edit
+UPDATE EmailPageTemplate;$contentCV[unique=true];uid[unique=true];velocityTemplate[translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+;;SendorderDetailEmailTemplate;$jarResourceCms/structure-view/structure_sendorderDetailEmailTemplate.vm
+
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='SendorderDetailEmailTemplate'];validComponentTypes(code)
+;SiteLogo;;;logo
+;TopContent;;$wideContent;
+;BottomContent;;$wideContent;;BottomContent;;$wideContent;
+
+# Bind Content Slots to Email Page Templates
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='SendorderDetailEmailTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;SiteLogo-SendorderDetailEmail;SiteLogo;;EmailSiteLogoSlot;true
+;;TopContent-SendorderDetailEmail;TopContent;;EmailTopSlot;true
+;;BottomContent-SendorderDetailEmail;BottomContent;;EmailBottomSlot;true
+
+# Email Pages
+INSERT_UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);defaultPage;approvalStatus(code)[default='approved']
+;;SendorderDetailEmail;Send Order Detail Email;SendorderDetailEmailTemplate;true;
+
+# Email velocity templates
+INSERT_UPDATE RendererTemplate;code[unique=true];contextClass;rendererType(code)[default='velocity']
+;siteone_Email_Send_Order_Detail_Subject;$emailPackageName.SendOrderDetailEmailContext
+;siteone_Email_Send_Order_Detail_Body;$emailPackageName.SendOrderDetailEmailContext
+
+
+UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];previewImage(code, $contentCV)
+;;SendorderDetailEmail;EmailPageModel_preview
+#############################Order Detail Email###############
+
+#############################Invoice Details Email###############
+INSERT_UPDATE RendererTemplate;code[unique=true];contextClass;rendererType(code)[default='velocity']
+;siteone_Email_Invoice_Details_Subject;$emailPackageName.InvoiceDetailsContext
+;siteone_Email_Invoice_Details_Body;$emailPackageName.InvoiceDetailsContext
+
+
+# Email page Template
+INSERT_UPDATE EmailPageTemplate;$contentCV[unique=true];uid[unique=true];name;active;frontendTemplateName;subject(code);htmlTemplate(code);restrictedPageTypes(code)
+;;InvoiceDetailsEmailTemplate;Invoice Details Email Template;true;invoiceDetailsEmail;siteone_Email_Invoice_Details_Subject;siteone_Email_Invoice_Details_Body;EmailPage
+
+
+# Templates for CMS Cockpit Page Edit
+UPDATE EmailPageTemplate;$contentCV[unique=true];uid[unique=true];velocityTemplate[translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+;;InvoiceDetailsEmailTemplate;$jarResourceCms/structure-view/structure_invoiceDetailsEmailTemplate.vm
+
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='InvoiceDetailsEmailTemplate'];validComponentTypes(code)
+;SiteLogo;;;logo
+;TopContent;;$wideContent;
+;BottomContent;;$wideContent;
+
+
+# Bind Content Slots to Email Page Templates
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='InvoiceDetailsEmailTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;SiteLogo-InvoiceDetailsEmail;SiteLogo;;EmailSiteLogoSlot;true
+;;TopContent-InvoiceDetailsEmail;TopContent;;EmailTopSlot;true
+;;BottomContent-InvoiceDetailsEmail;BottomContent;;EmailBottomSlot;true
+
+# Email Pages
+INSERT_UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);defaultPage;approvalStatus(code)[default='approved']
+;;InvoiceDetailsEmail;Invoice Details Email;InvoiceDetailsEmailTemplate;true;
+
+
+UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];previewImage(code, $contentCV)
+;;InvoiceDetailsEmail;EmailPageModel_preview
+#############################Invoice Details Email###############
+
+############################# Home Owner Email start ###############
+INSERT_UPDATE RendererTemplate;code[unique=true];contextClass;rendererType(code)[default='velocity']
+;siteone_Email_Home_Owner_Subject;$emailPackageName.HomeOwnerEmailContext
+;siteone_Email_Home_Owner_Body;$emailPackageName.HomeOwnerEmailContext
+
+# Bind Content Slots to Email Page Templates
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='HomeOwnerEmailTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;SiteLogo-HomeOwnerEmail;SiteLogo;;EmailSiteLogoSlot;true
+;;TopContent-HomeOwnerEmail;TopContent;;EmailTopSlot;true
+;;BottomContent-HomeOwnerEmail;BottomContent;;EmailBottomSlot;true
+
+# Email Pages
+INSERT_UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);defaultPage;approvalStatus(code)[default='approved']
+;;HomeOwnerEmail;Home Owner Email;HomeOwnerEmailTemplate;true;
+
+UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];previewImage(code, $contentCV)
+;;HomeOwnerEmail;EmailPageModel_preview
+
+# Email page Template
+INSERT_UPDATE EmailPageTemplate;$contentCV[unique=true];uid[unique=true];name;active;frontendTemplateName;subject(code);htmlTemplate(code);restrictedPageTypes(code)
+;;HomeOwnerEmailTemplate;Home Owner Email Template;true;homeOwnerEmail;siteone_Email_Home_Owner_Subject;siteone_Email_Home_Owner_Body;EmailPage
+
+# Templates for CMS Cockpit Page Edit
+UPDATE EmailPageTemplate;$contentCV[unique=true];uid[unique=true];velocityTemplate[translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+;;HomeOwnerEmailTemplate;$jarResourceCms/structure-view/structure_homeOwnerEmailTemplate.vm
+
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='HomeOwnerEmailTemplate'];validComponentTypes(code)
+;SiteLogo;;;logo
+;TopContent;;$wideContent;
+;BottomContent;;$wideContent;
+
+############################# Home Owner Email end ###############
+
+############################### Customer Email Update start#########################################
+
+					##### Send to Old Email #####
+INSERT_UPDATE RendererTemplate;code[unique=true];contextClass;rendererType(code)[default='velocity']
+;Customer_Email_Change_Old_Body;$emailPackageName.CustomerUpdateOldEmailContext
+;Customer_Email_Change_Old_Subject;$emailPackageName.CustomerUpdateOldEmailContext
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='CustomerEmailChangeOldEmailTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;SiteLogo-CustomerEmailChangeOldEmail;SiteLogo;;EmailSiteLogoSlot;true
+;;TopContent-CustomerEmailChangeOldEmail;TopContent;;EmailTopSlot;true
+;;BottomContent-CustomerEmailChangeOldEmail;BottomContent;;EmailBottomSlot;true
+
+# Email Pages
+INSERT_UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);defaultPage;approvalStatus(code)[default='approved']
+;;CustomerEmailChangeOldEmail;Okta Email Change Old Email;CustomerEmailChangeOldEmailTemplate;true;
+
+
+UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];previewImage(code, $contentCV)
+;;CustomerEmailChangeOldEmail;EmailPageModel_preview
+
+# Email page Template
+INSERT_UPDATE EmailPageTemplate;$contentCV[unique=true];uid[unique=true];name;active;frontendTemplateName;subject(code);htmlTemplate(code);restrictedPageTypes(code)
+;;CustomerEmailChangeOldEmailTemplate;Email change Old Email Template;true;customerEmailChangeOldEmail;Customer_Email_Change_Old_Subject;Customer_Email_Change_Old_Body;EmailPage
+
+
+# Templates for CMS Cockpit Page Edit
+UPDATE EmailPageTemplate;$contentCV[unique=true];uid[unique=true];velocityTemplate[translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+;;CustomerEmailChangeOldEmailTemplate;$jarResourceCms/structure-view/structure_customerEmailChangeOldEmailTemplate.vm
+
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='CustomerEmailChangeOldEmailTemplate'];validComponentTypes(code)
+;SiteLogo;;;logo
+;TopContent;;$wideContent;
+;BottomContent;;$wideContent;
+
+							##### Send to New Email #####
+
+INSERT_UPDATE RendererTemplate;code[unique=true];contextClass;rendererType(code)[default='velocity']
+;Customer_Email_Change_New_Body;$emailPackageName.CustomerUpdateNewEmailContext
+;Customer_Email_Change_New_Subject;$emailPackageName.CustomerUpdateNewEmailContext
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='CustomerEmailChangeNewEmailTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;SiteLogo-CustomerEmailChangeNewEmail;SiteLogo;;EmailSiteLogoSlot;true
+;;TopContent-CustomerEmailChangeNewEmail;TopContent;;EmailTopSlot;true
+;;BottomContent-CustomerEmailChangeNewEmail;BottomContent;;EmailBottomSlot;true
+
+# Email Pages
+INSERT_UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);defaultPage;approvalStatus(code)[default='approved']
+;;CustomerEmailChangeNewEmail;Okta Email Change New Email;CustomerEmailChangeNewEmailTemplate;true;
+
+
+UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];previewImage(code, $contentCV)
+;;CustomerEmailChangeNewEmail;EmailPageModel_preview
+
+# Email page Template
+INSERT_UPDATE EmailPageTemplate;$contentCV[unique=true];uid[unique=true];name;active;frontendTemplateName;subject(code);htmlTemplate(code);restrictedPageTypes(code)
+;;CustomerEmailChangeNewEmailTemplate;Email change New Email Template;true;customerEmailChangeNewEmail;Customer_Email_Change_New_Subject;Customer_Email_Change_New_Body;EmailPage
+
+
+# Templates for CMS Cockpit Page Edit
+UPDATE EmailPageTemplate;$contentCV[unique=true];uid[unique=true];velocityTemplate[translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+;;CustomerEmailChangeNewEmailTemplate;$jarResourceCms/structure-view/structure_customerEmailChangeNewEmailTemplate.vm
+
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='CustomerEmailChangeNewEmailTemplate'];validComponentTypes(code)
+;SiteLogo;;;logo
+;TopContent;;$wideContent;
+;BottomContent;;$wideContent;
+
+############################### Customer Email Update start #######################################
+
+############################# Password Changed Email Start################
+# Email page Template
+INSERT_UPDATE EmailPageTemplate;$contentCV[unique=true];uid[unique=true];name;active;frontendTemplateName;subject(code);htmlTemplate(code);restrictedPageTypes(code)
+;;PasswordChangedEmailTemplate;Password Changed Email Template;true;passwordChangedEmail;SiteOne_Email_PasswordChanged_Subject;SiteOne_Email_PasswordChanged_Body;EmailPage
+
+# Templates for CMS Cockpit Page Edit
+UPDATE EmailPageTemplate;$contentCV[unique=true];uid[unique=true];velocityTemplate[translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+;;PasswordChangedEmailTemplate;$jarResourceCms/structure-view/structure_passwordChangedEmailTemplate.vm
+
+
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='PasswordChangedEmailTemplate'];validComponentTypes(code)
+;SiteLogo;;;logo
+;TopContent;;$wideContent;
+;BottomContent;;$wideContent;
+
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='PasswordChangedEmailTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;SiteLogo-PasswordChangedEmail;SiteLogo;;EmailSiteLogoSlot;true
+;;TopContent-PasswordChangedEmail;TopContent;;EmailTopSlot;true
+;;BottomContent-PasswordChangedEmail;BottomContent;;EmailBottomSlot;true
+
+
+# Email Pages
+INSERT_UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);defaultPage;approvalStatus(code)[default='approved']
+;;PasswordChangedEmail;Password Changed Email;PasswordChangedEmailTemplate;true;
+
+# Email velocity templates
+INSERT_UPDATE RendererTemplate;code[unique=true];contextClass;rendererType(code)[default='velocity']
+
+;SiteOne_Email_PasswordChanged_Body;$emailPackageName.PasswordChangedEmailContext
+;SiteOne_Email_PasswordChanged_Subject;$emailPackageName.PasswordChangedEmailContext
+
+
+UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];previewImage(code, $contentCV)
+;;PasswordChangedEmail;EmailPageModel_preview
+
+############################# Password Changed Email End################
+
+
+
+############################# Share Cart Email ################
+#Share Cart Email
+# Email page Template
+INSERT_UPDATE EmailPageTemplate;$contentCV[unique=true];uid[unique=true];name;active;frontendTemplateName;subject(code);htmlTemplate(code);restrictedPageTypes(code)
+;;ShareCartEmailTemplate;Share Cart Email Template;true;shareCartEmailTemplate;SiteOne_Email_Share_Cart_Subject;SiteOne_Email_Share_Cart_Body;EmailPage
+
+# Templates for CMS Cockpit Page Edit
+UPDATE EmailPageTemplate;$contentCV[unique=true];uid[unique=true];velocityTemplate[translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+;;ShareCartEmailTemplate;$jarResourceCms/structure-view/structure_shareCartEmailTemplate.vm
+
+
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='ShareCartEmailTemplate'];validComponentTypes(code)
+;SiteLogo;;;logo
+;TopContent;;$wideContent;
+;BottomContent;;$wideContent;
+
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ShareCartEmailTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;SiteLogo-ShareCartEmail;SiteLogo;;EmailSiteLogoSlot;true
+;;TopContent-ShareCartEmail;TopContent;;EmailTopSlot;true
+;;BottomContent-ShareCartEmail;BottomContent;;EmailBottomSlot;true
+
+
+# Email Pages
+INSERT_UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);defaultPage;approvalStatus(code)[default='approved']
+;;ShareCartEmail;Share Cart Email;ShareCartEmailTemplate;true;
+
+# Email velocity templates
+INSERT_UPDATE RendererTemplate;code[unique=true];contextClass;rendererType(code)[default='velocity']
+
+;SiteOne_Email_Share_Cart_Body;$emailPackageName.ShareCartEmailContext
+;SiteOne_Email_Share_Cart_Subject;$emailPackageName.ShareCartEmailContext
+
+
+UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];previewImage(code, $contentCV)
+;;ShareCartEmail;EmailPageModel_preview
+
+#Cart Abandoned Email
+# Email page Template
+INSERT_UPDATE EmailPageTemplate;$contentCV[unique=true];uid[unique=true];name;active;frontendTemplateName;subject(code);htmlTemplate(code);restrictedPageTypes(code)
+;;CartAbandonmentEmailTemplate;Cart Abandonment Email Template;true;cartAbandonmentEmail;SiteOne_Email_Cart_Abandonment_Subject;SiteOne_Email_Cart_Abandonment_Body;EmailPage
+
+# Templates for CMS Cockpit Page Edit
+#UPDATE EmailPageTemplate;$contentCV[unique=true];uid[unique=true];velocityTemplate[translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+#;;CartAbandonmentEmailTemplate;$jarResourceCms/structure-view/structure_createPasswordEmailTemplate.vm
+
+
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='CartAbandonmentEmailTemplate'];validComponentTypes(code)
+;SiteLogo;;;logo
+;TopContent;;$wideContent;
+;BottomContent;;$wideContent;
+
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='CartAbandonmentEmailTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;SiteLogo-CartAbandonmentEmail;SiteLogo;;EmailSiteLogoSlot;true
+;;TopContent-CartAbandonmentEmail;TopContent;;EmailTopSlot;true
+;;BottomContent-CartAbandonmentEmail;BottomContent;;EmailBottomSlot;true
+
+
+# Email Pages
+INSERT_UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);defaultPage;approvalStatus(code)[default='approved']
+;;CartAbandonmentEmail;Cart Abandonment Email;CartAbandonmentEmailTemplate;true;
+
+# Email velocity templates
+INSERT_UPDATE RendererTemplate;code[unique=true];contextClass;rendererType(code)[default='velocity']
+;SiteOne_Email_Cart_Abandonment_Body;$emailPackageName.CartAbandonmentEmailContext
+;SiteOne_Email_Cart_Abandonment_Subject;$emailPackageName.CartAbandonmentEmailContext
+
+
+UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];previewImage(code, $contentCV)
+;;CartAbandonmentEmail;EmailPageModel_preview
+
+############################# Order Ready For Pick Up Start################
+
+# Email page Template
+INSERT_UPDATE EmailPageTemplate;$contentCV[unique=true];uid[unique=true];name;active;frontendTemplateName;subject(code);htmlTemplate(code);restrictedPageTypes(code)
+;;OrderReadyToPickUpEmailTemplate;Order Ready For PickUp Email Template;true;orderReadyForPickUpEmail;SiteOne_Email_OrderReadyForPickUp_Subject;SiteOne_Email_OrderReadyForPickUp_Body;EmailPage
+
+# Templates for CMS Cockpit Page Edit
+UPDATE EmailPageTemplate;$contentCV[unique=true];uid[unique=true];velocityTemplate[translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+;;OrderReadyToPickUpEmailTemplate;$jarResourceCms/structure-view/structure_orderScheduledForDeliveryEmailTemplate.vm
+
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='OrderReadyToPickUpEmailTemplate'];validComponentTypes(code)
+;SiteLogo;;;logo
+;TopContent;;$wideContent;
+;BottomContent;;$wideContent;
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='OrderReadyToPickUpEmailTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;SiteLogo-OrderReadyToPickUpEmail;SiteLogo;;EmailSiteLogoSlot;true
+;;TopContent-OrderReadyToPickUpEmail;TopContent;;EmailTopSlot;true
+;;BottomContent-OrderReadyToPickUpEmail;BottomContent;;EmailBottomSlot;true
+
+
+# Email Pages
+INSERT_UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);defaultPage;approvalStatus(code)[default='approved']
+;;OrderReadyToPickUpEmail;Order Ready For PickUp Email;OrderReadyToPickUpEmailTemplate;true;
+
+# Email velocity templates
+INSERT_UPDATE RendererTemplate;code[unique=true];contextClass;rendererType(code)[default='velocity']
+
+;SiteOne_Email_OrderReadyForPickUp_Body;$emailPackageName.OrderReadyToPickUpEmailContext
+;SiteOne_Email_OrderReadyForPickUp_Subject;$emailPackageName.OrderReadyToPickUpEmailContext
+
+UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];previewImage(code, $contentCV)
+;;OrderReadyToPickUpEmail;EmailPageModel_preview
+
+#############################Order Ready For Pick Up End################
+
+############################# Order Scheduled For Delivery Start################
+# Email page Template
+INSERT_UPDATE EmailPageTemplate;$contentCV[unique=true];uid[unique=true];name;active;frontendTemplateName;subject(code);htmlTemplate(code);restrictedPageTypes(code)
+;;OrderScheduledForDeliveryEmailTemplate;Order Scheduled For Delivery Email Template;true;orderScheduledForDeliveryEmail;SiteOne_Email_OrderScheduledForDelivery_Subject;SiteOne_Email_OrderScheduledForDelivery_Body;EmailPage
+
+# Templates for CMS Cockpit Page Edit
+UPDATE EmailPageTemplate;$contentCV[unique=true];uid[unique=true];velocityTemplate[translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+;;OrderScheduledForDeliveryEmailTemplate;$jarResourceCms/structure-view/structure_orderScheduledForDeliveryEmailTemplate.vm
+
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='OrderScheduledForDeliveryEmailTemplate'];validComponentTypes(code)
+;SiteLogo;;;logo
+;TopContent;;$wideContent;
+;BottomContent;;$wideContent;
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='OrderScheduledForDeliveryEmailTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;SiteLogo-OrderScheduledForDeliveryEmail;SiteLogo;;EmailSiteLogoSlot;true
+;;TopContent-OrderScheduledForDeliveryEmail;TopContent;;EmailTopSlot;true
+;;BottomContent-OrderScheduledForDeliveryEmail;BottomContent;;EmailBottomSlot;true
+
+# Email Pages
+INSERT_UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);defaultPage;approvalStatus(code)[default='approved']
+;;OrderScheduledForDeliveryEmail;Order Scheduled For Delivery Email;OrderScheduledForDeliveryEmailTemplate;true;
+
+# Email velocity templates
+INSERT_UPDATE RendererTemplate;code[unique=true];contextClass;rendererType(code)[default='velocity']
+
+;SiteOne_Email_OrderScheduledForDelivery_Body;$emailPackageName.OrderScheduledForDeliveryEmailContext
+;SiteOne_Email_OrderScheduledForDelivery_Subject;$emailPackageName.OrderScheduledForDeliveryEmailContext
+
+UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];previewImage(code, $contentCV)
+;;OrderScheduledForDeliveryEmail;EmailPageModel_preview
+
+############################# Order Scheduled For Delivery End################
+
+
+
+#############################Edit List Email###############
+INSERT_UPDATE RendererTemplate;code[unique=true];contextClass;rendererType(code)[default='velocity']
+;siteone_Email_Edit_List_Subject;$emailPackageName.ListEditEmailContext
+;siteone_Email_Edit_List_Body;$emailPackageName.ListEditEmailContext
+
+# Email page Template
+INSERT_UPDATE EmailPageTemplate;$contentCV[unique=true];uid[unique=true];name;active;frontendTemplateName;subject(code);htmlTemplate(code);restrictedPageTypes(code)
+;;ListEditEmailTemplate;Edit List Email Template;true;listEditEmail;siteone_Email_Edit_List_Subject;siteone_Email_Edit_List_Body;EmailPage
+
+
+# Templates for CMS Cockpit Page Edit
+UPDATE EmailPageTemplate;$contentCV[unique=true];uid[unique=true];velocityTemplate[translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+;;ListEditEmailTemplate;$jarResourceCms/structure-view/structure_ListEditEmailTemplate.vm
+
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='ListEditEmailTemplate'];validComponentTypes(code)
+;SiteLogo;;;logo
+;TopContent;;$wideContent;
+;BottomContent;;$wideContent;
+
+
+
+# Bind Content Slots to Email Page Templates
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ListEditEmailTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;SiteLogo-ListEditEmail;SiteLogo;;EmailSiteLogoSlot;true
+;;TopContent-ListEditEmail;TopContent;;EmailTopSlot;true
+;;BottomContent-ListEditEmail;BottomContent;;EmailBottomSlot;true
+
+# Email Pages
+INSERT_UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);defaultPage;approvalStatus(code)[default='approved']
+;;listEditEmail;Edit List Email;ListEditEmailTemplate;true;
+
+UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];previewImage(code, $contentCV)
+;;listEditEmail;EmailPageModel_preview
+#############################Edit List Email###############
+
+#############################Share List Email###############
+INSERT_UPDATE RendererTemplate;code[unique=true];contextClass;rendererType(code)[default='velocity']
+;siteone_Email_Share_List_Subject;$emailPackageName.ShareListEmailContext
+;siteone_Email_share_List_Body;$emailPackageName.ShareListEmailContext
+;siteone_Email_Share_Assembly_Subject;$emailPackageName.ShareAssemblyEmailContext
+;siteone_Email_share_Assembly_Body;$emailPackageName.ShareAssemblyEmailContext
+
+# Email page Template
+INSERT_UPDATE EmailPageTemplate;$contentCV[unique=true];uid[unique=true];name;active;frontendTemplateName;subject(code);htmlTemplate(code);restrictedPageTypes(code)
+;;ShareListEmailTemplate;Share List Email Template;true;shareListEmail;siteone_Email_Share_List_Subject;siteone_Email_share_List_Body;EmailPage
+;;ShareAssemblyEmailTemplate;Share Assembly Email Template;true;shareAssemblyEmail;siteone_Email_Share_Assembly_Subject;siteone_Email_share_Assembly_Body;EmailPage
+
+
+# Templates for CMS Cockpit Page Edit
+UPDATE EmailPageTemplate;$contentCV[unique=true];uid[unique=true];velocityTemplate[translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+;;ShareListEmailTemplate;$jarResourceCms/structure-view/structure_ShareListEmailTemplate.vm
+;;ShareAssemblyEmailTemplate;$jarResourceCms/structure-view/structure_ShareAssemblyEmailTemplate.vm
+
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='ShareListEmailTemplate'];validComponentTypes(code)
+;SiteLogo;;;logo
+;TopContent;;$wideContent;
+;BottomContent;;$wideContent;
+
+
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='ShareAssemblyEmailTemplate'];validComponentTypes(code)
+;SiteLogo;;;logo
+;TopContent;;$wideContent;
+;BottomContent;;$wideContent;
+
+
+
+# Bind Content Slots to Email Page Templates
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ShareListEmailTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;SiteLogo-ShareListEmail;SiteLogo;;EmailSiteLogoSlot;true
+;;TopContent-ShareListEmail;TopContent;;EmailTopSlot;true
+;;BottomContent-ShareListEmail;BottomContent;;EmailBottomSlot;true
+
+# Bind Content Slots to Email Page Templates
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ShareAssemblyEmailTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;SiteLogo-ShareAssemblyEmail;SiteLogo;;EmailSiteLogoSlot;true
+;;TopContent-ShareAssemblyEmail;TopContent;;EmailTopSlot;true
+;;BottomContent-ShareAssemblyEmail;BottomContent;;EmailBottomSlot;true
+
+# Email Pages
+INSERT_UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);defaultPage;approvalStatus(code)[default='approved']
+;;shareListEmail;Share List Email;ShareListEmailTemplate;true;
+;;shareAssemblyEmail;Share Assembly Email;ShareAssemblyEmailTemplate;true;
+
+UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];previewImage(code, $contentCV)
+;;shareListEmail;EmailPageModel_preview
+;;shareAssemblyEmail;EmailPageModel_preview
+#############################share List Email###############
+
+
+#############################Contact Us Customer Email###############
+INSERT_UPDATE RendererTemplate;code[unique=true];contextClass;rendererType(code)[default='velocity']
+;siteone_Email_Contact_Us_Customer_Subject;$emailPackageName.ContactUsCustomerContext
+;siteone_Email_Contact_US_Customer_Body;$emailPackageName.ContactUsCustomerContext
+
+# Email page Template
+INSERT_UPDATE EmailPageTemplate;$contentCV[unique=true];uid[unique=true];name;active;frontendTemplateName;subject(code);htmlTemplate(code);restrictedPageTypes(code)
+;;ContactUsCustomerEmailTemplate;Contact Us Customer Email Template;true;contactUsCustomerEmail;siteone_Email_Contact_Us_Customer_Subject;siteone_Email_Contact_US_Customer_Body;EmailPage
+
+
+# Templates for CMS Cockpit Page Edit
+UPDATE EmailPageTemplate;$contentCV[unique=true];uid[unique=true];velocityTemplate[translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+;;ContactUsCustomerEmailTemplate;$jarResourceCms/structure-view/structure_contactUsCustomerEmailTemplate.vm
+
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='ContactUsCustomerEmailTemplate'];validComponentTypes(code)
+;SiteLogo;;;logo
+;TopContent;;$wideContent;
+;BottomContent;;$wideContent;
+
+
+# Bind Content Slots to Email Page Templates
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ContactUsCustomerEmailTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;SiteLogo-ContactUsCustomerEmail;SiteLogo;;EmailSiteLogoSlot;true
+;;TopContent-ContactUsCustomerEmail;TopContent;;EmailTopSlot;true
+;;BottomContent-ContactUsCustomerEmail;BottomContent;;EmailBottomSlot;true
+
+# Email Pages
+INSERT_UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);defaultPage;approvalStatus(code)[default='approved']
+;;ContactUsCustomerEmail;Contact Us Email;ContactUsCustomerEmailTemplate;true;
+
+UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];previewImage(code, $contentCV)
+;;ContactUsCustomerEmail;EmailPageModel_preview
+#############################Contatc Us Email###############

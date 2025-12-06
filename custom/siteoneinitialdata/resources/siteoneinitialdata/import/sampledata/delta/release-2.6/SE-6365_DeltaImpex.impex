@@ -1,0 +1,132 @@
+$contentCatalog=siteoneContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$wideContent=CMSImageComponent,BannerComponent
+$jarEmailResource=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/coredata/contentCatalogs/siteoneContentCatalog/emails
+
+# Import modulegen config properties into impex macros
+UPDATE GenericItem[processor=de.hybris.platform.commerceservices.impex.impl.ConfigPropertyImportProcessor];pk[unique=true]
+$jarResourceCms=$config-jarResourceCmsValue
+$emailPackageName=$config-emailContextPackageName
+
+
+
+
+
+
+
+
+############################### Customer Email Update start#########################################
+
+					##### Send to Old Email #####
+INSERT_UPDATE RendererTemplate;code[unique=true];contextClass;rendererType(code)[default='velocity']
+;Customer_Email_Change_Old_Body;$emailPackageName.CustomerUpdateOldEmailContext
+;Customer_Email_Change_Old_Subject;$emailPackageName.CustomerUpdateOldEmailContext
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='CustomerEmailChangeOldEmailTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;SiteLogo-CustomerEmailChangeOldEmail;SiteLogo;;EmailSiteLogoSlot;true
+;;TopContent-CustomerEmailChangeOldEmail;TopContent;;EmailTopSlot;true
+;;BottomContent-CustomerEmailChangeOldEmail;BottomContent;;EmailBottomSlot;true
+
+# Email Pages
+INSERT_UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);defaultPage;approvalStatus(code)[default='approved']
+;;CustomerEmailChangeOldEmail;Okta Email Change Old Email;CustomerEmailChangeOldEmailTemplate;true;
+
+
+UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];previewImage(code, $contentCV)
+;;CustomerEmailChangeOldEmail;EmailPageModel_preview
+
+# Email page Template
+INSERT_UPDATE EmailPageTemplate;$contentCV[unique=true];uid[unique=true];name;active;frontendTemplateName;subject(code);htmlTemplate(code);restrictedPageTypes(code)
+;;CustomerEmailChangeOldEmailTemplate;Email change Old Email Template;true;customerEmailChangeOldEmail;Customer_Email_Change_Old_Subject;Customer_Email_Change_Old_Body;EmailPage
+
+
+# Templates for CMS Cockpit Page Edit
+UPDATE EmailPageTemplate;$contentCV[unique=true];uid[unique=true];velocityTemplate[translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+;;CustomerEmailChangeOldEmailTemplate;$jarResourceCms/structure-view/structure_customerEmailChangeOldEmailTemplate.vm
+
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='CustomerEmailChangeOldEmailTemplate'];validComponentTypes(code)
+;SiteLogo;;;logo
+;TopContent;;$wideContent;
+;BottomContent;;$wideContent;
+
+							##### Send to New Email #####
+
+INSERT_UPDATE RendererTemplate;code[unique=true];contextClass;rendererType(code)[default='velocity']
+;Customer_Email_Change_New_Body;$emailPackageName.CustomerUpdateNewEmailContext
+;Customer_Email_Change_New_Subject;$emailPackageName.CustomerUpdateNewEmailContext
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='CustomerEmailChangeNewEmailTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;SiteLogo-CustomerEmailChangeNewEmail;SiteLogo;;EmailSiteLogoSlot;true
+;;TopContent-CustomerEmailChangeNewEmail;TopContent;;EmailTopSlot;true
+;;BottomContent-CustomerEmailChangeNewEmail;BottomContent;;EmailBottomSlot;true
+
+# Email Pages
+INSERT_UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);defaultPage;approvalStatus(code)[default='approved']
+;;CustomerEmailChangeNewEmail;Okta Email Change New Email;CustomerEmailChangeNewEmailTemplate;true;
+
+
+UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];previewImage(code, $contentCV)
+;;CustomerEmailChangeNewEmail;EmailPageModel_preview
+
+# Email page Template
+INSERT_UPDATE EmailPageTemplate;$contentCV[unique=true];uid[unique=true];name;active;frontendTemplateName;subject(code);htmlTemplate(code);restrictedPageTypes(code)
+;;CustomerEmailChangeNewEmailTemplate;Email change New Email Template;true;customerEmailChangeNewEmail;Customer_Email_Change_New_Subject;Customer_Email_Change_New_Body;EmailPage
+
+
+# Templates for CMS Cockpit Page Edit
+UPDATE EmailPageTemplate;$contentCV[unique=true];uid[unique=true];velocityTemplate[translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+;;CustomerEmailChangeNewEmailTemplate;$jarResourceCms/structure-view/structure_customerEmailChangeNewEmailTemplate.vm
+
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='CustomerEmailChangeNewEmailTemplate'];validComponentTypes(code)
+;SiteLogo;;;logo
+;TopContent;;$wideContent;
+;BottomContent;;$wideContent;
+
+############################### Customer Email Update start #######################################
+
+
+
+############################ Customer Email update en Impex#########################################
+
+$contentCatalog=siteoneContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$jarEmailResource=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/coredata/contentCatalogs/siteoneContentCatalog/emails
+
+# Import config properties into impex macros for modulegen
+UPDATE GenericItem[processor=de.hybris.platform.commerceservices.impex.impl.ConfigPropertyImportProcessor];pk[unique=true]
+$emailResource=$config-emailResourceValue
+
+# Language
+$lang=en
+
+
+
+
+
+
+
+
+
+##################### CustomerEmailUpdate start ###########################################
+				##### Send to Old Email #####
+# CMS components and Email velocity templates
+UPDATE RendererTemplate;code[unique=true];description[lang=$lang];templateScript[lang=$lang,translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+;Customer_Email_Change_Old_Body;"Customer Email change Email Body";$emailResource/email-customerEmailChangeOldBody.vm
+;Customer_Email_Change_Old_Subject;"Customer Email change Email Subject";$emailResource/email-customerEmailChangeOldSubject.vm
+
+# Email Pages
+UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];fromEmail[lang=$lang];fromName[lang=$lang]
+ ;;CustomerEmailChangeOldEmail;"customersupport@siteone.com";"SiteOne"
+ 
+ 			##### Send to New Email #####
+ 			
+# CMS components and Email velocity templates
+UPDATE RendererTemplate;code[unique=true];description[lang=$lang];templateScript[lang=$lang,translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+;Customer_Email_Change_New_Body;"Customer Email change Email Body";$emailResource/email-customerEmailChangeNewBody.vm
+;Customer_Email_Change_New_Subject;"Customer Email change Email Subject";$emailResource/email-customerEmailChangeNewSubject.vm
+
+# Email Pages
+UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];fromEmail[lang=$lang];fromName[lang=$lang]
+ ;;CustomerEmailChangeNewEmail;"customersupport@siteone.com";"SiteOne" 
+ 
+##################### CustomerEmailUpdate end ###########################################

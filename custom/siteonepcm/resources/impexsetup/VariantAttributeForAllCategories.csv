@@ -1,0 +1,69 @@
+#landscapesupply
+$productCatalog=siteoneProductCatalog;;;;;;
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged];;;;;;
+$supercategories=supercategories(code, $catalogVersion);;;;;;
+$approved=approvalstatus(code)[default='approved'] ;;;;;;
+$lang=en;;;;;;
+INSERT_UPDATE VariantCategory; code[unique=true] ; name; $supercategories ; hasImage ; $catalogVersion ; allowedPrincipals(uid)[default='customergroup']
+;lndscpType;Type;;false;;
+;lndscpDimensions;Dimensions;;false;;
+;lndscpColor;Color;;false;;
+;lndscpShape;Shape;;false;;
+;lndscpHeight;Height;;false;;
+;lndscpContainerSize;Container Size;;false;;
+;lndscpSize;Size;;false;;
+;lndscpMaximumTreeSize;Maximum Tree Size;;false;;
+;lndscpNominalSize;Nominal Size;;false;;
+;lndscpConnectionSize;Connection Size;;false;;
+;lndscpFlagSize;Flag Size;;false;;
+;lndscpSeries;Series;;false;;
+;lndscpLength;Length;;false;;
+;lndscpGrateSize;Grate Size;;false;;
+
+#agronomicmaintenance
+$productCatalog=siteoneProductCatalog;;;;;;
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged];;;;;;
+$supercategories=supercategories(code, $catalogVersion);;;;;;
+$approved=approvalstatus(code)[default='approved'] ;;;;;;
+$lang=en;;;;;;
+INSERT_UPDATE VariantCategory; code[unique=true] ; name; $supercategories ; hasImage ; $catalogVersion ; allowedPrincipals(uid)[default='customergroup']
+;Maintenance_item;Item;;false;;
+;Maintenance_type;Type;;false;;
+;Maintenance_containersize;Container Size;;false;;
+;Maintenance_particlesize;Particle Size;;false;;
+
+#irrigation
+$productCatalog=siteoneProductCatalog;;;;;;
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged];;;;;;
+$supercategories=supercategories(code, $catalogVersion);;;;;;
+$approved=approvalstatus(code)[default='approved'] ;;;;;;
+$lang=en;;;;;;
+INSERT_UPDATE VariantCategory; code[unique=true] ; name; $supercategories ; hasImage ; $catalogVersion ; allowedPrincipals(uid)[default='customergroup']
+;irgFlowRate;Flow Rate;;false;;
+;irgLength;Length;;false;;
+;irgContainerSize;Container Size;;false;;
+;irgJacketColor;Jacket Color;;false;;
+;irgBackgroundColor;Background Color;;false;;
+;irgEmitterSpacing;Emitter Spacing;;false;;
+;irgCoilLength;Coil Length;;false;;
+
+#hardscapes&outdoorliving
+$productCatalog=siteoneProductCatalog;;;;;;
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged];;;;;;
+$supercategories=supercategories(code, $catalogVersion);;;;;;
+$approved=approvalstatus(code)[default='approved'] ;;;;;;
+$lang=en;;;;;;
+INSERT_UPDATE VariantCategory; code[unique=true] ; name; $supercategories ; hasImage ; $catalogVersion ; allowedPrincipals(uid)[default='customergroup']
+;hrdscpColor;Color;;false;;
+;hrdscpSize;Size;;false;;
+
+#Nursery
+$productCatalog=siteoneProductCatalog;;;;;;
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged];;;;;;
+$supercategories=supercategories(code, $catalogVersion);;;;;;
+$approved=approvalstatus(code)[default='approved'] ;;;;;;
+$lang=en;;;;;;
+INSERT_UPDATE VariantCategory; code[unique=true] ; name; $supercategories ; hasImage ; $catalogVersion ; allowedPrincipals(uid)[default='customergroup']
+;nrsryForm;Form;;false;;
+;nrsrySize;Size;;false;;
+;nrsryPackage;Package;;false;;

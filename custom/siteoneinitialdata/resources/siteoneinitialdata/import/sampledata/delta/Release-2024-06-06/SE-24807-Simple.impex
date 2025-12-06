@@ -1,0 +1,5 @@
+INSERT_UPDATE IntegrationObjectItemAttribute; integrationObjectItem(integrationObject(code), code)[unique = true]; attributeName[unique = true]; attributeDescriptor(enclosingType(code), qualifier); returnIntegrationObjectItem(integrationObject(code), code); unique[default = false]
+; SiteOneProduct:Product                      ; lifeStyle        ; Product:lifeStyle    ; SiteOneProduct:SiteOneProductItemImages    ;     ;
+; SiteOneProduct:Product                      ; brandLogo        ; Product:brandLogo   ; SiteOneProduct:SiteOneProductItemImages    ;     ;
+; SiteOneProduct:Product                      ; swatchImage        ; Product:swatchImage    ; SiteOneProduct:SiteOneProductItemImages    ;     ;
+; SiteOneProduct:Product                      ; specialImageType        ; Product:specialImageType    ; SiteOneProduct:SiteOneProductItemImages    ;     ;

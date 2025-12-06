@@ -1,0 +1,10 @@
+package com.siteone.integration.services.ue;
+
+import org.springframework.web.client.ResourceAccessException;
+
+import com.siteone.integration.customer.createCustomer.data.SiteOneWsSelfServeOnlineAccessRequestData;
+import com.siteone.integration.customer.createCustomer.data.SiteOneWsSelfServeOnlineAccessResponseData;
+
+public interface SiteOneSelfServeWebService {
+	SiteOneWsSelfServeOnlineAccessResponseData selfServe(SiteOneWsSelfServeOnlineAccessRequestData siteOneWsSelfServeOnlineAccessRequestData, boolean isNewBoomiEnv) throws ResourceAccessException;
+}

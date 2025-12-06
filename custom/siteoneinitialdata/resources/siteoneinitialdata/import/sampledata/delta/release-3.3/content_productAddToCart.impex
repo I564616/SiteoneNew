@@ -1,0 +1,25 @@
+
+$targetType=ProductAddToCartComponent
+REMOVE $targetType[batchmode=true];itemtype(code)[unique=true]
+;$targetType
+
+$targetType=ShareOnSocialNetworkAction
+REMOVE $targetType[batchmode=true];itemtype(code)[unique=true]
+;$targetType
+
+$contentCatalog=siteoneContentCatalog
+$contentCatalogName=SiteOne Content Catalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+
+## add to cart slot ##
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents(&componentRef)
+;;AddToCartSlot;AddToCart
+
+INSERT_UPDATE ProductAddToCartComponent;$contentCV[unique=true];uid[unique=true];name;actions(&actionRef);&componentRef
+;;AddToCart;Product Add To Cart;AddToCartAction;AddToCart
+
+INSERT_UPDATE AddToCartAction;$contentCV[unique=true];uid[unique=true];url;name;restrictions(uid,$contentCV);&actionRef
+;;AddToCartAction;/cart/add;Product Add To Cart Action;ActionRestriction;AddToCartAction
+
+
+## SYNC sync siteoneContentCatalog:Staged->Online ##

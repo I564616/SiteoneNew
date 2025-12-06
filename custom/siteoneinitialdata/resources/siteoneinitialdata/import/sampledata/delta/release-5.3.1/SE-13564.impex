@@ -1,0 +1,54 @@
+# [y] hybris Platform
+#
+# Copyright (c) 2017 SAP SE or an SAP affiliate company.  All rights reserved.
+#
+# This software is the confidential and proprietary information of SAP
+# ("Confidential Information"). You shall not disclose such Confidential
+# Information and shall use it only in accordance with the terms of the
+# license agreement you entered into with SAP.
+# -----------------------------------------------------------------------
+$classCatalogVersion=catalogversion(catalog(id[default='siteoneClassification']),version[default='1'])[unique=true,default='siteoneClassification:1']
+$classSystemVersion=systemversion(catalog(id[default='siteoneClassification']),version[default='1'])[unique=true,default='siteoneClassification:1']
+$classAttribute=classificationAttribute(code,$classSystemVersion)
+$classClass=classificationClass(code,$classCatalogVersion)
+$classAttributeAssignment=classAttributeAssignments($classClass,$classAttribute,$classSystemVersion)
+
+$facetSearchConfigName=siteoneIndex
+$solrIndexedType=siteoneProductType
+$lang=en
+
+INSERT_UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true];name[unique=true];type(code);sortableType(code);currency[default=false];localized[default=false];multiValue[default=false];facet[default=false];facetType(code);facetSort(code);priority;visible;fieldValueProvider;$classAttributeAssignment;topValuesProvider;ftsQuery[default=true];ftsQueryBoost;ftsWildcardQuery[default=false];ftsWildcardQueryType(code)[default=POSTFIX];ftsWildcardQueryBoost
+;siteoneProductType	;    consolidateSeriesCategories                   ;text ;		;		;	false;true;false; MultiSelectOr;Alpha; 1000; true; siteOneConsolidateSeriesValueProvider;         ;defaultTopValuesProvider  ; true; 0.5 ; true; ; 1.0;
+
+
+
+
+
+# -----------------------------------------------------------------------
+# [y] hybris Platform
+#
+# Copyright (c) 2017 SAP SE or an SAP affiliate company.  All rights reserved.
+#
+# This software is the confidential and proprietary information of SAP
+# ("Confidential Information"). You shall not disclose such Confidential
+# Information and shall use it only in accordance with the terms of the
+# license agreement you entered into with SAP.
+# -----------------------------------------------------------------------
+$classCatalogVersion=catalogversion(catalog(id[default='siteoneClassification']),version[default='1'])[unique=true,default='siteoneClassification:1']
+$classSystemVersion=systemversion(catalog(id[default='siteoneClassification']),version[default='1'])[unique=true,default='siteoneClassification:1']
+$classAttribute=classificationAttribute(code,$classSystemVersion)
+$classClass=classificationClass(code,$classCatalogVersion)
+$classAttributeAssignment=classAttributeAssignments($classClass,$classAttribute,$classSystemVersion)
+
+
+$facetSearchConfigName=siteoneIndex
+$solrIndexedType=siteoneProductType
+$lang=en
+
+INSERT_UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true];name[unique=true]    ;ftsPhraseQuery[default=false];ftsQuery[default=false];ftsFuzzyQuery[default=false];ftsWildcardQuery[default=false]
+                                 ;$solrIndexedType                        ;lghtSeries           ;                             ;                       ;                            ;
+                                 ;$solrIndexedType                        ;irgSeries            ;                             ;                       ;                            ;
+                                 ;$solrIndexedType                        ;Maintenance_series   ;                             ;                       ;                            ;
+                                 ;$solrIndexedType                        ;lndscpSeries         ;                             ;                       ;                            ;
+                                 ;$solrIndexedType                        ;hrdscpSeries         ;                             ;                       ;                            ;
+

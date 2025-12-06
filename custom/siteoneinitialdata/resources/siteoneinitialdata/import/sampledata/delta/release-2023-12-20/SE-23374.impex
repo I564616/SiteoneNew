@@ -1,0 +1,16 @@
+# Impex for QA1, QA2, STG
+
+REMOVE Trigger ;cronjob(code)[unique=true] ; 
+;RemoveDuplicate_DONOTRUN;
+
+REMOVE CronJob;code[unique=true];
+;RemoveDuplicate_DONOTRUN;
+
+
+# Impex for Production environment
+
+REMOVE Trigger ;cronjob(code)[unique=true] ; 
+;RemoveDuplicateMediaAssociationToProductJob;
+
+REMOVE CronJob;code[unique=true];
+;RemoveDuplicateMediaAssociationToProductJob;

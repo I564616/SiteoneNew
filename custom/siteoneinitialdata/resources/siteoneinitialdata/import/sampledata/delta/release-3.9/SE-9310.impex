@@ -1,0 +1,23 @@
+# -----------------------------------------------------------------------
+# [y] hybris Platform
+#
+# Copyright (c) 2017 SAP SE or an SAP affiliate company.  All rights reserved.
+#
+# This software is the confidential and proprietary information of SAP
+# ("Confidential Information"). You shall not disclose such Confidential
+# Information and shall use it only in accordance with the terms of the
+# license agreement you entered into with SAP.
+# -----------------------------------------------------------------------
+# -----------------------------------------------------------------------
+# SE-9310 - Impex for Youtube video hot-folder changes
+# -----------------------------------------------------------------------
+
+$productCatalog=siteoneProductCatalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+
+INSERT_UPDATE ConversionMediaFormat;qualifier[unique=true];name;conversionStrategy;
+;youtube;youtube;imageMagickMediaConversionStrategy;
+
+INSERT_UPDATE MediaConversionCronJob; code[unique=true];job(code);singleExecutable;sessionLanguage(isocode);includedFormats(qualifier);$catalogVersion
+;PcmMediaConversionJob;mediaConversionJob;false;en;1200Wx1200H,515Wx515H,300Wx300H,96Wx96H,65Wx65H,30Wx30H,83Wx83H,365Wx246H,youtube
+

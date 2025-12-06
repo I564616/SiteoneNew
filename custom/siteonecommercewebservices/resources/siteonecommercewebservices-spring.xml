@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ [y] hybris Platform
+
+ Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+
+ This software is the confidential and proprietary information of SAP
+ ("Confidential Information"). You shall not disclose such Confidential
+ Information and shall use it only in accordance with the terms of the
+ license agreement you entered into with SAP.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xmlns:int="http://www.springframework.org/schema/integration"
+		 xmlns:util="http://www.springframework.org/schema/util"
+		 xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/spring-integration.xsd
+           http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+	<bean id="cwsProductFacade" parent="defaultProductFacade">
+		<property name="productConfiguredPopulator" ref="cwsProductConfiguredPopulator"/>
+		<property name="productConverter" ref="cwsProductConverter"/>
+	</bean>
+
+	<bean id="cwsProductConfiguredPopulator" parent="defaultProductConfiguredPopulator">
+		<property name="populators">
+			<map key-type="de.hybris.platform.commercefacades.product.ProductOption" merge="true">
+				<entry key="GALLERY" value-ref="cwsProductGalleryPopulatorList"/>
+			</map>
+		</property>
+	</bean>
+
+	<bean id="cwsProductGalleryPopulatorList" parent="abstractPopulatorList">
+		<property name="populators">
+			<list>
+				<ref bean="cwsProductGalleryImagesPopulator"/>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="cwsImageFormatMapping" parent="defaultImageFormatMapping">
+		<property name="mapping">
+			<map>
+				<entry key="superZoom" value="1200Wx1200H"/>
+				<entry key="zoom" value="515Wx515H"/>
+				<entry key="store" value="365Wx246H"/>
+				<entry key="product" value="300Wx300H"/>
+				<entry key="thumbnail" value="96Wx96H"/>
+				<entry key="cartIcon" value="65Wx65H"/>
+				<entry key="styleSwatch" value="30Wx30H"/>
+			</map>
+		</property>
+	</bean>
+
+	<bean id="cwsProductPrimaryImagePopulator" parent="defaultProductPrimaryImagePopulator">
+		<property name="imageFormatMapping" ref="cwsImageFormatMapping"/>
+		<property name="imageFormats">
+			<list>
+				<value>zoom</value>
+				<value>product</value>
+				<value>thumbnail</value>
+				<value>cartIcon</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="cwsProductGalleryImagesPopulator" parent="defaultProductGalleryImagesPopulator">
+		<property name="imageFormatMapping" ref="cwsImageFormatMapping"/>
+		<property name="imageFormats">
+			<list>
+				<value>zoom</value>
+				<value>product</value>
+				<value>thumbnail</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="cwsProductPopulator"
+			parent="defaultProductPopulator">
+		<property name="productPrimaryImagePopulator" ref="cwsProductPrimaryImagePopulator"/>
+		<property name="productModelUrlResolver" ref="siteonecommercewebservicesProductModelUrlResolver"/>
+	</bean>
+
+	<bean id="cwsProductConverter" parent="defaultProductConverter">
+		<property name="populators">
+			<list>
+				<ref bean="cwsProductPopulator"/>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="cwsCatalogFacade" parent="defaultCatalogFacade">
+		<property name="catalogVersionPopulator" ref="cwsCatalogVersionPopulator"/>
+		<property name="categoryHierarchyPopulator" ref="cwsCategoryHierarchyPopulator"/>
+	</bean>
+
+	<bean id="cwsCatalogVersionPopulator" parent="defaultCatalogVersionPopulator">
+		<property name="categoryHierarchyPopulator" ref="cwsCategoryHierarchyPopulator"/>
+		<property name="categoriesUrl" value="/categories"/>
+	</bean>
+
+	<bean id="cwsCategoryHierarchyPopulator" parent="defaultCategoryHierarchyPopulator">
+		<property name="productConverter" ref="cwsProductConverter"/>
+		<property name="categoryUrlResolver" ref="siteonecommercewebservicesCategoryModelUrlResolver"></property>
+	</bean>
+
+	<bean id="cwsProductExportFacade" parent="defaultProductExportFacade">
+		<property name="productConverter" ref="cwsProductConverter"/>
+		<property name="productCategoriesPopulator" ref="cwsProductCategoriesPopulator"/>
+	</bean>
+
+	<bean id="cwsProductCategoriesPopulator" parent="defaultProductCategoriesPopulator">
+		<property name="categoryConverter" ref="cwsCategoryConverter"/>
+	</bean>
+
+	<bean id="cwsCategoryConverter" parent="defaultCategoryConverter">
+		<lookup-method name="createTarget" bean="categoryData"/>
+		<property name="populators">
+			<list>
+				<ref bean="cwsCategoryPopulator"/>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="cwsCategoryPopulator" parent="defaultCategoryPopulator">
+		<property name="categoryModelUrlResolver" ref="siteonecommercewebservicesCategoryModelUrlResolver"/>
+	</bean>
+
+	<bean id="siteonecommercewebservicesProductModelUrlResolver" parent="defaultProductModelUrlResolver">
+		<property name="defaultPattern" value="/{baseSite-uid}/products/{product-code}"/>
+	</bean>
+
+	<bean id="siteonecommercewebservicesCategoryModelUrlResolver" parent="defaultCategoryModelUrlResolver">
+		<property name="pattern" value="/{baseSite-uid}/catalogs/{catalog-id}/{catalogVersion}/categories/{category-code}"/>
+	</bean>
+
+	<alias name="defaultCommerceStockFacade" alias="commerceStockFacade"/>
+	<bean id="defaultCommerceStockFacade" class="com.siteone.stock.impl.DefaultCommerceStockFacade">
+		<property name="baseSiteService" ref="baseSiteService"/>
+		<property name="commerceStockService" ref="commerceStockService"/>
+		<property name="pointOfServiceService" ref="pointOfServiceService"/>
+		<property name="productService" ref="productService"/>
+		<property name="baseStoreForSiteSelectorStrategy" ref="baseStoreForSiteSelectorStrategy"/>
+	</bean>
+
+	<alias name="defaultBaseStoreForSiteSelectorStrategy" alias="baseStoreForSiteSelectorStrategy"/>
+	<bean id="defaultBaseStoreForSiteSelectorStrategy"
+			class="com.siteone.strategies.impl.DefaultBaseStoreForSiteSelectorStrategy"/>
+
+	<bean id="commerceWebServicesCartFacade2" class="com.siteone.cart.impl.CommerceWebServicesCartFacade"
+	      parent="defaultCartFacade">
+		<property name="cartConverter" ref="extendedCartConverter"/>
+		<property name="commerceCartService" ref="commerceWebServicesCartService"/>
+	</bean>
+
+	<!-- Populator for title name -->
+	<alias name="defaultExtendedCustomerPopulator" alias="extendedCustomerPopulator"/>
+	<bean id="defaultExtendedCustomerPopulator"
+			class="com.siteone.customer.populator.ExtendedCustomerPopulator">
+		<property name="addressConverter" ref="addressConverter"/>
+	</bean>
+
+	<bean parent="modifyPopulatorList">
+		<property name="list" ref="customerConverter"/>
+		<property name="add" ref="extendedCustomerPopulator"/>
+	</bean>
+
+	<!-- Update Queues -->
+
+	<alias alias="orderCodeIdentificationStrategy" name="defaultOrderCodeIdentificationStrategy"/>
+    <bean id="defaultOrderCodeIdentificationStrategy" class="com.siteone.strategies.impl.DefaultOrderCodeIdentificationStrategy">
+        <property name="idPattern" value="[0-9a-f]{40}|[0-9a-f-]{36}"/>
+    </bean>
+
+	<!-- Beans for user matching in commerce web services -->
+	<alias name="defaultWsUserFacade" alias="wsUserFacade"/>
+	<bean id="defaultWsUserFacade" parent="defaultUserFacade">
+		<property name="userMatchingService" ref="wsUserMatchingService"/>
+	</bean>
+
+	<alias name="defaultWsCustomerFacade" alias="wsCustomerFacade"/>
+	<bean id="defaultWsCustomerFacade" parent="defaultCustomerFacade">
+		<property name="userMatchingService" ref="wsUserMatchingService"/>
+		<property name="userFacade" ref="wsUserFacade"/>
+	</bean>
+
+	<alias name="defaultWsCustomerGroupFacade" alias="wsCustomerGroupFacade"/>
+	<bean id="defaultWsCustomerGroupFacade" parent="defaultCustomerGroupFacade">
+		<property name="userMatchingService" ref="wsUserMatchingService"/>
+	</bean>
+
+	<alias name="defaultWsUserMatchingService" alias="wsUserMatchingService"/>
+	<bean id="defaultWsUserMatchingService" parent="defaultUserMatchingService">
+		<property name="matchingStrategies">
+			<list>
+				<ref bean="customerIdMatchingStrategy"/>
+				<ref bean="userUIDMatchingStrategy"/>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="defaultSiteOneSearchUtils" class="com.siteone.utils.SiteOneSearchUtils">
+	</bean>
+
+    	<bean id="defaultSiteOneCategoryPageUtils" class="com.siteone.utils.SiteOneCategoryPageUtils">
+    	</bean>
+  
+    <alias name="defaultVariantMatrixComparator" alias="variantMatrixComparator"/>
+	<bean id="defaultVariantMatrixComparator"
+		  class="com.siteone.variants.impl.DefaultVariantMatrixComparator" />
+	
+	<alias name="defaultSiteOneVariantMatrixSortStrategy" alias="variantMatrixSortStrategy" />
+	<bean id="defaultSiteOneVariantMatrixSortStrategy" class="com.siteone.variants.impl.DefaultSiteOneVariantMatrixSortStrategy" >
+		<property name="defaultComparator" ref="variantMatrixComparator"/>
+	</bean>
+    
+    <alias name="defaultVariantSortStrategy" alias="variantSortStrategy" />
+	<bean id="defaultVariantSortStrategy" class="com.siteone.variants.impl.DefaultVariantSortStrategy" >
+		<property name="sortingFieldsOrder">
+			<list>
+				<value>size</value>
+			</list>
+		</property>
+		<property name="comparators">
+			<util:map>
+				<entry key="size" value-ref="sizeAttributeComparator"/>
+			</util:map>
+		</property>
+		<property name="defaultComparator" ref="variantsComparator"/>
+	</bean>
+
+	<alias name="defaultVariantsComparator" alias="variantsComparator"/>
+	<bean id="defaultVariantsComparator"
+		  class="com.siteone.variants.impl.DefaultVariantComparator" />
+		  
+	<bean id="defaultSiteoneAddressConverter" class="com.siteone.utils.SiteOneAddressDataUtil" /> 	
+	
+	<bean id="defaultSiteOnePaymentInfoUtil" class="com.siteone.utils.SiteOnePaymentInfoUtil" />
+	
+	<bean id="defaultSiteOneEwalletDataUtil" class="com.siteone.utils.SiteOneEwalletDataUtil" />
+
+	<bean id="siteOnePasswordResetUtil" class="com.siteone.event.SiteOnePasswordResetUtil" />
+	<bean id="siteOnePasswordResetEventListener" class="com.siteone.event.SiteOnePasswordResetEventListener" parent="abstractEventListener">
+	</bean>
+</beans>

@@ -1,0 +1,28 @@
+$contentCatalog=siteoneContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$media=@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator]
+$siteResource=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/contentCatalogs/siteoneContentCatalog
+
+INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];mime;realfilename;$media
+                   ;;hardscapesSpecialtyIcon;image/png;SpecialtyIcon_HardscapesShowroom.png;$siteResource/images/banners/site/store-specialty/SpecialtyIcon_HardscapesShowroom.png
+                   ;;deliverySpecialtyIcon;image/png;SpecialtyIcon_Delivery.png;$siteResource/images/banners/site/store-specialty/SpecialtyIcon_Delivery.png
+                   ;;nurserySpecialtyIcon;image/png;SpecialtyIcon_Nursery.png;$siteResource/images/banners/site/store-specialty/SpecialtyIcon_Nursery.png
+                   ;;golfSpecialtyIcon;image/png;SpecialtyIcon_Golf.png;$siteResource/images/banners/site/store-specialty/SpecialtyIcon_Golf.png
+                   ;;pesticideSpecialtyIcon;image/png;SpecialtyIcon_PesticideDistributor.png;$siteResource/images/banners/site/store-specialty/SpecialtyIcon_PesticideDistributor.png
+                   ;;toolSpecialtyIcon;image/png;SpecialtyIcon_ToolRental.png;$siteResource/images/banners/site/store-specialty/SpecialtyIcon_ToolRental.png
+                   ;;equipmentSpecialtyIcon;image/png;SpecialtyIcon_EquipmentRental.png;$siteResource/images/banners/site/store-specialty/SpecialtyIcon_EquipmentRental.png
+                   ;;agronomicsSpecialtyIcon;image/png;BranchDetailIcons_Agronomics.png;$siteResource/images/banners/site/store-specialty/BranchDetailIcons_Agronomics.png
+                   ;;irrigationSpecialtyIcon;image/png;BranchDetailIcons_Irrigation.png;$siteResource/images/banners/site/store-specialty/BranchDetailIcons_Irrigation.png
+                   ;;lightingSpecialtyIcon;image/png;BranchDetailIcons_Lighting.png;$siteResource/images/banners/site/store-specialty/BranchDetailIcons_Lighting.png
+
+INSERT_UPDATE StoreLocatorFeature;code[unique=true];name[lang=en];name[lang=es];icon(code, $contentCV)
+                                 ;Hardscapes Showroom;Hardscapes Showroom;Showroom de Hardscape;hardscapesSpecialtyIcon
+                                 ;Delivery;Delivery;Entrega;deliverySpecialtyIcon
+                                 ;Nursery Center;Nursery Center;Centro de guardería;nurserySpecialtyIcon
+                                 ;Golf Experts;Golf Experts;Expertos en golf;golfSpecialtyIcon
+                                 ;Licensed Pesticide Distributor;Licensed Pesticide Distributor;Distribuidor de plaguicidas con licencia;pesticideSpecialtyIcon
+                                 ;Tool Rental;Tool Rental;Distribuidor de plaguicidas con licencia;pesticideSpecialtyIcon
+                                 ;Equipment Rental;Equipment Rental;Renta de equipo;equipmentSpecialtyIcon
+                                 ;Agronomics;Agronomics;Agronomía;agronomicsSpecialtyIcon
+                                 ;Irrigation;Agronomics;Irrigación;irrigationSpecialtyIcon
+                                 ;Lighting;Lighting;Iluminación exterior;lightingSpecialtyIcon

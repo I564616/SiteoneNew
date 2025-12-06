@@ -1,0 +1,7 @@
+## messageSource=classpath:/siteoneinitialdata/messages/email-orderApprovalRejectionSubject_$lang.properties
+#if(${ctx.status} == "approved")
+${ctx.messages.emailSubject}
+#end
+#if(${ctx.status} == "rejected")
+${ctx.messages.rejectedSubject}
+#end

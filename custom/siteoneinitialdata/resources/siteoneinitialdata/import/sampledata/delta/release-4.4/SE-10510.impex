@@ -1,0 +1,191 @@
+
+$supercategories=supercategories( code, catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Staged']));;;;;;;;;
+$catalogVersion=catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Staged'])[unique=true,default='siteoneProductCatalog:Staged'];;;;;;;;;
+;;;;;;;;;
+
+INSERT_UPDATE Category;code[unique=true];name[lang=en];name[lang=es];$supercategories;$catalogVersion;allowedPrincipals(uid)
+                      ;PH1117;Outdoor Audio;Audio para Exteriores;PH11;siteoneProductCatalog:Staged;admingroup
+                      ;PH1117100;Parts & Accessories;Partes y Accesorios;PH1117;siteoneProductCatalog:Staged;admingroup
+                      ;PH1117101;Audio Systems;Sistemas de Sonido;PH1117;siteoneProductCatalog:Staged;admingroup
+                      ;PH1117102;Earbuds & Headphones;Earbuds y Audífonos;PH1117;siteoneProductCatalog:Staged;admingroup
+
+$supercategories=supercategories( code, catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Staged']));;;;;;;;;
+$catalogVersion=catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Staged'])[unique=true,default='siteoneProductCatalog:Staged'];;;;;;;;;
+                      ;;;;;;;;;
+INSERT_UPDATE Category;code[unique=true];name[lang=en];name[lang=es];$supercategories;$catalogVersion;allowedPrincipals(uid)
+                      ;SH1117;Outdoor Audio;Audio para Exteriores;SH11;siteoneProductCatalog:Staged;admingroup
+                      ;SH1117100;Parts & Accessories;Partes y Accesorios;SH1117;siteoneProductCatalog:Staged;admingroup
+                      ;SH1117101;Audio Systems;Sistemas de Sonido;SH1117;siteoneProductCatalog:Staged;admingroup
+                      ;SH1117102;Earbuds & Headphones;Earbuds y Audífonos;SH1117;siteoneProductCatalog:Staged;admingroup
+
+$productCatalog=siteoneProductCatalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+INSERT_UPDATE category;code[unique=true];salescategorymapping;$catalogVersion;
+                      ;PH1117;SH1117
+                      ;PH1117100;SH1117100
+                      ;PH1117101;SH1117101
+                      ;PH1117102;SH1117102
+
+INSERT_UPDATE classificationclass;code[unique=true];name[lang=en];catalogVersion(catalog(id),version);;;;;
+                                 ;CH01_1117;Product Details;siteoneClassification:1;;;;;
+                                 ;CH01_1117100;Product Details;siteoneClassification:1;;;;;
+                                 ;CH01_1117101;Product Details;siteoneClassification:1;;;;;
+                                 ;CH01_1117102;Product Details;siteoneClassification:1;;;;;
+
+INSERT_UPDATE classificationAttribute;code[unique=true];name[lang=en];systemVersion(catalog(id),version);;;;;
+                                     ;lghtColor;Color;siteoneClassification:1;;;;;
+                                     ;lghtSize;Size;siteoneClassification:1;;;;;
+                                     ;lghtMaterial;Material;siteoneClassification:1;;;;;
+                                     ;lghtCordedBanded;Corded/Banded;siteoneClassification:1;;;;;
+                                     ;lghtCertification;Certification;siteoneClassification:1;;;;;
+                                     ;lghtContainerSize;Container Size;siteoneClassification:1;;;;;
+                                     ;lghtTechnology;Technology;siteoneClassification:1;;;;;
+                                     ;lghtNoiseReductionRating;Noise Reduction Rating;siteoneClassification:1;;;;;
+                                     ;lghtSoundPowerLevel;Sound Power Level;siteoneClassification:1;;;;;
+                                     ;lghtWaterproof;Waterproof;siteoneClassification:1;;;;;
+                                     ;lghtDisposable;Disposable;siteoneClassification:1;;;;;
+                                     ;lghtPowerSource;Power Source;siteoneClassification:1;;;;;
+                                     ;lghtRunTime;Run-Time;siteoneClassification:1;;;;;
+                                     ;lghtType;Type;siteoneClassification:1;;;;;
+
+$classCatalogVersion=catalogversion(catalog(id[default='siteoneClassification']),version[default='1'])[unique=true,default='siteoneClassification:1']
+$classSystemVersion=systemversion(catalog(id[default='siteoneClassification']),version[default='1'])[unique=true,default='siteoneClassification:1']
+INSERT_UPDATE classAttributeAssignment;classificationAttribute(code,$classSystemVersion)[unique=true];attributeType(code);classificationClass(code,$classCatalogVersion)[unique=true];attributeValues(code)[mode=append];multiValued(code);mandatory(code);formatDefinition
+
+#Impex is created grouped on the basis of which Attributes assigned to each Category
+#Below is the Assignment for Newly Created Categories
+
+#Item
+                                      ;lghtItem;string;CH01_1117100;;false;false;40;
+                                      ;lghtItem;string;CH01_1117101;;false;false;40;
+                                      ;lghtItem;string;CH01_1117102;;false;false;40;
+
+#Type
+                                      ;lghtType;string;CH01_1117100;;false;false;40;
+                                      ;lghtType;string;CH01_1117101;;false;false;40;
+                                      ;lghtType;string;CH01_1117102;;false;false;40;
+
+#Series
+                                      ;lghtSeries;string;CH01_1117100;;false;false;40;
+                                      ;lghtSeries;string;CH01_1117101;;false;false;40;
+                                      ;lghtSeries;string;CH01_1117102;;false;false;40;
+
+#Length
+                                      ;lghtLength;string;CH01_1117100;;false;false;40;
+                                      ;lghtLength;string;CH01_1117101;;false;false;40;
+                                      ;lghtLength;string;CH01_1117102;;false;false;40;
+
+#Color
+                                      ;lghtColor;string;CH01_1117100;;false;false;40;
+                                      ;lghtColor;string;CH01_1117101;;false;false;40;
+                                      ;lghtColor;string;CH01_1117102;;false;false;40;
+
+#Size
+                                      ;lghtSize;string;CH01_1117100;;false;false;40;
+                                      ;lghtSize;string;CH01_1117101;;false;false;40;
+                                      ;lghtSize;string;CH01_1117102;;false;false;40;
+
+#Material
+                                      ;lghtMaterial;string;CH01_1117100;;false;false;40;
+                                      ;lghtMaterial;string;CH01_1117101;;false;false;40;
+                                      ;lghtMaterial;string;CH01_1117102;;false;false;40;
+
+#Corded/Banded
+                                      ;lghtCordedBanded;string;CH01_1117100;;false;false;40;
+                                      ;lghtCordedBanded;string;CH01_1117101;;false;false;40;
+
+#Certification
+                                      ;lghtCertification;string;CH01_1117100;;false;false;40;
+                                      ;lghtCertification;string;CH01_1117101;;false;false;40;
+
+#Container Size
+                                      ;lghtContainerSize;string;CH01_1117100;;false;false;40;
+                                      ;lghtContainerSize;string;CH01_1117101;;false;false;40;
+
+#Technology
+                                      ;lghtTechnology;string;CH01_1117100;;false;false;40;
+                                      ;lghtTechnology;string;CH01_1117101;;false;false;40;
+                                      ;lghtTechnology;string;CH01_1117102;;false;false;40;
+
+#Noise Reduction Rating
+                                      ;lghtNoiseReductionRating;string;CH01_1117100;;false;false;40;
+                                      ;lghtNoiseReductionRating;string;CH01_1117101;;false;false;40;
+
+#Sound Power Level
+                                      ;lghtSoundPowerLevel;string;CH01_1117100;;false;false;40;
+                                      ;lghtSoundPowerLevel;string;CH01_1117101;;false;false;40;
+                                      ;lghtSoundPowerLevel;string;CH01_1117102;;false;false;40;
+
+#Waterproof
+                                      ;lghtWaterproof;string;CH01_1117100;;false;false;40;
+                                      ;lghtWaterproof;string;CH01_1117101;;false;false;40;
+                                      ;lghtWaterproof;string;CH01_1117102;;false;false;40;
+
+#Disposable
+                                      ;lghtDisposable;string;CH01_1117100;;false;false;40;
+                                      ;lghtDisposable;string;CH01_1117101;;false;false;40;
+
+#Power Source
+                                      ;lghtPowerSource;string;CH01_1117100;;false;false;40;
+                                      ;lghtPowerSource;string;CH01_1117101;;false;false;40;
+
+#Run-Time
+                                      ;lghtRunTime;string;CH01_1117100;;false;false;40;
+                                      ;lghtRunTime;string;CH01_1117101;;false;false;40;
+
+$productCatalog=siteoneProductCatalog
+$catalogVersion=catalogversion(catalog(id[default='siteoneProductCatalog']),version[default='Staged'])[unique=true,default='siteoneProductCatalog:Staged']
+$classCatalogVersion=catalogversion(catalog(id[default='siteoneClassification']),version[default='1'])[unique=true,default='siteoneClassification:1']
+$supercategories=source(code, $classCatalogVersion)[unique=true]
+$categories=target(code, $catalogVersion)[unique=true]
+INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories
+                                      ;PH1117;CH01_1117;
+                                      ;PH1117100;CH01_1117100;
+                                      ;PH1117101;CH01_1117101;
+                                      ;PH1117102;CH01_1117102;
+
+$classCatalogVersion=catalogversion(catalog(id[default='siteoneClassification']),version[default='1'])[unique=true,default='siteoneClassification:1']
+$supercategories=source(code, $classCatalogVersion)[unique=true]
+$categories=target(code, $classCatalogVersion)[unique=true]
+
+INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories
+                                      ;CH01_1117;CH01_11;
+                                      ;CH01_1117100;CH01_1117;
+                                      ;CH01_1117101;CH01_1117;
+                                      ;CH01_1117102;CH01_1117;
+
+
+#--navigation nodes -------------------------------
+
+#CMS Impexes for category nav nodes in header-------------------------
+
+$contentCatalog=siteoneContentCatalog
+$contentCatalogName=SiteOne Content Catalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$productCatalog=siteoneProductCatalog
+$productCatalogName=SiteOne Product Catalog
+$productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$picture=media(code, $contentCV);
+$image=image(code, $contentCV);
+$media=media(code, $contentCV);
+$page=page(uid, $contentCV);
+$contentPage=contentPage(uid, $contentCV);
+$product=product(code, $productCV)
+$category=category(code, $productCV)
+$siteResource=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/contentCatalogs/$contentCatalog
+$productResource=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/productCatalogs/$productCatalog
+$jarResourceCms=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/cockpits/cmscockpit
+$addonExtensionName=siteoneacceleratoraddon
+$medias=medias(code, $contentCV);
+$articleMedia=articleMedia(code, $contentCV);
+$mediaContainer=media(qualifier, $contentCV);
+$siteUid=siteone
+$lang=en
+
+INSERT_UPDATE GlobalProductNavigationNode;$contentCV[unique=true];uid[unique=true];name;parent(uid, $contentCV);category(code, $productCV);&nodeRef;sequenceNumber;
+                                         ;;LightingOutdoorAudioNavNode;LightingOutdoorAudioNavNode;LightingNavNode;SH1117;LightingOutdoorAudioNavNode;7
+
+                                         ;;OutdoorAudioParts&AccessoriesNavNode;OutdoorAudioParts&AccessoriesNavNode;LightingOutdoorAudioNavNode;SH1117100;OutdoorAudioParts&AccessoriesNavNode;1
+                                         ;;OutdoorAudioAudioSystemsNavNode;OutdoorAudioAudioSystemsNavNode;LightingOutdoorAudioNavNode;SH1117101;OutdoorAudioAudioSystemsNavNode;2
+                                         ;;OutdoorAudioEarbuds&HeadphonesNavNode;OutdoorAudioEarbuds&HeadphonesNavNode;LightingOutdoorAudioNavNode;SH1117102;OutdoorAudioEarbuds&HeadphonesNavNode;3
+

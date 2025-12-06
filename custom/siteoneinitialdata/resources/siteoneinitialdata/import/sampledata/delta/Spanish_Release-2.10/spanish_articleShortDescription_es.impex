@@ -1,0 +1,141 @@
+$contentCatalog=siteoneContentCatalog
+$contentCatalogName=SiteOne Content Catalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$productCatalog=siteoneProductCatalog
+$productCatalogName=SiteOne Product Catalog
+$productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$picture=media(code, $contentCV);
+$image=image(code, $contentCV);
+$media=media(code, $contentCV);
+$page=page(uid, $contentCV);
+$contentPage=contentPage(uid, $contentCV);
+$product=product(code, $productCV)
+$category=category(code, $productCV)
+$siteResource=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/contentCatalogs/$contentCatalog
+$productResource=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/productCatalogs/$productCatalog
+$jarResourceCms=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/cockpits/cmscockpit
+$addonExtensionName=siteoneacceleratoraddon
+$medias=medias(code, $contentCV);
+$articleMedia=articleMedia(code, $contentCV);
+$mediaContainer=media(qualifier, $contentCV);
+$siteUid=siteone
+$lang=es
+
+INSERT_UPDATE SiteOneArticle[disable.UniqueAttributesValidator.for.types='SiteOneArticle'];articleCode[unique=true];articleName[lang=$lang];shortDesc[lang=$lang]
+
+
+;Backflow-Preventers;Previniendo el Flujo de Retorno;"<p>Comprender qué es el flujo de retorno, cómo sucede y saber cómo detener situaciones potencialmente peligrosas causadas por éste, te ayudará a evitar problemas con el agua potable de tus clientes.</p>"
+
+;Happy-Customers-Pay-More;Un Cliente Feliz Paga Más;"<p>Ahórrale dinero a largo plazo a tus clientes instalando mejores productos como cabezales de rociador regulados por presión.</p>"
+
+;Keeping-Tools-in-Shape;Manteniendo las Herramientas a Punto;"<p>El estado de tus herramientas puede ayudarte o perjudicarte en el negocio de la jardinería y el paisajismo. Aprende cómo hacer que tus herramientas duren temporada tras temporada.</p>"
+
+;Reading-a-Pump-Curve;Cómo Leer la Curva de Rendimiento de una Bomba;"<p>Determina el rendimiento de tu bomba antes de su instalación: descubre cómo leer correctamente la curva de rendimiento de una bomba.</p>"
+
+;Grow-Your-Business-by-Adding-Hardscape-Services;Haz Crecer Tu Negocio Añadiendo Servicios con Materiales Duros;"<p>Las nuevas tecnologías pueden permitir que tu compañía de jardinería y paisajismo comience a ofrecer servicios de material duro con una capacitación mínima y sin contratar personal nuevo.</p>"
+
+;Reading-Grass-Seed-Labels;Cómo Leer las Etiquetas de las Semillas para Grama;"<p>¿Alguna vez te has sentido como si necesitaras un doctorado para entender una etiqueta de semillas? Olvídate de eso. Este artículo es tu clave para descifrar esas etiquetas que la ley exige en cada bolsa de semillas de césped. </p>"
+
+;Managing-Turf-Drought;Manejando la Sequía del Césped;"<p>Desde el riego adecuado hasta el corte y la fertilización, aquí hay algunas formas útiles de manejo de la sequía que pueden ayudar a proteger las plantas mientras conservas agua.</p>"
+
+;How-to-Glue-PVC-Pipe;Cómo Pegar Tubos de PVC;"<p>Sigue estos 19 pasos para cortar y configurar las tuberías de PVC durante tu próximo proyecto.</p>";SiteOne
+
+;Timing-Crabgrass-Treatment;Los Tiempos del Tratamiento para Digitaria;"<p>El tiempo lo es todo cuando se controla la digitaria (crabgrass) con herbicidas pre-emergentes. Aquí hay algunas soluciones para acertar justo en el blanco.</p>"
+
+;Pros-of-Being-a-Pro-Partners-Program;Los Pros de Ser un Profesional: Programa de Socios;"<p>¿Listo para Mejores Ofertas y Mejores Recompensas? Mira este video para aprender cómo empezar a ganar premios con tu primera compra a través del Programa de Socios, líder en la industria, de SiteOne.</p>";
+
+;The-Pros-of-Being-a-Pro-One-Stop-Shopping;Los Pros Como Tú se Surten en SiteOne® con Estos Suministros;"<p>Obtén todo lo que necesitas en un solo lugar; en cada sucursal tenemos profesionales de la industria verde con las respuestas que tú necesitas.</p>"
+
+;Giving-Sod-A-Healthy-Start;Dándole un Inicio Saludable al Pasto;"<p>El pasto puede establecer un buen césped de forma rápida; asegúrate de tomar los pasos necesarios para asegurar que tenga una vida larga y saludable después de que el último camión se vaya del sitio de trabajo. </p>";
+
+;Institutional-Irrigation-Systems;Sistemas de Riego para Instituciones;"<p>Aprende los secretos sobre cómo planificar e instalar correctamente tuberías, aspersores, boquillas y más.</p>"
+
+;Stormwater-Management;Manejo de Aguas Pluviales;"La gestión de aguas pluviales puede ser una gran oportunidad de negocio para los contratistas del paisaje. Descubre cómo puedes aprovechar este servicio que tan a menudo se pasa por alto."
+
+;Preventing-Drought-Stress;Previniendo el Estrés por Sequía con LESCO® Moisture Manager;"<p> ¿Sabías que los humectantes higroscópicos como LESCO® Moisture Manager (Administrador de Humedad) mantienen los niveles de humedad entre lluvias para reducir el consumo de agua de las plantas hasta un 50%? </p>"
+
+;Save-Time-Restringing-Trimmers;Ahorra Tiempo Cambiando los Hilos de Recortadores;"<p>Mira este video para aprender cómo el sistema de corte Oregon® Gator® Speedload™ elimina la molestia de la recarga.</p>"
+
+;Plant-Planning-For-Season-Changes;Planificación de Plantas para Cambios de Estaciones;"<p>La selección de plantas durante el año resalta la belleza de tu diseño de jardín y da mucho más valor a tu servicio frente a los ojos de tus clientes, en especial cuando los jardines vecinos se encuentran inactivos.</p>"
+
+;Turning-Calibration-Into-Big-Savings;Convirtiendo la Calibración en Grandes Ahorros;"<p>Calibrar adecuadamente tus esparcidores por voleo y de caída significa menos desperdicio de producto y más ahorro en dinero.</p>"
+
+;Customer-Service;Servicio al Cliente;"<p>Los clientes satisfechos son todo para tu negocio. Aquí hay algunos consejos para mantenerlos contentos, repetir negocios con ellos y hacer que lleguen clientes nuevos gracias a sus buenas referencias.</p>"
+
+;Consultative-Selling;Ventas por Consultas;"<p>La venta por consulta es un enfoque distinto al de vender las características y beneficios del producto, se basa más bien en cómo los clientes pueden llegar a soluciones para los retos que enfrentan.</p>"
+
+;Improving-Customer-Satisfaction-With-LESCO-Aroma;Mejorando la Satisfacción del Cliente con LESCO<sup>®</sup> Aroma;"<p>Al mezclar LESCO Agente Líquido Enmascarador de Aromas en el pulverizador con otros ingredientes que no huelen tan bien, ayudarás a que tus clientes regresen más pronto a hacer negocios contigo.</p>";
+
+;Tips-for-Selecting-Battery-Powered-Equipment;Tips para Seleccionar Equipos de Batería;"<p>Las regulaciones y el etanol están llevando a los contratistas paisajistas a usar equipos eléctricos de mano. Utiliza estos consejos para seleccionar la herramienta adecuada.</p>"
+
+;Timing-Pre-Emergent-Correctly;El Momento Justo para Usar Correctamente el Pre-emergente;"<p>Los tiempos de uso del pre-emergente son críticos para controlar la maleza.¿Pero cómo sabes cuándo es el momento indicado?</p>"
+
+;Managing-Your-Staff;Manejando Tus Empleados;"<p>Desde el reclutamiento y la contratación hasta la retención o la terminación, aprende métodos comprobados para administrar empleados de la industria verde.</p>"
+
+;Managing-Winter-Turf-Injury;Lidiando con el Daño al Césped por el Invierno;"<p>Las duras condiciones del invierno pueden pasar factura a tu campo de golf. Así que debes conocer los colorantes y otras ayudas visuales que te ofrece LESCO® para reducir los efectos de la nieve y el hielo en tu césped. </p>"
+
+;Helpful-Hints-for-Spreading;Helpful Hints for Spreading;"<p>Follow these helpful hints for properly applying turf care products using a spreader.</p>"	
+
+;Fall-Turf-Renovation;Renovación del Césped en Otoño;"<p>Después del calor del verano, el césped necesita ser rejuvenecido. El otoño es un buen momento para mejorar la salud del césped a través de la resiembra, la aireación y el recebo.</p>"
+
+;Benefits-of-Soil-Testing;Beneficios de las Pruebas de Suelo;"<p>Las pruebas rutinarias de suelo son una gran herramienta para identificar las deficiencias y excedentes de nutrientes, el pH del suelo y la capacidad de intercambio de cationes (CIC).</p>"
+
+;Word-of-Mouth-Marketing;Mercadeo de Boca a Boca;"<p>Los profesionales de la industria verde pueden reducir sus costos de publicidad y mercadeo, aumentar los precios y hacer crecer su negocio con un exitoso programa de mercadeo de boca a boca.</p>"
+
+;Feast-Or-Famine-Feeding;Alimentación por Escasez o Exceso;"<p>Aprende cómo los fertilizantes resuelven los problemas de excesos y escasez para producir un césped más sano, más fuerte y resistente a enfermedades.</p>"
+
+;Add-Landscape-Lighting-And-Outdoor-Audio-As-Additional-Service;Ofrece Luces y Audio en Exteriores como un Adicional;"<p>La iluminación paisajística y el audio en exteriores son una tendencia que no para de crecer y puede ser un generador de dividendos para contratistas del paisajismo.</p>"
+
+;Do-Customers-Need-Lighting;¿Los Clientes Necesitan Iluminación?;"<p>Las preguntas y estrategias descritas aquí pueden ayudar a los profesionales de la industria ecológica a superar las objeciones más comunes de los clientes a la iluminación del paisaje.</p>"	
+
+;Lighting-The-Path-To-New-Projects;Iluminando el Camino a Nuevos Proyectos;"<p>Hay muchas razones para que la iluminación de jardines sea una de las categorías con más rápido crecimiento para contratistas de la jardinería y el paisajismo a nivel nacional.</p>"
+
+;Winterizing-An-Irrigation-System;Preparando el Sistema de Riego para Invierno;"<p>Evita un gran desastre esta primavera. Sigue estos pasos para preparar tu sistema de riego para clima frío.</p>"
+
+
+;Planning-Plant-Purchases;Planeando la Compra de Plantas;"<p>Con estos consejos útiles de SiteOne puedes asegurarte de que tu pedido al vivero, de árboles y arbustos, se cumpla a tiempo.</p>"
+
+;The-Key-to-Easy-Drain-Installation;La Clave para Una Instalación de Desagües Fácil;"<p>Instalar desagües franceses es una buena manera de que tu empresa gane más dinero. Los productos de Ezflow lo hacen rápido y fácil.</p>"	
+
+
+;Find-Income-During-A-Drought;Encontrando Ingresos Durante una Sequía;"<p>Los profesionales más expertos en el cuidado del césped conservan un rayo de esperanza incluso durante la sequía. ¿Quieres saber su secreto? Sigue estos consejos rápidos y fáciles para generar ingresos cuando las temperaturas son altas....</p>"
+
+;Choosing-the-Right-Fertilizer;Elegir el Fertilizante Correcto;"<p>Las plantas también necesitan comer saludablemente. Sé honesto: ¿estás seguro de que las tuyas están recibiendo la nutrición adecuada, día tras día?  Usa los siguientes consejos como guía para elegir un fertilizante con la proporción...</p>"
+
+;Slope-Irrigation-Tips;Consejos de Irrigación en Pendientes;"<p>El riego efectivo en pendientes es una mezcla de buena planificación desde el principio y una técnica de instalación adecuada. Si lo haces correctamente, no sólo tendrás a un cliente feliz sino que también evitarás costosas llamadas....</p>"
+
+;Enhancing-Smart-Irrigation-Through-Spray-Technology;Mejora el Riego Inteligente con Tecnologías de Pulverización;"<p>Las opciones de cabezales de pulverización actuales generalmente incluyen configuraciones de alta eficiencia como reguladores de presión, dispositivos de restricción de flujo y válvulas de retención.</p>"
+
+;Improve-Your-Landscapes-With-New-Irrigation-Techniques;Mejora tus Jardines con Nuevas Técnicas de Riego;"No tienes que ser un fanático de los controles para apreciar nuevas tecnologías de riego, como los sistemas habilitados para WiFi. Aquí te mostramos cómo poner en práctica estas innovaciones, brindando a los clientes un control sin...."
+
+;Cool-&-Warm-Season-Grasses;Gramas de Temporadas Frías y Cálidas;"Grama es grama, ¿cierto? Nooo. Ni de lejos. Como lo sabrá cualquier profesional de jardinería y paisajismo, cada especie de césped tiene sus características y requerimientos específicos. Consulta este artículo como referencia para saber...."
+
+;Using-Less-Water-To-Earn-More-Revenue;Usar Menos Agua para Ganar Más;"<p>A medida que las restricciones de agua se hacen más estrictas, usa estas herramientas de ahorro del agua para ayudar a aliviar la carga a tus clientes y diferenciarte de los demás en el negocio del riego.</p>"
+
+;Find-Income-During-A-Drought;Encontrando Ingresos Durante una Sequía;"Los profesionales más expertos en el cuidado del césped conservan un rayo de esperanza incluso durante la sequía. ¿Quieres saber su secreto? Sigue estos consejos rápidos y fáciles para generar ingresos cuando las temperaturas son altas...."
+
+
+;Choosing-the-Right-Fertilizer;Elegir el Fertilizante Correcto;"Las plantas también necesitan comer saludablemente. Sé honesto: ¿estás seguro de que las tuyas están recibiendo la nutrición adecuada, día tras día? Usa los siguientes consejos como guía para elegir un fertilizante con la proporción...."
+
+;Helpful-Hints-for-Spreading;Consejos Útiles para la Siembra;"<p>Sigue estos consejos útiles para aplicar correctamente los productos de cuidado del césped con un esparcidor/sembradora.</p>"
+
+;How-Fertilizer-Feeds-Turf;Cómo el Fertilizante Alimenta al Césped;"Si eres un viejo zorro del cuidado del césped, sabes lo que es N-P-K. ¿Pero sabías que hay un grupo secundario de micronutrientes que a menudo se pasa por alto? Aprende más sobre estas poderosas fuerzas secretas y cómo mantienen el césped....."
+
+;Tips-For-Protecting-Client-Hardscapes-From-Cold;Consejos para Proteger los Materiales Duros de tus Clientes del Frío;"<p>A medida que tu calendario de instalaciones se ralentiza con la temporada, enfócate en preparar los materiales duros de tus clientes para el invierno y adelántate a lo que puedan necesitar con la llegada de esta fría estación.</p>"
+
+;Efficiency-Theme-of-Hardscapes;El Tema de la Eficiencia en las Tendencias del Hardscape North America;"<p>Echa un vistazo a nuestro resumen de las tendencias presentadas en la última exposición del Hardscape North America Show.</p>"
+
+;Surviving-A-Tax-Audit;Sobreviviendo a Una Auditoría de Impuestos;"<p>Cuando recibes un aviso de auditoría del IRS, tu primera reacción puede ser de pánico pero bájale al estrés siguiendo este simple consejo.</p>"
+
+;Preparing-For-Snow-And-Ice-Removal;Site 101: Preparándote para la Remoción de Nieve y Hielo;"<p style=""margin-left:0in; margin-right:0in"">La primera nevada del año llega rápidamente y, como cualquier otra cosa en este negocio, vale la pena estar preparado. Pero, ¿cuándo es el momento adecuado para comenzar a pensar en la remoción....</p>"
+
+;Pre-Frost-Maintenance-Ideas;Ideas para Mantenimiento Previo a las Heladas;"<p>Mejora la experiencia de tus clientes y tu tasa de negocios recurrentes al adelantarte a la primera nevada o helada de la temporada.</p>"
+
+;SiteOne-Celebrates-OSHA-Safe-And-Sound-Week;SiteOne Celebra la Semana "Safe and Sound" de OSHA;"<p>SiteOne celebra la Semana Safe+Sound de OSHA con obras de arte hechas por niños cercanos a nuestros socios.</p>"
+
+;Tips-For-Keeping-Holiday-Plants-Alive;Consejos para Mantener Vivas las Plantas Navideñas Durante Toda la Temporada;"<p>Si tus clientes han solicitado tu ayuda con la decoración navideña es porque entienden los beneficios de una ayuda profesional a lo largo de las estaciones para mantener sus hogares y negocios con el mejor aspecto.</p>"
+
+
+;Getting-Time-Savings-Delivered;Ha Llegado el Ahorro de Tiempo;"<p>Con el Programa Vivero Directo de SiteOne puedes recibir plantas directamente a tu lugar de trabajo, incluso si no cuentas con una sucursal de vivero en tu área.</p>"
+
+;Stocking-Up-The-Smart-Way;Abastecerse de Forma Inteligente;"Mira este video de nuestra serie para aprender sobre los beneficios de hacer órdenes anticipadas, para conocer otras ideas de cómo tener tu inventario al día y mantener la operación andando en la estación más atareada.</p>"

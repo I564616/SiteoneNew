@@ -1,0 +1,75 @@
+$contentCatalog=siteoneContentCatalog
+$contentCatalogName=SiteOne Content Catalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$productCatalog=siteoneProductCatalog
+$productCatalogName=SiteOne Product Catalog
+$productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$picture=media(code, $contentCV);
+$image=image(code, $contentCV);
+$media=media(code, $contentCV);
+$page=page(uid, $contentCV);
+$contentPage=contentPage(uid, $contentCV);
+$product=product(code, $productCV)
+$category=category(code, $productCV)
+$siteResource=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/contentCatalogs/$contentCatalog
+$productResource=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/productCatalogs/$productCatalog
+$jarResourceCms=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/cockpits/cmscockpit
+$addonExtensionName=siteoneacceleratoraddon
+$medias=medias(code, $contentCV);
+$articleMedia=articleMedia(code, $contentCV);
+$mediaContainer=media(qualifier, $contentCV);
+$siteUid=siteone
+$lang=en
+$storeImage=storeImage(qualifier, $contentCV)
+
+
+INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];mime;realfilename;@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator][forceWrite=true];folder(qualifier)[default='images']
+;;Agronomics.png;text/png;Agronomics.png;$siteResource/images/banners/homepage/responsive/Agronomics.png
+;;PestManagement.jpg;text/jpg;PestManagement.jpg;$siteResource/images/banners/homepage/responsive/PestManagement.jpg
+;;Learn_Explore.jpg;text/jpg;Learn_Explore.jpg;$siteResource/images/banners/homepage/responsive/Learn_Explore.jpg
+;;PromoBanner-SaveStrong-Mobile1;text/jpg;PromoBanner-SaveStrong-Mobile1.jpg;$siteResource/images/banners/homepage/responsive/PromoBanner-SaveStrong-Mobile1.jpg
+
+
+INSERT_UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];name;title[lang=$lang];masterTemplate(uid,$contentCV);label;defaultPage[default='true'];approvalStatus(code)[default='approved'];homepage[default='false']
+;;siteonemobileapphomepage;MobileAppHomePage;siteonemobileapphomepage;SiteOneHomePageTemplate;/mobileapphomepage;
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef)
+;;SectionS1Slot-SiteOneMAHomePage;SectionS1 Slot for SiteOneMAHomePage;true;siteoneMobileAppHomePageCarouselComponent1,siteoneMobileAppHomePageCarouselComponent2,siteoneMobileAppHomePageCarouselComponent3A,siteoneMobileAppHomePageCarouselComponent4,siteoneMobileAppHomePageCarouselComponent5,siteoneMobileAppHomePageCarouselComponent6,siteoneMobileAppHomePageCarouselComponent7,siteoneMobileAppHomePageCarouselComponent8
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='siteonemobileapphomepage'];contentSlot(uid,$contentCV)[unique=true]
+;;SectionS1-SiteOneMAHomePage;SectionS1;;SectionS1Slot-SiteOneMAHomePage
+
+INSERT_UPDATE HomePageRotatingBannerComponent;$contentCV[unique=true];uid[unique=true];name;rotatingBanner(uid,$contentCV);&componentRef
+;;siteoneMobileAppHomePageCarouselComponent1;Siteone Mobileapp Homepage Component1;MobileAppHomePageBannerComponent1A,MobileAppHomePageBannerComponent1B;siteoneMobileAppHomePageCarouselComponent1
+;;siteoneMobileAppHomePageCarouselComponent2;Siteone Mobileapp Homepage Component2;MobileAppHomePageBannerComponent2;siteoneMobileAppHomePageCarouselComponent2
+;;siteoneMobileAppHomePageCarouselComponent3A;Siteone Mobileapp Homepage Component3A;;siteoneMobileAppHomePageCarouselComponent3A
+;;siteoneMobileAppHomePageCarouselComponent3;Siteone Mobileapp Homepage Component3;MobileAppHomePageBannerComponent3;siteoneMobileAppHomePageCarouselComponent3
+;;siteoneMobileAppHomePageCarouselComponent4;Siteone Mobileapp Homepage Component4;MobileAppHomePageBannerComponent4;siteoneMobileAppHomePageCarouselComponent4
+;;siteoneMobileAppHomePageCarouselComponent5;Siteone Mobileapp Homepage Component5;MobileAppHomePageBannerComponent5A,MobileAppHomePageBannerComponent5B,MobileAppHomePageBannerComponent5C;siteoneMobileAppHomePageCarouselComponent5
+;;siteoneMobileAppHomePageCarouselComponent6;Siteone Mobileapp Homepage Component6;MobileAppHomePageBannerComponent6;siteoneMobileAppHomePageCarouselComponent6
+;;siteoneMobileAppHomePageCarouselComponent7;Siteone Mobileapp Homepage Component7;MobileAppHomePageBannerComponent7;siteoneMobileAppHomePageCarouselComponent7
+;;siteoneMobileAppHomePageCarouselComponent8;Siteone Mobileapp Homepage Component8;MobileAppHomePageBannerComponent8;siteoneMobileAppHomePageCarouselComponent8
+
+INSERT_UPDATE SiteOneStoreDetailPromoComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef;urlForLink;$picture[lang=$lang];promotionalText[lang=en];headline[lang=en];buttonLabel[lang=en];buttonURL;icon
+;;MobileAppHomePageBannerComponent1A;MobileApp HomePage Banner detail1A;MobileAppHomePageBannerComponent1A;/bms?icid=home-sidebar-1-bms;SideBar-BMS;;;;;1
+;;MobileAppHomePageBannerComponent1B;MobileApp HomePage Banner detail1B;MobileAppHomePageBannerComponent1B;/testimonials;SideBar-testimonials;;;;;2
+;;MobileAppHomePageBannerComponent2;MobileApp HomePage Banner detail2;MobileAppHomePageBannerComponent2;/savestrong?icid=home-promo-save-strong;PromoBanner-SaveStrong-Mobile1;;;;;1					
+;;MobileAppHomePageBannerComponent3;MobileApp HomePage Banner detail3;MobileAppHomePageBannerComponent3;;Agronomics.png;Let our experts point you<br />in the right direction;AGRONOMICS PROBLEM? WE CAN HELP.;Get Started;/agronomics;1
+;;MobileAppHomePageBannerComponent4;MobileApp HomePage Banner detail4;MobileAppHomePageBannerComponent4;/pestmanagement;PestManagement.jpg;;;;;1
+;;MobileAppHomePageBannerComponent5A;MobileApp HomePage Banner detail5A;MobileAppHomePageBannerComponent5A;/lesco?icid=home-trio-1-lesco;Trio-LESCO-nos;Advanced, commercial-grade agronomic products from LESCO;UPGRADE WHAT<br />YOU PUT DOWN;;;1
+;;MobileAppHomePageBannerComponent5B;MobileApp HomePage Banner detail5B;MobileAppHomePageBannerComponent5B;/protradetools?icid=home-trio-2-protrade-tools;S1-Trio-ProTradeTools-NEW;SiteOne is your one stop for long handle tools;PRO-TRADE TOOLS<br />STARTING AT $17.99;;;2
+;;MobileAppHomePageBannerComponent5C;MobileApp HomePage Banner detail5C;MobileAppHomePageBannerComponent5C;/protrade?icid=home-trio-3-protrade-lighting;S1-Trio-ProTradeLighting-NEW;Pro-Trade Lighting� delivers performance you can count on;TRUSTED NIGHT IN<br />AND NIGHT OUT;;;3
+;;MobileAppHomePageBannerComponent6;MobileApp HomePage Banner detail6;MobileAppHomePageBannerComponent6;;Learn_Explore.jpg;Find answers when it matters most;LEARN & EXPLORE;Learn More;/articles;1
+;;MobileAppHomePageBannerComponent7;MobileApp HomePage Banner detail7;MobileAppHomePageBannerComponent7;;HPBF2.jpg;;EVERYTHING YOU<br />NEED TO KNOW<br />ABOUT TURF;Learn more;/articles/Turf-Care?icid=home-bottom-1-turf;1
+;;MobileAppHomePageBannerComponent8;MobileApp HomePage Banner detail8;MobileAppHomePageBannerComponent8;;HPBF1.jpg;;EARN PARTNERS<br>PROGRAM POINTS<br>WITH EVERY<br />PURCHASE;Learn more;/partnersprogram?icid=home-bottom-2-partners-program;1
+
+
+
+
+
+
+
+
+
+
+

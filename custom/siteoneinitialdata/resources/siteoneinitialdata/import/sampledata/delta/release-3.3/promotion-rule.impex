@@ -1,0 +1,2 @@
+INSERT_UPDATE DroolsKIEModule;name[unique=true];lockAcquired
+                             ;promotions-module;false

@@ -1,0 +1,66 @@
+$contentCatalog=siteoneContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$productCatalog=siteoneProductCatalog
+$productCatalogName=SiteOne Product Catalog
+$productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Online'])[unique=true,default=$productCatalog:Online]
+$lang=en
+
+
+INSERT_UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);label;defaultPage[default='true'];approvalStatus(code)[default='approved'];homepage[default='false']
+;;partnerPerksPage;Partner Perks Page;SiteOneContentPageTemplate;/PartnerPerks;
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='partnerPerksPage'];contentSlot(uid,$contentCV)[unique=true];;;
+;;Section3-partnerPerksPage;Section3;;Section3Slot-partnerPerksPage;;;
+;;Section1-partnerPerksPage;Section1;;Section1Slot-partnerPerksPage;;;
+;;Section4-partnerPerksPage;Section4;;Section4Slot-partnerPerksPage;;;
+;;Section5-partnerPerksPage;Section5;;Section5Slot-partnerPerksPage;;;
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef);;;
+;;Section3Slot-partnerPerksPage;Section3 Slot for Pa Page;true;partnersProgramHeader;;;
+;;Section1Slot-partnerPerksPage;Section1 Slot for Hardscapes Lander Page;true;partnersPerkGroups;;;
+;;Section4Slot-partnerPerksPage;Section4 Slot for Hardscapes Lander Page;true;partnersperkParagraph;;;
+;;Section5Slot-partnerPerksPage;Section5 Slot for Hardscapes Lander Page;true;partnersBottomParagraph;;;
+
+INSERT_UPDATE CMSParagraphComponent;$contentCV[unique=true];uid[unique=true];name;content;&componentRef
+;;partnersProgramHeader;Partners Header;"<div class=""col-md-12 col-xs-12 flex-center m-b-60 no-padding-xs partner-banner partner-header row text-center text-default partner-section""><img class=""header-image perks-elem"" src=""/_ui/responsive/theme-lambda/images/partner_banner_point.jpg"" alt=""partners-program-banner"" title=""partners-program-banner""/><div class=""row margin0 flex-center flex-dir-column-xs font-metronic-headline f-s-24 f-s-18-xs-px partner-overlay""><div class=""col-md-3 col-md-offset-1 m-l-10p hidden-sm hidden-xs"">GET REWARDED WITH 1 POINT PER $1 ON YOUR PURCHASES.</div><div class=""col-md-3 col-xs-9 col-xs-offset-0 m-t-15-xs""><img src=""/_ui/responsive/theme-lambda/images/partner_logo.png"" alt=""partners-program-info"" /></div><div class=""col-md-4 col-xs-9 col-xs-offset-0 m-t-15-xs hidden-sm hidden-xs"">REDEEM POINTS FOR GIFT CARDS, MERCHANDISE, TRAVEL, ACCOUNT CREDIT AND MORE.</div><div class=""col-xs-9 col-xs-offset-0 hidden-md hidden-lg"">GET REWARDED WITH 1 POINT PER $1 ON YOUR PURCHASES.</div></div></div>";partnersProgramHeader
+
+
+INSERT_UPDATE CMSParagraphComponent;$contentCV[unique=true];uid[unique=true];name;content;&componentRef
+;;partnersPerkGroups;Partner prog groups;"<div class=""row text-center text-default partner-section""><div class=""col-xs-12 hidden-md hidden-lg m-b-50-xs""></div><div class=""col-md-4 hidden-xs marginTop35 m-b-60 m-b-50-xs""><img src=""/_ui/responsive/theme-lambda/images/partnerPerks1.jpg"" alt=""partners-program-Group1"" /></div><div class=""col-md-4 col-xs-6 m-b-60 m-b-50-xs m-y-20-xs no-padding-xs partner-banner-left""><img src=""/_ui/responsive/theme-lambda/images/partnerPerks2.jpg"" alt=""partners-program-Group2"" /></div><div class=""col-md-4 col-xs-6 no-margin-xs marginTop35 m-b-60 m-b-50-xs no-padding-xs partner-banner-right""><img src=""/_ui/responsive/theme-lambda/images/partnerPerks3.jpg"" alt=""partners-program-Group3"" /></div></div>";partnersPerkGroups
+
+
+INSERT_UPDATE SiteonePartnerPerkBottomParagraphComponent;$contentCV[unique=true];uid[unique=true];name;isExternalContent;&componentRef
+;;partnersBottomParagraph;Partner bottom image;false;partnersBottomParagraph
+
+INSERT_UPDATE SiteOnePartnerPerkParagraphComponent;$contentCV[unique=true];uid[unique=true];name;headline[lang=$lang];headlineContents;&componentRef
+;;partnersperkParagraph;Partner bottom image;PARTNERSHIP HAS ITS PERKS;Your hard work deserves to be rewarded. That's why Partners Program Members earn points on purchases that can be used to redeem for gift cards, travel, merchandise, account credit. Members enjoy access to exclusive business tools and discounts.;partnersperkParagraph
+
+INSERT_UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);label;defaultPage[default='true'];approvalStatus(code)[default='approved'];homepage[default='false']
+;;pilotPartnersProgramPage;Pilot Partners Program Page;SiteOneContentPageTemplate;/Partners;
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='pilotPartnersProgramPage'];contentSlot(uid,$contentCV)[unique=true];;;
+;;Section3-pilotPartnersProgramPage;Section3;;Section3Slot-pilotPartnersProgramPage;;;
+;;Section1-pilotPartnersProgramPage;Section1;;Section1Slot-pilotPartnersProgramPage;;;
+;;Section4-pilotPartnersProgramPage;Section4;;Section4Slot-pilotPartnersProgramPage;;;
+;;Section5-pilotPartnersProgramPage;Section5;;Section5Slot-pilotPartnersProgramPage;;;
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef);;;
+;;Section3Slot-pilotPartnersProgramPage;Section3 Slot for Hardscapes Lander Page;true;pilotpartnersProgramHeader;;;
+;;Section1Slot-pilotPartnersProgramPage;Section1 Slot for Hardscapes Lander Page;true;pilotpartnersperkParagraph;;;
+;;Section4Slot-pilotPartnersProgramPage;Section4 Slot for Hardscapes Lander Page;true;pilotpartnersPerkGroups;;;
+;;Section5Slot-pilotPartnersProgramPage;Section5 Slot for Hardscapes Lander Page;true;pilotpartnersBottomGroups;;;
+
+
+INSERT_UPDATE CMSParagraphComponent;$contentCV[unique=true];uid[unique=true];name;content;&componentRef
+;;pilotpartnersProgramHeader;Partners Header;"<div class=""row text-center text-default partner-section""><div class=""col-md-12 flex-center no-padding-xs partner-banner partner-header""><img class=""header-image"" src=""/_ui/responsive/theme-lambda/images/partner_banner.jpg"" alt=""partners-program-banner"" title=""partners-program-banner""><div class=""row margin0 flex-center flex-dir-column-xs partner-overlay ""><a class=""col-md-6 col-md-offset-2 col-xs-10 col-xs-offset-0 m-t-60"" href=""#becomeMember"" style=""height: 200px;""></a></div></div><div class=""col-md-10 col-md-offset-1 padding-30 marginBottom30 bg-white partner-flot-heading""><div class=""row""><div class=""col-md-6 col-md-offset-3""><h1 class=""font-metronic-headline f-s-40 f-s-20-xs-pt"">LET'S PARTNER UP TO LEVEL UP YOUR BUSINESS</h1></div><div class=""col-md-8 col-md-offset-2 marginBottom30 no-margin-xs""><p class=""m-y-15 text-muted f-s-18 f-s-14-xs-pt"">In a business as tough as ours, it's hard going it alone. That's why the Partners Program rewards your purchases with<span class=""bold""> 1 point per $1 spent</span> you can cash in for great rewards. Plus, get exclusive access to business tools to boost your bottom line.</p></div></div></div></div>";pilotpartnersProgramHeader
+
+INSERT_UPDATE SiteOnePilotPartnerParagraphComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef
+;;pilotpartnersperkParagraph;Partner pilot image;pilotpartnersperkParagraph
+
+INSERT_UPDATE CMSParagraphComponent;$contentCV[unique=true];uid[unique=true];name;content;&componentRef
+;;pilotpartnersPerkGroups;Partner prog groups;"<div class=""row text-center text-default partner-section""><div class=""col-md-10 col-md-offset-1 col-xs-12 col-xs-offset-0 m-b-60 m-b-35-xs text-align-center""><iframe width=""1080"" height=""607"" allow=""accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"" allowfullscreen="""" class=""marketing-videos"" title=""New and Improved Partners Program Update (:45)"" frameborder=""0"" id=""undefined"" onload=""ACC.imagegallery.videoAnalyticsCapture(this)"" data-videonum=""0"" src=""https://www.youtube.com/embed/T_h8aeYMjGA?enablejsapi=1&amp;origin=https://qa2-www.sapv2.siteone.com"" data-gtm-yt-inspected-11=""true"" data-lf-form-tracking-inspected-yegkb8lw3omaep3z=""true"" data-lf-yt-playback-inspected-yegkb8lw3omaep3z=""true"" data-lf-vimeo-playback-inspected-yegkb8lw3omaep3z=""true""></iframe></div><div class=""col-md-4 hidden-xs marginTop35 marginBottom40""><img src=""/_ui/responsive/theme-lambda/images/partnerGroup1.jpg"" alt=""partners-program-Group1""></div><div class=""col-md-4 col-xs-6 marginBottom40 marginTop35 m-y-20-xs no-padding-xs partner-banner-left""><img src=""/_ui/responsive/theme-lambda/images/partnerGroup2.jpg"" alt=""partners-program-Group2""></div><div class=""col-md-4 col-xs-6 marginTop35 marginBottom40 no-padding-xs partner-banner-right""><img src=""/_ui/responsive/theme-lambda/images/partnerGroup3.jpg"" alt=""partners-program-Group3""></div><div class=""cl""></div></div>";pilotpartnersPerkGroups
+
+INSERT_UPDATE CMSParagraphComponent;$contentCV[unique=true];uid[unique=true];name;content;&componentRef
+;;pilotpartnersBottomGroups;Partner prog groups;"<div class=""row text-center text-default partner-section""><div class=""col-md-4 col-md-offset-1 marginTopBVottom30 partner-end""><h2 class=""font-metronic-headline f-s-40 f-s-20-xs-pt"">EARNING POINTS</h2><p class=""marginTopBVottom20 text-muted f-s-18 f-s-14-xs-pt"">We're here to help you make the most of your time. That's why you earn points as soon as you enroll--you'll even earn points on all purchases you've already made that year. Cash in your points for rewards once you've met the annual purchase minimum of $5,000.</p><a class=""bold"" href=""/en/PartnerPerks"">Learn More about Earning Points</a></div><div class=""col-md-4 col-md-offset-2 marginTopBVottom30 m-y-50-xs""><h2 class=""font-metronic-headline f-s-40 f-s-20-xs-pt"">REDEEMING POINTS</h2><p class=""marginTopBVottom20 text-muted f-s-18 f-s-14-xs-pt"">You call the shots for your business, so call the shots for your rewards. Choose from redemption options like account credit, gift cards and merchandise from 1000's of brands, travel, industry training events and more.</p><a class=""bold"" href=""/en/PartnerPerks"">Learn More about Redeeming Points</a></div><div class=""col-md-10 col-md-offset-1 flex-center justify-center padding0 marginTop40 marginBottom40 partner-banner partner-bussines""><img src=""/_ui/responsive/theme-lambda/images/partner_banner_bussines.jpg"" alt=""partners-program-bussines""><div class=""row margin0 partner-overlay""><div class=""col-md-10 col-md-offset-1 text-white""><h2 class=""font-metronic-headline f-s-40 f-s-22-xs-pt m-t-0"">BUSINESS SOLUTIONS</h2><p class=""marginTopBVottom20 f-s-18 f-s-12-xs-pt"">Your benefits go beyond your points. As a Member, get exclusive access to discounts on industry-leading products and services to support your business. No purchase minimum required.</p><button class=""btn btn-overlay text-white"" onclick=""location.href='/en/PartnerPerks'"">Learn More</button></div></div></div><div class=""col-xs-8 col-xs-offset-2 hidden-md hidden-lg margin-bot-10-xs""><img src=""/_ui/responsive/theme-lambda/images/partner_marketing.png"" alt=""partners-program-marketing""></div><div class=""col-md-6 col-md-offset-1 marginTop40 marginBottom40 padding-top-30 text-left xs-center""><h2 class=""font-metronic-headline f-s-40 f-s-20-xs-pt marginTop40 padding-top-30"">MARKETING TOOLKIT</h2><p class=""marginTopBVottom20 f-s-18 f-s-14-xs-pt text-muted"">Our Marketing Toolkit is your online destination to create, customize and print marketing assets for your business. From Post and Business Cards to Flyers, Truck Magnets, Door Hangers and Yard Signs, we've pre-designed professional materials you can customize to fit your business needs and have shipped right to your door or print for free.</p><button class=""btn btn-primary hidden-xs"" onclick=""location.href='/en/toolkit'"">Learn More</button><button class=""btn btn-default hidden-md hidden-lg"" onclick=""location.href='/en/toolkit'"">Learn More</button></div><div class=""col-md-4 hidden-xs marginTop40 marginBottom40 p-r-0""><img src=""/_ui/responsive/theme-lambda/images/partner_marketing.png"" alt=""partners-program-marketing-2""></div><div class=""col-md-12 marginTop40 marginBottom40 f-s-12-xs-pt m-b-0-xs""><a href=""/en/partnerprogramterms"" target=""_self"">View Partners Program Terms &amp; Conditions</a></div></div></div>";pilotpartnersBottomGroups
+
+

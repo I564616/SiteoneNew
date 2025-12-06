@@ -1,0 +1,33 @@
+#--------------------------Variant Product IntegrationObject-----------------------#
+
+INSERT_UPDATE IntegrationObject; code[unique = true]; integrationType(code)
+; SiteOneGenericVariantProduct; INBOUND
+ 
+INSERT_UPDATE IntegrationObjectItem; integrationObject(code)[unique = true]; code[unique = true]; type(code)
+; SiteOneGenericVariantProduct  ; GenericVariantProduct              ; GenericVariantProduct
+;SiteOneGenericVariantProduct;SiteOneProductSpecificationSheet ; SiteOneProductSpecificationSheet
+;SiteOneGenericVariantProduct;SiteOneProductLabelSheet ; SiteOneProductLabelSheet
+;SiteOneGenericVariantProduct;SiteOneProductSafetyDataSheet ; SiteOneProductSafetyDataSheet
+;SiteOneGenericVariantProduct;SiteOneDataSheet ; SiteOneDataSheet;
+
+INSERT_UPDATE IntegrationObjectItemAttribute; integrationObjectItem(integrationObject(code), code)[unique = true]; attributeName[unique = true]; attributeDescriptor(enclosingType(code), qualifier); returnIntegrationObjectItem(integrationObject(code), code); unique[default = false]
+; SiteOneGenericVariantProduct:SiteOneProductSpecificationSheet	; id     ; SiteOneProductSpecificationSheet:id	    ;; true	; 
+; SiteOneGenericVariantProduct:SiteOneProductSpecificationSheet	; mimetype  ; SiteOneProductSpecificationSheet:mimetype	;; true	; 
+; SiteOneGenericVariantProduct:SiteOneProductSpecificationSheet	; fullpath     ; SiteOneProductSpecificationSheet:fullpath	    ;; true	; 
+; SiteOneGenericVariantProduct:SiteOneProductSpecificationSheet	; priority  ; SiteOneProductSpecificationSheet:priority	;; true	; 
+
+; SiteOneGenericVariantProduct:SiteOneProductLabelSheet	; id     ; SiteOneProductLabelSheet:id	    ;; true	; 
+; SiteOneGenericVariantProduct:SiteOneProductLabelSheet	; mimetype  ; SiteOneProductLabelSheet:mimetype	;; true	; 
+; SiteOneGenericVariantProduct:SiteOneProductLabelSheet	; fullpath     ; SiteOneProductLabelSheet:fullpath	    ;; true	; 
+; SiteOneGenericVariantProduct:SiteOneProductLabelSheet	; priority  ; SiteOneProductLabelSheet:priority	;; true	;
+
+; SiteOneGenericVariantProduct:SiteOneProductSafetyDataSheet	; id     ; SiteOneProductSafetyDataSheet:id	    ;; true	; 
+; SiteOneGenericVariantProduct:SiteOneProductSafetyDataSheet	; mimetype  ; SiteOneProductSafetyDataSheet:mimetype	;; true	; 
+; SiteOneGenericVariantProduct:SiteOneProductSafetyDataSheet	; fullpath     ; SiteOneProductSafetyDataSheet:fullpath	    ;; true	; 
+; SiteOneGenericVariantProduct:SiteOneProductSafetyDataSheet	; priority  ; SiteOneProductSafetyDataSheet:priority	;; true	;
+
+; SiteOneGenericVariantProduct:SiteOneDataSheet	; specificationSheet  ; SiteOneDataSheet:specificationSheet	; SiteOneGenericVariantProduct:SiteOneProductSpecificationSheet ;; 
+; SiteOneGenericVariantProduct:SiteOneDataSheet	; labelAsset  ; SiteOneDataSheet:labelAsset	; SiteOneGenericVariantProduct:SiteOneProductLabelSheet ;; 
+; SiteOneGenericVariantProduct:SiteOneDataSheet	; safetyDataSheet  ; SiteOneDataSheet:safetyDataSheet	; SiteOneGenericVariantProduct:SiteOneProductSafetyDataSheet ;; 
+; SiteOneGenericVariantProduct:SiteOneDataSheet	; id  ; SiteOneDataSheet:id	;  ;true; 
+; SiteOneGenericVariantProduct:GenericVariantProduct        ; sheets          ; GenericVariantProduct:sheets 	; SiteOneGenericVariantProduct:SiteOneDataSheet ; 

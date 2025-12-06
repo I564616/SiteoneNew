@@ -1,0 +1,160 @@
+# -----------------------------------------------------------------------
+# [y] hybris Platform
+#
+# Copyright (c) 2017 SAP SE or an SAP affiliate company.  All rights reserved.
+#
+# This software is the confidential and proprietary information of SAP
+# ("Confidential Information"). You shall not disclose such Confidential
+# Information and shall use it only in accordance with the terms of the
+# license agreement you entered into with SAP.
+# -----------------------------------------------------------------------
+#
+# Import the CMS Site configuration for the SiteOne store
+#
+$productCatalog=siteoneProductCatalog
+$contentCatalog=siteoneContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$defaultLanguage=en
+$defaultCurrency=USD
+$storeUid=siteone
+$siteUid=siteone
+$webServiceSiteUid=$siteUidWS
+$siteMapLangCur=enUsd
+$siteMapUrlLimitPerFile=50000
+$siteMapPage=Homepage,Product,Category,Store,Content
+$customSiteMapUrls=
+
+# Import config properties into impex macros
+UPDATE GenericItem[processor=de.hybris.platform.commerceservices.impex.impl.ConfigPropertyImportProcessor];pk[unique=true]
+
+# Import modulegen config properties into impex macros
+$jarResource=$config-jarResource
+
+# Load the storefront context root config param
+$storefrontContextRoot=$config-storefrontContextRoot
+
+# CMS Site
+#INSERT_UPDATE CMSSite;uid[unique=true];theme(code);channel(code);stores(uid);contentCatalogs(id);defaultCatalog(id);defaultLanguage(isoCode);urlPatterns;active;previewURL;startingPage(uid,$contentCV);urlEncodingAttributes;defaultPromotionGroup(Identifier)[default=siteonePromoGrp]
+#;$siteUid;lambda;B2B;$storeUid;$contentCatalog;$productCatalog;$defaultLanguage;(?i)^https?://[^/]+(/[^?]*)?\?(.*\&)?(site=$siteUid)(|\&.*)$,(?i)^https?://$siteUid\.[^/]+(|/.*|\?.*)$;true;$storefrontContextRoot/?site=$siteUid;homepage;storefront,language,currency
+
+
+INSERT_UPDATE SiteMapConfig;&siteMapConfigId;configId[unique=true];siteMapLanguageCurrencies(&siteMapLanguageCurrency);siteMapPages(&siteMapPage);siteMapTemplate(&siteMapRenderer)[unique=true];
+;$siteUidSiteMapConfig;$siteUidSiteMapConfig;$siteMapLangCur;$siteMapPage;$siteUid-siteMapTemplate;$customSiteMapUrls;
+
+# CMS Site
+
+INSERT_UPDATE CMSSite;uid[unique=true];theme(code);channel(code);stores(uid);contentCatalogs(id);defaultCatalog(id);defaultLanguage(isoCode);urlPatterns;active;previewURL;startingPage(uid,$contentCV);urlEncodingAttributes;defaultPromotionGroup(Identifier)[default=siteonePromoGrp];
+;$siteUid;lambda;B2B;$storeUid;$contentCatalog;$productCatalog;$defaultLanguage;(?i)^https?://[^/]+(/[^?]*)?\?(.*\&)?(site=$siteUid)(|\&.*)$,(?i)^https?://$siteUid\.[^/]+(|/.*|\?.*)$,(?i)^https?://[^/]*((?![\?\&]site=).)*;true;$storefrontContextRoot/?site=$siteUid;siteonehomepage;
+
+# SiteMap Configuration
+# SiteMap Language Currencies
+INSERT_UPDATE SiteMapLanguageCurrency;&siteMapLanguageCurrency;language(isoCode)[unique=true];currency(isocode)[unique=true];
+;enUsd;en;USD
+#;enCad;en;CAD
+
+INSERT_UPDATE CatalogUnawareMedia;&siteMapMediaId;code[unique=true];realfilename;@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='text/plain']
+;$siteUid-siteMapMedia;$siteUid-siteMapMedia;siteMapTemplate.vm;$jarResource/site-siteMapTemplate.vm;
+
+INSERT_UPDATE RendererTemplate;&siteMapRenderer;code[unique=true];content(&siteMapMediaId);contextClass;rendererType(code)[default='velocity'];
+;$siteUid-siteMapTemplate;$siteUid-siteMapTemplate;$siteUid-siteMapMedia;de.hybris.platform.acceleratorservices.sitemap.renderer.SiteMapContext;
+
+INSERT_UPDATE SiteMapPage;&siteMapPage;code(code)[unique=true];frequency(code)[unique=true];priority[unique=true];active[default=true]
+;Homepage;Homepage;daily;1.0;;
+;Product;Product;weekly;0.6;;
+#;CategoryLanding;CategoryLanding;daily;0.9;;
+;Category;Category;daily;0.8;;
+;Store;Store;weekly;0.6;;
+;Content;Content;monthly;0.4;;
+#;Custom;Custom;daily;1.0;;
+
+
+# Cart Cleanup CronJobs
+INSERT_UPDATE CartRemovalCronJob;code[unique=true];job(code)[default=cartRemovalJob];sites(uid)[default=$siteUid];sessionLanguage(isoCode)[default=en]
+;$siteUid-CartRemovalJob
+
+INSERT_UPDATE SiteMapMediaCronJob;code[unique=true];job(code)[default=siteMapMediaJob];contentSite(uid)[default=$siteUid];sessionLanguage(isoCode)[default=en]
+;$siteUid-SiteMapMediaJob;;;;$siteMapUrlLimitPerFile
+
+
+# Uncollected orders cronjob
+INSERT_UPDATE UncollectedOrdersCronJob;code[unique=true];job(code)[default=uncollectedOrdersJob];sites(uid)[default=$siteUid];sessionLanguage(isoCode)[default=en]
+;$siteUid-UncollectedOrdersJob
+
+INSERT_UPDATE Trigger;cronJob(code)[unique=true];second;minute;hour;day;month;year;relative;active;maxAcceptableDelay
+#;$siteUid-CartRemovalJob;0;5;4;-1;-1;-1;false;true;-1
+#;$siteUid-UncollectedOrdersJob;0;0;6;-1;-1;-1;true;false;-1
+#;$siteUid-SiteMapMediaJob;0;0;24;-1;-1;-1;true;false;-1
+
+
+#------------------------------To make Cart Persistence age 90 days--------------------------------
+
+$siteUid=siteone
+
+UPDATE CMSSite;uid[unique=true];cartRemovalAge;anonymousCartRemovalAge
+;$siteUid;7776000;7776000
+
+#------------------------------ cronjob for Promotion Feed Generation--------------------------------
+
+INSERT_UPDATE PromotionFeedCronJob;code[unique=true];job(code)[default=promotionFeedCronJob];sessionLanguage(isoCode)[default=en]
+;promotionFeedCronJob
+
+INSERT_UPDATE Trigger;cronJob(code)[unique=true];cronExpression;relative;active;maxAcceptableDelay
+#;promotionFeedCronJob;0 59 23 * * ?;false;true;-1
+
+#------------------------------ cronjob for First Time User Feed--------------------------------
+INSERT_UPDATE FirstTimeUserCronJob;code[unique=true];job(code)[default=firstTimeUserCronJob];sessionLanguage(isoCode)[default=en]
+;firstTimeUserCronJob
+  
+INSERT_UPDATE Trigger;cronJob(code)[unique=true];cronExpression;relative;active;maxAcceptableDelay
+#;firstTimeUserCronJob;0 59 23 * * ?;false;true;-1 
+
+#------------------------------ cronjob for Customer email update Feed--------------------------------
+INSERT_UPDATE CustomerUpdateCronJob;code[unique=true];job(code)[default=customerEmailUpdateCronJob];sessionLanguage(isoCode)[default=en]
+;customerEmailUpdateCronJob
+  
+INSERT_UPDATE Trigger;cronJob(code)[unique=true];cronExpression;relative;active;maxAcceptableDelay
+;customerEmailUpdateCronJob;0 0 0-23 * * ?;false;true;-1 
+
+#------------------------------ cronjob for Cart Abandonment--------------------------------
+INSERT_UPDATE CartAbandonmentCronJob;code[unique=true];job(code)[default=cartAbandonmentCronJob];sessionLanguage(isoCode)[default=en]
+;cartAbandonmentCronJob
+  
+INSERT_UPDATE Trigger;cronJob(code)[unique=true];cronExpression;relative;active;maxAcceptableDelay
+#;cartAbandonmentCronJob;0 59 23 * * ?;false;true;-1
+
+#-------------------------------cron job for regulatorystates----------------------------
+INSERT_UPDATE RegulatoryStatesCronJob;code[unique=true];job(code)[default=regulatoryStatesCronJob];sessionLanguage(isoCode)[default=en]
+;regulatoryStatesCronJob
+
+#-------------------------------cron job for productandstores----------------------------
+INSERT_UPDATE ImportProductStoresCronJob;code[unique=true];job(code)[default=ImportProductStoresCronJob];sessionLanguage(isoCode)[default=en]
+;ImportProductStoresCronJob
+
+INSERT_UPDATE Trigger;cronJob(code)[unique=true];cronExpression;relative;active;maxAcceptableDelay
+#;ImportProductStoresCronJob;0 04 00 * * ?;false;true;-1
+
+#------------------------------cron job for productpromotions-------------------------------
+INSERT_UPDATE ProductPromotionsCronJob;code[unique=true];job(code)[default=productPromotionsCronJob];sessionLanguage(isoCode)[default=en]
+;productPromotionsCronJob
+
+#------------------------------customer data report cronjob------------------------------------
+
+INSERT_UPDATE CustomerDataReportCronJob;code[unique=true];job(code)[default=customerDataReportCronJob];sessionLanguage(isoCode)[default=en]
+;customerDataReportCronJob
+
+INSERT_UPDATE Trigger;cronJob(code)[unique=true];cronExpression;relative;active;maxAcceptableDelay
+#;customerDataReportCronJob;0 59 23 * * ?;false;true;-1
+
+#------------------------------ cronjob for Order Status Feed--------------------------------
+INSERT_UPDATE OrderStatusEmailCronJob;code[unique=true];job(code)[default=orderStatusEmailCronJob];sessionLanguage(isoCode)[default=en]
+;orderStatusEmailCronJob
+  
+INSERT_UPDATE Trigger;cronJob(code)[unique=true];cronExpression;relative;active;maxAcceptableDelay
+#;orderStatusEmailCronJob;* */15 * * * ?;false;true;-1 
+
+#------------------------------ cronjob for Purge RegulatoryStatesCronJob--------------------------------
+INSERT_UPDATE PurgeRegulatoryStatesCronJob;code[unique=true];job(code)[default=purgeRegulatoryStatesCronJob];sessionLanguage(isoCode)[default=en]
+;purgeRegulatoryStatesCronJob
+
+INSERT_UPDATE Trigger;cronJob(code)[unique=true];cronExpression;relative;active;maxAcceptableDelay
+#;purgeRegulatoryStatesCronJob;0 30 22 * * ?;false;true;-1

@@ -1,0 +1,274 @@
+## messageSource=classpath:/siteonecore/messages/email-unlockUser_$lang.properties
+#macro(genHtmlLinkStartTag $url)
+<a href="$url"><font color="#666666">
+#end
+#macro(genHtmlLinkEndTag)
+</font></a>
+#end
+#macro(genHtmlLink $url $textColor $bodyContent)
+<a href="$url"><font color="$textColor">$bodyContent</font></a>
+#end
+<html>
+<head>
+    <style>
+        table{
+         font-family: Arial;
+         font-size:12pt;
+         }
+    </style>
+</head>
+<body bgcolor="#ffffff">
+	#if(${ctx.countryBaseSiteID} == "siteone-ca")
+	<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+        <tr>
+            <td align="center" valign="top">
+                <table width="610" border="0" align="center" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td>
+                            <table width="610" border="0" align="center" cellpadding="0" cellspacing="0">
+                                <tr>
+                                    <td align="center" valign="top" bgcolor="#FFFFFF">
+                                        <table width="570" cellpadding="0" cellspacing="0" align="center" style="border:1px solid #51585c;">
+
+
+                                            <td valign="left" style="padding:15px;">
+                                                <a href="${ctx.baseThemeUrl}">
+													  <img title="SiteoneLogo" src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/SiteoneLogo.jpg" alt="SiteoneLogo">
+											    </a>
+                                                
+                                            </td>
+                                            <tr>
+                                                <td colspan="2">
+                                                    <table width=100%>
+                                                        <tr>
+                                                            <td style="background-color:#ccc; padding-left:1em; padding-bottom: 12px;">
+                                                                <font color="#000000" size="4" face="Arial">
+                                                                    <b>
+																 <p style="margin-bottom: 7px;margin-top: 10px">${ctx.firstName},</p>
+																<font size="5" family="bold">
+																   <p style="margin-bottom: 10px;margin-top: 0px">${ctx.messages.weHaveReceived}</p>              
+																</font>
+
+														</font>
+													</b>
+                                                                    <div style="clear:both;"></div>
+                                                                    <table>
+                                                                        <tr>
+                                                                            <td align="center" style="background: #78a22f;height: 40px;width: 240px;font-weight:bold;font-family: Arial">
+                                                                                <a href="${ctx.secureUnlockUserUrl}" style="text-decoration:none;color: #fff;display: block;width: 100%;height: 100%;line-height: 38px">${ctx.messages.unlockYourAcoount}</a>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </table>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                    <table>
+                                                        <tr>
+                                                            <td style="padding:18px 22px;">
+                                                                
+                                                                <p style="margin:0px;width:570px;word-break: break-all;">
+                                                                    <a href="${ctx.secureUnlockUserUrl}">
+                                                                        <font>${ctx.secureUnlockUserUrl}</font>
+                                                                    </a>
+                                                                </p>
+                                                                </font>
+                                                                <p>
+                                                                    <font color="#000000">${ctx.messages.expiryTime}
+                                                                        </br>
+
+                                                                    </font>
+                                                                </p>
+                                                                <p>
+                                                                    <font color="#000000">${ctx.messages.additionalQuestions}
+                                                                        <b><a href="tel:${ctx.messages.teltollFreeNumber}" style="color:#000000;text-decoration:none;">${ctx.messages.tollFreeNumber}</a>
+								                                       </b>${ctx.messages.youMayAlsoEmail}
+                                                                        <u><a href="mailto:${ctx.supportEmail}">${ctx.supportEmail}</a></u>.
+                                                                        ${ctx.messages.replyToMessage}
+                                                                    </font>
+                                                                </p>
+                                                                <p>
+                                                                    <font color="#000000">${ctx.messages.complimentaryClosing}
+                                                                        <br/>
+                                                                        <i>
+							                                              <b>${ctx.messages.signature}</b>
+					                                                 </i>
+                                                                    </font>
+                                                                </p>
+                                                        </tr>
+                                                        </td>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2">
+                                                    <hr color="black" align="center" width="96%">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td height="30" valign="middle" colspan="2" style="font-size:11pt">
+                                                    <center>
+                                                        <br/>
+                                                        <p>
+                                                            <font color="#000000">${ctx.messages.toensurethatyoucontinuetoreceiveyouremails}
+                                                                </br>
+                                                                <u><a href="mailto:${ctx.messages.infoemail}">${ctx.messages.infoemail}</a></u> ${ctx.messages.afterinfoEmailAddress}
+                                                                </br>
+                                                            </font>
+                                                        </p>
+                                                        <p>
+                                                            <font color="#000000">${ctx.messages.siteonerights}
+                                                                <!-- <br>${ctx.messages.address}</br> -->
+                                                            </font>
+                                                        </p>
+                                                        <p>
+                                                            <font>
+                                                                <a href="${ctx.baseThemeUrl}/privacypolicy">${ctx.messages.privacyPolicy}</a> |
+                                                                <a href="${ctx.baseThemeUrl}mailMediaUrl">${ctx.messages.viewinBrowser}</a>
+                                                            </font>
+                                                        </p>
+                                                        <br/>
+                                                    </center>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    #else
+    <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+        <tr>
+            <td align="center" valign="top">
+                <table width="610" border="0" align="center" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td>
+                            <table width="610" border="0" align="center" cellpadding="0" cellspacing="0">
+                                <tr>
+                                    <td align="center" valign="top" bgcolor="#FFFFFF">
+                                        <table width="570" cellpadding="0" cellspacing="0" align="center" style="border:1px solid #51585c;">
+
+
+                                            <td valign="left" style="padding:15px;">
+                                                <a href="${ctx.baseThemeUrl}">
+													  <img title="SiteoneLogo" src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/SiteoneLogo.jpg" alt="SiteoneLogo">
+											    </a>
+                                                
+                                            </td>
+                                            <tr>
+                                                <td colspan="2">
+                                                    <table width=100%>
+                                                        <tr>
+                                                            <td style="background-color:#ccc; padding-left:1em; padding-bottom: 12px;">
+                                                                <font color="#000000" size="4" face="Arial">
+                                                                    <b>
+																 <p style="margin-bottom: 7px;margin-top: 10px">${ctx.firstName},</p>
+																<font size="5" family="bold">
+																   <p style="margin-bottom: 10px;margin-top: 0px">${ctx.messages.weHaveReceived}</p>              
+																</font>
+
+														</font>
+													</b>
+                                                                    <div style="clear:both;"></div>
+                                                                    <table>
+                                                                        <tr>
+                                                                            <td align="center" style="background: #78a22f;height: 40px;width: 240px;font-weight:bold;font-family: Arial">
+                                                                                <a href="${ctx.secureUnlockUserUrl}" style="text-decoration:none;color: #fff;display: block;width: 100%;height: 100%;line-height: 38px">${ctx.messages.unlockYourAcoount}</a>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </table>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                    <table>
+                                                        <tr>
+                                                            <td style="padding:18px 22px;">
+                                                                
+                                                                <p style="margin:0px;width:570px;word-break: break-all;">
+                                                                    <a href="${ctx.secureUnlockUserUrl}">
+                                                                        <font>${ctx.secureUnlockUserUrl}</font>
+                                                                    </a>
+                                                                </p>
+                                                                </font>
+                                                                <p>
+                                                                    <font color="#000000">${ctx.messages.expiryTime}
+                                                                        </br>
+
+                                                                    </font>
+                                                                </p>
+                                                                <p>
+                                                                    <font color="#000000">${ctx.messages.additionalQuestions}
+                                                                        <b><a href="tel:${ctx.messages.teltollFreeNumber}" style="color:#000000;text-decoration:none;">${ctx.messages.tollFreeNumber}</a>
+								                                       </b>${ctx.messages.youMayAlsoEmail}
+                                                                        <u><a href="mailto:${ctx.supportEmail}">${ctx.supportEmail}</a></u>.
+                                                                        ${ctx.messages.replyToMessage}
+                                                                    </font>
+                                                                </p>
+                                                                <p>
+                                                                    <font color="#000000">${ctx.messages.complimentaryClosing}
+                                                                        <br/>
+                                                                        <i>
+							                                              <b>${ctx.messages.signature}</b>
+					                                                 </i>
+                                                                    </font>
+                                                                </p>
+                                                        </tr>
+                                                        </td>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2">
+                                                    <hr color="black" align="center" width="96%">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td height="30" valign="middle" colspan="2" style="font-size:11pt">
+                                                    <center>
+                                                        <br/>
+                                                        <p>
+                                                            <font color="#000000">${ctx.messages.toensurethatyoucontinuetoreceiveyouremails}
+                                                                </br>
+                                                                <u><a href="mailto:${ctx.messages.infoemail}">${ctx.messages.infoemail}</a></u> ${ctx.messages.afterinfoEmailAddress}
+                                                                </br>
+                                                            </font>
+                                                        </p>
+                                                        <p>
+                                                            <font color="#000000">${ctx.messages.siteonerights}
+                                                                <br>${ctx.messages.address}</br>
+                                                            </font>
+                                                        </p>
+                                                        <p>
+                                                            <font>
+                                                                <a href="${ctx.baseThemeUrl}/privacypolicy">${ctx.messages.privacyPolicy}</a> |
+                                                                <a href="${ctx.baseThemeUrl}mailMediaUrl">${ctx.messages.viewinBrowser}</a>
+                                                            </font>
+                                                        </p>
+                                                        <br/>
+                                                    </center>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    #end
+</body>
+
+</html>

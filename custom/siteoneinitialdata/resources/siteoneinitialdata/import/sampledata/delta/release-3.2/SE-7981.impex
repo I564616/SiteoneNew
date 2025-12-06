@@ -1,0 +1,37 @@
+# -----------------------------------------------------------------------
+#
+# SE-7981: Create new price ranges to filter search results
+#
+# -----------------------------------------------------------------------
+#
+# Import the Solr configuration for the SiteOne store
+#
+$contentCatalog=siteoneContentCatalog
+$productCatalog=siteoneProductCatalog
+$catalogVersions=catalogVersions(catalog(id),version);
+$serverConfigName=siteoneSolrServerConfig
+$indexConfigName=siteoneSolrIndexConfig
+$searchConfigName=siteonePageSize
+$facetSearchConfigName=siteoneIndex
+$facetSearchConfigDescription=SiteOne Solr Index
+$searchIndexNamePrefix=siteone
+$solrIndexedType=siteoneProductType
+$indexBaseSite=siteone
+$indexLanguages=en
+$indexCurrencies=USD
+
+# Define price range set
+INSERT_UPDATE SolrValueRangeSet;name[unique=true];qualifier;type;solrValueRanges(&rangeValueRefID)
+                               ;siteonePriceRangeUSD;USD;double;rangeRefUSD1,rangeRefUSD2,rangeRefUSD3,rangeRefUSD4,rangeRefUSD5,rangeRefUSD6,rangeRefUSD7,rangeRefUSD8,rangeRefUSD9
+
+# Define price ranges
+INSERT_UPDATE SolrValueRange;&rangeValueRefID;solrValueRangeSet(name)[unique=true];name[unique=true];from;to
+                            ;rangeRefUSD1    ;siteonePriceRangeUSD                ;$0-$49.99        ;   0;49.99
+                            ;rangeRefUSD2    ;siteonePriceRangeUSD                ;$50-$199.99      ;  50;199.99
+                            ;rangeRefUSD3    ;siteonePriceRangeUSD                ;$200-$499.99     ; 200;499.99
+                            ;rangeRefUSD4    ;siteonePriceRangeUSD                ;$500-$999.99     ; 500;999.99
+                            ;rangeRefUSD5    ;siteonePriceRangeUSD                ;$1,000-$1,999.99 ;1000;1999.99
+                            ;rangeRefUSD6    ;siteonePriceRangeUSD                ;$2,000-$2,999.99 ;2000;2999.99
+                            ;rangeRefUSD7    ;siteonePriceRangeUSD                ;$3,000-$3,999.99 ;3000;3999.99
+                            ;rangeRefUSD8    ;siteonePriceRangeUSD                ;$4,000-$4,999.99 ;4000;4999.99
+                            ;rangeRefUSD9    ;siteonePriceRangeUSD                ;Over $5,000      ;5000;1000000

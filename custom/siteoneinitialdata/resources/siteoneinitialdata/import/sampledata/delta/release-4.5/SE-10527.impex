@@ -1,0 +1,13 @@
+# Create a trigger/schedule for update-siteoneIndex-cronJob
+REMOVE Trigger ;cronjob(code)[unique=true] ; cronExpression[unique=true]
+               ;update-siteoneIndex-cronJob;0 */15 * ? * MON-SAT;
+
+INSERT_UPDATE Trigger ;cronjob(code)[unique=true] ; cronExpression[unique=true];active[default=true]
+                      ;update-siteoneIndex-cronJob;0 */15 9-23 ? * *;
+
+# Create a trigger/schedule for full-siteoneIndex-cronJob
+REMOVE Trigger ;cronjob(code)[unique=true] ; cronExpression[unique=true]
+               ;full-siteoneIndex-cronJob;0 */30 * ? * SUN;
+
+INSERT_UPDATE Trigger ;cronjob(code)[unique=true] ; cronExpression[unique=true];active[default=true]
+                      ;full-siteoneIndex-cronJob;0 30 06 ? * *;

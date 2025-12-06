@@ -1,0 +1,631 @@
+$contentCatalog=siteoneCAContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$productCatalog=siteoneCAProductCatalog
+$productCatalogName=SiteOne CA Product Catalog
+$productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$picture=media(code, $contentCV);
+$lang=en,es
+$siteResource=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/contentCatalogs/$contentCatalog
+$medias=medias(code, $contentCV);
+$mediaContainer=media(qualifier, $contentCV)[lang=$lang];
+
+UPDATE GenericItem[processor=de.hybris.platform.commerceservices.impex.impl.ConfigPropertyImportProcessor];pk[unique=true]
+$jarResourceCms=$config-jarResourceCmsValue
+
+INSERT_UPDATE PageTemplate;$contentCV[unique=true];uid[unique=true];name;frontendTemplateName;restrictedPageTypes(code);active[default=true]
+;;SiteOneCAContentPageTemplate;SiteOne CA Content Page  Template;layout/siteoneCAContentLayout;ContentPage
+
+# Add Velocity templates that are in the CMS Cockpit. These give a better layout for editing pages
+# The FileLoaderValueTranslator loads a File into a String property. The templates could also be inserted in-line in this file.
+UPDATE PageTemplate;$contentCV[unique=true];uid[unique=true];velocityTemplate[translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+;;SiteOneCAContentPageTemplate ;$jarResourceCms/structure-view/siteonestructure_siteonecaContentPageTemplate.vm
+
+
+# Simple Content Page Templates
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='SiteOneCAContentPageTemplate'];validComponentTypes(code);compTypeGroup(code)
+;SiteLogo;;;logo
+;HeaderLinks;;;headerlinks
+;SearchBox;;;searchbox
+;MiniCart;;;minicart
+;NavigationBar;;;navigation
+;Section1;;;wide
+;Section4;;;wide
+;Section2A;;;narrow
+;Section2B;;;wide
+;Section7A;;;wide
+;Section7B;;;wide
+;Section3;;;wide
+;Section5;;;wide
+;Footer;;;footer
+;TopHeaderSlot;;;wide
+;BottomHeaderSlot;;;wide
+;PlaceholderContentSlot;;;
+;GlobalMessage;;GlobalMessageCMSComponent
+;VerticalNavigation;;VerticalBarComponent
+
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='SiteOneCAContentPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;SiteLogo-SiteOneCAContentPage;SiteLogo;;SiteLogoSlot;true
+;;NavigationBar-SiteOneCAContentPage;NavigationBar;;NavigationBarSlot;true
+;;MiniCart-SiteOneCAContentPage;MiniCart;;MiniCartSlot;true
+;;Footer-SiteOneCAContentPage;Footer;;FooterSlot;true
+;;HeaderLinks-SiteOneCAContentPage;HeaderLinks;;HeaderLinksSlot;true
+;;SearchBox-SiteOneCAContentPage;SearchBox;;SearchBoxSlot;true
+;;TopHeaderSlot-SiteOneCAContentPage;TopHeaderSlot;;TopHeaderSlot;true
+;;BottomHeaderSlot-SiteOneCAContentPage;BottomHeaderSlot;;BottomHeaderSlot;true
+;;PlaceholderContentSlot-SiteOneCAContentPage;PlaceholderContentSlot;;PlaceholderContentSlot;true
+;;GlobalMessage-SiteOneCAContentPage;GlobalMessage;;GlobalMessageSlot;true
+;;VerticalNavigation-SiteOneCAContentPage;VerticalNavigation;;VerticalNavigationSlot;true
+
+INSERT_UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];name;title[lang=$lang];masterTemplate(uid,$contentCV);label;defaultPage[default='true'];approvalStatus(code)[default='approved'];homepage[default='false']
+;;contactUs-ca;contactUs-ca;Contact Us;SiteOneCAContentPageTemplate;/contactus;
+;;faq;FAQs;FAQs;SiteOneCAContentPageTemplate;/faq;
+;;companyHistory;Company History Page;Company History;SiteOneCAContentPageTemplate;/companyhistory;
+;;aboutUs;About Us;About Us;SiteOneCAContentPageTemplate;/aboutus;
+;;careers;Careers;;SiteOneCAContentPageTemplate;/careers;
+;;ourBrands;Our Brands;Our Brands;SiteOneCAContentPageTemplate;/ourbrands;
+;;pressroom;PressRoom;;SiteOneCAContentPageTemplate;/news;
+;;businessresources;Business Resources;Business Resources;SiteOneCAContentPageTemplate;/businessresource;
+;;joblinecredit;PROJECT CREDIT LINE;PROJECT CREDIT LINE;SiteOneCAContentPageTemplate;/joblinecredit;
+;;greentech;GreenTech Services: Solar, Sustainable Irrigation Technology;GreenTech Services;SiteOneCAContentPageTemplate;/greentech;
+;;spreader-settings;Determining Spreader Settings;Determining Spreader Settings;SiteOneCAContentPageTemplate;/spreader-settings;
+;;spreadersprayer;Spreader and Sprayer Calibration Settings;Spreader and Sprayer Calibration;SiteOneCAContentPageTemplate;/spreadersprayer;
+;;bms;Business Management Solutions;Business Management Solutions;SiteOneCAContentPageTemplate;/bms;
+;;lineofcredit;Open Line Of Credit;Line Of Credit;SiteOneCAContentPageTemplate;/openlineofcredit;
+
+
+####### Contact Us Page Start ######
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='contactUs-ca'];contentSlot(uid,$contentCV)[unique=true];;;
+;;Section3-ContactUs-ca;Section3;;Section3Slot-ContactUs-ca;;;
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef);;;
+;;Section3Slot-ContactUs-ca;Section3  Slot for ContactUs Page;true;contactUsPageTitleComponent,contactUsPageParagraphComponent,contactUsFormComponent;;;
+
+INSERT_UPDATE SiteonePageTitleBannerComponent;$contentCV[unique=true];uid[unique=true];name;headline;content;&componentRef
+;;contactUsPageTitleComponent;Contact Us Page Title Component;Contact Us;;contactUsPageTitleComponent
+
+INSERT_UPDATE SiteoneParagaraphComponent;$contentCV[unique=true];uid[unique=true];name;headline;content;&componentRef
+;;contactUsPageParagraphComponent;Contact Us Page Paragraph Component;;<div>At SiteOne Landscape Supply, you’re more than just a customer. Here, we are your partner in everything related to ensuring your business grows. We pride ourselves on being customer obsessed and offering our customers a relationship that will last a lifetime. We not only offer the best products the industry has to offer, but we share our expertise to take your business to the next level. And while we’re large, we’re also local, with our experts knowing your community and what it takes to succeed there.</div><div><h3>How Can We Help?</h3></div><div>Questions? Comments? Call or email to let us know what’s on your mind.</div><div>Call us at 1-800-SITEONE (1-800-748-3663). We are available Monday through Friday from 8 a.m. to 5 p.m. EST.</div><div>Or email us via the form below:</div>;contactUsPageParagraphComponent 
+
+INSERT_UPDATE JspIncludeComponent;$contentCV[unique=true];uid[unique=true];name;page;actions(uid,$contentCV);&componentRef
+;;contactUsFormComponent;Contact Us Form Component;contactUsForm.jsp;;contactUsFormComponent
+
+###### Contact Us End ######
+
+###### CompanyHistory Page Start ######
+
+UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];fullpagepath[lang=$lang];pathingChannel[lang=$lang]
+;;companyHistory;contractor services: company history;contractor services
+
+INSERT_UPDATE SiteonePageTitleBannerComponent;$contentCV[unique=true];uid[unique=true];name;headline;&componentRef
+;;companyHistoryPageTitleBannerComponent;Company History Page Title Component;About SiteOne;companyHistoryPageTitleBannerComponent
+
+INSERT_UPDATE SiteoneParagaraphComponent;$contentCV[unique=true];uid[unique=true];name;headline;content;&componentRef
+;;companyHistoryParagraphComponent1;Company History Paragraph Component1;Thanks for Stopping By;Out there, it's hard to know where you stand. But in here, you'll find your footing. At SiteOne, we pride ourselves on knowing our customers and their business better than anyone else. It starts with knowing you by name, but it goes much deeper than that. We want to know your challenges, your expectations and your goals so we can meet your needs like no other supplier can. We prefer to let you do most of the talking, but here are some things you should know about us.;companyHistoryParagraphComponent1  
+;;companyHistoryParagraphComponent2;Company History Paragraph Component2;We're Your Green Industry Partner;SiteOne Landscape Supply is the nation's largest supplier of wholesale irrigation, outdoor lighting, nursery, landscape supplies, fertilizers, turf protection products, grass seed, turf care equipment, and golf course accessories for green industry professionals in Canada. We are committed to becoming the distributor of choice for landscape, irrigation and turf care professionals nationwide. And while we may be large, we’re also local.;companyHistoryParagraphComponent2
+;;companyHistoryParagraphComponent3;Company History Paragraph Component3;Large and Local;With unmatched product breadth and locations within reach of virtually any job. But we share the same backyard. Our local experts know your community and what it takes to succeed there, because it’s their hometown, too. We can help you find, bid and win jobs. And, with the highest efficiency, we can even direct ship or deliver your products right to your work site. Order online or stop in <a href="https://qa1ca-www.sapv2.siteone.com/store-finder">a branch near you</a> today.;companyHistoryParagraphComponent3
+;;companyHistoryParagraphComponent4;Company History Paragraph Component4;We're Dedicated to Your Success;In addition to a vast array of product lines, SiteOne also has a team unsurpassed in <a href="">knowledge and expertise</a>. We can meet almost any need, and we strive every day to exceed our customers' expectations.;companyHistoryParagraphComponent4
+;;companyHistoryParagraphComponent5;Company History Paragraph Component5;<div>We're Always Willing to Go Above and Beyond;SiteOne also offers additional related services that support your core business through the Partners Program and Business Solutions. Take advantage of superior pricing, earn points on every purchase and save on business expenses.</div><div>With an extensive product offerings, the <a href="https://qa1ca-www.sapv2.siteone.com/en/partnersprogram">Partners Program,</a> and value-added services from SiteOne, we can provide you with what you need to operate your landscape business professionally, safely and profitably.</div>;companyHistoryParagraphComponent5
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='companyHistory'];contentSlot(uid,$contentCV)[unique=true];;;
+;;Section3-CompanyHistory;Section3;;Section3Slot-CompanyHistory;;;
+;;Section7A-CompanyHistory;Section7A;;Section7ASlot-CompanyHistory;;;
+#;;Section7B-CompanyHistory;Section7B;;Section7BSlot-CompanyHistory;;;
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef);;;
+;;Section3Slot-CompanyHistory;Section3  Slot for CompanyHistory Page;true;companyHistoryPageTitleBannerComponent,companyHistoryParagraphComponent1,companyHistoryParagraphComponent2,companyHistoryParagraphComponent3,companyHistoryParagraphComponent4,companyHistoryParagraphComponent5;;;
+;;Section7ASlot-CompanyHistory;Section7A Slot for CompanyHistory Page;true;;;;
+UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];fullpagepath[lang=$lang];pathingChannel[lang=$lang]
+;;companyHistory;contractor services: company history;contractor services
+
+INSERT_UPDATE SiteonePageTitleBannerComponent;$contentCV[unique=true];uid[unique=true];name;headline;&componentRef
+;;companyHistoryPageTitleBannerComponent;Company History Page Title Component;About SiteOne;companyHistoryPageTitleBannerComponent
+
+INSERT_UPDATE SiteoneParagaraphComponent;$contentCV[unique=true];uid[unique=true];name;headline;content;&componentRef
+;;companyHistoryParagraphComponent1;Company History Paragraph Component1;Thanks for Stopping By;Out there, it's hard to know where you stand. But in here, you'll find your footing. At SiteOne, we pride ourselves on knowing our customers and their business better than anyone else. It starts with knowing you by name, but it goes much deeper than that. We want to know your challenges, your expectations and your goals so we can meet your needs like no other supplier can. We prefer to let you do most of the talking, but here are some things you should know about us.;companyHistoryParagraphComponent1  
+;;companyHistoryParagraphComponent2;Company History Paragraph Component2;We're Your Green Industry Partner;SiteOne Landscape Supply is the nation's largest supplier of wholesale irrigation, outdoor lighting, nursery, landscape supplies, fertilizers, turf protection products, grass seed, turf care equipment, and golf course accessories for green industry professionals in Canada. We are committed to becoming the distributor of choice for landscape, irrigation and turf care professionals nationwide. And while we may be large, we’re also local.;companyHistoryParagraphComponent2
+;;companyHistoryParagraphComponent3;Company History Paragraph Component3;Large and Local;With unmatched product breadth and locations within reach of virtually any job. But we share the same backyard. Our local experts know your community and what it takes to succeed there, because it’s their hometown, too. We can help you find, bid and win jobs. And, with the highest efficiency, we can even direct ship or deliver your products right to your work site. Order online or stop in <a href="https://qa1ca-www.sapv2.siteone.com/store-finder">a branch near you</a> today.;companyHistoryParagraphComponent3
+;;companyHistoryParagraphComponent4;Company History Paragraph Component4;We're Dedicated to Your Success;In addition to a vast array of product lines, SiteOne also has a team unsurpassed in <a href="">knowledge and expertise</a>. We can meet almost any need, and we strive every day to exceed our customers' expectations.;companyHistoryParagraphComponent4
+;;companyHistoryParagraphComponent5;Company History Paragraph Component5;<div>We're Always Willing to Go Above and Beyond;SiteOne also offers additional related services that support your core business through the Partners Program and Business Solutions. Take advantage of superior pricing, earn points on every purchase and save on business expenses.</div><div>With an extensive product offerings, the <a href="https://qa1ca-www.sapv2.siteone.com/en/partnersprogram">Partners Program,</a> and value-added services from SiteOne, we can provide you with what you need to operate your landscape business professionally, safely and profitably.</div>;companyHistoryParagraphComponent5
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='companyHistory'];contentSlot(uid,$contentCV)[unique=true];;;
+;;Section3-CompanyHistory;Section3;;Section3Slot-CompanyHistory;;;
+;;Section7A-CompanyHistory;Section7A;;Section7ASlot-CompanyHistory;;;
+#;;Section7B-CompanyHistory;Section7B;;Section7BSlot-CompanyHistory;;;
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef);;;
+;;Section3Slot-CompanyHistory;Section3  Slot for CompanyHistory Page;true;companyHistoryPageTitleBannerComponent,companyHistoryParagraphComponent1,companyHistoryParagraphComponent2,companyHistoryParagraphComponent3,companyHistoryParagraphComponent4,companyHistoryParagraphComponent5;;;
+;;Section7ASlot-CompanyHistory;Section7A Slot for CompanyHistory Page;true;;;;
+
+##CompanyHistory Page[END]##
+
+##AboutUS Page[Start]##
+#UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);label;defaultPage[default='true'];approvalStatus(code)[default='approved'];homepage[default='false'];navigationNodeList(uid,$contentCV)
+#;;aboutUs;About Us;SiteOneCAContentPageTemplate;/aboutus;;;;CompanyInfoNavNode
+
+INSERT_UPDATE SiteonePageTitleBannerComponent;$contentCV[unique=true];uid[unique=true];name;headline;&componentRef
+;;aboutUsPageTitleBannerComponent;About Us Page Title Component;About Our Company;aboutUsPageTitleBannerComponent
+
+INSERT_UPDATE SiteoneParagaraphComponent;$contentCV[unique=true];uid[unique=true];name;headline;content;&componentRef
+;;aboutUsParagraphComponent1;About Us Paragraph Component1;The Place for Landscape Professionals;"Out there, it's hard to know where you stand. But in here, you'll find your footing. At SiteOne Landscape Supply, we pride ourselves on knowing our customers and their business better than anyone else. It starts with knowing you by name, but it goes much deeper than that. We want to know your challenges, your expectations, your goals so we can meet your needs like no other landscape supplier can. Partner with us, and let's become Stronger Together&#8482;.";aboutUsParagraphComponent1
+;;aboutUsParagraphComponent2;About Us Paragraph Component2;The Green Industry's Number One Partner;Our commitment to you is not a limited-time offer. Here, you are much more than a customer you are a partner. Earn points on every purchase and redeem them for gift cards, travel and more with our <a href="/partnersprogram"> Partners Program </a> the best customer rewards program in the industry. You'll also receive discounts and access to powerful business resources. Become a better, more informed business owner with multiple options for training and industry certifications, offered through <a href="">SiteOne University </a>, Academies and in-store events. At SiteOne, you’ll find unparalleled services, designed for the long haul, that can help take your business to the next level.;aboutUsParagraphComponent2
+;;aboutUsParagraphComponent3;About Us Paragraph Component3;Your One-Stop Shop;Don't waste valuable time running from supplier to supplier. SiteOne has everything you are looking for with a wide selection of <a href="">irrigation</a>,<a href="/lighting/c/sh11">lighting</a>,<a href="">turf and landscape maintenance</a>,<a href="">nursery</a> and <a href="">pest control </a> supplies. With over 470 stores across the country and now Online ordering, we are here to serve you however we can. We'll get to know you and your unique challenges, so we can meet them like no one else. Make every moment of your workday count go to the one destination that has it all.;aboutUsParagraphComponent3 
+;;aboutUsParagraphComponent4;About Us Paragraph Component4;Unmatched Expertise;We’ve been in this industry since day one—in fact, we’ve helped it grow to what it is today—and our experts know our product lines, categories and local markets better than ayone. The result is an understanding of the big picture, and the finer points, that no other distributor can match. SiteOne has <a href=""> a team unsurpassed in knowledge and expertise</a>. We can meet almost any need, and we strive every day to exceed our customers’ expectations. ;aboutUsParagraphComponent4 
+;;aboutUsParagraphComponent5;About Us Paragraph Component5;Customer Obsessed;Good enough isn’t enough. At SiteOne, our associates will stop at nothing to help our customers win. Many of these experienced experts are former hardscape, irrigation or turf care professionals themselves, and all of them are prepared to help you make the informed decisions necessary to grow your business. Trust us for the solutions you need to become more competitive, and the advice to take you over the top.;aboutUsParagraphComponent5 
+;;aboutUsParagraphComponent6;About Us Paragraph Component6;Large and Local;With unmatched product breadth, and locations within reach of virtually any job, SiteOne is the nation's largest supplier of wholesale goods for green industry professionals in the United States and Canada. But for a company our size, we are remarkably nimble, delivering personalized service in the communities where we do business. With the highest level of efficiency, we can even direct ship or deliver your products right to your work site. Order Online or stop into <a href="/store-finder">the branch nearest you</a> today.;aboutUsParagraphComponent6
+
+INSERT_UPDATE SiteoneParagaraphComponent;$contentCV[unique=true];uid[unique=true];name;content[lang=en];content[lang=es];&componentRef
+;;BrandAnthemVideo;Brand Anthem Video;;;BrandAnthemVideo
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='aboutUs'];contentSlot(uid,$contentCV)[unique=true];;;
+;;Section3-AboutUs;Section3;;Section3Slot-AboutUs;;;
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef);;;
+;;Section3Slot-AboutUs;Section3 Slot for About Us Page;true;aboutUsPageTitleBannerComponent,aboutUsParagraphComponent1,BrandAnthemVideo,aboutUsParagraphComponent2,aboutUsParagraphComponent3,aboutUsParagraphComponent4,aboutUsParagraphComponent5,aboutUsParagraphComponent6;;;
+##AboutUS Page[END]##
+
+
+## Careers page[Start]###
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;&linkRef;&componentRef;target(code)[default='sameWindow'];external;
+;;CareersLink;Careers Link;"https://careers.siteone.com/";CareersLink;CareersLink;newWindow;true
+## Careers page[END]###
+
+### Our Brand Page[Start] ###
+
+INSERT_UPDATE SiteonePageTitleBannerComponent;$contentCV[unique=true];uid[unique=true];name;headline;&componentRef
+;;ourBrandsPageTitleBannerComponent;Our Brands Page Title Component;Our Brands;ourBrandsPageTitleBannerComponent
+
+INSERT_UPDATE SiteonePageTitleBannerComponent;$contentCV[unique=true];uid[unique=true];name;headline;&componentRef
+;;ourBrandsPageBannerComponent;Our Brands Component;;ourBrandsPageBannerComponent
+
+INSERT_UPDATE SiteoneParagaraphComponent;$contentCV[unique=true];uid[unique=true];name;headline;content;&componentRef
+;;ourBrandsParagraphComponent1;Our Brands Paragraph Component1;Find All the Best Products, All in One Place;At SiteOne Landscape Supply, we’re proud to carry brands you can stake your reputation on. Load up on proven irrigation, lighting, maintenance supplies and nursery items to get the job done, season after season. If it’s on our shelves – it’s a product that we’d use ourselves.;ourBrandsParagraphComponent1
+;;ourBrandsParagraphComponent2;Our Brands Paragraph Component2;Private Label Brands;With in-house brands like LESCO, Pro-Trade, Portfolio and more, we’ve developed industry-leading products to ensure the best for your projects.;ourBrandsParagraphComponent2
+;;ourBrandsParagraphComponent3;Our Brands Paragraph Component3;Agronomic Maintenance;Below the surface, science is key. Our proven turf maintenance solutions get the job done at the root, so you can come out on top. We carry top brands like LESCO.;ourBrandsParagraphComponent3 
+;;ourBrandsParagraphComponent4;Our Brands Paragraph Component4;Irrigation;Choose from a wide selection of controllers, rotors, valves and more from Hunter, Rain Bird, Toro and Irritrol to help water your landscapes efficiently and responsibly.;ourBrandsParagraphComponent4 
+;;ourBrandsParagraphComponent5;Our Brands Paragraph Component5;Landscape Supply;Every job is different, which is why we’ve got the widest selection of landscape supplies in the industry – so you can make each project your own. We carry NDS, Belgard, Milwaukee and more.;ourBrandsParagraphComponent5 
+;;ourBrandsParagraphComponent6;Our Brands Paragraph Component6;Lighting;Whether you need to illuminate a backyard, or a sprawling campus, we have the industry’s best lighting brands to help you get the job done. We carry FX Luminaire, Kichler, Pro-Trade and others.;ourBrandsParagraphComponent6
+;;ourBrandsParagraphComponent7;Our Brands Paragraph Component7;Nursery;SiteOne nurseries are home to a variety of popular plant and tree species that will add beauty and functionality to any landscape.;ourBrandsParagraphComponent7
+;;ourBrandsParagraphComponent8;Our Brands Paragraph Component8;Safety;Safety starts before the job. Stock up on all the supplies you need to maintain an injury-free worksite. We carry products from SAS Safety Corp, Boss and more.;ourBrandsParagraphComponent8
+;;ourBrandsParagraphComponent9;Our Brands Paragraph Component9;Unmatched Expertise;<div>Not sure which products are right for the job? Every SiteOne location has local experts that are eager to connect you with the right supplies from our unmatched inventory. Our branches are also home to in-depth training courses for all experience levels and product demos so you can see the latest and greatest green industry brands in action. </div><br></br><div><a href="https://qa1ca-www.sapv2.siteone.com/store-finder">Find a branch near you</a> today to stock up on solutions that work as hard as you do, and industry-leading expertise to put them to good use.</div>;ourBrandsParagraphComponent9
+
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='ourBrands'];contentSlot(uid,$contentCV)[unique=true];;;
+;;Section3-OurBrands;Section3;;Section3Slot-OurBrands;;;
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef);;;
+;;Section3Slot-OurBrands;Section3 Slot for Our Brands Page;true;ourBrandsPageTitleBannerComponent,ourBrandsPageBannerComponent,ourBrandsParagraphComponent1,ourBrandsParagraphComponent2,ourBrandsParagraphComponent3,ourBrandsParagraphComponent4,ourBrandsParagraphComponent5,ourBrandsParagraphComponent6,ourBrandsParagraphComponent7,ourBrandsParagraphComponent8,ourBrandsParagraphComponent9;;;
+
+### Our Brand Page[END] ###
+
+
+### Press Room Page[Start] ###
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;&linkRef;&componentRef;target(code)[default='sameWindow'];external;
+;;PressRoomLink;PressRoom Link;"https://investors.siteone.com/news-releases/";PressRoomLink;PressRoomLink;newWindow;true
+### Press Room Page[END] ###
+
+### FAQs Page[Start] ###
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='faq'];contentSlot(uid,$contentCV)[unique=true];;;
+;;Section2B-Faq;Section2B;;Section2BSlot-Faq;;;
+
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef);;;
+;;Section2BSlot-Faq;Section2B Slot for FAQ Page;true;faqPageTitleBannerComponent,siteoneFAQCollectionComponent1,siteoneFAQCollectionComponent2,siteoneFAQCollectionComponent3,faqbuyonlineparagraphcomponent,siteoneFAQCollectionComponent4,faqbottommessagecomponent;;;
+
+INSERT_UPDATE SiteonePageTitleBannerComponent;$contentCV[unique=true];uid[unique=true];name;headline;content;&componentRef
+;;faqPageTitleBannerComponent;FAQ Page Title Component;FAQs;Got questions? Below are answers to the questions we hear most often. If you don't find what you're looking for, please call customer service at  1-800-SITEONE (1-800-748-3663) or email us <a href="mailto:customersupport@siteone.com">here</a>.;faqPageTitleBannerComponent 
+;;faqHeadingComponent;FAQ Heading Component;Customer Service;;faqHeadingComponent
+
+INSERT_UPDATE SiteoneParagaraphComponent;$contentCV[unique=true];uid[unique=true];name;headline;content;&componentRef
+;;faqbuyonlineparagraphcomponent;FAQ Buy Online Paragraph Compoenent;Buy Online, Pick Up In Branch;Buy Online, Pick Up in Branch is valid only at the specific branch selected when placing your order. Pick up is available during normal branch operating hours and only for confirmed orders. Subject to availability. ;faqbuyonlineparagraphcomponent
+;;faqbottommessagecomponent;FAQ Botttom Message Component;;"<small>**Some exclusions apply. See product detail for parcel eligibility. We reserve the right to change or end this offer at any time. A SiteOne associate will call you to schedule a store delivery. Please allow 3-7 business days for delivery, based on item availability. All returns are subject to SiteOne&#39s standard return policy. Void where prohibited.</small>";faqbottommessagecomponent
+
+INSERT_UPDATE siteoneFAQCollectionComponent;$contentCV[unique=true];uid[unique=true];name;heading;faq(uid,$contentCV);&componentRef
+;;siteoneFAQCollectionComponent1;FAQ Collection Component;Log-in and registration;siteoneFAQ11_CA,siteoneFAQ12_CA,siteoneFAQ13_CA,siteoneFAQ14_CA,siteoneFAQ15_CA;siteoneFAQCollectionComponent1
+;;siteoneFAQCollectionComponent2;FAQ Collection Component;Products;siteoneFAQ21_CA,siteoneFAQ22_CA,siteoneFAQ23_CA,siteoneFAQ24_CA,siteoneFAQ25_CA;siteoneFAQCollectionComponent2
+;;siteoneFAQCollectionComponent3;FAQ Collection Component;Orders;siteoneFAQ31_CA,siteoneFAQ32_CA,siteoneFAQ33_CA,siteoneFAQ34_CA;siteoneFAQCollectionComponent3
+;;siteoneFAQCollectionComponent4;FAQ Collection Component;;siteoneFAQ41_CA,siteoneFAQ42_CA,siteoneFAQ43_CA,siteoneFAQ44_CA,siteoneFAQ45_CA,siteoneFAQ46_CA,siteoneFAQ47_CA,siteoneFAQ48_CA,siteoneFAQ49_CA,siteoneFAQ50_CA;siteoneFAQCollectionComponent4
+
+INSERT_UPDATE siteoneFAQ;$contentCV[unique=true];uid[unique=true];name;question;answer;image;&componentRef
+;;siteoneFAQ11_CA;QA11_CA;How do I create an online account?;To create an online account, please contact an associate or customer service at 1-800-SITEONE (1-800-748-3663).;;siteoneFAQ11_CA
+;;siteoneFAQ12_CA;QA12_CA;How do I add users to my account?;If you are an administrator on your customer account, you will see a manage users link on the Account Dashboard. Here you can add additional administrator level users or team members.;;siteoneFAQ12_CA
+;;siteoneFAQ13_CA;QA13_CA;How do I reset my password?;Click the reset password link on the home page to reset your password. We'll send a link to your email address on file that you can use to create a new password.;;siteoneFAQ13_CA
+;;siteoneFAQ14_CA;QA14_CA;My account is locked. What do I do?;Please contact us, and we will unlock your account for you.;;siteoneFAQ14_CA
+;;siteoneFAQ15_CA;QA15_CA;How do I remove a user from my account?;If you are an administrator, you can log in and disable a user on the manage users page on the Account Dashboard. You can also contact us for help.;;siteoneFAQ15_CA
+;;siteoneFAQ21_CA;QA21_CA;Are all of your products available online?;Yes, the majority of our products are online. If you are looking for an item and cannot find it, you can add a note on your order when you check out or contact us.;;siteoneFAQ21_CA
+;;siteoneFAQ22_CA;QA22_CA;How does search work?;You may search on a keyword or product number and then use the facets on the left to refine your search. If your search returns too many results, you may want to modify your search to be more specific.;;siteoneFAQ22_CA
+;;siteoneFAQ23_CA;QA23_CA;How are search results organized?;Search results are organized by items in stock at the branch first.;;siteoneFAQ23_CA
+;;siteoneFAQ24_CA;QA24_CA;What do I do if I cannot find what I'm looking for?;Please contact your local branch. If you are placing an order with other items, you can include a message to the branch with your order.;;siteoneFAQ24_CA
+;;siteoneFAQ25_CA;QA25_CA;I am a vendor and would like to update my product information online and/or add an item.;Please contact us, and we will connect you with your product team.;;siteoneFAQ25_CA
+;;siteoneFAQ31_CA;QA31_CA;How do I place an order?;To place an order, log-in, confirm your selected branch, and then add products to your cart. Once you have added items to your cart, then move to checkout. You may place an order for pickup or delivery.;;siteoneFAQ31_CA
+;;siteoneFAQ32_CA;QA32_CA;When will my order be ready?;You can enter your requested pickup or delivery time at checkout. If you would like your order fulfilled the same day, please contact the branch to confirm your order.;;siteoneFAQ32_CA
+;;siteoneFAQ33_CA;QA33_CA;I have backorders and would like those added to my order.;"When you checkout, note that in the ""Message for branch"" section.";;siteoneFAQ33_CA
+;;siteoneFAQ34_CA;QA34_CA;I placed an order and would like to know the status.;You can see order status on the Open Orders and the Order History pages in the Account Dashboard. This will include all orders, not just those placed online. For more details on a pending order, please contact your selected branch.;;siteoneFAQ34_CA
+;;siteoneFAQ41_CA;QA41_CA;How does the Buy Online, Pick Up in Branch process work?;When ordering online, select a SiteOne branch location for Pick Up. You’ll get an Order Confirmation email acknowledging receipt of your order, and an Order Ready notification when your order is ready to be picked up.;;siteoneFAQ41_CA
+;;siteoneFAQ42_CA;QA42_CA;How will I know my order is ready for pick up?;When your order is ready for pick up, you will receive an Order Ready notification email, which will include instructions for picking up your order.;;siteoneFAQ42_CA
+;;siteoneFAQ43_CA;QA43_CA;Where should I go to pick up my order once I arrive at the branch?;Once you arrive at the branch, please approach a branch associate for assistance with your order.;;siteoneFAQ43_CA
+;;siteoneFAQ44_CA;QA44_CA;Once my order is ready, how long will it be available for pick up?;Your order will remain available for a maximum of seven days from the first time you receive an Order Ready notification email. Orders not claimed after seven days may be subject to cancellation.;;siteoneFAQ44_CA
+;;siteoneFAQ45_CA;QA45_CA;What do I need to bring with me to pick up my order?;For pick up, please bring a government-issued photo ID and your order number or the Order Ready notification email.;;siteoneFAQ45_CA
+;;siteoneFAQ46_CA;QA46_CA;What if I can’t pick up my order at the branch and need to send someone to pick up my order for me?;During online checkout, select a pre-authorized person from the dropdown by clicking “Change Contact” or you can provide the name and email of the person in the “Message for branch" section at checkout. They will need a photo ID and order number.;;siteoneFAQ46_CA
+;;siteoneFAQ47_CA;QA47_CA;What if I need to cancel my order?;Contact the SiteOne branch that received your order to cancel or make changes to your order.;;siteoneFAQ47_CA
+;;siteoneFAQ48_CA;QA48_CA;What if I need to return an item that I ordered?;To return any items, bring your order receipt with you to the SiteOne branch location where you picked up your order. Please refer to SiteOne’s <a href="https://qa1ca-www.sapv2.siteone.com/en/returns">current return policy</a> for details.;;siteoneFAQ48_CA
+;;siteoneFAQ49_CA;QA49_CA;Is local delivery available when I buy online?;SiteOne offers local delivery and will extend the radius for extra fees, Check with branch for pricing.;;siteoneFAQ49_CA
+;;siteoneFAQ50_CA;QA50_CA;Does SiteOne offer parcel delivery for online orders?;SiteOne offers parcel delivery in select markets. Contact a branch associate for more details.**;;siteoneFAQ50_CA
+
+### FAQs Page[END] ###
+
+### Open Line Of Credit Page[Start] ###
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='lineofcredit'];contentSlot(uid,$contentCV)[unique=true];;;
+;;Section2A-lineofcredit;Section2A;;Section2ASlot-lineofcredit;;;
+;;Section2B-lineofcredit;Section2B;;Section2BSlot-lineofcredit;;;
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef);;;
+;;Section2ASlot-lineofcredit;Section2A Slot for lineofcredit Page;true;lineofcreditheadingcomponent;;;
+;;Section2BSlot-lineofcredit;Section2B Slot for lineofcredit Page;true;lineofcreditcomponent;;;
+
+INSERT_UPDATE SiteoneParagaraphComponent;$contentCV[unique=true];uid[unique=true];name;headline[lang=en];headline[lang=es];content[lang=en];content[lang=es];&componentRef
+;;lineofcreditheadingcomponent;lineOfCredit Heading Component;Business Resources;Recursos para Tu Negocio;"<p><a href=""/businessresource"">Introduction</a></p><p><strong>Line of Credit</strong></p><p><a href=""/soilamendment"">Soil Amendment Coverage Rates</a></p><p><a href=""/spreader-settings"">Determining Spreader Settings</a></p><p><a href=""/spreadersprayer"">Spreader &amp; Sprayer Calibration Settings</a></p><p><a href=""/greentech"">GreenTech Services</a></p>";"<p><a href=""/es/businessresource"">Introducci&oacute;n</a></p>
+<p><strong>L&iacute;nea de Cr&eacute;dito</strong></p>
+<p><a href=""/es/soilamendment"">Tasas de Cobertura en Mejora del Suelo</a></p>
+<p><a href=""/es/spreader-settings"">La Configuraci&oacute;n del Esparcidor</a></p>
+<p><a href=""/es/spreadersprayer"">Calibraci&oacute;n: Esparcidores y Pulverizadores</a></p>
+<p><a href=""/es/greentech"">Servicios de GreenTech</a></p>";lineofcreditheadingcomponent
+;;lineofcreditcomponent;lineOfCredit Paragraph;Open Line of Credit;1. Línea de Crédito Interno con SiteOne Landscape Supply;"<div>In-House Line of Credit through SiteOne Landscape Supply</div><div>The in-house line of credit can be used to purchase all of your landscape supplies from SiteOne Landscape Supply. Approved accounts will receive net terms set on individual purchases and paid by invoice. Standard terms are Net 15th Prox; invoices are generated nightly and e-mailed to your company for processing. We will help you set up job lines and most any other special needs for mid to large-size contractors.</div></br><div>Click Below to Access the Credit App</div><div><a href=""https://cus.bectran.com/customer/regis/login.jsf;jsessionid=AEC3311BA01F0FA97965EA0F5060D729?dswid=9555&gId=2968&linkCode=OUbvP1985I36Xc2968hyrR4"" target=""_blank"">> Credit Application</a></div>";"<div>In-House Line of Credit through SiteOne Landscape Supply</div><div>The in-house line of credit is an exclusive benefit of being a valued partner of SiteOne. Because here, you’re more than just a customer. It can be used to purchase all your landscape supplies from SiteOne. Approved accounts will receive net terms set on individual purchases and paid by invoice. Standard terms are Net 15th Prox; invoices are generated nightly and emailed to your company for processing. We will help you set up job lines and most any other special needs for mid to large-size contractors.</div></br><div>Click Below to Access the Credit App</div><div><a href=""https://cus.bectran.com/customer/regis/login.jsf;jsessionid=AEC3311BA01F0FA97965EA0F5060D729?dswid=9555&gId=2968&linkCode=OUbvP1985I36Xc2968hyrR4"" target=""_blank"">></a>Credit Application</div>";lineofcreditcomponent
+
+### Open Line Of Credit Page[END] ###
+
+
+### Business Resources Page [Start] ####
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='businessresources'];contentSlot(uid,$contentCV)[unique=true];;;
+;;Section2A-businessresources;Section2A;;Section2ASlot-businessresources;;;
+;;Section2B-businessresources;Section2B;;Section2BSlot-businessresources;;;
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef);;;
+;;Section2ASlot-businessresources;Section2A Slot for businessresources Page;true;businessresourcesheadingcomponent;;;
+;;Section2BSlot-businessresources;Section2B Slot for businessresources Page;true;businessResourcesParagraphComponent1;;;
+
+INSERT_UPDATE SiteoneParagaraphComponent;$contentCV[unique=true];uid[unique=true];name;headline[lang=en];headline[lang=es];content[lang=en];content[lang=es];&componentRef
+;;businessresourcesheadingcomponent;businessresources Heading Component;Business Resources;Recursos para Tu Negocio;"<p><strong>Introduction</a></strong><p><a href=""/openlineofcredit"">Line of Credit</a></p><p><a href=""/soilamendment"">Soil Amendment Coverage Rates</a></p><p><a href=""/spreader-settings"">Determining Spreader Settings</a></p><p><a href=""/spreadersprayer"">Spreader &amp; Sprayer Calibration Settings</a></p><p><a href=""/greentech"">GreenTech Services</a></p>";"<p><a href=""/es/businessresource"">Introducci&oacute;n</a></p>
+<p><strong>L&iacute;nea de Cr&eacute;dito</strong></p>
+<p><a href=""/es/soilamendment"">Tasas de Cobertura en Mejora del Suelo</a></p>
+<p><a href=""/es/spreader-settings"">La Configuraci&oacute;n del Esparcidor</a></p>
+<p><a href=""/es/spreadersprayer"">Calibraci&oacute;n: Esparcidores y Pulverizadores</a></p>
+<p><a href=""/es/greentech"">Servicios de GreenTech</a></p>";businessresourcesheadingcomponent
+;;businessResourcesParagraphComponent1;businessResources Paragraph1;With You When the Going Gets Rough;A tu Lado Cuando el Camino se Ponga Difícil;"<div><div>High expectations. Unforgiving conditions. Relentless schedules. There&rsquo;s no industry quite like ours. And there&rsquo;s no business quite like yours.</div><div>&nbsp;</div><div>At SiteOne Landscape Supply, we&rsquo;re here to support you with solutions, tools and expertise that can make your job a little easier&mdash;and help pave your path to success. This section offers tips for on-the-job problems and business management solutions, plus details about exclusive programs designed to strengthen our partnership and fuel your profitability:</div><div>&nbsp;</div><ul><li><a href=""/openlineofcredit"">Opening a line of credit<br /><br type=""_moz"" /></a></li><li>Calculating <a href=""/soilamendment"">soil amendment coverage</a>&nbsp;<br />&nbsp;</li><li>Properly <a href=""/spreadersprayer"">calibrating your spreaders</a><br />&nbsp;</li><li>Delivering the latest innovations with <a href=""/greentech"">GreenTech Services</a>&nbsp;</li></ul><p><br />We strive to provide you with the solutions you need to get the job done. Please <a href=""/contactus"">let us know</a> if there is anything you don't already see here that you'd like us to cover.</p><div>&nbsp;</div></div><p>&nbsp;</p>";"<div><div>Altas expectativas. Condiciones que no perdonan. Horarios implacables.  No hay industria como la nuestra y seguro no hay negocio como el tuyo.</div> <div>&nbsp;</div> <div>En SiteOne Landscape Supply estamos para apoyarte con soluciones, herramientas y nuestra experiencia para hacer tu trabajo un poco m&aacute;s f&aacute;cil -y de paso ayudarte a forjar tu camino al &eacute;xito. Esta secci&oacute;n te da consejos para afrontar problemas que siempre ocurren en el trabajo, soluciones sobre la administraci&oacute;n del negocio, y programas exclusivos dise&ntilde;ados para fortalecer nuestra relaci&oacute;n y mejorar tu rentabilidad.</div> <div>&nbsp;</div> <ul>     <li><a href=""/es/openlineofcredit"">Abrir una l&iacute;nea de cr&eacute;dito <br />     <br type=""_moz"" />     </a></li>     <li>Calcular <a href=""/es/soilamendment"">Cobertura de Mejora del Suelo</a>&nbsp;<br />     &nbsp;</li>     <li>Calibraci&oacute;n   <a href=""/es/spreadersprayer"">adecuada de tus esparcidores</a><br />     &nbsp;</li>     <li>Entregando las &Uacute;ltimas innovaciones con los  <a href=""/es/greentech"">Servicios GreenTech</a>&nbsp;</li> </ul> <p><br /> Nos esforzamos en darte las soluciones que necesitas para hacer bien tu trabajo. Por favor    <a href=""/es/contactus"">haznos saber</a> si hay alg&uacute;n tema que no encuentres aqu&iacute; y que consideres debamos tener en cuenta para desarrollar.</p> <div>&nbsp;</div></div> <p>&nbsp;</p>";businessResourcesParagraphComponent1
+### Business Resources Page[END] ###
+
+##Project Credit Line Page[Start]##
+UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);label;defaultPage[default='true'];approvalStatus(code)[default='approved'];homepage[default='false'];navigationNodeList(uid,$contentCV)
+#;;joblinecredit;PROJECT CREDIT LINE;SiteOneCAContentPageTemplate;/joblinecredit;;;;
+
+INSERT_UPDATE SiteonePageTitleBannerComponent;$contentCV[unique=true];uid[unique=true];name;headline;&componentRef
+;;joblinecreditTitleBannerComponent;Project Credit Line Page Title Component;;joblinecreditTitleBannerComponent
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='joblinecredit'];contentSlot(uid,$contentCV)[unique=true];;;
+;;Section3-joblinecredit;Section3;;Section3Slot-joblinecredit;;;
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef);;;
+;;Section3Slot-joblinecredit;Section3 Slot for joblinecredit Page;true;joblinecreditTitleBannerComponent;;;
+##Project Credit Line Page[END]##
+
+##Greentech Page[Start]##
+
+UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);label;defaultPage[default='true'];approvalStatus(code)[default='approved'];homepage[default='false'];navigationNodeList(uid,$contentCV)
+;;greentech;GreenTech Services: Solar, Sustainable Irrigation Technology;SiteOneCAContentPageTemplate;/greentech;;;;
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='greentech'];contentSlot(uid,$contentCV)[unique=true];;;
+;;Section2A-greentech;Section2A;;Section2ASlot-greentech;;;
+;;Section2B-greentech;Section2B;;Section2BSlot-greentech;;;
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef);;;
+;;Section2ASlot-greentech;Section2A Slot for greentech Page;true;greentechheadingcomponent;;;
+;;Section2BSlot-greentech;Section2B Slot for greentech Page;true;greentechcomponent1;;;
+
+INSERT_UPDATE SiteoneParagaraphComponent;$contentCV[unique=true];uid[unique=true];name;headline[lang=en];headline[lang=es];content[lang=en];content[lang=es];&componentRef
+;;greentechheadingcomponent;lineOfCredit Heading Component;Business Resources;Recursos para Tu Negocio;"<p><a href=""/businessresource"">Introduction</a></p><p><a href=""/openlineofcredit"">Line of Credit</a></p><p><a href=""/spreader-settings"">Determining Spreader Settings</a></p><p><a href=""/spreadersprayer"">Spreader &amp; Sprayer Calibration Settings</a></p><p><strong>GreenTech Services</strong></p>";"<p><a href=""/es/businessresource"">Introducci&oacute;n</a></p>
+<p><strong>L&iacute;nea de Cr&eacute;dito</strong></p>
+<p><a href=""/es/spreader-settings"">La Configuraci&oacute;n del Esparcidor</a></p>
+<p><a href=""/es/spreadersprayer"">Calibraci&oacute;n: Esparcidores y Pulverizadores</a></p>
+<p><a href=""/es/greentech"">Servicios de GreenTech</a></p>";greentechheadingcomponent
+;;greentechcomponent1;greentech Paragraph1;Designing, Building and Servicing the Irrigation Technologies of the Future;;;;greentechcomponent1
+
+##Greentech Page[END]##
+
+### Spreader Settingss Page[Start] ##
+UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);label;defaultPage[default='true'];approvalStatus(code)[default='approved'];homepage[default='false'];navigationNodeList(uid,$contentCV)
+;;spreader-settings;Determining Spreader Settings;SiteOneCAContentPageTemplate;/spreader-settings;;;;
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='spreader-settings'];contentSlot(uid,$contentCV)[unique=true];;;
+;;Section2A-spreader-settings;Section2A;;Section2ASlot-spreader-settings;;;
+;;Section2B-spreader-settings;Section2B;;Section2BSlot-spreader-settings;;;
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef);;;
+;;Section2ASlot-spreader-settings;Section2A Slot for spreader-settings Page;true;spreader-settingsheadingcomponent;;;
+;;Section2BSlot-spreader-settings;Section2B Slot for spreader-settings Page;true;spreader-settingscomponent1;;;
+
+INSERT_UPDATE SiteoneParagaraphComponent;$contentCV[unique=true];uid[unique=true];name;headline[lang=en];headline[lang=es];content[lang=en];content[lang=es];&componentRef
+;;spreader-settingsheadingcomponent;spreader-settings Heading Component;Business Resources;Recursos para Tu Negocio;"<p><a href=""/businessresource"">Introduction</a></p><p><a href=""/openlineofcredit"">Line of Credit</a></p><p><a href=""/spreader-settings"">Determining Spreader Settings</a></p><p><a href=""/spreadersprayer"">Spreader &amp; Sprayer Calibration Settings</a></p><p><strong>GreenTech Services</strong></p>";"<p><a href=""/es/businessresource"">Introducci&oacute;n</a></p>
+<p><strong>L&iacute;nea de Cr&eacute;dito</strong></p>
+<p><a href=""/es/spreader-settings"">La Configuraci&oacute;n del Esparcidor</a></p>
+<p><a href=""/es/spreadersprayer"">Calibraci&oacute;n: Esparcidores y Pulverizadores</a></p>
+<p><a href=""/es/greentech"">Servicios de GreenTech</a></p>";spreader-settingsheadingcomponent
+;;spreader-settingscomponent1;spreader-settingscomponent1;Designing, Building and Servicing the Irrigation Technologies of the Future;;;;spreader-settingscomponent1
+
+#### Spreader Settingss Page[END] ###
+
+#### Spreader and Sprayer Calibration Page[Start] ###
+UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);label;defaultPage[default='true'];approvalStatus(code)[default='approved'];homepage[default='false'];navigationNodeList(uid,$contentCV)
+;;spreadersprayer;Spreader and Sprayer Calibration Settings;SiteOneCAContentPageTemplate;/spreadersprayer;;;;
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='spreadersprayer'];contentSlot(uid,$contentCV)[unique=true];;;
+;;Section3-spreadersprayer;Section3;;Section3Slot-spreadersprayer;;;
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef);;;
+;;Section3Slot-spreadersprayer;Section3 Slot for spreadersprayer Page;true;;;;
+#### Spreader and Sprayer Calibration Page[END] ###
+
+#### Spreader and Sprayer Calibration Page[Start] ###
+UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);label;defaultPage[default='true'];approvalStatus(code)[default='approved'];homepage[default='false'];navigationNodeList(uid,$contentCV)
+;;bms;Business Management Solutions;SiteOneCAContentPageTemplate;/bms;;;;
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='bms'];contentSlot(uid,$contentCV)[unique=true];;;
+;;Section3-bms;Section3;;Section3Slot-bms;;;
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef);;;
+;;Section3Slot-bms;Section3 Slot for bms Page;true;;;;
+#### Spreader and Sprayer Calibration Page[END] ###
+
+### Accessibility statement page[START] ###
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&linkRef);&nodeRef
+;accessibilityStatementNavNode;;Accessibility Statement;CompanyServiceNavNode;;accessibilityStatementNavNode
+
+INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV);
+;AccessibilityStatementNavNodeEntry;;Accessibility Statement Navigation Node Entry;accessibilityStatementNavNode;AccessibilityStatementLink;
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;&linkRef;&componentRef;target(code)[default='sameWindow'];linkname
+;;AccessibilityStatementLink;Accessibility Statement Link;/accessibilityStatement;AccessibilityStatementLink;AccessibilityStatementLink;;Accessibility Statement
+
+INSERT_UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];name;title[lang=$lang];masterTemplate(uid,$contentCV);label;defaultPage[default='true'];approvalStatus(code)[default='approved'];homepage[default='false']
+;;accessibilityStatement;Accessibility Statement;Accessibility Statement;SiteOneCAContentPageTemplate;/accessibilityStatement;
+
+INSERT_UPDATE SiteonePageTitleBannerComponent;$contentCV[unique=true];uid[unique=true];name;headline[lang=$lang];content[lang=$lang];$picture[lang=$lang];&componentRef
+;;AccessibilityStatementtitlebannercomponent;Accessibility Statement Title Banner Component;Web Accessibility Statement;;;AccessibilityStatementtitlebannercomponent
+
+INSERT_UPDATE SiteoneParagaraphComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef;content[lang=$lang];
+;;AccessibilityStatementParagraphComponent1;Accessibility Statement Paragraph Component1;AccessibilityStatementParagraphComponent1;"<p><div><h3>General</h3></div><div>SiteOne cares about all our customers and is committed to facilitating and improving the accessibility and usability of its website, www.siteone.ca, ensuring that our website services and content are accessible to people with disabilities including, but not limited to users of screen-reader technology. To accomplish this, SiteOne has partnered with UsableNet, a leading web accessibility consultant, by implementing its technology that will enable and maintain accessibility in-line with the Web Content Accessibility Guidelines (WCAG), which also brings the website into conformance with similar regulations in the United States, United Kingdom, the European Union and elsewhere around the world.</div><div></div><div>Testing has been conducted using automated accessibility testing tools and by users of screen readers, and issues discovered have been remediated. To activate accessibility for all features and functions on the website, please use the easy-to-find ""Enable Accessibility"" link in the top-left corner.</div><div><h3>Disclaimer</h3></div><div>Please be aware that our efforts to maintain accessibility and usability are ongoing with UsableNet monitoring the website and making accessibility updates when needed. While we strive to make the website as accessible as possible, some issues may be encountered by different assistive technology as the range of assistive technology is wide and varied. We appreciate your understanding.</div><div><h3>Contact Us</h3></div><div>If you have specific questions or concerns about the accessibility of any web page on the website, please contact us by email at customersupport@ec.siteone.com or by phone at +1-800-748-3663. If you do encounter an accessibility issue, please be sure to specify the web page and nature of the issue, and we will make all reasonable efforts to make that page, or the information contained therein accessible for you. Thanks for visiting.</div></p>";
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='accessibilityStatement'];contentSlot(uid,$contentCV)[unique=true];;;
+;;Section1-accessibilityStatement;Section1;accessibilityStatement;Section1Slot-accessibilityStatement;;;
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef)
+;;Section1Slot-accessibilityStatement;Section 1 Accessibility Statement Slot;true;AccessibilityStatementtitlebannercomponent,AccessibilityStatementParagraphComponent1
+
+### Accessibility statement page[END] ###
+
+### Homeowner page [START] ###
+INSERT_UPDATE PageTemplate;$contentCV[unique=true];uid[unique=true];name;frontendTemplateName;restrictedPageTypes(code);active[default=true]
+;;HomeOwnerPageTemplate;Home Owner Page Template;homeowner/homeOwnerPage;ContentPage;false;
+
+
+UPDATE PageTemplate;$contentCV[unique=true];uid[unique=true];velocityTemplate[translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+;;HomeOwnerPageTemplate          ;$jarResourceCms/structure-view/structure_HomeOwnerPageTemplate.vm
+
+INSERT_UPDATE  ContentPage;$contentCV[unique=true];uid[unique=true];name;title[lang=$lang];masterTemplate(uid,$contentCV);label;defaultPage[default='true'];approvalStatus(code)[default='approved'];homepage[default='false']
+;;homeOwnerPageForCanada;Home Owner Page;Home Owner;HomeOwnerPageTemplate;homeOwnerPageForCanada;
+;;homeOwnerSuccess;Home Owner Success Page;Home Owner Success;HomeOwnerPageTemplate;homeOwnerSuccess;
+
+INSERT_UPDATE HomeOwnerComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef
+;;homeOwnerComponent;Home Owner Component;homeOwnerComponent
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef)
+;;StaticContent-homeOwnerPageForCanada;Home Owners static slot;true;bluePrintComp,importantConComp,questionsToAskComp
+;;CustInfo-homeOwnerPageForCanada;Customer info slot;true;homeOwnerComponent,otherMessageComp
+;;StaticContent-HomeOwnerSuccessful;Home Owners Request Sent slot;true;mailSussessfulSentComp
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='homeOwnerPageForCanada'];contentSlot(uid,$contentCV)[unique=true]
+;;StaticContent-homeOwnerPageForCanada;BodyContent;;StaticContent-homeOwnerPageForCanada
+;;CustInfo-homeOwnerPageForCanada;CustInfo;;CustInfo-homeOwnerPageForCanada
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='homeOwnerSuccess'];contentSlot(uid,$contentCV)[unique=true]
+;;StaticContent-HomeOwnerSuccessful;BodyContent;;StaticContent-HomeOwnerSuccessful
+
+INSERT_UPDATE SiteoneParagaraphComponent;$contentCV[unique=true];uid[unique=true];name;headline;content;&componentRef
+;;bluePrintComp;Blue print component;Your Blueprint for Building a Great Landscape;"If you are considering landscape improvements or renovations, the first person you should talk to is a professional landscape contractor. Licensed and trained, the contractor is knowledgeable about local electrical and plumbing codes, and the installation of backflow prevention devices to protect your drinking water supply. They know and install professional-grade products, and can help you decide which irrigation, lighting or drainage system will work best on your site.";bluePrintComp
+;;importantConComp;Important Consideration;Important Considerations;"Before making recommendations, a professional contractor will review important factors: water source and pressure, soil type, planting materials, weather conditions and safety and security issues. The landscape contractor will also ensure projects are installed quickly, and with minimum disruption to existing plantings. They will explain any new systems to you and show you how everything works. Professionally installed, your new landscape features should operate efficiently.";importantConComp
+;;questionsToAskComp;Questions to Ask;Questions to Ask a Professional Contractor;"Professional contractors are glad to provide you with a list of satisfied homeowners they have worked for. The contractor will also encourage you to ask questions. Most homeowners want to know exactly what they will be getting. Here's some of what you should ask:<ul><li>Do you have a valid license/certification for <insert service name>?</li><li>Do you have proof of liability insurance?</li><li>What permits will be required?</li><li>What type of products will be used and why?</li><li>Is after-sale service provided?</li><li>What are the product or workmanship warranties?</li></ul>";questionsToAskComp
+;;otherMessageComp;Other Message Component;Other:;"<p><div>Ready to find a professional contractor in your area?</div><div>&nbsp</div><div>SiteOne works with the best professional contractors in your area every day. <a href=""https://qa1ca-www.sapv2.siteone.com/en/contactus"">Contact us</a> to request a referral.</div></p>";otherMessageComp
+;;mailSussessfulSentComp;mailSussessfulSentComp;;Thank you for your requesting assistance with selecting a contractor. We will be in touch with you shortly;mailSussessfulSentComp
+
+### Homeowner page [END] ###
+
+### Irrigation Design page [START] ###
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&linkRef);&nodeRef
+;IrrigationDesignNavNode;;Irrigation Design;ContractorServicesNavNode;IrrigationDesignLink;IrrigationDesignNavNode
+
+INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV);
+;IrrigationDesignNavNodeEntry;;IrrigationDesign Navigation Node Entry;IrrigationDesignNavNode;IrrigationDesignLink;
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;&linkRef;&componentRef;target(code)[default='sameWindow']
+;;IrrigationDesignLink;IrrigationDesign Link;/irrigationdesign;IrrigationDesignLink;IrrigationDesignLink;
+
+INSERT_UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];name;title[lang=$lang];masterTemplate(uid,$contentCV);label;defaultPage[default='true'];approvalStatus(code)[default='approved'];homepage[default='false']
+;;irrigationDesign;Irrigation Design;Irrigation Design;SiteOneCAContentPageTemplate;/irrigationdesign;
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='irrigationDesign'];contentSlot(uid,$contentCV)[unique=true];;;
+;;Section3-irrigationDesign;Section3;;Section3Slot-irrigationDesign;;;
+;;Section7A-irrigationDesign;Section7A;;Section7ASlot-irrigationDesign;;;
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef);;;
+;;Section3Slot-irrigationDesign;Section3 Slot for irrigationDesign Page;true;irrigationDesigntitlebannercomponent;;;
+;;Section7ASlot-irrigationDesign;Section7A Slot for irrigationDesign Page;true;irrigationDesigncomponent;;;
+
+INSERT_UPDATE SiteonePageTitleBannerComponent;$contentCV[unique=true];uid[unique=true];name;headline[lang=$lang];content[lang=$lang];$picture[lang=$lang];&componentRef
+;;irrigationDesigntitlebannercomponent;Irrigation Design Title Banner Component;Irrigation Design;;;irrigationDesigntitlebannercomponent
+
+INSERT_UPDATE SiteoneParagaraphComponent;$contentCV[unique=true];uid[unique=true];name;headline[lang=en];headline[lang=es];content[lang=$lang];&componentRef
+;;irrigationDesigncomponent;Irrigation Design Paragraph;The Irrigation Expertise You Need;The Irrigation Expertise You Need;"<p><div>Not only do we offer the irrigation components you need, but we also offer expertise to put them together into a complete system. Our irrigation design services can save you time, money and energy.</div><div></div> <div>AutoCad compliant, with certified irrigation designers on staff, SiteOne can work from your base drawings. We can provide you with an irrigation design created specifically for your clients` needs, and your requests.</div><div></div> <div>Are you a landscape architect with customers all over? We&#39ve got local site knowledge, plus a nationwide network of branch locations, and our contractor contacts can help you streamline requirements for your projects.</div><div></div> <div>To get started, simply contact our irrigation design team. Please include any specific questions you may have regarding our services, your contact information and any details about your project that you&#39d like to share.</div><div></div> <div>Our irrigation design services are only available to SiteOne Partners Program members. To learn more about our Partners Program, <a _fcksavedurl=""/en/partnersprogram"" href=""/en/partnersprogram"">click here</a>.</div></p>";irrigationDesigncomponent
+
+### Irrigation Design page [END] ###
+
+### Pick Up In Branch page [START] ###
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&linkRef);&nodeRef
+;pickup-in-branchNavNode;;Pick Up In Branch;CompanyServiceNavNode;;pickup-in-branchNavNode
+
+INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV);
+;pickup-in-branchNavNodeEntry;;Pick Up In Branch Navigation Node Entry;pickup-in-branchNavNode;pickup-in-branchLink;
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;&linkRef;&componentRef;target(code)[default='sameWindow'];linkname
+;;pickup-in-branchLink;Pick Up In Branch Link;/pick-up-in-branch;pickup-in-branchLink;pickup-in-branchLink;;Pick Up In Branch
+
+INSERT_UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];name;title[lang=$lang];masterTemplate(uid,$contentCV);label;defaultPage[default='true'];approvalStatus(code)[default='approved'];homepage[default='false']
+;;pickup-in-branch;Pick Up In Branch;Pick Up In Branch;SiteOneCAContentPageTemplate;/pick-up-in-branch;
+
+### Pick Up In Branch page [END] ###
+
+### Request Online Account page [START] ###
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&linkRef);&nodeRef
+;RequestAnOnlineAccountNavNode;;Request An Online Account;CompanyServiceNavNode;;RequestAnOnlineAccountNavNode
+
+INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV);
+;RequestAnOnlineAccountNavNodeEntry;;RequestAnOnlineAccount Navigation Node Entry;RequestAnOnlineAccountNavNode;RequestAnOnlineAccountLink;
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;&linkRef;&componentRef;target(code)[default='sameWindow']
+;;RequestAnOnlineAccountLink;RequestAnOnlineAccount Link;/online;RequestAnOnlineAccountLink;RequestAnOnlineAccountLink;
+
+INSERT_UPDATE PageTemplate;$contentCV[unique=true];uid[unique=true];name;frontendTemplateName;restrictedPageTypes(code);active[default=true]
+;;SiteOneCAContentPageTemplate;SiteOne CA Content Page  Template;layout/siteOneContentLayout;ContentPage
+
+# Add Velocity templates that are in the CMS Cockpit. These give a better layout for editing pages
+# The FileLoaderValueTranslator loads a File into a String property. The templates could also be inserted in-line in this file.
+UPDATE PageTemplate;$contentCV[unique=true];uid[unique=true];velocityTemplate[translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+;;SiteOneCAContentPageTemplate ;$jarResourceCms/structure-view/siteonestructure_siteonecaContentPageTemplate.vm
+
+INSERT_UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];name;title[lang=$lang];masterTemplate(uid,$contentCV);label;defaultPage[default='true'];approvalStatus(code)[default='approved'];homepage[default='false']
+;;requestonlineaccount;Create A SiteOne.ca Account;Create A SiteOne.ca Account;SiteOneCAContentPageTemplate;/online;
+
+INSERT_UPDATE SiteonePageTitleBannerComponent;$contentCV[unique=true];uid[unique=true];name;headline[lang=$lang];content[lang=$lang];$picture[lang=$lang];&componentRef
+;;onlineaccounttitlebannercomponent;Online Account Title Banner Component;;;;onlineaccounttitlebannercomponent
+
+INSERT_UPDATE SiteoneParagaraphComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef;headline[lang=$lang];content[lang=$lang];
+;;onlineaccountcomponent1;online account Paragraph Component1;onlineaccountcomponent1;Create an Account Today;By signing up for a free SiteOne.ca account, you can get unlimited access to online ordering, personalized pricing and more—all from any smart phone or tablet. It’s a great option for growing your business, and it’s one more reason the industry’s top pros choose SiteOne. Create an account today for exclusive benefits.;
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='requestonlineaccount'];contentSlot(uid,$contentCV)[unique=true];;;
+;;Section3-requestonlineaccount;Section3;;Section3Slot-requestonlineaccount;;;
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef);;;
+;;Section3Slot-requestonlineaccount;Section3 Slot for requestonlineaccountPage;true;onlineaccounttitlebannercomponent,onlineaccountcomponent1,RequestOnlineAccountMasthead,RequestOnlineAccountCSS;;;
+
+
+
+INSERT_UPDATE CMSParagraphComponent;$contentCV[unique=true];uid[unique=true];name;content[lang=$lang];&componentRef
+;;RequestOnlineAccountMasthead;Request Online Account Masthead;"<div class=""wrap"">
+<div class=""row"">
+<div class=""column100"" style=""padding-top: 15px;"">
+<h1 class=""gray-heading"" style=""text-align: center;"">
+<p class=""section-title"" style=""text-align: center;"">
+Increase Efficiency in Seconds with SiteOne.ca
+</p>
+</h1>
+</div>
+</div>
+</div>
+<div class=""wrap"">
+<div class=""row"">
+<div class=""column33"" style=""padding: 30px 65px 30px 65px;"">
+<center>
+<img src=""/medias/sys_master/root/h7c/hff/9179547729950/arborgold-icon-sales/arborgold-icon-sales.png"" style=""padding-bottom: 10px;"" width=""90px;"" />
+<p class=""support"">Check pricing and inventory</p>
+<p>See your personalized price and what your local branch has in stock.</p>
+</center>
+</div>
+
+<div class=""column33"" style=""padding: 30px 65px 30px 65px;"">
+<center>
+<img src=""/medias/sys_master/root/h10/hd2/9091706257438/bopis-cart.png"" style=""padding-bottom: 10px;"" width=""90px;"" />
+<p class=""support"">Shop 50,000+ items anytime</p>
+<p>Access our full catalog of products from any device 24/7.</p>
+</center>
+</div>
+
+<div class=""column33"" style=""padding: 30px 65px 30px 65px;"">
+<center>
+<img src=""/medias/sys_master/root/hda/h55/9055427657758/BOL-eWallet-icon.png"" style=""padding-bottom: 10px;"" width=""90px;"" />
+<p class=""support"">Place orders from anywhere</p>
+<p>Order online for in-store pickup or job site delivery.</p>
+</center>
+</div>
+
+</div>
+</div>";RequestOnlineAccountMasthead;
+;;RequestOnlineAccountCSS;Request Online Account CSS;"<div class=""wrap"">
+<div class=""row"">
+<div style=""padding: 0px 20px;"">
+<p style=""font-size: 10pt; line-height: 13pt; color: #999999; width: 100%;"">
+*Prices may vary from branch to branch and online. Branch is not responsible for the errors or omissions in pricing and quantity. Suppliers of the products listed on this website are subject to change at any time. While the individuals and entities responsible for this catalog attempt toprovide accurate supplier information, for these reasons and others, the suppliers noted may not be the supplier of the product ultimately sold by SiteOne or distributors of products.</p>
+</div>
+</div>
+</div>";RequestOnlineAccountCSS;
+
+### Request Online Account page [END] ###
+
+### Returns Page [START] ###
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&linkRef);&nodeRef
+;returnsNavNode;;Returns;CompanyServiceNavNode;;returnsNavNode
+
+INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV);
+;returnsNavNodeEntry;;Returns Navigation Node Entry;returnsNavNode;returnsLink;
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;&linkRef;&componentRef;target(code)[default='sameWindow'];linkname
+;;returnsLink;Returns Link;/returns;returnsLink;returnsLink;;Returns
+
+INSERT_UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];name;title[lang=$lang];masterTemplate(uid,$contentCV);label;defaultPage[default='true'];approvalStatus(code)[default='approved'];homepage[default='false']
+;;returns;Returns;Returns;SiteOneCAContentPageTemplate;/returns;
+
+INSERT_UPDATE SiteonePageTitleBannerComponent;$contentCV[unique=true];uid[unique=true];name;headline[lang=$lang];content[lang=$lang];$picture[lang=$lang];&componentRef
+;;returnstitlebannercomponent;Returns Title Banner Component;;;;returnstitlebannercomponent
+
+INSERT_UPDATE SiteoneParagaraphComponent;$contentCV[unique=true];uid[unique=true];name;headline[lang=en];headline[lang=es];content[lang=$lang];&componentRef
+;;returnsParagraphComponent1;Returns Paragraph Component1;Easy Branch Returns;Easy Branch Returns;"<p><div>Online purchases may be returned to any SiteOne Branch within 30 days of purchase, with payment receipt. If your item arrives damaged, doesn&#39;t match the listing description, or you’ve changed your mind and no longer need the item, you may return it to any SiteOne Branch for a full refund. The return must be unused and in sellable condition, with the exception of carrier damage. Special Order items may incur a 25% restocking fee.<br /> <br />Please contact Customer Support at <a class=""tel-phone"" href=""tel:8007483663"">1-800-SITEONE</a> to learn more.</div><div><hr></hr></div><div><small>Prices may vary from branch to branch and online. Branch is not responsible for the errors or omissions in pricing and quantity. Suppliers of the products listed on this Web site are subject to change at any time. While the individuals and entities responsible for this catalog attempt to provide accurate supplier information, for these reasons and others, the suppliers noted may not be the supplier of the product ultimately sold by SiteOne or distributors of products.</small></div></p>";returnsParagraphComponent1
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='returns'];contentSlot(uid,$contentCV)[unique=true];;;
+;;Section3-returns;Section3;returns;Section3Slot-returns;;;
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef)
+;;Section3Slot-returns;Section 3 Accessibility Statement Slot;true;returnstitlebannercomponent,returnsParagraphComponent1
+
+### Returns Page [END] ###
+
+### Shop By Industry Children node pages [START] ###
+
+INSERT_UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];name;title[lang=$lang];masterTemplate(uid,$contentCV);label;defaultPage[default='true'];approvalStatus(code)[default='approved'];homepage[default='false']
+;;snowiceremoval;Snow & Ice Removal;Snow Equipment and Parts;SiteOneCAContentPageTemplate;/snow-equipment-and-parts;
+;;sportsfield;Sports Field;Sports Turf Solutions from SiteOne;SiteOneCAContentPageTemplate;/sportsturf;
+;;pestmanagement;Pest Management;Pest Control Solutions;SiteOneCAContentPageTemplate;/pestmanagement;
+;;golf;Golf;SiteOne Golf;SiteOneCAContentPageTemplate;/golfsales;
+;;bulkproducts;Bulk Products;Bulk Natural Materials;SiteOneCAContentPageTemplate;/bulk;
+#;;commercialirrigation;Commercial Irrigation;SiteOneCAContentPageTemplate;/commercialirrigation
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=$lang]
+;;CommIrrigationLink                                 ;"Commercial Irrigation";
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;&linkRef;&componentRef;target(code)[default='sameWindow'];external;
+;;CommIrrigationLink;CommIrrigation Link;https://greentech.siteone.com/;CommIrrigationLink;CommIrrigationLink;newWindow;true
+
+INSERT_UPDATE GlobalProductNavigationNode;$contentCV[unique=true];uid[unique=true];name;parent(uid, $contentCV);category(code, $productCV);&nodeRef;sequenceNumber;url;links(&linkRef)
+;;ShopByIndustryNavNode;ShopByIndustryNavNode;CategoriesNavNode;SH18;ShopByIndustryNavNode;9;
+;;GolfNavNode;GolfNavNode;ShopByIndustryNavNode;SH1811;GolfNavNode;1;/en/golfsales
+;;SportsFieldNavNode;SportsFieldNavNode;ShopByIndustryNavNode;SH1812;SportsFieldNavNode;2;/en/sportsturf
+;;PestManagementNavNode;PestManagementNavNode;ShopByIndustryNavNode;SH1813;PestManagementNavNode;3;/en/pestmanagement
+;;SnowandIceRemovalNavNode;SnowandIceRemovalNavNode;ShopByIndustryNavNode;SH1814;SnowandIceRemovalNavNode;4;/en/snow-equipment-and-parts
+;;CommIrrigationNavNode;CommIrrigationNavNode;ShopByIndustryNavNode;SH1816;CommIrrigationNavNode;6;;CommIrrigationLink
+;;BulkProductsNavNode;BulkProductsNavNode;ShopByIndustryNavNode;SH1815;BulkProductsNavNode;5;/en/bulk
+
+### Shop By Industry Children node pages [END] ###

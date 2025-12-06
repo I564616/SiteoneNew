@@ -1,0 +1,87 @@
+# -----------------------------------------------------------------------
+# [y] hybris Platform
+#
+# Copyright (c) 2017 SAP SE or an SAP affiliate company.  All rights reserved.
+#
+# This software is the confidential and proprietary information of SAP
+# ("Confidential Information"). You shall not disclose such Confidential
+# Information and shall use it only in accordance with the terms of the
+# license agreement you entered into with SAP.
+# -----------------------------------------------------------------------
+#
+# Import the Solr configuration for the SiteOne store
+#
+$contentCatalog=siteoneContentCatalog
+$productCatalog=siteoneProductCatalog
+$catalogVersions=catalogVersions(catalog(id),version);
+$serverConfigName=siteoneSolrServerConfig
+$indexConfigName=siteoneSolrIndexConfig
+$searchConfigName=siteoneStorePageSize
+$searchIndexNamePrefix=siteone
+$solrIndexedType=siteoneStoreType
+$indexBaseSite=siteone
+$indexLanguages=en
+$indexCurrencies=USD
+
+$solrStoreSearchIndexedType=siteoneStoreSearchType
+$storeSearchConfigName=storeSearchIndex
+$storeSearchConfigDescription=Store Search Solr Index
+
+# Create the faceted search configuration
+INSERT_UPDATE SolrSearchConfig;description[unique=true];pageSize
+;$searchConfigName;24
+
+
+
+#
+# Setup the indexed types, their properties, and the update queries
+#
+
+# Declare the indexed type Store
+INSERT_UPDATE SolrIndexedType;identifier[unique=true];indexName;type(code);variant;sorts(&sortRefID)
+;$solrStoreSearchIndexedType;$storeSearchConfigName;PointOfService;false;sortRef11
+
+INSERT_UPDATE SolrFacetSearchConfig;name[unique=true];description;indexNamePrefix;languages(isocode);currencies(isocode);solrServerConfig(name);solrSearchConfig(description);solrIndexConfig(name);solrIndexedTypes(identifier);enabledLanguageFallbackMechanism;$catalogVersions
+;$storeSearchConfigName;$storeSearchConfigDescription;$searchIndexNamePrefix;$indexLanguages;$indexCurrencies;$serverConfigName;$searchConfigName;$indexConfigName;$solrStoreSearchIndexedType;true;$contentCatalog:Online,$contentCatalog:Staged
+
+# Non-facet properties
+INSERT_UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true];name[unique=true];type(code);sortableType(code);currency[default=false];localized[default=false];multiValue[default=false];useForSpellchecking[default=false];useForAutocomplete[default=false];fieldValueProvider                               ;valueProviderParameter;ftsPhraseQuery[default=false];ftsPhraseQueryBoost;ftsQuery[default=false];ftsQueryBoost;ftsFuzzyQuery[default=false];ftsFuzzyQueryBoost;ftsWildcardQuery[default=false];ftsWildcardQueryType(code)[default=POSTFIX];ftsWildcardQueryBoost;ftsWildcardQueryMinTermLength
+                                 ;$solrStoreSearchIndexedType             ; soStoreId       ;string    ;                  ;                       ;                        ;                         ;false                             ;false                            ;springELValueProvider                            ;storeId               ;true                         ;                   ;true                   ;             ;true                        ;                  ;                               ;                                           ;                     ;
+                                 ;$solrStoreSearchIndexedType             ; soStoreName     ;string    ;                  ;                       ;                        ;                         ;false                             ;false                            ;springELValueProvider                            ;name                  ;true                         ;                   ;true                   ;             ;true                        ;                  ;                               ;                                           ;                     ;
+                                 ;$solrStoreSearchIndexedType             ; soLattitude     ;string    ;                  ;                       ;                        ;                         ;false                             ;false                            ;springELValueProvider                            ;latitude              ;true                         ;                   ;true                   ;             ;true                        ;                  ;                               ;                                           ;                     ;
+                                 ;$solrStoreSearchIndexedType             ; soLongitude     ;string    ;                  ;                       ;                        ;                         ;false                             ;false                            ;springELValueProvider                            ;longitude             ;true                         ;                   ;true                   ;             ;true                        ;                  ;                               ;                                           ;                     ;
+                                 ;$solrStoreSearchIndexedType             ; soLatLong       ;string    ;                  ;                       ;                        ;                         ;false                             ;false                            ;siteoneStoreLatLongValueProvider                 ;                      ;true                         ;                   ;true                   ;             ;true                        ;                  ;                               ;                                           ;                     ;
+
+
+# Define the available sorts for Store
+INSERT_UPDATE SolrSort;&sortRefID;indexedType(identifier)[unique=true];code[unique=true];useBoost
+;sortRef11;$solrStoreSearchIndexedType;relevance;true
+
+# Define the available sorts for store
+INSERT_UPDATE SolrSortField;sort(indexedType(identifier),code)[unique=true];fieldName[unique=true];ascending[unique=true]
+;$solrStoreSearchIndexedType:relevance;score;false
+
+# Create the queries that will be used to extract data for Solr
+INSERT_UPDATE SolrIndexerQuery;solrIndexedType(identifier)[unique=true];identifier[unique=true];type(code);injectCurrentDate[default=true];injectCurrentTime[default=true];injectLastIndexTime[default=true];query;user(uid)
+;$solrStoreSearchIndexedType;$searchIndexNamePrefix-store-fullQuery;full;;;false;"select {pk} from {pointofservice} where {isactive}  = 1";anonymous
+;$solrStoreSearchIndexedType;$searchIndexNamePrefix-store-updateQuery;update;;;;"select {pk} from {pointofservice} where {isactive}  = 1 AND {modifiedtime} >=?lastIndexTime";anonymous
+;$solrStoreSearchIndexedType;$searchIndexNamePrefix-store-deleteQuery;delete;;;;"select {pk} from {pointofservice}";anonymous
+
+# Define the available sorts for store
+INSERT_UPDATE SolrSort;&sortRefID;indexedType(identifier)[unique=true];code[unique=true];useBoost
+;sortRef11;$solrStoreSearchIndexedType;relevance;true
+
+# Define the available sorts for store
+INSERT_UPDATE SolrSortField;sort(indexedType(identifier),code)[unique=true];fieldName[unique=true];ascending[unique=true]
+;$solrStoreSearchIndexedType:relevance;score;false
+
+UPDATE SolrFacetSearchConfig;name[unique=true]    ;listeners
+                            ;$storeSearchConfigName;siteOneStoreSearchListener
+
+# Create cronjob for the full storeSearchIndex
+INSERT_UPDATE SolrIndexerCronJob;code[unique=true]            ;job(code)     ;sessionLanguage(isocode);sessionCurrency(isocode);sessionUser(uid);indexerOperation(code);facetSearchConfig(name)
+                                ;full-storeSearchIndex-cronJob;solrIndexerJob;$indexLanguages         ;$indexCurrencies        ;anonymous       ;full                  ;storeSearchIndex
+
+# Create a trigger/schedule for full-storeSearchIndex-cronJob
+INSERT_UPDATE Trigger;cronJob(code)[unique=true]   ;cronExpression;relative;active;maxAcceptableDelay
+                    ;full-storeSearchIndex-cronJob;0 0 04 * * ?  ;false   ;true  ;-1

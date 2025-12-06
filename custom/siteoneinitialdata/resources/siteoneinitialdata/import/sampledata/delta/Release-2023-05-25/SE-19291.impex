@@ -1,0 +1,8 @@
+INSERT_UPDATE SiteOneFeatureSwitch;key[unique=true];longValue
+;QuotesFeatureSwitch;1033198_US,1426183_US,1942400_US,63724_US,1608411_US,28124_US
+
+INSERT_UPDATE SiteOneFeatureSwitch;key[unique=true];longValue
+;QuoteStartDate;2020-05-07T05:54:21.997Z
+
+INSERT_UPDATE SiteOneFeatureSwitch;key[unique=true];longValue
+;QuoteEndDate;2023-06-19T05:54:21.997Z

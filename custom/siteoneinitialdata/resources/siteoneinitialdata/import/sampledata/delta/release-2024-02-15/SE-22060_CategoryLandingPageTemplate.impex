@@ -1,0 +1,62 @@
+$contentCatalog=siteoneContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$productCatalog=siteoneProductCatalog
+$productCatalogName=SiteOne Product Catalog
+$productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Online'])[unique=true,default=$productCatalog:Online]
+# Import modulegen config properties into impex macros
+UPDATE GenericItem[processor=de.hybris.platform.commerceservices.impex.impl.ConfigPropertyImportProcessor];pk[unique=true]
+$jarResourceCms=$config-jarResourceCmsValue
+
+INSERT_UPDATE PageTemplate;$contentCV[unique=true];uid[unique=true];name;frontendTemplateName;restrictedPageTypes(code);active[default=true]
+;;CategoryLandingPageTemplate;product category;category/categoryLandingPage;ContentPage
+
+# Add Velocity templates that are in the CMS Cockpit. These give a better layout for editing pages
+# The FileLoaderValueTranslator loads a File into a String property. The templates could also be inserted in-line in this file.
+UPDATE PageTemplate;$contentCV[unique=true];uid[unique=true];velocityTemplate[translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+;;CategoryLandingPageTemplate      ;$jarResourceCms/structure-view/structure_categoryLandingPageTemplate.vm
+
+# Category Landing Page Template
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='CategoryLandingPageTemplate'];validComponentTypes(code);compTypeGroup(code)
+;SiteLogo;;;logo
+;HeaderLinks;;;headerlinks
+;SearchBox;;;searchbox
+;MiniCart;;;minicart
+;NavigationBar;;;navigation
+;CategoryBanner;;SiteOneCategoryBannerComponent
+;SectionA;;SiteOnePromotionalResponsiveBannerComponent;
+;Section2N;;SiteOneCuratedPLPHSProductComponent;wide
+;SectionB;;SiteOneFeatureProductComponent;
+;SectionC;;SiteOneBrandBannerComponent;
+;SectionD;;CMSParagraphComponent;
+;Footer;;;footer
+;TopHeaderSlot;;;wide
+;BottomHeaderSlot;;;wide
+;PlaceholderContentSlot;;;
+;GlobalMessage;;GlobalMessageCMSComponent
+;VerticalNavigation;;VerticalBarComponent
+
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='CategoryLandingPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;SiteLogo-CategoryLandingPage;SiteLogo;;SiteLogoSlot;true
+;;HomepageLink-CategoryLandingPage;HomepageNavLink;;HomepageNavLinkSlot;true
+;;MiniCart-CategoryLandingPage;MiniCart;;MiniCartSlot;true
+;;NavigationBar-CategoryLandingPage;NavigationBar;;NavigationBarSlot;true
+;;Footer-CategoryLandingPage;Footer;;FooterSlot;true
+;;HeaderLinks-CategoryLandingPage;HeaderLinks;;HeaderLinksSlot;true
+;;SearchBox-CategoryLandingPage;SearchBox;;SearchBoxSlot;true
+;;TopHeaderSlot-CategoryLandingPage;TopHeaderSlot;;TopHeaderSlot;true
+;;BottomHeaderSlot-CategoryLandingPage;BottomHeaderSlot;;BottomHeaderSlot;true
+;;PlaceholderContentSlot-CategoryLandingPage;PlaceholderContentSlot;;PlaceholderContentSlot;true
+;;GlobalMessage-CategoryLandingPage;GlobalMessage;;GlobalMessageSlot;true
+;;VerticalNavigation-CategoryLandingPage;VerticalNavigation;;VerticalNavigationSlot;true
+
+
+
+INSERT_UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);category(code,$productCV);label;defaultPage[default='true'];approvalStatus(code)[default='approved'];homepage[default='false']
+;;lightingCategoryLandingPage;Lighting Category;CategoryLandingPageTemplate;SH11;
+;;LandscapeSupplyCategoryLandingPage;Landscape Supply Category;CategoryLandingPageTemplate;SH12;
+;;AgronomicMaintenanceCategoryLandingPage;Agronomic Maintenance Category;CategoryLandingPageTemplate;SH13;
+;;IrrigationCategoryLandingPage;Irrigation Category;CategoryLandingPageTemplate;SH14;
+;;Hardscapes&OutdoorLivingCategoryLandingPage;Hardscapes & Outdoor Living Category;CategoryLandingPageTemplate;SH15;
+;;NurseryCategoryLandingPage;Nursery Category;CategoryLandingPageTemplate;SH16;
+;;ToolsEquipment&SafetyCategoryLandingPage;Tools, Equipment & Safety Category;CategoryLandingPageTemplate;SH17;

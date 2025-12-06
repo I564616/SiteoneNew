@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+ [y] hybris Platform
+
+ Copyright (c) 2017 SAP SE or an SAP affiliate company.  All rights reserved.
+
+ This software is the confidential and proprietary information of SAP
+ ("Confidential Information"). You shall not disclose such Confidential
+ Information and shall use it only in accordance with the terms of the
+ license agreement you entered into with SAP.
+-->
+<!--
+ All hybris buildcallbacks.xml macrodefinitions:
+ 
+ Build/Documentation
+ 
+	 before/after ant macro "clean"
+		 <macrodef name="siteoneintegration_before_clean"/>
+		 <macrodef name="siteoneintegration_after_clean"/>
+	 
+	 before/after ant macro "build"
+		 <macrodef name="siteoneintegration_before_build"/>
+		 <macrodef name="siteoneintegration_after_build"/>
+		 
+	 before/after ant macro "compile_core" - the core module of the extension
+		 <macrodef name="siteoneintegration_before_compile_core">
+		 <macrodef name="siteoneintegration_after_compile_core">
+	 
+	 before/after ant macro "compile_web" - the web module of the extension
+		 <macrodef name="siteoneintegration_before_compile_web" />
+		 <macrodef name="siteoneintegration_after_compile_web" />
+	 
+	 before/after ant macro "compile_hmc" - the hmc module of the extension
+		 <macrodef name="siteoneintegration_before_compile_hmc" />
+		 <macrodef name="siteoneintegration_after_compile_hmc" />
+ 
+ Preparing extension
+ 
+	 will be called in the beginning of the ant call and only once (also when using multiple 
+	 ant targets e.g. ant build yunittest)	
+		 <macrodef name="siteoneintegration_only_once_prepare"/>
+ 
+ Creating ear module/production
+ 
+	 before/after ant macro "ear"
+		 <macrodef name="siteoneintegration_before_ear"/>
+		 <macrodef name="siteoneintegration_after_ear"/>
+
+	 before/after ant macro "production" - for hybris server only
+		 <macrodef name="siteoneintegration_before_production" />
+		 <macrodef name="siteoneintegration_after_production" />
+ 
+ JUnit Test
+ 
+	 before/after ant macro "yunitinit" 
+		 <macrodef name="siteoneintegration_before_yunitinit" />
+		 <macrodef name="siteoneintegration_after_yunitinit" />
+	 
+	 before/after ant macro "yunit"
+		 <macrodef name="siteoneintegration_before_yunit" />
+		 <macrodef name="siteoneintegration_after_yunit" /> 
+		 
+ Distribution package
+ 
+ 	 before/after ant macro "dist" - internal target; only for use when platform is available in source code
+		 <macrodef name="siteoneintegration_after_dist"/>
+		 <macrodef name="siteoneintegration_before_dist"/>
+	 
+	 before/after ant macro "dist_copy" - internal target; only for use when platform is available in source code
+		 <macrodef name="siteoneintegration_before_dist_copy"/>
+		 <macrodef name="siteoneintegration_after_dist_copy"/>
+		  
+ 	 With these filters you can override the default extension filters defined in platform/resources/ant/dist/filtersets.xml
+ 	  	 <patternset id="extension.siteoneintegration.binary.filter">
+ 	  	  	 <patternset refid="extension.filter" />
+ 	  	  	 <exclude name="**/*-source.jar" />
+ 	  	 </patternset>
+ 	  	 <patternset id="extension.siteoneintegration.source.filter">
+ 	  	  	 <exclude name="**/bin/**" />
+ 	  	 </patternset>
+     With this filter you can decide what should be excluded from development zip.
+ 	  	 <patternset id="extension.siteoneintegration.devzip.filter">
+ 	  	 Include all files from extension.source.filter.
+ 	  	     <patternset refid="extension.source.filter" />
+         Exclude unwanted files.
+ 	  	  	 <exclude name="lib/exclude-me.jar" />
+ 	  	 </patternset>
+ 
+-->
+<project name="siteoneintegration_buildcallbacks">
+
+	<!-- 
+	    Called whenever 'ant ear' is used. this callback can be used to modify the content of the ear file
+	
+	     ${ear.path}: 			path to ear
+	 -->
+	<macrodef name="siteoneintegration_before_ear">
+		<sequential>
+
+			<!-- you can do anything before the EAR file is being packed -->
+
+		</sequential>
+	</macrodef>
+
+	<macrodef name="siteoneintegration_before_build">
+		<sequential>
+			<echo message="Path: ${ext.siteoneintegration.path}" />
+			<taskdef name="xjc" classname="com.sun.tools.xjc.XJCTask">
+				<classpath>
+					<fileset dir="${ext.siteoneintegration.path}" includes="*.jar" />
+					<fileset dir="${ext.core.path}/lib" includes="*.jar" />
+					<fileset dir="${platformhome}/resources/ant/lib" includes="*.jar" />
+				</classpath>
+			</taskdef>
+
+			<outofdate>
+				<sourcefiles>
+					<fileset file="${ext.siteoneintegration.path}/resources/wsdl/TotalPRO_ClientSignOn.wsdl"/>
+				</sourcefiles>
+				<targetfiles path="${ext.siteoneintegration.path}/gensrc/com/siteone/integration/webserviceclient/partnerssowsclient" />
+
+				<sequential>
+					<echo> ========= Generating JAXB files for Partner Program SSO ====== </echo>
+					<mkdir dir="${ext.siteoneintegration.path}/gensrc"/>
+
+					<xjc destdir="${ext.siteoneintegration.path}/gensrc" package="com.siteone.integration.webserviceclient.partnerssowsclient">
+						<arg value="-wsdl"/>
+						<arg value="${ext.siteoneintegration.path}/resources/wsdl/TotalPRO_ClientSignOn.wsdl"/>
+						<produces dir="${ext.siteoneintegration.path}/gensrc/com/siteone/integration/webserviceclient/partnerssowsclient">
+							<include name="*.java"/>
+						</produces>
+						<depends file="${ext.siteoneintegration.path}/resources/wsdl/TotalPRO_ClientSignOn.wsdl"/>
+					</xjc>
+				</sequential>
+			</outofdate>
+			
+			<outofdate>
+										<sourcefiles>
+											<fileset file="${ext.siteoneintegration.path}/resources/wsdl/vertex/CalculateTax90.wsdl"/>
+										</sourcefiles>
+										<targetfiles path="${ext.siteoneintegration.path}/gensrc/com/siteone/integration/webserviceclient/vertexclient" />
+
+										<sequential>
+											<echo> ========= Generating JAXB files for Tax calculation ====== </echo>
+											<mkdir dir="${ext.siteoneintegration.path}/gensrc"/>
+
+											<xjc destdir="${ext.siteoneintegration.path}/gensrc" package="com.siteone.integration.webserviceclient.vertexclient">
+												<arg value="-wsdl"/>
+												<arg value="${ext.siteoneintegration.path}/resources/wsdl/vertex/CalculateTax90.wsdl"/>
+												<produces dir="${ext.siteoneintegration.path}/gensrc/com/siteone/integration/webserviceclient/vertexclient">
+													<include name="*.java"/>
+												</produces>
+												<depends file="${ext.siteoneintegration.path}/resources/wsdl/vertex/CalculateTax90.wsdl"/>
+											</xjc>
+										</sequential>
+									</outofdate>
+						<outofdate>
+							<sourcefiles>
+								<fileset file="${ext.siteoneintegration.path}/resources/wsdl/cayan/CayanPayment.wsdl" />
+							</sourcefiles>
+							<targetfiles path="${ext.siteoneintegration.path}/gensrc/com/siteone/integration/webserviceclient/cayanclient" />
+
+							<sequential>
+								<echo> ========= Generating JAXB files for Cayan Integration ====== </echo>
+								<mkdir dir="${ext.siteoneintegration.path}/gensrc" />
+
+								<xjc destdir="${ext.siteoneintegration.path}/gensrc" package="com.siteone.integration.webserviceclient.cayanclient">
+									<arg value="-wsdl" />
+									<arg value="${ext.siteoneintegration.path}/resources/wsdl/cayan/CayanPayment.wsdl" />
+									<produces dir="${ext.siteoneintegration.path}/gensrc/com/siteone/integration/webserviceclient/cayanclient">
+										<include name="*.java" />
+									</produces>
+									<depends file="${ext.siteoneintegration.path}/resources/wsdl/cayan/CayanPayment.wsdl" />
+								</xjc>
+							</sequential>
+						</outofdate>
+						<outofdate>
+							<sourcefiles>
+								<fileset file="${ext.siteoneintegration.path}/resources/wsdl/cayan/CayanTransport.wsdl" />
+							</sourcefiles>
+							<targetfiles path="${ext.siteoneintegration.path}/gensrc/com/siteone/integration/webserviceclient/cayantransportclient" />
+
+							<sequential>
+								<echo> ========= Generating JAXB files for Cayan Integration ====== </echo>
+								<mkdir dir="${ext.siteoneintegration.path}/gensrc" />
+
+								<xjc destdir="${ext.siteoneintegration.path}/gensrc" package="com.siteone.integration.webserviceclient.cayantransportclient">
+									<arg value="-wsdl" />
+									<arg value="${ext.siteoneintegration.path}/resources/wsdl/cayan/CayanTransport.wsdl" />
+									<produces dir="${ext.siteoneintegration.path}/gensrc/com/siteone/integration/webserviceclient/cayantransportclient">
+										<include name="*.java" />
+									</produces>
+									<depends file="${ext.siteoneintegration.path}/resources/wsdl/cayan/CayanTransport.wsdl" />
+								</xjc>
+							</sequential>
+						</outofdate>
+		</sequential>
+	</macrodef>
+
+</project>

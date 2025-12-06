@@ -1,0 +1,47 @@
+#--------------------------Variant Product IntegrationObject-----------------------#
+
+INSERT_UPDATE IntegrationObject; code[unique = true]; integrationType(code)
+; SiteOneGenericVariantProduct; INBOUND
+ 
+INSERT_UPDATE IntegrationObjectItem; integrationObject(code)[unique = true]; code[unique = true]; type(code)
+; SiteOneGenericVariantProduct  ; GenericVariantProduct              ; GenericVariantProduct
+;SiteOneGenericVariantProduct;SiteOneOwnersManual ; SiteOneOwnersManual
+;SiteOneGenericVariantProduct;SiteOneInstallationInstructions ; SiteOneInstallationInstructions
+;SiteOneGenericVariantProduct;SiteOneTechnicalDrawing ; SiteOneTechnicalDrawing
+;SiteOneGenericVariantProduct;SiteOnePartsDiagram ; SiteOnePartsDiagram
+;SiteOneGenericVariantProduct;SiteOneWarrantyInformation ; SiteOneWarrantyInformation
+;SiteOneGenericVariantProduct;SiteOneDataSheet ; SiteOneDataSheet;
+
+INSERT_UPDATE IntegrationObjectItemAttribute; integrationObjectItem(integrationObject(code), code)[unique = true]; attributeName[unique = true]; attributeDescriptor(enclosingType(code), qualifier); returnIntegrationObjectItem(integrationObject(code), code); unique[default = false]
+; SiteOneGenericVariantProduct:SiteOneOwnersManual	; id     ; SiteOneOwnersManual:id	    ;; true	; 
+; SiteOneGenericVariantProduct:SiteOneOwnersManual	; mimetype  ; SiteOneOwnersManual:mimetype	;; true	; 
+; SiteOneGenericVariantProduct:SiteOneOwnersManual	; fullpath     ; SiteOneOwnersManual:fullpath	    ;; true	; 
+; SiteOneGenericVariantProduct:SiteOneOwnersManual	; priority  ; SiteOneOwnersManual:priority	;; true	; 
+
+; SiteOneGenericVariantProduct:SiteOneInstallationInstructions	; id     ; SiteOneInstallationInstructions:id	    ;; true	; 
+; SiteOneGenericVariantProduct:SiteOneInstallationInstructions	; mimetype  ; SiteOneInstallationInstructions:mimetype	;; true	; 
+; SiteOneGenericVariantProduct:SiteOneInstallationInstructions	; fullpath     ; SiteOneInstallationInstructions:fullpath	    ;; true	; 
+; SiteOneGenericVariantProduct:SiteOneInstallationInstructions	; priority  ; SiteOneInstallationInstructions:priority	;; true	;
+
+; SiteOneGenericVariantProduct:SiteOneTechnicalDrawing	; id     ; SiteOneTechnicalDrawing:id	    ;; true	; 
+; SiteOneGenericVariantProduct:SiteOneTechnicalDrawing	; mimetype  ; SiteOneTechnicalDrawing:mimetype	;; true	; 
+; SiteOneGenericVariantProduct:SiteOneTechnicalDrawing	; fullpath     ; SiteOneTechnicalDrawing:fullpath	    ;; true	; 
+; SiteOneGenericVariantProduct:SiteOneTechnicalDrawing	; priority  ; SiteOneTechnicalDrawing:priority	;; true	;
+
+; SiteOneGenericVariantProduct:SiteOnePartsDiagram	; id     ; SiteOnePartsDiagram:id	    ;; true	; 
+; SiteOneGenericVariantProduct:SiteOnePartsDiagram	; mimetype  ; SiteOnePartsDiagram:mimetype	;; true	; 
+; SiteOneGenericVariantProduct:SiteOnePartsDiagram	; fullpath     ; SiteOnePartsDiagram:fullpath	    ;; true	; 
+; SiteOneGenericVariantProduct:SiteOnePartsDiagram	; priority  ; SiteOnePartsDiagram:priority	;; true	;
+
+; SiteOneGenericVariantProduct:SiteOneWarrantyInformation	; id     ; SiteOneWarrantyInformation:id	    ;; true	; 
+; SiteOneGenericVariantProduct:SiteOneWarrantyInformation	; mimetype  ; SiteOneWarrantyInformation:mimetype	;; true	; 
+; SiteOneGenericVariantProduct:SiteOneWarrantyInformation	; fullpath     ; SiteOneWarrantyInformation:fullpath	    ;; true	; 
+; SiteOneGenericVariantProduct:SiteOneWarrantyInformation	; priority  ; SiteOneWarrantyInformation:priority	;; true	;
+
+; SiteOneGenericVariantProduct:SiteOneDataSheet	; ownersManual  ; SiteOneDataSheet:ownersManual	; SiteOneGenericVariantProduct:SiteOneOwnersManual ;; 
+; SiteOneGenericVariantProduct:SiteOneDataSheet	; installationInstructions  ; SiteOneDataSheet:installationInstructions	; SiteOneGenericVariantProduct:SiteOneInstallationInstructions ;; 
+; SiteOneGenericVariantProduct:SiteOneDataSheet	; technicalDrawing  ; SiteOneDataSheet:technicalDrawing	; SiteOneGenericVariantProduct:SiteOneTechnicalDrawing ;; 
+; SiteOneGenericVariantProduct:SiteOneDataSheet	; partsDiagram  ; SiteOneDataSheet:partsDiagram	; SiteOneGenericVariantProduct:SiteOnePartsDiagram ;; 
+; SiteOneGenericVariantProduct:SiteOneDataSheet	; warrantyInformation  ; SiteOneDataSheet:warrantyInformation	; SiteOneGenericVariantProduct:SiteOneWarrantyInformation ;; 
+; SiteOneGenericVariantProduct:SiteOneDataSheet	; id  ; SiteOneDataSheet:id	;  ;true; 
+; SiteOneGenericVariantProduct:GenericVariantProduct        ; sheets          ; GenericVariantProduct:sheets 	; SiteOneGenericVariantProduct:SiteOneDataSheet ; 

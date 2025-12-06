@@ -1,0 +1,25 @@
+$contentCatalog=siteoneContentCatalog
+$productCatalog=siteoneProductCatalog
+$catalogVersions=catalogVersions(catalog(id),version);
+$serverConfigName=siteoneSolrServerConfig
+$indexConfigName=siteoneSolrIndexConfig
+$searchConfigName=siteonePageSize
+$facetSearchConfigName=siteoneIndex
+$facetSearchConfigDescription=SiteOne Solr Index
+$searchIndexNamePrefix=siteone
+$solrIndexedType=siteoneProductType
+$indexBaseSite=siteone
+$indexLanguages=en
+$indexCurrencies=USD
+
+$solrContentSearchIndexedType=siteoneContentSearchType
+$contentSearchConfigName=contentSearchIndex
+$contentSearchConfigDescription=Content Search Solr Index
+
+$solrEventSearchIndexedType=siteoneEventSearchType
+$eventSearchConfigName=eventSearchIndex
+$eventSearchConfigDescription=Event Search Solr Index
+
+
+INSERT_UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true];name[unique=true];type(code);sortableType(code);currency[default=false];localized[default=false];multiValue[default=false];useForSpellchecking[default=false];useForAutocomplete[default=false];fieldValueProvider;valueProviderParameter;ftsPhraseQuery[default=false];ftsPhraseQueryBoost;ftsQuery[default=false];ftsQueryBoost;ftsFuzzyQuery[default=false];ftsFuzzyQueryBoost;ftsWildcardQuery[default=false];ftsWildcardQueryType(code)[default=POSTFIX];ftsWildcardQueryBoost;ftsWildcardQueryMinTermLength
+;$solrIndexedType; sohideCSP            ;boolean;         ;    ;    ;    ;    ;    ;hideCSPValueProvider              ;hideCSP   ;    ;   ;	;	 ;    ;  ;	;	;	;

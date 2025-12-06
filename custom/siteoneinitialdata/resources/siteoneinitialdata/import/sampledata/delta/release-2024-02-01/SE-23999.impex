@@ -1,0 +1,25 @@
+#
+# This software is the confidential and proprietary information of SAP
+# ("Confidential Information"). You shall not disclose such Confidential
+# Information and shall use it only in accordance with the terms of the
+# license agreement you entered into with SAP.
+# -----------------------------------------------------------------------
+$classCatalogVersion=catalogversion(catalog(id[default='siteoneClassification']),version[default='1'])[unique=true,default='siteoneClassification:1']
+$classSystemVersion=systemversion(catalog(id[default='siteoneClassification']),version[default='1'])[unique=true,default='siteoneClassification:1']
+$classAttribute=classificationAttribute(code,$classSystemVersion)
+$classClass=classificationClass(code,$classCatalogVersion)
+$classAttributeAssignment=classAttributeAssignments($classClass,$classAttribute,$classSystemVersion)
+
+#
+# Add additional indexed properties for the classification features that we want to index
+#
+
+INSERT_UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true];name[unique=true];type(code);sortableType(code);currency[default=false];localized[default=false];multiValue[default=false];facet[default=false];facetType(code);facetSort(code);priority;visible;fieldValueProvider    ;valueProviderParameter;topValuesProvider
+                                 ;siteoneProductType	                  ;soallKeywords    ;text      ;	              ;		                  ;                        ;true                     ;                    ;MultiSelectOr  ;Alpha          ;1000    ;true   ;springELValueProvider ;allKeywords           ;defaultTopValuesProvider
+
+$facetSearchConfigName=siteoneIndex
+$solrIndexedType=siteoneProductType
+$lang=en
+
+INSERT_UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true];name[unique=true];ftsPhraseQuery[default=true];ftsPhraseQueryBoost;ftsPhraseQuerySlop;ftsQuery[default=true];ftsQueryBoost;ftsFuzzyQuery[default=false];ftsFuzzyQueryBoost;ftsWildcardQuery[default=false];ftsWildcardQueryType(code)[default=POSTFIX];ftsWildcardQueryBoost;ftsWildcardQueryMinTermLength
+                                 ;$solrIndexedType                        ;soallKeywords    ;                            ;1                  ;0                 ;                      ;0.5          ;                            ;                  ;                               ;POSTFIX                                    ;                     ;0

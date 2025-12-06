@@ -1,0 +1,5 @@
+UPDATE CronJob; code[unique=true];active
+;PcmMediaAssociationJob;0
+;PcmMediaConversionJob;0
+;SiteOneMediaConversionCronjob;0
+;RemoveDuplicateMediaAssociationToProductJob;0

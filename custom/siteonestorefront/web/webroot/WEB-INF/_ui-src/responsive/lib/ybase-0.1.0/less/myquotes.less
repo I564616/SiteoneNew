@@ -1,0 +1,533 @@
+//@default-color: #78a22f;
+//@white-color: #ffffff;
+//@black-color: #000000;
+//@red-color: #ff0000;
+.page-quote-detail {
+    .approveQuotePopup #cboxTitle {
+        display: none;
+    }
+
+    .btn.p-t-0 {
+        padding-top: 0;
+    }
+
+    .green-check {
+        margin: 0;
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+    .quotedetails-page {
+        opacity: 0;
+
+        .btn-gp-link {
+            border: 1px solid #cecece;
+            background: #fff;
+            color: #50A0C5;
+        }
+
+        .btn-gp-link:first-child {
+            border-top-left-radius: 3px !important;
+            border-bottom-left-radius: 3px !important;
+        }
+
+        .btn-gp-link:last-child {
+            border-top-right-radius: 3px !important;
+            border-bottom-right-radius: 3px !important;
+        }
+
+        .btn-green-link {
+            border: 3px solid transparent;
+            background: transparent;
+            color: #78a22f;
+            text-decoration: underline;
+        }
+
+        .btn-sm {
+            padding: 5px 10px;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .dropdown-menu {
+            right: -5px;
+            left: auto;
+            top: 10px;
+            background: #78a22f;
+            border-radius: 6px;
+        }
+
+        .dropdown-menu button {
+            text-align: left;
+            margin: 0;
+        }
+
+        .dropdown-menu button.close {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            color: #fff;
+            opacity: 1;
+        }
+        .quote-message {
+            padding: 13px 15px;
+        }
+        .selected-item-btn {
+            height: 41px;
+            min-width: 63px;
+            padding: 10px;
+            &:after{
+                content: "\e013";
+                font-family: 'Glyphicons Halflings';
+                background: #78a22f;
+                color: #fff;
+                width: 16px;
+                height: 16px;
+                padding: 3px;
+                text-align: center;
+                font-size: 8px;
+                position: absolute;
+                right: -6px;
+                top: -6px;
+                border-radius: 50%;
+            }
+             @media(max-width: @screen-sm-max) {
+                height: 34px;
+                padding: 6px;
+            }
+        }
+        .quote-quantity{
+            input {
+                padding: 8px 0;
+                height: 36px;
+            }
+            .btn-small { padding: 5px 10px;margin: 0;}
+            input::-webkit-outer-spin-button,
+            input::-webkit-inner-spin-button {
+                -webkit-appearance: none;
+            }
+            input[type=number] {
+                -moz-appearance: textfield;
+            }
+        }
+    }
+    .quote-history-popup {
+        min-width: 390px;
+        @media(max-width: @screen-sm-max) {
+            min-width: 335px;
+        }
+    }
+    .quote-edit-popup {
+        .badge {
+            min-width: 25px;
+            height: 25px;
+            line-height: 13px;
+            padding: 5px;
+        }
+    }
+
+    .btn-green-link:nth-child(2) {
+        padding: 10px 0;
+        cursor: default;
+        opacity: 1;
+    }
+
+    
+
+    .colored input[type="checkbox"] {
+        margin: 0;
+    }
+
+    .colored input[type="checkbox"]:checked:before {
+        border: 1px solid #78a22f;
+    }
+
+    .quote-stickey-header {
+        width: 100%;
+        background-color: #fafafa;
+        z-index: 3;
+    }
+
+    .quote-stickey-header>div {
+        width: 100%;
+    }
+
+    .approveQuotePopup #cboxLoadedContent {
+        margin-top: 0px !important;
+    }
+
+    .quote-table-entry {
+        word-break: break-word;
+    }
+}
+
+.quotes-popup-expired {
+    #cboxLoadedContent {
+        margin-top: 0 !important;
+    }
+}
+.page-my-quotes .pdpredesign-container {
+    .quote-page {
+        opacity: 0;
+        display: flex;
+        flex-direction: column;
+        min-height: 550px;
+        .quote-table {
+            border: 1px solid #e0e0e0;
+            margin-top: 10px;
+        }
+        .quotes-pill-toggle {
+            border-radius: 4px !important;
+            &:hover, &:focus, &:active, &.active {
+                background-color: @color-primary;
+                color: @color-white;
+            }
+        }
+        .quote-filter-popup-button {
+            padding: 13px 20px;
+            color: @color-dark-grey;
+            &:hover, &:focus, &:active, &.active {
+                background-color: @color-white;
+                color: @color-dark-grey;
+            }
+        }
+        .quote-filter-popup-box {
+            position: absolute;
+            left: 0;
+            top: 49px;
+            z-index: 3;
+            .list-group-item {
+                border: none ;
+                margin: 0;
+            }
+            .colored-primary input { margin: 0}
+            .list-group-item-badge {
+                position: absolute;
+                right: 20px;
+            }
+        }
+        .quote-filter-popup-accounts {
+            max-height: 40vh;
+            overflow-y: scroll;
+        }
+        @media(max-width: @screen-sm-max) {
+            .quotes-pill-toggle {
+                font-size: 14px;
+            }
+            .quote-filter-popup-button {
+                margin: 0;
+                text-align: center;
+                border: 2px solid #78A22F;
+                font-size: 15px;
+                padding: 9px 20px;
+                display: inline-block;
+                width: auto;
+            }
+            .quote-filter-popup-box {
+                position: fixed;
+                width: 100%;
+                padding-bottom: 80px;
+                border-radius: 30px 30px 0 0;
+            }
+            .quote-filter-popup-close {
+                position: absolute;
+                right: 15px;
+                top: 10px;
+            }
+            .quote-filter-popup-accounts {
+                max-height: 80vh;
+            }
+            .quote-filter-popup-footer {
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                width: 100%;
+            }
+        }
+
+    }
+    .btn {
+        padding: 7px 15px;
+    }
+
+    .btn.note-btn {
+        padding: 10px 15px 3px 15px;
+    }
+
+    .btn-link.p-l-0 {
+        padding-left: 0px;
+    }
+
+    .from-input {
+        position: relative;
+    }
+
+    .from-input-label {
+        position: absolute;
+        left: 16px;
+        top: 50%;
+        margin-top: -9px;
+        margin-bottom: 0;
+        font-size: 16px;
+        color: #888;
+        pointer-events: none;
+        opacity: 0;
+        animation: input-label-animation 10s ease infinite;
+        z-index: 2;
+    }
+
+    .from-input-label:nth-child(odd) {
+        animation: input-label-animation-2 10s ease infinite;
+    }
+
+    .from-input>input:focus~.from-input-label {
+        display: none;
+    }
+
+    @keyframes input-label-animation {
+        0% {
+            opacity: 0;
+            top: 80%;
+        }
+
+        40% {
+            opacity: 0;
+            top: 80%;
+        }
+
+        75% {
+            opacity: 1;
+            top: 50%;
+        }
+
+        85% {
+            opacity: 1;
+            top: 50%;
+        }
+
+        100% {
+            opacity: 0;
+            top: 20%;
+        }
+    }
+
+    @keyframes input-label-animation-2 {
+        0% {
+            opacity: 0;
+            top: 80%;
+        }
+
+        25% {
+            opacity: 1;
+            top: 50%;
+        }
+
+        35% {
+            opacity: 1;
+            top: 50%;
+        }
+
+        60% {
+            opacity: 0;
+            top: 20%;
+        }
+
+        100% {
+            opacity: 0;
+            top: 20%;
+        }
+    }
+
+    .page-storefinderPage .breadcrumb {
+        display: block;
+    }
+
+    .pagination>li {
+        display: inline;
+    }
+
+    .pagination>li>button,
+    .pagination>li>span {
+        position: relative;
+        float: left;
+        padding: 5px 10px;
+        text-decoration: none;
+        border: 1px solid #ccc;
+        margin-left: -1px;
+        background: #fff;
+        font-size: 13px;
+        font-weight: bold;
+        line-height: 1.5;
+        color: #78a22f;
+        margin-bottom: 5px;
+    }
+
+    .pagination-sm>li:last-child>button,
+    .pagination-sm>li:last-child>span {
+        border-top-right-radius: 3px;
+        border-bottom-right-radius: 3px;
+    }
+
+    .pagination-sm>li:first-child>button,
+    .pagination-sm>li:first-child>span {
+        margin-left: 0;
+        border-top-left-radius: 3px;
+        border-bottom-left-radius: 3px;
+    }
+
+    .pagination .disabled>button,
+    .pagination .disabled>button:focus,
+    .pagination .disabled>button:hover,
+    .pagination .disabled>span {
+        color: #888888;
+        cursor: not-allowed;
+        background-color: #efefef;
+    }
+
+    .pagination>.active>button,
+    .pagination>.active>button:focus,
+    .pagination>.active>button:hover,
+    .pagination>.active>span,
+    .pagination>.active>span:focus,
+    .pagination>.active>span:hover {
+        z-index: 3;
+        color: #fff;
+        cursor: default;
+        background-color: #78a22f;
+        border: 1px solid #78a22f;
+    }
+}
+
+.page-quote-detail .pdpredesign-container,
+.page-my-quotes .pdpredesign-container{
+    .btn-page-scroll {
+        position: fixed;
+        right: 10px;
+        bottom: 20px;
+        top: auto;
+        opacity: .4;
+        display: none;
+        z-index: 3;
+        padding: 4px 0;
+    }
+
+    .btn-page-scroll:hover {
+        opacity: 1;
+    }
+    .quotes-pill-toggle-input-box {
+        input {
+            height: 50px;
+        }
+        .input-group-addon {
+            padding: 12px 15px 5px 15px;
+            width: 96%;
+        }
+    }
+
+    @media (max-width: 700px) {
+        .main-container>.container-lg {
+            padding: 0 10px;
+        }
+        .btn-block {
+            padding: 7px 12px;
+            font-size: 14px;
+        }
+
+        .quote-nav {
+            margin: 0px -35px 0 -25px;
+        }
+
+        button.p-t-0-xs {
+            padding-top: 0px !important;
+        }
+
+        button.no-margin-xs {
+            margin: 0px !important;
+        }
+
+        button.no-padding-xs {
+            padding: 0px !important;
+        }
+
+        button.font-small-xs {
+            font-size: 12px;
+        }
+
+        .btn-block {
+            padding: 7px 12px;
+            font-size: 14px;
+        }
+
+        .quote-nav {
+            margin: 0px -35px 0 -25px;
+        }
+
+        button.p-t-0-xs {
+            padding-top: 0px !important;
+        }
+
+        button.no-margin-xs {
+            margin: 0px !important;
+        }
+
+        hr {
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
+    }
+}
+
+.quotesPopupSuccess {
+	#cboxLoadedContent {
+		margin-top: 50px !important;
+	}
+	
+	.msg-row {
+	    margin-top: 22px;
+	    margin-bottom: 36px;
+	}
+}
+.quotes-show .radio-button-circle input{
+	border: 2px solid #78a22f;
+	float: right;
+	width: 22px;
+	height: 22px;
+	margin-right: 0;
+    cursor: pointer;
+}
+.quotes-show .radio-button-circle{
+	float: right;
+}
+.quotes-shipto-btn{
+    border-color: #d1d1d1;
+    color: #000;
+    @media(max-width: @screen-xs-max) {
+        font-size: 14px;
+    }
+}
+.quotes-pill-box {
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    background: @color-white;
+    padding: 15px;
+    box-shadow: 0 0 20px #999;
+}
+.quoteShowLabel{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px;
+    label{
+        width: 100%;
+        cursor: pointer;
+        margin-bottom: 0;
+    }
+}
+.quotes-shipto-btn:hover{
+    background-color: #d1d1d1;
+    color: #000;
+}

@@ -1,0 +1,1793 @@
+$contentCatalog=siteoneContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+
+
+INSERT_UPDATE SiteoneParagaraphComponent;$contentCV[unique=true];uid[unique=true];name;content[lang=en];content[lang=es];
+;;comp_00000ENW;Placing an Order;"<a name=""order""></a>
+<p>Whether you are in the office or out in the field, ordering from SiteOne is fast and easy. Start by logging into your SiteOne.com online account and verifying your preferred branch location. Fill your shopping cart with the items you wish to purchase and proceed to the checkout page. Choose whether you would like to pick up your order from a SiteOne branch or have it delivered. You can even leave special instructions or requests in your order notes to the branch manager. You will have a chance to review your order before it is confirmed.</p>
+<p>&nbsp;</p>
+<p style=""text-align: center;""><iframe id=""marketingVideo1"" onload=""marketingVideoAnalytics(this)"" class=""marketing-videos""    width=""640"" height=""360"" src=""https://www.youtube.com/embed/QV8F0SBtBYE?list=PL_fsvQDQcOaFNnrJm5QtnIuwFKDhKJUDz&enablejsapi=1"" frameborder=""0"" allow=""autoplay; encrypted-media"" allowfullscreen=""""></iframe></p>";
+;;comp_00000ENX;Shopping Tools;"<a name=""shopping""></a>
+<p>Find the products you need quickly on SiteOne.com. Choose to shop anonymously or get a personalized experience using your SiteOne.com online account. Browse and explore all available products, or search by product name, product type, or product number. However you choose to find the products you need, you can further narrow down results using filters such as branch availability, price, and other factors. Items are listed by availability based on your selected branch, followed by out of stock items and items carried at other branch locations. If you know exactly what product you want, you can use the Quick Order feature to add it directly to an order. You can also review your entire product purchase history to help when it is time to reorder a particular item.</p>
+<p>&nbsp;</p>
+<p style=""text-align: center;""><iframe id=""marketingVideo2"" onload=""marketingVideoAnalytics(this)"" class=""marketing-videos""    width=""640"" height=""360"" src=""https://www.youtube.com/embed/Z0ijawO4u5c?list=PL_fsvQDQcOaFNnrJm5QtnIuwFKDhKJUDz&enablejsapi=1"" frameborder=""0"" allow=""autoplay; encrypted-media"" allowfullscreen=""""></iframe></p>";
+;;comp_00000ENY;SDS Labels;"<a name=""sds""></a>
+<p>Managing OSHA and safety requirement documentation can be complicated. SiteOne helps you keep this important data handy with safety data sheet (SDS) and label data linked directly to each regulated product. As you browse through our wide selection of products, you will see certain products noted with a &ldquo;Regulated&rdquo; tag. Clicking on the item brings you to the item detail page, which contains all the information about that product. You can also visit our Tools &amp; Resources page to search for a SDS or label directly. Once you have found what you are looking for, you can decide to save the PDF file or choose print for a paper copy to keep on file. Keeping track of safety data sheets and product labels is an important part of running your business. That&rsquo;s why SiteOne makes it easy to find the documentation you need, how you need it.</p>
+<p>&nbsp;</p>
+<p style=""text-align: center;""><iframe id=""marketingVideo3"" onload=""marketingVideoAnalytics(this)"" class=""marketing-videos""   width=""640"" height=""360"" src=""https://www.youtube.com/embed/SsdQGHGkCz8?list=PL_fsvQDQcOaFNnrJm5QtnIuwFKDhKJUDz&enablejsapi=1"" frameborder=""0"" allow=""autoplay; encrypted-media"" allowfullscreen=""""></iframe></p>";
+;;comp_00000ENZ;Quick Order;"<a name=""quickorder""></a>
+<p>Do you already know exactly what you need for your next project? You can jump right into creating an order thanks to our Quick Order system. Keep in mind that you need to know the exact item number to enter it the Quick Order form. We recommend using past invoices as a reference, or pick from your existing Lists &amp; Assemblies. Once you are in the Quick Order screen you can start entering item numbers into the product number box to add them instantly to your order. Once you are done entering items just click the &ldquo;Check Out&rdquo; button to complete your order. Our Quick Order system is just one more way SiteOne keeps your business moving.</p>
+<p>&nbsp;</p>
+<p style=""text-align: center;""><iframe id=""marketingVideo4"" onload=""marketingVideoAnalytics(this)"" class=""marketing-videos""   width=""640"" height=""360"" src=""https://www.youtube.com/embed/EOoUkxfiwpQ?list=PL_fsvQDQcOaFNnrJm5QtnIuwFKDhKJUDz&enablejsapi=1"" frameborder=""0"" allow=""autoplay; encrypted-media"" allowfullscreen=""""></iframe></p>";
+;;comp_00000EO0;Invoices;"<a name=""invoices""></a>
+<p>Keeping track of your SiteOne invoices and order history has never been easier. Once you log in to your SiteOne.com account visit the Account Dashboard. From there you can choose to view orders for specific shipping locations or view them all. A list of current and past orders is also available, including details for any specific order. Invoices are easily tracked from your Account Dashboard, both current and past invoices. Click on any invoice number to see detailed information. If you want a copy for your records, you can choose to email, print, or save your order as a PDF.</p>
+<p>&nbsp;</p>
+<p style=""text-align: center;""><iframe id=""marketingVideo5"" onload=""marketingVideoAnalytics(this)"" class=""marketing-videos""   width=""640"" height=""360"" src=""https://www.youtube.com/embed/HUesoAOE-3A?list=PL_fsvQDQcOaFNnrJm5QtnIuwFKDhKJUDz&enablejsapi=1"" frameborder=""0"" allow=""autoplay; encrypted-media"" allowfullscreen=""""></iframe></p>";
+;;comp_00000EO4;Account Dashboard;"<a name=""dashboard""></a>
+<p>Your personalized Account Dashboard is the key to your SiteOne.com experience. Everything you need keep track of your SiteOne account is at your fingertips. Open orders and order history are all available to view at any time. Order shipping and pickup locations are all managed right here as well. It is also where you will find your open invoices, invoice history, account details, sales summary, and credit information. Managing your company information and personal information is also handled through your Account Dashboard. Need to change your password or manage users accounts? All available from your Account Dashboard when you need them. The Account Dashboard is our way of putting control of your SiteOne account into your hands, so you can focus on keeping your business running smoothly.</p>
+<p>&nbsp;</p>
+<p style=""text-align: center;""><iframe id=""marketingVideo6"" onload=""marketingVideoAnalytics(this)"" class=""marketing-videos""   width=""640"" height=""360"" src=""https://www.youtube.com/embed/Q3DPZwAcBx8?list=PL_fsvQDQcOaFNnrJm5QtnIuwFKDhKJUDz&enablejsapi=1"" frameborder=""0"" allow=""autoplay; encrypted-media"" allowfullscreen=""""></iframe></p>";
+;;comp_00000EO7;New SiteOne Website;"<p><a name=""overview""></a></p>
+<p>SiteOne Landscape Supply is proud to announce the launch of our new website. We know that your time is valuable, so we packed the new SiteOne.com with features designed to keep your business moving. Whether you are in the office or on the go, the new responsive site design lets you work your way, from both desktop or mobile devices. Finding the irrigation, turf, and landscape supply products you need is now even faster and easier.&nbsp;</p>
+<p>&nbsp;</p>
+<p style=""text-align: center;""><iframe id=""marketingVideo7"" onload=""marketingVideoAnalytics(this)"" class=""marketing-videos""   width=""640"" height=""360"" src=""https://www.youtube.com/embed/dbfgjA4h87k?list=PL_fsvQDQcOaFNnrJm5QtnIuwFKDhKJUDz&enablejsapi=1"" frameborder=""0"" allow=""autoplay; encrypted-media"" allowfullscreen=""""></iframe></p>";
+;;comp_00000EO8;Geolocation;"<a name=""geolocation""></a>
+<p>Finding your local SiteOne branch has never been easier. The advanced geolocation logic built into the SiteOne.com website will automatically choose the nearest branch to your physical location. Simply look in the website header to see which branch location is chosen for you. Choose to search by city, state, zip code, or even branch number if you want a specific location. If you prefer to see all available branches, the SiteOne branch directory allows you to browse by state and select the branch you like. Branch selections are automatically saved in your Account Dashboard. Each branch&rsquo;s detail page includes not only the location, but hours, phone number, map, and branch specialties. You can change preferred branches at any time.</p>
+<p>&nbsp;</p>
+<p style=""text-align: center;""><iframe id=""marketingVideo8"" onload=""marketingVideoAnalytics(this)"" class=""marketing-videos""   width=""640"" height=""360"" src=""https://www.youtube.com/embed/X2JvlFUO7c0?list=PL_fsvQDQcOaFNnrJm5QtnIuwFKDhKJUDz&enablejsapi=1"" frameborder=""0"" allow=""autoplay; encrypted-media"" allowfullscreen=""""></iframe></p>";
+;;comp_00000EO9;Lists Assemblies;"<a name=""lists""></a>
+<p>Organization is key to your business. That&rsquo;s why our Lists and Assemblies feature helps you organize jobs quickly and more effectively. Lists are a great way to keep track of commonly purchased items or project components. If you routinely buy certain products together, then the Assemblies feature can help you keep those items handy when you need them. Lists and Assemblies are great ways to keep your favorite items ready to order, or to organize your projects more effectively. And items in your Lists and Assemblies can easily be added to your cart to speed up the purchasing process.</p>
+<p>&nbsp;</p>
+<p style=""text-align: center;""><iframe id=""marketingVideo9"" onload=""marketingVideoAnalytics(this)"" class=""marketing-videos""   width=""640"" height=""360"" src=""https://www.youtube.com/embed/843WVpzXIBo?list=PL_fsvQDQcOaFNnrJm5QtnIuwFKDhKJUDz&enablejsapi=1"" frameborder=""0"" allow=""autoplay; encrypted-media"" allowfullscreen=""""></iframe></p>";
+;;comp_00000EOA;Account Setup;"<a name=""account""></a>
+<p>Whether you are an individual or a business, signing up for a SiteOne.com online account is a smart move. Your online account delivers a customized experience just for you. You can see your specific product pricing, your preferred branch locations, and local available inventory on hand. Searching for products while logged in to your account allows you to filter products by branch availability, category, price, and more. If you already have a SiteOne account all you need is your contact information to create an Online account. If you do not have a SiteOne account, just fill in your contact information and a SiteOne representative will contact you to complete the process.</p>
+<p>&nbsp;</p>
+<p style=""text-align: center;""><iframe id=""marketingVideo10"" onload=""marketingVideoAnalytics(this)"" class=""marketing-videos""    width=""640"" height=""360"" src=""https://www.youtube.com/embed/CnLOPHWyvOk?list=PL_fsvQDQcOaFNnrJm5QtnIuwFKDhKJUDz&enablejsapi=1"" frameborder=""0"" allow=""autoplay; encrypted-media"" allowfullscreen=""""></iframe></p>";
+;;comp_00000EOZ;Overview Video;"<p><iframe id=""marketingVideo11""  class=""marketing-videos""    width=""640"" height=""360"" src=""https://www.youtube.com/embed/dbfgjA4h87k?list=PL_fsvQDQcOaFNnrJm5QtnIuwFKDhKJUDz&enablejsapi=1"" frameborder=""0"" allow=""autoplay; encrypted-media"" allowfullscreen="""" style=""text-align: center;"" onload=""marketingVideoAnalytics(this)""></iframe></p>";
+;;comp_00000EP8;Place Order video component;"<p><iframe id=""marketingVideo12"" onload=""marketingVideoAnalytics(this)"" class=""marketing-videos""   width=""640"" height=""360"" src=""https://www.youtube.com/embed/QV8F0SBtBYE?list=PL_fsvQDQcOaFNnrJm5QtnIuwFKDhKJUDz&enablejsapi=1"" frameborder=""0"" allow=""autoplay; encrypted-media"" allowfullscreen="""" style=""text-align: center;""></iframe></p>";
+;;comp_00000EPB;Shopping Tools Video Component;"<p><iframe id=""marketingVideo13"" onload=""marketingVideoAnalytics(this)"" class=""marketing-videos""   width=""640"" height=""360"" src=""https://www.youtube.com/embed/Z0ijawO4u5c?list=PL_fsvQDQcOaFNnrJm5QtnIuwFKDhKJUDz&enablejsapi=1"" frameborder=""0"" allow=""autoplay; encrypted-media"" allowfullscreen="""" style=""text-align: center;""></iframe></p>";
+;;comp_00000EPJ;SDS Labels video component;"<p><iframe id=""marketingVideo14"" onload=""marketingVideoAnalytics(this)"" class=""marketing-videos""   width=""640"" height=""360"" src=""https://www.youtube.com/embed/SsdQGHGkCz8?list=PL_fsvQDQcOaFNnrJm5QtnIuwFKDhKJUDz&enablejsapi=1"" frameborder=""0"" allow=""autoplay; encrypted-media"" allowfullscreen=""""></iframe></p>";
+;;comp_00000EPP;Quick Order video component;"<p><iframe id=""marketingVideo15"" onload=""marketingVideoAnalytics(this)"" class=""marketing-videos""   width=""640"" height=""360"" src=""https://www.youtube.com/embed/EOoUkxfiwpQ?list=PL_fsvQDQcOaFNnrJm5QtnIuwFKDhKJUDz&enablejsapi=1"" frameborder=""0"" allow=""autoplay; encrypted-media"" allowfullscreen=""""></iframe></p>";
+;;comp_00000EPV;InvoiceHistory video component;"<p><iframe id=""marketingVideo16"" onload=""marketingVideoAnalytics(this)"" class=""marketing-videos""   width=""640"" height=""360"" src=""https://www.youtube.com/embed/HUesoAOE-3A?list=PL_fsvQDQcOaFNnrJm5QtnIuwFKDhKJUDz&enablejsapi=1"" frameborder=""0"" allow=""autoplay; encrypted-media"" allowfullscreen=""""></iframe></p>";
+;;comp_00000EQ1;Account Dashboard video component;"<p><iframe id=""marketingVideo17"" onload=""marketingVideoAnalytics(this)"" class=""marketing-videos""   width=""640"" height=""360"" src=""https://www.youtube.com/embed/Q3DPZwAcBx8?list=PL_fsvQDQcOaFNnrJm5QtnIuwFKDhKJUDz&enablejsapi=1"" frameborder=""0"" allow=""autoplay; encrypted-media"" allowfullscreen=""""></iframe></p>";
+;;comp_00000EQ7;Geolocation video component;"<p><iframe id=""marketingVideo18"" onload=""marketingVideoAnalytics(this)"" class=""marketing-videos""   width=""640"" height=""360"" src=""https://www.youtube.com/embed/X2JvlFUO7c0?list=PL_fsvQDQcOaFNnrJm5QtnIuwFKDhKJUDz&enablejsapi=1"" frameborder=""0"" allow=""autoplay; encrypted-media"" allowfullscreen=""""></iframe></p>";
+;;comp_00000EQA;Lists Assemblies video component;"<p><iframe id=""marketingVideo19"" onload=""marketingVideoAnalytics(this)"" class=""marketing-videos""   width=""640"" height=""360"" src=""https://www.youtube.com/embed/843WVpzXIBo?list=PL_fsvQDQcOaFNnrJm5QtnIuwFKDhKJUDz&enablejsapi=1"" frameborder=""0"" allow=""autoplay; encrypted-media"" allowfullscreen=""""></iframe></p>";
+;;comp_00000EQK;Account Setup video component;"<p><iframe id=""marketingVideo20"" onload=""marketingVideoAnalytics(this)"" class=""marketing-videos""   width=""640"" height=""360"" src=""https://www.youtube.com/embed/CnLOPHWyvOk?list=PL_fsvQDQcOaFNnrJm5QtnIuwFKDhKJUDz&enablejsapi=1"" frameborder=""0"" allow=""autoplay; encrypted-media"" allowfullscreen=""""></iframe></p>";
+;;comp_00000PGS;Brand Anthem Video;"<p><iframe id=""marketingVideo21"" onload=""marketingVideoAnalytics(this)"" class=""marketing-videos""   width=""560"" height=""315"" src=""https://www.youtube.com/embed/tfCuhjHNORw?enablejsapi=1"" frameborder=""0"" allow=""accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"" allowfullscreen></iframe></p>";
+;;comp_00000ZHT;ProTrade Brand Banner;"<p>
+<style type=""text/css"">* {
+  box-sizing: border-box;
+}
+
+/* ProTrade link colors */
+A.class2 {color: #1173A4;}
+A.class2:link {text-decoration: none; color: #1173A4;}
+A.class2:visited {text-decoration: none; color: #1173A4;}
+A.class2:hover {text-decoration: underline; color: #1173A4;}
+A.class2:active {text-decoration: none; color: #274b5a;}
+
+/* table gradient background */
+.tableyellow {
+	background-color: #f8be39;
+	background-repeat: no-repeat; 
+	background-image:url('/medias/sys_master/root/hcb/h7b/8939732697118/yellow-gradient.gif');
+	background-position: top right;
+	}
+
+/* create yellow line */
+hr.topline {
+  width: 100%;
+  height: 5px;
+  display: block;
+  color: #f8be39;
+}
+
+P.special {
+   font-family: 'Geogrotesque-Medium';
+   font-size: 32pt;
+   line-height: 1;
+   margin: 10px 0px 0px 0px;
+   color: #414243;
+}
+	
+/* Scale content width to 97% */
+.wrap {
+	width: 97%;
+	margin: auto
+}
+
+/* Create One Column that spans */
+.column1 {
+  float: left;
+  width: 100%;
+  padding: 0px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: """";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column1 {
+    width: 100%;
+  }
+}
+
+/* Create Two equal columns that float next to each other */
+.column2 {
+  float: left;
+  width: 50%;
+  padding: 0px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: """";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 950px) {
+  .column2 {
+    width: 100%;
+  }
+}
+
+/* Create three equal columns that float next to each other */
+.column3 {
+  float: left;
+  width: 33%;
+  padding: 25px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: """";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column3 {
+    width: 100%;
+  }
+}
+
+/* Create 65% column to pair with 33% collumn */
+.column65 {
+  float: left;
+  width: 65%;
+  padding: 25px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: """";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column65 {
+    width: 100%;
+  }
+}
+
+/* Create three equal columns that float next to each other */
+.column35 {
+  float: left;
+  width: 35%;
+  padding: 25px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: """";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column35 {
+    width: 100%;
+  }
+}
+
+/* Create four equal columns that float next to each other */
+.column4 {
+  float: left;
+  width: 25%;
+  padding: 15px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: """";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the four columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 500px) {
+  .column4 {
+    width: 100%;
+  }
+}
+/* Create One Column for Products */
+.column1-product {
+  float: left;
+  width: 100%;
+  padding: 20px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: """";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column1-product {
+    width: 100%;
+  }
+}
+
+.video-responsive{
+    overflow:hidden;
+    padding-bottom: 56.25%;
+    position: relative;
+    height: 0;
+}
+.video-responsive iframe{
+    border: 0;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+}
+
+.visible-mobile {
+  display: none !important;
+}
+
+@media (max-width: 600px) {
+  .visible-mobile {
+    display: inline !important;
+  }
+  .hidden-mobile {
+    display: none !important;
+  }
+}
+.bluebutton {
+  background-color: #1173a4;
+  border: none;
+  border-radius: 3px;
+  color: white;
+  padding: 7px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 15px;
+  margin: 20px 20px 0px 0px;
+  cursor: pointer;
+}
+.bluebutton:hover {
+background-color: #1791ce;
+}
+
+}
+</style>
+</p>
+
+<div class=""wrap"">
+<div class=""row"">
+<div class=""column1""><img alt=""Pro-Trade:Built Tough. Priced Right."" class=""hidden-mobile"" src=""/medias/sys_master/root/h51/hea/8939730501662/Pro-Trade-Banner.png"" width=""100%"" /><img alt=""Pro-Trade Lighting"" class=""visible-mobile"" src=""/medias/sys_master/root/h7c/ha0/8942637973534/ProTrade-BrandBanner-Mobile.png"" width=""100%"" /></div>
+</div>
+
+<p></p>
+
+<div class=""row"" style=""background-color:#f8be39;"">
+<div class=""column2"">
+<div class=""video-responsive""><iframe id=""marketingVideo22"" onload=""marketingVideoAnalytics(this)"" class=""marketing-videos""   allow=""accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"" allowfullscreen="""" frameborder=""0"" height=""315"" src=""https://www.youtube.com/embed/njfSK6PZa90?enablejsapi=1"" width=""420""></iframe></div>
+</div>
+
+<div class=""column2""> 
+<div class=""wrap"">
+<div class=""column1"" style=""margin:20px 0px 0px 25px"">
+<p class=""special"">LIGHTS THAT ARE READY TO GO</p>
+</div>
+</div>
+
+<div class=""wrap"">
+<div class=""column65"">
+<p>Available for pickup or delivery from your nearest SiteOne Landscape Supply, Pro-Trade® Lighting gives you a no-wait, no-nonsense option for professional-grade lighting. Every model is designed to give your business a leg up, with durable performance and a value the competition can’t match.</p>
+
+<div>
+<div class=""bluebutton"" onclick=""window.open('/store-finder','_self')"" style=""margin-top:10px"">Find Your Branch</div>
+
+<div class=""bluebutton"" onclick=""window.open('/medias/sys_master/root/h86/hd5/9026416050206/2020-ProTrade-FullLine-Bro-WebOnly.pdf','_blank')"" style=""margin-top:10px"">Download PDF</div>
+</div>
+</div>
+
+<div class=""column35""><img alt=""Pro-Trade Products"" src=""/medias/sys_master/root/hb8/ha7/8939733581854/protrade-lighting-hero.png"" width=""95%"" /></div>
+</div>
+</div>
+</div>
+</div>
+";"<p><style type=""text/css"">
+* {
+  box-sizing: border-box;
+}
+
+/* ProTrade link colors */
+A.class2 {color: #1173A4;}
+A.class2:link {text-decoration: none; color: #1173A4;}
+A.class2:visited {text-decoration: none; color: #1173A4;}
+A.class2:hover {text-decoration: underline; color: #1173A4;}
+A.class2:active {text-decoration: none; color: #274b5a;}
+
+/* table gradient background */
+.tableyellow {
+	background-color: #f8be39;
+	background-repeat: no-repeat; 
+	background-image:url('/medias/sys_master/root/hcb/h7b/8939732697118/yellow-gradient.gif');
+	background-position: top right;
+	}
+
+/* create yellow line */
+hr.topline {
+  width: 100%;
+  height: 5px;
+  display: block;
+  color: #f8be39;
+}
+	
+/* Scale content width to 97% */
+.wrap {
+	width: 97%;
+	margin: auto
+}
+
+/* Create One Column that spans */
+.column1 {
+  float: left;
+  width: 100%;
+  padding: 0px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: """";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column1 {
+    width: 100%;
+  }
+}
+
+/* Create Two equal columns that float next to each other */
+.column2 {
+  float: left;
+  width: 50%;
+  padding: 0px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: """";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 950px) {
+  .column2 {
+    width: 100%;
+  }
+}
+
+/* Create three equal columns that float next to each other */
+.column3 {
+  float: left;
+  width: 33%;
+  padding: 25px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: """";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column3 {
+    width: 100%;
+  }
+}
+
+/* Create 65% column to pair with 33% collumn */
+.column65 {
+  float: left;
+  width: 65%;
+  padding: 25px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: """";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column65 {
+    width: 100%;
+  }
+}
+
+/* Create three equal columns that float next to each other */
+.column35 {
+  float: left;
+  width: 35%;
+  padding: 25px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: """";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column35 {
+    width: 100%;
+  }
+}
+
+/* Create four equal columns that float next to each other */
+.column4 {
+  float: left;
+  width: 25%;
+  padding: 15px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: """";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the four columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 500px) {
+  .column4 {
+    width: 100%;
+  }
+}
+/* Create One Column for Products */
+.column1-product {
+  float: left;
+  width: 100%;
+  padding: 20px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: """";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column1-product {
+    width: 100%;
+  }
+}
+
+.video-responsive{
+    overflow:hidden;
+    padding-bottom: 56.25%;
+    position: relative;
+    height: 0;
+}
+.video-responsive iframe{
+    border: 0;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+}
+
+.visible-mobile {
+  display: none !important;
+}
+
+@media (max-width: 600px) {
+  .visible-mobile {
+    display: inline !important;
+  }
+  .hidden-mobile {
+    display: none !important;
+  }
+}
+</style></p>
+<div class=""wrap"">
+<div class=""row"">
+<div class=""column1""><img alt=""Pro-Trade:Built Tough. Priced Right."" class=""hidden-mobile"" src=""/medias/sys_master/root/haf/h63/8956888809502/Pro-Trade-Banner-ESP.png"" width=""100%"" /><img alt=""Pro-Trade Lighting"" class=""visible-mobile"" src=""/medias/sys_master/root/h7c/ha0/8942637973534/ProTrade-BrandBanner-Mobile.png"" width=""100%"" /></div>
+</div>
+<p></p>
+<div class=""row"" style=""background-color:#f8be39;"">
+<div class=""column2"">
+<div class=""video-responsive""><iframe id=""marketingVideo23"" onload=""marketingVideoAnalytics(this)"" class=""marketing-videos""   allow=""accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"" allowfullscreen="""" frameborder=""0"" height=""315"" src=""https://www.youtube.com/embed/njfSK6PZa90?enablejsapi=1"" width=""420""></iframe></div>
+</div>
+<div class=""column2""><br />
+<div class=""wrap"">
+<div class=""column1"" style=""margin:25px 0px 10px 25px""><img alt=""Trusted Night In and Night Out"" src=""/medias/sys_master/root/h9e/h33/8956891562014/ProTrade-Headline-ESP.png"" width=""75%"" /></div>
+</div>
+<div class=""wrap"">
+<div class=""column65"">
+<p><font size=""+1"">Pro-Trade<sup>®</sup> Lighting te brinda un desempe&ntilde;o con el que puedes contar temporada tras temporada. Con precios dif&iacute;ciles de vencer, esta l&iacute;nea completa de soluciones en iluminaci&oacute;n hace bien el trabajo siempre que sea necesario. Disponible hoy en SiteOne Landscape Supply.</font></p>
+</div>
+<div class=""column35""><img alt=""Pro-Trade Products"" src=""/medias/sys_master/root/hb8/ha7/8939733581854/protrade-lighting-hero.png"" width=""90%"" /></div>
+</div>
+</div>
+</div>
+</div>"
+;;comp_00000ZJC;ProTrade Video Section;"<!-- Video Area Banner -->
+<div class=""wrap-video"" style=""margin-top:0px"">
+<div class=""row"">
+<div class=""column50"">
+<p><font size=""+2""><strong>See the Pro-Trade lineup in action</strong><a name=""video"" style=""visibility:hidden""> </a></font><br /><img alt="""" height=""8px"" src=""/medias/sys_master/root/he1/h87/8940910247966/yellow-gradient.gif"" width=""100%"" /></p>
+
+<div class=""video-responsive""><iframe id=""marketingVideo24"" onload=""marketingVideoAnalytics(this)"" class=""marketing-videos""   allow=""accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"" allowfullscreen="""" frameborder=""0"" height=""315"" src=""https://www.youtube.com/embed/CuWh5THXVhY?enablejsapi=1"" width=""420""></iframe></div>
+</div>
+
+<div class=""column50"">
+<p><font size=""+2""><strong>Learn more about the Pro-Trade advantage</strong></font><br /><img alt=""Pro-Trade Video"" height=""8px"" src=""/medias/sys_master/root/he1/h87/8940910247966/yellow-gradient.gif"" width=""100%"" /></p>
+<a href=""/medias/sys_master/root/h9b/h6b/8940917424158/2019.2396-ProTrade-FullLine-Bro.pdf"" target=""_blank""><img alt=""Pro-Trade Brochure"" border=""0"" src=""/medias/sys_master/root/h81/hc3/8940917260318/protrade-performance.jpg"" width=""100%"" /></a></div>
+</div>
+</div>
+";"<!-- Video Area Banner -->
+<div class=""wrap-video"" style=""margin-top:0px"">
+<div class=""row"">
+<div class=""column50"">
+<p><font size=""+2""><strong>Mira la l&iacute;nea Pro-Trade en acci&oacute;n</strong><a name=""video"" style=""visibility:hidden""> </a></font><br /><img alt="""" height=""8px"" src=""/medias/sys_master/root/he1/h87/8940910247966/yellow-gradient.gif"" width=""100%"" /></p>
+
+<div class=""video-responsive""><iframe id=""marketingVideo25"" onload=""marketingVideoAnalytics(this)"" class=""marketing-videos""   allow=""accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"" allowfullscreen="""" frameborder=""0"" height=""315"" src=""https://www.youtube.com/embed/CuWh5THXVhY?enablejsapi=1"" width=""420""></iframe></div>
+</div>
+
+<div class=""column50"">
+<p><font size=""+2""><strong>Conoce m&aacute;s sobre la ventaja Pro-Trade</strong></font><br /><img alt=""Pro-Trade Video"" height=""8px"" src=""/medias/sys_master/root/he1/h87/8940910247966/yellow-gradient.gif"" width=""100%"" /></p>
+<a href=""/medias/sys_master/root/h9b/h6b/8940917424158/2019.2396-ProTrade-FullLine-Bro.pdf"" target=""_blank""><img alt=""Pro-Trade Brochure"" border=""0"" src=""/medias/sys_master/root/hbc/h62/9000873000990/protrade-brochure-banner-spanish.jpg"" width=""100%"" /></a></div>
+</div>
+</div>
+"
+;;comp_000010A1;ProTrade Brand Banner-2;"<p><style type=""text/css"">
+* {
+  box-sizing: border-box;
+}
+
+/* ProTrade link colors */
+A.class2 {color: #1173A4;}
+A.class2:link {text-decoration: none; color: #1173A4;}
+A.class2:visited {text-decoration: none; color: #1173A4;}
+A.class2:hover {text-decoration: underline; color: #1173A4;}
+A.class2:active {text-decoration: none; color: #274b5a;}
+
+/* table gradient background */
+.tableyellow {
+	background-color: #f8be39;
+	background-repeat: no-repeat; 
+	background-image:url('/medias/sys_master/root/hcb/h7b/8939732697118/yellow-gradient.gif');
+	background-position: top right;
+	}
+
+/* create yellow line */
+hr.topline {
+  width: 100%;
+  height: 5px;
+  display: block;
+  color: #f8be39;
+}
+	
+/* Scale content width to 97% */
+.wrap {
+	width: 97%;
+	margin: auto
+}
+
+/* Create One Column that spans */
+.column1 {
+  float: left;
+  width: 100%;
+  padding: 0px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: """";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column1 {
+    width: 100%;
+  }
+}
+
+/* Create Two equal columns that float next to each other */
+.column2 {
+  float: left;
+  width: 50%;
+  padding: 0px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: """";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 950px) {
+  .column2 {
+    width: 100%;
+  }
+}
+
+/* Create three equal columns that float next to each other */
+.column3 {
+  float: left;
+  width: 33%;
+  padding: 25px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: """";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column3 {
+    width: 100%;
+  }
+}
+
+/* Create 65% column to pair with 33% collumn */
+.column65 {
+  float: left;
+  width: 65%;
+  padding: 25px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: """";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column65 {
+    width: 100%;
+  }
+}
+
+/* Create three equal columns that float next to each other */
+.column35 {
+  float: left;
+  width: 35%;
+  padding: 25px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: """";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column35 {
+    width: 100%;
+  }
+}
+
+/* Create four equal columns that float next to each other */
+.column4 {
+  float: left;
+  width: 25%;
+  padding: 15px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: """";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the four columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 500px) {
+  .column4 {
+    width: 100%;
+  }
+}
+/* Create One Column for Products */
+.column1-product {
+  float: left;
+  width: 100%;
+  padding: 20px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: """";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column1-product {
+    width: 100%;
+  }
+}
+
+.video-responsive{
+    overflow:hidden;
+    padding-bottom: 56.25%;
+    position: relative;
+    height: 0;
+}
+.video-responsive iframe{
+    border: 0;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+}
+
+.visible-mobile {
+  display: none !important;
+}
+
+@media (max-width: 600px) {
+  .visible-mobile {
+    display: inline !important;
+  }
+  .hidden-mobile {
+    display: none !important;
+  }
+}
+</style></p> <div class=""wrap"">
+<div class=""row"">
+<div class=""column1""><img width=""100%"" src=""/medias/sys_master/root/h51/hea/8939730501662/Pro-Trade-Banner.png"" class=""hidden-mobile"" alt=""Pro-Trade:Built Tough. Priced Right."" /><img width=""100%"" src=""/medias/sys_master/root/h7c/ha0/8942637973534/ProTrade-BrandBanner-Mobile.png"" class=""visible-mobile"" alt=""Pro-Trade Lighting"" /></div>
+</div> 
+<p>&nbsp;</p>
+<div class=""row"" style=""background-color:#f8be39;"">
+<div class=""column2""><div class=""video-responsive""><iframe id=""marketingVideo26"" onload=""marketingVideoAnalytics(this)"" class=""marketing-videos""   width=""420"" height=""315"" src=""https://www.youtube.com/embed/njfSK6PZa90"" frameborder=""0"" allow=""accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"" allowfullscreen="""">
+	</iframe></div>
+</div> 
+<div class=""column2""><br /> 
+<div class=""wrap"">
+<div class=""column1"" style=""margin:25px 0px 0px 25px""><img width=""75%"" src=""/medias/sys_master/root/h9a/h0d/8939732074526/Protrade-Lander-Headline.png"" alt=""Trusted Night In and Night Out"" /></div></div> <div class=""wrap""><div class=""column65""><p><font size=""+1"">Pro-Trade<sup>&reg;</sup> Lighting delivers performance you can count on season after season. With prices that are tough to beat, this full line of lighting solutions gets the job done every time. Available today at SiteOne Landscape Supply.</font></p></div> <div class=""column35""><img width=""90%"" src=""/medias/sys_master/root/hb8/ha7/8939733581854/protrade-lighting-hero.png"" alt=""Pro-Trade Products"" /></div></div></div>
+</div>
+</div>";
+
+;;comp_000014WB;ReelPro Gallery Video;"<p><style type=""text/css"">
+* {
+  box-sizing: border-box;
+}
+	
+/* Scale content width to 97% */
+.wrap {
+	width: 97%;
+	margin: auto
+}
+
+/* Create One Column that spans */
+.column1 {
+  float: left;
+  width: 100%;
+  padding: 0px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: """";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column1 {
+    width: 100%;
+  }
+}
+
+/* Create Two equal columns that float next to each other */
+.column2 {
+  float: left;
+  width: 50%;
+  padding: 0px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: """";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 950px) {
+  .column2 {
+    width: 100%;
+  }
+}
+
+/* Create three equal columns that float next to each other */
+.column3 {
+  float: left;
+  width: 33%;
+  padding: 25px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: """";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column3 {
+    width: 100%;
+  }
+}
+
+/* Create 65% column to pair with 33% collumn */
+.column65 {
+  float: left;
+  width: 65%;
+  height: 100%;
+  padding: 20px;
+  display: table-cell;
+  margin: auto;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: """";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column65 {
+    width: 100%;
+  }
+}
+
+/* Create three equal columns that float next to each other */
+.column35 {
+  float: left;
+  width: 35%;
+  padding: 25px;
+  display: table-cell;
+  margin: auto;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: """";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column35 {
+    width: 100%;
+  }
+}
+
+/* Create four equal columns that float next to each other */
+.column4 {
+  float: left;
+  width: 25%;
+  padding: 15px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: """";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the four columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 500px) {
+  .column4 {
+    width: 100%;
+  }
+}
+/* Create One Column for Products */
+.column1-product {
+  float: left;
+  width: 100%;
+  padding: 20px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: """";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column1-product {
+    width: 100%;
+  }
+}
+
+.video-responsive{
+    overflow:hidden;
+    padding-bottom: 56.25%;
+    position: relative;
+    height: 0;
+}
+.video-responsive iframe{
+    border: 0;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+}
+
+.visible-mobile {
+  display: none !important;
+}
+
+@media (max-width: 600px) {
+  .visible-mobile {
+    display: inline !important;
+  }
+  .hidden-mobile {
+    display: none !important;
+  }
+}
+.custombutton {
+  background-color: #799f37;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+.custombutton:hover {
+background-color: #8eb947;
+}
+</style></p>
+<div class=""wrap"">
+<div class=""row"" style=""background-color:#014053;"">
+<div class=""column2"">
+<div class=""video-responsive""><iframe id=""marketingVideo27"" onload=""marketingVideoAnalytics(this)"" class=""marketing-videos""   width=""420"" height=""315"" src=""https://www.youtube.com/embed/fjNbE8crXWs?rel=0&enablejsapi=1"" frameborder=""0"" allow=""accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"" allowfullscreen=""""></iframe></div>
+</div>
+<div class=""column2"">
+<div class=""wrap""><br />
+<div class=""column65"">
+<p><img width=""100%"" src=""/medias/sys_master/root/h98/hec/8969150890014/ReelPro-2020-Headline2.png"" alt=""You Could Win A Pro Fishing Experience"" /></p>
+<p><font color=""#ffffff"" size=""+1"">Stock up on Hunter, Bayer, or NDS products this summer at SiteOne&reg; and you could win the chance to compete in a B.A.S.S. pro-am tournament during the 2020 SiteOne Bassmaster Elite at St. Lawrence River in Waddington, NY.**</font></p>
+<div class=""custombutton"" onclick=""window.open('/reelpro','_self')"">Learn More</div>
+</div>
+<div class=""column35""><img width=""100%"" src=""/medias/sys_master/root/h07/h60/8969150955550/bass-shield2.png"" alt=""BASS"" /></div>
+</div>
+</div>
+</div>
+</div>";"<p><style type=""text/css"">
+* {
+  box-sizing: border-box;
+}
+	
+/* Scale content width to 97% */
+.wrap {
+	width: 97%;
+	margin: auto
+}
+
+/* Create One Column that spans */
+.column1 {
+  float: left;
+  width: 100%;
+  padding: 0px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: """";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column1 {
+    width: 100%;
+  }
+}
+
+/* Create Two equal columns that float next to each other */
+.column2 {
+  float: left;
+  width: 50%;
+  padding: 0px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: """";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 950px) {
+  .column2 {
+    width: 100%;
+  }
+}
+
+/* Create three equal columns that float next to each other */
+.column3 {
+  float: left;
+  width: 33%;
+  padding: 25px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: """";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column3 {
+    width: 100%;
+  }
+}
+
+/* Create 65% column to pair with 33% collumn */
+.column65 {
+  float: left;
+  width: 65%;
+  height: 100%;
+  padding: 20px;
+  display: table-cell;
+  margin: auto;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: """";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column65 {
+    width: 100%;
+  }
+}
+
+/* Create three equal columns that float next to each other */
+.column35 {
+  float: left;
+  width: 35%;
+  padding: 25px;
+  display: table-cell;
+  margin: auto;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: """";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column35 {
+    width: 100%;
+  }
+}
+
+/* Create four equal columns that float next to each other */
+.column4 {
+  float: left;
+  width: 25%;
+  padding: 15px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: """";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the four columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 500px) {
+  .column4 {
+    width: 100%;
+  }
+}
+/* Create One Column for Products */
+.column1-product {
+  float: left;
+  width: 100%;
+  padding: 20px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: """";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column1-product {
+    width: 100%;
+  }
+}
+
+.video-responsive{
+    overflow:hidden;
+    padding-bottom: 56.25%;
+    position: relative;
+    height: 0;
+}
+.video-responsive iframe{
+    border: 0;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+}
+
+.visible-mobile {
+  display: none !important;
+}
+
+@media (max-width: 600px) {
+  .visible-mobile {
+    display: inline !important;
+  }
+  .hidden-mobile {
+    display: none !important;
+  }
+}
+.custombutton {
+  background-color: #799f37;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+.custombutton:hover {
+background-color: #8eb947;
+}
+</style></p> <div class=""wrap""><div class=""row"" style=""background-color:#014053;""><div class=""column2""><div class=""video-responsive""><iframe id=""marketingVideo28"" onload=""marketingVideoAnalytics(this)"" class=""marketing-videos""   width=""420"" height=""315"" src=""https://www.youtube.com/embed/fjNbE8crXWs?rel=0&enablejsapi=1"" frameborder=""0"" allow=""accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"" allowfullscreen=""""></iframe></div></div> <div class=""column2""><div class=""wrap""><br /> <div class=""column65""><p><img width=""100%"" src=""/medias/sys_master/root/hf1/hc9/8969556623390/ReelPro-2020-Headline-Spanish1.png"" alt=""You Could Win A Pro Fishing Experience"" /></p> <p><font color=""#ffffff"">Compra y acumula productos Hunter, Bayer o NDS este verano en SiteOne&Ograve; y ganar una oportunidad de competir en un torneo de pesca de B.A.S.S profesional y amateur durante el SiteOne Bassmaster Elite 2020 en el r&iacute;o St. Lawrence, en Waddington, NY.**</font></p> <div class=""custombutton"" onclick=""window.open('/es/reelpro','_self')"">Conoce M&aacute;s</div></div></div> <div class=""column35""><img width=""100%"" src=""/medias/sys_master/root/h07/h60/8969150955550/bass-shield2.png"" alt=""BASS"" /></div></div></div></div>"
+;;comp_000016G2;COVID19 Video Row 1;"<div class=""wrap"">
+<div class=""row"">
+<div class=""column90"">
+<h3 class=""promo-heading"">Learn More About SiteOne Online</h3>
+<div class=""greenbar""><img width=""100%"" height=""2"" src=""/medias/sys_master/root/h9c/h81/8920869371934/spacer.png"" alt="""" /></div>
+<br />
+<!-- COLUMN 1 -->
+<div class=""column33"">
+<div class=""video-responsive""><iframe id=""marketingVideo29"" onload=""marketingVideoAnalytics(this)"" class=""marketing-videos""   width=""420"" height=""315"" src=""https://www.youtube.com/embed/nsx-2V3IFB4?enablejsapi=1"" frameborder=""0"" allow=""accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"" allowfullscreen=""""></iframe></div>
+<div class=""videotitle""><font color=""#ffffff""><b>Creating an Account</b></font></div>
+</div>
+<!-- COLUMN 2 -->
+<div class=""column33"">
+<div class=""video-responsive""><iframe id=""marketingVideo30"" onload=""marketingVideoAnalytics(this)"" class=""marketing-videos""   width=""420"" height=""315"" src=""https://www.youtube.com/embed/MPAaJiuU2aA?enablejsapi=1"" frameborder=""0"" allow=""accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"" allowfullscreen=""""></iframe></div>
+<div class=""videotitle""><font color=""#ffffff""><b>Search &amp; Browse</b></font></div>
+</div>
+<!-- COLUMN 3 -->
+<div class=""column33"">
+<div class=""video-responsive""><iframe id=""marketingVideo31"" onload=""marketingVideoAnalytics(this)"" class=""marketing-videos""   width=""420"" height=""315"" src=""https://www.youtube.com/embed/gDBJiKsenq4?enablejsapi=1"" frameborder=""0"" allow=""accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"" allowfullscreen=""""></iframe></div>
+<div class=""videotitle""><font color=""#ffffff""><b>Pricing &amp; Inventory</b></font></div>
+</div>
+</div>
+</div>
+</div>";"<div class=""wrap"">
+<div class=""row"">
+<div class=""column90"">
+<h3 class=""promo-heading"">Usando SiteOne en línea</h3>
+<div class=""greenbar""><img width=""100%"" height=""2"" src=""/medias/sys_master/root/h9c/h81/8920869371934/spacer.png"" alt="""" /></div>
+<br />
+<!-- COLUMN 1 -->
+<div class=""column33"">
+<div class=""video-responsive""><iframe id=""marketingVideo32"" onload=""marketingVideoAnalytics(this)"" class=""marketing-videos""   width=""420"" height=""315"" src=""https://www.youtube.com/embed/nsx-2V3IFB4?enablejsapi=1"" frameborder=""0"" allow=""accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"" allowfullscreen=""""></iframe></div>
+<div class=""videotitle""><font color=""#ffffff""><b>Creando una cuenta</b></font></div>
+</div>
+<!-- COLUMN 2 -->
+<div class=""column33"">
+<div class=""video-responsive""><iframe id=""marketingVideo33"" onload=""marketingVideoAnalytics(this)"" class=""marketing-videos""   width=""420"" height=""315"" src=""https://www.youtube.com/embed/MPAaJiuU2aA?enablejsapi=1"" frameborder=""0"" allow=""accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"" allowfullscreen=""""></iframe></div>
+<div class=""videotitle""><font color=""#ffffff""><b>Buscar y navegar</b></font></div>
+</div>
+<!-- COLUMN 3 -->
+<div class=""column33"">
+<div class=""video-responsive""><iframe id=""marketingVideo34"" onload=""marketingVideoAnalytics(this)"" class=""marketing-videos""   width=""420"" height=""315"" src=""https://www.youtube.com/embed/gDBJiKsenq4?enablejsapi=1"" frameborder=""0"" allow=""accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"" allowfullscreen=""""></iframe></div>
+<div class=""videotitle""><font color=""#ffffff""><b>Precios e inventario</b></font></div>
+</div>
+</div>
+</div>
+</div>"
+
+;;comp_000016G8;COVID Resource Center Main Video;"<p><style type=""text/css"">
+
+/* Create Two equal columns that float next to each other */
+.column2 {
+  float: left;
+  width: 50%;
+  padding: 0px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: """";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 950px) {
+  .column2 {
+    width: 100%;
+  }
+}
+
+/* Create 65% column to pair with 33% collumn */
+.column65 {
+  float: left;
+  width: 65%;
+  height: 100%;
+  padding: 20px;
+  display: table-cell;
+  margin: auto;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: """";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column65 {
+    width: 100%;
+  }
+}
+
+/* Create three equal columns that float next to each other */
+.column35 {
+  float: left;
+  width: 35%;
+  padding: 25px;
+  display: table-cell;
+  margin: auto;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: """";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column35 {
+    width: 100%;
+  }
+}
+
+}
+</style></p>
+<div class=""wrap"">
+<div class=""row"">
+<div class=""column90"">
+<p class=""covid"">COVID-19 RESOURCE CENTER</p>
+<div class=""greenbar2""><img width=""100%"" height=""2"" src=""/medias/sys_master/root/h9c/h81/8920869371934/spacer.png"" alt="""" /></div>
+</div>
+</div>
+<br />
+<div class=""wrap"">
+<div class=""row"" style=""background-color:#ebebeb; width: 95%; margin-left: auto; margin-right: auto;"">
+<div class=""column2"">
+<div class=""video-responsive""><iframe id=""marketingVideo35"" onload=""marketingVideoAnalytics(this)"" class=""marketing-videos""   width=""420"" height=""315"" src=""https://www.youtube.com/embed/EhmoWZTmp4w?rel=0&enablejsapi=1"" frameborder=""0"" allow=""accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"" allowfullscreen=""""></iframe></div>
+</div>
+<div class=""column2""><br />
+<div class=""wrap"">
+<div style=""padding: 0px 30px 20px 30px; margin: auto;"">
+<h3 class=""promo-heading"">Beyond safety, we want to make sure your business stays healthy through this difficult time.</h3>
+<br />
+<p><font color=""#000000"">We've compiled resources and tips to help your business power through the uncommon obstacles you might face. Read on for pertinent information on the following topics:</font></p>
+<ul>
+    <li><a href=""#tools"">SiteOne Online Services and Tools</a></li>
+    <li><a href=""#financial"">Financial Resources</a></li>
+    <li><a href=""#resources"">Customer Communication Resources</a></li>
+    <li><a href=""#experts"">Industry Updates</a></li>
+</ul>
+<p>&nbsp;</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>";"<p><style type=""text/css"">
+
+/* Create Two equal columns that float next to each other */
+.column2 {
+  float: left;
+  width: 50%;
+  padding: 0px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: """";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 950px) {
+  .column2 {
+    width: 100%;
+  }
+}
+
+/* Create 65% column to pair with 33% collumn */
+.column65 {
+  float: left;
+  width: 65%;
+  height: 100%;
+  padding: 20px;
+  display: table-cell;
+  margin: auto;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: """";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column65 {
+    width: 100%;
+  }
+}
+
+/* Create three equal columns that float next to each other */
+.column35 {
+  float: left;
+  width: 35%;
+  padding: 25px;
+  display: table-cell;
+  margin: auto;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: """";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column35 {
+    width: 100%;
+  }
+}
+
+}
+</style></p>
+<div class=""wrap"">
+<div class=""row"">
+<div class=""column90"">
+<p class=""covid"">Centro de Recursos para COVID-19</p>
+<div class=""greenbar2""><img width=""100%"" height=""2"" src=""/medias/sys_master/root/h9c/h81/8920869371934/spacer.png"" alt="""" /></div>
+</div>
+</div>
+<br />
+<div class=""wrap"">
+<div class=""row"" style=""background-color:#ebebeb; width: 95%; margin-left: auto; margin-right: auto;"">
+<div class=""column2"">
+<div class=""video-responsive""><iframe id=""marketingVideo36"" onload=""marketingVideoAnalytics(this)"" class=""marketing-videos""   width=""420"" height=""315"" src=""https://www.youtube.com/embed/EhmoWZTmp4w?rel=0&enablejsapi=1"" frameborder=""0"" allow=""accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"" allowfullscreen=""""></iframe></div>
+</div>
+<div class=""column2""><br />
+<div class=""wrap"">
+<div style=""padding: 0px 30px 20px 30px; margin: auto;"">
+<h3 class=""promo-heading"">M&aacute;s all&aacute; de la seguridad, queremos asegurarnos de que tu negocio se mantenga saludable durante estos tiempos tan dif&iacute;ciles.</h3>
+<br />
+<p><font color=""#000000"">Hemos reunido recursos y consejos para ayudar a tu negocio a fortalecerse frente los obst&aacute;culos inesperados que puedas enfrentar. Contin&uacute;a leyendo para recibir informaci&oacute;n pertinente en los siguientes temas:</font></p>
+<ul>
+    <li><a href=""#tools"">Servicios y herramientas de SiteOne</a></li>
+    <li><a href=""#financial"">Recursos financieros</a></li>
+    <li><a href=""#resources"">Recursos para comunicaci&oacute;n con clientes</a></li>
+    <li><a href=""#experts"">Actualizaciones de la industria</a></li>
+</ul>
+<p>&nbsp;</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>"
+;;comp_000016GA;COVID19 Resource Videos;"<div class=""wrap"">
+<div class=""row"">
+<div class=""column90"">
+<h3 class=""promo-heading""><a name=""tools"" style=""visibility:hidden"">&nbsp;</a>SiteOne Online Services and Tools</h3>
+<!-- COLUMN 1 -->
+<div class=""column33"">
+<div class=""video-responsive""><iframe id=""marketingVideo37"" onload=""marketingVideoAnalytics(this)"" class=""marketing-videos""   width=""420"" height=""315"" src=""https://www.youtube.com/embed/nsx-2V3IFB4?rel=0&enablejsapi=1"" frameborder=""0"" allow=""accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"" allowfullscreen=""""></iframe></div>
+<div class=""videotitle""><font color=""#ffffff""><b>Creating an Account</b></font></div>
+</div>
+<!-- COLUMN 2 -->
+<div class=""column33"">
+<div class=""video-responsive""><iframe id=""marketingVideo38"" onload=""marketingVideoAnalytics(this)"" class=""marketing-videos""   width=""420"" height=""315"" src=""https://www.youtube.com/embed/MPAaJiuU2aA?rel=0&enablejsapi=1"" frameborder=""0"" allow=""accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"" allowfullscreen=""""></iframe></div>
+<div class=""videotitle""><font color=""#ffffff""><b>Search &amp; Browse</b></font></div>
+</div>
+<!-- COLUMN 3 -->
+<div class=""column33"">
+<div class=""video-responsive""><iframe id=""marketingVideo39"" onload=""marketingVideoAnalytics(this)"" class=""marketing-videos""   width=""420"" height=""315"" src=""https://www.youtube.com/embed/gDBJiKsenq4?rel=0&enablejsapi=1"" frameborder=""0"" allow=""accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"" allowfullscreen=""""></iframe></div>
+<div class=""videotitle""><font color=""#ffffff""><b>Pricing &amp; Inventory</b></font></div>
+</div>
+</div>
+</div>
+</div>
+</div><div class=""wrap""><div class=""row"">
+<div class=""column90""><!-- COLUMN 1 -->
+<div class=""column33"">
+<div class=""video-responsive""><iframe id=""marketingVideo40"" onload=""marketingVideoAnalytics(this)"" class=""marketing-videos""   width=""420"" height=""315"" src=""https://www.youtube.com/embed/_a4STiZXxak?rel=0&enablejsapi=1"" frameborder=""0"" allow=""accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"" allowfullscreen=""""></iframe></div>
+<div class=""videotitle""><font color=""#ffffff""><b>Accessing Account Information</b></font></div>
+</div>
+<!-- COLUMN 2 -->
+<div class=""column33"">
+<div class=""video-responsive""><iframe id=""marketingVideo41"" onload=""marketingVideoAnalytics(this)"" class=""marketing-videos""   width=""420"" height=""315"" src=""https://www.youtube.com/embed/xMLcDF_uQ9s?rel=0&enablejsapi=1"" frameborder=""0"" allow=""accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"" allowfullscreen=""""></iframe></div>
+<div class=""videotitle""><font color=""#ffffff""><b>Checkout</b></font></div>
+</div>
+<!-- COLUMN 3 -->
+<div class=""column33"">
+<p>&nbsp;</p>
+</div>
+</div>
+</div>
+</div>";"<div class=""wrap"">
+<div class=""row"">
+<div class=""column90"">
+<h3 class=""promo-heading""><a name=""tools"" style=""visibility:hidden"">&nbsp;</a>Servicios y herramientas en l&iacute;nea de SiteOne</h3>
+<!-- COLUMN 1 -->
+<div class=""column33"">
+<div class=""video-responsive""><iframe id=""marketingVideo42"" onload=""marketingVideoAnalytics(this)"" class=""marketing-videos""   width=""420"" height=""315"" src=""https://www.youtube.com/embed/nsx-2V3IFB4?rel=0&enablejsapi=1"" frameborder=""0"" allow=""accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"" allowfullscreen=""""></iframe></div>
+<div class=""videotitle""><font color=""#ffffff""><b>Creando una cuenta</b></font></div>
+</div>
+<!-- COLUMN 2 -->
+<div class=""column33"">
+<div class=""video-responsive""><iframe id=""marketingVideo43"" onload=""marketingVideoAnalytics(this)"" class=""marketing-videos""   width=""420"" height=""315"" src=""https://www.youtube.com/embed/MPAaJiuU2aA?rel=0&enablejsapi=1"" frameborder=""0"" allow=""accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"" allowfullscreen=""""></iframe></div>
+<div class=""videotitle""><font color=""#ffffff""><b>Buscar y navegar</b></font></div>
+</div>
+<!-- COLUMN 3 -->
+<div class=""column33"">
+<div class=""video-responsive""><iframe id=""marketingVideo44"" onload=""marketingVideoAnalytics(this)"" class=""marketing-videos""   width=""420"" height=""315"" src=""https://www.youtube.com/embed/gDBJiKsenq4?rel=0&enablejsapi=1"" frameborder=""0"" allow=""accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"" allowfullscreen=""""></iframe></div>
+<div class=""videotitle""><font color=""#ffffff""><b>Precios e inventario</b></font></div>
+</div>
+</div>
+</div>
+</div>
+<div class=""wrap"">
+<div class=""row"">
+<div class=""column90""><!-- COLUMN 1 -->
+<div class=""column33"">
+<div class=""video-responsive""><iframe id=""marketingVideo45"" onload=""marketingVideoAnalytics(this)"" class=""marketing-videos""   width=""420"" height=""315"" src=""https://www.youtube.com/embed/_a4STiZXxak?rel=0&enablejsapi=1"" frameborder=""0"" allow=""accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"" allowfullscreen=""""></iframe></div>
+<div class=""videotitle""><font color=""#ffffff""><b>Acceder a la información de la cuenta</b></font></div>
+</div>
+<!-- COLUMN 2 -->
+<div class=""column33"">
+<div class=""video-responsive""><iframe id=""marketingVideo46"" onload=""marketingVideoAnalytics(this)"" class=""marketing-videos""   width=""420"" height=""315"" src=""https://www.youtube.com/embed/xMLcDF_uQ9s?rel=0&enablejsapi=1"" frameborder=""0"" allow=""accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"" allowfullscreen=""""></iframe></div>
+<div class=""videotitle""><font color=""#ffffff""><b>Pago en línea</b></font></div>
+</div>
+<!-- COLUMN 3 -->
+<div class=""column33"">
+<p>&nbsp;</p>
+</div>
+</div>
+</div>
+</div>"
+;;comp_000016GB;COVID19 Resource Videos 2;"<div class=""wrap"">
+<div class=""row"">
+<div class=""column90"">
+<h3 class=""promo-heading""><a name=""tools"" style=""visibility:hidden""> </a>SiteOne Online Services and Tools</h3>
+<!-- COLUMN 1 -->
+
+<div class=""column33"">
+<div class=""video-responsive""><iframe id=""marketingVideo47"" onload=""marketingVideoAnalytics(this)"" class=""marketing-videos""   allow=""accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"" allowfullscreen="""" frameborder=""0"" height=""315"" src=""https://www.youtube.com/embed/nsx-2V3IFB4?rel=0&enablejsapi=1"" width=""420""></iframe></div>
+
+<div class=""videotitle""><font color=""#ffffff""><b>Creating an Account</b></font></div>
+</div>
+<!-- COLUMN 2 -->
+
+<div class=""column33"">
+<div class=""video-responsive""><iframe id=""marketingVideo48"" onload=""marketingVideoAnalytics(this)"" class=""marketing-videos""   allow=""accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"" allowfullscreen="""" frameborder=""0"" height=""315"" src=""https://www.youtube.com/embed/MPAaJiuU2aA?rel=0&enablejsapi=1"" width=""420""></iframe></div>
+
+<div class=""videotitle""><font color=""#ffffff""><b>Search & Browse</b></font></div>
+</div>
+<!-- COLUMN 3 -->
+
+<div class=""column33"">
+<div class=""video-responsive""><iframe id=""marketingVideo49"" onload=""marketingVideoAnalytics(this)"" class=""marketing-videos""   allow=""accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"" allowfullscreen="""" frameborder=""0"" height=""315"" src=""https://www.youtube.com/embed/gDBJiKsenq4?rel=0&enablejsapi=1"" width=""420""></iframe></div>
+
+<div class=""videotitle""><font color=""#ffffff""><b>Pricing & Inventory</b></font></div>
+</div>
+</div>
+</div>
+</div>
+
+<div class=""wrap"">
+<div class=""row"">
+<div class=""column90""><!-- COLUMN 1 -->
+<div class=""column33"">
+<div class=""video-responsive""><iframe id=""marketingVideo50"" onload=""marketingVideoAnalytics(this)"" class=""marketing-videos""   allow=""accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"" allowfullscreen="""" frameborder=""0"" height=""315"" src=""https://www.youtube.com/embed/_a4STiZXxak?rel=0&enablejsapi=1"" width=""420""></iframe></div>
+
+<div class=""videotitle""><font color=""#ffffff""><b>Accessing Account Information</b></font></div>
+</div>
+<!-- COLUMN 2 -->
+
+<div class=""column33"">
+<div class=""video-responsive""><iframe id=""marketingVideo51"" onload=""marketingVideoAnalytics(this)"" class=""marketing-videos""   allow=""accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"" allowfullscreen="""" frameborder=""0"" height=""315"" src=""https://www.youtube.com/embed/xMLcDF_uQ9s?rel=0&enablejsapi=1"" width=""420""></iframe></div>
+
+<div class=""videotitle""><font color=""#ffffff""><b>Checkout</b></font></div>
+</div>
+<!-- COLUMN 3 -->
+
+<div class=""column33"">
+<div class=""video-responsive""><iframe id=""marketingVideo52"" onload=""marketingVideoAnalytics(this)"" class=""marketing-videos""   allow=""accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"" allowfullscreen="""" frameborder=""0"" height=""315"" src=""https://www.youtube.com/embed/UbrtmIzAmHk?rel=0&enablejsapi=1"" width=""420""></iframe></div>
+
+<div class=""videotitle""><font color=""#ffffff""><b>Creating Lists</b></font></div>
+</div>
+</div>
+</div>
+</div>
+";"<div class=""wrap"">
+<div class=""row"">
+<div class=""column90"">
+<h3 class=""promo-heading"">Servicios y herramientas en l&iacute;nea de SiteOne</h3>
+
+<div class=""greenbar""><img alt="""" height=""2"" src=""/medias/sys_master/root/h9c/h81/8920869371934/spacer.png"" width=""100%"" /></div>
+<br /><!-- COLUMN 1 -->
+<div class=""column33"">
+<div class=""video-responsive""><iframe id=""marketingVideo53"" onload=""marketingVideoAnalytics(this)"" class=""marketing-videos""   allow=""accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"" allowfullscreen="""" frameborder=""0"" height=""315"" src=""https://www.youtube.com/embed/nsx-2V3IFB4?enablejsapi=1"" width=""420""></iframe></div>
+
+<div class=""videotitle""><font color=""#ffffff""><b>Creando una cuenta</b></font></div>
+</div>
+<!-- COLUMN 2 -->
+
+<div class=""column33"">
+<div class=""video-responsive""><iframe id=""marketingVideo54"" onload=""marketingVideoAnalytics(this)"" class=""marketing-videos""   allow=""accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"" allowfullscreen="""" frameborder=""0"" height=""315"" src=""https://www.youtube.com/embed/MPAaJiuU2aA?enablejsapi=1"" width=""420""></iframe></div>
+
+<div class=""videotitle""><font color=""#ffffff""><b>Buscar y navegar</b></font></div>
+</div>
+<!-- COLUMN 3 -->
+
+<div class=""column33"">
+<div class=""video-responsive""><iframe id=""marketingVideo55"" onload=""marketingVideoAnalytics(this)"" class=""marketing-videos""   allow=""accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"" allowfullscreen="""" frameborder=""0"" height=""315"" src=""https://www.youtube.com/embed/gDBJiKsenq4?enablejsapi=1"" width=""420""></iframe></div>
+
+<div class=""videotitle""><font color=""#ffffff""><b>Precios e inventario</b></font></div>
+</div>
+</div>
+</div>
+</div>
+
+<div class=""wrap"">
+<div class=""row"">
+<div class=""column90""><!-- COLUMN 1 -->
+<div class=""column33"">
+<div class=""video-responsive""><iframe id=""marketingVideo56"" onload=""marketingVideoAnalytics(this)"" class=""marketing-videos""   allow=""accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"" allowfullscreen="""" frameborder=""0"" height=""315"" src=""https://www.youtube.com/embed/_a4STiZXxak?rel=0&enablejsapi=1"" width=""420""></iframe></div>
+
+<div class=""videotitle""><font color=""#ffffff""><b>Acceder a la informaci&oacute;n de la cuenta</b></font></div>
+</div>
+<!-- COLUMN 2 -->
+
+<div class=""column33"">
+<div class=""video-responsive""><iframe id=""marketingVideo57"" onload=""marketingVideoAnalytics(this)"" class=""marketing-videos""   allow=""accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"" allowfullscreen="""" frameborder=""0"" height=""315"" src=""https://www.youtube.com/embed/xMLcDF_uQ9s?rel=0&enablejsapi=1"" width=""420""></iframe></div>
+
+<div class=""videotitle""><font color=""#ffffff""><b>Pago en l&iacute;nea</b></font></div>
+</div>
+<!-- COLUMN 3 -->
+
+<div class=""column33"">
+<div class=""video-responsive""><iframe id=""marketingVideo58"" onload=""marketingVideoAnalytics(this)"" class=""marketing-videos""   allow=""accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"" allowfullscreen="""" frameborder=""0"" height=""315"" src=""https://www.youtube.com/embed/UbrtmIzAmHk?rel=0&enablejsapi=1"" width=""420""></iframe></div>
+
+<div class=""videotitle""><font color=""#ffffff""><b>Creando listas</b></font></div>
+</div>
+</div>
+</div>
+</div>
+"
+;;comp_000016GN;Request Online Videos;"<div class=""wrap"">
+<div class=""row"">
+<div class=""column90"">
+<h3 class=""promo-heading"">SiteOne Online Help and Training</h3>
+
+<p>SiteOne is here to be your partner: keeping you stocked with the supplies you need and the expertise you trust. View the short videos below to start taking advantage of the site’s time-saving benefits today.<br />​​​​​​​</p>
+<!-- COLUMN 1 -->
+
+<div class=""column33"">
+<div class=""video-responsive""><iframe id=""marketingVideo59"" onload=""marketingVideoAnalytics(this)"" class=""marketing-videos""   allow=""accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"" allowfullscreen="""" frameborder=""0"" height=""315"" src=""https://www.youtube.com/embed/nsx-2V3IFB4?rel=0&enablejsapi=1"" width=""420""></iframe></div>
+
+<div class=""videotitle""><font color=""#ffffff""><b>Creating an Account</b></font></div>
+</div>
+<!-- COLUMN 2 -->
+
+<div class=""column33"">
+<div class=""video-responsive""><iframe id=""marketingVideo60"" onload=""marketingVideoAnalytics(this)"" class=""marketing-videos""   allow=""accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"" allowfullscreen="""" frameborder=""0"" height=""315"" src=""https://www.youtube.com/embed/MPAaJiuU2aA?rel=0&enablejsapi=1"" width=""420""></iframe></div>
+
+<div class=""videotitle""><font color=""#ffffff""><b>Search & Browse</b></font></div>
+</div>
+<!-- COLUMN 3 -->
+
+<div class=""column33"">
+<div class=""video-responsive""><iframe id=""marketingVideo61"" onload=""marketingVideoAnalytics(this)"" class=""marketing-videos""   allow=""accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"" allowfullscreen="""" frameborder=""0"" height=""315"" src=""https://www.youtube.com/embed/gDBJiKsenq4?rel=0&enablejsapi=1"" width=""420""></iframe></div>
+
+<div class=""videotitle""><font color=""#ffffff""><b>Pricing & Inventory</b></font></div>
+</div>
+</div>
+</div>
+</div>
+
+<div class=""wrap"">
+<div class=""row"">
+<div class=""column90""><!-- COLUMN 1 -->
+<div class=""column33"">
+<div class=""video-responsive""><iframe id=""marketingVideo62"" onload=""marketingVideoAnalytics(this)"" class=""marketing-videos""   allow=""accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"" allowfullscreen="""" frameborder=""0"" height=""315"" src=""https://www.youtube.com/embed/_a4STiZXxak?rel=0&enablejsapi=1"" width=""420""></iframe></div>
+
+<div class=""videotitle""><font color=""#ffffff""><b>Accessing Account Information</b></font></div>
+</div>
+<!-- COLUMN 2 -->
+
+<div class=""column33"">
+<div class=""video-responsive""><iframe id=""marketingVideo63"" onload=""marketingVideoAnalytics(this)"" class=""marketing-videos""   allow=""accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"" allowfullscreen="""" frameborder=""0"" height=""315"" src=""https://www.youtube.com/embed/xMLcDF_uQ9s?rel=0&enablejsapi=1"" width=""420""></iframe></div>
+
+<div class=""videotitle""><font color=""#ffffff""><b>Checkout</b></font></div>
+</div>
+<!-- COLUMN 3 -->
+
+<div class=""column33"">
+<div class=""video-responsive""><iframe id=""marketingVideo64"" onload=""marketingVideoAnalytics(this)"" class=""marketing-videos""   allow=""accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"" allowfullscreen="""" frameborder=""0"" height=""315"" src=""https://www.youtube.com/embed/UbrtmIzAmHk?rel=0&enablejsapi=1"" width=""420""></iframe></div>
+
+<div class=""videotitle""><font color=""#ffffff""><b>Creating Lists</b></font></div>
+</div>
+</div>
+</div>
+</div>
+";"<div class=""wrap"">
+<div class=""row"">
+<div class=""column90"">
+<h3 class=""promo-heading"">Servicios y herramientas en l&iacute;nea de SiteOne</h3>
+
+<div class=""greenbar""><img alt="""" height=""2"" src=""/medias/sys_master/root/h9c/h81/8920869371934/spacer.png"" width=""100%"" /></div>
+<br /><!-- COLUMN 1 -->
+<div class=""column33"">
+<div class=""video-responsive""><iframe id=""marketingVideo65"" onload=""marketingVideoAnalytics(this)"" class=""marketing-videos""   allow=""accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"" allowfullscreen="""" frameborder=""0"" height=""315"" src=""https://www.youtube.com/embed/nsx-2V3IFB4?enablejsapi=1"" width=""420""></iframe></div>
+
+<div class=""videotitle""><font color=""#ffffff""><b>Creando una cuenta</b></font></div>
+</div>
+<!-- COLUMN 2 -->
+
+<div class=""column33"">
+<div class=""video-responsive""><iframe id=""marketingVideo66"" onload=""marketingVideoAnalytics(this)"" class=""marketing-videos""   allow=""accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"" allowfullscreen="""" frameborder=""0"" height=""315"" src=""https://www.youtube.com/embed/MPAaJiuU2aA?enablejsapi=1"" width=""420""></iframe></div>
+
+<div class=""videotitle""><font color=""#ffffff""><b>Buscar y navegar</b></font></div>
+</div>
+<!-- COLUMN 3 -->
+
+<div class=""column33"">
+<div class=""video-responsive""><iframe id=""marketingVideo67"" onload=""marketingVideoAnalytics(this)"" class=""marketing-videos""   allow=""accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"" allowfullscreen="""" frameborder=""0"" height=""315"" src=""https://www.youtube.com/embed/gDBJiKsenq4?enablejsapi=1"" width=""420""></iframe></div>
+
+<div class=""videotitle""><font color=""#ffffff""><b>Precios e inventario</b></font></div>
+</div>
+</div>
+</div>
+</div>
+
+<div class=""wrap"">
+<div class=""row"">
+<div class=""column90""><!-- COLUMN 1 -->
+<div class=""column33"">
+<div class=""video-responsive""><iframe id=""marketingVideo68"" onload=""marketingVideoAnalytics(this)"" class=""marketing-videos""   allow=""accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"" allowfullscreen="""" frameborder=""0"" height=""315"" src=""https://www.youtube.com/embed/_a4STiZXxak?rel=0&enablejsapi=1"" width=""420""></iframe></div>
+
+<div class=""videotitle""><font color=""#ffffff""><b>Acceder a la informaci&oacute;n de la cuenta</b></font></div>
+</div>
+<!-- COLUMN 2 -->
+
+<div class=""column33"">
+<div class=""video-responsive""><iframe id=""marketingVideo69"" onload=""marketingVideoAnalytics(this)"" class=""marketing-videos""   allow=""accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"" allowfullscreen="""" frameborder=""0"" height=""315"" src=""https://www.youtube.com/embed/xMLcDF_uQ9s?rel=0&enablejsapi=1"" width=""420""></iframe></div>
+
+<div class=""videotitle""><font color=""#ffffff""><b>Pago en l&iacute;nea</b></font></div>
+</div>
+<!-- COLUMN 3 -->
+
+<div class=""column33"">
+<div class=""video-responsive""><iframe id=""marketingVideo70"" onload=""marketingVideoAnalytics(this)"" class=""marketing-videos""   allow=""accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"" allowfullscreen="""" frameborder=""0"" height=""315"" src=""https://www.youtube.com/embed/UbrtmIzAmHk?rel=0&enablejsapi=1"" width=""420""></iframe></div>
+
+<div class=""videotitle""><font color=""#ffffff""><b>Creando listas</b></font></div>
+</div>
+</div>
+</div>
+</div>
+"

@@ -1,0 +1,163 @@
+$supercategories=supercategories( code, catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Staged']));;;;;;;;;
+$catalogVersion=catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Staged'])[unique=true,default='siteoneProductCatalog:Staged'];;;;;;;;;
+;;;;;;;;;
+INSERT_UPDATE Category;code[unique=true];name[lang=es];$supercategories;$catalogVersion;allowedPrincipals(uid)
+;SH1;Primary;;siteoneProductCatalog:Staged;admingroup
+;SH14;Irrigación;SH1;siteoneProductCatalog:Staged;admingroup 
+;SH1411;Flujo de Retorno;SH14;siteoneProductCatalog:Staged;admingroup 
+;SH1412;Abrazaderas;SH14;siteoneProductCatalog:Staged;admingroup 
+;SH1413;Container Irrigation;SH14;siteoneProductCatalog:Staged;admingroup 
+;SH1414;Controladores;SH14;siteoneProductCatalog:Staged;admingroup 
+;SH1415;Riego de Goteo y Micro riego;SH14;siteoneProductCatalog:Staged;admingroup 
+;SH1416;Coberturas;SH14;siteoneProductCatalog:Staged;admingroup 
+;SH1417;Filtración;SH14;siteoneProductCatalog:Staged;admingroup 
+;SH1418;Accesorios;SH14;siteoneProductCatalog:Staged;admingroup 
+;SH1419;Fuentes y Aireadores;SH14;siteoneProductCatalog:Staged;admingroup 
+;SH1420;Pegamentos para Tubo, Tapaporos, Limpiadores y Lubricantes;SH14;siteoneProductCatalog:Staged;admingroup 
+;SH1421;Mangueras, Accesorios y Boquillas;SH14;siteoneProductCatalog:Staged;admingroup 
+;SH1422;Productos de Identificación y Marcadores;SH14;siteoneProductCatalog:Staged;admingroup 
+;SH1423;Sistemas de Inyección;SH14;siteoneProductCatalog:Staged;admingroup 
+;SH1424;Tubos y Cañerías;SH14;siteoneProductCatalog:Staged;admingroup 
+;SH1425;Bombas;SH14;siteoneProductCatalog:Staged;admingroup 
+;SH1426;Agua de Lluvia ;SH14;siteoneProductCatalog:Staged;admingroup 
+;SH1427;Sensores;SH14;siteoneProductCatalog:Staged;admingroup 
+;SH1428;Aspersores;SH14;siteoneProductCatalog:Staged;admingroup 
+;SH1429;Herramientas y Accesorios;SH14;siteoneProductCatalog:Staged;admingroup 
+;SH1430;Cajas de Válvulas;SH14;siteoneProductCatalog:Staged;admingroup 
+;SH1431;Válvulas;SH14;siteoneProductCatalog:Staged;admingroup 
+;SH1432;Productos de Alambre, Cableado y Eléctricos;SH14;siteoneProductCatalog:Staged;admingroup 
+;SH1411110;Interruptor de Vacío Atmosférico;SH1411;siteoneProductCatalog:Staged;admingroup 
+;SH1411111;Válvulas de Retencion Doble;SH1411;siteoneProductCatalog:Staged;admingroup 
+;SH1411112;Conjunto de Doble Verificación;SH1411;siteoneProductCatalog:Staged;admingroup 
+;SH1411113;Partes y Accesorios;SH1411;siteoneProductCatalog:Staged;admingroup 
+;SH1411114;Interruptor de Vacío de presión;SH1411;siteoneProductCatalog:Staged;admingroup 
+;SH1411115;Ensamblaje de Presión Reducida;SH1411;siteoneProductCatalog:Staged;admingroup 
+;SH1412110;Pinza de sujeción;SH1412;siteoneProductCatalog:Staged;admingroup 
+;SH1412111;Especialidades;SH1412;siteoneProductCatalog:Staged;admingroup 
+;SH1412112;Herramientas;SH1412;siteoneProductCatalog:Staged;admingroup 
+;SH1412113;Tornillo Sin Fin;SH1412;siteoneProductCatalog:Staged;admingroup 
+;SH1414110;Por Energía Solar y Bateria;SH1414;siteoneProductCatalog:Staged;admingroup 
+;SH1414111;Control Central;SH1414;siteoneProductCatalog:Staged;admingroup 
+;SH1414112;Comercial;SH1414;siteoneProductCatalog:Staged;admingroup 
+;SH1414113;Temporizadores para Manguera;SH1414;siteoneProductCatalog:Staged;admingroup 
+;SH1414114;Comercial Ligero;SH1414;siteoneProductCatalog:Staged;admingroup 
+;SH1414115;Partes y Accesorios;SH1414;siteoneProductCatalog:Staged;admingroup 
+;SH1414116;Residencial;SH1414;siteoneProductCatalog:Staged;admingroup 
+;SH1414117;Sensores;SH1414;siteoneProductCatalog:Staged;admingroup 
+;SH1415110;Zona de Control y Kits de Donversión;SH1415;siteoneProductCatalog:Staged;admingroup 
+;SH1415111;Dispositivos de Emisión;SH1415;siteoneProductCatalog:Staged;admingroup 
+;SH1415112;Filtración;SH1415;siteoneProductCatalog:Staged;admingroup 
+;SH1415113;Accesorios;SH1415;siteoneProductCatalog:Staged;admingroup 
+;SH1415114;Partes y Accesorios;SH1415;siteoneProductCatalog:Staged;admingroup 
+;SH1415115;Reguladores de Presión;SH1415;siteoneProductCatalog:Staged;admingroup 
+;SH1415116;Tubería;SH1415;siteoneProductCatalog:Staged;admingroup 
+;SH1416110;Accesorios;SH1416;siteoneProductCatalog:Staged;admingroup 
+;SH1416111;Flujo de Retorno;SH1416;siteoneProductCatalog:Staged;admingroup 
+;SH1416112;Controlador;SH1416;siteoneProductCatalog:Staged;admingroup 
+;SH1416113;Decorativos y Especialidades;SH1416;siteoneProductCatalog:Staged;admingroup 
+;SH1417110;Filtros Automáticos;SH1417;siteoneProductCatalog:Staged;admingroup 
+;SH1417111;Filtros Manuales;SH1417;siteoneProductCatalog:Staged;admingroup 
+;SH1418110;Aluminum Fittings;SH1418;siteoneProductCatalog:Staged;admingroup 
+;SH1418111;Accesorios de latón;SH1418;siteoneProductCatalog:Staged;admingroup 
+;SH1418112;Accesorios de Cobre;SH1418;siteoneProductCatalog:Staged;admingroup 
+;SH1418113;Accesorios en Fundición Dúctil;SH1418;siteoneProductCatalog:Staged;admingroup 
+;SH1418114;Accesorios Galvanizados;SH1418;siteoneProductCatalog:Staged;admingroup 
+;SH1418115;Accesorios de PEAD;SH1418;siteoneProductCatalog:Staged;admingroup 
+;SH1418116;Accesorios Marlex;SH1418;siteoneProductCatalog:Staged;admingroup 
+;SH1418117;Accesorios en Poli-insertos;SH1418;siteoneProductCatalog:Staged;admingroup 
+;SH1418118;Accesorios de PVC;SH1418;siteoneProductCatalog:Staged;admingroup 
+;SH1418119;Accesorios de Reparación;SH1418;siteoneProductCatalog:Staged;admingroup 
+;SH1418120;Accesorios para Mangueras Flexibles;SH1418;siteoneProductCatalog:Staged;admingroup 
+;SH1418121;Accesorios Especializados;SH1418;siteoneProductCatalog:Staged;admingroup 
+;SH1418122;Accesorios de Acero Inoxidable;SH1418;siteoneProductCatalog:Staged;admingroup 
+;SH1419110;Aireadores;SH1419;siteoneProductCatalog:Staged;admingroup 
+;SH1419111;Fuentes;SH1419;siteoneProductCatalog:Staged;admingroup 
+;SH1419112;Partes y Accesorios;SH1419;siteoneProductCatalog:Staged;admingroup 
+;SH1420110;Accesorios;SH1420;siteoneProductCatalog:Staged;admingroup 
+;SH1420111;Cemento Solvente;SH1420;siteoneProductCatalog:Staged;admingroup 
+;SH1420112;Limpiadores y Tapaporos;SH1420;siteoneProductCatalog:Staged;admingroup 
+;SH1420113;Lubricantes;SH1420;siteoneProductCatalog:Staged;admingroup 
+;SH1420114;Selladores;SH1420;siteoneProductCatalog:Staged;admingroup 
+;SH1422110;Banderas;SH1422;siteoneProductCatalog:Staged;admingroup 
+;SH1422111;Etiquetas de Identificación;SH1422;siteoneProductCatalog:Staged;admingroup 
+;SH1422112;Pintura para Marcar;SH1422;siteoneProductCatalog:Staged;admingroup 
+;SH1422113;Cinta de Marcado y Advertencia;SH1422;siteoneProductCatalog:Staged;admingroup 
+;SH1423110;Equipos;SH1423;siteoneProductCatalog:Staged;admingroup 
+;SH1423111;Tratamientos;SH1423;siteoneProductCatalog:Staged;admingroup 
+;SH1424110;Accesorios;SH1424;siteoneProductCatalog:Staged;admingroup 
+;SH1424111;Aluminum;SH1424;siteoneProductCatalog:Staged;admingroup 
+;SH1424112;Cobre;SH1424;siteoneProductCatalog:Staged;admingroup 
+;SH1424113;Drenaje;SH1424;siteoneProductCatalog:Staged;admingroup 
+;SH1424114;Galvanizado;SH1424;siteoneProductCatalog:Staged;admingroup 
+;SH1424115;PEAD (Polietileno de Alta Densidad);SH1424;siteoneProductCatalog:Staged;admingroup 
+;SH1424116;Pex;SH1424;siteoneProductCatalog:Staged;admingroup 
+;SH1424117;Poli;SH1424;siteoneProductCatalog:Staged;admingroup 
+;SH1424118;Especializado y Otros;SH1424;siteoneProductCatalog:Staged;admingroup 
+;SH1424119;Mangueras Flexibles;SH1424;siteoneProductCatalog:Staged;admingroup 
+;SH1424120;PVC;SH1424;siteoneProductCatalog:Staged;admingroup 
+;SH1425110;Accesorios;SH1425;siteoneProductCatalog:Staged;admingroup 
+;SH1425111;Bombas Centrífugas y de Chorro;SH1425;siteoneProductCatalog:Staged;admingroup 
+;SH1425112;Bombas a Gas;SH1425;siteoneProductCatalog:Staged;admingroup 
+;SH1425113;Bombas Manuales ;SH1425;siteoneProductCatalog:Staged;admingroup 
+;SH1425114;Alcantarillado, Sumideros y Efluentes;SH1425;siteoneProductCatalog:Staged;admingroup 
+;SH1425115;Bombas Sumergibles;SH1425;siteoneProductCatalog:Staged;admingroup 
+;SH1426110;Pre-filters;SH1426;siteoneProductCatalog:Staged;admingroup 
+;SH1426111;Bombas;SH1426;siteoneProductCatalog:Staged;admingroup 
+;SH1426112;Tanques de Almacenamiento de Agua;SH1426;siteoneProductCatalog:Staged;admingroup 
+;SH1428110;Boquillas;SH1428;siteoneProductCatalog:Staged;admingroup 
+;SH1428111;Rotores;SH1428;siteoneProductCatalog:Staged;admingroup 
+;SH1428112;Especializados y Misceláneos;SH1428;siteoneProductCatalog:Staged;admingroup 
+;SH1428113;Aerosol;SH1428;siteoneProductCatalog:Staged;admingroup 
+;SH1429110;Herramientas de Reglaje;SH1429;siteoneProductCatalog:Staged;admingroup 
+;SH1429111;Perforación y Zanjeado;SH1429;siteoneProductCatalog:Staged;admingroup 
+;SH1429112;Herramientas para Abrazaderas;SH1429;siteoneProductCatalog:Staged;admingroup 
+;SH1429113;Eléctrico;SH1429;siteoneProductCatalog:Staged;admingroup 
+;SH1429114;Medidores;SH1429;siteoneProductCatalog:Staged;admingroup 
+;SH1429115;Localizadores y Herramientas para Válvulas;SH1429;siteoneProductCatalog:Staged;admingroup 
+;SH1429116;Otras Herramientas y Accesorios;SH1429;siteoneProductCatalog:Staged;admingroup 
+;SH1429117;Herramientas para Tubería en PVC y Polietileno;SH1429;siteoneProductCatalog:Staged;admingroup 
+;SH1429118;Sopletes y Soldadores;SH1429;siteoneProductCatalog:Staged;admingroup 
+;SH1429119;Cintas y Adhesivos;SH1429;siteoneProductCatalog:Staged;admingroup 
+;SH1430110;Compuestos;SH1430;siteoneProductCatalog:Staged;admingroup 
+;SH1430111;Concreto;SH1430;siteoneProductCatalog:Staged;admingroup 
+;SH1430112;Tapas;SH1430;siteoneProductCatalog:Staged;admingroup 
+;SH1430113;Plástico;SH1430;siteoneProductCatalog:Staged;admingroup 
+;SH1430114;Acero;SH1430;siteoneProductCatalog:Staged;admingroup 
+;SH1431110;Válvulas Eléctricas;SH1431;siteoneProductCatalog:Staged;admingroup 
+;SH1431111;Colectores y Accesorios;SH1431;siteoneProductCatalog:Staged;admingroup 
+;SH1431112;Válvulas Manuales;SH1431;siteoneProductCatalog:Staged;admingroup 
+;SH1432110;Accesorios;SH1432;siteoneProductCatalog:Staged;admingroup 
+;SH1432111;Cables de Comunicación;SH1432;siteoneProductCatalog:Staged;admingroup 
+;SH1432112;Conductos;SH1432;siteoneProductCatalog:Staged;admingroup 
+;SH1432113;Accesorios para Conductos;SH1432;siteoneProductCatalog:Staged;admingroup 
+;SH1432114;Conectores;SH1432;siteoneProductCatalog:Staged;admingroup 
+;SH1432115;Productos para Toma de Tierra;SH1432;siteoneProductCatalog:Staged;admingroup 
+;SH1432116;Cable de Irrigación;SH1432;siteoneProductCatalog:Staged;admingroup 
+;SH1432117;Cable de Iluminación de Bajo Voltaje;SH1432;siteoneProductCatalog:Staged;admingroup 
+;SH1432118;Cable para Bomba;SH1432;siteoneProductCatalog:Staged;admingroup 
+;SH1432119;Especializado;SH1432;siteoneProductCatalog:Staged;admingroup 
+;SH1432120;Circuito de Dos Cables;SH1432;siteoneProductCatalog:Staged;admingroup 
+;SH1428111100;Partes y Accesorios;SH1428111;siteoneProductCatalog:Staged;admingroup 
+;SH1428113100;Partes y Accesorios;SH1428113;siteoneProductCatalog:Staged;admingroup 
+;SH1431110100;3-Way;SH1431110;siteoneProductCatalog:Staged;admingroup 
+;SH1431110101;Three Way;SH1431110;siteoneProductCatalog:Staged;admingroup 
+;SH1431110102;Anti-Siphon;SH1431110;siteoneProductCatalog:Staged;admingroup 
+;SH1431110103;In-Line;SH1431110;siteoneProductCatalog:Staged;admingroup 
+;SH1431110104;Partes y Accesorios;SH1431110;siteoneProductCatalog:Staged;admingroup 
+;SH1431110105;Specialty Valves;SH1431110;siteoneProductCatalog:Staged;admingroup 
+;SH1431112100;Angle Valves;SH1431112;siteoneProductCatalog:Staged;admingroup 
+;SH1431112101;Anti-Siphon Valves;SH1431112;siteoneProductCatalog:Staged;admingroup 
+;SH1431112102;Ball Valve ;SH1431112;siteoneProductCatalog:Staged;admingroup 
+;SH1431112103;Butterfly Valves;SH1431112;siteoneProductCatalog:Staged;admingroup 
+;SH1431112104;Válvulas de Retención;SH1431112;siteoneProductCatalog:Staged;admingroup 
+;SH1431112105;Foot Valves;SH1431112;siteoneProductCatalog:Staged;admingroup 
+;SH1431112106;Garden Valves;SH1431112;siteoneProductCatalog:Staged;admingroup 
+;SH1431112107;Gate Valves;SH1431112;siteoneProductCatalog:Staged;admingroup 
+;SH1431112108;Globe Valves;SH1431112;siteoneProductCatalog:Staged;admingroup 
+;SH1431112109;Industrial Valves;SH1431112;siteoneProductCatalog:Staged;admingroup 
+;SH1431112110;Meter Valves;SH1431112;siteoneProductCatalog:Staged;admingroup 
+;SH1431112111;Partes y Accesorios;SH1431112;siteoneProductCatalog:Staged;admingroup 
+;SH1431112112;Pressure Regulating Valves;SH1431112;siteoneProductCatalog:Staged;admingroup 
+;SH1431112113;Quick Coupling Valves;SH1431112;siteoneProductCatalog:Staged;admingroup 
+;SH1431112114;Specialty Valves;SH1431112;siteoneProductCatalog:Staged;admingroup 
+

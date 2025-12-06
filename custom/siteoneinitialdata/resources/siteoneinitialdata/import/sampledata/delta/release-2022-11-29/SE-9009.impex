@@ -1,0 +1,35 @@
+$contentCatalog=siteoneContentCatalog
+$contentCatalogName=SiteOne Content Catalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$productCatalog=siteoneProductCatalog
+$productCatalogName=SiteOne Product Catalog
+$productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$picture=media(code, $contentCV);
+$image=image(code, $contentCV);
+$media=media(code, $contentCV);
+$page=page(uid, $contentCV);
+$contentPage=contentPage(uid, $contentCV);
+$product=product(code, $productCV)
+$category=category(code, $productCV)
+$siteResource=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/contentCatalogs/$contentCatalog
+$productResource=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/productCatalogs/$productCatalog
+$jarResourceCms=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/cockpits/cmscockpit
+$addonExtensionName=siteoneacceleratoraddon
+$medias=medias(code, $contentCV);
+$articleMedia=articleMedia(code, $contentCV);
+$mediaContainer=media(qualifier, $contentCV);
+$siteUid=siteone
+$lang=en
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='homeOwnerSuccess'];contentSlot(uid,$contentCV)[unique=true]
+;;StaticContent-HomeOwnerSuccessful;BodyContent;;StaticContent-HomeOwnerSuccessful
+
+INSERT_UPDATE SiteoneParagaraphComponent;$contentCV[unique=true];uid[unique=true];name;headline;content;&componentRef
+;;mailSussessfulSentComp;mailSussessfulSentComp;;"<div class=""home-owner-success"">
+     <div class=""col-md-4 col-sm-4 col-xs-3 home-owner-success-img""></div>
+     <div class=""col-md-8 col-sm-8 col-xs-9 success-msg"">
+     <div class=""success-msg1"">Your message has been sent.</div>
+     <div class=""success-msg2"">You will hear back from us in two business days.</div>
+     <a class=""return-to-hm"" href=""/en/homeowner"">Return to form →</a>
+    </div>
+</div>";mailSussessfulSentComp

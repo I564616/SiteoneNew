@@ -1,0 +1,3 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="74" height="19" viewBox="0 0 74 19">
+  <path xmlns="http://www.w3.org/2000/svg" id="Subtraction_17" data-name="Subtraction 17" d="M74,19H0V0H74V5c-3.338,0-6.051,1.938-6.051,4.318S70.664,13.637,74,13.637V19Z" transform="translate(74 19) rotate(180)" fill="#78a22f"/><text id="COUPON-2" data-name="COUPON" transform="translate(37 5)" fill="#fff" font-size="9" font-family="Arial-BoldMT, Arial" font-weight="700"><tspan x="-19.751" y="8">COUPON</tspan></text>
+</svg>

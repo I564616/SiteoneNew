@@ -1,0 +1,5 @@
+INSERT_UPDATE AdobeAnalyticsOrderExportCronJob;code[unique=true];job(code)[default=adobeAnalyticsOrderExportCronJob];sessionLanguage(isoCode)[default=en];active
+;adobeAnalyticsOrderExportCronJob;;;true
+
+INSERT_UPDATE Trigger;Cronjob(code)[unique=true];cronExpression;active[default=true]
+;adobeAnalyticsOrderExportCronJob;0 30 5 ? * SUN *

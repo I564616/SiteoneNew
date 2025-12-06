@@ -1,0 +1,30 @@
+#--------------------------SIMPLE/BASE Product IntegrationObject-----------------------#
+
+INSERT_UPDATE IntegrationObject; code[unique = true]; integrationType(code)
+; SiteOneCategory; INBOUND
+ 
+INSERT_UPDATE IntegrationObjectItem; integrationObject(code)[unique = true]; code[unique = true]; type(code); root[default = false]
+; SiteOneCategory ; SiteOneCategoryPayload              ; SiteOneCategoryPayload ; true
+; SiteOneCategory ; SiteOneCategoryLevel	; SiteOneCategoryLevel	; 	; 	; 
+; SiteOneCategory ; SiteOneCategoryAttributes	     ; SiteOneCategoryAttributes
+
+INSERT_UPDATE IntegrationObjectItemAttribute; integrationObjectItem(integrationObject(code), code)[unique = true]; attributeName[unique = true]; attributeDescriptor(enclosingType(code), qualifier); returnIntegrationObjectItem(integrationObject(code), code); unique[default = false]
+;SiteOneCategory:SiteOneCategoryPayload;id;SiteOneCategoryPayload:code;	; 	true;
+; SiteOneCategory:SiteOneCategoryLevel	; code                   ; SiteOneCategoryLevel:code	;; true	;  
+; SiteOneCategory:SiteOneCategoryLevel	; type                   ; SiteOneCategoryLevel:type	;; true	;  
+; SiteOneCategory:SiteOneCategoryLevel	; id                   ; SiteOneCategoryLevel:id	;; true	;
+; SiteOneCategory:SiteOneCategoryLevel	; name           ; SiteOneCategoryLevel:name	;; true	; 
+; SiteOneCategory:SiteOneCategoryPayload ; categoryLevel ; SiteOneCategoryPayload:categoryLevel; SiteOneCategory:SiteOneCategoryLevel	; 	;
+
+
+; SiteOneCategory:SiteOneCategoryAttributes	; id                   ; SiteOneCategoryAttributes:id	;; true	;
+; SiteOneCategory:SiteOneCategoryAttributes	; attributeCode                   ; SiteOneCategoryAttributes:attributeCode	;; true	;  
+; SiteOneCategory:SiteOneCategoryAttributes	; attributeName                   ; SiteOneCategoryAttributes:attributeName	;; true	;
+; SiteOneCategory:SiteOneCategoryAttributes	; baseVariantAttribute           ; SiteOneCategoryAttributes:baseVariantAttribute	;; true	; 
+; SiteOneCategory:SiteOneCategoryAttributes	; facetAttribute           ; SiteOneCategoryAttributes:facetAttribute	;; true	; 
+; SiteOneCategory:SiteOneCategoryPayload                    			; attributeValues ; SiteOneCategoryPayload:attributeValues; SiteOneCategory:SiteOneCategoryAttributes	; 	;
+
+
+
+
+

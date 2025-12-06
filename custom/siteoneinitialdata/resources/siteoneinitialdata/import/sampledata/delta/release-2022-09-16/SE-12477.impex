@@ -1,0 +1,8 @@
+INSERT_UPDATE ServicelayerJob; code[unique=true];springid[unique=true]
+;pimPayloadsDeleteCronJob;pimPayloadsDeleteCronJob
+
+INSERT_UPDATE PimPayloadsDeleteCronJob;code[unique=true];job(code);sessionLanguage(isocode)[default=en]
+;pimPayloadsDeleteCronJob;pimPayloadsDeleteCronJob;
+
+INSERT_UPDATE Trigger;cronJob(code)[unique=true];active;cronExpression
+;pimPayloadsDeleteCronJob;true; 0 0 2 ? * * *

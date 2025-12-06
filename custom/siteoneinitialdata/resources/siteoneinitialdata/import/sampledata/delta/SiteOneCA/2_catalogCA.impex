@@ -1,0 +1,68 @@
+
+# Import the SiteOne Content Catalog
+#
+$contentCatalog=siteoneContentCatalog
+$usContentCatalogs=siteoneUSContentCatalog
+$caContentCatalogs=siteoneCAContentCatalog
+$languages=en,es
+
+# Content catalog for CMS contents
+INSERT_UPDATE ContentCatalog;id[unique=true]
+;$contentCatalog
+;$usContentCatalogs
+;$caContentCatalogs
+
+# Content catalog for CMS contents
+INSERT_UPDATE ContentCatalog;id[unique=true];supercatalog(id)
+;$usContentCatalogs;$contentCatalog
+;$caContentCatalogs;$contentCatalog
+
+# Catalog versions for content catalogs
+INSERT_UPDATE CatalogVersion;catalog(id)[unique=true];version[unique=true];active;languages(isoCode)
+;$usContentCatalogs;Staged;false;$languages
+;$usContentCatalogs;Online;true;$languages
+;$caContentCatalogs;Staged;false;en
+;$caContentCatalogs;Online;true;en
+
+
+
+
+#Base Store impex
+$productCatalog=siteoneCAProductCatalog
+$classificationCatalog=SiteOneCAClassification
+$currencies=USD
+$net=true
+$storeUid=siteoneCA
+$defaultCurrency=USD
+$languages=en
+$defaultLanguage=en
+$deliveryCountries=CA
+$orderProcessCode=order-process
+$pickupInStoreMode=DISABLED
+$customerAllowedToIgnoreSuggestions=true
+$paymentProvider=Mockup
+$expressCheckoutEnabled=false
+$checkoutGroup=b2bCheckoutGroup
+$returnProcessCode=return-process
+$lang=en
+
+INSERT_UPDATE PromotionGroup;Identifier[unique=true];
+;siteoneCAPromoGrp;
+
+# Base Store
+INSERT_UPDATE BaseStore;uid[unique=true];catalogs(id);currencies(isocode);net;taxGroup(code);storelocatorDistanceUnit(code);defaultCurrency(isocode);languages(isocode);defaultLanguage(isocode);deliveryCountries(isocode);submitOrderProcessCode;paymentProvider;pickupInStoreMode(code);customerAllowedToIgnoreSuggestions;expressCheckoutEnabled;maxRadiusForPoSSearch;checkoutFlowGroup;createReturnProcessCode;
+;$storeUid;$productCatalog,$classificationCatalog;$currencies;$net;us-taxes;km;$defaultCurrency;$languages;$defaultLanguage;$deliveryCountries;$orderProcessCode;$paymentProvider;$pickupInStoreMode;$customerAllowedToIgnoreSuggestions;$expressCheckoutEnabled;300;$checkoutGroup;$returnProcessCode;
+
+UPDATE BaseStore;uid[unique=true];name[lang=$lang]
+;$storeUid;"SiteOne CA Store";
+
+INSERT_UPDATE BaseStore2DeliveryModeRel;source(uid)[unique=true];target(code)[unique=true]
+;siteone;premium-net
+;siteone;standard-net
+;siteone;premium-gross
+;siteone;standard-gross
+;siteone;free-standard-shipping
+
+
+
+

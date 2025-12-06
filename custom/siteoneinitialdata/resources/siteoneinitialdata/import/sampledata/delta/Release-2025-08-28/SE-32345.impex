@@ -1,0 +1,5 @@
+INSERT_UPDATE ServicelayerJob; code[unique=true];springid[unique=true]
+;importQRCodeProductsCronJob;importQRCodeProductsCronJob;
+
+INSERT_UPDATE ImportQRCodeProductsCronJob;code[unique=true];job(code);sessionLanguage(isoCode)[default=en]
+;importQRCodeProductsCronJob;importQRCodeProductsCronJob

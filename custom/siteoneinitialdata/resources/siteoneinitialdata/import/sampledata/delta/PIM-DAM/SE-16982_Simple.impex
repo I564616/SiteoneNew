@@ -1,0 +1,104 @@
+#--------------------------SIMPLE/BASE Product IntegrationObject-----------------------#
+
+INSERT_UPDATE IntegrationObject; code[unique = true]; integrationType(code)
+; SiteOneProduct; INBOUND
+ 
+INSERT_UPDATE IntegrationObjectItem; integrationObject(code)[unique = true]; code[unique = true]; type(code); root[default = false]
+; SiteOneProduct ; Product              ; Product ; true
+; SiteOneProduct ; Catalog              ; Catalog
+; SiteOneProduct ; CatalogVersion       ; CatalogVersion
+; SiteOneProduct ; InventoryUPC		 ; InventoryUPC
+; SiteOneProduct ; SiteOneProductTransformation		 ; SiteOneProductTransformation
+; SiteOneProduct ; SiteOneProductImage		     ; SiteOneProductImage
+; SiteOneProduct ; SiteOneProductItemImages		         ; SiteOneProductItemImages
+; SiteOneProduct ; SiteOneProductSpecificationAttribute	; SiteOneProductSpecificationAttribute	; 	; 	; 
+
+INSERT_UPDATE IntegrationObjectItemAttribute; integrationObjectItem(integrationObject(code), code)[unique = true]; attributeName[unique = true]; attributeDescriptor(enclosingType(code), qualifier); returnIntegrationObjectItem(integrationObject(code), code); unique[default = false]
+; SiteOneProduct:Catalog              ; id                      ; Catalog:id                      ;
+; SiteOneProduct:CatalogVersion       ; catalog                 ; CatalogVersion:catalog          ; SiteOneProduct:Catalog
+; SiteOneProduct:CatalogVersion       ; version                 ; CatalogVersion:version          ;
+; SiteOneProduct:Product              ; catalogVersion          ; Product:catalogVersion          ; SiteOneProduct:CatalogVersion
+; SiteOneProduct:Product              ; code                    ; Product:code                    ;
+; SiteOneProduct:Product              ; name                    ; Product:name                    ;
+
+; SiteOneProduct:Product              ; itemNumber              ; Product:itemNumber              ;
+; SiteOneProduct:Product              ; shortDescription        ; Product:productShortDesc        ;
+; SiteOneProduct:Product              ; longDescription        ; Product:productLongDesc        ;
+; SiteOneProduct:Product              ; isdirectshippedproduct        ; Product:isDirectShippedProduct        ;
+
+; SiteOneProduct:Product              ; superCategoryClassPath        ; Product:runtimeAttribute        ;
+; SiteOneProduct:Product              ; variantAttributes        ; Product:runtimeAttribute        ;
+; SiteOneProduct:Product              ; productKind        ; Product:runtimeAttribute        ;
+; SiteOneProduct:Product              ; categoryText        ; Product:runtimeAttribute        ;
+; SiteOneProduct:Product              ; siteoneItemID        ; Product:siteoneItemID        ;
+
+; SiteOneProduct:SiteOneProductSpecificationAttribute	; name                   ; SiteOneProductSpecificationAttribute:name	;; true	;  
+; SiteOneProduct:SiteOneProductSpecificationAttribute	; text                   ; SiteOneProductSpecificationAttribute:text	;; true	;
+; SiteOneProduct:SiteOneProductSpecificationAttribute	; creationTime           ; SiteOneProductSpecificationAttribute:creationtime	;; true	; 
+; SiteOneProduct:SiteOneProductSpecificationAttribute	; modifiedTime           ; SiteOneProductSpecificationAttribute:modifiedtime	;; true	;  
+; SiteOneProduct:Product                    			; specificationAttribute ; Product:specificationAttribute; SiteOneProduct:SiteOneProductSpecificationAttribute	; 	;
+
+; SiteOneProduct:SiteOneProductTransformation	; url     ; SiteOneProductTransformation:url	    ;; true	; 
+; SiteOneProduct:SiteOneProductTransformation	; format  ; SiteOneProductTransformation:format	;; true	; 
+
+; SiteOneProduct:SiteOneProductImage	; id               ; SiteOneProductImage:id	        ;; true	; 
+; SiteOneProduct:SiteOneProductImage	; priority         ; SiteOneProductImage:priority	;; true	; 
+; SiteOneProduct:SiteOneProductImage	; mimetype         ; SiteOneProductImage:mimetype	;; true	; 
+; SiteOneProduct:SiteOneProductImage	; fullpath         ; SiteOneProductImage:fullpath	;; true	;
+; SiteOneProduct:SiteOneProductImage	; videoId          ; SiteOneProductImage:videoId	;; true	;
+; SiteOneProduct:SiteOneProductImage	; transformations  ; SiteOneProductImage:transformations	; SiteOneProduct:SiteOneProductTransformation ;; 
+; SiteOneProduct:SiteOneProductItemImages	        ; image            ; SiteOneProductItemImages:image	; SiteOneProduct:SiteOneProductImage ; true ;
+; SiteOneProduct:Product                      ; itemImage        ; Product:itemImage    ; SiteOneProduct:SiteOneProductItemImages	; 	;
+
+; SiteOneProduct:Product              ; vendorEDINumber        ; Product:vendorEDINumber        ;
+; SiteOneProduct:Product              ; productType        ; Product:productType        ;
+; SiteOneProduct:Product              ; case        ; Product:case        ;
+; SiteOneProduct:Product              ; purchPkg        ; Product:purchPkg        ;
+; SiteOneProduct:Product              ; weight        ; Product:weight        ;
+; SiteOneProduct:Product              ; manufacturerName        ; Product:manufacturerName        ;
+; SiteOneProduct:Product              ; featureBullets        ; Product:featureBullets        ;
+; SiteOneProduct:Product              ; isLescoBranded        ; Product:isLescoBranded        ;
+; SiteOneProduct:Product			  ; isSDSRequired		  ; Product:isSdsRequired         ;
+; SiteOneProduct:Product              ; productBrandName        ; Product:runtimeAttribute        ;
+
+; SiteOneProduct:Product              ; subBrand        ; Product:subBrand        ;
+; SiteOneProduct:Product              ; vendorPartNumber        ; Product:vendorPartNumber        ;
+; SiteOneProduct:Product              ; isRegulatedItem        ; Product:isRegulatedItem        ;
+; SiteOneProduct:Product              ; isDiscontinued        ; Product:isProductDiscontinued        ;
+; SiteOneProduct:Product              ; applications        ; Product:applications        ;
+; SiteOneProduct:Product              ; standardAndApprovals        ; Product:standardsApprovals        ;
+; SiteOneProduct:Product              ; categoryCode        ; Product:categoryCode        ;
+; SiteOneProduct:Product              ; isShippable        ; Product:isShippable        ;
+; SiteOneProduct:Product              ; maxShippableDollarAmount        ; Product:maxShippableDollarAmount        ;
+; SiteOneProduct:Product              ; maxShippableQuantity        ; Product:maxShippableQuantity        ;
+; SiteOneProduct:InventoryUPC             ; upcId                      ; InventoryUPC:inventoryUPCID                   ;;
+; SiteOneProduct:InventoryUPC             ; upcCode                      ; InventoryUPC:code                      ;;
+; SiteOneProduct:InventoryUPC              ; upcDescription                   ; InventoryUPC:inventoryUPCDesc                     ;
+; SiteOneProduct:InventoryUPC              ; upcMultiplier                      ; InventoryUPC:inventoryMultiplier                      ;;
+; SiteOneProduct:InventoryUPC              ; upcVendorEDINumber                      ; InventoryUPC:vendorEDINumber                      ;;
+; SiteOneProduct:InventoryUPC              ; upcVendorPartNumber                      ; InventoryUPC:vendorPartNumber                      ;;
+; SiteOneProduct:InventoryUPC              ; upcWeight                      ; InventoryUPC:weight                      ;;
+; SiteOneProduct:InventoryUPC              ; upcLength                      ; InventoryUPC:length                      ;;
+; SiteOneProduct:InventoryUPC              ; upcHeight                      ; InventoryUPC:height                      ;;
+; SiteOneProduct:InventoryUPC              ; upcHidden                      ; InventoryUPC:hideUPCOnline                      ;
+; SiteOneProduct:Product              ; upcData        ; Product:upcData        ;SiteOneProduct:InventoryUPC  ;
+; SiteOneProduct:Product              ; baseUPCCode        ; Product:runtimeAttribute        ;
+
+#--------------------------Remove impex to make inventoryUOMID as optional-----------------------#
+REMOVE AttributeDescriptor; qualifier[unique = true]; enclosingType(code)[unique = true]
+; inventoryUOM ; AbstractOrderEntry
+
+
+#--------------------------Runtime Attribute for Product-----------------------#
+
+INSERT_UPDATE AttributeDescriptor;qualifier[unique = true];attributeType(code);enclosingType(code)[unique = true];autocreate;partOf;unique;optional;generate;
+; runtimeAttribute ; java.lang.String ; Product ; false ; false ; false ; true ; false ;
+; siteoneItemID ; java.lang.String ; Product ; false ; false ; false ; true ; false ;
+
+#-------Any issues with InventoryUOM in OrderEntry . Run the below query and do URS-----#
+#INSERT_UPDATE AttributeDescriptor;qualifier[unique = true];attributeType(code);enclosingType(code)[unique = true];
+#; inventoryUOM ; InventoryUPC ; AbstractOrderEntry ;
+
+#INSERT_UPDATE AttributeDescriptor;qualifier[unique = true];attributeType(code);enclosingType(code)[unique = 
+#true];autocreate;partOf;unique;optional;generate;
+#; inventoryUOM ; InventoryUPC ; AbstractOrderEntry ;false;false;false;true;false

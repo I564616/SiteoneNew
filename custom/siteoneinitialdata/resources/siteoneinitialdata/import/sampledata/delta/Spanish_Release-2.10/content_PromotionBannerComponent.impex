@@ -1,0 +1,13 @@
+$contentCatalog=siteoneContentCatalog
+$contentCatalogName=SiteOne Content Catalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+
+
+
+INSERT_UPDATE PromotionBannerComponent;$contentCV[unique=true];uid[unique=true];name;urlLink;buttonName[lang=en];buttonName[lang=es];imageText[lang=en];imageText[lang=es]
+;;HomepagePromotionComponent1;Homepage Brands Promotion Component 1;/aboutus;Learn more;Conoce más;NEW TO SITEONE? HERE'S OUR STORY.;¿NUEVO EN SITEONE? ESTA ES NUESTRA HISTORIA.
+;;HomepagePromotionComponent2;Homepage Brands Promotion Component 2;/partnersprogram;Learn more;Conoce más;CHECK OUT OUR PARTNERS PROGRAM.;CONOCE NUESTRO PROGRAMA DE SOCIOS.
+;;PartnersProgramComponent1;Partners Program Promotion Component;/partnersprogram?icid=home-main6-partners_program;Learn more;Aprende más;CHECK OUT OUR PARTNERS PROGRAM;CONOCE NUESTRO PROGRAMA DE SOCIOS.
+;;comp_0000109X;HomeLearnComponent;/articles?icid=home-main5-siteone_story;Learn more;Aprende más;"ADVICE TO GROWYOUR BUSINESS";CONSEJOS PARA HACER CRECER SU NEGOCIO
+;;comp_0000109X;HomeLearnComponent;/articles?icid=home-main5-siteone_story;Learn more;Aprende más;"ADVICE TO GROWYOUR BUSINESS";CONSEJOS PARA HACER CRECER SU NEGOCIO
+;;fertilizerPromo;Homepage Fertilizer Component ;http://info.siteone.com/eop/turf;;;;

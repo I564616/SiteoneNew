@@ -1,0 +1,554 @@
+## messageSource=classpath:/siteonecore/messages/email-shareListEmail_$lang.properties
+#macro( genHtmlBoldFont $text )
+<font color="#414a4f"><b>$text</b></font>
+#end
+#macro(genHtmlLinkStartTag $url)
+<a href="$url"><font color="#666666">
+#end
+#macro(genHtmlLinkEndTag)
+</font></a>
+#end
+#macro(genHtmlLink $url $textColor $bodyContent)
+<a href="$url"><font color="$textColor">$bodyContent</font></a>
+#end
+
+<div style="display:none !important;
+            visibility:hidden;
+            mso-hide:all;
+            color:#ffffff;
+            line-height:1px;
+            max-height:0px;
+            max-width:0px;
+            opacity:0;
+            overflow:hidden;">${ctx.messages.preHeader}</div>
+<html>
+<head>
+	<style>
+		td {
+			font-family: Arial;
+			font-size: 12pt;
+		}
+		.row{
+			background-color:#e4e4e4;
+		}
+		.border{
+			border-top:solid 1px #e4e4e4;border-bottom:solid 1px #e4e4e4;
+		}
+	</style>
+</head>
+<body bgcolor="#ffffff">
+#if(${ctx.countryBaseSiteID} == "siteone-ca")
+  <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#ffffff">
+	<tr>
+		<td>&nbsp;</td>
+	</tr>
+	<tr>
+		<td align="center" valign="top">
+			<table width="610" border="0" align="center" cellpadding="0" cellspacing="0" bordercolor="#fff" style="border:1px solid #51585c;">
+				<tr>
+					<td align="center" valign="top" bgcolor="#FFFFFF">
+						<table width="100%" cellpadding="0" cellspacing="0" border="0" align="center">
+
+							<tr>
+								<td width="50%" style="padding:15px;">
+									<a href="${ctx.baseThemeUrl}"  style="text-decoration:none;" >
+										<img title="SiteoneLogo" src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/SiteoneLogo.jpg" style="border: none;" alt="SiteoneLogo">
+									</a>
+								</td>
+								<td  width="50%" align="right" style="padding:15px;">
+									<span class="col-xs-6 col-md-12">
+										<a href="https://www.facebook.com/siteonesupplycanada/"  style="text-decoration:none;">
+											<img src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/Print_facebook_color.png" alt="Facebook" title="Facebook" style="outline:0;border: none;" width="30" height="30"/>
+										</a>&nbsp;
+										<a href="https://www.instagram.com/Siteonesupplycanada/"   style="text-decoration:none;">
+											<img src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/Print_instagram_color.png" alt="Instagram" title="Instagram"  style="outline:0;border: none;" width="30" height="30"/>
+										</a>&nbsp;
+										<a href="https://x.com/SiteOneCanada"   style="text-decoration:none;">
+											<img src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/Print_twitter_color.png" alt="X" title="X" style="outline:0;border: none;" width="30" height="30"/>
+										</a>&nbsp;
+									</span>
+								</td>
+							</tr>
+
+							<tr>
+								<td colspan="2">
+									<table width="100%" cellspacing="0">
+										<tr>
+											<td width="100%" colspan="4" height="20" align="left">
+												<hr color="#f1f2f2" align="center" width="99.5%" style="margin-top:20px;">
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<table width="100%" cellspacing="0" style="padding: 0px 15px;">
+													<tr>
+														<td colspan="2" width="100%" valign="top" style="padding:30px 10px;">
+
+															<font color="#333" style="font-weight:normal;">${ctx.username} ${ctx.messages.hasshared} ${ctx.listName}${ctx.messages.submessage}</font>
+															<p style="margin:3px 0"></p>
+															
+															<table width="100%" role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin-top:10px;">
+      
+																      #if(${ctx.customerName} && ${ctx.customerName} != "")
+																      <tr>
+																        <td style="padding:4px 10px 4px 0; font-size:14px; font-weight:700; color:#333; width:150px; white-space:nowrap;">
+																          Name of Sender
+																        </td>
+																        <td style="padding:4px 0; font-size:14px; font-weight:400; color:#333;">
+																          ${ctx.customerName}
+																        </td>
+																      </tr>
+																      #end
+																
+																      #if(${ctx.accountNumber} && ${ctx.accountNumber} != "")
+																      <tr>
+																        <td style="padding:4px 10px 4px 0; font-size:14px; font-weight:700; color:#333; width:150px; white-space:nowrap;">
+																          Account Number
+																        </td>
+																        <td style="padding:4px 0; font-size:14px; font-weight:400; color:#333;">
+																          ${ctx.accountNumber}
+																        </td>
+																      </tr>
+																      #end
+																
+																      #if(${ctx.senderEmail} && ${ctx.senderEmail} != "")
+																      <tr>
+																        <td style="padding:4px 10px 4px 0; font-size:14px; font-weight:700; color:#333; width:150px; white-space:nowrap;">
+																          Email Address
+																        </td>
+																        <td style="padding:4px 0; font-size:14px; font-weight:400; color:#333;">
+																          ${ctx.senderEmail}
+																        </td>
+																      </tr>
+																      #end
+																
+														    </table>
+														</td>
+													</tr>
+																										
+
+
+													<tr>
+														<td colspan="2">
+
+															<table width="100%" cellspacing="0">
+																#set( $loopindex = 1 )
+																#foreach( $entry in $ctx.data.entries )
+																	<tr class="row">
+																		<td width="75%" colspan="3" style="font-size:12pt;font-family:Arial;padding:10px 15px;font-weight:bold">
+																			Item $loopindex
+																			#set( $loopindex = $loopindex+1 )
+																		</td>
+																		<td style="font-size:12pt;font-family:Arial;padding:10px 15px; font-weight:bold;" align="right">
+																			$entry.qty
+																			<span style="font-weight: normal;">QTY</span>
+																		</td>
+																	</tr>
+																	<tr>
+																		<td colspan="2">
+																			<table width="100%" cellspacing="0">
+																				<tr>
+																					<td width="20%" style="padding:15px 0px;">
+																						<a href="${ctx.baseurl}$entry.product.url?cid=$entry.product.code" style="text-decoration:none !important; display: block; border: #ccc solid 1px;padding: 5px;">
+
+
+																							#if($entry.product.images.isEmpty() != 'false')
+																								<img src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/missing_product_EN_300x300.jpg" width="110" height="110" alt="image not available" style="border:none;" />
+																							#else
+																								#foreach($image in $entry.product.images)
+																									#if($image.imageType == "PRIMARY" && $image.format == "thumbnail")
+																										<img src="${ctx.baseThemeUrl}$image.url" alt="" width="110" height="110" style="border:none;" />
+																									#end
+																								#end
+																							#end
+
+
+																						</a>
+																					</td>
+
+																					<td style="font-size:12pt;font-family:Arial;padding:15px;" valign="top">
+																						<p style="margin:0px;">$entry.product.itemNumber</p>
+																						<p style="margin:5px 0px;"><a href="${ctx.baseurl}$entry.product.url?cid=$entry.product.code" style="color:#000;text-decoration:none;font-weight:bold;line-height:22px;">$entry.product.name</a></p>
+																					</td>
+																				</tr>
+																			</table>
+																		</td>
+																	</tr>
+																	<tr>
+														
+																		#if(($entry.product.inventoryFlag) || ($entry.product.hideList && $entry.product.hideCSP ) )
+																			#if($ctx.showrp || $ctx.showyp)
+
+																				<td colspan="4" align="center" style="border-top:solid 1px #f1f2f2;border-bottom:solid 1px #f1f2f2;padding:10px 5px;"><i>Pricing is Currently Unavailable for this item</i></td>
+																			#end
+
+																		#else
+																			#if($ctx.showrp && $ctx.rpricemap.get($entry.product.code) && !($entry.product.hideList) && (!$ctx.hrpmap.get($entry.product.code) || ($ctx.hrpmap.get($entry.product.code) && $entry.product.hideCSP)))
+																				<td width="30%" style="padding:10px 5px;" class="border">
+																					<p style="margin:0px;color:#9a9a9a; font-size:12px;text-transform: uppercase;">Retail Price</p>
+																					<p style="margin:5px 0px;font-weight:bold;">$${ctx.numberTool.format(${ctx.unitpriceFormat}, $ctx.rpricemap.get($entry.product.code))}/$entry.inventoryUomDesc </p>
+																				</td>
+																			
+																				#if(!$ctx.showyp || $entry.product.hideCSP)
+																					<td width="30%" style="padding:10px 5px;" class="border"></td>
+																					<td width="30%" style="padding:10px 5px;" class="border"></td>
+																					<td align="right" style="padding:10px 5px;" class="border">
+																						<p style="margin:0px;color:#9a9a9a; font-size:12px;text-transform: uppercase;">Total</p>
+																						<p style="margin:5px 0px;font-weight:bold;">$${ctx.numberTool.format(${ctx.unitpriceFormat}, $ctx.ptotalmap.get($entry.product.code))} </p>
+																					</td>
+																					#end
+																			#else
+																				#if(!(($ctx.showyp && $ctx.cpricemap.get($entry.product.code)) && !$entry.product.hideCSP))
+																					#if($ctx.showrp)
+
+																						<td colspan="4" align="center" style="border-top:solid 1px #f1f2f2;border-bottom:solid 1px #f1f2f2;padding:10px 5px;"><i>Pricing is Currently Unavailable for this item</i></td>
+																					#end
+																				#end
+
+     																		#end
+
+
+																			#if($ctx.showyp && $ctx.cpricemap.get($entry.product.code) && !($entry.product.hideCSP))
+																				<td  width="40%" style="padding:10px 5px;" class="border">
+
+																					<p style="margin:0px;color:#9a9a9a; font-size:12px;text-transform: uppercase;">Your Price</p>
+																					<p style="margin:5px 0px;font-weight:bold;">$${ctx.numberTool.format(${ctx.unitpriceFormat}, $ctx.cpricemap.get($entry.product.code))}/$entry.inventoryUomDesc </p>
+																				</td>
+																				#if(!$ctx.showrp)
+																				<td  width="40%" style="padding:10px 5px;" class="border"/>
+																				#end
+																				<td  width="40%" style="padding:10px 5px;" class="border"/>
+																				<td align="right" style="padding:10px 5px;" class="border">
+																					<p style="margin:0px;color:#9a9a9a; font-size:12px;text-transform: uppercase;">Total</p>
+																					<p style="margin:5px 0px;font-weight:bold;">$${ctx.numberTool.format(${ctx.unitpriceFormat}, $ctx.ptotalmap.get($entry.product.code))} </p>
+																				</td>
+																			#else
+																				#if(!($ctx.showrp && $ctx.rpricemap.get($entry.product.code) && !$entry.product.hideList))
+																				#if($ctx.showyp)
+
+																					<td colspan="4" align="center" style="border-top:solid 1px #f1f2f2;border-bottom:solid 1px #f1f2f2;padding:10px 5px;"><i>Pricing is Currently Unavailable for this item</i></td>
+																						
+																				#end
+
+																				#end
+
+
+																			#end
+
+																		#end
+																	</tr>
+																	<tr>
+																		<td colspan="3"><br/><br></td>
+																	</tr>
+
+																#end
+
+															</table>
+
+														</td>
+													</tr>
+
+													<table width="100%" cellspacing="0" style="margin-top:15px;padding: 0px 15px;">
+
+														#if(($ctx.showyp || $ctx.showrp)  && $ctx.ptotal)
+
+															<tr>
+																<td width="60%"> </td>
+																<td width="15%">Sub Total</td>
+																<td width="25%" align="right"><p style="margin:5px 0px;font-weight:bold;">$${ctx.numberTool.format('#,##0.00',$ctx.ptotal)}</p></td>
+															</tr>
+															<tr>
+
+																<td width="40%" colspan="3" align="right"><i>Taxes & Final Total Calculated at Checkout</i></td>
+															</tr>
+
+														#end
+
+													</table>
+
+
+													<tr>
+														<td colspan="2"><hr color="#f1f2f2" align="center" width="99.5%" style="margin-top:20px;"></td>
+													</tr>
+													<tr>
+														<td colspan="2" style="padding-left: 11px;padding-bottom: 12px;padding-top: 10px;">
+															${ctx.messages.commonsubMessageCA} <a  style="text-decoration:none !important; font-weight:bold;" href="${ctx.baseThemeUrl}/${ctx.messages.contactus}">${ctx.messages.contactyou}</a>.
+														</td>
+													</tr>
+													<tr>
+														<td colspan="2" style="padding-left: 11px;padding-bottom: 45px;">
+															<p><font color="#666666" style="color:#000;">${ctx.messages.complimentaryClose}<br><b><i>${ctx.messages.signaturename}</i></b></font></p>
+														</td>
+													</tr>
+												</table>
+											</td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+#else
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#ffffff">
+	<tr>
+		<td>&nbsp;</td>
+	</tr>
+	<tr>
+		<td align="center" valign="top">
+			<table width="610" border="0" align="center" cellpadding="0" cellspacing="0" bordercolor="#fff" style="border:1px solid #51585c;">
+				<tr>
+					<td align="center" valign="top" bgcolor="#FFFFFF">
+						<table width="100%" cellpadding="0" cellspacing="0" border="0" align="center">
+
+							<tr>
+								<td width="50%" style="padding:15px;">
+									<a href="${ctx.baseThemeUrl}"  style="text-decoration:none;" >
+										<img title="SiteoneLogo" src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/SiteoneLogo.jpg" style="border: none;" alt="SiteoneLogo">
+									</a>
+								</td>
+								<td  width="50%" align="right" style="padding:15px;">
+									<span class="col-xs-6 col-md-12">
+										<a href="https://www.facebook.com/SiteOneLandscape/"  style="text-decoration:none;">
+											<img src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/Print_facebook_color.png" alt="Facebook" title="Facebook" style="outline:0;border: none;" width="30" height="30"/>
+										</a>&nbsp;
+										<a href="https://www.instagram.com/siteonesupply/"   style="text-decoration:none;">
+											<img src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/Print_instagram_color.png" alt="Instagram" title="Instagram"  style="outline:0;border: none;" width="30" height="30"/>
+										</a>&nbsp;
+										<a href="https://x.com/SiteOneSupply"   style="text-decoration:none;">
+											<img src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/Print_twitter_color.png" alt="X" title="X" style="outline:0;border: none;" width="30" height="30"/>
+										</a>&nbsp;
+									</span>
+								</td>
+							</tr>
+
+							<tr>
+								<td colspan="2">
+									<table width="100%" cellspacing="0">
+										<tr>
+											<td width="100%" colspan="4" height="20" align="left">
+												<hr color="#f1f2f2" align="center" width="99.5%" style="margin-top:20px;">
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<table width="100%" cellspacing="0" style="padding: 0px 15px;">
+													<tr>
+														<td colspan="2" width="100%" valign="top" style="padding:30px 10px;">
+
+															<font color="#333" style="font-weight:normal;">${ctx.username} ${ctx.messages.hasshared} ${ctx.listName}${ctx.messages.submessage}</font>
+															<p style="margin:3px 0"></p>
+															
+															<table width="100%" role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin-top:10px;">
+      
+																      #if(${ctx.customerName} && ${ctx.customerName} != "")
+																      <tr>
+																        <td style="padding:4px 10px 4px 0; font-size:14px; font-weight:700; color:#333; width:150px; white-space:nowrap;">
+																          Name of Sender
+																        </td>
+																        <td style="padding:4px 0; font-size:14px; font-weight:400; color:#333;">
+																          ${ctx.customerName}
+																        </td>
+																      </tr>
+																      #end
+																
+																      #if(${ctx.accountNumber} && ${ctx.accountNumber} != "")
+																      <tr>
+																        <td style="padding:4px 10px 4px 0; font-size:14px; font-weight:700; color:#333; width:150px; white-space:nowrap;">
+																          Account Number
+																        </td>
+																        <td style="padding:4px 0; font-size:14px; font-weight:400; color:#333;">
+																          ${ctx.accountNumber}
+																        </td>
+																      </tr>
+																      #end
+																
+																      #if(${ctx.senderEmail} && ${ctx.senderEmail} != "")
+																      <tr>
+																        <td style="padding:4px 10px 4px 0; font-size:14px; font-weight:700; color:#333; width:150px; white-space:nowrap;">
+																          Email Address
+																        </td>
+																        <td style="padding:4px 0; font-size:14px; font-weight:400; color:#333;">
+																          ${ctx.senderEmail}
+																        </td>
+																      </tr>
+																      #end
+																
+														    </table>
+															
+														</td>
+													</tr>
+                                                    												
+
+													<tr>
+														<td colspan="2">
+
+															<table width="100%" cellspacing="0">
+																#set( $loopindex = 1 )
+																#foreach( $entry in $ctx.data.entries )
+																	<tr class="row">
+																		<td width="75%" colspan="3" style="font-size:12pt;font-family:Arial;padding:10px 15px;font-weight:bold">
+																			Item $loopindex
+																			#set( $loopindex = $loopindex+1 )
+																		</td>
+																		<td style="font-size:12pt;font-family:Arial;padding:10px 15px; font-weight:bold;" align="right">
+																			$entry.qty
+																			<span style="font-weight: normal;">QTY</span>
+																		</td>
+																	</tr>
+																	<tr>
+																		<td colspan="2">
+																			<table width="100%" cellspacing="0">
+																				<tr>
+																					<td width="20%" style="padding:15px 0px;">
+																						<a href="${ctx.baseurl}$entry.product.url?cid=$entry.product.code" style="text-decoration:none !important; display: block; border: #ccc solid 1px;padding: 5px;">
+
+
+																							#if($entry.product.images.isEmpty() != 'false')
+																								<img src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/missing_product_EN_300x300.jpg" width="110" height="110" alt="image not available" style="border:none;" />
+																							#else
+																								#foreach($image in $entry.product.images)
+																									#if($image.imageType == "PRIMARY" && $image.format == "thumbnail")
+																										<img src="${ctx.baseThemeUrl}$image.url" alt="" width="110" height="110" style="border:none;" />
+																									#end
+																								#end
+																							#end
+
+
+																						</a>
+																					</td>
+
+																					<td style="font-size:12pt;font-family:Arial;padding:15px;" valign="top">
+																						<p style="margin:0px;">$entry.product.itemNumber</p>
+																						<p style="margin:5px 0px;"><a href="${ctx.baseurl}$entry.product.url?cid=$entry.product.code" style="color:#000;text-decoration:none;font-weight:bold;line-height:22px;">$entry.product.name</a></p>
+																					</td>
+																				</tr>
+																			</table>
+																		</td>
+																	</tr>
+																	<tr>
+														
+																		#if(($entry.product.inventoryFlag) || ($entry.product.hideList && $entry.product.hideCSP ) )
+																			#if($ctx.showrp || $ctx.showyp)
+
+																				<td colspan="4" align="center" style="border-top:solid 1px #f1f2f2;border-bottom:solid 1px #f1f2f2;padding:10px 5px;"><i>Pricing is Currently Unavailable for this item</i></td>
+																			#end
+
+																		#else
+																			#if($ctx.showrp && $ctx.rpricemap.get($entry.product.code) && !($entry.product.hideList) && (!$ctx.hrpmap.get($entry.product.code) || ($ctx.hrpmap.get($entry.product.code) && $entry.product.hideCSP)))
+																				<td width="30%" style="padding:10px 5px;" class="border">
+																					<p style="margin:0px;color:#9a9a9a; font-size:12px;text-transform: uppercase;">Retail Price</p>
+																					<p style="margin:5px 0px;font-weight:bold;">$${ctx.numberTool.format(${ctx.unitpriceFormat}, $ctx.rpricemap.get($entry.product.code))}/$entry.inventoryUomDesc </p>
+																				</td>
+																			
+																				#if(!$ctx.showyp || $entry.product.hideCSP)
+																					<td width="30%" style="padding:10px 5px;" class="border"></td>
+																					<td width="30%" style="padding:10px 5px;" class="border"></td>
+																					<td align="right" style="padding:10px 5px;" class="border">
+																						<p style="margin:0px;color:#9a9a9a; font-size:12px;text-transform: uppercase;">Total</p>
+																						<p style="margin:5px 0px;font-weight:bold;">$${ctx.numberTool.format(${ctx.unitpriceFormat}, $ctx.ptotalmap.get($entry.product.code))} </p>
+																					</td>
+																					#end
+																			#else
+																				#if(!(($ctx.showyp && $ctx.cpricemap.get($entry.product.code)) && !$entry.product.hideCSP))
+																					#if($ctx.showrp)
+
+																						<td colspan="4" align="center" style="border-top:solid 1px #f1f2f2;border-bottom:solid 1px #f1f2f2;padding:10px 5px;"><i>Pricing is Currently Unavailable for this item</i></td>
+																					#end
+																				#end
+
+     																		#end
+
+
+																			#if($ctx.showyp && $ctx.cpricemap.get($entry.product.code) && !($entry.product.hideCSP))
+																				<td  width="40%" style="padding:10px 5px;" class="border">
+
+																					<p style="margin:0px;color:#9a9a9a; font-size:12px;text-transform: uppercase;">Your Price</p>
+																					<p style="margin:5px 0px;font-weight:bold;">$${ctx.numberTool.format(${ctx.unitpriceFormat}, $ctx.cpricemap.get($entry.product.code))}/$entry.inventoryUomDesc </p>
+																				</td>
+																				#if(!$ctx.showrp)
+																				<td  width="40%" style="padding:10px 5px;" class="border"/>
+																				#end
+																				<td  width="40%" style="padding:10px 5px;" class="border"/>
+																				<td align="right" style="padding:10px 5px;" class="border">
+																					<p style="margin:0px;color:#9a9a9a; font-size:12px;text-transform: uppercase;">Total</p>
+																					<p style="margin:5px 0px;font-weight:bold;">$${ctx.numberTool.format(${ctx.unitpriceFormat}, $ctx.ptotalmap.get($entry.product.code))} </p>
+																				</td>
+																			#else
+																				#if(!($ctx.showrp && $ctx.rpricemap.get($entry.product.code) && !$entry.product.hideList))
+																				#if($ctx.showyp)
+
+																					<td colspan="4" align="center" style="border-top:solid 1px #f1f2f2;border-bottom:solid 1px #f1f2f2;padding:10px 5px;"><i>Pricing is Currently Unavailable for this item</i></td>
+																						
+																				#end
+
+																				#end
+
+
+																			#end
+
+																		#end
+																	</tr>
+																	<tr>
+																		<td colspan="3"><br/><br></td>
+																	</tr>
+
+																#end
+
+															</table>
+
+														</td>
+													</tr>
+
+													<table width="100%" cellspacing="0" style="margin-top:15px;padding: 0px 15px;">
+
+														#if(($ctx.showyp || $ctx.showrp)  && $ctx.ptotal)
+
+															<tr>
+																<td width="60%"> </td>
+																<td width="15%">Sub Total</td>
+																<td width="25%" align="right"><p style="margin:5px 0px;font-weight:bold;">$${ctx.numberTool.format('#,##0.00',$ctx.ptotal)}</p></td>
+															</tr>
+															<tr>
+
+																<td width="40%" colspan="3" align="right"><i>Taxes & Final Total Calculated at Checkout</i></td>
+															</tr>
+
+														#end
+
+													</table>
+
+
+													<tr>
+														<td colspan="2"><hr color="#f1f2f2" align="center" width="99.5%" style="margin-top:20px;"></td>
+													</tr>
+													<tr>
+														<td colspan="2" style="padding-left: 11px;padding-bottom: 12px;padding-top: 10px;">
+															${ctx.messages.commonsubMessage} <a  style="text-decoration:none !important; font-weight:bold;" href="${ctx.baseThemeUrl}/${ctx.messages.contactus}">${ctx.messages.contactyou}</a>.
+														</td>
+													</tr>
+													<tr>
+														<td colspan="2" style="padding-left: 11px;padding-bottom: 45px;">
+															<p><font color="#666666" style="color:#000;">${ctx.messages.complimentaryClose}<br><b><i>${ctx.messages.signaturename}</i></b></font></p>
+														</td>
+													</tr>
+												</table>
+											</td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+#end
+</body>
+</html>

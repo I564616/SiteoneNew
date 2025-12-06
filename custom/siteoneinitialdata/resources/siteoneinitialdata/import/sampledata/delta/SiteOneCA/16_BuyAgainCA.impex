@@ -1,0 +1,20 @@
+$contentCatalog=siteoneContentCatalog
+$productCatalog=siteoneProductCatalog
+$productCatalogCA=siteoneCAProductCatalog
+$catalogVersions=catalogVersions(catalog(id),version);
+$serverConfigName=siteoneSolrServerConfig
+$indexConfigName=siteoneSolrIndexConfig
+$searchConfigName=siteoneBuyItAgainPageSize
+$searchIndexNamePrefix=siteone
+$solrIndexedType=siteoneBuyItAgainType
+$indexBaseSite=siteone
+$indexLanguages=en
+$indexCurrencies=USD
+
+$solrBuyItAgainSearchIndexedType=siteoneBuyItAgainSearchType
+$buyItAgainSearchConfigName=buyItAgainSearchIndex
+$buyItAgainSearchConfigDescription=Buy It Again Search Solr Index
+
+
+INSERT_UPDATE SolrFacetSearchConfig;name[unique=true];$catalogVersions
+;$buyItAgainSearchConfigName;$contentCatalog:Online,$contentCatalog:Staged,$productCatalog:Online,$productCatalog:Staged,$productCatalogCA:Online,$productCatalogCA:Staged

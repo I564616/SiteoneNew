@@ -1,0 +1,44 @@
+##Primary Hierarchy
+#New Categories
+$supercategories=supercategories( code, catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Staged']));;;;;;;;;
+$catalogVersion=catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Staged'])[unique=true,default='siteoneProductCatalog:Staged'];;;;;;;;;
+;;;;;;;;;
+
+#Classifying Attribute;Creation;;;;;;;
+#-----------------------------;;;;;;;;;
+
+#Nursery
+UPDATE classificationAttribute;code[unique=true];systemVersion(catalog(id),version);;;;;
+;nrsryTrunkCharacteristics;siteoneClassification:1;;;;
+;nrsryBloomAttributes;siteoneClassification:1;;;;
+;nrsryEnvironmental;siteoneClassification:1;;;;
+;nrsryFruitCharacteristics;siteoneClassification:1;;;;
+;nrsryFruitComposition;siteoneClassification:1;;;;
+;nrsryUSDAHardinessZoneMaximum;siteoneClassification:1;;;;
+;nrsryUSDAHardinessZoneMinimum;siteoneClassification:1;;;;
+;nrsryLeafArrangement;siteoneClassification:1;;;;
+;nrsryLeafCharacteristics;siteoneClassification:1;;;;
+;nrsryMaximumLeafLength;siteoneClassification:1;;;;
+;nrsryIndoorLightLevels;siteoneClassification:1;;;;
+;nrsryMinimumSunLight;siteoneClassification:1;;;;
+;nrsryMaximumMoistureLevel;siteoneClassification:1;;;;
+;nrsryMinimumMoistureLevel;siteoneClassification:1;;;;
+
+
+#Maintenance
+UPDATE classificationAttribute;code[unique=true];systemVersion(catalog(id),version);;;;;
+;Maintenance_formulation;siteoneClassification:1;;;;
+;Maintenance_npkanalysis;siteoneClassification:1;;;;
+;Maintenance_amperagerating;siteoneClassification:1;;;;
+;Maintenance_numberofblades;siteoneClassification:1;;;;
+;Maintenance_numberofnozzles;siteoneClassification:1;;;;
+;Maintenance_numberofspeeds;siteoneClassification:1;;;;
+;Maintenance_numberoftines;siteoneClassification:1;;;;
+;Maintenance_seedhoppercapacity;siteoneClassification:1;;;;
+
+#Lighting
+UPDATE classificationAttribute;code[unique=true];systemVersion(catalog(id),version);;;;;
+;lghtWattage;siteoneClassification:1;;;;
+;lghtWireLength;siteoneClassification:1;;;;
+;lghtIntegratedDropIn;siteoneClassification:1;;;;
+;lghtColorRenderingIndexCRI;siteoneClassification:1;;;;

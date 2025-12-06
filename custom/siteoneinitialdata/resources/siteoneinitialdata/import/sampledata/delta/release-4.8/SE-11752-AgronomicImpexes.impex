@@ -1,0 +1,125 @@
+
+##------------------ Agronomic Impexes for PTH-90 ------------------
+
+##------------------ RENAME ------------------
+
+## --- Primary Hierarchy ---
+## Define supercategories and catalogVersion 
+$supercategories=supercategories(code, catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Staged']));;;;;;;;;
+$catalogVersion=catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Staged'])[unique=true,default='siteoneProductCatalog:Staged'];;;;;;;;;;;;;;;;;;
+
+## Agronomic Maintenance>Landscape Bulbs>Fall Bulbs
+## Agronomic Maintenance>Landscape Bulbs>Specialty Bulbs
+## Agronomic Maintenance>Landscape Bulbs>Water Plants
+## Rename Level 3 categories
+UPDATE category;code[unique=true];name[lang=en];$catalogVersion
+;PH1313110;Fall Bulbs
+;PH1313111;Specialty Bulbs
+;PH1313112;Water Plants
+
+
+## --- Sales Hierarchy ---
+## Define supercategories and catalogVersion 
+$supercategories=supercategories(code, catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Staged']));;;;;;;;;
+$catalogVersion=catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Staged'])[unique=true,default='siteoneProductCatalog:Staged'];;;;;;;;;;;;;;;;;;
+
+## Agronomic Maintenance>Landscape Bulbs>Fall Bulbs
+## Agronomic Maintenance>Landscape Bulbs>Specialty Bulbs
+## Agronomic Maintenance>Landscape Bulbs>Water Plants
+## Rename Level 3 categories
+UPDATE category;code[unique=true];name[lang=en];$catalogVersion
+;SH1313110;Fall Bulbs
+;SH1313111;Specialty Bulbs
+;SH1313112;Water Plants
+
+
+##------------------ NEW CATEGORIES
+
+## --- Primary Hierarchy ---
+## Define supercategories and catalogVersion 
+$supercategories=supercategories(code, catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Staged']));;;;;;;;;
+$catalogVersion=catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Staged'])[unique=true,default='siteoneProductCatalog:Staged'];;;;;;;;;;;;;;;;;;
+
+## Agronomic Maintenance>Equipment>Sprayers>Backpack Sprayer - Create Level 3 category
+INSERT_UPDATE Category;code[unique=true];name[lang=en];$supercategories;$catalogVersion;allowedPrincipals(uid)
+;PH1323117104;Backpack Sprayer;PH1323117;siteoneProductCatalog:Staged;admingroup
+
+
+## --- Sales Hierarchy ---
+## Define supercategories and catalogVersion 
+$supercategories=supercategories(code, catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Staged']));;;;;;;;;
+$catalogVersion=catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Staged'])[unique=true,default='siteoneProductCatalog:Staged'];;;;;;;;;;;;;;;;;;
+
+## Agronomic Maintenance>Equipment>Sprayers>Backpack Sprayer - Create Level 3 category
+INSERT_UPDATE Category;code[unique=true];name[lang=en];$supercategories;$catalogVersion;allowedPrincipals(uid)
+;SH1323117104;Backpack Sprayer;SH1323117;siteoneProductCatalog:Staged;admingroup
+
+
+##----------------------------------------------------------------------------------------------
+
+## Primary hierarchy - Sales hierarchy Mapping
+$productCatalog=siteoneProductCatalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+INSERT_UPDATE category;code[unique=true];salescategorymapping;$catalogVersion;
+;PH1323117104;SH1323117104;
+
+
+##----------------------------------------------------------------------------------------------
+
+## Classifying Class creation
+INSERT_UPDATE classificationclass;code[unique=true];name[lang=en];catalogVersion(catalog(id),version);;;;;
+;CH01_1323117104;Product Details;siteoneClassification:1;;;;;
+
+
+##----------------------------------------------------------------------------------------------
+
+## Class attribute assignment
+
+$classCatalogVersion=catalogversion(catalog(id[default='siteoneClassification']),version[default='1'])[unique=true,default='siteoneClassification:1']
+$classSystemVersion=systemversion(catalog(id[default='siteoneClassification']),version[default='1'])[unique=true,default='siteoneClassification:1']
+
+INSERT_UPDATE classAttributeAssignment;classificationAttribute(code,$classSystemVersion)[unique=true];attributeType(code);classificationClass(code,$classCatalogVersion)[unique=true];attributeValues(code)[mode=append];multiValued(code);mandatory(code);formatDefinition
+
+## Backpack Sprayer
+## Attributes: Item, Type, Frame Material, Material, Series, Weight
+##;Maintenance_item;string;CH01_1323117104;;false;false;30;
+;Maintenance_type;string;CH01_1323117104;;false;false;30;
+;Maintenance_framematerial;string;CH01_1323117104;;false;false;30;
+;Maintenance_material;string;CH01_1323117104;;false;false;30;
+;Maintenance_series;string;CH01_1323117104;;false;false;30;
+;Maintenance_weight;string;CH01_1323117104;;false;false;30;
+
+
+##----------------------------------------------------------------------------------------------
+
+##--e with Staged catalog version 
+$productCatalog=siteoneProductCatalog
+$catalogVersion=catalogversion(catalog(id[default='siteoneProductCatalog']),version[default='Staged'])[unique=true,default='siteoneProductCatalog:Staged']
+$classCatalogVersion=catalogversion(catalog(id[default='siteoneClassification']),version[default='1'])[unique=true,default='siteoneClassification:1']
+$supercategories=source(code, $classCatalogVersion)[unique=true]
+$categories=target(code, $catalogVersion)[unique=true]
+INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories
+;PH1323117104;CH01_1323117104;
+
+
+##----------------------------------------------------------------------------------------------
+
+##------------------------------------- OK
+##--e with online catalog version 
+$productCatalog=siteoneProductCatalog
+$catalogVersion=catalogversion(catalog(id[default='siteoneProductCatalog']),version[default='Online'])[unique=true,default='siteoneProductCatalog:Online']
+$classCatalogVersion=catalogversion(catalog(id[default='siteoneClassification']),version[default='1'])[unique=true,default='siteoneClassification:1']
+$supercategories=source(code, $classCatalogVersion)[unique=true]
+$categories=target(code, $catalogVersion)[unique=true]
+INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories
+;PH1323117104;CH01_1323117104;
+
+
+##-----------------------------------------------------------------------------------
+##--f
+
+$classCatalogVersion=catalogversion(catalog(id[default='siteoneClassification']),version[default='1'])[unique=true,default='siteoneClassification:1']
+$supercategories=source(code, $classCatalogVersion)[unique=true]
+$categories=target(code, $classCatalogVersion)[unique=true]
+INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories
+;CH01_1323117104;CH01_1323117;

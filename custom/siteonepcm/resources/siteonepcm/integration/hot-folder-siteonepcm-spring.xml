@@ -1,0 +1,469 @@
+<!-- [y] hybris Platform Copyright (c) 2000-2014 hybris AG All rights reserved. 
+	This software is the confidential and proprietary information of hybris ("Confidential 
+	Information"). You shall not disclose such Confidential Information and shall 
+	use it only in accordance with the terms of the license agreement you entered 
+	into with hybris. -->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:int="http://www.springframework.org/schema/integration"
+	xmlns:file="http://www.springframework.org/schema/integration/file"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/util
+       http://www.springframework.org/schema/util/spring-util.xsd
+       http://www.springframework.org/schema/integration
+       http://www.springframework.org/schema/integration/spring-integration.xsd
+       http://www.springframework.org/schema/integration/file
+       http://www.springframework.org/schema/integration/file/spring-integration-file.xsd">
+
+
+	<bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+		<property name="targetObject" ref="hotfolderInboundFileChannelMappings"/>
+		<property name="targetMethod" value="put"/>
+		<property name="arguments">
+			<list>
+				<bean class="java.util.regex.Pattern" factory-method="compile">
+					<constructor-arg value="^(somedia|sovariantproduct|sobaseproduct)_(\d+)(\S+)(_|)(\d+)(\S+)\.(?i)(csv)"/>
+				</bean>
+				<ref bean="SiteOnePCMBatchFilesCloudHotFolderProc"/>
+			</list>
+		</property>
+	</bean>
+
+	<int:channel id="SiteOnePCMBatchFilesCloudHotFolderProc"/>
+
+	<int:service-activator input-channel="SiteOnePCMBatchFilesCloudHotFolderProc"
+		output-channel="batchFilesHeaderInit"
+			ref="SiteOnePCMCloudHotFolderHeaderSetupTask"
+		method="execute">
+	</int:service-activator>
+
+	<bean id="headerInitTask" class="de.hybris.platform.acceleratorservices.dataimport.batch.task.HeaderInitTask">
+		<property name="sequenceIdParser" ref="batchSequenceIdParser"/>
+		<property name="languageParser" ref="batchLanguageParser"/>
+		<property name="fallbackLanguage" value="en" />
+	</bean>
+
+
+	<bean id="SiteOnePCMCloudHotFolderHeaderSetupTask"
+		class="com.siteone.pcm.task.SiteOneHeaderSetupTask">
+		<property name="catalog" value="${cloud.hotfolder.default.mapping.header.catalog}"/>
+		<property name="net" value="${cloud.hotfolder.default.mapping.header.net}"/>
+		<property name="storeBaseDirectory" ref="baseDirectoryCloudHotFolder"/>
+		<property name="modelService" ref="modelService" />
+	</bean>
+
+	<bean id="SiteOnePCMCloudHotFolderNamePrefixComparator"
+		class="de.hybris.platform.cloud.commons.spring.integration.file.comparators.NamePrefixComparator">
+		<constructor-arg name="namePrefixPriority" value="sobaseproduct,sovariantproduct,somedia"/>
+	</bean>
+
+	<bean id="SiteOnePCMAzureHotFolderFileNamePrefixComparator"
+		class="de.hybris.platform.cloud.azure.hotfolder.remote.file.comparators.AzureBlobNameComparatorAdapter">
+		<constructor-arg name="comparator" ref="SiteOnePCMCloudHotFolderNamePrefixComparator"/>
+	</bean>
+
+	<util:list id="SiteOnePCMAzureHotFolderFileComparatorList">
+		<ref bean="SiteOnePCMAzureHotFolderFileNamePrefixComparator"/>
+		<ref bean="azureHotFolderFileNameComparator"/>
+		<ref bean="azureHotFolderFileNameSequenceComparator"/>
+		<ref bean="azureHotFolderFileModifiedComparator"/>
+	</util:list>
+
+	<bean id="SiteOnePCMAzureHotFolderFileComparator" class="org.apache.commons.collections4.comparators.ComparatorChain">
+		<constructor-arg ref="SiteOnePCMAzureHotFolderFileComparatorList"/>
+	</bean>
+
+	<!-- Camera :: Azure Inbound File Synchronizer and Channel Adapter -->
+	<bean id="SiteOnePCMAzureBlobInboundSynchronizer"
+		class="de.hybris.platform.cloud.azure.hotfolder.remote.inbound.AzureBlobInboundSynchronizer">
+		<constructor-arg name="sessionFactory" ref="azureBlobSessionFactory"/>
+		<property name="remoteDirectory" value="#{azureHotfolderRemotePath}/siteonepcm/hotFolder"/>
+		<property name="moveToRemoteDirectory" value="#{azureHotfolderRemotePath}/siteonepcm/hotFolder/processing"/>
+		<property name="deleteRemoteFiles" value="${azure.hotfolder.storage.delete.remote.files}"/>
+		<property name="preserveTimestamp" value="true"/>
+		<property name="filter" ref="azureHotfolderFileFilter"/>
+		<property name="comparator" ref="SiteOnePCMAzureHotFolderFileComparator"/>
+	</bean>
+
+	<bean id="SiteOnePCMAzureBlobSynchronizingMessageSource"
+		class="de.hybris.platform.cloud.azure.hotfolder.remote.inbound.AzureBlobSynchronizingMessageSource">
+		<constructor-arg name="synchronizer" ref="SiteOnePCMAzureBlobInboundSynchronizer"/>
+		<property name="autoCreateLocalDirectory" value="true"/>
+		<property name="localDirectory" value="#{azureHotfolderLocalDirectoryBase}/#{azureHotfolderRemotePath}"/>
+		<property name="maxFetchSize" value="${azure.hotfolder.storage.polling.fetch.batch-size}"/>
+	</bean>
+
+	<bean id="azurePCMChannelAdapterTaskExecutor"
+		class="de.hybris.platform.cloud.commons.scheduling.HybrisAwareThreadPoolTaskExecutor">
+		<property name="waitForTasksToCompleteOnShutdown" value="true"/>
+		<property name="threadNamePrefix" value="AzureIntegrationTaskExecutorThread-${tenantId}-"/>
+		<property name="threadGroupName" value="AzureIntegrationTaskExecutor-${tenantId}"/>
+		<property name="corePoolSize" value="${azure.hotfolder.storage.polling.core-pool-size}"/>
+		<property name="maxPoolSize" value="${azure.hotfolder.storage.polling.max-pool-size}"/>
+		<property name="queueCapacity" value="-1"/>
+		<property name="keepAliveSeconds" value="60"/>
+		<property name="rejectedExecutionHandler">
+			<bean class="java.util.concurrent.ThreadPoolExecutor$DiscardPolicy"/>
+		</property>
+		<property name="role" value="integration"/>
+		<property name="autoStartup" value="false"/>
+		<property name="phase" value="10"/>
+		<property name="awaitTerminationSeconds" value="60"/>
+	</bean>
+
+	<int:inbound-channel-adapter id="SiteOnePCMAzureInboundChannelAdapter"
+		auto-startup="false"
+		role="${cloud.hotfolder.storage.services.role}"
+		phase="50"
+		ref="SiteOnePCMAzureBlobSynchronizingMessageSource"
+		channel="hotfolderInboundFileHeaderEnricherChannel">
+		<int:poller fixed-rate="${azure.hotfolder.storage.polling.fixed.rate}"
+			task-executor="azurePCMChannelAdapterTaskExecutor"
+			max-messages-per-poll="${azure.hotfolder.storage.polling.fetch.batch-size}">
+			<int:transactional synchronization-factory="SiteOnePCMAzureSynchronizationFactory"
+				transaction-manager="azurePsuedoTxManager"/>
+		</int:poller>
+	</int:inbound-channel-adapter>
+
+	<int:transaction-synchronization-factory id="SiteOnePCMAzureSynchronizationFactory">
+		<int:after-commit channel="SiteOnePCMAzureArchiveOutboundChannelAdapter"/>
+		<int:after-rollback channel="SiteOnePCMAzureErrorOutboundChannelAdapter"/>
+	</int:transaction-synchronization-factory>
+
+	<!-- Camera :: Azure Outbound Channel adapters for moving remote files into archive/error folders -->
+	<bean id="SiteOnePCMAzureArchiveMessageHandler" parent="abstractAzureMoveMessageHandler">
+		<property name="remoteDirectory" value="#{azureHotfolderRemotePath}/siteonepcm/hotFolder/archive"/>
+	</bean>
+
+	<bean id="SiteOnePCMAzureErrorMessageHandler" parent="abstractAzureMoveMessageHandler">
+		<property name="remoteDirectory" value="#{azureHotfolderRemotePath}/siteonepcm/hotFolder/error"/>
+	</bean>
+
+	<int:outbound-channel-adapter id="SiteOnePCMAzureArchiveOutboundChannelAdapter"
+		ref="SiteOnePCMAzureArchiveMessageHandler">
+	</int:outbound-channel-adapter>
+
+	<int:outbound-channel-adapter id="SiteOnePCMAzureErrorOutboundChannelAdapter"
+		ref="SiteOnePCMAzureErrorMessageHandler">
+	</int:outbound-channel-adapter>
+
+	<bean id="batchSOPhysicalImageErrorMapping" 
+	      class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping" 
+	      p:mapping="somedia" p:converter-ref="batchSOPhysicalImageError"/> 
+	
+	<bean id="batchSOPhysicalImageError" class="com.siteone.pcm.exception.PcmImageErrorHandler">
+		 <property name="header">
+			<value>
+			#error
+			</value>
+		</property> 
+		<property name="impexRow">
+			<value>#-{+0},{1};{2};{3};{+4};{5};{6}</value>
+		</property>
+		<property name="blobDataImportService" ref="blobDataImportService"/>
+		<property name="configurationService" ref="configurationService"/>
+	</bean>
+	
+	<bean id="batchSOPhysicalImageLoaderMapping" 
+	      class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping" 
+	      p:mapping="somedia" p:converter-ref="batchSOPhysicalImageLoader"/> 
+	
+	<bean id="batchSOPhysicalImageLoader" class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>	#{defaultImpexProductHeader}
+					# Import media from filesystem
+					$productCatalog=siteoneProductCatalog
+					$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+					$importFolder=file:$BASE_SOURCE_DIR$/media
+					INSERT_UPDATE Media;code[unique=true];mime[default='image/jpeg'];$catalogVersion;folder(qualifier)[default=root];realfilename;@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];sds;label;
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>;{+0}_{+3};{+4};;;{+1};$importFolder/{+1};{5};{6};</value>
+		</property>
+		<property name="rowFilter">
+			<bean class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexRowFilter">
+				<property name="expression" value="row[0]!=''  &amp;&amp; row[1]!=''  &amp;&amp; row[3]!=''  &amp;&amp; row[2]==''   &amp;&amp; row[5]=='' &amp;&amp; row[6] == ''  &amp;&amp; (row[4]=='image/jpeg' || row[4]=='image/jpg')"/>
+			</bean>
+		</property>
+		<property name="type" value="Media"/>
+	</bean>
+
+<bean id="batchSOYoutubeVideoLoaderMapping" 
+	      class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping" 
+	      p:mapping="somedia" p:converter-ref="batchSOYoutubeVideoLoader"/> 
+	
+	<bean id="batchSOYoutubeVideoLoader" class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>	#{defaultImpexProductHeader}
+					# Import media from filesystem
+					$productCatalog=siteoneProductCatalog
+					$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+					$importFolder=file:$BASE_SOURCE_DIR$/media
+					INSERT_UPDATE Media;code[unique=true];mime[default='application/octet-stream'];$catalogVersion;folder(qualifier)[default=$mediafolder];realfilename;@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];sds;label;altText[cellDecorator=com.siteone.core.batch.decorator.VideoUrlCellDecorator]
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>;{+0}_{+3};{+4};;;{+1};$importFolder/{+1};{5};{6};{7};</value>
+		</property>
+		<property name="rowFilter">
+			<bean class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexRowFilter">
+				<property name="expression" value="row[0]!='' &amp;&amp; row[1]!='' &amp;&amp; row[3]!=''  &amp;&amp; row[2]==''   &amp;&amp; row[5]=='' &amp;&amp; row[6] == ''  &amp;&amp; (row[4]=='application/octet-stream' &amp;&amp; row[7]!='')"/>
+			</bean>
+		</property>
+		<property name="type" value="Media"/>
+	</bean>
+	
+	
+
+	<bean id="batchSOPhysicalPDFLoaderMapping" 
+	      class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping" 
+	      p:mapping="somedia"
+	      p:converter-ref="batchSOPhysicalPDFLoader"/> 
+	
+	<bean id="batchSOPhysicalPDFLoader" class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>	#{defaultImpexProductHeader}
+					# Import media from filesystem
+					$productCatalog=siteoneProductCatalog
+					$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+					$importFolder=file:$BASE_SOURCE_DIR$/media
+					INSERT_UPDATE Media;code[unique=true];mime[default='image/jpeg'];$catalogVersion;folder(qualifier)[default=root];realfilename;@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];sds;label;
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>;{+0}_{+3};{+4};;;{+1};$importFolder/{+1};{5};{6};</value>
+		</property>
+		<property name="rowFilter">
+			<bean class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexRowFilter">
+				<property name="expression" value="row[0]!=''  &amp;&amp; row[1]!=''  &amp;&amp; row[3]!='' &amp;&amp;  row[2]==''  &amp;&amp; row[4]== 'application/pdf' &amp;&amp; ((row[5]=='' &amp;&amp; row[6] == '') || (row[5]!='' &amp;&amp; row[6] == '') || (row[5]=='' &amp;&amp; row[6] != ''))"/>
+			</bean>
+		</property>
+		<property name="type" value="Media"/>
+	</bean>
+	
+	<bean id="batchSOPhysicalPDFURLLoaderMapping" 
+	      class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping" 
+	      p:mapping="somedia"
+	      p:converter-ref="batchSOPhysicalPDFURLLoader"/> 
+	
+	<bean id="batchSOPhysicalPDFURLLoader" class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>	#{defaultImpexProductHeader}
+					# Import media from filesystem
+					$productCatalog=siteoneProductCatalog
+					$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+					$importFolder=file:$BASE_SOURCE_DIR$/media
+					INSERT_UPDATE Media;code[unique=true];mime[default='application/pdf'];$catalogVersion;folder(qualifier)[default=root];internalurl;sds;label;
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>;{+0}_{+3};{+4};;;{+2};{5};{6};</value>
+		</property>
+		<property name="rowFilter">
+			<bean class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexRowFilter">
+				<property name="expression" value="row[0]!='' &amp;&amp; row[3]!='' &amp;&amp; row[1]=='' &amp;&amp; row[4]!='' &amp;&amp; row[2]!=''  &amp;&amp; row[4]== 'application/pdf'  &amp;&amp; (( row[5]=='' &amp;&amp; row[6] == '') || (row[5]!='' &amp;&amp; row[6] == '') || (row[5]=='' &amp;&amp; row[6] != ''))"/>
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="batchSOUrlPdfLoaderMapping" 
+	      class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping" 
+	      p:mapping="somedia"
+	      p:converter-ref="batchSOUrlPdfLoader"/> 
+	
+	<bean id="batchSOUrlPdfLoader" class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>
+					#{defaultImpexProductHeader}
+					# Import media from filesystem
+					$productCatalog=siteoneProductCatalog
+					$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+					$importFolder=file:$BASE_SOURCE_DIR$/media
+					INSERT_UPDATE Media;code[unique=true];mime[default='video/mp4'];$catalogVersion;folder(qualifier)[default=root];internalurl;sds;label;
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>;{+0}_{+3};{+4};;;{+2};{5};{6};</value>				   
+		</property>
+		<property name="rowFilter">
+			<bean class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexRowFilter">
+				<property name="expression" value="row[0]!=''  &amp;&amp;  row[1]=='' &amp;&amp; row[2]!='' &amp;&amp; row[3]!=''    &amp;&amp; row[4]=='video/mp4'  &amp;&amp;  row[5]==''  &amp;&amp; row[6]=='' "/>
+			</bean>
+		</property>
+	</bean>
+	
+	<!-- Mapping MediaContainer for Image -->
+	<bean id="batchSOMediaContainerConverterMapping" 
+		  class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping" 
+		  p:mapping="somedia" 
+		  p:converter-ref="batchSOMediaContainerConverter"/>
+
+    <bean id="batchSOMediaContainerConverter" class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>#{defaultImpexProductHeader}
+			# Import media container
+			$productCatalog=siteoneProductCatalog	
+			$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+			INSERT_UPDATE MediaContainer;qualifier[unique=true];medias(code, $catalogVersion);$catalogVersion;conversionGroup(code)[default='siteoneMediaConversionGroup']
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>;{+0}_{+3};{+0}_{+3};;</value>
+		</property>
+		<property name="rowFilter">
+			<bean class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexRowFilter">
+				<property name="expression" value="row[0]!=''  &amp;&amp; row[1]!='' &amp;&amp; row[3]!='' &amp;&amp; row[2]==''  &amp;&amp; (row[4]=='image/jpeg' || row[4] == 'image/jpg' || (row[4]=='application/octet-stream' &amp;&amp; row[7]!='')) "/>
+			</bean>
+		</property>
+		<property name="type" value="MediaContainer"/>
+	</bean>
+
+	
+	<!-- Mapping respective images to respective proudcts -->
+	<bean id="batchSOProductImageConverterMapping" 
+	 	  class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping" 
+		  p:mapping="somedia" 
+		  p:converter-ref="batchSOProductImageConverter"/>
+	
+	<bean id="batchSOProductImageConverter" class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>	#{defaultImpexProductHeader}
+				$productCatalog=siteoneProductCatalog
+				$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+				$galleryImages=galleryImages(qualifier, $catalogVersion)[mode=append]
+				# Import product media
+				UPDATE Product;code[unique=true];$galleryImages;$catalogVersion
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>;{+0};{+0}_{+3};</value>
+		</property>
+		<property name="rowFilter">
+			<bean class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexRowFilter">
+				 <property name="expression" value="row[0]!=''  &amp;&amp; row[1]!='' &amp;&amp; row[3]!='' &amp;&amp; row[2]==''  &amp;&amp; (row[4]=='image/jpeg' || row[4] == 'image/jpg' || (row[4]=='application/octet-stream' &amp;&amp; row[7]!='')) "/>
+			</bean>
+		</property>
+		<property name="type" value="Product"/>
+	</bean> 
+	
+	<!-- Mapping respective pdf, pdf links & video links to respective proudcts -->
+	<bean id="batchSOProductSpecsUrlConverterMapping" 
+	 	  class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping" 
+		  p:mapping="somedia" 
+		  p:converter-ref="batchSOProductSpecsUrlConverter"/>
+		  
+	<bean id="batchSOProductSpecsUrlConverter" class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>	#{defaultImpexProductHeader}	
+				$productCatalog=siteoneProductCatalog	
+				$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]	
+				$data_sheet=data_sheet(code, $catalogVersion)[mode=append]
+				# Import product media
+				UPDATE Product;code[unique=true];$data_sheet;$catalogVersion
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>;{+0};{+0}_{+3};</value>
+		</property>
+		<property name="rowFilter">
+			<bean class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexRowFilter">
+				<property name="expression" value="row[0]!=''  &amp;&amp; row[3]!='' &amp;&amp; row[1]==''  &amp;&amp; row[2]!=''  &amp;&amp; (row[4]=='application/pdf' || row[4]=='video/mp4')"/>
+			</bean>
+		</property>
+		<property name="type" value="Product"/>
+	</bean>
+	<bean id="batchSOProductSpecsPhyConverterMapping" 
+	 	  class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping" 
+		  p:mapping="somedia" 
+		  p:converter-ref="batchSOProductSpecsPhyConverter"/>
+	<bean id="batchSOProductSpecsPhyConverter" class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>	#{defaultImpexProductHeader}	
+				$productCatalog=siteoneProductCatalog	
+				$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]	
+				$data_sheet=data_sheet(code, $catalogVersion)[mode=append]
+				# Import product media
+				UPDATE Product;code[unique=true];$data_sheet;$catalogVersion
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>;{+0};{+0}_{+3};</value>
+		</property>
+		<property name="rowFilter">
+			<bean class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexRowFilter">
+				<property name="expression" value="row[0]!=''  &amp;&amp; row[3]!='' &amp;&amp; row[1]!=''  &amp;&amp; row[2]==''  &amp;&amp; row[4]=='application/pdf' "/>
+			</bean>
+		</property>
+		<property name="type" value="Product"/>
+	</bean>
+	<!-- Mapping respective images to respective proudcts -->
+	<bean id="batchSOProductImageMapping" 
+	 	  class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping" 
+		  p:mapping="somedia" 
+		  p:converter-ref="batchSOProductImage"/>
+	
+	<bean id="batchSOProductImage" class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>	#{defaultImpexProductHeader}	
+				$productCatalog=siteoneProductCatalog	
+				$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]	
+				$picture=picture(code, $catalogVersion)
+				# Import product media
+				UPDATE Product;code[unique=true];$picture;$catalogVersion
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>;{+0};{+0}_{+3};</value>
+		</property>
+		<property name="rowFilter">
+			<bean class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexRowFilter">
+				 <property name="expression" value="row[0]!=''  &amp;&amp; row[1]!='' &amp;&amp; row[3]!='' &amp;&amp; row[2]=='' &amp;&amp; row[3]=='1'  &amp;&amp; (row[4]=='image/jpeg' || row[4] == 'image/jpg')"/>
+			</bean>
+		</property>
+		<property name="type" value="Product"/>
+	</bean>
+	
+	<bean id="batchProductAttributeConverterMapping" 
+	 	  class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping" 
+		  p:mapping="sobaseproduct" 
+		  p:converter-ref="batchProductAttributeConverter"/>
+
+	<bean id="batchProductAttributeConverter" class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>	#{defaultImpexProductHeader}	
+				$productCatalog=siteoneProductCatalog	
+				$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]	
+				# Import product media
+				UPDATE Product;code[unique=true];isShippable;maxShippableDollarAmount;maxShippableQuantity;$catalogVersion
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>;{+0};{1};{2};{3};</value>
+		</property>
+		<property name="type" value="Product"/>
+	</bean>
+
+	<bean id="batchVariantProductAttributeConverterMapping" 
+	 	  class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping" 
+		  p:mapping="sovariantproduct" 
+		  p:converter-ref="batchVariantProductAttributeConverter"/>
+
+	<bean id="batchVariantProductAttributeConverter" class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>	#{defaultImpexProductHeader}	
+				$productCatalog=siteoneProductCatalog	
+				$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]	
+				# Import product media
+				UPDATE GenericVariantProduct;code[unique=true];isShippable;maxShippableDollarAmount;maxShippableQuantity;$catalogVersion
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>;{+0};{1};{2};{3};</value>
+		</property>
+	</bean>
+	
+</beans>

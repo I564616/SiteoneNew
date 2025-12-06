@@ -1,0 +1,18 @@
+$contentCatalog=siteoneContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+
+INSERT_UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);label;defaultPage[default='true'];approvalStatus(code)[default='approved'];
+;;accountPartnerProgramPage;Account Partner Program Page;AccountDashboardPageTemplate;accountPartnerProgramPage
+
+
+INSERT_UPDATE SiteOnePartnerPointsMessageComponent;$contentCV[unique=true];uid[unique=true];name;content(uid, $contentCV);&componentRef
+;;PartnerPointsMessageComponent;Partner Points Message Component;PartnerPointsMessageParagraphComponent;PartnerPointsMessageComponent
+
+INSERT_UPDATE CMSParagraphComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef;content
+;;PartnerPointsMessageParagraphComponent;Partner Points Message Paragraph Component;PartnerPointsMessageParagraphComponent;<p>Thank you for being a loyal SiteOne Partners Program member. If you are receiving this message then we need some additional information in order for you to redeem points.Please call <a href='tel:(800)748-3663'>1-800-SiteOne,</a> ext. 2 or email <a href='mailto:customersupport@siteone.com'>customersupport@siteone.com</a> for assistance. </p>
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef)
+;;PartnerProgramSlotA;Partners Program Slot;true;PartnerPointsMessageParagraphComponent
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='accountPartnerProgramPage'];contentSlot(uid,$contentCV)[unique=true]
+;;PartnerProgramA-accountPartnerProgramPage;Promotion_SlotA;;PartnerProgramSlotA

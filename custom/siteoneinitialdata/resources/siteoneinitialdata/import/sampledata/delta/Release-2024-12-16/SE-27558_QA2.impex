@@ -1,0 +1,2 @@
+INSERT_UPDATE OAuthClientDetails;clientId[unique=true]    		        ;resourceIds       ;scope        ;authorizedGrantTypes                                            ;authorities             ;clientSecret    				            ;registeredRedirectUri											;accessTokenValiditySeconds ;refreshTokenValiditySeconds
+                                ;agro_client   ;hybris            ;basic        ;authorization_code,refresh_token,password,client_credentials    ;ROLE_CLIENT             ;secret   	;https://qa2-www.sapv2.siteone.com/authorizationserver/oauth2_callback;1800	;14400

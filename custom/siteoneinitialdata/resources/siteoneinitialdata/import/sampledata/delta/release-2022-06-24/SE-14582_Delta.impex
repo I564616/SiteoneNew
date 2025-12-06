@@ -1,0 +1,7 @@
+$productCatalog=siteoneProductCatalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+
+INSERT_UPDATE Product;code[unique=true];isDeliverable;$catalogVersion
+;37919;false
+;574200;false
+;649668;false

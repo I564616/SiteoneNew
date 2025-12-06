@@ -1,0 +1,138 @@
+$contentCatalog=siteoneContentCatalog
+$contentCatalogName=SiteOne Content Catalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+
+$picture=media(code, $contentCV);
+$image=image(code, $contentCV);
+$media=media(code, $contentCV);
+$page=page(uid, $contentCV);
+$contentPage=contentPage(uid, $contentCV);
+$product=product(code, $productCV)
+$category=category(code, $productCV)
+$siteResource=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/contentCatalogs/$contentCatalog
+$productResource=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/productCatalogs/$productCatalog
+$jarResourceCms=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/cockpits/cmscockpit
+$addonExtensionName=siteoneacceleratoraddon
+$medias=medias(code, $contentCV);
+$articleMedia=articleMedia(code, $contentCV);
+$mediaContainer=media(qualifier, $contentCV);
+$siteUid=siteone
+$lang=en
+INSERT_UPDATE CMSParagraphComponent;$contentCV[unique=true];uid[unique=true];name;content;
+;;cmsitem_00024005;Drainage-Demand Sales Tools;"<p>
+<style type=""text/css"">
+
+{
+box-sizing: border-box;
+}
+
+/* Create Background */
+
+.column-banner3 {
+display: table-cell;
+width: 50%;
+min-height: 280px;
+padding-top: 0px;
+background-repeat: no-repeat;
+background-position: center left;
+background-size: 750px;
+background-image: url('/medias/sys_master/root/hbb/h0f/9067500306462/Drainage-Photo-Stormwater.jpg');
+}
+
+@media only screen and (max-width: 600px) {
+.column-banner3 {
+width: 100%;
+height: 350px;
+background-position: bottom center;
+display: block;
+}
+}
+
+.column-banner4 {
+display: table-cell;
+width: 50%;
+min-height: 280px;
+padding-top: 0px;
+background-repeat: no-repeat;
+background-position: center left;
+background-size: 800px;
+background-image: url('/medias/sys_master/root/hf0/h30/9067500240926/Drainage-Photo-Contact.jpg');
+}
+
+@media only screen and (max-width: 600px) {
+.column-banner4 {
+width: 100%;
+height: 350px;
+background-position: bottom center;
+display: block;
+}
+}
+
+</style>
+</p>
+
+
+<div class=""wrap"">
+<div class=""row"" style=""padding: 35px 20px 20px 20px; margin-top: 15px; border-top: 4px solid #799f37; border-left: 1px solid #cccccc; border-right: 1px solid #cccccc; border-bottom: 1px solid #cccccc; background-color: #ebebeb; background-image: url('/medias/sys_master/root/h3f/hcd/9067354751006/drainage-grunge-background.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;"">
+
+<center>
+<div class=""column-flex"" style=""margin: 10px 10px; width: 60%;"">
+<p class=""section-title"">SALES TOOLS: EVERYTHING YOU NEED FROM MAKING THE SALE TO INSTALLATION</p>
+<p class=""content"">There are many drainage products and ways to position them with customers. We&#39;ve taken the guess work out of getting started with these resources and guides so the path to profit is as short as possible.</p>
+</div>
+</center>
+
+<div class=""col2-container"" style=""margin: 30px 0px;"">
+
+<div class=""column-banner3"" style=""margin-bottom: 20px; vertical-align: top; padding-bottom: 10px;"">
+<div class=""columnflex"" style=""margin: 35px 50px 35px 35px; width: 60%;"">
+<p class=""guide-headline"">Connect with Our Experts</p>
+<p class=""white-text"">Contact us for drainage and stormwater support.</p>
+<div class=""smallbutton"" onclick=""location.href='/contactus/drainage';"">Contact Us</div>
+</div>
+</div>
+
+<div class=""column-banner4"" style=""margin-bottom: 20px; vertical-align: top; padding-bottom: 10px;"">
+<div class=""columnflex"" style=""margin: 35px 50px 35px 35px; width: 60%;"">
+<p class=""guide-headline"">Equip Your Landscape Business for Growth</p>
+<p class=""white-text"">Add drainage to your services and watch new business opportunities flow.</p>
+<div class=""smallbutton"" onclick=""window.open('/medias/sys_master/root/ha2/hb6/9070438580254/Drainage-DemandGuide-Final-v2-web.pdf','_blank')"">Download PDF</div>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+"
+;;cmsitem_00046074;Lighting Demand Contact Banner;"<div class=""wrap"">
+<div class=""row"" style=""text-align: center; padding: 20px 10px"">
+
+<p class=""section-title"" style=""margin-bottom: 5px;"">CONNECT WITH OUR LIGHTING EXPERTS</p>
+<p class=""content"" style=""margin-bottom: 15px;"">Learn how easy it is to add lighting services to your business.</p>
+<div class=""custombutton"" onclick=""location.href='/contactus/lighting';"">Contact Us</div>
+
+</div>
+</div>"
+
+
+
+# Contact us email
+
+# Import config properties into impex macros for modulegen
+UPDATE GenericItem[processor=de.hybris.platform.commerceservices.impex.impl.ConfigPropertyImportProcessor];pk[unique=true]
+$emailResource=$config-emailResourceValue
+$emailPackageName=$config-emailContextPackageName
+
+# Language
+$lang=en
+
+UPDATE RendererTemplate;code[unique=true];description[lang=$lang];templateScript[lang=$lang,translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+;siteone_Email_Contact_US_Body;"Contact US Template";$emailResource/email-contactUsEmailBody.vm
+
+# Language
+$lang=es
+
+UPDATE RendererTemplate;code[unique=true];description[lang=$lang];templateScript[lang=$lang,translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+;siteone_Email_Contact_US_Body;"Contact US Template";$emailResource/email-contactUsEmailBody.vm

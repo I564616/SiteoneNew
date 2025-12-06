@@ -1,0 +1,19 @@
+$contentCatalog=siteoneContentCatalog
+$contentCatalogName=SiteOne Content Catalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+
+
+
+INSERT_UPDATE SiteoneLeftNavigationComponent;$contentCV[unique=true];uid[unique=true];name;linkName[lang=en];linkName[lang=es];
+;;comp_000000U2;BusinessSolutions Left Navigation;Business Solutions;Soluciones de Negocio
+;;comp_000001JM;BusinessSolutions Left Navigation;Business Solutions;Soluciones de Negocio
+;;comp_000001JN;BusinessSolutions Left Navigation;Business Solutions;Soluciones de Negocio
+;;comp_000001JO;BusinessSolutions Left Navigation;Business Solutions;Soluciones de Negocio
+;;comp_000007PS;Site one Contact Left Navigation;Contact Us;Contáctanos
+;;siteoneLeftNavigationComponent10;Site one Left Navigation;Introduction;Introducción
+;;siteoneLeftNavigationComponent11;Earn Points Left Navigation;Earn Points;Ganar Puntos
+;;siteoneLeftNavigationComponent13;PartnerEvents Navigation;Partners Program Events;Eventos del Programa de Socios
+;;siteoneLeftNavigationComponent14;PartnerTerms Left Navigation;Partners Program Terms & Conditions;Términos y Condiciones del Programa de Socios
+;;siteoneLeftNavigationComponent16;RedeemPoints Left Navigation;Redeem Points;Redimir Puntos
+;;siteoneLeftNavigationComponent7;Site one Left Navigation;FAQs;Preguntas Frecuentes
+

@@ -1,0 +1,6 @@
+INSERT_UPDATE SiteOneFeatureSwitch;key[unique=true];value
+;IsCMSPage;
+
+
+INSERT_UPDATE SiteOneFeatureSwitch;key[unique=true];value
+;InStockToggle;true

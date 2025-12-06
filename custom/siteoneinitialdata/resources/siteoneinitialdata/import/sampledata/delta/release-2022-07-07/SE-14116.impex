@@ -1,0 +1,15 @@
+$contentCatalog=siteoneContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Online])[default=$contentCatalog:Online]
+
+INSERT_UPDATE StoreLocatorFeature;code[unique=true];name[lang=en];icon(code, $contentCV)
+;Agronomics;Agronomics;agronomicsSpecialtyIcon
+;Delivery;Delivery;deliverySpecialtyIcon
+;Hardscapes Tier 1 - Stone Center;Hardscapes;hardscapesSpecialtyIcon
+;Hardscapes Tier 2 - Nursery/Stone Center;Hardscapes;hardscapesSpecialtyIcon
+;Hardscapes Tier 3 - Manufactured Hardscapes Center;Hardscapes;hardscapesSpecialtyIcon
+;Irrigation;Irrigation;irrigationSpecialtyIcon
+;Licensed Pesticide Distributor;Licensed Pesticide Distributor;pesticideSpecialtyIcon
+;Nursery Center;Nursery Center;nurserySpecialtyIcon
+;Outdoor Lighting;Outdoor Lighting;lightingSpecialtyIcon
+;Tool Rental;Tool Rental;toolSpecialtyIcon
+;Golf Course Maintenance;Golf Exports;golfSpecialtyIcon

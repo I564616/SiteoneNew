@@ -1,0 +1,276 @@
+######################### Content Pages Start #########################
+
+$contentCatalog=siteoneContentCatalog								
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]										
+										
+# Language										
+$lang=en										
+										
+# Content Pages										
+UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];fullpagepath[lang=$lang];pathingChannel[lang=$lang]					
+;;siteonehomepage;home;home										
+;;storefinderPage;store: store finder;store		
+;;siteonestoredetailsPage;;store
+;;quickOrderPage;checkout: quick order;checkout
+;;quickOrder;checkout: quick order;checkout							
+;;page_00000R0A;company service: online account;company service										
+;;requestaccount;company service: online account request;company service										
+;;requestaccountsuccess;company service: online account request confirmation;company service										
+;;contactUs;;company service										
+;;contactUsConfirmation;;company service										
+;;directSales;company service: direct sales;company service										
+;;faq;company service: faq;company service										
+;;golfSales;company service: golf sales;company service										
+;;videoOverview;company service: help and info;company service										
+;;loginHelp;company service: help: login;company service									
+;;geolocation;company service: help: geolocation;company service									
+;;listsAssemblies;company service: help: lists and assemblies;company service									
+;;accountSetup;company service: help: account setup;company service										
+;;accountDashboard;company service: help: account dashboard;company service										
+;;shoppingTools;company service: help: shopping tools;company service									
+;;sdsLabels;company service: help: sds and labels;company service										
+;;invoiceHistory;company service: help: invoices and order history;company service										
+;;placinganOrder;company service: help: placing an order;company service									
+;;testimonialsLanding;company service: testimonials;company service										
+;;FlockeLoneStar;company service: testimonials: lone star;company service										
+;;EdsPestControl;company service: testimonials: eds pest control;company service										
+;;AdmiralsCove;company service: testimonials: admirals cove;company service										
+;;penguinLighting;company service: testimonials: penguin lighting;company service									
+;;evergreenIrrigation;company service: testimonials: evergreen irrigation;company service										
+;;heritageHarbor;company service: testimonials: heritage harbor;company service										
+;;sprinkalawnAtlanta;company service: testimonials: sprinkalawn atlanta;company service										
+;;companyHistory;contractor services: company history;contractor services										
+;;irrigationDesign;contractor services: irrigation design;contractor services										
+;;openLineofCredit;contractor services: business resource: open line of credit;contractor services										
+;;greenTechServices;contractor services: business resource: greentech;contractor services										
+;;nurseryDirect;contractor services: nursery direct;contractor services										
+;;partnerProgram;contractor services: partners program;contractor services										
+;;earnPoints;contractor services: partners program: earn points;contractor services									
+;;redeemPoints;contractor services: partners program: redeem points;contractor services										
+;;businessSolutions;contractor services: partners program: business solutions;contractor services										
+;;partnerProgramTerms;contractor services: partners program: terms;contractor services										
+;;projectServices;contractor services: project services;contractor services										
+;;businessResource;tools and resources: business resource;tools and resources										
+;;soilAmendment;tools and resources: soil amendment;tools and resources										
+;;spreaderSettings;tools and resources: spreader settings;tools and resources										
+;;spreaderSprayer;tools and resources: spreader and sprayer;tools and resources										
+;;catalogs;tools and resources: catalogs;tools and resources										
+;;siteOneEventPage;tools and resources: events;tools and resources										
+;;homeOwnerPage;tools and resources: selecting a contractor;tools and resources										
+;;sds-search;tools and resources: safety data sheet search;tools and resources										
+;;articleLandingPage;tools and resources: learn and explore;tools and resources										
+;;galleryImageContent;tools and resources: learn and explore: hardscapes outdoor living: inspiration gallery;tools and resources										
+;;stonecenterLander;tools and resources: learn and explore: hardscapes outdoor living: stone center;tools and resources										
+;;aboutUs;company info: about us;company info										
+;;ourBrands;company info: our brands;company info										
+;;pressRoomPage;company info: news;company info										
+;;Responsibility;company info: responsibility;company info
+;;cmsitem_00013010;company info: responsibility;company info
+;;page_00000MDM;company info: responsibility: workplace safety;company info									
+;;Diversity;company info: responsibility: diversity;company info										
+;;cmsitem_00013019;company info: responsibility: diversity initiatives;company info										
+;;Health and Wellness;company info: responsibility: health wellness;company info										
+;;Community;company info: responsibility: community;company info										
+;;Political Involvement;company info: responsibility: political involvement;company info										
+;;page_00000MDK;company info: responsibility: environmental policy;company info									
+;;page_00000MDL;company info: responsibility: human rights policy;company info										
+;;cmsitem_00014004;company info: responsibility: human rights policy;company info										
+;;page_00000MDN;company info: responsibility: supplier code of conduct;company info										
+;;cmsitem_00014002;company info: responsibility: supplier code of conduct;company info										
+;;cmsitem_00013000;company info: responsibility: a letter from doug;company info										
+;;cmsitem_00013004;company info: responsibility: about this report;company info									
+;;cmsitem_00013006;company info: responsibility: sasb disclosure matrix;company info										
+;;cmsitem_00013008;company info: responsibility: safety at siteone;company info									
+;;cmsitem_00013015;company info: responsibility: benefits;company info										
+;;cmsitem_00013017;company info: responsibility: associate engagement and development;company info										
+;;cmsitem_00013021;company info: responsibility: associate resource groups;company info									
+;;cmsitem_00013023;company info: responsibility: education and engagement;company info										
+;;cmsitem_00013025;company info: responsibility: environmental sustainability;company info										
+;;cmsitem_00013027;company info: responsibility: energy conservation and eco-friendly products;company info										
+;;cmsitem_00014000;company info: responsibility: data security;company info									
+;;termsAndCondition;terms and conditions;terms and conditions										
+;;privacyPolicy;privacy policy;privacy policy										
+;;search;search: search results;search										
+;;searchEmpty;search: no results;search										
+;;accountDashboardPage;my account: account dashboard;my account										
+;;my-stores;my account: locations: my branches;my accoun										
+;;detailsSavedListPage;my account: lists: list detail;my account										
+;;detailsAssemblyPage;my account: assemblies: assembly detail;my account										
+;;accountOverviewPage;my account: invoicing and billing: account overview;my account										
+;;invoicelistingpage;my account: invoicing and billing: invoices;my account										
+;;invoicedetailspage;my account: invoicing and billing: invoice-details;my account										
+;;ewalletdetailspage;my account: manage ewallet;my account										
+;;accountinfo;my account: company info: account information;my account										
+;;shipToPage;my account: company info: ship-tos;my account										
+;;my-company;my account: company info: manage users;my account										
+;;accountPartnerProgramPage;my account: partners program;my account										
+;;siteoneupdate-profile;my account: my personal info: contact information;my account										
+;;updatePassword;my account: my personal info: change password;my account										
+;;siteoneupdate-preference;my account: my personal info: email preferences;my account										
+;;cmsitem_00009019;promotions: order like a pro;promotions										
+;;cmsitem_00011011;promotions: siteone spring bulb seasonal pricing;promotions										
+;;page_00000N5C;promotions: protrade lighting for landscaping;promotions										
+;;cmsitem_00012018;promotions: free pro trade lighting for transformer;promotions										
+;;cmsitem_00011002;promotions: introducing buy again;promotions										
+;;page-protradetools;promotions: your one stop shop for one handle tools;promotions										
+;;cmsitem_00008006;promotions: siteone save strong event;promotions										
+;;cmsitem_00006000;promotions: covid-19: we value your safety;promotions										
+;;orderConfirmationPage;checkout: order confirmation;checkout										
+;;organizationManagement;;my account
+;;address-book;;my account
+;;order;;my account
+;;accountOrdersPage;;my account
+;;multiStepCheckoutSummaryPage;checkout: payment method;checkout
+;;assemblyPage;;my account
+;;savedListPage;;my account
+;;cartPage;checkout: cart;checkout
+;;choosePickupDeliveryMethodPage;checkout: pickup or delivery;checkout
+;;orderSummaryPage;checkout: order review;checkout
+;;orderConfirmationPage;checkout: order confirmation;checkout
+;;loginAssistance;company service: help: login;company service
+;;determiningSpreaderSettings;tools and resources: spreader settings;tools and resources
+;;ourBrands2;company info: our brands;company info
+;;privacyPolicy;privacy: privacy policy;privacy
+;;searchGrid;search: search results;search
+;;hardscapesLander;products: hardscapes;products
+
+######################### Content Pages End #########################
+
+######################### Articles Start #########################
+
+$contentCatalog=siteoneContentCatalog			
+$contentCatalogName=SiteOne Content Catalog			
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]			
+$productCatalog=siteoneProductCatalog			
+$productCatalogName=SiteOne Product Catalog			
+$productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Online'])[unique=true,default=$productCatalog:Online]			
+$picture=media(code, $contentCV);			
+$image=image(code, $contentCV);			
+$media=media(code, $contentCV);			
+$page=page(uid, $contentCV);			
+$contentPage=contentPage(uid, $contentCV);			
+$product=product(code, $productCV)			
+$category=category(code, $productCV)			
+$siteResource=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/contentCatalogs/$contentCatalog			
+$productResource=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/productCatalogs/$productCatalog			
+$jarResourceCms=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/cockpits/cmscockpit			
+$addonExtensionName=siteoneacceleratoraddon			
+$medias=medias(code, $contentCV);			
+$articleMedia=articleMedia(code, $contentCV);			
+$mediaContainer=media(qualifier, $contentCV);			
+$siteUid=siteone			
+$lang=en			
+			
+			
+INSERT_UPDATE SiteOneArticle;articleCode[unique=true];fullPagePath[lang=$lang]
+;Reading-Grass-Seed-Labels;tools and resources: learn and explore: turf care: reading grass seed labels			
+;Managing-Turf-Drought;tools and resources: learn and explore: turf care: managing turf drought			
+;Reading-a-Pump-Curve;tools and resources: learn and explore: irrigation: reading a pump curve			
+;Backflow-Preventers;tools and resources: learn and explore: irrigation: backflow preventers			
+;How-to-Glue-PVC-Pipe;tools and resources: learn and explore: irrigation: how to glue pvc pipe		
+;Grow-Your-Business-by-Adding-Hardscape-Services;tools and resources: learn and explore: hardscapes outdoor living: grow your business by adding hardscape services			
+;Keeping-Tools-in-Shape;tools and resources: learn and explore: tools equipment and safety: keeping tools in shape			
+;Happy-Customers-Pay-More;tools and resources: learn and explore: irrigation: happy customers pay more			
+;Pros-of-Being-a-Pro-Partners-Program;tools and resources: learn and explore: business tips: pros of being a pro			
+;Timing-Crabgrass-Treatment;tools and resources: learn and explore: turf care: timing crabgrass treatment			
+;The-Pros-of-Being-a-Pro-One-Stop-Shopping;tools and resources: learn and explore: business tips: the pros of being a pro one stop shopping			
+;Institutional-Irrigation-Systems;tools and resources: learn and explore: irrigation: institutional irrigation systems			
+;Stormwater-Management;tools and resources: learn and explore: irrigation: stormwater management			
+;Giving-Sod-A-Healthy-Start;tools and resources: learn and explore: turf care: giving sod a healthy start			
+;Save-Time-Restringing-Trimmers;tools and resources: learn and explore: tools equipment and safety: save time restringing trimmers			
+;Plant-Planning-For-Season-Changes;tools and resources: learn and explore: nursery :plant planning for season changes			
+;Turning-Calibration-Into-Big-Savings;tools and resources: learn and explore: turf care: turning calibration into big savings			
+;Preventing-Drought-Stress;tools and resources: learn and explore: turf care: preventing drought stress			
+;Improving-Customer-Satisfaction-With-LESCO-Aroma;tools and resources: learn and explore: turf care: improving customer satisfaction with lesco aroma		
+;Consultative-Selling;tools and resources: learn and explore: business tips: consultative selling			
+;Customer-Service;tools and resources: learn and explore: business tips: customer service			
+;Tips-for-Selecting-Battery-Powered-Equipment;tools and resources: learn and explore: tools equipment and safety: tips for selecting battery powered equipment			
+;Managing-Winter-Turf-Injury;tools and resources: learn and explore: turf care: managing winter turf injury			
+;Managing-Your-Staff;tools and resources: learn and explore: business tips: managing your staff			
+;Timing-Pre-Emergent-Correctly;tools and resources: learn and explore: turf care: timing pre-emergent correctly			
+;Fall-Turf-Renovation;tools and resources: learn and explore: turf care: fall turf renovation		
+;Word-of-Mouth-Marketing;tools and resources: learn and explore: business tips: word of mouth marketing			
+;Benefits-of-Soil-Testing;tools and resources: learn and explore: turf care: benefits of soil testing			
+;Feast-Or-Famine-Feeding;tools and resources: learn and explore: turf care: feast or famine feeding			
+;Add-Landscape-Lighting-And-Outdoor-Audio-As-Additional-Service;tools and resources: learn and explore: lighting: add landscape lighting and outdoor audio as an additional service for next season			
+;Do-Customers-Need-Lighting;tools and resources: learn and explore: lighting: do customers need lighting			
+;Winterizing-An-Irrigation-System;tools and resources: learn and explore: irrigation: winterizing an irrigation system			
+;Lighting-The-Path-To-New-Projects;tools and resources: learn and explore: lighting: lighting the path to new projects		
+;The-Key-to-Easy-Drain-Installation;tools and resources: learn and explore: tools equipment and safety: the key to easy drain installation			
+;Planning-Plant-Purchases;tools and resources: learn and explore: nursery: planning plant services			
+;Slope-Irrigation-Tips;tools and resources: learn and explore: irrigation: slope irrigation tips			
+;Enhancing-Smart-Irrigation-Through-Spray-Technology;tools and resources: learn and explore: irrigation: enhancing smart irrigation through spray technology			
+;Improve-Your-Landscapes-With-New-Irrigation-Techniques;tools and resources: learn and explore: irrigation: improve your landscapes with new irrigation technology			
+;Cool-&-Warm-Season-Grasses;tools and resources: learn and explore: turf care: cool and warm season grasses			
+;Using-Less-Water-To-Earn-More-Revenue;tools and resources: learn and explore: irrigation: using less water to earn more revenue		
+;How-Fertilizer-Feeds-Turf;tools and resources: learn and explore: turf care: how fertilizer feeds turf			
+;Efficiency-Theme-of-Hardscapes;tools and resources: learn and explore: hardscapes outdoor living: efficiency theme of hardscapes			
+;Tips-For-Protecting-Client-Hardscapes-From-Cold;tools and resources: learn and explore: hardscapes outdoor living: tips for protecting your clients hardscapes from cold		
+;Choosing-the-Right-Fertilizer;tools and resources: learn and explore: turf care: choosing the right fertilizer			
+;Find-Income-During-A-Drought;tools and resources: learn and explore: turf care: find income during a drought		
+;Surviving-A-Tax-Audit;tools and resources: learn and explore: business tips: surviving a tax audit			
+;Pre-Frost-Maintenance-Ideas;tools and resources: learn and explore: tools equipment and safety: pre-frost maintenance ideas			
+;Helpful-Hints-for-Spreading;tools and resources: learn and explore: turf care: helful hints for spreading			
+;Keeping-Landscape-Crews-Safe;tools and resources: learn and explore: tools equipment and safety: keeping landscape crews safe			
+;SiteOne-Celebrates-OSHA-Safe-And-Sound-Week;tools and resources: learn and explore: tools equipment and safety: siteone celebrates osha safe and sound week			
+;Tips-For-Keeping-Holiday-Plants-Alive;tools and resources: learn and explore: nursery: tips for keeping holiday plants alive all season			
+;Getting-Time-Savings-Delivered;tools and resources: learn and explore: nursery: getting time savings delivered		
+;Stocking-Up-The-Smart-Way;tools and resources: learn and explore: business tips: stocking up the smart way			
+;Here-to-Help-You-Provide-Essential-Services;tools and resources: learn and explore: business tips: here to help you provide essential services to your customers			
+;Adding-Holiday-Lighting-to-Your-Services-Menu;tools and resources: learn and explore: business tips: adding holiday lighting to your services menu			
+;Preparing-For-Snow-And-Ice-Removal;tools and resources: learn and explore: tools equipment and safety: preparing for snow and ice removal			
+;Essential-Tools-for-Landscape-Lighting-Installation;tools and resources: learn and explore: lighting: essential tools for landscape lighting installation			
+;Fall-Bulb-Planting-Tips;tools and resources: learn and explore: nursery: fall bulb planting tips			
+;Five-Financial-Aid-Programs-to-Help-Landscape-Business-Owners;tools and resources: learn and explore: business tips: five financial aid programs to help landscape contractor business owners			
+			
+######################### Articles End #########################		
+			
+######################### Article Categories Start #########################				
+
+$contentCatalog=siteoneContentCatalog			
+$contentCatalogName=SiteOne Content Catalog			
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]			
+$productCatalog=siteoneProductCatalog			
+$productCatalogName=SiteOne Product Catalog			
+$productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Online'])[unique=true,default=$productCatalog:Online]			
+$picture=media(code, $contentCV);			
+$image=image(code, $contentCV);			
+$media=media(code, $contentCV);			
+$page=page(uid, $contentCV);			
+$contentPage=contentPage(uid, $contentCV);			
+$product=product(code, $productCV)			
+$category=category(code, $productCV)			
+$siteResource=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/contentCatalogs/$contentCatalog			
+$productResource=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/productCatalogs/$productCatalog			
+$jarResourceCms=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/cockpits/cmscockpit			
+$addonExtensionName=siteoneacceleratoraddon			
+$medias=medias(code, $contentCV);			
+$articleMedia=articleMedia(code, $contentCV);			
+$mediaContainer=media(qualifier, $contentCV);			
+$siteUid=siteone			
+$lang=en
+
+			
+INSERT_UPDATE  SiteOneArticleCategory;articleCategoryCode[unique=true];fullPagePath[lang=$lang];pathingChannel[lang=$lang]
+;Irrigation;tools and resources: learn and explore: irrigation;tools and resources		
+;Turf-Care;tools and resources: learn and explore: turf care;tools and resources		
+;Nursery;tools and resources: learn and explore: nursery;tools and resources		
+;Business-Tips;tools and resources: learn and explore: business tips;tools and resources		
+;Hardscapes-Outdoor-Living;tools and resources: learn and explore: hardscapes outdoor living;tools and resources			
+;Tools-Equipment-Safety;tools and resources: learn and explore: tools equipment and safety;tools and resources			
+;Lighting;tools and resources: learn and explore: lighting;tools and resources		
+
+######################### Articles Categories End #########################
+
+
+######################### Name change for EdsPestControl page issue #########################
+
+$contentCatalog=siteoneContentCatalog								
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]										
+										
+# Language										
+$lang=en										
+										
+# Content Pages										
+UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];name
+;;EdsPestControl;Eds Pest Control

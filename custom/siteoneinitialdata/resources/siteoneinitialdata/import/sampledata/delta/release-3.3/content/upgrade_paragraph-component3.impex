@@ -1,0 +1,82 @@
+$contentCatalog=siteoneContentCatalog
+$contentCatalogName=SiteOne Content Catalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+
+
+
+
+INSERT_UPDATE SiteoneParagaraphComponent;$contentCV[unique=true];uid[unique=true];name;headline[lang=en];headline[lang=es];content[lang=en];content[lang=es]; 
+;;comp_00000VNS;RequestOnlineAcct Paragraph1;Get Your Account. Then, Get Going.;;"<div>By signing up for a free <em>SiteOne Online</em> account, you can get unlimited access to online ordering, personalized pricing and more&mdash;all from any smart phone or tablet. It&rsquo;s a new option for growing your business, and it&rsquo;s one more reason the industry&rsquo;s top pros choose SiteOne.</div>
+<p><style type=""text/css"">
+.vtext {
+vertical-align:middle;
+</style></p>
+<table width=""100%"" border=""0"" cellpadding=""0"" cellspacing=""0"">
+    <tbody>
+        <tr>
+            <td class=""vtext"" width=""90"" height=""70"" align=""left""><img align=""left"" src=""/medias/sys_master/h2b/ha8/8914376851486.png"" width=""70"" alt="""" /></td>
+            <td class=""vtext"" height=""80"" align=""left""><strong>CHECK PRICING AND INVENTORY</strong><br />
+            See your personalized price and what your local branch has in stock.</td>
+        </tr>
+        <tr>
+            <td class=""vtext"" width=""90"" height=""70"" align=""left""><img src=""/medias/sys_master/hf8/hd3/8914378391582.png"" width=""70"" alt="""" /></td>
+            <td class=""vtext"" height=""80""><strong>SHOP 50,000+ ITEMS ANYTIME</strong><br />
+            Access our full catalog of products from any device 24/7.</td>
+        </tr>
+        <tr>
+            <td class=""vtext"" width=""90"" height=""70"" align=""left""><img src=""/medias/sys_master/h67/h6d/8914378457118.png"" width=""70"" alt="""" /></td>
+            <td class=""vtext"" height=""80"" align=""left""><strong>PLACE ORDERS FROM ANYWHERE</strong><br />
+            Order online for in-store pickup or job site delivery.</td>
+        </tr>
+    </tbody>
+</table>";
+;;comp_00000VNS;RequestOnlineAcct Paragraph1;Get Your Account. Then, Get Going.;Haz Tu Cuenta. Haz Tus Compras.;"<div>By signing up for a free <em>SiteOne Online</em> account, you can get unlimited access to online ordering, personalized pricing and more&mdash;all from any smart phone or tablet. It&rsquo;s a new option for growing your business, and it&rsquo;s one more reason the industry&rsquo;s top pros choose SiteOne.</div>
+<p><style type=""text/css"">
+.vtext {
+vertical-align:middle;
+</style></p>
+<table width=""100%"" border=""0"" cellpadding=""0"" cellspacing=""0"">
+    <tbody>
+        <tr>
+            <td class=""vtext"" width=""90"" height=""70"" align=""left""><img align=""left"" src=""/medias/sys_master/h2b/ha8/8914376851486.png"" width=""70"" alt="""" /></td>
+            <td class=""vtext"" height=""80"" align=""left""><strong>CHECK PRICING AND INVENTORY</strong><br />
+            See your personalized price and what your local branch has in stock.</td>
+        </tr>
+        <tr>
+            <td class=""vtext"" width=""90"" height=""70"" align=""left""><img src=""/medias/sys_master/hf8/hd3/8914378391582.png"" width=""70"" alt="""" /></td>
+            <td class=""vtext"" height=""80""><strong>SHOP 50,000+ ITEMS ANYTIME</strong><br />
+            Access our full catalog of products from any device 24/7.</td>
+        </tr>
+        <tr>
+            <td class=""vtext"" width=""90"" height=""70"" align=""left""><img src=""/medias/sys_master/h67/h6d/8914378457118.png"" width=""70"" alt="""" /></td>
+            <td class=""vtext"" height=""80"" align=""left""><strong>PLACE ORDERS FROM ANYWHERE</strong><br />
+            Order online for in-store pickup or job site delivery.</td>
+        </tr>
+    </tbody>
+</table>";"<div>Al registrarte gratis para una cuenta en l&iacute;nea de SiteOne, puedes tener acceso ilimitado a &oacute;rdenes en l&iacute;nea, precios personalizados y m&aacute;s &ndash;todo desde un smartphone o una tableta&ndash;. Es una nueva opci&oacute;n para hacer crecer tu negocio y es una raz&oacute;n m&aacute;s por la que los profesionales prefieren SiteOne.</div><p>&nbsp;</p><table width=""100%"" border=""0"" cellpadding=""0"" cellspacing=""0""><tbody><tr><td class=""vtext"" width=""90"" height=""70"" align=""left"" style=""vertical-align: middle;""><img align=""left"" src=""/medias/sys_master/h2b/ha8/8914376851486.png"" width=""70"" alt="""" /></td><td class=""vtext"" height=""80"" align=""left"" style=""vertical-align: middle;""><b>REVISA PRECIOS E INVENTARIO</b><br />Mira tus precios personalizados y lo que tu sucursal local tiene a tu disposici&oacute;n.</td></tr><tr><td class=""vtext"" width=""90"" height=""70"" align=""left"" style=""vertical-align: middle;""><img src=""/medias/sys_master/hf8/hd3/8914378391582.png"" width=""70"" alt="""" /></td><td class=""vtext"" height=""80"" style=""vertical-align: middle;""><b>COMPRA M&Aacute;S DE 50 000 ART&Iacute;CULOS EN CUALQUIER MOMENTO</b><br />Accede a todo nuestro cat&aacute;logo de productos desde cualquier dispositivo las 24/7.</td></tr><tr><td class=""vtext"" width=""90"" height=""70"" align=""left"" style=""vertical-align: middle;""><img src=""/medias/sys_master/h67/h6d/8914378457118.png"" width=""70"" alt="""" /></td><td class=""vtext"" height=""80"" align=""left"" style=""vertical-align: middle;""><b>ORDENA DESDE DONDE QUIERAS</b><br />Ordena en l&iacute;nea para recoger en tienda o para que te la llevemos a tu punto de trabajo.</td></tr></tbody></table><p>&nbsp;</p>"
+;;comp_00000VNU;RequestOnlineAcct Paragraph2;;;"<p><style type=""text/css"">
+.vtext {
+vertical-align:middle;
+</style></p>
+<table width=""100%"" border=""0"" cellpadding=""5"" cellspacing=""0"">
+    <tbody>
+        <tr>
+            <td class=""vtext"" width=""90"" height=""70"" align=""left""><img align=""left"" src=""/medias/sys_master/root/h2b/ha8/8914376851486/Icon-CheckPricing-green2.png?attachment=true"" width=""70"" alt="""" /></td>
+            <td class=""vtext"" height=""80"" align=""left""><strong>CHECK PRICING AND INVENTORY</strong><br />
+            See your personalized price and what your local branch has in stock.</td>
+        </tr>
+        <tr>
+            <td class=""vtext"" width=""90"" height=""70"" align=""left""><img src=""/medias/sys_master/root/h67/h6d/8914378457118/Icon-ShopAnytime-green2.png?attachment=true"" width=""70"" alt="""" /></td>
+            <td class=""vtext"" height=""80""><strong>SHOP 50,000+ ITEMS ANYTIME</strong><br />
+            Access our full catalog of products from any device 24/7.</td>
+        </tr>
+        <tr>
+            <td class=""vtext"" width=""90"" height=""70"" align=""left""><img src=""/medias/sys_master/root/hf8/hd3/8914378391582/Icon-PlaceOrders-green2.png?attachment=true"" width=""70"" alt="""" /></td>
+            <td class=""vtext"" height=""80"" align=""left""><strong>PLACE ORDERS FROM ANYWHERE</strong><br />
+            Order online for in-store pickup or job site delivery.</td>
+        </tr>
+    </tbody>
+</table>";
+;;comp_00000VNU;RequestOnlineAcct Paragraph2;;;"<table width=""100%"" border=""0"" cellpadding=""5"" cellspacing=""0""><tbody><tr><td class=""vtext"" width=""90"" height=""70"" align=""left"" style=""vertical-align: middle;""><img align=""left"" src=""/medias/sys_master/root/h2b/ha8/8914376851486/Icon-CheckPricing-green2.png?attachment=true"" width=""70"" alt="""" /></td><td class=""vtext"" height=""80"" align=""left"" style=""vertical-align: middle;""><strong>CHECK PRICING AND INVENTORY</strong><br />See your personalized price and what your local branch has in stock.</td></tr><tr><td class=""vtext"" width=""90"" height=""70"" align=""left"" style=""vertical-align: middle;""><img src=""/medias/sys_master/root/h67/h6d/8914378457118/Icon-ShopAnytime-green2.png?attachment=true"" width=""70"" alt="""" /></td><td class=""vtext"" height=""80"" style=""vertical-align: middle;""><strong>SHOP 50,000+ ITEMS ANYTIME</strong><br />Access our full catalog of products from any device 24/7.</td></tr><tr><td class=""vtext"" width=""90"" height=""70"" align=""left"" style=""vertical-align: middle;""><img src=""/medias/sys_master/root/hf8/hd3/8914378391582/Icon-PlaceOrders-green2.png?attachment=true"" width=""70"" alt="""" /></td><td class=""vtext"" height=""80"" align=""left"" style=""vertical-align: middle;""><strong>PLACE ORDERS FROM ANYWHERE</strong><br />Order online for in-store pickup or job site delivery.</td></tr></tbody></table><p>&nbsp;</p><p>&nbsp;</p>";"<p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><table width=""100%"" border=""0"" cellpadding=""5"" cellspacing=""0""><tbody><tr><td class=""vtext"" width=""90"" height=""70"" align=""left"" style=""vertical-align: middle;""><img align=""left"" src=""/medias/sys_master/root/h2b/ha8/8914376851486/Icon-CheckPricing-green2.png?attachment=true"" width=""70"" alt="""" /></td><td class=""vtext"" height=""80"" align=""left"" style=""vertical-align: middle;""><b>REVISA PRECIOS E INVENTARIO</b><br />Mira tus precios personalizados y lo que tu sucursal local tiene a tu disposici&oacute;n.</td></tr><tr><td class=""vtext"" width=""90"" height=""70"" align=""left"" style=""vertical-align: middle;""><img src=""/medias/sys_master/root/h67/h6d/8914378457118/Icon-ShopAnytime-green2.png?attachment=true"" width=""70"" alt="""" /></td><td class=""vtext"" height=""80"" style=""vertical-align: middle;""><b>COMPRA M&Aacute;S DE 50 000 ART&Iacute;CULOS EN CUALQUIER MOMENTO</b><br />Accede a todo nuestro cat&aacute;logo de productos desde cualquier dispositivo las 24/7.</td></tr><tr><td class=""vtext"" width=""90"" height=""70"" align=""left"" style=""vertical-align: middle;""><img src=""/medias/sys_master/root/hf8/hd3/8914378391582/Icon-PlaceOrders-green2.png?attachment=true"" width=""70"" alt="""" /></td><td class=""vtext"" height=""80"" align=""left"" style=""vertical-align: middle;""><b>ORDENA DESDE DONDE QUIERAS</b><br />Ordena en l&iacute;nea para recoger en tienda o para que te la llevemos a tu punto de trabajo.</td></tr></tbody></table>"
+;;comp_00000VNV;RequestOnlineAcct Paragraph3;Request Your Account.;;"<div><div>To get your SiteOne Online account, just complete <a href=""/request-account/form"">this form</a>. We&rsquo;ll connect it with information from your branch and send you login instructions soon.</div></div>";
+;;comp_00000VNV;RequestOnlineAcct Paragraph3;Request Your Account.;Solicita Tu Cuenta.;"<div><div>To get your SiteOne Online account, just complete <a href=""/en/request-account/form"">this form</a>. We&rsquo;ll connect it with information from your branch and send you login instructions soon.</div></div>";"<p>Para tener tu cuenta en l&iacute;nea de SiteOne solo completa&nbsp;<a href=""/es/request-account/form""> este formulario</a>. Lo conectaremos con la informaci&oacute;n de tu sucursal y pronto te daremos las instrucciones de registro.</p>"

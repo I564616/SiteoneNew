@@ -1,0 +1,477 @@
+# -----------------------------------------------------------------------
+# [y] hybris Platform
+#
+# Copyright (c) 2017 SAP SE or an SAP affiliate company.  All rights reserved.
+#
+# This software is the confidential and proprietary information of SAP
+# ("Confidential Information"). You shall not disclose such Confidential
+# Information and shall use it only in accordance with the terms of the
+# license agreement you entered into with SAP.
+# -----------------------------------------------------------------------
+$facetSearchConfigName=siteoneIndex
+$contentCatalogName=siteoneContentCatalog
+$indexedType=siteoneProductType
+$productCatalog=siteoneProductCatalog
+$productCatalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+
+#
+# Localization en
+#
+$lang=en
+
+# Information and shall use it only in accordance with the terms of the
+# license agreement you entered into with SAP.
+# -----------------------------------------------------------------------
+$facetSearchConfigName=siteoneIndex
+$contentCatalogName=siteoneContentCatalog
+$indexedType=siteoneProductType
+$productCatalog=siteoneProductCatalog
+$productCatalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+
+#
+# Localization en
+#
+$lang=en
+
+UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true,default=$indexedType];name[unique=true];displayName[lang=$lang] ;priority
+;;  lndscpAdjustmentType      		;  "Adjustment Type      	    ";1251
+;;  lndscpAirflow                	    ;  "Air flow                	";1250
+;;  lndscpAmperageRating      		;  "Amperage Rating      	    ";1249
+;;  lndscpAngle                  	    ;  "Angle                  	    ";1248
+;;  Maintenance_applicationtime	    ;  "Application Time	 ";1247
+;;  lghtAverageLife           ;  "Average Life        ";1246
+;;  irgBackgroundColor                ;  "Background Color           ";1245
+;;  lndscpBatteryCapacity			    ;  "Battery Capacity		"	;1244
+;;  lndscpBatteryType				    ;  "Battery Type			"	;1243
+;;  lghtBeamAngle             ;  "Beam Angle          ";1242
+;;  lndscpBendRadius				    ;  "Bend Radius				";1241
+;;  lndscpBladeLength				    ;  "Blade Length			"	;1240
+;;  lndscpBladeMaterial			    ;  "Blade Material			";1239
+;;  lndscpBladeSize				    ;  "Blade Size				";1238
+;;  lndscpBladeThickness			    ;  "Blade Thickness		 "	;1237
+;;  lndscpBladeType				    ;  "Blade Type				     ";1236
+;;  lndscpBladeWidth				    ;  "Blade Width				";1235
+;;   nrsryBloomColor    				;  "Bloom Color" ;1234
+;;  Maintenance_bloomtime			    ;  "Bloom Time			 ";1233
+;;  irgBodyMaterial           ;  "Body Material                            ";1232
+;;  lghtBulbShape             ;  "Bulb Shape          ";1231
+;;  Maintenance_bulbsize			    ;  "Bulb Size			 ";1230
+;;  lghtBulbSpacing           ;  "Bulb Spacing        ";1229
+;;  lndscpCapacity					;  "Capacity				";1228
+;;  Maintenance_capacity			    ;  "Capacity			 ";1227
+;;  lndscpCartridgesIncluded		    ;  "Cartridges Included		     ";1226
+;;  irgCaseMaterial					;  "Case Material               ";1225
+;;  lndscpCFM                    	    ;  "CFM                    	    ";1224
+;;  lndscpChargingCapacity        	;  "Charging Capacity           ";1223
+;;  lndscpChargingSystem          	;  "Charging System             ";1222
+;;  lndscpClosureType				    ;  "Closure Type			"	;1221
+;;  irgCoilLength                     ;  "Coil Length                ";1220
+;;  Maintenance_color				    ;  "Color				       ";1219
+;;  lndscpColor					    ;  "Color				 "	;1218
+;;  irgColor                  ;  "Color                                    ";1217
+;;  lghtColorTemperature      ;  "Color Temperature   ";1216
+;;  lndscpCompactionDepth        	    ;  "Compaction Depth        	";1215
+;;  Maintenance_compositions		    ;  "Compositions		 ";1214
+;;  lndscpConnectionSize			    ;  "Connection Size			     ";1213
+;;  irgConnectionSize         ;  "Connection Size                          ";1212
+;;  irgConnectionType         ;  "Connection Type                          ";1211
+;;  irgConnectorType                  ;  "Connector Type             ";1210
+;;  lndscpContainerSize			    ;  "Container Size			";1209
+;;  Maintenance_containersize		    ;  "Container Size		 ";1208
+;;  irgContainerSize          ;  "Container Size                           ";1207
+;;  lndscpContainerType			    ;  "Container Type			";1206
+;;  lndscpCoolingCapacity        	    ;  "Cooling Capacity        	";1205
+;;  lndscpCordedBanded				;  "Corded/Banded			";1204
+;;  Maintenance_coveragearea		    ;  "Coverage Area		 ";1203
+;;  lndscpCuff                		;  "Cuff                	    ";1202
+;;  lndscpCuttingCapacity			    ;  "Cutting Capacity		"	;1201
+;;  lndscpCuttingDepth        		;  "Cutting Depth        	    ";1200
+;;  lndscpCuttingStrippingCapacity	;  "Cutting/Stripping Capacity   ";1199
+;;  lndscpDepth					    ;  "Depth					     ";1198
+;;  lndscpDiameter					;  "Diameter				" ;1197
+;;  lghtDimmable              ;  "Dimmable            ";1196
+;;  lndscpDisplay                	    ;  "Display                	    ";1195
+;;  lndscpDisposableReusable		    ;  "Disposable/ Reusable	 "	;1194
+;;  irgDripTubeType 	   	   		    ;  "Drip Tube Type 	   	   	   ";1193
+;;  irgDripperSpacing                 ;  "Dripper Spacing            ";1192
+;;  irgEmitterSpacing                 ;  "Emitter Spacing            ";1191
+;;  irgEnclosure              ;  "Enclosure                                ";1190
+;;  lndscpEngineType             	    ;  "Engine Type             	";1189
+;;  lghtEquivalentWattage     ;  "Equivalent Wattage  ";1188
+;;  lndscpEyewearSize				    ;  "Eyewear Size				 ";1187
+;;  lndscpFabricWeight				;  "Fabric Weight			     ";1186
+;;  lndscpFaceWeight             	    ;  "Face Weight             	";1185
+;;  lndscpFacepieceMaterial		    ;  "Facepiece Material		";1184
+;;   nrsryFallColor     				;  "Fall Color";1183
+;;  lndscpFenceMeshSize			    ;  "Fence Mesh Size			";1182
+;;  lghtFinish                ;  "Finish              ";1181
+;;  lndscpFitsWaistSize			    ;  "Fits Waist Size			";1180
+;;  irgFittingType                    ;  "Fitting Type               ";1179
+;;  lndscpFlagSize					;  "Flag Size				    ";1178
+;;  lndscpFlowRate					;  "Flow Rate			 "	 ;1177
+;;  irgFlowRate               ;  "Flow Rate                                ";1176
+;;  Maintenance_form				    ;  "Form				 ";1175
+;;  lndscpFrameColor 					;  "Frame Color					";1174
+;;  lndscpFrameDesign				    ;  "Frame Design			     "	;1173
+;;  lndscpFrameMaterial			    ;  "Frame Material			";1172
+;;  lndscpFrameType				    ;  "Frame Type				     ";1171
+;;  lndscpFuelType               	    ;  "Fuel Type               	";1170
+;;  lndscpGauge					    ;  "Gauge					";1169
+;;  lndscpGender					    ;  "Gender					";1168
+;;  lndscpGloveLength				    ;  "Glove Length				 ";1167
+;;  lndscpGloveThickness			    ;  "Glove Thickness			     ";1166
+;;  lndscpGrade					    ;  "Grade					";1165
+;;  lndscpGrateSize              	    ;  "Grate Size              	";1164
+;;  lndscpGritType            		;  "Grit Type            	    ";1163
+;;  lndscpGroundSpeed            	    ;  "Ground Speed            	";1162
+;;   nrsryGrowthRate    				;  "Growth Rate";1161
+;;  lndscpHandleLength				;  "Handle Length			";1160
+;;  lndscpHandleMaterial			    ;  "Handle Material			";1159
+;;  lndscpHandleType				    ;  "Handle Type				";1158
+;;  lndscpHeadMaterial				;  "Head Material			     ";1157
+;;  lndscpHeadSize					;  "Head Size				";1156
+;;  lndscpHeadgearColor			    ;  "Headgear Color			";1155
+;;  lndscpHeadstrapType			    ;  "Headstrap Type			     ";1154
+;;  lndscpHeight					    ;  "Height				 "	;1153
+;;  lndscpHoseLength             	    ;  "Hose Length             	";1152
+;;  lndscpHoseSize            		;  "Hose Size            	    ";1151
+;;  irgHousingMaterial        ;  "Housing Material                         ";1150
+;;  lghtHousingMaterial       ;  "Housing Material    ";1149
+;;  irgHPRating               ;  "HP Rating                                ";1148
+;;  irgIndoorOutdoor 				    ;  "Indoor Outdoor 			   ";1147
+;;  irgInletConnection                ;  "Inlet Connection           ";1146
+;;  lndscpInletSize           		;  "Inlet Size           	    ";1145
+;;  lndscpInseam					    ;  "Inseam					     ";1144
+;;  lndscpInsideDiameter			    ;  "Inside Diameter			     ";1143
+;;  lndscpInsulated           		;  "Insulated           	    ";1142
+;;  lghtintgrtddropin         ;  "Integrated/Drop-in  ";1141
+;;  lndscpInvertHeight           	    ;  "Invert Height           	";1140
+;;  lndscpItem					    ;  "Item				 "	 ;1139
+;;  hrdscpItem                ;  "Item                                     ";1138
+;;  irgItem                   ;  "Item                                     ";1137
+;;  Maintenance_type				    ;  "Item                       ";1136
+;;  irgJacketColor            ;  "Jacket Color                             ";1135
+;;  lndscpLampBase               	    ;  "Lamp Base               	";1134
+;;  lghtLampBase              ;  "Lamp Base           ";1133
+;;  lndscpLampType            		;  "Lamp Type            	    ";1132
+;;  lghtLampType              ;  "Lamp Type           ";1131
+;;  lndscpLampWattage            	    ;  "Lamp Wattage            	";1130
+;;   nrsryLeafColor     				;  "Leaf Color";1129
+;;  lndscpLegend					    ;  "Legend					     ";1128
+;;  irgLegendBackgroundColor          ;  "Legend/Background Color    ";1127
+;;  lndscpLength					    ;  "Length					";1126
+;;  irgLength                 ;  "Length                                   ";1125
+;;  lndscpLensCoating				    ;  "Lens Coating			"	;1124
+;;  lndscpLensColor				    ;  "Lens Color				";1123
+;;  lndscpLensMaterial        		;  "Lens Material        	    ";1122
+;;  lghtLightColor            ;  "Light Color         ";1121
+;;  lghtLightOutput           ;  "Light Output        ";1120
+;;  Maintenance_lightrequirements	    ;  "Light Requirements	       ";1119
+;;  lndscpLoadCapacity				;  "Load Capacity			     ";1118
+;;  lndscpLockType					;  "Lock Type				";1117
+;;  lndscpLumens					    ;  "Lumens					";1116
+;;  lndscpMaterial					;  "Material			 "	 ;1115
+;;  irgMaterial               ;  "Material                                 ";1114
+;;  lndscpMaximumCutDiameter     	    ;  "Maximum Cut Diameter     	";1113
+;;  lndscpMaximumLoadCapacity    	    ;  "Maximum Load Capacity    	";1112
+;;  lndscpMaximumTreeSize				;  "Maximum Tree Size           ";1111
+;;  irgMeshSize               ;  "Mesh Size                                ";1110
+;;  lghtMounting              ;  "Mounting            ";1109
+;;  lndscpMountingType				;  "Mounting Type			";1108
+;;  irgMountingType           ;  "Mounting Type                            ";1107
+;;  lndscpMPH                    	    ;  "MPH                    	    ";1106
+;;  lndscpNoiseReductionRatingNRR	    ;  "Noise Reduction Rating NRR	 ";1105
+;;  lndscpNominalSize				    ;  "Nominal Size			"	;1104
+;;  irgNominalSize            ;  "Nominal Size                             ";1103
+;;  irgNozzleType                     ;  "Nozzle Type                ";1102
+;;  Maintenance_npkratio			    ;  "NPK Analysis		 "	 ;1101
+;;  irgNSF                            ;  "NSF                        ";1100
+;;  irgNumberofConductors     ;  "Number of Conductors                     ";1099
+;;  lndscpNumberofLamps          	    ;  "Number of Lamps          	";1098
+;;  lndscpNumberofOpenings       	    ;  "Number of Openings       	";1097
+;;  lndscpNumberofPieces			    ;  "Number of Pieces		"	;1096
+;;  lndscpNumberofPockets			    ;  "Number of Pockets		"	;1095
+;;  irgNumberofStations       ;  "Number of Stations                       ";1094
+;;  lndscpNumberofTeeth          	    ;  "Number of Teeth          	";1093
+;;  lndscpNumberofTines       		;  "Number of Tines       	    ";1092
+;;  lndscpNumberofWheels      		;  "Number of Wheels      	    ";1091
+;;  lndscpOutletSize          		;  "Outlet Size          	    ";1090
+;;  lghtOutputVoltage         ;  "Output Voltage      ";1089
+;;  lndscpOutsideDiameter			    ;  "Outside Diameter			 ";1088
+;;  lndscpOverallHeight			    ;  "Overall Height			";1087
+;;  lndscpOverallLength			    ;  "Overall Length        "			;1086
+;;  Maintenance_particlesize		    ;  "Particle Size		 ";1085
+;;  lndscpPileHeight          		;  "Pile Height          	    ";1084
+;;  irgPipeCategory                   ;  "Pipe Category              ";1083
+;;  irgPipeSize                       ;  "Pipe Size                  ";1082
+;;  Maintenance_plantingdepth		    ;  "Planting Depth		 ";1081
+;;  lndscpPoleMaterial        		;  "Pole Material        	    ";1080
+;;  irgPopUpHeight                    ;  "Pop-Up Height              ";1079
+;;  lndscpPowerSource				    ;  "Power Source			"	;1078
+;;  lndscpPressureRange			    ;  "Pressure Range		 "	;1077
+;;  lndscpPressureRating			    ;  "Pressure Rating			     ";1076
+;;  irgPressureRegulating 			;  "Pressure Regulating 	   ";1075
+;;  lndscpProbeSize				    ;  "Probe Size				";1074
+;;  lndscpProductivity           	    ;  "Productivity           	    ";1073
+;;  lndscpPumpSpecification      	    ;  "Pump Specification      	";1072
+;;  irgPumpType  					    ;  "Pump Type  				   ";1071
+;;  lndscpPumpType           		    ;  "Pump Type           		";1070
+;;  lndscpRechargeTime				;  "Recharge Time			     ";1069
+;;  lghtRiserHeight           ;  "Riser Height        ";1068
+;;  lndscpRunningTime            	    ;  "Running Time            	";1067
+;;   nrsrySaltTolerance 				;  "Salt Tolerance"                                                                                                       ;1066
+;;  lndscpSeedingWidth            	;  "Seeding Width               ";1065
+;;  lndscpSensingDistance			    ;  "Sensing Distance		"	;1064
+;;  lndscpSensingMethod       		;  "Sensing Method       	    ";1063
+;;  irgSensorConnection               ;  "Sensor Connection          ";1062
+;;  irgSensorType 					;  "Sensor Type 			   ";1061
+;;  lndscpSeries					    ;  "Series				 "	;1060
+;;  hrdscpSeries              ;  "Series                                   ";1059
+;;  lndscpShape					    ;  "Shape				 "	;1058
+;;  irgShape                  ;  "Shape                                    ";1057
+;;  irgSideInlet						;  "Side Inlet                  ";1056
+;;  lndscpSize					 	;  "Size					";1055
+;;  lghtSocketType            ;  "Socket Type         ";1054
+;;  lndscpSoundPowerLevel        	    ;  "Sound Power Level        	";1053
+;;  lndscpSpecifications			    ;  "Specifications			";1052
+;;  lndscpSpeed                  	    ;  "Speed                  	    ";1051
+;;  lndscpSprayDistance          	    ;  "Spray Distance          	";1050
+;;  lndscpSprayLineWidth              ;  "Spray Line Width            ";1049
+;;  irgSprayPattern                   ;  "Spray Pattern              ";1048
+;;  irgStationType 				    ;  "Station Type 			   ";1047
+;;  lndscpStorageCapacity			    ;  "Storage Capacity		"	;1046
+;;  lndscpStrapMaterial			    ;  "Strap Material		 "	;1045
+;;  Maintenance_suitableforusewith	;  "Suitable For Use With      ";1044
+;;  lndscpSuitableForUseWith		    ;  "Suitable For Use With"		;1043
+;;  lghtLightingTechnology    ;  "Technology ";1042
+;;  lndscpTeethperInch				;  "Teethper Inch			     ";1041
+;;  lndscpThickness					;  "Thickness					";1040
+;;  lndscpToeType					    ;  "ToeType					     ";1039
+;;  lndscpToothPattern				;  "Tooth Pattern			";1038
+;;  lndscpTorqueRating				;  "Torque Rating			";1037
+;;  lndscpTotalWeight				    ;  "TotalWeight				";1036
+;;  lndscpTraySize					;  "Tray Size				    ";1035
+;;  lndscpTubingWallThickness 		;  "Tubing Wall Thickness 	    ";1034
+;;  lndscpType					    ;  "Type				 "	 ;1033
+;;  hrdscpType                ;  "Type                                     ";1032
+;;  irgType                   ;  "Type                                     ";1031
+;;  lndscpVisorColor          		;  "Visor Color          	    ";1030
+;;  lndscpVisorMaterial       		;  "Visor Material       	    ";1029
+;;  lndscpVoltageRating			    ;  "Voltage Rating			     ";1028
+;;  lghtVoltageRating         ;  "Voltage Rating      ";1027
+;;  lndscpWaistSize           		;  "Waist Size           	    ";1026
+;;  lndscpWallThickness			    ;  "Wall Thickness		 "	;1025
+;;  irgWallThickness          ;  "Wall Thickness                           ";1024
+;;  lndscpWaterTankCapacity      	    ;  "Water Tank Capacity      	";1023
+;;  lndscpWaterproof				    ;  "Waterproof				";1022
+;;  lghtLampWattage           ;  "Wattage             ";1021
+;;  lndscpWeight					    ;  "Weight					     ";1020
+;;  lndscpWeightCapacity      		;  "Weight Capacity      	    ";1019
+;;  lndscpWheelMaterial			    ;  "Wheel Material			";1018
+;;  lndscpWheelSize				    ;  "Wheel Size				";1017
+;;  lndscpWheelType           		;  "Wheel Type           	    ";1016
+;;  lndscpWidth					    ;  "Width					";1015
+;;  Maintenance_width				    ;  "Width				       ";1014
+;;  lndscpWingWidth              	    ;  "Wing Width              	";1013
+;;  lghtCableLength           ;  "Wire Length         ";1012
+;;  irgWireSize               ;  "Wire Size                                ";1011
+;;  lghtWireSize              ;  "Wire Size           ";1010
+
+
+                                                                       
+
+
+# Redirect page URL (Must use INSERT_UPDATE here)
+INSERT_UPDATE SolrURIRedirect;url[unique=true];&redirectRefID
+;"/cart";$contentCatalogName-redirectRefID-cart
+;"http://www.hybris.com/multichannel-accelerator";$contentCatalogName-redirectRefID-accelerator
+
+# Synonyms (Must use INSERT_UPDATE here)
+INSERT_UPDATE SolrSynonymConfig;facetSearchConfig(name)[unique=true,default=$facetSearchConfigName];language(isocode)[unique=true,default=$lang];synonymFrom[unique=true];synonymTo
+ ;;;"bosch hammer";"PSB"
+ ;;;"battery";"coordless"
+ ;;;"RPZ";"Reduced pressure zone"
+ ;;;"PVB";"Pressure Vacuum Breaker"
+
+# Category Redirect (Must use INSERT_UPDATE here)
+INSERT_UPDATE SolrCategoryRedirect;redirectItem(code,$productCatalogVersion)[unique=true];&redirectRefID
+#;1359;$productCatalog-redirectRefID-drill
+#;1355;$productCatalog-redirectRefID-grinder
+
+# Keyword Redirects (Must use INSERT_UPDATE here)
+INSERT_UPDATE SolrFacetSearchKeywordRedirect;facetSearchConfig(name)[unique=true,default=$facetSearchConfigName];language(isocode)[unique=true,default=$lang];keyword[unique=true];matchType(code)[unique=true];redirect(&redirectRefID);ignoreCase[default=true]
+
+# Keyword Redirects (Must use INSERT_UPDATE here)
+INSERT_UPDATE SolrFacetSearchKeywordRedirect;facetSearchConfig(name)[unique=true,default=$facetSearchConfigName];language(isocode)[unique=true,default=$lang];keyword[unique=true];matchType(code)[unique=true];redirect(&redirectRefID);ignoreCase[default=true]
+ ;;;"accelerator";EXACT;$contentCatalogName-redirectRefID-accelerator;
+ ;;;"hymacc";EXACT;$contentCatalogName-redirectRefID-accelerator;
+
+# Keyword Redirects (Must use INSERT_UPDATE here)
+INSERT_UPDATE SolrFacetSearchKeywordRedirect;facetSearchConfig(name)[unique=true,default=$facetSearchConfigName];language(isocode)[unique=true,default=$lang];keyword[unique=true];matchType(code)[unique=true];redirect(&redirectRefID);ignoreCase[default=true]
+ ;;;"basket";EXACT;$contentCatalogName-redirectRefID-cart;
+ ;;;"cart";EXACT;$contentCatalogName-redirectRefID-cart;
+
+ 
+#-----------------------------------------------------------------------
+# [y] hybris Platform
+#
+# Copyright (c) 2017 SAP SE or an SAP affiliate company.  All rights reserved.
+#
+# This software is the confidential and proprietary information of SAP
+# ("Confidential Information"). You shall not disclose such Confidential
+# Information and shall use it only in accordance with the terms of the
+# license agreement you entered into with SAP.
+# -----------------------------------------------------------------------
+$facetSearchConfigName=siteoneIndex
+$contentCatalogName=siteoneContentCatalog
+$indexedType=siteoneProductType
+$productCatalog=siteoneProductCatalog
+$productCatalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+
+#
+# Localization en
+#
+$lang=en
+
+INSERT_UPDATE SolrCategoryRedirect;redirectItem(code,$productCatalogVersion)[unique=true];&redirectRefID
+;SH11	;$productCatalog-redirectRefID-Lighting
+;SH1111	;$productCatalog-redirectRefID-Accessories
+;SH1112	;$productCatalog-redirectRefID-Fixtures
+;SH1113	;$productCatalog-redirectRefID-Holiday 
+;SH1114	;$productCatalog-redirectRefID-Lamps
+;SH1115	;$productCatalog-redirectRefID-Transformers
+;SH12	;$productCatalog-redirectRefID-Landscape Supply
+;SH1211	;$productCatalog-redirectRefID-Consumables
+;SH1212	;$productCatalog-redirectRefID-Equipment
+;SH1213	;$productCatalog-redirectRefID-Erosion Control
+;SH1214	;$productCatalog-redirectRefID-Golf, Sports & Turf
+;SH1215	;$productCatalog-redirectRefID-Injection Systems
+;SH1216	;$productCatalog-redirectRefID-Landscape Accessories
+;SH1217	;$productCatalog-redirectRefID-Sod
+;SH1218	;$productCatalog-redirectRefID-Stormwater
+;SH1219	;$productCatalog-redirectRefID-Safety
+;SH1220	;$productCatalog-redirectRefID-Tools
+;SH13	;$productCatalog-redirectRefID-Agronomic Maintenance
+;SH1311	;$productCatalog-redirectRefID-Fertilizer  Pesticide Combination Products
+;SH1312	;$productCatalog-redirectRefID-Ice Melt
+;SH1313	;$productCatalog-redirectRefID-Landscape Bulbs
+;SH1314	;$productCatalog-redirectRefID-Hydromulch
+;SH1315	;$productCatalog-redirectRefID-Fertility & Nutrition
+;SH1316	;$productCatalog-redirectRefID-Paint
+;SH1317	;$productCatalog-redirectRefID-Pesticides and Other Related Products
+;SH1318	;$productCatalog-redirectRefID-Pest Control
+;SH1319	;$productCatalog-redirectRefID-Seed
+;SH1320	;$productCatalog-redirectRefID-Field Conditioners
+;SH1321	;$productCatalog-redirectRefID-Specialty Chemicals & Adjuvants
+;SH1322	;$productCatalog-redirectRefID-Tree Injection Products & Equipment
+;SH14	;$productCatalog-redirectRefID-Irrigation
+;SH1411	;$productCatalog-redirectRefID-Backflow
+;SH1412	;$productCatalog-redirectRefID-Clamps
+;SH1413	;$productCatalog-redirectRefID-Container Irrigation
+;SH1414	;$productCatalog-redirectRefID-Controllers
+;SH1415	;$productCatalog-redirectRefID-Drip & Micro Irrigation
+;SH1416	;$productCatalog-redirectRefID-Enclosures
+;SH1417	;$productCatalog-redirectRefID-Filtration
+;SH1418	;$productCatalog-redirectRefID-Fittings
+;SH1419	;$productCatalog-redirectRefID-Fountains & Aerators
+;SH1420	;$productCatalog-redirectRefID-Pipe Cements, Primers, Cleaners & Lubricants
+;SH1421	;$productCatalog-redirectRefID-Hoses, Fittings & Nozzles
+;SH1422	;$productCatalog-redirectRefID-Identification Products & Markers
+#;SH1423	;$productCatalog-redirectRefID-Injection Systems
+;SH1424	;$productCatalog-redirectRefID-Pipe & Tubing
+;SH1425	;$productCatalog-redirectRefID-Pumps
+;SH1426	;$productCatalog-redirectRefID-Rainwater 
+;SH1427	;$productCatalog-redirectRefID-Sensors
+;SH1428	;$productCatalog-redirectRefID-Sprinklers
+;SH1429	;$productCatalog-redirectRefID-Tools & Accessories
+;SH1430	;$productCatalog-redirectRefID-Valve Boxes
+;SH1431	;$productCatalog-redirectRefID-Valves
+;SH1432	;$productCatalog-redirectRefID-Wire, Cable & Electrical Products
+;SH15	;$productCatalog-redirectRefID-Hardscapes & Outdoor Living
+;SH1511	;$productCatalog-redirectRefID-Architectural products
+;SH1512	;$productCatalog-redirectRefID-Lumber
+;SH1513	;$productCatalog-redirectRefID-Outdoor Living
+;SH1514	;$productCatalog-redirectRefID-Stones, Pavers & Edging
+;SH1515	;$productCatalog-redirectRefID-Tools, Equipment & Accessories
+;SH16	;$productCatalog-redirectRefID-Nursery
+;SH1611	;$productCatalog-redirectRefID-Flowers, Plants & Shrubs
+#;SH1612	;$productCatalog-redirectRefID-Holiday
+;SH1613	;$productCatalog-redirectRefID-Indoor Plants
+;SH1614	;$productCatalog-redirectRefID-Succulents
+;SH1615	;$productCatalog-redirectRefID-Trees
+;SH1616	;$productCatalog-redirectRefID-Landscape Bulbs, Grasses & Seed
+#;SH1617	;$productCatalog-redirectRefID-Sod
+;SH17	;$productCatalog-redirectRefID-Tools, Equipment & Safety
+#;SH1711	;$productCatalog-redirectRefID-Equipment
+#;SH1712	;$productCatalog-redirectRefID-Safety
+#;SH1713	;$productCatalog-redirectRefID-Tools
+
+
+INSERT_UPDATE SolrFacetSearchKeywordRedirect;facetSearchConfig(name)[unique=true,default=$facetSearchConfigName];language(isocode)[unique=true,default=$lang];keyword[unique=true];matchType(code)[unique=true];redirect(&redirectRefID);ignoreCase[default=true]
+;;;"Lighting"	;EXACT;$productCatalog-redirectRefID-Lighting
+;;;"Accessories"	;EXACT;$productCatalog-redirectRefID-Accessories
+;;;"Fixtures"	;EXACT;$productCatalog-redirectRefID-Fixtures
+;;;"Holiday"	;EXACT;$productCatalog-redirectRefID-Holiday 
+;;;"Lamps"	;EXACT;$productCatalog-redirectRefID-Lamps
+;;;"Transformers"	;EXACT;$productCatalog-redirectRefID-Transformers
+;;;"Landscape Supply"	;EXACT;$productCatalog-redirectRefID-Landscape Supply
+;;;"Consumables"	;EXACT;$productCatalog-redirectRefID-Consumables
+;;;"Equipment"	;EXACT;$productCatalog-redirectRefID-Equipment
+;;;"Erosion Control"	;EXACT;$productCatalog-redirectRefID-Erosion Control
+;;;"Golf, Sports & Turf"	;EXACT;$productCatalog-redirectRefID-Golf, Sports & Turf
+;;;"Landscape Accessories"	;EXACT;$productCatalog-redirectRefID-Landscape Accessories
+;;;"Sod"	;EXACT;$productCatalog-redirectRefID-Sod
+;;;"Stormwater"	;EXACT;$productCatalog-redirectRefID-Stormwater
+;;;"Safety"	;EXACT;$productCatalog-redirectRefID-Safety
+;;;"Tools"	;EXACT;$productCatalog-redirectRefID-Tools
+;;;"Agronomic Maintenance"	;EXACT;$productCatalog-redirectRefID-Agronomic Maintenance
+;;;"Fertilizer  Pesticide Combination Products"	;EXACT;$productCatalog-redirectRefID-Fertilizer  Pesticide Combination Products
+;;;"Ice Melt"	;EXACT;$productCatalog-redirectRefID-Ice Melt
+;;;"Landscape Bulbs"	;EXACT;$productCatalog-redirectRefID-Landscape Bulbs
+;;;"Hydromulch"	;EXACT;$productCatalog-redirectRefID-Hydromulch
+;;;"Fertility & Nutrition"	;EXACT;$productCatalog-redirectRefID-Fertility & Nutrition
+;;;"Paint"	;EXACT;$productCatalog-redirectRefID-Paint
+;;;"Pesticides and Other Related Products"	;EXACT;$productCatalog-redirectRefID-Pesticides and Other Related Products
+;;;"Pest Control"	;EXACT;$productCatalog-redirectRefID-Pest Control
+;;;"Seed"	;EXACT;$productCatalog-redirectRefID-Seed
+;;;"Field Conditioners"	;EXACT;$productCatalog-redirectRefID-Field Conditioners
+;;;"Specialty Chemicals & Adjuvants"	;EXACT;$productCatalog-redirectRefID-Specialty Chemicals & Adjuvants
+;;;"Tree Injection Products & Equipment"	;EXACT;$productCatalog-redirectRefID-Tree Injection Products & Equipment
+;;;"Irrigation"	;EXACT;$productCatalog-redirectRefID-Irrigation
+;;;"Backflow"	;EXACT;$productCatalog-redirectRefID-Backflow
+;;;"Clamps"	;EXACT;$productCatalog-redirectRefID-Clamps
+;;;"Container Irrigation"	;EXACT;$productCatalog-redirectRefID-Container Irrigation
+;;;"Controllers"	;EXACT;$productCatalog-redirectRefID-Controllers
+;;;"Drip & Micro Irrigation"	;EXACT;$productCatalog-redirectRefID-Drip & Micro Irrigation
+;;;"Enclosures"	;EXACT;$productCatalog-redirectRefID-Enclosures
+;;;"Filtration"	;EXACT;$productCatalog-redirectRefID-Filtration
+;;;"Fittings"	;EXACT;$productCatalog-redirectRefID-Fittings
+;;;"Fountains & Aerators"	;EXACT;$productCatalog-redirectRefID-Fountains & Aerators
+;;;"Pipe Cements, Primers, Cleaners & Lubricants"	;EXACT;$productCatalog-redirectRefID-Pipe Cements, Primers, Cleaners & Lubricants
+;;;"Hoses, Fittings & Nozzles"	;EXACT;$productCatalog-redirectRefID-Hoses, Fittings & Nozzles
+;;;"Identification Products & Markers"	;EXACT;$productCatalog-redirectRefID-Identification Products & Markers
+;;;"Injection Systems"	;EXACT;$productCatalog-redirectRefID-Injection Systems
+;;;"Pipe & Tubing"	;EXACT	;$productCatalog-redirectRefID-Pipe & Tubing
+;;;"Pumps"	;EXACT	;$productCatalog-redirectRefID-Pumps
+;;;"Rainwater"	;EXACT;$productCatalog-redirectRefID-Rainwater 
+;;;"Sensors"	;EXACT;$productCatalog-redirectRefID-Sensors
+;;;"Sprinklers"	;EXACT	;$productCatalog-redirectRefID-Sprinklers
+;;;"Tools & Accessories"	;EXACT	;$productCatalog-redirectRefID-Tools & Accessories
+;;;"Valve Boxes"	;EXACT	;$productCatalog-redirectRefID-Valve Boxes
+;;;"Valves"	;EXACT;$productCatalog-redirectRefID-Valves
+;;;"Wire, Cable & Electrical Products"	;EXACT;$productCatalog-redirectRefID-Wire, Cable & Electrical Products
+;;;"Hardscapes & Outdoor Living"	;EXACT;$productCatalog-redirectRefID-Hardscapes & Outdoor Living
+;;;"Architectural products"	;EXACT;$productCatalog-redirectRefID-Architectural products
+;;;"Lumber"	;EXACT;$productCatalog-redirectRefID-Lumber
+;;;"Outdoor Living"	;EXACT;$productCatalog-redirectRefID-Outdoor Living
+;;;"Stones, Pavers & Edging"	;EXACT;$productCatalog-redirectRefID-Stones, Pavers & Edging
+;;;"Tools, Equipment & Accessories"	;EXACT;$productCatalog-redirectRefID-Tools, Equipment & Accessories
+;;;"Nursery"	;EXACT;$productCatalog-redirectRefID-Nursery
+;;;"Flowers, Plants & Shrubs"	;EXACT;$productCatalog-redirectRefID-Flowers, Plants & Shrubs
+;;;"Indoor Plants"	;EXACT;$productCatalog-redirectRefID-Indoor Plants
+;;;"Succulents"	;EXACT;$productCatalog-redirectRefID-Succulents
+;;;"Trees"	;EXACT;$productCatalog-redirectRefID-Trees
+;;;"Tree"	;EXACT;$productCatalog-redirectRefID-Trees
+;;;"Landscape Bulbs, Grasses & Seed"	;EXACT;$productCatalog-redirectRefID-Landscape Bulbs, Grasses & Seed
+;;;"Tools, Equipment & Safety"	;EXACT;$productCatalog-redirectRefID-Tools, Equipment & Safety
+                                                  

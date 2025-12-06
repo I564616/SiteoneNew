@@ -1,0 +1,10 @@
+$START_USERRIGHTS
+Type      ; UID                   ; MemberOfGroups ; Password ; Target                                       ; read ; change ; create ; remove
+UserGroup ; integrationadmingroup ;                ;          ;                                              ;      ;        ;        ;
+
+# Access Rights for IntegrationAdministrator Users
+	  ;                       ;                ;          ; SiteOneDataSheet         ; +    ; +      ; +      ; +
+	  ;                       ;                ;          ; SiteOneProductSafetyDataSheet         	 ; +    ; +      ; +      ; +
+      ;                       ;                ;          ; SiteOneProductLabelSheet     ; +    ; +      ; +      ; +
+      ;                       ;                ;          ; SiteOneProductSpecificationSheet     ; +    ; +      ; +      ; +
+$END_USERRIGHTS     

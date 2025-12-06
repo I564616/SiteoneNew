@@ -1,0 +1,95 @@
+$contentCatalog=siteoneContentCatalog
+$contentCatalogName=SiteOne Content Catalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+
+#Siteone Home page
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef)
+;;SectionMA1Slot-SiteOneHomePage;SectionMA1 Slot for Home Page;true;SiteoneHomePageMACarouselComponent
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='siteonehomepage'];contentSlot(uid,$contentCV)[unique=true]
+;;SectionMA1-SiteOneHomePage;SectionMA1;;SectionMA1Slot-SiteOneHomePage
+
+INSERT_UPDATE HomePageRotatingBannerComponent;$contentCV[unique=true];uid[unique=true];name;rotatingBanner(uid,$contentCV);&componentRef
+;;SiteoneHomePageMACarouselComponent;Siteone Homepage MA Component;Carousel-Seed-EOP,Carousel-Lighting-Demand,Carousel-Drainage-Demand;SiteoneHomePageMACarouselComponent
+
+#Agronomic Maintenance Category Landing Page
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef)
+;;SectionMA1Slot-AgronomicMaintenanceCategoryLandingPage;SectionMA1 Slot for Agronomic Maintenance Category Page;true;SiteoneAgronomicMaintenanceCategoryMACarouselComponent,SiteOneMABrandBannerComponent
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='AgronomicMaintenanceCategoryLandingPage'];contentSlot(uid,$contentCV)[unique=true]
+;;SectionMA1-AgronomicMaintenanceCategoryLandingPage;SectionMA1;;SectionMA1Slot-AgronomicMaintenanceCategoryLandingPage
+
+INSERT_UPDATE CategoryLandingPageRotatingBannerComponent;$contentCV[unique=true];uid[unique=true];name;rotatingBanner(uid,$contentCV);&componentRef
+;;SiteoneAgronomicMaintenanceCategoryMACarouselComponent;Siteone Agronomic Maintenance MA Component;AgronomicsBrand1 Carousel,DrainageDemand Carousel,cmsitem_00025008;SiteoneAgronomicMaintenanceCategoryMACarouselComponent
+
+INSERT_UPDATE SiteOneHomePageMobileBrandBannerComponent;$contentCV[unique=true];uid[unique=true];name;bannerList(uid,$contentCV);&componentRef
+;;SiteOneMABrandBannerComponent;SiteOne Category MA Brand Banner Component;BannerCategory3Component,BannerCategory4Component;SiteOneMABrandBannerComponent
+
+#Irrigation Category Landing Page
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef)
+;;SectionMA1Slot-IrrigationCategoryLandingPage;SectionMA1 Slot for Irrigation Category Page;true;SiteoneIrrigationCategoryMACarouselComponent,SiteOneMABrandBannerComponent
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='IrrigationCategoryLandingPage'];contentSlot(uid,$contentCV)[unique=true]
+;;SectionMA1-IrrigationCategoryLandingPage;SectionMA1;;SectionMA1Slot-IrrigationCategoryLandingPage
+
+INSERT_UPDATE CategoryLandingPageRotatingBannerComponent;$contentCV[unique=true];uid[unique=true];name;rotatingBanner(uid,$contentCV);&componentRef
+;;SiteoneIrrigationCategoryMACarouselComponent;Siteone Irrigation Category MA Component;SiteOneCategoryPageTopBannerComponent13,DrainageDemand Carousel,cmsitem_00025008;SiteoneIrrigationCategoryMACarouselComponent
+
+INSERT_UPDATE SiteOneHomePageMobileBrandBannerComponent;$contentCV[unique=true];uid[unique=true];name;bannerList(uid,$contentCV);&componentRef
+;;SiteOneMABrandBannerComponent;SiteOne Category MA Brand Banner Component;BannerCategory3Component,BannerCategory4Component;SiteOneMABrandBannerComponent
+
+#Landscape Supply Category Landing Page
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef)
+;;SectionMA1Slot-LandscapeSupplyCategoryLandingPage;SectionMA1 Slot for LandscapeSupply Category Page;true;SiteoneLandscapeSupplyCategoryMACarouselComponent,SiteOneMABrandBannerComponent
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='LandscapeSupplyCategoryLandingPage'];contentSlot(uid,$contentCV)[unique=true]
+;;SectionMA1-LandscapeSupplyCategoryLandingPage;SectionMA1;;SectionMA1Slot-LandscapeSupplyCategoryLandingPage
+
+INSERT_UPDATE CategoryLandingPageRotatingBannerComponent;$contentCV[unique=true];uid[unique=true];name;rotatingBanner(uid,$contentCV);&componentRef
+;;SiteoneLandscapeSupplyCategoryMACarouselComponent;Siteone LandscapeSupply Category MA Component;cmsitem_00025010,cmsitem_00025008,DrainageDemand Carousel;SiteoneLandscapeSupplyCategoryMACarouselComponent
+
+INSERT_UPDATE SiteOneHomePageMobileBrandBannerComponent;$contentCV[unique=true];uid[unique=true];name;bannerList(uid,$contentCV);&componentRef
+;;SiteOneMABrandBannerComponent;SiteOne Category MA Brand Banner Component;BannerCategory3Component,BannerCategory4Component;SiteOneMABrandBannerComponent
+
+#Lighting Category Landing Page
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef)
+;;SectionMA1Slot-lightingCategoryLandingPage;SectionMA1 Slot for Lighting Category Page;true;LightingCategoryMACarouselComponent,SiteOneMABrandBannerComponent
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='lightingCategoryLandingPage'];contentSlot(uid,$contentCV)[unique=true]
+;;SectionMA1-lightingCategoryLandingPage;SectionMA1;;SectionMA1Slot-lightingCategoryLandingPage
+
+INSERT_UPDATE CategoryLandingPageRotatingBannerComponent;$contentCV[unique=true];uid[unique=true];name;rotatingBanner(uid,$contentCV);&componentRef
+;;LightingCategoryMACarouselComponent;Siteone Lighting Category MA Component;SiteOneCategoryPageTopBannerComponent1,cmsitem_00025008;LightingCategoryMACarouselComponent
+
+INSERT_UPDATE SiteOneHomePageMobileBrandBannerComponent;$contentCV[unique=true];uid[unique=true];name;bannerList(uid,$contentCV);&componentRef
+;;SiteOneMABrandBannerComponent;SiteOne Category MA Brand Banner Component;BannerCategory3Component,BannerCategory4Component;SiteOneMABrandBannerComponent
+
+#Nursery Category Landing Page
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef)
+;;SectionMA1Slot-NurseryCategoryLandingPage;SectionMA1 Slot for Nursery Category Page;true;SiteoneNurseryCategoryMACarouselComponent,SiteOneNurseryMABrandBannerComponent
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='NurseryCategoryLandingPage'];contentSlot(uid,$contentCV)[unique=true]
+;;SectionMA1-NurseryCategoryLandingPage;SectionMA1;;SectionMA1Slot-NurseryCategoryLandingPage
+
+INSERT_UPDATE CategoryLandingPageRotatingBannerComponent;$contentCV[unique=true];uid[unique=true];name;rotatingBanner(uid,$contentCV);&componentRef
+;;SiteoneNurseryCategoryMACarouselComponent;Siteone Nursery Category MA Component;SiteOneCategoryPageTopBannerComponent17,cmsitem_00025006;SiteoneNurseryCategoryMACarouselComponent
+
+INSERT_UPDATE SiteOneHomePageMobileBrandBannerComponent;$contentCV[unique=true];uid[unique=true];name;bannerList(uid,$contentCV);&componentRef
+;;SiteOneNurseryMABrandBannerComponent;SiteOne Nursery Category MA Brand Banner Component;Sidebar_Portfolio;SiteOneNurseryMABrandBannerComponent
+
+#Tools Equipment Safety Category Landing Page
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef)
+;;SectionMA1Slot-ToolsEquipmentSafetyCategoryLandingPage;SectionMA1 Slot for Tools Category Page;true;SiteoneToolsEquipmentCategoryMACarouselComponent,SiteOneMABrandBannerComponent
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='ToolsEquipmentSafetyCategoryLandingPage'];contentSlot(uid,$contentCV)[unique=true]
+;;SectionMA1-ToolsEquipmentSafetyCategoryLandingPage;SectionMA1;;SectionMA1Slot-ToolsEquipmentSafetyCategoryLandingPage
+
+INSERT_UPDATE CategoryLandingPageRotatingBannerComponent;$contentCV[unique=true];uid[unique=true];name;rotatingBanner(uid,$contentCV);&componentRef
+;;SiteoneToolsEquipmentCategoryMACarouselComponent;Siteone Tools Category MA Component;SiteOneCategoryPageTopBannerComponent21;SiteoneToolsEquipmentCategoryMACarouselComponent
+
+INSERT_UPDATE SiteOneHomePageMobileBrandBannerComponent;$contentCV[unique=true];uid[unique=true];name;bannerList(uid,$contentCV);&componentRef
+;;SiteOneMABrandBannerComponent;SiteOne Category MA Brand Banner Component;BannerCategory3Component,BannerCategory4Component;SiteOneMABrandBannerComponent
+
+#Promotional Text 
+INSERT_UPDATE SiteOneCategoryPageTopBannerComponent;$contentCV[unique=true];uid[unique=true];promotionalText[lang=en];
+;;SiteOneCategoryPageTopBannerComponent1;;

@@ -1,0 +1,308 @@
+.page-pilotPartnersProgramPage,
+.page-accountPartnerProgramPage,
+.page-partnerPerksPage {
+  .global-alerts{display: none;} 
+  .partner-section {
+    img {
+      max-width: 100%;
+    }
+    .btn-overlay {
+      background: transparent;
+      border: 2px solid @white-color;
+      border-radius: 3px !important;
+    }
+  }
+  .partner-header {
+    .partner-overlay {
+      min-width: 98%;
+    }
+  }
+  .partner-overlay {
+    position: absolute;
+  }
+  .partner-flot-heading {
+    margin-top: -30px;
+  }
+  .partner-enroll-block {
+    max-height: 220px;
+    overflow: hidden;
+  }
+  .partner-end {
+    &:after {
+      content: "&";
+      width: 240px;
+      height: 240px;
+      border-radius: 50%;
+      background: @white-color;
+      display: block;
+      position: absolute;
+      left: 100%;
+      top: 0;
+      color: @default-color;
+      font-size: 150px;
+      font-family: Geogrotesque-Medium, sans-serif;
+      font-weight: bold;
+      line-height: 240px;
+    }
+  }
+  .partner-threshold {
+    position: relative;
+    height: 40px;
+    span {
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 40px;
+      display: block;
+    }
+    img {
+      z-index: 1;
+      position: absolute;
+      right: -7px;
+      top: 50%;
+      margin-top: -26px;
+    }
+  }
+  .info-tooltip {
+    position: static;
+    display: inline-block;
+    cursor: pointer;
+  }
+  .partner-point-info {
+    line-height: 26px;
+    p {
+      line-height: 36px;
+    }
+    
+    .point-info-title-width {
+      width: 44%;
+    }
+    .point-info-title-content {
+      margin: 7px 0px 0px 0px;
+      line-height: 28px;
+    }
+    .point-info-full-width {
+      width: 100%;
+    }
+    .point-banner-logo-maxwidth {
+      max-width: 160px !important;
+    }
+    .point-logo-content-width {
+      width: 12%;
+    }
+    .point-banner-center {
+      height: inherit;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+  .banner-lawnline-bg {
+    background-image: url('/_ui/responsive/theme-lambda/images/partner_banner_bg.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position-x: center;
+    background-color: #EEEEEE;
+    cursor: pointer;
+   }
+  .banner-lawnline-bg-mob {
+    background-image: url('/_ui/responsive/theme-lambda/images/partner_banner_bg_mob.svg');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: left top;
+    background-color: #EEEEEE;
+    margin: 30px 10px 10px 10px;
+  }
+  .partner-banner-lawnline {
+    .banner-learnmore-btn {
+      position: absolute;
+      right: 15px;
+      bottom: 15px;
+    }
+    .banner-learnmore-btn-mob {
+      position: relative; 
+      top: 8px;
+    }
+    .btn-link:hover {
+      color:@color-primary;
+      text-decoration:none;
+    }
+    .btn-link:active, .btn-link:focus {
+      color:@color-primary;
+    }
+    .banner-content-l-h-xs{
+      line-height: 20px;
+    }
+    .banner-content-l-h-md{
+      line-height: 24px;
+    }
+    .banner-title-l-h-md{
+      line-height: 28px;
+    }
+  }
+  .enroll-popup {
+    #cboxLoadedContent {
+      margin-top: 0px !important;
+    }
+    img {
+      max-width: 100%;
+    }
+    .enroll-progress {
+      position: relative;
+      padding-top: 130px;
+    }
+    .enroll-confirm {
+      display: block;
+    }
+    #floatBarsG {
+      position: absolute;
+    }
+  }
+  @media (max-width: @screen-xs-max) {
+    .partner-header {
+      margin: 0 -10px;
+      .partner-overlay {
+        margin-top: -25px;
+      }
+      .header-image.perks-elem{
+        height: 292px;
+      }
+    }
+    img.partner-dashboard  {
+      max-width: initial;
+    }
+    .partner-bussines {
+      img {
+        max-width: 1170px;
+      }
+    }
+    .partner-banner-left {
+      margin-left: -10px;
+    }
+    .partner-banner-right {
+      margin-left: 10px;
+    }
+  }
+ .combinedpartner {
+    .bg-combinedpartner {
+      background: url("/_ui/responsive/theme-lambda/images/combinedpartner.png"),
+        url("/_ui/responsive/theme-lambda/images/Rectangle_1458.svg");
+      background-blend-mode: overlay;
+      background-size: cover;
+    }
+    .bg-grayish {
+      background-color: #e5e5e5;
+    }
+    .green-line {
+      border-bottom: 2px solid #78a22f;
+      margin-right: 7%;
+      margin-left: 7%;
+    }
+  	.carousel-indicators {
+      margin-bottom: -10%;
+      bottom: 20px;
+      @media(max-width: @screen-xs-max) {
+		margin-bottom: -60px;
+		}
+      .active {
+        background-color: #78a22f;
+      }
+    }
+    .partnerperks-carousel {
+      height: 362px;
+      margin-top: 10px;
+      margin-left: 50px;
+      margin-right: 50px;
+      background-image: url("/_ui/responsive/theme-lambda/images/drainage-grunge-green.webp");
+		@media(max-width: @screen-xs-max) {
+			margin-left: auto;
+			margin-right: auto;
+			height: 330px;
+		}
+      .carousel-control {
+        background: none;
+      }
+      .carousel-inner {
+        .item {
+          padding: 0 !important;
+          .text-white {color: #ffffff;}
+        }
+        .caption-hide {
+          display: none;
+        }
+        .carousel-caption {
+          position: relative;
+          text-shadow: none;
+          margin-left: -60px;
+          width: 85%;
+          @media(max-width: @screen-xs-max) {
+          margin-left: -30px;}
+          img{
+			 @media(max-width: @screen-xs-max) {
+				height: 50px;
+			}
+			}
+        }
+        .active {
+          .caption-hide {
+            display: block;
+          }
+        }
+      }
+    }
+  }
+
+  // Cards carousel
+
+  ::marker {
+    color: #78a22f;
+  }
+.caption-details {
+    white-space: normal;
+    margin: 34px 37px 0 43px;
+  }
+.category-tile-item {
+    padding-right: 0 !important;
+     max-width: 30%;
+    height: 575px;
+    @media (max-width: @screen-xs-max) {
+      width: auto;
+    }
+}
+.product__facet{
+  background-color: #fafafa !important;
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 0px 40px;
+  @media (max-width: @screen-xs-max) {padding:0 !important}
+     .facet .facet__list {
+  li{
+    padding-left: 0px;
+    line-height: 25px;
+  }
+  .carousel-prev{
+    box-shadow: none;
+    left: -5px;
+  }
+  .carousel-next{
+    box-shadow: none;
+    right: 15px;
+  }
+}
+&:before, &:after {
+    background-color: #fafafa;
+}
+}
+@media (max-width: @screen-xs-max) {
+  .m-r-15-xs{margin-right: 15px;}
+  .category-tiles.product__facet {
+    margin-top: 0px;
+}
+  .category-tile-item{
+    max-width: none;
+    height: 530px;
+  }
+  .caption-details{
+    margin: 27px 26px 0 32px;
+  }
+}
+}

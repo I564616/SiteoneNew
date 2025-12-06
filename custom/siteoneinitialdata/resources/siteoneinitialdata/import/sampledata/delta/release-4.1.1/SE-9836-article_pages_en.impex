@@ -1,0 +1,206 @@
+$contentCatalog=siteoneContentCatalog
+$contentCatalogName=SiteOne Content Catalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$supercategories=supercategories(code, catalogVersion(catalog(id[default='siteoneContentCatalog']),version[default='Staged']))
+$catalogVersion=catalogVersion(catalog(id[default='siteoneContentCatalog']),version[default='Staged'])[unique=true,default='siteoneContentCatalog:Staged']
+$picture=media(code, $contentCV);
+$image=image(code, $contentCV);
+$media=media(code, $contentCV);
+$page=page(uid, $contentCV);
+$contentPage=contentPage(uid, $contentCV);
+$lang=en
+
+#agronomic maintenance
+INSERT_UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];fullPagePath[lang=$lang];name;previewTitle[lang=$lang];title[lang=$lang];label;category(code,$contentCV);previewImage(code, $contentCV);contentTags;description[lang=$lang];masterTemplate(uid,$contentCV)[default='ArticleLandingPageTemplate'];contentType(code)[default='ARTICLE_PAGE'];defaultPage[default='true'];approvalStatus(code)[default='approved'];homepage[default='false'];isIndexable[default='true'];pathingChannel[lang=$lang][default='tools and resources'];
+;;Treating-Large-Patch-in-Central-Florida;tools and resources: learn and explore: turf care: treating large patch in central florida;Treating Large Patch in Central Florida;Treating Large Patch in Central Florida;;/articles/article/Treating-Large-Patch-in-Central-Florida;Turf-Care;TPA Treating Brown Patch;Florida turf maintenance, Large Patch prevention, Large patch causes, Brown patch causes,systemic fungicides, Armada, Fame SC, Heritage, LESCO T- Storm, Florida fungicide;"With a proper turf care program and routine applications of control products, you can avert an outbreak of brown or large patch. " ;;;;;;;;
+;;Selecting-The-Right-Herbicide-In-Central-Florida;tools and resources: learn and explore: turf care: selecting the right herbicide in central florida;Selecting the Right Herbicide in Central Florida;Selecting the Right Herbicide in Central Florida;;articles/article/Selecting-The-Right-Herbicide-In-Central-Florida;Turf-Care;TPA Herbicide;;"Chickweed, dayflowers, doveweed, nutsedge, buttonweed, clovers and oxalis are prevalent in central Florida, but the right herbicide—and a healthy turf program—can control these pesky weeds." ;;;;;;;;
+;;Selecting-The-Right-Fungicide-In-Central-Florida;tools and resources: learn and explore: turf care: selecting the right fungicide in central florida;Selecting the Right Fungicide in Central Florida;Selecting the Right Fungicide in Central Florida;;articles/article/Selecting-The-Right-Fungicide-In-Central-Florida;Turf-Care;TPA Fungicide;Florida turf maintenance, Large Patch prevention, Large patch causes, Brown patch causes, systemic fungicides, Armada, Fame SC, Heritage, LESCO T- Storm, Florida fungicide;"Large patch, gray leaf spot and dollar spot disease all wreak havoc on turfgrasses in the Tampa area." ;;;;;;;;
+;;Slow-Release-Fertilizers;tools and resources: learn and explore: turf care: slow release fertilizers;Slow Release Fertilizers;Slow Release Fertilizers;;/articles/article/Slow-Release-Fertilizers;Turf-Care;TPA Slow Release Fertilizers;enhanced efficiency fertilizer, slow release fertilizer, fertilizer technology, LESCO NOS, LESCO NOS Plus, lawn maintenance labor savings;"By gradually delivering nutrients to the soil, slow release fertilizers keep turf greener with fewer applications required" ;;;;;;;;
+;;Central-Florida-Turf-Maintenance-Calendar;tools and resources: learn and explore: turf care: central florida turf maintenance calendar;Central Florida Turf Maintenance Calendar;Central Florida Turf Maintenance Calendar;;/articles/article/Central-Florida-Turf-Maintenance-Calendar;Turf-Care;TPA Agro Calendar; Florida turf calendar, LESCO calendar, zoysia grass, Bermuda grass, St. Augustine Grass;"" ;;;;;;;;
+
+#irrigation
+;;Two-Wire-Technology;tools and resources: learn and explore: irrigation: two wire technology;Two Wire Technology;Two Wire Technology;;/articles/article/Two-Wire-Technology;Irrigation;Two-Wire-Technology;irrigation wiring, add valves to irrigation, two-wire controller, two-wire path, two-wire irrigation system installation, irrigation installation;"More wires, more problems. But with the right two wire controller, you can install a full system of valves using only a single two wire path" ;;;;;;;;
+;;Upgrading-Wireless-Controllers;tools and resources: learn and explore: irrigation: upgrading wireless controllers;Upgrading Wireless Controllers;Upgrading Wireless Controllers;;/articles/article/Upgrading-Wireless-Controllers;Irrigation;TPA Upgrading Wireless Controllers;irrigation controllers, smart irrigation controller installation, app-based irrigation controllers, upgrading irrigation controllers, installing irrigation controllers, irrigation controller upgrades, winter turf business ideas;"Help your customers level up to a smart new world of irrigation control." ;;;;;;;;
+
+
+INSERT_UPDATE SiteoneParagaraphComponent;$contentCV[unique=true];uid[unique=true];name;headline[lang=$lang];content[lang=$lang];&componentRef
+;;Central-Florida-Turf-Maintenance-Calendar-ParagraphComponent;Article Argonomic Page1 Paragraph Component;;"<div class=""col-md-7 row article-detail-content""><p>As with many things in life, the key to proper turf nutrition and issue control is all in the timing. These plans give you all the expert guidance you need to perfect your turf care plan, from seed and pre-emergent to herbicides, pesticides and more.&nbsp;</p>
+<p><a href=""/medias/sys_master/documents/documents/he4/h53/9046031794206/2021-Agro-Calendar-Tampa.pdf"" target=""_blank"">Download a pro agronomic schedule for Central Florida</a>.</p></div>
+";Central-Florida-Turf-Maintenance-Calendar-ParagraphComponent
+
+;;Selecting-The-Right-Fungicide-In-Central-Florida-ParagraphComponent;Article Argonomic Page2 Paragraph Component;;"<div class=""col-md-7 row article-detail-content""><p>Large patch, gray leaf spot and dollar spot disease all wreak havoc on turfgrasses in the Tampa area. Selecting the correct fungicide is key to avoiding fungal disease and establishing a good turf maintenance program. Check out this video in our <a href=""https://www.youtube.com/playlist?list=PLzQddBAMbKdz7Vf_cXWE7AY7AtbNXjDbX"" target=""_blank"">Site-101 video</a> series to learn which fungicides and maintenance practices work best in Central Florida.&nbsp;</p>
+<p><a href=""https://www.youtube.com/watch?v=0txVLIcdDyo&amp;list=PLzQddBAMbKdz7Vf_cXWE7AY7AtbNXjDbX&amp;index=2"" target=""_blank"">Watch video</a></p></div>
+";Selecting-The-Right-Fungicide-In-Central-Florida-ParagraphComponent
+
+;;Selecting-The-Right-Herbicide-In-Central-Florida-ParagraphComponent;Article Argonomic Page3 Paragraph Component;;"<div class=""col-md-7 row article-detail-content""><p>Chickweed, dayflowers, doveweed, nutsedge, buttonweed, clovers and oxalis are prevalent in central Florida, but the right herbicide - and a healthy turf program - can control these pesky weeds. Check out <a href=""https://youtu.be/SVXhSyzJ9dU"" target=""_blank"">this video</a> in our <a href=""https://www.youtube.com/playlist?list=PLzQddBAMbKdz7Vf_cXWE7AY7AtbNXjDbX"" target=""_blank"">Site-101 video</a> series to see how.&nbsp;<br />
+<br />
+<a href=""https://youtu.be/SVXhSyzJ9dU"" target=""_blank"">Watch video&nbsp;</a></p></div>
+";Selecting-The-Right-Herbicide-In-Central-Florida-ParagraphComponent
+
+;;Slow-Release-Fertilizers-ParagraphComponent;Article Argonomic Page4 Paragraph Component;;"<div class=""col-md-7 row article-detail-content""><p>By gradually delivering nutrients to the soil, slow release fertilizers keep turf greener with fewer applications required. Check out <a href=""https://www.youtube.com/watch?v=7QbQaxYMfTA&amp;feature=youtu.be"" target=""_blank"">this video</a> from our <a href=""https://www.youtube.com/playlist?list=PLzQddBAMbKdwNW0z8l0xQFgVUgd-5yJXC"" target=""_blank"">Stronger in :60 series</a> to reap the business benefits of slow release fertilizers.</p>
+<p><a href=""https://youtu.be/7QbQaxYMfTA"" target=""_blank"">Watch video</a>&nbsp;</p></div>
+";Slow-Release-Fertilizers-ParagraphComponent
+
+;;Treating-Large-Patch-In-Central-Florida-ParagraphComponent;Article Argonomic Page5 Paragraph Component;;"<div class=""col-md-7 row article-detail-content""><p>Don&rsquo;t let large patch affect your central Florida turfgrass. Check out <a href=""https://youtu.be/xCgUGzH_NJk"" target=""_blank"">this video</a> in our Site-101 video series &nbsp;to learn how a proper turf care program and routine applications of control products, you can avert an outbreak.<br />
+<br />
+<a href=""https://youtu.be/xCgUGzH_NJk"" target=""_blank"">Watch video&nbsp;</a></p></div>
+";Treating-Large-Patch-In-Central-Florida-ParagraphComponent
+
+;;Two-Wire-Technology-ParagraphComponent;Article Irrigation Page13 Paragraph Component;;"<div class=""col-md-7 row article-detail-content""><p>More wires, more problems. But with the right two wire controller, you can install a full system of valves using only a single two wire path. Check out <a href=""https://youtu.be/WRPdoWLdd0A"" target=""_blank"">this video</a> from our <a href=""https://www.youtube.com/playlist?list=PLzQddBAMbKdwNW0z8l0xQFgVUgd-5yJXC"" target=""_blank"">Stronger in :60 series</a> to rewire your approach to more efficient irrigation installations.</p>
+<p><a href=""https://youtu.be/WRPdoWLdd0A"" target=""_blank"">Watch video</a></p></div>
+";Two-Wire-Technology-ParagraphComponent
+
+;;Upgrading-Wireless-Controllers-ParagraphComponent;Article Irrigation Page14 Paragraph Component;;"<div class=""col-md-7 row article-detail-content""><p>Help your customers level up to a smart new world of irrigation control. It&#39;s easier than ever to add smart, wireless and app-based controllers to new installations or system upgrades. Check out <a href=""https://youtu.be/caCb45kCMnI"" target=""_blank"">this video</a> from our <a href=""https://www.youtube.com/playlist?list=PLzQddBAMbKdwNW0z8l0xQFgVUgd-5yJXC"" target=""_blank"">Stronger in :60 series</a> to rewire your revenue stream.</p>
+<p><a href=""https://youtu.be/caCb45kCMnI"" target=""_blank"">Watch video</a></p></div>
+";Upgrading-Wireless-Controllers-ParagraphComponent
+
+
+#ArticleTagsCreation
+INSERT_UPDATE SiteOneArticleTagsComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef
+#Business Tips
+;;ArticleAgronomicPage1TagsComponent;Article Agronomic Page1 Tags Component;ArticleAgronomicPage1TagsComponent
+;;ArticleAgronomicPage2TagsComponent;Article Agronomic Page2 Tags Component;ArticleAgronomicPage2TagsComponent
+;;ArticleAgronomicPage3TagsComponent;Article Agronomic Page3 Tags Component;ArticleAgronomicPage3TagsComponent
+;;ArticleAgronomicPage4TagsComponent;Article Agronomic Page4 Tags Component;ArticleAgronomicPage4TagsComponent
+;;ArticleAgronomicPage5TagsComponent;Article Agronomic Page5 Tags Component;ArticleAgronomicPage5TagsComponent
+#Irrigation
+;;ArticleIrrigationPage12TagsComponent;Article Irrigation Page12 Tags Component;ArticleIrrigationPage12TagsComponent
+;;ArticleIrrigationPage13TagsComponent;Article Irrigation Page13 Tags Component;ArticleIrrigationPage13TagsComponent
+
+INSERT_UPDATE SiteOneArticleDetailComponent;$contentCV[unique=true];uid[unique=true];name
+;;Central-Florida-Turf-Maintenance-Calendar-articlecomponent;Central Florida Turf Maintenance Calendar
+;;Selecting-The-Right-Fungicide-In-Central-Florida-articlecomponent;Selecting the Right Fungicide
+;;Selecting-The-Right-Herbicide-In-Central-Florida-articlecomponent;Selecting the Right Herbicide
+;;Slow-Release-Fertilizers-articlecomponent;Slow Release Fertilizers
+;;Treating-Large-Patch-In-Central-Florida-articlecomponent;Treating Large Patch
+#Irrigation
+;;Two-Wire-Technology-articlecomponent;Two Wire Technology
+;;Upgrading-Wireless-Controllers-articlecomponent;Upgrading Wireless Controllers
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(uid,$contentCV);;;
+
+#agronomic maintenance
+
+;;Section1Slot-TreatingLargePatchinCentralFlorida;Section1 Slot for Treating Large Patch in Central Florida;true;
+;;HeroBannerSlot-TreatingLargePatchinCentralFlorida;HeroBanner Slot for Treating Large Patch in Central Florida;true;
+;;PromotionBannerSlot-TreatingLargePatchinCentralFlorida;PromotionBanner Slot for Treating Large Patch in Central Florida;true;
+;;ArticleNavigationSlot-TreatingLargePatchinCentralFlorida;ArticleNavigation Slot for Treating Large Patch in Central Florida;true;
+;;ArticleContentSlot-TreatingLargePatchinCentralFlorida;ArticleContent Slot for Treating Large Patch in Central Florida;true;
+;;Section3-TreatingLargePatchinCentralFlorida;Section3 Slot for Treating Large Patch in Central Florida;true;Treating-Large-Patch-In-Central-Florida-articlecomponent,Treating-Large-Patch-In-Central-Florida-ParagraphComponent,ArticleAgronomicPage2TagsComponent
+;;FeaturedArticleSlot-TreatingLargePatchinCentralFlorida;FeaturedArticle Slot for Treating Large Patch in Central Florida;true;
+
+;;Section1Slot-SelectingtheRightHerbicideinCentralFlorida;Section1 Slot for Selecting the Right Herbicide in Central Florida;true;
+;;HeroBannerSlot-SelectingtheRightHerbicideinCentralFlorida;HeroBanner Slot for Selecting the Right Herbicide in Central Florida;true;
+;;PromotionBannerSlot-SelectingtheRightHerbicideinCentralFlorida;PromotionBanner Slot for Selecting the Right Herbicide in Central Florida;true;
+;;ArticleNavigationSlot-SelectingtheRightHerbicideinCentralFlorida;ArticleNavigation Slot for Selecting the Right Herbicide in Central Florida;true;
+;;ArticleContentSlot-SelectingtheRightHerbicideinCentralFlorida;ArticleContent Slot for Selecting the Right Herbicide in Central Florida;true;
+;;Section3-SelectingtheRightHerbicideinCentralFlorida;Section3 Slot for Selecting the Right Herbicide in Central Florida;true;Selecting-The-Right-Herbicide-In-Central-Florida-articlecomponent,Selecting-The-Right-Herbicide-In-Central-Florida-ParagraphComponent,ArticleAgronomicPage3TagsComponent
+;;FeaturedArticleSlot-SelectingtheRightHerbicideinCentralFlorida;FeaturedArticle Slot for Selecting the Right Herbicide in Central Florida;true;
+
+;;Section1Slot-SelectingtheRightFungicideinCentralFlorida;Section1 Slot for Selecting the Right Fungicide in Central Florida;true;
+;;HeroBannerSlot-SelectingtheRightFungicideinCentralFlorida;HeroBanner Slot for Selecting the Right Fungicide in Central Florida;true;
+;;PromotionBannerSlot-SelectingtheRightFungicideinCentralFlorida;PromotionBanner Slot for Selecting the Right Fungicide in Central Florida;true;
+;;ArticleNavigationSlot-SelectingtheRightFungicideinCentralFlorida;ArticleNavigation Slot for Selecting the Right Fungicide in Central Florida;true;
+;;ArticleContentSlot-SelectingtheRightFungicideinCentralFlorida;ArticleContent Slot for Selecting the Right Fungicide in Central Florida;true;
+;;Section3-SelectingtheRightFungicideinCentralFlorida;Section3 Slot for Selecting the Right Fungicide in Central Florida;true;Selecting-The-Right-Fungicide-In-Central-Florida-articlecomponent,Selecting-The-Right-Fungicide-In-Central-Florida-ParagraphComponent,ArticleAgronomicPage4TagsComponent
+;;FeaturedArticleSlot-SelectingtheRightFungicideinCentralFlorida;FeaturedArticle Slot for Selecting the Right Fungicide in Central Florida;true;
+
+;;Section1Slot-SlowReleaseFertilizers;Section1 Slot for Slow Release Fertilizers;true;
+;;HeroBannerSlot-SlowReleaseFertilizers;HeroBanner Slot for Slow Release Fertilizers;true;
+;;PromotionBannerSlot-SlowReleaseFertilizers;PromotionBanner Slot for Slow Release Fertilizers;true;
+;;ArticleNavigationSlot-SlowReleaseFertilizers;ArticleNavigation Slot for Slow Release Fertilizers;true;
+;;ArticleContentSlot-SlowReleaseFertilizers;ArticleContent Slot for Slow Release Fertilizers;true;
+;;Section3-SlowReleaseFertilizers;Section3 Slot for Slow Release Fertilizers;true;Slow-Release-Fertilizers-articlecomponent,Slow-Release-Fertilizers-ParagraphComponent,ArticleAgronomicPage5TagsComponent
+;;FeaturedArticleSlot-SlowReleaseFertilizers;FeaturedArticle Slot for Slow Release Fertilizers;true;
+
+;;Section1Slot-CentralFloridaTurfMaintenanceCalendar;Section1 Slot for Central Florida Turf Maintenance Calendar;true;
+;;HeroBannerSlot-CentralFloridaTurfMaintenanceCalendar;HeroBanner Slot for Central Florida Turf Maintenance Calendar;true;
+;;PromotionBannerSlot-CentralFloridaTurfMaintenanceCalendar;PromotionBanner Slot for Central Florida Turf Maintenance Calendar;true;
+;;ArticleNavigationSlot-CentralFloridaTurfMaintenanceCalendar;ArticleNavigation Slot for Central Florida Turf Maintenance Calendar;true;
+;;ArticleContentSlot-CentralFloridaTurfMaintenanceCalendar;ArticleContent Slot for Central Florida Turf Maintenance Calendar;true;
+;;Section3-CentralFloridaTurfMaintenanceCalendar;Section3 Slot for Central Florida Turf Maintenance Calendar;true;Central-Florida-Turf-Maintenance-Calendar-articlecomponent,Central-Florida-Turf-Maintenance-Calendar-ParagraphComponent,ArticleAgronomicPage1TagsComponent
+;;FeaturedArticleSlot-CentralFloridaTurfMaintenanceCalendar;FeaturedArticle Slot for Central Florida Turf Maintenance Calendar;true;
+
+#irrigation
+
+;;Section1Slot-TwoWireTechnology;Section1 Slot for Two Wire Technology;true;
+;;HeroBannerSlot-TwoWireTechnology;HeroBanner Slot for Two Wire Technology;true;
+;;PromotionBannerSlot-TwoWireTechnology;PromotionBanner Slot for Two Wire Technology;true;
+;;ArticleNavigationSlot-TwoWireTechnology;ArticleNavigation Slot for Two Wire Technology;true;
+;;ArticleContentSlot-TwoWireTechnology;ArticleContent Slot for Two Wire Technology;true;
+;;Section3-TwoWireTechnology;Section3 Slot for Two Wire Technology;true;Two-Wire-Technology-articlecomponent,Two-Wire-Technology-ParagraphComponent,ArticleIrrigationPage12TagsComponent
+;;FeaturedArticleSlot-TwoWireTechnology;FeaturedArticle Slot for Two Wire Technology;true;
+
+;;Section1Slot-UpgradingWirelessControllers;Section1 Slot for Upgrading Wireless Controllers;true;
+;;HeroBannerSlot-UpgradingWirelessControllers;HeroBanner Slot for Upgrading Wireless Controllers;true;
+;;PromotionBannerSlot-UpgradingWirelessControllers;PromotionBanner Slot for Upgrading Wireless Controllers;true;
+;;ArticleNavigationSlot-UpgradingWirelessControllers;ArticleNavigation Slot for Upgrading Wireless Controllers;true;
+;;ArticleContentSlot-UpgradingWirelessControllers;ArticleContent Slot for Upgrading Wireless Controllers;true;
+;;Section3-UpgradingWirelessControllers;Section3 Slot for Upgrading Wireless Controllers;true;Upgrading-Wireless-Controllers-articlecomponent,Upgrading-Wireless-Controllers-ParagraphComponent,ArticleIrrigationPage13TagsComponent
+;;FeaturedArticleSlot-UpgradingWirelessControllers;FeaturedArticle Slot for Upgrading Wireless Controllers;true;
+
+
+
+
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true];contentSlot(uid,$contentCV)[unique=true];;;
+
+#agronomic maintenance
+;;Section1-TreatingLargePatchinCentralFlorida1;Section1;Treating-Large-Patch-in-Central-Florida;Section1Slot-TreatingLargePatchinCentralFlorida;;;
+;;HeroBannerSlot-TreatingLargePatchinCentralFlorida1;HeroBannerSlot;Treating-Large-Patch-in-Central-Florida;HeroBannerSlot-TreatingLargePatchinCentralFlorida;;;
+;;PromotionBannerSlot-TreatingLargePatchinCentralFlorida1;PromotionBannerSlot;Treating-Large-Patch-in-Central-Florida;PromotionBannerSlot-TreatingLargePatchinCentralFlorida;;;
+;;ArticleNavigationSlot-TreatingLargePatchinCentralFlorida1;ArticleNavigationSlot;Treating-Large-Patch-in-Central-Florida;ArticleNavigationSlot-TreatingLargePatchinCentralFlorida;;;
+;;ArticleContentSlot-TreatingLargePatchinCentralFlorida1;ArticleContentSlot;Treating-Large-Patch-in-Central-Florida;ArticleContentSlot-TreatingLargePatchinCentralFlorida;;;
+;;Section3-TreatingLargePatchinCentralFlorida1;Section3;Treating-Large-Patch-in-Central-Florida;Section3-TreatingLargePatchinCentralFlorida;;;
+;;FeaturedArticleSlot-TreatingLargePatchinCentralFlorida1;FeaturedArticleSlot;Treating-Large-Patch-in-Central-Florida;FeaturedArticleSlot-TreatingLargePatchinCentralFlorida;;;
+
+
+;;Section1-SelectingtheRightHerbicideinCentralFlorida1;Section1;Selecting-The-Right-Herbicide-In-Central-Florida;Section1Slot-SelectingtheRightHerbicideinCentralFlorida;;;
+;;HeroBannerSlot-SelectingtheRightHerbicideinCentralFlorida1;HeroBannerSlot;Selecting-The-Right-Herbicide-In-Central-Florida;HeroBannerSlot-SelectingtheRightHerbicideinCentralFlorida;;;
+;;PromotionBannerSlot-SelectingtheRightHerbicideinCentralFlorida1;PromotionBannerSlot;Selecting-The-Right-Herbicide-In-Central-Florida;PromotionBannerSlot-SelectingtheRightHerbicideinCentralFlorida;;;
+;;ArticleNavigationSlot-SelectingtheRightHerbicideinCentralFlorida1;ArticleNavigationSlot;Selecting-The-Right-Herbicide-In-Central-Florida;ArticleNavigationSlot-SelectingtheRightHerbicideinCentralFlorida;;;
+;;ArticleContentSlot-SelectingtheRightHerbicideinCentralFlorida1;ArticleContentSlot;Selecting-The-Right-Herbicide-In-Central-Florida;ArticleContentSlot-SelectingtheRightHerbicideinCentralFlorida;;;
+;;Section3-SelectingtheRightHerbicideinCentralFlorida1;Section3;Selecting-The-Right-Herbicide-In-Central-Florida;Section3-SelectingtheRightHerbicideinCentralFlorida;;;
+;;FeaturedArticleSlot-SelectingtheRightHerbicideinCentralFlorida1;FeaturedArticleSlot;Selecting-The-Right-Herbicide-In-Central-Florida;FeaturedArticleSlot-SelectingtheRightHerbicideinCentralFlorida;;;
+
+;;Section1-SelectingtheRightFungicideinCentralFlorida1;Section1;Selecting-The-Right-Fungicide-In-Central-Florida;Section1Slot-SelectingtheRightFungicideinCentralFlorida;;;
+;;HeroBannerSlot-SelectingtheRightFungicideinCentralFlorida1;HeroBannerSlot;Selecting-The-Right-Fungicide-In-Central-Florida;HeroBannerSlot-SelectingtheRightFungicideinCentralFlorida;;;
+;;PromotionBannerSlot-SelectingtheRightFungicideinCentralFlorida1;PromotionBannerSlot;Selecting-The-Right-Fungicide-In-Central-Florida;PromotionBannerSlot-SelectingtheRightFungicideinCentralFlorida;;;
+;;ArticleNavigationSlot-SelectingtheRightFungicideinCentralFlorida1;ArticleNavigationSlot;Selecting-The-Right-Fungicide-In-Central-Florida;ArticleNavigationSlot-SelectingtheRightFungicideinCentralFlorida;;;
+;;ArticleContentSlot-SelectingtheRightFungicideinCentralFlorida1;ArticleContentSlot;Selecting-The-Right-Fungicide-In-Central-Florida;ArticleContentSlot-SelectingtheRightFungicideinCentralFlorida;;;
+;;Section3-SelectingtheRightFungicideinCentralFlorida1;Section3;Selecting-The-Right-Fungicide-In-Central-Florida;Section3-SelectingtheRightFungicideinCentralFlorida;;;
+;;FeaturedArticleSlot-SelectingtheRightFungicideinCentralFlorida1;FeaturedArticleSlot;Selecting-The-Right-Fungicide-In-Central-Florida;FeaturedArticleSlot-SelectingtheRightFungicideinCentralFlorida;;;
+
+;;Section1-SlowReleaseFertilizers1;Section1;Slow-Release-Fertilizers;Section1Slot-SlowReleaseFertilizers;;;
+;;HeroBannerSlot-SlowReleaseFertilizers1;HeroBannerSlot;Slow-Release-Fertilizers;HeroBannerSlot-SlowReleaseFertilizers;;;
+;;PromotionBannerSlot-SlowReleaseFertilizers1;PromotionBannerSlot;Slow-Release-Fertilizers;PromotionBannerSlot-SlowReleaseFertilizers;;;
+;;ArticleNavigationSlot-SlowReleaseFertilizers1;ArticleNavigationSlot;Slow-Release-Fertilizers;ArticleNavigationSlot-SlowReleaseFertilizers;;;
+;;ArticleContentSlot-SlowReleaseFertilizers1;ArticleContentSlot;Slow-Release-Fertilizers;ArticleContentSlot-SlowReleaseFertilizers;;;
+;;Section3-SlowReleaseFertilizers1;Section3;Slow-Release-Fertilizers;Section3-SlowReleaseFertilizers;;;
+;;FeaturedArticleSlot-SlowReleaseFertilizers1;FeaturedArticleSlot;Slow-Release-Fertilizers;FeaturedArticleSlot-SlowReleaseFertilizers;;;
+
+;;Section1-CentralFloridaTurfMaintenanceCalendar1;Section1;Central-Florida-Turf-Maintenance-Calendar;Section1Slot-CentralFloridaTurfMaintenanceCalendar;;;
+;;HeroBannerSlot-CentralFloridaTurfMaintenanceCalendar1;HeroBannerSlot;Central-Florida-Turf-Maintenance-Calendar;HeroBannerSlot-CentralFloridaTurfMaintenanceCalendar;;;
+;;PromotionBannerSlot-CentralFloridaTurfMaintenanceCalendar1;PromotionBannerSlot;Central-Florida-Turf-Maintenance-Calendar;PromotionBannerSlot-CentralFloridaTurfMaintenanceCalendar;;;
+;;ArticleNavigationSlot-CentralFloridaTurfMaintenanceCalendar1;ArticleNavigationSlot;Central-Florida-Turf-Maintenance-Calendar;ArticleNavigationSlot-CentralFloridaTurfMaintenanceCalendar;;;
+;;ArticleContentSlot-CentralFloridaTurfMaintenanceCalendar1;ArticleContentSlot;Central-Florida-Turf-Maintenance-Calendar;ArticleContentSlot-CentralFloridaTurfMaintenanceCalendar;;;
+;;Section3-CentralFloridaTurfMaintenanceCalendar1;Section3;Central-Florida-Turf-Maintenance-Calendar;Section3-CentralFloridaTurfMaintenanceCalendar;;;
+;;FeaturedArticleSlot-CentralFloridaTurfMaintenanceCalendar1;FeaturedArticleSlot;Central-Florida-Turf-Maintenance-Calendar;FeaturedArticleSlot-CentralFloridaTurfMaintenanceCalendar;;;
+
+#irrigation
+
+;;Section1-TwoWireTechnology1;Section1;Two-Wire-Technology;Section1Slot-TwoWireTechnology;;;
+;;HeroBannerSlot-TwoWireTechnology1;HeroBannerSlot;Two-Wire-Technology;HeroBannerSlot-TwoWireTechnology;;;
+;;PromotionBannerSlot-TwoWireTechnology1;PromotionBannerSlot;Two-Wire-Technology;PromotionBannerSlot-TwoWireTechnology;;;
+;;ArticleNavigationSlot-TwoWireTechnology1;ArticleNavigationSlot;Two-Wire-Technology;ArticleNavigationSlot-TwoWireTechnology;;;
+;;ArticleContentSlot-TwoWireTechnology1;ArticleContentSlot;Two-Wire-Technology;ArticleContentSlot-TwoWireTechnology;;;
+;;Section3-TwoWireTechnology1;Section3;Two-Wire-Technology;Section3-TwoWireTechnology;;;
+;;FeaturedArticleSlot-TwoWireTechnology1;FeaturedArticleSlot;Two-Wire-Technology;FeaturedArticleSlot-TwoWireTechnology;;;
+
+;;Section1-UpgradingWirelessControllers1;Section1;Upgrading-Wireless-Controllers;Section1Slot-UpgradingWirelessControllers;;;
+;;HeroBannerSlot-UpgradingWirelessControllers1;HeroBannerSlot;Upgrading-Wireless-Controllers;HeroBannerSlot-UpgradingWirelessControllers;;;
+;;PromotionBannerSlot-UpgradingWirelessControllers1;PromotionBannerSlot;Upgrading-Wireless-Controllers;PromotionBannerSlot-UpgradingWirelessControllers;;;
+;;ArticleNavigationSlot-UpgradingWirelessControllers1;ArticleNavigationSlot;Upgrading-Wireless-Controllers;ArticleNavigationSlot-UpgradingWirelessControllers;;;
+;;ArticleContentSlot-UpgradingWirelessControllers1;ArticleContentSlot;Upgrading-Wireless-Controllers;ArticleContentSlot-UpgradingWirelessControllers;;;
+;;Section3-UpgradingWirelessControllers1;Section3;Upgrading-Wireless-Controllers;Section3-UpgradingWirelessControllers;;;
+;;FeaturedArticleSlot-UpgradingWirelessControllers1;FeaturedArticleSlot;Upgrading-Wireless-Controllers;FeaturedArticleSlot-UpgradingWirelessControllers;;;

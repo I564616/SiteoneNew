@@ -1,0 +1,5 @@
+INSERT_UPDATE SiteOneFeatureSwitch;key[unique=true];value
+;HubStoreShippingFeeBranches;7|9.00,140|9.00
+
+INSERT_UPDATE SiteOneFeatureSwitch;key[unique=true];value
+;HubShippingThreshold;7|149,140|149

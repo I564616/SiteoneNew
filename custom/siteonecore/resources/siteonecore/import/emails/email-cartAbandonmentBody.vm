@@ -1,0 +1,523 @@
+## messageSource=classpath:/siteonecore/messages/email-cartAbandonmentEmail_$lang.properties
+<div style="display:none !important;
+            visibility:hidden;
+            mso-hide:all;
+            font-size:1px;
+            color:#ffffff;
+            line-height:1px;
+            max-height:0px;
+            max-width:0px;
+            opacity:0;
+            overflow:hidden;">${ctx.messages.preHeader}</div>
+            
+<html>
+    <head>
+    <style>
+    	td {
+    		font-family: Arial;
+    		font-size: 12pt;
+    	}
+    </style>
+	</head>
+	<body bgcolor="#ffffff">
+	  #if(${ctx.countryBaseSiteID} == "siteone-ca")
+	    <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#ffffff">
+			<tr>
+				<td align="center" valign="top">
+					<table width="610" border="0" align="center" cellpadding="0" cellspacing="0" bordercolor="#fff">
+						<tr>
+							<td align="center" valign="top" bgcolor="#FFFFFF" style="border: 1px solid #000000;padding-bottom: 20px;">
+								<table width="610" cellpadding="0" cellspacing="0" border="0" align="center">
+									<tr>
+										<td style="padding:15px;" valign="left">
+											<a style="text-decoration:none;" href="${ctx.baseThemeUrl}">
+												<img title="SiteoneLogo" src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/SiteoneLogo.jpg" alt="SiteoneLogo" style="outline:0;">
+											</a>
+										</td>
+										<td style="padding:20px;" align="right">
+											<span class="col-xs-6 col-md-12">
+												<a style="text-decoration:none;" href="https://www.facebook.com/siteonesupplycanada/">
+													<img src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/Print_facebook_color.png" alt="Facebook" title="Facebook" style="outline:0;" width="30" height="30">
+												</a>&nbsp;
+												
+												<a style="text-decoration:none;" href="https://www.instagram.com/Siteonesupplycanada/">
+													<img src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/Print_instagram_color.png" alt="Instagram" title="Instagram" style="outline:0;" width="30" height="30">
+												</a>&nbsp;
+												
+												<a style="text-decoration:none;" href="https://x.com/SiteOneCanada">
+													<img src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/Print_twitter_color.png" alt="X" title="X" style="outline:0;" width="30" height="30">
+												</a>
+											</span>
+										</td>
+									</tr>
+								</table>
+								<table width="610" cellpadding="0" cellspacing="0" border="0" align="center">
+									<tr bgcolor="#CCCCCC">
+										<td align="left" valign="top" colspan="5" style="padding: 10px 20px;">
+											<p style="margin-bottom: 10px;"><font color="#000000"  style="color: black;font-weight: bolder;font-size: 16pt;"><b>${ctx.firstName},<br /></b></font></p>
+											<font color="#000000"   style="color: black;font-weight: bolder;font-size: 16pt;"><b>${ctx.messages.cartAbandonedMessageCA}</b></font>
+										</td>
+									</tr>
+									<tr>
+										<td>&nbsp;</td>
+									</tr>
+									<tr>
+										<td valign="top" style="padding: 10px 20px 0;">
+											<table>
+												<tr>
+													<td align="center" style="background: #78a22f;height: 40px;width: 160px;font-family: Arial;">
+														#set ($cartPage = "${ctx.baseUrl}/cart?cid=em-tr-abandoned_cart-view_order_now")														
+														<a href="$cartPage" style="text-transform:uppercase;text-decoration:none !important; text-decoration:none;color: #fff;display: block;width: 100%;height: 100%;line-height: 38px;">${ctx.messages.vieworder}</a>
+													</td>
+												</tr>
+											</table>
+										</td>
+									</tr>
+									<tr>
+										<td style="padding:20px;">
+											<table width="100%" cellpadding="0" cellspacing="0">
+												<tr>
+													<td width="100%" colspan="5" height="30" align="left" bgcolor="#CCCCCC" style="padding-left:5px"><font color="#000000"  ><b style="font-weight:normal;text-transform:uppercase;">${ctx.messages.cartheader}</b></font></td>
+												</tr>
+												#foreach( $entry in $ctx.cart.entries )										
+												<tr bgcolor="#e0e0e0">
+													<td width="50%" style="padding-left:5px;height:30px;"><font color="#000000"  >${ctx.messages.productinfo}</font></td>
+													<td width="20%" style="text-align:left;"><font color="#000000"  >${ctx.messages.itemPrice}</font></td>
+													<td width="20%" style="text-align:center;"><font color="#000000"  >${ctx.messages.quantity}</font></td>
+													<td width="10%" style="text-align:right;padding-right: 10px;"><font color="#000000"  >${ctx.messages.total}</font></td>
+												</tr>
+												<tr>
+													<td width="50%" style="padding:10px 5px;">
+														<table width="100%" border="0" cellpadding="0" cellspacing="0">
+															<tr>
+																<td valign="top" width="110px" style="width: 110px;padding-left: 10px;padding-right: 10px;">
+																	<a href="${ctx.baseUrl}${entry.product.url}?cid=em-tr-abandoned_cart-${entry.product.itemNumber}" style="text-decoration:none !important; text-decoration:none;">
+																	
+																	 #if($entry.product.images.isEmpty() != 'false')
+																		<img  src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/missing_product_EN_300x300.jpg" width="110" height="110" alt="image not available" />
+																	 #else
+																		#foreach($image in $entry.product.images) 
+                                     #if($image.imageType == "PRIMARY" && $image.format == "thumbnail" )
+																			<img src="${ctx.baseThemeUrl}$image.url" alt="" width="110" height="110"/>
+																		 #end
+                                    #end
+																	#end	
+																		
+																	</a>
+																	&nbsp;
+																</td>
+																<td valign="top">
+																	<a href="${ctx.baseUrl}${entry.product.url}?cid=em-tr-abandoned_cart-${entry.product.itemNumber}" style="text-decoration:none !important; text-decoration:none;color: #78a22f;font-weight:  bold;">
+																		$entry.product.name
+																	</a><br/>
+																	<font color="#999999" size"2">$entry.product.itemNumber</font>
+																	#if (!$entry.product.baseOptions.isEmpty())
+																		#foreach ($option in $entry.product.baseOptions)
+																			#if ($option.selected && ($option.selected.url == $entry.product.url))
+																				<table width="100%" cellpadding="0" cellspacing="0">
+																					#foreach ($selectedOption in $option.selected.variantOptionQualifiers)
+																						<tr>
+																							<td width="30%" valign="top"><p><font color="#000000"  >$selectedOption.name:</font></p></td>
+																							<td width="70%" valign="top"><p><font color="#000000"  >$selectedOption.value</font></p></td>
+																						</tr>
+																					#end
+																				</table>
+																			#end
+																		#end
+																	#end
+																	#if (!$ctx.cart.appliedProductPromotions.isEmpty())
+																		#foreach( $promotion in $ctx.cart.appliedProductPromotions)
+																			#set ($displayed = false)
+																			#foreach ($consumedEntry in $promotion.consumedEntries)
+																				#if (!$displayed && ($consumedEntry.orderEntryNumber == $entry.entryNumber))
+																					#set ($displayed = true)
+																					<p><font color="#78a22f"  >${promotion.description}</font></p>
+																				#end
+																			#end
+																		#end
+																	#end
+																</td>
+															</tr>
+														</table>
+													</td>
+													<td width="20%" valign="top" style="padding: 10px 0px;text-align:left;"><p><font color="#000000"  >
+                          #if($entry.basePrice.value > 0.0) $${ctx.numberTool.format(${ctx.unitpriceFormat}, ${entry.basePrice.value})} #if($entry.uomMeasure) / $entry.uomMeasure #end
+                          #end
+                          </font>
+                          </p>
+                          </td>
+													<td width="20%" valign="top" style="padding: 10px 5px;text-align: center;"><p><font color="#000000"  > $entry.quantity</font></p></td>
+													<td width="10%" valign="top" style="padding: 10px 10px;text-align: center;"><p><font color="#000000"  >
+                          #if($entry.totalPrice.value > 0.0) $entry.totalPrice.formattedValue
+                          #end
+                          </font>
+                          </p>
+                          </td>
+												</tr>
+												#end
+											</table>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<table width="570" border="0" cellpadding="0" cellspacing="0" style="margin: 0 20px;border-top :1px solid #000000;padding-top :5px;">
+												<tr>
+													<td>
+														#if (!$ctx.cart.appliedOrderPromotions.isEmpty())
+															<p><b>Received Promotions</b></p>
+															#foreach( $promotion in $ctx.cart.appliedOrderPromotions)
+																<p><font color="#00a651" style="font-size: 14px;font-weight: bold;"><b>${promotion.description}</b></font></p>
+															#end
+														#end
+													</td>
+												</tr>
+												<tr>
+													<td width="53%">&nbsp;</td>
+													<td width="47%">
+														<table width="100%">
+															<tr>
+																<td width="40%" style="text-align: left;">
+																	<font color="#000000"  >${ctx.messages.subtotal}</font>
+																</td>
+																<td width="60%" style="text-align: right;padding: 5px;">
+																	<font color="#000000"  >$ctx.cart.subTotal.formattedValue</font>
+																</td>
+															</tr>
+														</table>
+														#if($ctx.cart.totalTax>0.0)
+														<table width="100%">
+															<tr>
+																<td width="40%" style="text-align: left;">
+																	<font color="#000000"  >${ctx.messages.tax}</font>
+																</td>
+																<td width="60%" style="text-align: right;padding: 5px;">
+																	<font color="#000000"  >$ctx.cart.totalTax.formattedValue</font>
+																</td> 
+															</tr>
+														</table>
+                            #end
+														#if($ctx.cart.totalDiscounts.value > 0.0)
+														<table width="100%">
+															<tr>
+																<td width="40%" style="text-align: left;">
+																	<font color="#000000"  >${ctx.messages.discount}</font>
+																</td>
+																<td width="60%" style="text-align: right;padding: 5px;">
+																	<font style="color: red;"  >-$ctx.cart.totalDiscounts.formattedValue</font>
+																</td>
+															</tr>
+														</table>
+                            #end
+														<table width="100%">
+															<tr>
+																<td width="40%" style="text-align: left;">
+																	<font color="#000000"  ><b>${ctx.messages.total}</b></font>
+																</td>
+																<td width="60%" style="text-align: right;padding: 5px;">
+																	<font color="#000000"  ><b>$ctx.cart.totalPrice.formattedValue</b></font>
+																</td>
+															</tr>
+														</table>
+													</td>
+												</tr>
+											</table>
+										</td>
+									</tr>
+					
+									<tr>
+										<td valign="top" style="padding: 10px 20px 0;">
+											<table>
+												<tr>
+													<td align="center" style="background: #78a22f;height: 40px;width: 200px;font-family: Arial">
+														#set ($checkoutPage = "${ctx.baseUrl}/checkout/multi/order-type/choose?cid=em-tr-abandoned_cart-ready_to_checkout")
+														<a href="$checkoutPage" style="text-decoration: none;color: #fff;display: block;width: 100%;height: 100%;line-height: 38px;">${ctx.messages.checkoutbutton}</a>
+													</td>
+												</tr>
+											</table>
+										</td>
+									</tr>
+									#if(${ctx.branch} != 'null' && ${ctx.branch} != '')                                                                                                                                              
+									<tr>	
+										<td style="padding-left: 20px;">
+											<font color="#000000"  >
+												<br>${ctx.messages.helptext}
+												
+											<a href="${ctx.baseThemeUrl}/store/${ctx.branch}" style="color: #50a0c5;">
+													${ctx.address.town} ${ctx.branch}
+												</a> at <a href="tel:${ctx.phone}" style="color: #50a0c5;">${ctx.phone}</a>.
+											</font>
+										</td>
+									</tr>
+									#end
+									<tr>
+										<br>
+									   #set ($contactUsPage = "${ctx.baseUrl}/contactUs")
+										<td colspan="6" style="padding: 20px;">
+											<font color="#000000"  >
+												Questions about Siteone.ca? <a  href="${ctx.baseUrl}/contactus?cid=em-tr-abandoned_cart-contact_us" style="color: #50a0c5;">Contact us</a>.
+											</font>
+										</td> 			
+									</tr>
+									<tr>
+										<br>
+										<td style="padding-left: 20px;"><font color="#000000" >${ctx.messages.fromemail}</font></td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+	  #else
+		<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#ffffff">
+			<tr>
+				<td align="center" valign="top">
+					<table width="610" border="0" align="center" cellpadding="0" cellspacing="0" bordercolor="#fff">
+						<tr>
+							<td align="center" valign="top" bgcolor="#FFFFFF" style="border: 1px solid #000000;padding-bottom: 20px;">
+								<table width="610" cellpadding="0" cellspacing="0" border="0" align="center">
+									<tr>
+										<td style="padding:15px;" valign="left">
+											<a style="text-decoration:none;" href="${ctx.baseThemeUrl}">
+												<img title="SiteoneLogo" src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/SiteoneLogo.jpg" alt="SiteoneLogo" style="outline:0;">
+											</a>
+										</td>
+										<td style="padding:20px;" align="right">
+											<span class="col-xs-6 col-md-12">
+												<a style="text-decoration:none;" href="https://www.facebook.com/SiteOneLandscape/">
+													<img src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/Print_facebook_color.png" alt="Facebook" title="Facebook" style="outline:0;" width="30" height="30">
+												</a>&nbsp;
+												
+												<a style="text-decoration:none;" href="https://www.instagram.com/siteonesupply/">
+													<img src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/Print_instagram_color.png" alt="Instagram" title="Instagram" style="outline:0;" width="30" height="30">
+												</a>&nbsp;
+												
+												<a style="text-decoration:none;" href="https://x.com/SiteOneSupply">
+													<img src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/Print_twitter_color.png" alt="X" title="X" style="outline:0;" width="30" height="30">
+												</a>
+											</span>
+										</td>
+									</tr>
+								</table>
+								<table width="610" cellpadding="0" cellspacing="0" border="0" align="center">
+									<tr bgcolor="#CCCCCC">
+										<td align="left" valign="top" colspan="5" style="padding: 10px 20px;">
+											<p style="margin-bottom: 10px;"><font color="#000000"  style="color: black;font-weight: bolder;font-size: 16pt;"><b>${ctx.firstName},<br /></b></font></p>
+											<font color="#000000"   style="color: black;font-weight: bolder;font-size: 16pt;"><b>${ctx.messages.cartAbandonedMessage}</b></font>
+										</td>
+									</tr>
+									<tr>
+										<td>&nbsp;</td>
+									</tr>
+									<tr>
+										<td valign="top" style="padding: 10px 20px 0;">
+											<table>
+												<tr>
+													<td align="center" style="background: #78a22f;height: 40px;width: 160px;font-family: Arial;">
+														#set ($cartPage = "${ctx.baseUrl}/cart?cid=em-tr-abandoned_cart-view_order_now")														
+														<a href="$cartPage" style="text-transform:uppercase;text-decoration:none !important; text-decoration:none;color: #fff;display: block;width: 100%;height: 100%;line-height: 38px;">${ctx.messages.vieworder}</a>
+													</td>
+												</tr>
+											</table>
+										</td>
+									</tr>
+									<tr>
+										<td style="padding:20px;">
+											<table width="100%" cellpadding="0" cellspacing="0">
+												<tr>
+													<td width="100%" colspan="5" height="30" align="left" bgcolor="#CCCCCC" style="padding-left:5px"><font color="#000000"  ><b style="font-weight:normal;text-transform:uppercase;">${ctx.messages.cartheader}</b></font></td>
+												</tr>
+												#foreach( $entry in $ctx.cart.entries )										
+												<tr bgcolor="#e0e0e0">
+													<td width="50%" style="padding-left:5px;height:30px;"><font color="#000000"  >${ctx.messages.productinfo}</font></td>
+													<td width="20%" style="text-align:left;"><font color="#000000"  >${ctx.messages.itemPrice}</font></td>
+													<td width="20%" style="text-align:center;"><font color="#000000"  >${ctx.messages.quantity}</font></td>
+													<td width="10%" style="text-align:right;padding-right: 10px;"><font color="#000000"  >${ctx.messages.total}</font></td>
+												</tr>
+												<tr>
+													<td width="50%" style="padding:10px 5px;">
+														<table width="100%" border="0" cellpadding="0" cellspacing="0">
+															<tr>
+																<td valign="top" width="110px" style="width: 110px;padding-left: 10px;padding-right: 10px;">
+																	<a href="${ctx.baseUrl}${entry.product.url}?cid=em-tr-abandoned_cart-${entry.product.itemNumber}" style="text-decoration:none !important; text-decoration:none;">
+																	
+																	 #if($entry.product.images.isEmpty() != 'false')
+																		<img  src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/missing_product_EN_300x300.jpg" width="110" height="110" alt="image not available" />
+																	 #else
+																		#foreach($image in $entry.product.images) 
+                                     #if($image.imageType == "PRIMARY" && $image.format == "thumbnail" )
+																			<img src="${ctx.baseThemeUrl}$image.url" alt="" width="110" height="110"/>
+																		 #end
+                                    #end
+																	#end	
+																		
+																	</a>
+																	&nbsp;
+																</td>
+																<td valign="top">
+																	<a href="${ctx.baseUrl}${entry.product.url}?cid=em-tr-abandoned_cart-${entry.product.itemNumber}" style="text-decoration:none !important; text-decoration:none;color: #78a22f;font-weight:  bold;">
+																		$entry.product.name
+																	</a><br/>
+																	<font color="#999999" size"2">$entry.product.itemNumber</font>
+																	#if (!$entry.product.baseOptions.isEmpty())
+																		#foreach ($option in $entry.product.baseOptions)
+																			#if ($option.selected && ($option.selected.url == $entry.product.url))
+																				<table width="100%" cellpadding="0" cellspacing="0">
+																					#foreach ($selectedOption in $option.selected.variantOptionQualifiers)
+																						<tr>
+																							<td width="30%" valign="top"><p><font color="#000000"  >$selectedOption.name:</font></p></td>
+																							<td width="70%" valign="top"><p><font color="#000000"  >$selectedOption.value</font></p></td>
+																						</tr>
+																					#end
+																				</table>
+																			#end
+																		#end
+																	#end
+																	#if (!$ctx.cart.appliedProductPromotions.isEmpty())
+																		#foreach( $promotion in $ctx.cart.appliedProductPromotions)
+																			#set ($displayed = false)
+																			#foreach ($consumedEntry in $promotion.consumedEntries)
+																				#if (!$displayed && ($consumedEntry.orderEntryNumber == $entry.entryNumber))
+																					#set ($displayed = true)
+																					<p><font color="#78a22f"  >${promotion.description}</font></p>
+																				#end
+																			#end
+																		#end
+																	#end
+																</td>
+															</tr>
+														</table>
+													</td>
+													<td width="20%" valign="top" style="padding: 10px 0px;text-align:left;"><p><font color="#000000"  >
+                          #if($entry.basePrice.value > 0.0) $${ctx.numberTool.format(${ctx.unitpriceFormat}, ${entry.basePrice.value})} #if($entry.uomMeasure) / $entry.uomMeasure #end
+                          #end
+                          </font>
+                          </p>
+                          </td>
+													<td width="20%" valign="top" style="padding: 10px 5px;text-align: center;"><p><font color="#000000"  > $entry.quantity</font></p></td>
+													<td width="10%" valign="top" style="padding: 10px 10px;text-align: center;"><p><font color="#000000"  >
+                          #if($entry.totalPrice.value > 0.0) $entry.totalPrice.formattedValue
+                          #end
+                          </font>
+                          </p>
+                          </td>
+												</tr>
+												#end
+											</table>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<table width="570" border="0" cellpadding="0" cellspacing="0" style="margin: 0 20px;border-top :1px solid #000000;padding-top :5px;">
+												<tr>
+													<td>
+														#if (!$ctx.cart.appliedOrderPromotions.isEmpty())
+															<p><b>Received Promotions</b></p>
+															#foreach( $promotion in $ctx.cart.appliedOrderPromotions)
+																<p><font color="#00a651" style="font-size: 14px;font-weight: bold;"><b>${promotion.description}</b></font></p>
+															#end
+														#end
+													</td>
+												</tr>
+												<tr>
+													<td width="53%">&nbsp;</td>
+													<td width="47%">
+														<table width="100%">
+															<tr>
+																<td width="40%" style="text-align: left;">
+																	<font color="#000000"  >${ctx.messages.subtotal}</font>
+																</td>
+																<td width="60%" style="text-align: right;padding: 5px;">
+																	<font color="#000000"  >$ctx.cart.subTotal.formattedValue</font>
+																</td>
+															</tr>
+														</table>
+														#if($ctx.cart.totalTax>0.0)
+														<table width="100%">
+															<tr>
+																<td width="40%" style="text-align: left;">
+																	<font color="#000000"  >${ctx.messages.tax}</font>
+																</td>
+																<td width="60%" style="text-align: right;padding: 5px;">
+																	<font color="#000000"  >$ctx.cart.totalTax.formattedValue</font>
+																</td> 
+															</tr>
+														</table>
+                            #end
+														#if($ctx.cart.totalDiscounts.value > 0.0)
+														<table width="100%">
+															<tr>
+																<td width="40%" style="text-align: left;">
+																	<font color="#000000"  >${ctx.messages.discount}</font>
+																</td>
+																<td width="60%" style="text-align: right;padding: 5px;">
+																	<font style="color: red;"  >-$ctx.cart.totalDiscounts.formattedValue</font>
+																</td>
+															</tr>
+														</table>
+                            #end
+														<table width="100%">
+															<tr>
+																<td width="40%" style="text-align: left;">
+																	<font color="#000000"  ><b>${ctx.messages.total}</b></font>
+																</td>
+																<td width="60%" style="text-align: right;padding: 5px;">
+																	<font color="#000000"  ><b>$ctx.cart.totalPrice.formattedValue</b></font>
+																</td>
+															</tr>
+														</table>
+													</td>
+												</tr>
+											</table>
+										</td>
+									</tr>
+					
+									<tr>
+										<td valign="top" style="padding: 10px 20px 0;">
+											<table>
+												<tr>
+													<td align="center" style="background: #78a22f;height: 40px;width: 200px;font-family: Arial">
+														#set ($checkoutPage = "${ctx.baseUrl}/checkout/multi/order-type/choose?cid=em-tr-abandoned_cart-ready_to_checkout")
+														<a href="$checkoutPage" style="text-decoration: none;color: #fff;display: block;width: 100%;height: 100%;line-height: 38px;">${ctx.messages.checkoutbutton}</a>
+													</td>
+												</tr>
+											</table>
+										</td>
+									</tr>
+									#if(${ctx.branch} != 'null' && ${ctx.branch} != '')                                                                                                                                              
+									<tr>	
+										<td style="padding-left: 20px;">
+											<font color="#000000"  >
+												<br>${ctx.messages.helptext}
+												
+											<a href="${ctx.baseThemeUrl}/store/${ctx.branch}" style="color: #50a0c5;">
+													${ctx.address.town} ${ctx.branch}
+												</a> at <a href="tel:${ctx.phone}" style="color: #50a0c5;">${ctx.phone}</a>.
+											</font>
+										</td>
+									</tr>
+									#end
+									<tr>
+										<br>
+									   #set ($contactUsPage = "${ctx.baseUrl}/contactUs")
+										<td colspan="6" style="padding: 20px;">
+											<font color="#000000"  >
+												Questions about SiteOne.com? <a  href="${ctx.baseUrl}/contactus?cid=em-tr-abandoned_cart-contact_us" style="color: #50a0c5;">Contact us</a>.
+											</font>
+										</td> 			
+									</tr>
+									<tr>
+										<br>
+										<td style="padding-left: 20px;"><font color="#000000" >${ctx.messages.fromemail}</font></td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+	  #end
+	</body>
+</html>

@@ -1,0 +1,48 @@
+INSERT_UPDATE ServicelayerJob; code[unique=true];springid[unique=true]
+;pimBatchFailureReportCronjob;pimBatchFailureReportCronjob;
+
+INSERT_UPDATE PIMBatchFailureReportCronJob;code[unique=true];job(code)[default=pimBatchFailureReportCronjob];sessionLanguage(isoCode)[default=en]
+;pimBatchFailureReportCronjob
+
+INSERT_UPDATE Trigger;Cronjob(code)[unique=true];cronExpression;active[default=true]
+;pimBatchFailureReportCronjob;0 0 5 ? * * *
+
+
+
+$contentCatalog=siteoneContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Online])[default=$contentCatalog:Online]
+$jarEmailResource=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/coredata/contentCatalogs/siteoneContentCatalog/emails
+$wideContent=CMSImageComponent,BannerComponent
+
+# Import config properties into impex macros for modulegen
+UPDATE GenericItem[processor=de.hybris.platform.commerceservices.impex.impl.ConfigPropertyImportProcessor];pk[unique=true]
+$emailResource=$config-emailResourceValue
+$jarResourceCms=$config-jarResourceCmsValue
+$emailPackageName=$config-emailContextPackageName
+# Language
+$lang=en
+
+# Email Pages
+INSERT_UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);defaultPage;approvalStatus(code)[default='approved']
+;;pimBatchFailureReport;PIM Batch Failure Report Email Template;PIMBatchFailureReportNotificationEmailTemplate;true;
+
+UPDATE RendererTemplate;code[unique=true];description[lang=$lang];templateScript[lang=$lang,translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+;siteone_Email_PIMBatchFailureReport_Subject;"PIM Batch Failure Report Email Template";$emailResource/email-pimBatchFailureReportEmailSubject.vm
+;siteone_Email_PIMBatchFailureReport_Body;"PIM Batch Failure Report Email Template";$emailResource/email-pimBatchFailureReportEmailBody.vm
+
+# Email Pages
+UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];fromEmail[lang=$lang];fromName[lang=$lang]
+;;pimBatchFailureReport;"customersupport@ec.siteone.com";"SiteOne"
+
+INSERT_UPDATE RendererTemplate;code[unique=true];contextClass;rendererType(code)[default='velocity']
+;siteone_Email_PIMBatchFailureReport_Subject;$emailPackageName.PIMBatchFailureReportNotificationEmailContext
+;siteone_Email_PIMBatchFailureReport_Body;$emailPackageName.PIMBatchFailureReportNotificationEmailContext
+
+# Email page Template
+INSERT_UPDATE EmailPageTemplate;$contentCV[unique=true];uid[unique=true];name;active;frontendTemplateName;subject(code);htmlTemplate(code);restrictedPageTypes(code)
+;;PIMBatchFailureReportNotificationEmailTemplate;PIM Batch Failure Report Notification Email Template;true;PIMBatchFailureReportNotificationEmailTemplate;siteone_Email_PIMBatchFailureReport_Subject;siteone_Email_PIMBatchFailureReport_Body;EmailPage
+
+UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];previewImage(code, $contentCV)
+;;pimBatchFailureReport;EmailPageModel_preview
+
+

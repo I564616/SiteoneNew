@@ -1,0 +1,174 @@
+
+$contentCatalog=siteoneContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+
+INSERT_UPDATE SiteoneParagaraphComponent;$contentCV[unique=true];uid[unique=true];name;headline[lang=en];headline[lang=es];content[lang=en];content[lang=es]; 
+
+;;comp_00000WFN;Spring Bulbs HTML Paragraph;;;"<p><style type=""text/css"">
+
+* {
+  box-sizing: border-box;
+}
+
+.col-container {
+  display: table;
+  width: 100%;
+  padding: 0 px;
+
+}
+.col {
+  display: table-cell;
+  padding: 0 px;
+  width: 25%;
+  min-height: 500px;
+  background-repeat: no-repeat;
+  background-size: 90% auto;
+  background-position: 50% 50%;
+}
+
+.content {
+  display: table-cell;
+  padding: 0px;
+  padding-left: 30px;
+  padding-right: 30px;
+  width: 75%;
+}
+
+.topborder {
+	height: 8px;
+	width: 100%;
+	background-color: #8eb947;
+}
+	
+@media only screen and (max-width: 900px) {
+  .col { 
+    display: block;
+    width: 100%;
+  }
+  .content { 
+    display: block;
+    width: 100%;
+  }
+}
+.custombutton {
+  background-color: #799f37;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+.custombutton:hover {
+background-color: #8eb947;
+}
+</style></p>
+<!-- BULBS -->
+<div class=""col-container"">&nbsp;</div>
+<div class=""col-container"">
+<div class=""content"">
+<p><font size=""+3"" color=""#799f37""><strong>FALL PLANTING FOR SPRING BLOOMS</strong></font></p>
+<br />
+<p><font size=""+1"">Spring flowering bulbs provide vibrant colors in the early spring when hardly any other plants are blooming. Bulbs are an excellent choice for public gardens, parks, golf courses, municipalities, and any landscape design. SiteOne<sup>&reg;</sup> offers you a selection of the strongest varieties, selling only top size bulbs for the best flowering results.</font></p>
+<br />
+<p><font size=""+2"" color=""#799f37"">Delivery through your local SiteOne Landscape Supply branch is available from September through December.</font></p>
+<br />
+<div class=""custombutton"" onclick=""window.open('		/medias/sys_master/root/h87/he8/8926788157470/2019SpringFloweringBulbBrochureWeb.pdf')"">View Catalog</div>
+</div>
+<div class=""col"" style=""background-image: url(/medias/sys_master/root/had/h09/8926787076126/bulb-sidebar-transparent.png);"">&nbsp;</div>
+</div>
+<p>&nbsp;</p>";
+
+;;comp_00000WFN;Spring Bulbs HTML Paragraph;;;"<p><style type=""text/css"">
+
+* {
+  box-sizing: border-box;
+}
+
+.col-container {
+  display: table;
+  width: 100%;
+  padding: 0 px;
+
+}
+.col {
+  display: table-cell;
+  padding: 0 px;
+  width: 25%;
+  min-height: 500px;
+  background-repeat: no-repeat;
+  background-size: 90% auto;
+  background-position: 50% 50%;
+}
+
+.content {
+  display: table-cell;
+  padding: 0px;
+  padding-left: 30px;
+  padding-right: 30px;
+  width: 75%;
+}
+
+.topborder {
+	height: 8px;
+	width: 100%;
+	background-color: #8eb947;
+}
+	
+@media only screen and (max-width: 900px) {
+  .col { 
+    display: block;
+    width: 100%;
+  }
+  .content { 
+    display: block;
+    width: 100%;
+  }
+}
+.custombutton {
+  background-color: #799f37;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+.custombutton:hover {
+background-color: #8eb947;
+}
+</style></p>
+<!-- BULBS -->
+<div class=""col-container"">&nbsp;</div>
+<div class=""col-container"">
+<div class=""content"">
+<p><font size=""+3"" color=""#799f37""><strong>FALL PLANTING FOR SPRING BLOOMS</strong></font></p>
+<br />
+<p><font size=""+1"">Spring flowering bulbs provide vibrant colors in the early spring when hardly any other plants are blooming. Bulbs are an excellent choice for public gardens, parks, golf courses, municipalities, and any landscape design. SiteOne<sup>&reg;</sup> offers you a selection of the strongest varieties, selling only top size bulbs for the best flowering results.</font></p>
+<br />
+<p><font size=""+2"" color=""#799f37"">Delivery through your local SiteOne Landscape Supply branch is available from September through December.</font></p>
+<br />
+<div class=""custombutton"" onclick=""window.open('		/medias/sys_master/root/h87/he8/8926788157470/2019SpringFloweringBulbBrochureWeb.pdf')"">View Catalog</div>
+</div>
+<div class=""col"" style=""background-image: url(/medias/sys_master/root/had/h09/8926787076126/bulb-sidebar-transparent.png);"">&nbsp;</div>
+</div>
+<p>&nbsp;</p>";
+
+;;comp_00000WFP;Spring Bulbs Left Paragraph;;;"<p><font size=""+1"">Spring flowering bulbs provide vibrant colors in the early spring when hardly any other plants are blooming. Bulbs are an excellent choice for public gardens, parks, golf courses, municipalities, and any landscape design.SiteOne<sup>&reg;</sup> offers you a selection of the strongest varieties, selling only top size bulbs for the best flowering results.</font>
+<br /><br /><br />
+<font size=""+2"" color=""#799f37"">Delivery through your local SiteOne Landscape Supply branch is available from September through December.</font></p>";
+;;comp_00000WFP;Spring Bulbs Left Paragraph;;;"<p><font size=""+1"">Spring flowering bulbs provide vibrant colors in the early spring when hardly any other plants are blooming. Bulbs are an excellent choice for public gardens, parks, golf courses, municipalities, and any landscape design.SiteOne<sup>&reg;</sup> offers you a selection of the strongest varieties, selling only top size bulbs for the best flowering results.</font>
+<br /><br /><br />
+<font size=""+2"" color=""#799f37"">Delivery through your local SiteOne Landscape Supply branch is available from September through December.</font></p>";
+;;comp_00000WFS;Spring Bulbs right image;;;"<p><img width=""90%"" src=""/medias/sys_master/root/h8e/hee/8921658785822/bulb-sidebar-transparent.png"" alt="""" /></p>";
+;;comp_00000WFS;Spring Bulbs right image;;;"<p><img width=""90%"" src=""/medias/sys_master/root/h8e/hee/8921658785822/bulb-sidebar-transparent.png"" alt="""" /></p>";
+;;comp_00000WFZ;Spring Bulbs Custom Masthead;;;"<p><img width=""100%"" src=""/medias/sys_master/root/hf6/h34/8921697189918/SpringBulbs-Masthead-400green.jpg?"" alt="""" /></p>";
+;;comp_00000WFZ;Spring Bulbs Custom Masthead;;;"<p><img width=""100%"" src=""/medias/sys_master/root/hf6/h34/8921697189918/SpringBulbs-Masthead-400green.jpg?"" alt="""" /></p>";

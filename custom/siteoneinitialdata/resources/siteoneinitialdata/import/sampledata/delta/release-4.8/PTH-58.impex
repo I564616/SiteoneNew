@@ -1,0 +1,120 @@
+
+$catalogVersion=catalogversion(catalog(id[default='siteoneProductCatalog']),version[default='Staged'])[unique=true,default='siteoneProductCatalog:Staged']
+
+
+#Agronomics
+INSERT_UPDATE Category;code[unique=true];variantCategoryList;$catalogVersion
+   ;PH1311110;Maintenance_containersize;
+   ;PH1311111;Maintenance_containersize;
+   ;PH1311112;Maintenance_containersize;
+   ;PH1312;Maintenance_containersize;
+   ;PH1312110;Maintenance_containersize;
+   ;PH1312111;Maintenance_containersize;
+   ;PH1315110100;Maintenance_containersize;
+   ;PH1315110102;Maintenance_containersize;
+   ;PH1315110103;Maintenance_containersize;
+   ;PH1315113100;Maintenance_containersize;
+   ;PH1316111;Maintenance_containersize;
+   ;PH1317114;Maintenance_containersize;
+   ;PH1317111;Maintenance_containersize;
+   ;PH1317115;Maintenance_containersize;
+   ;PH1317110;Maintenance_containersize;
+   ;PH1317120;Maintenance_containersize;
+   ;PH1317113;Maintenance_containersize;
+   ;PH1317118;Maintenance_containersize;
+   ;PH1318112;Maintenance_containersize;
+   ;PH1318114;Maintenance_containersize;
+   ;PH1318113;Maintenance_containersize;
+   ;PH1318110;Maintenance_containersize;
+   ;PH1318116;Maintenance_containersize;
+   ;PH1319111102;Maintenance_containersize;
+   ;PH1321114;Maintenance_containersize;
+   ;PH1321115;Maintenance_containersize;
+   ;PH1321113;Maintenance_containersize;
+   ;PH1321112;Maintenance_containersize;
+   ;PH1321110;Maintenance_containersize;
+   ;PH1321111;Maintenance_containersize;
+   ;PH1322110;Maintenance_containersize;
+   ;PH1322112;Maintenance_containersize;
+  
+   #Nursery
+INSERT_UPDATE Category;code[unique=true];variantCategoryList;$catalogVersion
+;PH1612110;nrsryContainerSize;
+;PH1612111;nrsryContainerSize;
+;PH1614110;nrsryContainerSize;
+;PH1615110;nrsryContainerSize;
+;PH1615111;nrsryContainerSize;
+;PH1615112;nrsryContainerSize;
+;PH1615113;nrsryContainerSize;
+;PH1615114;nrsryContainerSize;
+;PH1618110;nrsryContainerSize;
+;PH1618111;nrsryContainerSize;
+;PH1621110;nrsryContainerSize;
+;PH1621111;nrsryContainerSize;
+;PH1618114;nrsryContainerSize;
+;PH1621112;nrsryContainerSize;
+;PH1618116;nrsryContainerSize;
+;PH1612114;nrsryContainerSize;
+;PH1612115;nrsryContainerSize;
+;PH1619110;nrsryContainerSize;
+;PH1619111;nrsryContainerSize;
+;PH1619112;nrsryContainerSize;
+;PH1614113;nrsryContainerSize;
+;PH1614114;nrsryContainerSize;
+;PH1620110;nrsryContainerSize;
+;PH1620111;nrsryContainerSize;
+;PH1620112;nrsryContainerSize;
+
+#Irrigation
+INSERT_UPDATE Category;code[unique=true];variantCategoryList;$catalogVersion
+;PH1432120;irgLength;
+;PH1432118;irgWireSize;
+;PH1432116;irgLength;
+;PH1432117;irgLength;
+;PH1415116;irgCoilLength;
+;PH1420111;irgContainerSize;
+;PH1420112;irgContainerSize;
+;PH1423111;irgContainerSize;
+;PH1422110;irgBackgroundColor;
+
+
+#Landscape
+INSERT_UPDATE Category;code[unique=true];variantCategoryList;$catalogVersion
+;PH1211110100;lndscpContainerSize;
+;PH1211110101;lndscpContainerSize;
+;PH1211111;lndscpContainerSize;
+;PH1211112100;lndscpContainerSize;
+;PH1211112101;lndscpContainerSize;
+;PH1211113100;lndscpContainerSize;
+;PH1211113101;lndscpContainerSize;
+;PH1211114100;lndscpDimensions;
+;PH1211114101;lndscpDimensions;
+;PH1211114102;lndscpDimensions;
+;PH1213100100;lndscpDimensions;
+;PH1213100101;lndscpDimensions;
+;PH1213100102;lndscpDimensions;
+;PH1213101100;lndscpDimensions;
+;PH1213101101;lndscpDimensions;
+;PH1213101102;lndscpDimensions;
+;PH1213101104;lndscpDimensions;
+;PH1213102100;lndscpDimensions;
+;PH1213102101;lndscpDimensions;
+;PH1214100104;lndscpSize;
+;PH1214100107;lndscpDimensions;
+;PH1216100101;lndscpDimensions;
+;PH1216101102;lndscpContainerSize;
+;PH1216103100;lndscpDimensions;
+;PH1216103101;lndscpDimensions;
+;PH1216103102;lndscpDimensions;
+;PH1224100;lndscpDimensions;
+;PH1224102;lndscpColor;
+;PH1224103;lndscpContainerSize;
+;PH1217101;lndscpDimensions;
+;PH1217102;lndscpDimensions;
+;PH1218100102;lndscpDimensions;
+;PH1218101101;lndscpDimensions;
+;PH1219101;lndscpSize;
+;PH1219100104;lndscpSize;
+;PH1213101109;lndscpContainerSize;
+;PH1219100104;lndscpSize;
+;PH1213101109;lndscpContainerSize;

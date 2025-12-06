@@ -1,0 +1,3 @@
+INSERT_UPDATE UserGroup;UID[unique=true];groups(uid)[mode=append];locname[lang=en];description
+                       ;basecmsmanagergroup;employeegroup;Base CMS Manager Group;Provides read access to product catalog
+                       ;cmsmanagergroup;basecmsmanagergroup;CMS Manager Group;

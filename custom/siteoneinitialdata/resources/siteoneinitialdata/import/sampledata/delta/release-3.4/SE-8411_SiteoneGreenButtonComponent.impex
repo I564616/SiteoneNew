@@ -1,0 +1,56 @@
+$contentCatalog=siteoneContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+
+
+INSERT_UPDATE SiteoneGreenButtonComponent;$contentCV[unique=true];uid[unique=true];name;linkName[lang=en];linkName[lang=es];url
+;;comp_000000S4;Partner Program Button Component3;Redeem Now;;/redeempoints
+;;comp_000000TW;Partner Program Button Component5;Redeem Now;;
+;;comp_000000TY;Partner Program Button Component6;Redeem Now;;
+;;comp_000000U6;Button;Placeholder;;
+;;comp_000004MV;Partner Program Button Component-1a;Learn More;Ganar Puntos;/earnpoints
+;;comp_000004N0;Partner Program Button Component-2a;Learn More;Conoce Más;/redeempoints
+;;comp_000004N2;Partner Program Button Component-3a;Learn More;Conoce Más;/businesssolutions
+;;comp_00000JAM;Partner Event Button Component;Register Today;;https://siteonewbmrsvp2019.com/Registration/Login.aspx?RegistrationPageID=4046
+;;comp_00000K2G;Android Button Component;Download for Android;;https://play.google.com/store/apps/details?id=com.siteone.landscape
+;;comp_00000K2H;Apple Button Component;For iPhone and iPad;;https://itunes.apple.com/us/app/siteone-landscape-supply/id1044205781?mt=8&ign-mpt=uo%3D4
+;;comp_00000KUX;Spreader Conversion Button Component;How To Use Chart;Cómo Usar La Tabla;https://www.siteone.com/medias/sys_master/root/h46/hb0/8877753565214/Spreader-Setting-Conversion-Chart-Instructions.pdf
+;;comp_00000KUY;Spreader SGN 240 Button Component;SGN 240 Setting Chart;Tabla Config. SGN 240;https://www.siteone.com/medias/sys_master/root/h8c/hc3/8877753499678/SGN-240-Spreader-Setting-Chart.pdf
+;;comp_00000N5I;CoOp Brochure Button Component;Download Brochure;;/hmc/medias/sys_master/root/hf9/h17/8881473650718/2019-Co-op-Brochure.pdf
+;;comp_00000N5J;CoOp Form Button Component;Co-op Interest Form;;https://www.surveymonkey.com/r/5MDC232
+;;comp_00000NXA;Hardscapes Button Component;Find a branch;;/store-finder
+;;comp_00000VN9;Spreader SGN 100 Button Component;SGN 100 Elite Chart;;https://www.siteone.com/medias/sys_master/root/hcc/hb5/8911429795870/Lesco-Spreader-Settings-SGN-100-Elite.pdf
+;;comp_00000VNA;Spreader SGN 150 Button Component;SGN 150 Mini Chart;;https://www.siteone.com/medias/sys_master/root/h4e/h27/8911429861406/Lesco-Spreader-Settings-SGN-150-Mini.pdf
+;;comp_00000VNX;Request Account Button Component;Request Account;Solicita Cuenta;/request-account/form?icid=online-button-request-account
+;;comp_00000WFU;Spring Bulbs Button Component;Download Catalog;;/medias/sys_master/root/he5/h62/8921659605022/2019.1786-fall-bulb-program-2019-FINAL.pdf
+;;comp_00000X6R;Green Tech Button Component;CTA;;https://www.siteone.com
+;;comp_00000X6S;SiteOne Updates Button Component;Give us feedback;;https://secure.opinionlab.com/ccc01/o.asp?id=sCSWeSmt [secure.opinionlab.com]
+;;greenTechButtonComponent;Green Tech Button Component;CTA;;https://www.siteone.com
+;;orderGiftCardsButtonComponent1;Order Giftcards Button Component1;Join Now;;
+;;orderGiftCardsButtonComponent2;Order Giftcards Button Component2;Learn more;;
+;;orderGiftCardsButtonComponent3;Order Giftcards Button Component3;Learn more;;
+;;orderGiftCardsButtonComponent4;Order Giftcards Button Component4;Learn more;;
+;;partnerProgramButtonComponent1;Partner Program Button Component1;Join Now;;
+;;partnerProgramButtonComponent2;Partner Program Button Component2;Learn More;;
+;;partnerProgramButtonComponent3;Partner Program Button Component2;Learn More;;/earnpoints
+;;partnerProgramButtonComponent4;Partner Program Button Component4;Learn More;;/businesssolutions
+;;partnerProgramEventsButtonComponent1;Partner ProgramEvents Button Component1;Join Now;;
+;;partnerProgramEventsButtonComponent2;Partner ProgramEvents Button Component2;Learn more;;
+;;partnerProgramEventsButtonComponent3;Partner ProgramEvents Button Component3;Learn more;;
+;;partnerProgramEventsButtonComponent4;Partner ProgramEvents Button Component4;Learn more;;
+;;partnerProgramTermsButtonComponent1;Partner ProgramTerms Button Component1;Join Now;;
+;;partnerProgramTermsButtonComponent2;Partner ProgramTerms Button Component2;Learn more;;
+;;partnerProgramTermsButtonComponent3;Partner ProgramTerms Button Component3;Learn more;;
+;;partnerProgramTermsButtonComponent4;Partner ProgramTerms Button Component4;Learn more;;
+;;programInformationButtonComponent1;Program Information Button Component1;Join Now;;
+;;programInformationButtonComponent2;Program Information Button Component2;Learn more;;
+;;programInformationButtonComponent3;Program Information Button Component3;Learn more;;
+;;programInformationButtonComponent4;Program Information Button Component4;Learn more;;
+;;redeemPointsButtonComponent1;Partner Redeem Button Component1;Redeem Now;;
+;;redeemPointsButtonComponent2;Partner Redeem Button Component2;Redeem Now;;
+;;redeemPointsButtonComponent3;Partner Redeem Button Component3;Search Trips;;https://sio-p-adm.ms.ycs.io/events?q=event%3Adate-asc%3Asoeventtype%3APartners+Program+Trip&searchtype=product&text=&viewtype=All#
+;;redeemPointsButtonComponent4;Partner Redeem Button Component4;View Events;;/events
+;;technicalTrainingButtonComponent1;Technical Training Button Component;Join Now;;
+;;technicalTrainingButtonComponent2;Technical Training Button Component2;Learn more;Conoce Más;
+;;technicalTrainingButtonComponent3;Technical Training Button Component3;Learn more;Conoce Más;
+;;technicalTrainingButtonComponent4;Technical Training Button Component4;Learn more;Conoce Más;
+

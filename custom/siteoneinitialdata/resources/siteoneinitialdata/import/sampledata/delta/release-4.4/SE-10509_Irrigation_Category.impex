@@ -1,0 +1,180 @@
+##Primary Hierarchy
+#New Categories
+$supercategories=supercategories( code, catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Staged']));;;;;;;;;
+$catalogVersion=catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Staged'])[unique=true,default='siteoneProductCatalog:Staged'];;;;;;;;;
+;;;;;;;;;
+
+INSERT_UPDATE Category;code[unique=true];name[lang=en];name[lang=es];$supercategories;$catalogVersion;allowedPrincipals(uid)
+;PH1428114;Rotors Parts & Accessories;Accesorios y Piezas para Rotores;PH1428;siteoneProductCatalog:Staged;admingroup
+;PH1428115;Sprays Parts & Accessories;Accesorios y Piezas para Aerosols;PH1428;siteoneProductCatalog:Staged;admingroup
+
+
+
+
+##Sales Hierarchy
+
+#New Categories
+$supercategories=supercategories( code, catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Staged']));;;;;;;;;
+$catalogVersion=catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Staged'])[unique=true,default='siteoneProductCatalog:Staged'];;;;;;;;;
+;;;;;;;;;
+INSERT_UPDATE Category;code[unique=true];name[lang=en];name[lang=es];$supercategories;$catalogVersion;allowedPrincipals(uid)
+;SH1428114;Rotors Parts & Accessories;Accesorios y Piezas para Rotores;SH1428;siteoneProductCatalog:Staged;admingroup
+;SH1428115;Sprays Parts & Accessories;Accesorios y Piezas para Aerosols;SH1428;siteoneProductCatalog:Staged;admingroup
+
+
+
+##------------------------------------------
+##primary hierarchy - sales hierarchy mapping ------------------------------------
+
+$productCatalog=siteoneProductCatalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+INSERT_UPDATE category;code[unique=true];salescategorymapping;$catalogVersion;
+;PH1428114;SH1428114
+;PH1428115;SH1428115
+
+
+
+
+## ---c
+#Classifying;Class;creation;;;;;;;
+#-----------------------------;;;;;;;;;
+
+INSERT_UPDATE classificationclass;code[unique=true];name[lang=en];catalogVersion(catalog(id),version);;;;;
+;CH01_1428114;Product Details;siteoneClassification:1;;;;;
+;CH01_1428115;Product Details;siteoneClassification:1;;;;;
+
+
+
+
+##d
+##-------------------------------------------------------------------------	
+
+$classCatalogVersion=catalogversion(catalog(id[default='siteoneClassification']),version[default='1'])[unique=true,default='siteoneClassification:1']
+$classSystemVersion=systemversion(catalog(id[default='siteoneClassification']),version[default='1'])[unique=true,default='siteoneClassification:1']
+INSERT_UPDATE classAttributeAssignment;classificationAttribute(code,$classSystemVersion)[unique=true];attributeType(code);classificationClass(code,$classCatalogVersion)[unique=true];attributeValues(code)[mode=append];multiValued(code);mandatory(code);formatDefinition
+
+#Impex is created grouped on the basis of which Attributes assigned to each Category
+#Below is the Assignment for Newly Created Categories
+
+#Item
+
+;irgItem;string;CH01_1428114;;false;false;50;
+;irgItem;string;CH01_1428115;;false;false;50;
+
+#Type
+;irgType;string;CH01_1428114;;false;false;50;
+;irgType;string;CH01_1428115;;false;false;50;
+
+#Series
+;irgSeries;string;CH01_1428114;;false;false;50;
+;irgSeries;string;CH01_1428115;;false;false;50;
+
+#Color
+;irgColor;string;CH01_1428114;;false;false;50;
+;irgColor;string;CH01_1428115;;false;false;50;
+
+#Material
+;irgMaterial;string;CH01_1428114;;false;false;50;
+;irgMaterial;string;CH01_1428115;;false;false;50;
+
+#Dimensions
+;irgDimensions;string;CH01_1428114;;false;false;50;
+;irgDimensions;string;CH01_1428115;;false;false;50;
+
+#ConnectionSize
+;irgConnectionSize;string;CH01_1428114;;false;false;50;
+;irgConnectionSize;string;CH01_1428115;;false;false;50;
+
+#Height
+;irgHeight;string;CH01_1428114;;false;false;50;
+;irgHeight;string;CH01_1428115;;false;false;50;
+
+#OperatingRadius
+;irgOperatingRadius;string;CH01_1428114;;false;false;50;
+;irgOperatingRadius;string;CH01_1428115;;false;false;50;
+
+#PopUpHeight
+;irgPopUpHeight;string;CH01_1428114;;false;false;50;
+;irgPopUpHeight;string;CH01_1428115;;false;false;50;
+
+#PressureRegulating
+;irgPressureRegulating;string;CH01_1428115;;false;false;50;
+
+
+
+
+##-------------------------------------
+##--e with Staged catalog version 
+$productCatalog=siteoneProductCatalog
+$catalogVersion=catalogversion(catalog(id[default='siteoneProductCatalog']),version[default='Staged'])[unique=true,default='siteoneProductCatalog:Staged']
+$classCatalogVersion=catalogversion(catalog(id[default='siteoneClassification']),version[default='1'])[unique=true,default='siteoneClassification:1']
+$supercategories=source(code, $classCatalogVersion)[unique=true]
+$categories=target(code, $catalogVersion)[unique=true]
+INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories
+
+;PH1428114;CH01_1428114;
+;PH1428115;CH01_1428115;
+
+
+
+##-------------------------------------
+##--e with online catalog version 
+$productCatalog=siteoneProductCatalog
+$catalogVersion=catalogversion(catalog(id[default='siteoneProductCatalog']),version[default='Online'])[unique=true,default='siteoneProductCatalog:Online']
+$classCatalogVersion=catalogversion(catalog(id[default='siteoneClassification']),version[default='1'])[unique=true,default='siteoneClassification:1']
+$supercategories=source(code, $classCatalogVersion)[unique=true]
+$categories=target(code, $catalogVersion)[unique=true]
+INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories
+
+;PH1428114;CH01_1428114;
+;PH1428115;CH01_1428115;
+
+
+
+
+##-----------------------------------------------------------------------------------
+##--f
+
+$classCatalogVersion=catalogversion(catalog(id[default='siteoneClassification']),version[default='1'])[unique=true,default='siteoneClassification:1']
+$supercategories=source(code, $classCatalogVersion)[unique=true]
+$categories=target(code, $classCatalogVersion)[unique=true]
+
+INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories
+;CH01_1428114;CH01_14;
+;CH01_1428115;CH01_14;
+
+
+
+
+ #--navigation nodes -------------------------------
+
+#CMS Impexes for category nav nodes in header-------------------------
+
+$contentCatalog=siteoneContentCatalog
+$contentCatalogName=SiteOne Content Catalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$productCatalog=siteoneProductCatalog
+$productCatalogName=SiteOne Product Catalog
+$productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$picture=media(code, $contentCV);
+$image=image(code, $contentCV);
+$media=media(code, $contentCV);
+$page=page(uid, $contentCV);
+$contentPage=contentPage(uid, $contentCV);
+$product=product(code, $productCV)
+$category=category(code, $productCV)
+$siteResource=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/contentCatalogs/$contentCatalog
+$productResource=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/productCatalogs/$productCatalog
+$jarResourceCms=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/cockpits/cmscockpit
+$addonExtensionName=siteoneacceleratoraddon
+$medias=medias(code, $contentCV);
+$articleMedia=articleMedia(code, $contentCV);
+$mediaContainer=media(qualifier, $contentCV);
+$siteUid=siteone
+$lang=en
+
+INSERT_UPDATE GlobalProductNavigationNode;$contentCV[unique=true];uid[unique=true];name;parent(uid, $contentCV);category(code, $productCV);&nodeRef;sequenceNumber;
+
+#----------------SH14 Irrigation--------------------------
+;;RotorsParts&AccessoriesNavNode;RotorsParts&AccessoriesNavNode;SprinklersNavNode;SH1428114;RotorsParts&AccessoriesNavNode;5
+;;SpraysParts&AccessoriesNavNode;SpraysParts&AccessoriesNavNode;SprinklersNavNode;SH1428115;SpraysParts&AccessoriesNavNode;6

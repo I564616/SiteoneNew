@@ -1,0 +1,99 @@
+$contentCatalog=siteoneContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Online])[default=$contentCatalog:Online]
+$jarEmailResource=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/coredata/contentCatalogs/siteoneContentCatalog/emails
+$wideContent=CMSImageComponent,BannerComponent
+
+# Import config properties into impex macros for modulegen
+UPDATE GenericItem[processor=de.hybris.platform.commerceservices.impex.impl.ConfigPropertyImportProcessor];pk[unique=true]
+$emailResource=$config-emailResourceValue
+$jarResourceCms=$config-jarResourceCmsValue
+$emailPackageName=$config-emailContextPackageName
+# Language
+$lang=en
+
+
+UPDATE RendererTemplate;code[unique=true];description[lang=$lang];templateScript[lang=$lang,translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+;siteone_Email_CCPA_Subject;"CCPA Template";$emailResource/email-ccpaEmailSubject.vm
+;siteone_Email_CCPA_Body;"CCPA Template";$emailResource/email-ccpaEmailBody.vm
+
+# Email Pages
+UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];fromEmail[lang=$lang];fromName[lang=$lang]
+;;CCPAEmail;"customersupport@ec.siteone.com";"SiteOne"
+
+# CMS components and Email velocity templates
+UPDATE RendererTemplate;code[unique=true];description[lang=$lang];templateScript[lang=$lang,translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+;siteone_Email_CCPA_Customer_Subject;"CCPA Customer Template";$emailResource/email-ccpaCustomerEmailSubject.vm
+;siteone_Email_CCPA_Customer_Body;"CCPA Customer Template";$emailResource/email-ccpaCustomerEmailBody.vm
+
+# Email Pages
+UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];fromEmail[lang=$lang];fromName[lang=$lang]
+;;CCPACustomerEmail;"customersupport@ec.siteone.com";"SiteOne"
+ 	
+#############################CCPA Email###############
+INSERT_UPDATE RendererTemplate;code[unique=true];contextClass;rendererType(code)[default='velocity']
+;siteone_Email_CCPA_Subject;$emailPackageName.CCPAContext
+;siteone_Email_CCPA_Body;$emailPackageName.CCPAContext
+
+# Email page Template
+INSERT_UPDATE EmailPageTemplate;$contentCV[unique=true];uid[unique=true];name;active;frontendTemplateName;subject(code);htmlTemplate(code);restrictedPageTypes(code)
+;;CCPAEmailTemplate;CCPA Email Template;true;ccpaEmail;siteone_Email_CCPA_Subject;siteone_Email_CCPA_Body;EmailPage
+
+
+# Templates for CMS Cockpit Page Edit
+UPDATE EmailPageTemplate;$contentCV[unique=true];uid[unique=true];velocityTemplate[translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+;;CCPAEmailTemplate;$jarResourceCms/structure-view/structure_CCPAEmailTemplate.vm
+
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='CCPAEmailTemplate'];validComponentTypes(code)
+;SiteLogo;;;logo
+;TopContent;;$wideContent;
+;BottomContent;;$wideContent;
+
+
+# Bind Content Slots to Email Page Templates
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='CCPAEmailTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;SiteLogo-CCPAEmail;SiteLogo;;EmailSiteLogoSlot;true
+;;TopContent-CCPAEmail;TopContent;;EmailTopSlot;true
+;;BottomContent-CCPAEmail;BottomContent;;EmailBottomSlot;true
+
+# Email Pages
+INSERT_UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);defaultPage;approvalStatus(code)[default='approved']
+;;CCPAEmail;CCPA Email;CCPAEmailTemplate;true;
+
+UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];previewImage(code, $contentCV)
+;;CCPAEmail;EmailPageModel_preview
+#############################CCPA Email###############
+
+
+#############################CCPA Customer Email###############
+INSERT_UPDATE RendererTemplate;code[unique=true];contextClass;rendererType(code)[default='velocity']
+;siteone_Email_CCPA_Customer_Subject;$emailPackageName.CCPACustomerContext
+;siteone_Email_CCPA_Customer_Body;$emailPackageName.CCPACustomerContext
+
+# Email page Template
+INSERT_UPDATE EmailPageTemplate;$contentCV[unique=true];uid[unique=true];name;active;frontendTemplateName;subject(code);htmlTemplate(code);restrictedPageTypes(code)
+;;CCPACustomerEmailTemplate;CCPA Customer Email Template;true;ccpaCustomerEmail;siteone_Email_CCPA_Customer_Subject;siteone_Email_CCPA_Customer_Body;EmailPage
+
+
+# Templates for CMS Cockpit Page Edit
+UPDATE EmailPageTemplate;$contentCV[unique=true];uid[unique=true];velocityTemplate[translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+;;CCPACustomerEmailTemplate;$jarResourceCms/structure-view/structure_CCPACustomerEmailTemplate.vm
+
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='CCPACustomerEmailTemplate'];validComponentTypes(code)
+;SiteLogo;;;logo
+;TopContent;;$wideContent;
+;BottomContent;;$wideContent;
+
+
+# Bind Content Slots to Email Page Templates
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='CCPACustomerEmailTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;SiteLogo-CCPACustomerEmail;SiteLogo;;EmailSiteLogoSlot;true
+;;TopContent-CCPACustomerEmail;TopContent;;EmailTopSlot;true
+;;BottomContent-CCPACustomerEmail;BottomContent;;EmailBottomSlot;true
+
+# Email Pages
+INSERT_UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);defaultPage;approvalStatus(code)[default='approved']
+;;CCPACustomerEmail;CCPA Email;CCPACustomerEmailTemplate;true;
+
+UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];previewImage(code, $contentCV)
+;;CCPACustomerEmail;EmailPageModel_preview
+#############################CCPA Email###############

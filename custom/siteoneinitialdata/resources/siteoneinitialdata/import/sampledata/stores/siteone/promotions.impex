@@ -1,0 +1,86 @@
+# -----------------------------------------------------------------------
+# [y] hybris Platform
+#
+# Copyright (c) 2017 SAP SE or an SAP affiliate company.  All rights reserved.
+#
+# This software is the confidential and proprietary information of SAP
+# ("Confidential Information"). You shall not disclose such Confidential
+# Information and shall use it only in accordance with the terms of the
+# license agreement you entered into with SAP.
+# -----------------------------------------------------------------------
+# ImpEx for Promotions for SiteOne store
+#% impex.setLocale( Locale.GERMAN ); 
+
+$defaultPromoGrp=siteonePromoGrp
+$favCustomers=favoriteCustomers
+$bigSpenders=bigSpenders
+$delvieryMode=std-gross
+$regulargroup=regulargroup
+$lang=en
+$productCatalog=siteoneProductCatalog
+$catalogVersion=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$productCatalog]),CatalogVersion.version[default=Online])[default=$productCatalog:Online]
+
+INSERT PromotionPriceRow;&tresholdId;Currency(isocode);price
+
+INSERT PromotionPriceRow;&priceId;Currency(isocode);price
+
+INSERT_UPDATE OrderThresholdDiscountPromotion;PromotionGroup(Identifier[default=$defaultPromoGrp]);enabled[default=true,unique=true];code[unique=true];title;description;messageFired[lang=en];messageFired[lang=de];messageFired[lang=ja];priority;thresholdTotals(&tresholdId);discountPrices(&priceId)
+
+INSERT_UPDATE PromotionUserRestriction;positive;promotion(code)[unique=true];users(uid)
+
+INSERT PromotionPriceRow;&tresholdId;Currency(isocode);price
+
+INSERT PromotionPriceRow;&priceId;Currency(isocode);price
+;40;USD;40
+
+INSERT PromotionPriceRow;&bundlePriceId;Currency(isocode);price
+;255;USD;255
+
+INSERT PromotionPriceRow;&thresholdPriceId;Currency(isocode);price
+;500;USD;500
+
+#3% off orders over $500
+INSERT_UPDATE OrderThresholdDiscountPercentagePromotion;PromotionGroup(Identifier[default=$defaultPromoGrp]);enabled[default=true][unique=true];code[unique=true];title;description;messageCouldHaveFired[lang=en];priority;thresholdTotals(&thresholdPriceId);percentageDiscount
+;;;3PercentDiscountOver500;3% off orders over $500;3% off orders over $500;3% off orders over $500;500;500;3
+
+#Buy 2 Power Drills, Get 1 Free
+INSERT_UPDATE AcceleratorProductBOGOFPromotion;PromotionGroup(Identifier[default=$defaultPromoGrp]);enabled[default=true][unique=true];code[unique=true];title;description;messageCouldHaveFired[lang=en];messageFired[lang=en];priority;categories(code,$catalogVersion);qualifyingCount;freeCount
+#;;;B2GOFPowerDrills;Buy 2 Power Drills, Get 1 Free;Buy 2 Power Drills, Get 1 Free;Buy 2 Power Drills, Get 1 Free;You get 1 Power Drill free for purchasing 2 Power Drills;900;SH11;3;1
+
+#Buy this great power tool package by Black & Decker for $255! Save $39!
+INSERT_UPDATE ProductBundlePromotion;PromotionGroup(Identifier[default=$defaultPromoGrp]);enabled[default=true][unique=true];code[unique=true];title;description;messageCouldHaveFired[lang=en];messageFired[lang=en];priority;products(code,$catalogVersion);bundlePrices(&bundlePriceId)
+#;;;ProductBundlePowertoolsPackage;Black & Decker package;Buy this great power tool package by Black & Decker for $255! Save $39!;Buy this great power tool package by Black & Decker for {2}! Save $39!;You saved {3} by buying this great power tool package by Black & Decker for {1}!;900;99999;255
+
+#10% off on Sanders
+INSERT_UPDATE ProductPercentageDiscountPromotion;PromotionGroup(Identifier[default=$defaultPromoGrp]);enabled[default=true][unique=true];code[unique=true];title;description;messageFired[lang=en];percentageDiscount;priority;categories(code,$catalogVersion)
+#;;;10DiscountSanders;10% off on Sanders;10% off on Sanders;10% off on Sanders;10;900;SH12
+
+INSERT_UPDATE ProductMultiBuyPromotion;PromotionGroup(Identifier[default=$defaultPromoGrp]);enabled[default=true][unique=true];code[unique=true];title;description;priority;categories(code,$catalogVersion);qualifyingCount;bundlePrices(&priceId)
+
+INSERT_UPDATE AcceleratorProductBOGOFPromotion;PromotionGroup(Identifier[default=$defaultPromoGrp]);enabled[default=true][unique=true];code[unique=true];title;description;priority;categories(code,$catalogVersion);qualifyingCount;freeCount
+
+INSERT PromotionPriceRow;&priceId;Currency(isocode);price
+
+INSERT_UPDATE ProductPerfectPartnerPromotion;PromotionGroup(Identifier[default=$defaultPromoGrp]);enabled[default=true][unique=true];code[unique=true];title;description;priority;products(code,$catalogVersion);partnerProducts(code,$catalogVersion);partnerPrices(&priceId)
+
+INSERT PromotionPriceRow;&priceId;Currency(isocode);price
+
+INSERT_UPDATE ProductBundlePromotion;PromotionGroup(Identifier[default=$defaultPromoGrp]);enabled[default=true,unique=true];code[unique=true];title;description;priority;products(code,$catalogVersion);bundlePrices(&priceId)
+
+
+# Vouchers (legacy)
+INSERT_UPDATE PromotionVoucher;code[unique=true];currency(isocode);description;freeShipping;priority;redemptionQuantityLimitPerUser;redemptionQuantityLimit;value;voucherCode
+;000;USD;Get $10 discount on the cart;false;25;10;100;10;SUMMER69
+;001;;Get 10% discount on the cart;false;25;10;100;10;WINTER16
+
+#promotion templates
+
+INSERT_UPDATE PromotionSourceRuleTemplate;code[unique=true];name[lang=$lang];description[lang=$lang];messageFired[lang=$lang]
+;product_buy_x_of_A_get_y_of_B_free;Buy X of A get Y of B free;Buy X units of a product A from a defined set, get Y units of another product free;Buy products {edc0d3c3-bbb4-4b95-8af4-8d52458a6469} or products from categories {d1110cbc-1837-4b0b-9fd7-adfa4e9b7b23} get products {57a77913-bab1-42a8-8817-4cbdff2e35d1} or products from categories {eea75d3d-5824-4187-9b05-baa1038612a4} free
+;coupon_code_percentage_discount_on_cart;Coupon code percentage discount on cart;A percentage discount is added to the cart when a valid coupon code is entered;{3ae37229-4a94-4aba-821b-aaf640c19423} percentage discount is applied on cart when coupon code {f07815ef-7511-4914-919e-3fb8f2f75f40} is entered
+;coupon_code_percentage_discount_on_products;Coupon code percentage discount on products;A percentage is applied on qualifying products when a valid coupon code is entered;{a1a5d598-c351-43a4-92bf-eb63d877496a} percentage discount is applied on products{df622983-baac-4356-a4b9-fb6ea466fbc4} or category {83e6ca48-3441-49e2-b3ff-eabb479e9966}when a coupon code{4e516318-91b1-4f48-8723-7185d193b415} is entered
+
+INSERT_UPDATE PromotionSourceRuleTemplate;code[unique=true];maxAllowedRuns;ruleGroup(code);conditions;actions
+;product_buy_x_of_A_get_y_of_B_free;1;productPromotionRuleGroup;"[{""definitionId"":""y_container"",""parameters"":{""id"":{""uuid"":""04d63b64-8db5-4935-8255-7ecc2ad47e43"",""type"":""java.lang.String"",""value"":""CONTAINER_X""}},""children"":[{""definitionId"":""y_group"",""parameters"":{""operator"":{""uuid"":""8a912bce-13ca-481d-9dc3-70d79e6ebd93"",""type"":""Enum(de.hybris.platform.ruleengineservices.definitions.conditions.RuleGroupOperator)"",""value"":""OR""}},""children"":[{""definitionId"":""y_qualifying_products"",""parameters"":{""products_operator"":{""uuid"":""8ee53925-ee02-439a-a36f-3bfb1126e5fc"",""type"":""Enum(de.hybris.platform.ruledefinitions.CollectionOperator)"",""value"":""CONTAINS_ANY""},""quantity"":{""uuid"":""38f7aba2-d2a1-4e92-bdd9-852eb1a30b10"",""type"":""java.lang.Integer"",""value"":1},""operator"":{""uuid"":""3d25d745-e0ba-42fa-9a10-4d3a14e65904"",""type"":""Enum(de.hybris.platform.ruledefinitions.AmountOperator)"",""value"":""GREATER_THAN_OR_EQUAL""},""products"":{""uuid"":""edc0d3c3-bbb4-4b95-8af4-8d52458a6469"",""type"":""List(ItemType(Product))""}},""children"":[]},{""definitionId"":""y_qualifying_categories"",""parameters"":{""quantity"":{""uuid"":""c1f4ab7e-297e-4b3e-a790-6b4b6d7a52bc"",""type"":""java.lang.Integer"",""value"":1},""categories_operator"":{""uuid"":""dd2c31b0-06f7-4ded-8cd2-0269010f0eb5"",""type"":""Enum(de.hybris.platform.ruledefinitions.CollectionOperator)"",""value"":""CONTAINS_ANY""},""excluded_categories"":{""uuid"":""2e3e3033-fd27-48e0-8e64-83519b1124af"",""type"":""List(ItemType(Category))""},""excluded_products"":{""uuid"":""b3c57914-3750-4aaf-b6cf-3211e24c04ba"",""type"":""List(ItemType(Product))""},""categories"":{""uuid"":""d1110cbc-1837-4b0b-9fd7-adfa4e9b7b23"",""type"":""List(ItemType(Category))"",""value"":[]},""operator"":{""uuid"":""42eb6462-7700-442f-9e51-a8462c70fc6f"",""type"":""Enum(de.hybris.platform.ruledefinitions.AmountOperator)"",""value"":""GREATER_THAN_OR_EQUAL""}},""children"":[]}]}]},{""definitionId"":""y_container"",""parameters"":{""id"":{""uuid"":""2bd76a76-0a81-4a35-bf65-d4a1bedc96dc"",""type"":""java.lang.String"",""value"":""CONTAINER_Y""}},""children"":[{""definitionId"":""y_group"",""parameters"":{""operator"":{""uuid"":""b72a22ff-a492-492f-8c07-0b7fb6eec83d"",""type"":""Enum(de.hybris.platform.ruleengineservices.definitions.conditions.RuleGroupOperator)"",""value"":""OR""}},""children"":[{""definitionId"":""y_qualifying_products"",""parameters"":{""products_operator"":{""uuid"":""817b2aea-f199-4a9e-84d8-fbafa77caa18"",""type"":""Enum(de.hybris.platform.ruledefinitions.CollectionOperator)"",""value"":""CONTAINS_ANY""},""quantity"":{""uuid"":""29072045-6058-4f02-8acd-6d789facb5af"",""type"":""java.lang.Integer"",""value"":1},""operator"":{""uuid"":""10586509-a76f-404a-9542-a74f8d53b227"",""type"":""Enum(de.hybris.platform.ruledefinitions.AmountOperator)"",""value"":""GREATER_THAN_OR_EQUAL""},""products"":{""uuid"":""57a77913-bab1-42a8-8817-4cbdff2e35d1"",""type"":""List(ItemType(Product))""}},""children"":[]},{""definitionId"":""y_qualifying_categories"",""parameters"":{""quantity"":{""uuid"":""b8ffa68e-4242-49b0-b101-b05233252200"",""type"":""java.lang.Integer"",""value"":1},""categories_operator"":{""uuid"":""b9ab4116-27a1-46c5-9900-beba1fc5ea48"",""type"":""Enum(de.hybris.platform.ruledefinitions.CollectionOperator)"",""value"":""CONTAINS_ANY""},""excluded_categories"":{""uuid"":""f8777a46-8066-44cb-8558-2be268311ee2"",""type"":""List(ItemType(Category))""},""excluded_products"":{""uuid"":""67b3c779-5599-4a40-91d6-0a96001de7b3"",""type"":""List(ItemType(Product))""},""categories"":{""uuid"":""eea75d3d-5824-4187-9b05-baa1038612a4"",""type"":""List(ItemType(Category))"",""value"":[]},""operator"":{""uuid"":""9952328f-f23a-4aa7-8082-27260506e2ae"",""type"":""Enum(de.hybris.platform.ruledefinitions.AmountOperator)"",""value"":""GREATER_THAN_OR_EQUAL""}},""children"":[]}]}]}]";"[{""definitionId"":""y_partner_order_entry_percentage_discount"",""parameters"":{""selection_strategy"":{""uuid"":""1897f037-c27a-43a0-82da-8d60da5058b3"",""type"":""Enum(de.hybris.platform.ruleengineservices.enums.OrderEntrySelectionStrategy)"",""value"":""CHEAPEST""},""target_containers"":{""uuid"":""33d85bbf-54c2-49d7-aba8-702fcb9d5988"",""type"":""Map(java.lang.String,java.lang.Integer)"",""value"":{""CONTAINER_Y"":1}},""qualifying_containers"":{""uuid"":""887c10b2-9f61-432d-a7d4-1cf74cd92b47"",""type"":""Map(java.lang.String,java.lang.Integer)"",""value"":{""CONTAINER_X"":1}},""value"":{""uuid"":""65c5bd5f-546f-410f-8ae2-a2e866e2f890"",""type"":""java.math.BigDecimal""}}}]"
+;coupon_code_percentage_discount_on_cart;1;productPromotionRuleGroup;"[{""definitionId"":""y_qualifying_coupons"",""parameters"":{""coupons"":{""uuid"":""f07815ef-7511-4914-919e-3fb8f2f75f40"",""type"":""List(ItemType(AbstractCoupon))"",""value"":[]}},""children"":[]}]";"[{""definitionId"":""y_order_percentage_discount"",""parameters"":{""value"":{""uuid"":""3ae37229-4a94-4aba-821b-aaf640c19423"",""type"":""java.math.BigDecimal""}}}]"
+;coupon_code_percentage_discount_on_products;1;productPromotionRuleGroup;"[{""definitionId"":""y_qualifying_coupons"",""parameters"":{""coupons"":{""uuid"":""4e516318-91b1-4f48-8723-7185d193b415"",""type"":""List(ItemType(AbstractCoupon))"",""value"":[""COUPONCART""]}},""children"":[]},{""definitionId"":""y_group"",""parameters"":{""operator"":{""uuid"":""0bc4e42c-3b09-426c-a964-d5e7a296c498"",""type"":""Enum(de.hybris.platform.ruleengineservices.definitions.conditions.RuleGroupOperator)"",""value"":""OR""}},""children"":[{""definitionId"":""y_qualifying_products"",""parameters"":{""products_operator"":{""uuid"":""d6255410-0de6-4064-ae3e-5de2491b1b73"",""type"":""Enum(de.hybris.platform.ruledefinitions.CollectionOperator)"",""value"":""CONTAINS_ANY""},""quantity"":{""uuid"":""bac61470-129f-4d91-b725-d2019c71257b"",""type"":""java.lang.Integer"",""value"":1},""operator"":{""uuid"":""a2f05b73-068d-45c2-bc28-ea163c3a893c"",""type"":""Enum(de.hybris.platform.ruledefinitions.AmountOperator)"",""value"":""GREATER_THAN_OR_EQUAL""},""products"":{""uuid"":""df622983-baac-4356-a4b9-fb6ea466fbc4"",""type"":""List(ItemType(Product))"",""value"":[]}},""children"":[]},{""definitionId"":""y_qualifying_categories"",""parameters"":{""quantity"":{""uuid"":""6307770f-e851-45a3-bc73-88634f8a4443"",""type"":""java.lang.Integer"",""value"":1},""categories_operator"":{""uuid"":""c361f681-2f88-44c4-acf5-27281568e313"",""type"":""Enum(de.hybris.platform.ruledefinitions.CollectionOperator)"",""value"":""CONTAINS_ANY""},""excluded_categories"":{""uuid"":""dd0f76d2-f8be-4dc0-a68a-b94c2259327b"",""type"":""List(ItemType(Category))""},""categories"":{""uuid"":""83e6ca48-3441-49e2-b3ff-eabb479e9966"",""type"":""List(ItemType(Category))""},""excluded_products"":{""uuid"":""047bea52-4d89-4c97-8994-442239fc456c"",""type"":""List(ItemType(Product))""},""operator"":{""uuid"":""631c6ced-468c-46c8-b4ca-97a3a3ac10b8"",""type"":""Enum(de.hybris.platform.ruledefinitions.AmountOperator)"",""value"":""GREATER_THAN_OR_EQUAL""}},""children"":[]}]}]";"[{""definitionId"":""y_order_entry_percentage_discount"",""parameters"":{""value"":{""uuid"":""a1a5d598-c351-43a4-92bf-eb63d877496a"",""type"":""java.math.BigDecimal""}}}]"

@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ [y] hybris Platform
+
+ Copyright (c) 2000-2016 SAP SE or an SAP affiliate company.
+ All rights reserved.
+
+ This software is the confidential and proprietary information of SAP
+ ("Confidential Information"). You shall not disclose such Confidential
+ Information and shall use it only in accordance with the terms of the
+ license agreement you entered into with SAP.
+-->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:int="http://www.springframework.org/schema/integration"
+	xmlns:file="http://www.springframework.org/schema/integration/file"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/integration
+	http://www.springframework.org/schema/integration/spring-integration.xsd
+	http://www.springframework.org/schema/integration/file
+	http://www.springframework.org/schema/integration/file/spring-integration-file.xsd
+	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+	http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<context:annotation-config/>
+
+	<bean id="azureHotfolderStoreSkuRemotePath" class="java.lang.String">
+		<constructor-arg name="value"
+			value="${azure.hotfolder.storage.container.hotfolder}/siteonestoreskuassoc"/>
+	</bean>
+
+	<bean id="azureLocalStoreSkuErrorRegexPatternFileListFilter"
+		class="org.springframework.integration.file.filters.RegexPatternFileListFilter">
+		<constructor-arg name="pattern" value="^(error_siteonestoreskuassoc)_(\d+)(\S+)_(\d+)(\S+)\.(?i)txt"/>
+	</bean>
+
+	<bean id="azureHotfolderStoreSkuLocalPath" class="java.lang.String">
+		<constructor-arg name="value"
+			value="#{azureHotfolderLocalDirectoryBase}/#{azureHotfolderStoreSkuRemotePath}"/>
+	</bean>
+
+	<bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+		<property name="targetObject" ref="hotfolderInboundFileChannelMappings"/>
+		<property name="targetMethod" value="put"/>
+		<property name="arguments">
+			<list>
+				<bean class="java.util.regex.Pattern" factory-method="compile">
+					<constructor-arg value="^(siteonestoreskuassoc)_(\d+)(\S+)_(\d+)(\S+)\.(?i)txt"/>
+				</bean>
+				<ref bean="SiteOneStoreSkuBatchFilesCloudHotFolderProc"/>
+			</list>
+		</property>
+	</bean>
+
+	<int:channel id="SiteOneStoreSkuBatchFilesCloudHotFolderProc"/>
+
+	<int:service-activator input-channel="SiteOneStoreSkuBatchFilesCloudHotFolderProc" output-channel="batchSiteOneFilesHeaderInit"
+		ref="SiteOneStoreSkuCloudHotFolderHeaderSetupTask" method="execute">
+	</int:service-activator>
+
+	<!--  Azure Inbound File Synchronizer and Channel Adapter -->
+	<bean id="SiteOneStoreSkuAzureBlobInboundSynchronizer"
+		class="de.hybris.platform.cloud.azure.hotfolder.remote.inbound.AzureBlobInboundSynchronizer">
+		<constructor-arg name="sessionFactory" ref="azureBlobSessionFactory"/>
+		<property name="remoteDirectory" value="#{azureHotfolderStoreSkuRemotePath}"/>
+		<property name="moveToRemoteDirectory" value="#{azureHotfolderStoreSkuRemotePath}/processing"/>
+		<property name="deleteRemoteFiles" value="${azure.hotfolder.storage.delete.remote.files}"/>
+		<property name="preserveTimestamp" value="true"/>
+		<property name="filter" ref="azureHotfolderFileFilter"/>
+		<property name="comparator" ref="azureHotFolderFileComparator"/>
+	</bean>
+
+	<bean id="SiteOneStoreSkuAzureBlobSynchronizingMessageSource"
+		class="de.hybris.platform.cloud.azure.hotfolder.remote.inbound.AzureBlobSynchronizingMessageSource">
+		<constructor-arg name="synchronizer" ref="SiteOneStoreSkuAzureBlobInboundSynchronizer"/>
+		<property name="autoCreateLocalDirectory" value="true"/>
+		<property name="localDirectory" value="#{azureHotfolderStoreSkuLocalPath}/processing/"/>
+		<property name="maxFetchSize" value="${azure.hotfolder.storage.polling.fetch.batch-size}"/>
+	</bean>
+
+	<bean id="azureStoreSkuChannelAdapterTaskExecutor"
+		class="de.hybris.platform.cloud.commons.scheduling.HybrisAwareThreadPoolTaskExecutor">
+		<property name="waitForTasksToCompleteOnShutdown" value="true"/>
+		<property name="threadNamePrefix" value="AzureStoreSkuIntegrationTaskExecutorThread-${tenantId}-"/>
+		<property name="threadGroupName" value="AzureStoreSkuIntegrationTaskExecutorThread-${tenantId}"/>
+		<property name="corePoolSize" value="${azure.hotfolder.storage.polling.core-pool-size}"/>
+		<property name="maxPoolSize" value="${azure.hotfolder.storage.polling.max-pool-size}"/>
+		<property name="queueCapacity" value="-1"/>
+		<property name="keepAliveSeconds" value="60"/>
+		<property name="rejectedExecutionHandler">
+			<bean class="java.util.concurrent.ThreadPoolExecutor$DiscardPolicy"/>
+		</property>
+		<property name="role" value="integration"/>
+		<property name="autoStartup" value="false"/>
+		<property name="phase" value="10"/>
+		<property name="awaitTerminationSeconds" value="60"/>
+	</bean>
+
+
+	<bean id="SiteOneStoreSkuCloudHotFolderHeaderSetupTask" class="de.hybris.platform.acceleratorservices.dataimport.batch.task.HeaderSetupTask">
+		<property name="catalog" value="${cloud.hotfolder.default.mapping.header.catalog}"/>
+		<property name="net" value="${cloud.hotfolder.default.mapping.header.net}" />
+		<property name="storeBaseDirectory" value="#{azureHotfolderStoreSkuRemotePath}/processing" />
+	</bean>
+
+	<int:inbound-channel-adapter id="SiteOneStoreSkuAzureInboundChannelAdapter"
+		auto-startup="false"
+		role="${cloud.hotfolder.storage.services.role}"
+		phase="50"
+		ref="SiteOneStoreSkuAzureBlobSynchronizingMessageSource"
+		channel="hotfolderInboundFileHeaderEnricherChannel">
+		<int:poller fixed-rate="${azure.hotfolder.storage.polling.fixed.rate}"
+			task-executor="azureStoreSkuChannelAdapterTaskExecutor"
+			max-messages-per-poll="${azure.hotfolder.storage.polling.fetch.batch-size}">
+			<int:transactional synchronization-factory="SiteOneStoreSkuAzureSynchronizationFactory"
+				transaction-manager="azurePsuedoTxManager"/>
+		</int:poller>
+	</int:inbound-channel-adapter>
+
+	<int:transaction-synchronization-factory id="SiteOneStoreSkuAzureSynchronizationFactory">
+		<int:after-commit channel="SiteOneStoreSkuAzureArchiveOutboundChannelAdapter"/>
+		<int:after-rollback channel="SiteOneStoreSkuAzureErrorOutboundChannelAdapter"/>
+	</int:transaction-synchronization-factory>
+
+	<!-- StoreSku :: Azure Outbound Channel adapters for moving remote files into archive/error folders -->
+	<bean id="SiteOneStoreSkuAzureArchiveMessageHandler" parent="abstractAzureMoveMessageHandler">
+		<property name="remoteDirectory" value="#{azureHotfolderStoreSkuRemotePath}/archive"/>
+	</bean>
+
+	<bean id="SiteOneStoreSkuAzureErrorMessageHandler" parent="abstractAzureMoveMessageHandler">
+		<property name="remoteDirectory" value="#{azureHotfolderStoreSkuRemotePath}/error"/>
+	</bean>
+
+	<int:outbound-channel-adapter id="SiteOneStoreSkuAzureArchiveOutboundChannelAdapter"
+		ref="SiteOneStoreSkuAzureArchiveMessageHandler">
+	</int:outbound-channel-adapter>
+
+	<int:outbound-channel-adapter id="SiteOneStoreSkuAzureErrorOutboundChannelAdapter"
+		ref="SiteOneStoreSkuAzureErrorMessageHandler" >
+	</int:outbound-channel-adapter>
+
+
+	<!--Start-->
+	<file:inbound-channel-adapter id="azureLocalStoreSkuErrorInboundChannelAdapter"
+		directory="#{azureHotfolderStoreSkuLocalPath}/error"
+		filter="azureLocalStoreSkuErrorHotFolderFileFilter">
+		<int:poller fixed-rate="10000"/>
+	</file:inbound-channel-adapter>
+
+	<bean id="azureLocalStoreSkuErrorHotFolderFileFilter"
+		class="de.hybris.platform.cloud.commons.spring.integration.file.filters.ChainFileListFilter">
+		<constructor-arg name="fileFilters" ref="azureLocalStoreSkuErrorFolderFileListFilter"/>
+	</bean>
+
+	<util:list id="azureLocalStoreSkuErrorFolderFileListFilter">
+		<ref bean="azureLocalStoreSkuErrorRegexPatternFileListFilter"/>
+		<ref bean="azureFileSystemPersistentAcceptOnceListFilter"/>
+	</util:list>
+
+	<bean id="azureFileSystemPersistentAcceptOnceListFilter" class="org.springframework.integration.file.filters.FileSystemPersistentAcceptOnceFileListFilter">
+		<constructor-arg name="store" ref="hotfolderMetadataStore"/>
+		<constructor-arg name="prefix" value="${azure.hotfolder.storage.metadatastore.prefix}"/>
+	</bean>
+
+	<int:outbound-channel-adapter id="azureLocalStoreSkuErrorOutboundChannelAdapter"
+		channel="azureLocalStoreSkuErrorInboundChannelAdapter" ref="azureStoreSkuBlobMessageHandler"/>
+
+	<bean id="azureStoreSkuBlobMessageHandler" class="de.hybris.platform.cloud.azure.hotfolder.remote.outbound.AzureBlobMessageHandler">
+		<constructor-arg ref="azureBlobSessionFactory"/>
+		<property name="remoteDirectory" ref="azureStoreSkuHotfolderErrorRemotePath"/>
+		<property name="fileNameGenerator" ref="azureTimestampFileNameGenerator"/>
+		<property name="deleteSourceFiles" value="true"/>
+	</bean>
+
+	<bean id="azureStoreSkuHotfolderErrorRemotePath" class="java.lang.String">
+		<constructor-arg name="value"
+			value="#{azureHotfolderStoreSkuRemotePath}/error"/>
+	</bean>
+
+
+
+	<bean id="batchSiteOneStoreSkuStagedConverterMapping"
+		class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping"
+		p:mapping="siteoneskustoreassoc"
+		p:converter-ref="batchSiteOneStoreSkuStagedConverter" />
+
+	<bean id="batchSiteOneStoreSkuStagedConverter" class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>
+				$catalog=$CATALOG$
+				$productCV=catalogVersion(catalog(id[default=$catalog]),version[default='Staged'])[unique=true,default=$catalog:Staged]
+				#% impex.setLocale(Locale.ENGLISH);
+				UPDATE PointOfService;storeId[unique=true];division(uid)[unique=true];products(code,$productCV)
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>;{+0};{1};{2}</value>
+		</property>
+	</bean>
+
+
+	<bean id="batchSiteOneStoreSkuOnlineConverterMapping"
+		class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping"
+		p:mapping="siteoneskustoreassoc"
+		p:converter-ref="batchSiteOneStoreSkuOnlineConverter" />
+
+	<bean id="batchSiteOneStoreSkuOnlineConverter" class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>
+				$catalog=$CATALOG$
+				$productCV=catalogVersion(catalog(id[default=$catalog]),version[default='Online'])[unique=true,default=$catalog:Online]
+				#% impex.setLocale(Locale.ENGLISH);
+				UPDATE PointOfService;storeId[unique=true];division(uid)[unique=true];products(code,$productCV)
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>;{+0};{1};{2}</value>
+		</property>
+	</bean>
+
+</beans>
+		

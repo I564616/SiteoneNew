@@ -1,0 +1,35 @@
+$contentCatalog=siteoneContentCatalog
+$contentCatalogName=SiteOne Content Catalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$productCatalog=siteoneProductCatalog
+$productCatalogName=SiteOne Product Catalog
+$productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$picture=media(code, $contentCV);
+$image=image(code, $contentCV);
+$media=media(code, $contentCV);
+$page=page(uid, $contentCV);
+$contentPage=contentPage(uid, $contentCV);
+$product=product(code, $productCV)
+$category=category(code, $productCV)
+$siteResource=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/contentCatalogs/$contentCatalog
+$productResource=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/productCatalogs/$productCatalog
+$jarResourceCms=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/cockpits/cmscockpit
+$addonExtensionName=siteoneacceleratoraddon
+$medias=medias(code, $contentCV);
+$articleMedia=articleMedia(code, $contentCV);
+$mediaContainer=media(qualifier, $contentCV);
+$siteUid=siteone
+$lang=en
+
+
+
+INSERT_UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);label;defaultPage[default='true'];approvalStatus(code)[default='approved'];homepage[default='false'];navigationNodeList(uid, $contentCV)
+;;openLineofCredit;Line of Credit ;SiteOneContentPageTemplate;/openlineofcredit;;;;ContractorServicesNavNode
+;;greenTechServices;Green Tech Services;SiteOneContentPageTemplate;/greentech;;;;ContractorServicesNavNode
+;;partnerProgram;Partners Program;SiteOneContentPageTemplate;/partnersprogram;;;;ContractorServicesNavNode
+;;projectServices;Project Services;SiteOneContentPageTemplate;/projectservices;;;;ContractorServicesNavNode
+;;companyHistory;Company History;SiteOneContentPageTemplate;/companyhistory;;;;ContractorServicesNavNode
+;;irrigationDesign;Irrigation Design;SiteOneContentPageTemplate;/irrigationdesign;;;;ContractorServicesNavNode
+;;nurseryDirect;Nursery Direct;SiteOneContentPageTemplate;/nurserydirect;;;;ContractorServicesNavNode
+
+

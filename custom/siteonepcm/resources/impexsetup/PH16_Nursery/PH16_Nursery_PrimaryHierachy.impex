@@ -1,0 +1,38 @@
+$supercategories=supercategories( code, catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Staged']));;;;;;;;;
+$catalogVersion=catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Staged'])[unique=true,default='siteoneProductCatalog:Staged'];;;;;;;;;
+;;;;;;;;;
+INSERT_UPDATE Category;code[unique=true];name[lang=en];$supercategories;$catalogVersion;allowedPrincipals(uid)
+;PH1;Primary;;siteoneProductCatalog:Staged;admingroup
+;PH16;Nursery;PH1;siteoneProductCatalog:Staged;admingroup 
+;PH1611;Flowers, Plants & Shrubs;PH16;siteoneProductCatalog:Staged;admingroup 
+;PH1612;Holiday;PH16;siteoneProductCatalog:Staged;admingroup 
+;PH1613;Indoor Plants;PH16;siteoneProductCatalog:Staged;admingroup 
+;PH1614;Succulents;PH16;siteoneProductCatalog:Staged;admingroup 
+;PH1615;Trees;PH16;siteoneProductCatalog:Staged;admingroup 
+;PH1611110;Annuals;PH1611;siteoneProductCatalog:Staged;admingroup 
+;PH1611111;Ground Cover;PH1611;siteoneProductCatalog:Staged;admingroup 
+;PH1611112;Patio Plants;PH1611;siteoneProductCatalog:Staged;admingroup 
+;PH1611113;Perennials;PH1611;siteoneProductCatalog:Staged;admingroup 
+;PH1611114;Potted Fruit Plants;PH1611;siteoneProductCatalog:Staged;admingroup 
+;PH1611115;Potted Seasonal Color;PH1611;siteoneProductCatalog:Staged;admingroup 
+;PH1611116;Deciduous Shrubs;PH1611;siteoneProductCatalog:Staged;admingroup 
+;PH1611117;Evergreen Shrubs;PH1611;siteoneProductCatalog:Staged;admingroup 
+;PH1611118;Succulent Shrubs;PH1611;siteoneProductCatalog:Staged;admingroup 
+;PH1612110;Cut Trees;PH1612;siteoneProductCatalog:Staged;admingroup 
+;PH1612111;Holiday Accessories;PH1612;siteoneProductCatalog:Staged;admingroup 
+;PH1612112;Holiday Wreaths & Roping;PH1612;siteoneProductCatalog:Staged;admingroup 
+;PH1612113;Other Holiday Accessories;PH1612;siteoneProductCatalog:Staged;admingroup 
+;PH1613110;Floor Plants;PH1613;siteoneProductCatalog:Staged;admingroup 
+;PH1613111;Specimen Plants;PH1613;siteoneProductCatalog:Staged;admingroup 
+;PH1613112;Table Top Plants;PH1613;siteoneProductCatalog:Staged;admingroup 
+;PH1614110;Succulent Plants;PH1614;siteoneProductCatalog:Staged;admingroup 
+;PH1614111;Succulent Shrubs;PH1614;siteoneProductCatalog:Staged;admingroup 
+;PH1614112;Succulent Trees;PH1614;siteoneProductCatalog:Staged;admingroup 
+;PH1615110;Evergreen Trees;PH1615;siteoneProductCatalog:Staged;admingroup 
+;PH1615111;Fruit Trees;PH1615;siteoneProductCatalog:Staged;admingroup 
+;PH1615112;Ornamental Trees;PH1615;siteoneProductCatalog:Staged;admingroup 
+;PH1615113;Palm Trees;PH1615;siteoneProductCatalog:Staged;admingroup 
+;PH1615114;Shade Trees;PH1615;siteoneProductCatalog:Staged;admingroup 
+;PH1615115;Succulent Trees;PH1615;siteoneProductCatalog:Staged;admingroup 
+
+

@@ -1,0 +1,12 @@
+$searchIndexNamePrefix=siteone
+$solrEventSearchIndexedType=siteoneEventSearchType
+
+
+# Create the queries that will be used to extract event data for Solr
+INSERT_UPDATE SolrIndexerQuery;solrIndexedType(identifier)[unique=true];identifier[unique=true];type(code);injectCurrentDate[default=true];injectCurrentTime[default=true];injectLastIndexTime[default=true];query;user(uid)
+;$solrEventSearchIndexedType;$searchIndexNamePrefix-event-fullQuery;full;;;false;"SELECT {PK} FROM {SiteOneEvent} where {eventEndDate} >= CURDATE()";anonymous
+
+;$solrEventSearchIndexedType;$searchIndexNamePrefix-event-deleteQuery;delete;;;;"SELECT {PK} FROM {SiteOneEvent}";anonymous
+
+;$solrEventSearchIndexedType;$searchIndexNamePrefix-event-updateQuery;update;;;;"SELECT {PK} FROM {SiteOneEvent} where {eventEndDate} >= CURDATE()";anonymous
+

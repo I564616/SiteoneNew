@@ -1,0 +1,65 @@
+## messageSource=classpath:/siteonecore/messages/email-linkToPayEmailPayment_$lang.properties
+<table width="100%" cellpadding="0" cellspacing="0" border="0" align="center" bgcolor="#FFFFFF" style="max-width: 600px; min-width: 400px; font-size: 16px; font-family: Arial, Helvetica, sans-serif; color: #000000; border: 1px solid #999;">
+    <tbody style="padding:25px;" cellpadding="20" cellspacing="20">
+        <tr>
+            <td colspan="3" valign="left" style="padding: 15px;">
+                <a style="text-decoration:none;" href="${ctx.baseThemeUrl}">
+                    <img title="SiteoneLogo" src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/SiteoneLogo.jpg" alt="SiteoneLogo" />
+                </a>
+            </td>
+            <td colspan="3" valign="right" align="right" style="padding: 15px;">
+                <a style="text-decoration:none;" href="https://www.facebook.com/SiteOneLandscape/">
+                    <img src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/Print_facebook_color.png" alt="Facebook" title="Facebook" width="30" height="30" />
+                </a>
+                <a style="text-decoration:none;" href="https://www.instagram.com/siteonesupply/">
+                    <img src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/Print_instagram_color.png" alt="Instagram" title="Instagram" width="30" height="30" />
+                </a>
+                <a style="text-decoration:none;" href="https://x.com/SiteOneSupply">
+                    <img src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/Print_twitter_color.png" alt="X" title="X" width="30" height="30" />
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <th colspan="12" align="left" style="background-color: #f1f2f2; font-weight: bold; padding: 20px;font-size:16px;">
+                <p style="margin: 0; padding: 0px 0px 0px 4px;">${ctx.customerName},<br>
+                    <br>${ctx.messages.Thanks}
+                </p>
+            </th>
+        </tr>
+        <tr>
+            <td colspan="12" style="padding:25px 25px 0 25px; color: #5a5b5d; line-height: 35px;">${ctx.messages.Message}</td>
+        </tr>
+        <tr>
+            <td colspan="12" style="padding:10px 25px 25px 25px;">
+                <table width="100%" cellpadding="0" cellspacing="0" border="0" align="center" style="max-width: 548px; min-width: 400px; font-size: 16px; font-family: Arial, Helvetica, sans-serif;  line-height: 35px;">
+                    <tbody>
+                        <tr>
+                            <td colspan="3" style="font-weight:bold; line-height: 35px; width: 35%;">${ctx.messages.PaymentDate}</td>
+                            <td colspan="9" style="color: #5A5B5D; line-height: 35px;">${ctx.date}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" style="font-weight:bold; line-height: 35px; width: 35%;">${ctx.messages.PaymentAmount}</td>
+                            <td colspan="9" style="color: #5A5B5D; line-height: 35px;">$${ctx.tool.format('#,##0.00',$ctx.amountCharged)}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" style="font-weight:bold; line-height: 35px; width: 35%;">${ctx.messages.Last4ofCard}</td>
+                            <td colspan="9" style="color: #5A5B5D; line-height: 35px;">${ctx.last4Digits}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" style="font-weight:bold; line-height: 35px; width: 35%;">${ctx.messages.OrderNumber}</td>
+                            <td colspan="9" style="color: #5A5B5D; line-height: 35px;">${ctx.orderNumber}</td>
+                        </tr>
+                         <tr>
+                            <td colspan="3" style="font-weight:bold; line-height: 35px; width: 35%;">${ctx.messages.PONumber}</td>
+                            	#if(${ctx.poNumber})
+               			 			<td colspan="9" style="color: #5A5B5D; line-height: 35px;">${ctx.poNumber}</td>
+              					#else
+                 					<td colspan="9" style="color: #5A5B5D; line-height: 35px;">NA</td>
+              					#end
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+    </tbody>
+</table>

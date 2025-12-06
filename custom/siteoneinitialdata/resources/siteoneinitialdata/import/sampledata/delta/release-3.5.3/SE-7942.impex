@@ -1,0 +1,67 @@
+# -----------------------------------------------------------------------
+# [y] hybris Platform
+#
+# Copyright (c) 2017 SAP SE or an SAP affiliate company.  All rights reserved.
+#
+# This software is the confidential and proprietary information of SAP
+# ("Confidential Information"). You shall not disclose such Confidential
+# Information and shall use it only in accordance with the terms of the
+# license agreement you entered into with SAP.
+# -----------------------------------------------------------------------
+#
+# Import the Solr configuration for the SiteOne store
+#
+$facetSearchConfigName=siteoneIndex
+$solrIndexedType=siteoneProductType
+$lang=en
+
+INSERT_UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true];name[unique=true]              ;ftsPhraseQuery[default=true];ftsPhraseQueryBoost;ftsPhraseQuerySlop;ftsQuery[default=true];ftsQueryBoost;ftsFuzzyQuery[default=false];ftsFuzzyQueryBoost;ftsWildcardQuery[default=false];ftsWildcardQueryType(code)[default=POSTFIX];ftsWildcardQueryBoost;ftsWildcardQueryMinTermLength
+                                 ;$solrIndexedType                        ;Maintenance_item               ;                            ;5.2                ;0                 ;                      ;2.6          ;                            ;                  ;                               ;POSTFIX                                    ;                     ;0
+                                 ;$solrIndexedType                        ;Maintenance_type               ;                            ;1.8                ;0                 ;                      ;1            ;                            ;                  ;                               ;POSTFIX                                    ;                     ;0
+                                 ;$solrIndexedType                        ;Maintenance_series             ;                            ;1.8                ;0                 ;                      ;1            ;                            ;                  ;                               ;POSTFIX                                    ;                     ;0
+                                 ;$solrIndexedType                        ;irgItem                        ;                            ;2.8                ;0                 ;                      ;1.4          ;                            ;                  ;                               ;POSTFIX                                    ;                     ;0
+                                 ;$solrIndexedType                        ;irgType                        ;                            ;1                  ;0                 ;                      ;0.6          ;                            ;                  ;                               ;POSTFIX                                    ;                     ;0
+                                 ;$solrIndexedType                        ;irgSeries                      ;                            ;1                  ;0                 ;                      ;0.6          ;                            ;                  ;                               ;POSTFIX                                    ;                     ;0
+                                 ;$solrIndexedType                        ;lghtItem                       ;                            ;2.9                ;0                 ;                      ;1.45         ;                            ;                  ;                               ;POSTFIX                                    ;                     ;0
+                                 ;$solrIndexedType                        ;lghtType                       ;                            ;1                  ;0                 ;                      ;0.6          ;                            ;                  ;                               ;POSTFIX                                    ;                     ;0
+                                 ;$solrIndexedType                        ;lghtSeries                     ;                            ;1                  ;0                 ;                      ;0.6          ;                            ;                  ;                               ;POSTFIX                                    ;                     ;0
+                                 ;$solrIndexedType                        ;lndscpItem                     ;                            ;7                  ;0                 ;                      ;3.5          ;                            ;                  ;                               ;POSTFIX                                    ;                     ;0
+                                 ;$solrIndexedType                        ;lndscpType                     ;                            ;2                  ;0                 ;                      ;1            ;                            ;                  ;                               ;POSTFIX                                    ;                     ;0
+                                 ;$solrIndexedType                        ;lndscpSeries                   ;                            ;2                  ;0                 ;                      ;1            ;                            ;                  ;                               ;POSTFIX                                    ;                     ;0
+                                 ;$solrIndexedType                        ;hrdscpItem                     ;                            ;24                 ;0                 ;                      ;12           ;                            ;                  ;                               ;POSTFIX                                    ;                     ;0
+                                 ;$solrIndexedType                        ;hrdscpType                     ;                            ;4                  ;0                 ;                      ;2            ;                            ;                  ;                               ;POSTFIX                                    ;                     ;0
+                                 ;$solrIndexedType                        ;hrdscpSeries                   ;                            ;4                  ;0                 ;                      ;2            ;                            ;                  ;                               ;POSTFIX                                    ;                     ;0
+                                 ;$solrIndexedType                        ;nrsryType                      ;                            ;14                 ;0                 ;                      ;7            ;                            ;                  ;                               ;POSTFIX                                    ;                     ;0
+
+                                 ;$solrIndexedType                        ;soLowerCaseItemNumber          ;false                       ;                   ;                  ;                      ;0.5          ;                            ;                  ;true                           ;POSTFIX                                    ;0.3                  ;0
+                                 ;$solrIndexedType                        ;soLowerCaseProductBrandName    ;                            ;1                  ;                  ;                      ;0.5          ;                            ;                  ;                               ;POSTFIX                                    ;0                    ;
+                                 ;$solrIndexedType                        ;socode                         ;false                       ;                   ;                  ;                      ;0.5          ;                            ;                  ;true                           ;POSTFIX                                    ;0.3                  ;0
+                                 ;$solrIndexedType                        ;soproductShortDesc             ;                            ;0.6                ;10                ;                      ;0.3          ;                            ;                  ;                               ;POSTFIX                                    ;0                    ;
+                                 ;$solrIndexedType                        ;sokeywords                     ;                            ;1.4                ;                  ;                      ;0.7          ;                            ;                  ;true                           ;POSTFIX                                    ;0.3                  ;
+                                 ;$solrIndexedType                        ;sovariantsku                   ;false                       ;0                  ;                  ;                      ;0.5          ;                            ;                  ;true                           ;POSTFIX                                    ;0.3                  ;0
+
+                                 ;$solrIndexedType                        ;Maintenance_item_str           ;false                       ;3.5                ;0                 ;false                 ;2.5          ;                            ;                  ;                               ;POSTFIX                                    ;0.9                  ;0
+                                 ;$solrIndexedType                        ;irgItem_str                    ;false                       ;3.5                ;0                 ;false                 ;2.5          ;                            ;                  ;                               ;POSTFIX                                    ;0.9                  ;0
+                                 ;$solrIndexedType                        ;lghtItem_str                   ;false                       ;3.5                ;0                 ;false                 ;2.5          ;                            ;                  ;                               ;POSTFIX                                    ;0.9                  ;0
+                                 ;$solrIndexedType                        ;lndscpItem_str                 ;false                       ;3.5                ;0                 ;false                 ;2.5          ;                            ;                  ;                               ;POSTFIX                                    ;0.9                  ;0
+                                 ;$solrIndexedType                        ;hrdscpItem_str                 ;false                       ;3.5                ;0                 ;false                 ;2.5          ;                            ;                  ;                               ;POSTFIX                                    ;0.9                  ;0
+
+# Synonyms (Must use INSERT_UPDATE here)
+INSERT_UPDATE SolrSynonymConfig;facetSearchConfig(name)[unique=true,default=$facetSearchConfigName];language(isocode)[unique=true,default=$lang];synonymFrom[unique=true];synonymTo
+                               ;;;"salt spreader";"snow ice spreader"
+                               ;;;"landscape fabric";"filter fabric"
+                               ;;;"artificial turf";"synthetic turf"
+                               ;;;"bender board";"bend-a-board"
+                               ;;;"winter spreader";"snow ice spreader"
+                               ;;;"uplight";"up light"
+                               ;;;"river rock";"riverbed rock"
+                               ;;;"garden hose";"watering hose"
+                               ;;;"pitchfork";"manure fork"
+                               ;;;"pitch fork";"manure fork"
+                               ;;;"wheel barrow";"wheelbarrow"
+                               ;;;"grass";"bermuda,bermudagrass,zoysia,ryegrass,zoysiagrass,fescue,bluegrass,st. augustine,centipede,rye"
+                               ;;;"wildflower plants";"wildflower"
+                               ;;;"pro trade";"pro-trade"
+                               ;;;"protrade";"pro-trade"
+                               ;;;"miloganite";"milorganite"
+                               ;;;"dirt";"soil"

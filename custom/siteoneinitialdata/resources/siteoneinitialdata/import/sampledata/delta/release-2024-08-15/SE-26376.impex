@@ -1,0 +1,20 @@
+$contentCatalog=siteoneContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$lang=en
+
+
+INSERT_UPDATE CMSParagraphComponent;$contentCV[unique=true];uid[unique=true];name;content;&componentRef
+;;storeTextContainer;Store Text Container;"<div class=""bottom-content-store-details""><H4 class=""contentHeadline"">BULK MULCH</H4><br>At SiteOne®, our diverse selection of bulk mulch—ranging from organic hardwood to cedar and dyed mulches—is designed to enhance the soil health and aesthetic appeal of your client's landscape. Rely on us for expert advice and efficient delivery options, ensuring you have the mulch you need right at your jobsite.<br><br><H4 class=""contentHeadline"">TOPSOIL</H4><br>Shop bulk topsoil, featuring everything from rich organic blends to custom soil mixes designed to optimize plant health and soil structure. Depend on our expert insights and swift delivery services to get the right topsoil to your jobsite, whenever you need it.</div>";storeTextContainer
+
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='SiteOneStoreDetailsPageTemplate'];validComponentTypes(code);compTypeGroup(code)
+;storeTextContainer;;;wide
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef)
+;;storeTextContainerSlot-siteonestoredetailsPage;Store Text Container;true;storeTextContainer
+
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='SiteOneStoreDetailsPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;storeTextContainer-siteonestoredetailsPage;storeTextContainer;;storeTextContainerSlot-siteonestoredetailsPage;true
+
+
+

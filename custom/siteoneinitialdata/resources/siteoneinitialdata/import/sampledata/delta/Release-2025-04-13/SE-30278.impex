@@ -1,0 +1,50 @@
+### Staged Content- To add alphabetical nodes
+
+### Shop By industry ###
+$contentCatalog=siteoneContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$productCatalog=siteoneProductCatalog
+$productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$supercategories=supercategories( code, catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Staged']));;;;;;;;;
+
+INSERT_UPDATE GlobalProductNavigationNode;$contentCV[unique=true];uid[unique=true];name;parent(uid, $contentCV);category(code, $productCV);&nodeRef;sequenceNumber;url
+;;ShopByIndustryNavNode;ShopByIndustryNavNode;CategoriesNavNode;SH18;ShopByIndustryNavNode;9;
+;;GolfNavNode;GolfNavNode;ShopByIndustryNavNode;SH1811;GolfNavNode;3;/en/golfsales
+;;SportsFieldNavNode;SportsFieldNavNode;ShopByIndustryNavNode;SH1812;SportsFieldNavNode;6;/en/sportsturf
+;;PestManagementNavNode;PestManagementNavNode;ShopByIndustryNavNode;SH1813;PestManagementNavNode;4;/en/pestmanagement
+;;SnowandIceRemovalNavNode;SnowandIceRemovalNavNode;ShopByIndustryNavNode;SH1814;SnowandIceRemovalNavNode;5;/en/snow-equipment-and-parts
+;;BulkProductsNavNode;BulkProductsNavNode;ShopByIndustryNavNode;SH1815;BulkProductsNavNode;1;/en/bulk
+;;CommIrrigationNavNode;CommIrrigationNavNode;ShopByIndustryNavNode;SH1816;CommIrrigationNavNode;2;https://greentech.siteone.com/
+
+INSERT_UPDATE CategoryComponent;$contentCV[unique=true];uid[unique=true];category(code,$productCV);media(code, $contentCV);&componentRef;name
+;;categoryComponent8;SH18;;categoryComponent8;Category component 8
+
+UPDATE VerticalBarComponent;$contentCV[unique=true];uid[unique=true];name;globalProductNodes(uid,$contentCV);&componentRef;;;
+;;VerticalBarComponent;All Products;AgronomicMaintenanceNavNode,Hardscapes&OutdoorLivingNavNode,IrrigationNavNode,LandscapeSupplyNavNode,LightingNavNode,NurseryNavNode,ToolsEquipment&SafetyNavNode,ShopByIndustryNavNode;VerticalBarComponent;;;
+
+############################################################3
+## Onine Cotemt - To add alphabetical nodes
+### Shop By industry ###
+
+$contentCatalog=siteoneContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Online])[default=$contentCatalog:Online]
+$productCatalog=siteoneProductCatalog
+$productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Online'])[unique=true,default=$productCatalog:Online]
+$supercategories=supercategories( code, catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Online']));;;;;;;;;
+
+
+INSERT_UPDATE GlobalProductNavigationNode;$contentCV[unique=true];uid[unique=true];name;parent(uid, $contentCV);category(code, $productCV);&nodeRef;sequenceNumber;url
+;;ShopByIndustryNavNode;ShopByIndustryNavNode;CategoriesNavNode;SH18;ShopByIndustryNavNode;9;
+;;GolfNavNode;GolfNavNode;ShopByIndustryNavNode;SH1811;GolfNavNode;3;/en/golfsales
+;;SportsFieldNavNode;SportsFieldNavNode;ShopByIndustryNavNode;SH1812;SportsFieldNavNode;6;/en/sportsturf
+;;PestManagementNavNode;PestManagementNavNode;ShopByIndustryNavNode;SH1813;PestManagementNavNode;4;/en/pestmanagement
+;;SnowandIceRemovalNavNode;SnowandIceRemovalNavNode;ShopByIndustryNavNode;SH1814;SnowandIceRemovalNavNode;5;/en/snow-equipment-and-parts
+;;BulkProductsNavNode;BulkProductsNavNode;ShopByIndustryNavNode;SH1815;BulkProductsNavNode;1;/en/bulk
+;;CommIrrigationNavNode;CommIrrigationNavNode;ShopByIndustryNavNode;SH1816;CommIrrigationNavNode;2;https://greentech.siteone.com/
+
+
+INSERT_UPDATE CategoryComponent;$contentCV[unique=true];uid[unique=true];category(code,$productCV);media(code, $contentCV);&componentRef;name
+;;categoryComponent8;SH18;;categoryComponent8;Category component 8
+
+UPDATE VerticalBarComponent;$contentCV[unique=true];uid[unique=true];name;globalProductNodes(uid,$contentCV);&componentRef;;;
+;;VerticalBarComponent;All Products;AgronomicMaintenanceNavNode,Hardscapes&OutdoorLivingNavNode,IrrigationNavNode,LandscapeSupplyNavNode,LightingNavNode,NurseryNavNode,ToolsEquipment&SafetyNavNode,ShopByIndustryNavNode;VerticalBarComponent;;;

@@ -1,0 +1,42 @@
+# -----------------------------------------------------------------------
+# [y] hybris Platform
+#
+# Copyright (c) 2017 SAP SE or an SAP affiliate company.  All rights reserved.
+#
+# This software is the confidential and proprietary information of SAP
+# ("Confidential Information"). You shall not disclose such Confidential
+# Information and shall use it only in accordance with the terms of the
+# license agreement you entered into with SAP.
+# -----------------------------------------------------------------------
+#PRICES
+# ImpEx for Importing SiteOne store Prices
+#% impex.setLocale( Locale.GERMAN ) ;
+
+$productCatalog=siteoneProductCatalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default='$productCatalog:Staged']
+$prices=Europe1prices[translator=de.hybris.platform.europe1.jalo.impex.Europe1PricesTranslator]
+$taxGroup=Europe1PriceFactory_PTG(code)[default=us-sales-tax-full]
+
+# Set product approval status to Approved only for those products that have prices.
+$approved=approvalstatus(code)[default='approved']
+
+UPDATE Product                      ; code[unique=true] ; $prices             ; $approved ; $catalogVersion ; $taxGroup
+
+
+UPDATE Product                      ; code[unique=true] ; $prices             ; $approved ; $catalogVersion ; $taxGroup
+#                                    ; 26002000          ; 1 pieces = 85 USD N
+#                                    ; 26002000_1        ; 1 pieces = 85 USD N
+#                                    ; 26002000_2        ; 1 pieces = 85 USD N
+#                                    ; 26002000_3        ; 1 pieces = 85 USD N
+#                                    ; 26002000_4        ; 1 pieces = 85 USD N
+#                                    ; 26002000_5        ; 1 pieces = 85 USD N
+#                                    ; 26002000_6        ; 1 pieces = 85 USD N
+#                                    ; 26002000_7        ; 1 pieces = 85 USD N
+#                                    ; 26002000_8        ; 1 pieces = 85 USD N
+#                                    ; 26002000_9        ; 1 pieces = 85 USD N
+#                                    ; 26002000_10       ; 1 pieces = 97 USD N
+#                                    ; 26002000_11       ; 1 pieces = 97 USD N
+#                                    ; 26002000_12       ; 1 pieces = 97 USD N
+#                                    ; 26002000_13       ; 1 pieces = 97 USD N
+#                                    ; 26002000_14       ; 1 pieces = 97 USD N
+#

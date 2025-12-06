@@ -1,0 +1,34 @@
+##### For updating order confirmation email template 
+
+# Import config properties into impex macros for modulegen
+UPDATE GenericItem[processor=de.hybris.platform.commerceservices.impex.impl.ConfigPropertyImportProcessor];pk[unique=true]
+$emailResource=$config-emailResourceValue
+$emailPackageName=$config-emailContextPackageName
+
+# Language
+$lang=en
+
+UPDATE RendererTemplate;code[unique=true];description[lang=$lang];templateScript[lang=$lang,translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+;siteone_Email_CCPA_Customer_Body;"CCPA Customer Template";$emailResource/email-ccpaCustomerEmailBody.vm
+;siteone_Email_CCPA_Body;"CCPA Template";$emailResource/email-ccpaEmailBody.vm
+;siteone_Email_Home_Owner_Body;"Home Owner body Template";$emailResource/email-homeOwnerEmailBody.vm
+;Customer_Email_Change_New_Body;"Customer Email change Email Body";$emailResource/email-customerEmailChangeNewBody.vm
+;Customer_Email_Change_Old_Body;"Customer Email change Email Body";$emailResource/email-customerEmailChangeOldBody.vm
+;powertools_Email_Delivery_Sent_Body;"Delivery Sent Email Body";$emailResource/email-deliverySentBody.vm
+;siteone_Email_Request_Account_Customer_Body;"Request Account Customer Template";$emailResource/email-requestAccountCustomerEmailBody.vm
+;siteone_Email_Request_Account_Body;"Request Account Template";$emailResource/email-requestAccountEmailBody.vm
+;SiteOne_Email_UnlockUser_Body;"Unlock User Template";$emailResource/email-unlockUserBody.vm
+
+# Language
+$lang=es
+
+UPDATE RendererTemplate;code[unique=true];description[lang=$lang];templateScript[lang=$lang,translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+;siteone_Email_CCPA_Customer_Body;"CCPA Customer Template";$emailResource/email-ccpaCustomerEmailBody.vm
+;siteone_Email_CCPA_Body;"CCPA Template";$emailResource/email-ccpaEmailBody.vm
+;siteone_Email_Home_Owner_Body;"Home Owner body Template";$emailResource/email-homeOwnerEmailBody.vm
+;Customer_Email_Change_New_Body;"Customer Email change Email Body";$emailResource/email-customerEmailChangeNewBody.vm
+;Customer_Email_Change_Old_Body;"Customer Email change Email Body";$emailResource/email-customerEmailChangeOldBody.vm
+;powertools_Email_Delivery_Sent_Body;"Delivery Sent Email Body";$emailResource/email-deliverySentBody.vm
+;siteone_Email_Request_Account_Customer_Body;"Request Account Customer Template";$emailResource/email-requestAccountCustomerEmailBody.vm
+;siteone_Email_Request_Account_Body;"Request Account Template";$emailResource/email-requestAccountEmailBody.vm
+;SiteOne_Email_UnlockUser_Body;"Unlock User Template";$emailResource/email-unlockUserBody.vm

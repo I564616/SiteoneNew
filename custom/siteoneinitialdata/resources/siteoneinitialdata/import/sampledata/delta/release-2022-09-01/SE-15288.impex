@@ -1,0 +1,19 @@
+$contentCatalog=siteoneContentCatalog
+$contentCatalogName=SiteOne Content Catalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+
+$siteResource=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/contentCatalogs/$contentCatalog
+$lang=en
+
+
+INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];mime;realfilename;@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator][forceWrite=true];folder(qualifier)[default='images']
+;;StoreSpecialty_Golf;text/png;StoreSpecialty_Golf.png;$siteResource/images/banners/site/store-specialty/StoreSpecialty_Golf.png
+;;StoreSpecialty_ToolRental;text/png;StoreSpecialty_ToolRental.png;$siteResource/images/banners/site/store-specialty/StoreSpecialty_ToolRental.png
+
+INSERT_UPDATE StoreLocatorFeature;code[unique=true];description[lang=en];image(code, $contentCV)
+;Tool Rental;SiteOne rental locations carry a wide selection of reliable, professional-grade tools to help you get the job done. Our rental inventory includes compactors, table saws, wet saws, Ditch Witch equipment, sod cutters, dump trailers, mixers, and more. Our tools are professionally maintained, serviced, and inspected to ensure maximum uptime and trouble-free performance.;StoreSpecialty_ToolRental
+;Golf Course Maintenance;The SiteOne Golf team knows your unique challenges, putting your course first while drawing on decades of golf industry experience.  We carry professional-grade turf maintenance and landscape supplies, nursery items, tools, irrigation products, lighting, outdoor living & hardscapes materials, equipment, accessories, and more. Count on SiteOne to have the products and expertise to help you take your course to the next level.;StoreSpecialty_Golf
+
+INSERT_UPDATE StoreLocatorFeature;code[unique=true];name[lang=es];description[lang=es]
+;Golf Course Maintenance;Mantenimiento de campos de golf;El equipo de golf de SiteOne sabe los desafíos a los que te enfrentas, poniendo tu campo de golf primero y aprovechando décadas de experiencia en la industria de golf. Tenemos suministros profesionales para mantenimiento de césped y jardinería, productos de vivero, herramientas, productos de irrigación, alumbrado, muebles para exteriores, materiales para superficies duras, equipamiento, accesorios y más. Cuenta con SiteOne para tener los productos y la experiencia para ayudarte a llevar tu campo de golf al siguiente nivel.
+;Tool Rental;Renta de herramientas y equipo;Las sucursales de SiteOne, donde puedes rentar, tienen una gran selección de herramientas profesionales que te ayudarán a hacer el trabajo. Nuestro inventario para rentar incluye compactadores, sierras de mesa, sierras para trabajo húmedo, equipamiento Ditch Witch, cortadoras de césped, remolques y mezcladores. Nuestras herramientas tienen mantenimiento, servicio e inspecciones profesionales para asegurar su máximo desempeño sin complicaciones.

@@ -1,0 +1,40 @@
+$contentCatalog=siteoneContentCatalog
+$contentCatalogName=SiteOne Content Catalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$productCatalog=siteoneProductCatalog
+$productCatalogName=SiteOne Product Catalog
+$productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$picture=media(code, $contentCV);
+INSERT_UPDATE HomePageToolsComponent;$contentCV[unique=true];uid[unique=true];name;urlLink;title[lang=en];title[lang=es];description[lang=en];description[lang=es];buttonName[lang=en];buttonName[lang=es];$picture[lang=en];$picture[lang=es]
+;;EventsComponent;Events Component;/events;Save Now on Pro-Trade Lighting;Ahorre ahora en iluminación profesional;America's best selling line of outdoor lighting;La línea de iluminación exterior más vendida de Estados Unidos;"Learn more &#8594;";"Aprende más &#8594;";EventsComponent1:siteoneContentCatalog:Staged
+;;EventsComponent;Events Component;/events;Save Now on Pro-Trade Lighting;Ahorre ahora en iluminación profesional;America's best selling line of outdoor lighting;La línea de iluminación exterior más vendida de Estados Unidos;"Learn more &#8594;";Aprende más →;EventsComponent1:siteoneContentCatalog:Online
+;;LearnComponent;Learn Component;/articles;Hunter HC Series Wifi Controller;Controlador Wifi Hunter HC Series;Professional-grade Wifi controllers with hydrawise;Controladores Wifi de nivel profesional con Hydrawise;"Learn more &#8594;";"Aprende más &#8594;";LearnComponent1:siteoneContentCatalog:Staged
+;;LearnComponent;Learn Component;/articles;Hunter HC Series Wifi Controller;Controlador Wifi Hunter HC Series;Professional-grade Wifi controllers with hydrawise;Controladores Wifi de nivel profesional con Hydrawise;"Learn more &#8594;";Aprende más →;LearnComponent1:siteoneContentCatalog:Online
+;;ToolsComponent;Manage Account Component;/login?icid=home-trio1;Manage Your SiteOne Account Online;Gestiona Tu Cuenta de SiteOne En Línea;Access order history, past purchases, and more;Accede a tu historial de órdenes, últimas compras y más;"Learn more &#8594;";"Conoce más &#8594;";Account Sign In Trio:siteoneContentCatalog:Staged;Account Sign In Trio:siteoneContentCatalog:Online
+;;ToolsComponent;Manage Account Component;/login?icid=home-trio1;Manage Your SiteOne Account Online;Gestiona Tu Cuenta de SiteOne En Línea;Access order history, past purchases, and more;Accede a tu historial de órdenes, últimas compras y más;"Learn more &#8594;";"Conoce más &#8594;";Account Sign In Trio:siteoneContentCatalog:Online;Account Sign In Trio:siteoneContentCatalog:Online
+;;comp_00000VN3;HomePage Slot1 Component;/agronomic-maintenance-fertility-nutrition/c/sh1315110?q=%3Arelevance%3AsoproductBrandNameFacet%3ALESCO&searchtype=product&text=&viewtype=All&icid=home-main1-lesco_fertilizer;;;;;;;ToolsComponent1:siteoneContentCatalog:Staged
+;;comp_00000VN3;HomePage Slot1 Component;/agronomic-maintenance-fertility-nutrition/c/sh1315110?q=%3Arelevance%3AsoproductBrandNameFacet%3ALESCO&searchtype=product&text=&viewtype=All&icid=home-main1-lesco_fertilizer;;;;;;;ToolsComponent1:siteoneContentCatalog:Online
+;;comp_00000VN4;Home Slot2 Component;/request-account/form?icid=home-main2-create_online_account;Request an Online Account;Solicita una Cuenta en Línea;Order online anytime, day or night;Pide en línea cuando quieras, de día o de noche;"Learn more &#8594;";"Conoce más &#8594;";HomeSlot2 Component:siteoneContentCatalog:Staged
+;;comp_00000VN4;Home Slot2 Component;/request-account/form?icid=home-main2-create_online_account;Request an Online Account;Solicita una Cuenta en Línea;Order online anytime, day or night;Pide en línea cuando quieras, de día o de noche;"Learn more &#8594;";"Conoce más &#8594;";HomeSlot2 Component:siteoneContentCatalog:Online
+;;comp_00000VN5;HomePage Slot3 Component;/eop-protrade?icid=home-main3-eop-protrade;Pros Don't Procrastinate;;Take advantage of incredible savings and incentives;;"Learn more &#8594;";"Aprende más &#8594;";eop-banner3:siteoneContentCatalog:Staged
+;;comp_00000VN5;HomePage Slot3 Component;/eop-protrade?icid=home-main3-eop-protrade;Pros Don't Procrastinate;;Take advantage of incredible savings and incentives;;"Learn more &#8594;";"Aprende más &#8594;";eop-banner3:siteoneContentCatalog:Online
+;;comp_00000ZJD;HomePage EOP Component;/eop?icid=home-main3-eop;Pros Don't Procrastinate;Los Pros No dejan Cosas Para Luego;Take advantage of incredible savings and incentives;Aprovecha ahorros e incentivos increíbles;"Learn more &#8594;";"Conoce más &#8594;";eop-banner3:siteoneContentCatalog:Staged
+;;comp_00000ZJD;HomePage EOP Component;/eop?icid=home-main3-eop;Pros Don't Procrastinate;Los Pros No dejan Cosas Para Luego;Take advantage of incredible savings and incentives;Aprovecha ahorros e incentivos increíbles;"Learn more &#8594;";"Conoce más &#8594;";eop-banner3:siteoneContentCatalog:Online
+
+INSERT_UPDATE HomePagePromoBannerComponent;$contentCV[unique=true];uid[unique=true];name;headline[lang=en];headline[lang=es];$picture[lang=en];$picture[lang=es];promotionalText;subHeadText;buttonURL;buttonLabel
+;;SiteOneHomepageMobilePromoComp;Store Homepage Mobile Promo Component;;;Promotion-SpringBulbs-Mobile.jpg:siteoneContentCatalog:Staged;Promotion-SpringBulbs-Mobile.jpg:siteoneContentCatalog:Staged;;;;
+;;SiteOneHomepageMobilePromoComp;Store Homepage Mobile Promo Component;;;Promotion-SpringBulbs-Mobile.jpg:siteoneContentCatalog:Online;Promotion-SpringBulbs-Mobile.jpg:siteoneContentCatalog:Online;;;;
+;;SiteOneHomepagePromoComp1;Store Homepage Promo1 Component;;;Promotion-SpringBulbs-Desktop.jpg:siteoneContentCatalog:Staged;Promotion-SpringBulbs-Desktop.jpg:siteoneContentCatalog:Staged;;;;
+;;SiteOneHomepagePromoComp1;Store Homepage Promo1 Component;;;Promotion-SpringBulbs-Desktop.jpg:siteoneContentCatalog:Online;Promotion-SpringBulbs-Desktop.jpg:siteoneContentCatalog:Online;;;;
+
+
+INSERT_UPDATE GlobalMessageCMSComponent;$contentCV[unique=true];uid[unique=true];name;text;content;video
+;;GlobalMessageComponent;Global Message Component;;"Need help logging in or redeeming Partners Points? Get some help <a href=""/login-help?icid=ribbon"">here</a>.";
+;;GlobalMessageComponent;Global Message Component;;"Need help logging in or redeeming Partners Points? Get some help <a href=""/login-help?icid=ribbon"">here</a>.";
+;;comp_000000RT;GlobalMessageCMSComponent;;;
+;;comp_000000RT;GlobalMessageCMSComponent;;;
+;;comp_00000X6V;Upgrade Message;;"We've made some updates to SiteOne.com. <a href=""/updates?icid=ribbon"">Click here to learn more.</a>";
+;;comp_00000X6V;Upgrade Message;;"We've made some updates to SiteOne.com. <a href=""/updates?icid=ribbon"">Click here to learn more.</a>";
+;;comp_00000ZJ8;California Power Outage;;"Branches in California may be closed due to power outages. <a href=""mailto:customersupport@siteone.com"">Email Customer Support</a> for help.";
+;;comp_00000ZJ8;California Power Outage;;"See what's new on SiteOne.com.. <a href=""/updates?icid=ribbon"">Click here to learn more</a>.";
+

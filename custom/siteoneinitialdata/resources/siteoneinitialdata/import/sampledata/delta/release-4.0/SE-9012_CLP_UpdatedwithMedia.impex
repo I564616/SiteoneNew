@@ -1,0 +1,244 @@
+$contentCatalog=siteoneContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$productCatalog=siteoneProductCatalog
+$productCatalogName=SiteOne Product Catalog
+$productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Online'])[unique=true,default=$productCatalog:Online]
+# Import modulegen config properties into impex macros
+UPDATE GenericItem[processor=de.hybris.platform.commerceservices.impex.impl.ConfigPropertyImportProcessor];pk[unique=true]
+$jarResourceCms=$config-jarResourceCmsValue
+
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='CategoryLandingPageTemplate'];validComponentTypes(code);compTypeGroup(code)
+;SectionS1;;CategoryLandingPageRotatingBannerComponent,SiteOneHomePageMobileBrandBannerComponent;
+;SectionS2;;CategoryLandingPageRotatingBannerComponent,SiteOneHomePageMobileBrandBannerComponent;
+;SectionB;;SiteOneFeatureProductComponent
+;SectionC;;SiteOneCategoryPromotionBannerComponent;
+;SectionC1;;SiteOneCategoryPromotionBannerComponent;
+;SectionD1;;HomePageToolsComponent;
+;SectionD2;;HomePageToolsComponent;
+;SectionD3;;HomePageToolsComponent;
+;SectionE;;SiteOneBottomBannerListComponent
+
+$contentCatalog=siteoneContentCatalog
+$contentCatalogName=SiteOne Content Catalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$productCatalog=siteoneProductCatalog
+$productCatalogName=SiteOne Product Catalog
+$productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$picture=media(code, $contentCV);
+$image=image(code, $contentCV);
+$media=media(code, $contentCV);
+$page=page(uid, $contentCV);
+$contentPage=contentPage(uid, $contentCV);
+$product=product(code, $productCV)
+$category=category(code, $productCV)
+$siteResource=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/contentCatalogs/$contentCatalog
+$productResource=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/productCatalogs/$productCatalog
+$jarResourceCms=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/cockpits/cmscockpit
+$addonExtensionName=siteoneacceleratoraddon
+$medias=medias(code, $contentCV);
+$articleMedia=articleMedia(code, $contentCV);
+$mediaContainer=media(qualifier, $contentCV);
+$siteUid=siteone
+$lang=en
+
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef)
+;;SectionS1Slot-lightingCategoryLandingPage;SectionS1 Slot for CategoryLandingPage;true;siteoneLightingCategoryCarouselComponent,SiteOneCLPDesktopBrandBannerComponent
+;;SectionS2Slot-lightingCategoryLandingPage;SectionS2 Slot for CategoryLandingPage;true;siteoneMobileLightingCategoryCarouselComponent,SiteOneCLPMobileBrandBannerComponent
+;;SectionESlot-lightingCategoryLandingPage;Bottom Banner Title Component Slot;true;SiteOneCLPBottomBannerListComponent
+
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='lightingCategoryLandingPage'];contentSlot(uid,$contentCV)[unique=true]
+;;SectionS1-lightingCategoryLandingPage;SectionS1;;SectionS1Slot-lightingCategoryLandingPage
+;;SectionS2-lightingCategoryLandingPage;SectionS2;;SectionS2Slot-lightingCategoryLandingPage
+;;SectionE-lightingCategoryLandingPage;SectionE;;SectionESlot-lightingCategoryLandingPage
+
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef)
+;;SectionS1Slot-LandscapeSupplyCategoryLandingPage;SectionS1 Slot for CategoryLandingPage;true;siteoneLandscapeSupplyCategoryCarouselComponent,SiteOneCLPDesktopBrandBannerComponent
+;;SectionS2Slot-LandscapeSupplyCategoryLandingPage;SectionS2 Slot for CategoryLandingPage;true;siteoneMobileLandscapeSupplyCategoryCarouselComponent,SiteOneCLPMobileBrandBannerComponent
+;;SectionESlot-LandscapeSupplyCategoryLandingPage;Bottom Banner Title Component Slot;true;SiteOneCLPBottomBannerListComponent1
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='LandscapeSupplyCategoryLandingPage'];contentSlot(uid,$contentCV)[unique=true]
+;;SectionS1-LandscapeSupplyCategoryLandingPage;SectionS1;;SectionS1Slot-LandscapeSupplyCategoryLandingPage
+;;SectionS2-LandscapeSupplyCategoryLandingPage;SectionS2;;SectionS2Slot-LandscapeSupplyCategoryLandingPage
+;;SectionE-LandscapeSupplyCategoryLandingPage;SectionE;;SectionESlot-LandscapeSupplyCategoryLandingPage
+
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef)
+;;SectionS1Slot-AgronomicMaintenanceCategoryLandingPage;SectionS1 Slot for CategoryLandingPage;true;siteoneAgronomicMaintenanceCategoryCarouselComponent,SiteOneCLPDesktopBrandBannerComponent
+;;SectionS2Slot-AgronomicMaintenanceCategoryLandingPage;SectionS2 Slot for CategoryLandingPage;true;siteoneMobileAgronomicMaintenanceCategoryCarouselComponent,SiteOneCLPMobileBrandBannerComponent
+;;SectionESlot-AgronomicMaintenanceCategoryLandingPage;Bottom Banner Title Component Slot;true;SiteOneCLPBottomBannerListComponent2
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='AgronomicMaintenanceCategoryLandingPage'];contentSlot(uid,$contentCV)[unique=true]
+;;SectionS1-AgronomicMaintenanceCategoryLandingPage;SectionS1;;SectionS1Slot-AgronomicMaintenanceCategoryLandingPage
+;;SectionS2-AgronomicMaintenanceCategoryLandingPage;SectionS2;;SectionS2Slot-AgronomicMaintenanceCategoryLandingPage
+;;SectionE-AgronomicMaintenanceCategoryLandingPage;SectionE;;SectionESlot-AgronomicMaintenanceCategoryLandingPage
+
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef)
+;;SectionS1Slot-IrrigationCategoryLandingPage;SectionS1 Slot for CategoryLandingPage;true;siteoneIrrigationCategoryCarouselComponent,SiteOneCLPDesktopBrandBannerComponent
+;;SectionS2Slot-IrrigationCategoryLandingPage;SectionS2 Slot for CategoryLandingPage;true;siteoneMobileIrrigationCategoryCarouselComponent,SiteOneCLPMobileBrandBannerComponent
+;;SectionESlot-IrrigationCategoryLandingPage;Bottom Banner Title Component Slot;true;SiteOneCLPBottomBannerListComponent3
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='IrrigationCategoryLandingPage'];contentSlot(uid,$contentCV)[unique=true]
+;;SectionS1-IrrigationCategoryLandingPage;SectionS1;;SectionS1Slot-IrrigationCategoryLandingPage
+;;SectionS2-IrrigationCategoryLandingPage;SectionS2;;SectionS2Slot-IrrigationCategoryLandingPage
+;;SectionE-IrrigationCategoryLandingPage;SectionE;;SectionESlot-IrrigationCategoryLandingPage
+
+
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef)
+;;SectionS1Slot-NurseryCategoryLandingPage;SectionS1 Slot for CategoryLandingPage;true;siteoneNurseryCategoryCarouselComponent,SiteOneCLPDesktopBrandBannerComponent
+;;SectionS2Slot-NurseryCategoryLandingPage;SectionS2 Slot for CategoryLandingPage;true;siteoneMobileNurseryCategoryCarouselComponent,SiteOneCLPMobileBrandBannerComponent
+;;SectionESlot-NurseryCategoryLandingPage;Bottom Banner Title Component Slot;true;SiteOneCLPBottomBannerListComponent4
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='NurseryCategoryLandingPage'];contentSlot(uid,$contentCV)[unique=true]
+;;SectionS1-NurseryCategoryLandingPage;SectionS1;;SectionS1Slot-NurseryCategoryLandingPage
+;;SectionS2-NurseryCategoryLandingPage;SectionS2;;SectionS2Slot-NurseryCategoryLandingPage
+;;SectionE-NurseryCategoryLandingPage;SectionE;;SectionESlot-NurseryCategoryLandingPage
+
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef)
+;;SectionS1Slot-ToolsEquipment&SafetyCategoryLandingPage;SectionS1 Slot for CategoryLandingPage;true;siteoneToolsEquipmentCategoryCarouselComponent,SiteOneCLPDesktopBrandBannerComponent
+;;SectionS2Slot-ToolsEquipment&SafetyCategoryLandingPage;SectionS2 Slot for CategoryLandingPage;true;siteoneMobileToolsEquipmentCategoryCarouselComponent,SiteOneCLPMobileBrandBannerComponent
+;;SectionESlot-ToolsEquipment&SafetyCategoryLandingPage;Bottom Banner Title Component Slot;true;SiteOneCLPBottomBannerListComponent5
+	
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='ToolsEquipment&SafetyCategoryLandingPage'];contentSlot(uid,$contentCV)[unique=true]
+;;SectionS1-ToolsEquipment&SafetyCategoryLandingPage;SectionS1;;SectionS1Slot-ToolsEquipment&SafetyCategoryLandingPage
+;;SectionS2-ToolsEquipment&SafetyCategoryLandingPage;SectionS2;;SectionS2Slot-ToolsEquipment&SafetyCategoryLandingPage
+;;SectionE-ToolsEquipment&SafetyCategoryLandingPage;SectionE;;SectionESlot-ToolsEquipment&SafetyCategoryLandingPage
+
+
+INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='image/jpeg'];altText;&imageRef;folder(qualifier)[default='images']
+;;clpa1;$siteResource/images/banners/homepage/responsive/clpa1.jpg;;;""
+;;clpa2;$siteResource/images/banners/homepage/responsive/clpa2.jpg;;;""
+;;clpa3;$siteResource/images/banners/homepage/responsive/clpa3.jpg;;;""
+;;clpa4;$siteResource/images/banners/homepage/responsive/clpa4.jpg;;;""
+;;clpa5;$siteResource/images/banners/homepage/responsive/clpa5.jpg;;;""
+;;clpa6;$siteResource/images/banners/homepage/responsive/clpa6.jpg;;;""
+;;clpa7;$siteResource/images/banners/homepage/responsive/clpa7.jpg;;;""
+;;clpa8;$siteResource/images/banners/homepage/responsive/clpa8.jpg;;;""
+;;clpa9;$siteResource/images/banners/homepage/responsive/clpa9.jpg;;;""
+;;clpa10;$siteResource/images/banners/homepage/responsive/clpa10.jpg;;;""
+;;clpa11;$siteResource/images/banners/homepage/responsive/clpa11.jpg;;;""
+;;clpa12;$siteResource/images/banners/homepage/responsive/clpa12.jpg;;;""
+;;clpa13;$siteResource/images/banners/homepage/responsive/clpa13.jpg;;;""
+;;clpa14;$siteResource/images/banners/homepage/responsive/clpa14.jpg;;;""
+;;clpa15;$siteResource/images/banners/homepage/responsive/clpa15.jpg;;;""
+;;clpa16;$siteResource/images/banners/homepage/responsive/clpa16.jpg;;;""
+;;clpa17;$siteResource/images/banners/homepage/responsive/clpa17.jpg;;;""
+;;clpa18;$siteResource/images/banners/homepage/responsive/clpa18.jpg;;;""
+;;clpa19;$siteResource/images/banners/homepage/responsive/clpa19.jpg;;;""
+;;clpa20;$siteResource/images/banners/homepage/responsive/clpa20.jpg;;;""
+;;clpa21;$siteResource/images/banners/homepage/responsive/clpa21.jpg;;;""
+;;clpa22;$siteResource/images/banners/homepage/responsive/clpa22.jpg;;;""
+;;clpf1;$siteResource/images/banners/homepage/responsive/clpf1.jpg;;;""
+;;clpf2;$siteResource/images/banners/homepage/responsive/clpf2.jpg;;;""
+;;clpf3;$siteResource/images/banners/homepage/responsive/clpf3.jpg;;;""
+;;clpf4;$siteResource/images/banners/homepage/responsive/clpf4.jpg;;;""
+;;clpf5;$siteResource/images/banners/homepage/responsive/clpf5.jpg;;;""
+;;clpf6;$siteResource/images/banners/homepage/responsive/clpf6.jpg;;;""
+;;clph1;$siteResource/images/banners/homepage/responsive/clph1.jpg;;;""
+;;clph2;$siteResource/images/banners/homepage/responsive/clph2.jpg;;;""
+;;clph3;$siteResource/images/banners/homepage/responsive/clph3.jpg;;;""
+;;clph4;$siteResource/images/banners/homepage/responsive/clph4.jpg;;;""
+;;clph5;$siteResource/images/banners/homepage/responsive/clph5.jpg;;;""
+;;clph6;$siteResource/images/banners/homepage/responsive/clph6.jpg;;;""
+;;clph7;$siteResource/images/banners/homepage/responsive/clph7.jpg;;;""
+;;clph8;$siteResource/images/banners/homepage/responsive/clph8.jpg;;;""
+;;clph9;$siteResource/images/banners/homepage/responsive/clph9.jpg;;;""
+;;clph10;$siteResource/images/banners/homepage/responsive/clph10.jpg;;;""
+;;clph11;$siteResource/images/banners/homepage/responsive/clph11.jpg;;;""
+;;clph12;$siteResource/images/banners/homepage/responsive/clph12.jpg;;;""
+;;clpbanner;$siteResource/images/banners/homepage/responsive/MaskBanner.jpg;;;""
+
+INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='image/png'];altText;&imageRef;folder(qualifier)[default='images']
+;;maskgrp3;$siteResource/images/banners/homepage/responsive/MaskGrp3.png;;;""
+
+INSERT_UPDATE SiteOneCategoryPageTopBannerComponent;$contentCV[unique=true];uid[unique=true];name;subheadText;&componentRef;urlLink;$picture[lang=$lang];headline[lang=en];headline[lang=es];buttonLabel;buttonURL;icon
+;;SiteOneCategoryPageTopBannerComponent1;Banner detail1;;SiteOneCategoryPageTopBannerComponent1;;clph4;WE’RE HERE TO HELP LIGHT YOUR WAY TO BIGGER BUSINESS.;Estamos aquí para alumbrar tu camino hacia un negocio más grande.;;;1  
+;;SiteOneCategoryPageTopBannerComponent5;Banner detail5;;SiteOneCategoryPageTopBannerComponent5;;clph3;EVERYTHING YOU NEED, ALL IN ONE PLACE.;Todo lo que necesitas, todo en un lugar.;Knowledgeable associates</br>Leading product selection</br>SiteOne Online for easy ordering and checkout;Asociados conocedores</br>Selección de productos líderes</br>SiteOne Online para ordenar y pagar fácilmente;;;1
+;;SiteOneCategoryPageTopBannerComponent9;Banner detail9;;SiteOneCategoryPageTopBannerComponent9;;clph1;YOU STAND BEHIND YOUR WORK, THAT'S WHY WE PROUDLY STAND BEHIND YOU.;Tú respaldas tu trabajo, por eso te respaldamos con orgullo.;;;1
+;;SiteOneCategoryPageTopBannerComponent13;Banner detail13;;SiteOneCategoryPageTopBannerComponent13;;clph2;WE’RE HERE TO DO WHATEVER IT TAKES TO HELP YOU GET THE JOB DONE.;Estamos aquí para hacer lo que haga falta para ayudarte a hacer el trabajo.;;;1 
+;;SiteOneCategoryPageTopBannerComponent17;Banner detail17;;SiteOneCategoryPageTopBannerComponent17;;clph11;HELPING GROW AND STRENGTHEN YOUR BUSINESS.;Ayudando a hacer crecer y fortalecer tu negocio.;;;1  
+;;SiteOneCategoryPageTopBannerComponent21;Banner detail21;;SiteOneCategoryPageTopBannerComponent21;;clph12;YOUR ONE STOP FOR TOOLS, EQUIPMENT AND SAFETY.;Tu única parada para herramientas, equipo y seguridad.;;;1
+;;SiteOneCategoryPageMobileTopBannerComponent1;Mobile Banner detail1;;SiteOneCategoryPageMobileTopBannerComponent1;;clph8;WE’RE HERE TO HELP LIGHT YOUR WAY TO BIGGER BUSINESS.;Estamos aquí para alumbrar tu camino hacia un negocio más grande.;;;1 
+;;SiteOneCategoryPageMobileTopBannerComponent5;Mobile Banner detail5;;SiteOneCategoryPageMobileTopBannerComponent5;;clph7;EVERYTHING YOU NEED, ALL IN ONE PLACE.;Todo lo que necesitas, todo en un lugar.;;;1 
+;;SiteOneCategoryPageMobileTopBannerComponent9;Mobile Banner detail9;;SiteOneCategoryPageMobileTopBannerComponent9;;clph5;YOU STAND BEHIND YOUR WORK, THAT'S WHY WE PROUDLY STAND BEHIND YOU.;Tú respaldas tu trabajo, por eso te respaldamos con orgullo.;;;1
+;;SiteOneCategoryPageMobileTopBannerComponent13;Mobile Banner detail13;;SiteOneCategoryPageMobileTopBannerComponent13;;clph6;WE’RE HERE TO DO WHATEVER IT TAKES TO HELP YOU GET THE JOB DONE.;Estamos aquí para hacer lo que haga falta para ayudarte a hacer el trabajo.;;;1
+;;SiteOneCategoryPageMobileTopBannerComponent17;Mobile Banner detail17;;SiteOneCategoryPageMobileTopBannerComponent17;;clph9;HELPING GROW AND STRENGTHEN YOUR BUSINESS.;Ayudando a hacer crecer y fortalecer tu negocio.;;;1  
+;;SiteOneCategoryPageMobileTopBannerComponent21;Mobile Banner detail21;;SiteOneCategoryPageMobileTopBannerComponent21;;clph10;YOUR ONE STOP FOR TOOLS, EQUIPMENT AND SAFETY.;Tu única parada para herramientas, equipo y seguridad.;;;1
+
+
+INSERT_UPDATE CategoryLandingPageRotatingBannerComponent;$contentCV[unique=true];uid[unique=true];name;rotatingBanner(&componentRef);&componentRef;promotionalText
+;;siteoneLightingCategoryCarouselComponent;Siteone Lighting Category Page Component;SiteOneCategoryPageTopBannerComponent1;siteoneLightingCategoryCarouselComponent;LIGHTING
+;;siteoneMobileLightingCategoryCarouselComponent;Siteone Mobile Lighting Category Page Component;SiteOneCategoryPageMobileTopBannerComponent1;siteoneMobileLightingCategoryCarouselComponent;LIGHTING;
+;;siteoneLandscapeSupplyCategoryCarouselComponent;Siteone Lighting Category Page Component;SiteOneCategoryPageTopBannerComponent5;siteoneLandscapeSupplyCategoryCarouselComponent;LANDSCAPE SUPPLY
+;;siteoneMobileLandscapeSupplyCategoryCarouselComponent;Siteone Mobile Lighting Category Page Component;SiteOneCategoryPageMobileTopBannerComponent5;siteoneMobileLandscapeSupplyCategoryCarouselComponent;LANDSCAPE SUPPLY
+;;siteoneAgronomicMaintenanceCategoryCarouselComponent;Siteone Lighting Category Page Component;SiteOneCategoryPageTopBannerComponent9;siteoneAgronomicMaintenanceCategoryCarouselComponent;AGRONOMIC MAINTENANCE
+;;siteoneMobileAgronomicMaintenanceCategoryCarouselComponent;Siteone Mobile Lighting Category Page Component;SiteOneCategoryPageMobileTopBannerComponent9;siteoneMobileAgronomicMaintenanceCategoryCarouselComponent;AGRONOMIC MAINTENANCE
+;;siteoneIrrigationCategoryCarouselComponent;Siteone Lighting Category Page Component;SiteOneCategoryPageTopBannerComponent13;siteoneIrrigationCategoryCarouselComponent;IRRIGATION
+;;siteoneMobileIrrigationCategoryCarouselComponent;Siteone Mobile Lighting Category Page Component;SiteOneCategoryPageMobileTopBannerComponent13;siteoneMobileIrrigationCategoryCarouselComponent;IRRIGATION
+;;siteoneNurseryCategoryCarouselComponent;Siteone Lighting Category Page Component;SiteOneCategoryPageTopBannerComponent17;siteoneNurseryCategoryCarouselComponent;NURSERY
+;;siteoneMobileNurseryCategoryCarouselComponent;Siteone Mobile Lighting Category Page Component;SiteOneCategoryPageMobileTopBannerComponent17;siteoneMobileNurseryCategoryCarouselComponent;NURSERY
+;;siteoneToolsEquipmentCategoryCarouselComponent;Siteone Lighting Category Page Component;SiteOneCategoryPageTopBannerComponent21;siteoneToolsEquipmentCategoryCarouselComponent;TOOLS, EQUIPMENT & SAFETY
+;;siteoneMobileToolsEquipmentCategoryCarouselComponent;Siteone Mobile Lighting Category Page Component;SiteOneCategoryPageMobileTopBannerComponent21;siteoneMobileToolsEquipmentCategoryCarouselComponent;TOOLS, EQUIPMENT & SAFETY
+
+INSERT_UPDATE SiteOneBrandBannerComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef;$picture[lang=en];$picture[lang=es];urlLink
+;;BannerCategory1Component;Simple Banner Component for Category1;BannerCategory1Component;SDB1en.jpg;SDB1es.jpg;/events?icid=home-sidebar-1
+;;BannerCategory2Component;Simple Banner Component for Category2;BannerCategory2Component;SDB2en.jpg;SDB2es.jpg;/testimonials?icid=home-sidebar-2
+;;BannerCategory3Component;Simple Banner Component for Category3;BannerCategory3Component;SDB1en.jpg;SDB1es.jpg;/events?icid=home-sidebar-1
+;;BannerCategory4Component;Simple Banner Component for Category4;BannerCategory4Component;SDB2en.jpg;SDB2es.jpg;/testimonials?icid=home-sidebar-2
+
+
+
+INSERT_UPDATE SiteOneBottomBannerComponent;$contentCV[unique=true];uid[unique=true];name;urlLink;&componentRef;title[lang=en];title[lang=es];buttonLabel[lang=en];buttonLabel[lang=es];buttonURL;$picture[lang=en];videoId
+;;categoryBottomBannercomp1;Category Bottom Banner Component1;;categoryBottomBannercomp1;Essential Tools for Landscape Lighting Installation;Herramientas Esenciales para la Instalación de Iluminación de Jardines;Read more;Leer más;https://www.siteone.com/en/articles/article/Essential-Tools-for-Landscape-Lighting-Installation;clpf4
+;;categoryBottomBannercomp2;Category Bottom Banner Component2;;categoryBottomBannercomp2;Lighting the Path to New Projects;Iluminando el Camino a Nuevos Proyectos;Play video;Ver video;https://youtu.be/lNLDsoI0_UI;clpa18
+;;categoryBottomBannercomp3;Category Bottom Banner Component3;;categoryBottomBannercomp3;Do customers need lighting?;¿Los Clientes Necesitan Iluminación?;Read more;Leer más;https://www.siteone.com/en/articles/article/Do-Customers-Need-Lighting;clpa3
+;;categoryBottomBannercomp4;Category Bottom Banner Component4;;categoryBottomBannercomp4;GIE+EXPO Trade Talk with Ron Miller;GIE+EXPO Charla Comercial/Charla de la industria con Ron Miller;Play video;Ver video;https://youtu.be/fKvO6fYxp1k;clpa15
+;;categoryBottomBannercomp5;Category Bottom Banner Component5;;categoryBottomBannercomp5;Pro-Trade delivers a no-nonsense package that’s tough to beat.;Pro-Trade te ofrece un paquete completo difícil de superar.;Play video;Ver video;https://youtu.be/CuWh5THXVhY;clpa21
+
+;;categoryBottomBannercomp11;Category Bottom Banner Component11;;categoryBottomBannercomp11;Capitalizing on Stormwater Management;Sacándole provecho al Manejo de Aguas Pluviales;Read more;Leer más;https://www.siteone.com/en/articles/article/Stormwater-Management;clpf3
+;;categoryBottomBannercomp12;Category Bottom Banner Component12;;categoryBottomBannercomp12;Giving Sod a Healthy Start;Dándole un Inicio Saludable al Pasto;Play video;Ver video;https://youtu.be/SEjutHQfjhc;clpa16
+;;categoryBottomBannercomp13;Category Bottom Banner Component13;;categoryBottomBannercomp13;Pre-Frost Maintenance Ideas;Ideas para Mantenimiento Previo a las Heladas;Read more;Leer más;https://www.siteone.com/en/articles/article/Pre-Frost-Maintenance-Ideas;clpa9
+;;categoryBottomBannercomp14;Category Bottom Banner Component14;;categoryBottomBannercomp14;Site 101: Preparing for Snow and Ice Removal;Site 101: Preparándote para la Remoción de Nieve y Hielo;Read more;Leer más;https://www.siteone.com/en/articles/article/Preparing-For-Snow-And-Ice-Removal;clpa11
+;;categoryBottomBannercomp15;Category Bottom Banner Component15;;categoryBottomBannercomp15;Utilizing SiteOne Online as a Superintendent;Utilizando SiteOne Online como un Superintendente;Play video;Ver video;https://youtu.be/Cdqhv2MRuFo;clpa22
+
+;;categoryBottomBannercomp21;Category Bottom Banner Component21;;categoryBottomBannercomp21;Turning Calibration into Big Savings;Convirtiendo la Calibración en Grandes Ahorros;Play video;Ver video;https://youtu.be/W71o-ec62_4;clpf1
+;;categoryBottomBannercomp22;Category Bottom Banner Component22;;categoryBottomBannercomp22;Managing Winter Turf Injury;Lidiando con el Daño al Césped por el Invierno;Read more;Leer más;https://www.siteone.com/en/articles/article/Managing-Winter-Turf-Injury;clpa6
+;;categoryBottomBannercomp23;Category Bottom Banner Component23;;categoryBottomBannercomp23;How Fertilizer Feeds Turf;Cómo el Fertilizante Alimenta el Césped;Read more;Leer más;https://www.siteone.com/en/articles/article/How-Fertilizer-Feeds-Turf;clpa4
+;;categoryBottomBannercomp24;Category Bottom Banner Component24;;categoryBottomBannercomp24;Cool & Warm Season Grasses;Gramas de Temporadas Frías y Cálidas;Read more;Leer más;https://www.siteone.com/en/articles/article/Cool-&-Warm-Season-Grasses;clpa2
+;;categoryBottomBannercomp25;Category Bottom Banner Component25;;categoryBottomBannercomp25;Giving Sod a Healthy Start;Dándole un Comienzo Saludable al Pasto;Play video;Ver video;https://youtu.be/SEjutHQfjhc;clpa16
+
+;;categoryBottomBannercomp31;Category Bottom Banner Component31;;categoryBottomBannercomp31;Using Less Water to Earn More Revenue;Usando Menos Agua para Ganar Más Ingresos;Play video;Ver video;https://youtu.be/RKRCBIOzltk;clpf2
+;;categoryBottomBannercomp32;Category Bottom Banner Component32;;categoryBottomBannercomp32;Winterizing an Irrigation System;Preparando un Sistema de Riego para Invierno;Read more;Leer más;https://www.siteone.com/en/articles/article/Winterizing-An-Irrigation-System;clpa12
+;;categoryBottomBannercomp33;Category Bottom Banner Component33;;categoryBottomBannercomp33;Reading a Pump Curve;Cómo Leer una Curva de Bomba;Read more;Leer más;https://www.siteone.com/en/articles/article/Reading-a-Pump-Curve;clpa10
+;;categoryBottomBannercomp34;Category Bottom Banner Component34;;categoryBottomBannercomp34;Precision Irrigation reviews SiteOne Online;Reseñas de Sistemas de Riego de Precisión en SiteOne Online;Play video;Ver video;https://youtu.be/hhwqz0qj24k;clpa20
+;;categoryBottomBannercomp35;Category Bottom Banner Component35;;categoryBottomBannercomp35;Institutional Irrigation Systems;Sistemas de Riego Institucional;Read more;Leer más;https://www.siteone.com/en/articles/article/Institutional-Irrigation-Systems;clpa5
+
+;;categoryBottomBannercomp41;Category Bottom Banner Component41;;categoryBottomBannercomp41;Get Time Savings Delivered with Nursery Direct;Obtén Ahorros en Tiempo Entrega con Vivero Directo;Play video;Ver video;https://www.youtube.com/watch?v=xSiDAvPHfOU&list=PLzQddBAMbKdwNW0z8l0xQFgVUgd-5yJXC&index=6 [youtube.com];clpf5
+;;categoryBottomBannercomp42;Category Bottom Banner Component42;;categoryBottomBannercomp42;Plant Planning for Season Changes;Planificación de Plantas para Cambios de Estaciones;Read more;Leer más;https://www.siteone.com/en/articles/article/Plant-Planning-For-Season-Changes;clpa8
+;;categoryBottomBannercomp43;Category Bottom Banner Component43;;categoryBottomBannercomp43;The Pros of Being a Pro – One-Stop Shopping;Los Pros de Ser un Profesional – Comprando Todo de Una;Play video;Ver video;https://youtu.be/E9JSNtZMccQ;clpa19
+;;categoryBottomBannercomp44;Category Bottom Banner Component44;;categoryBottomBannercomp44;Planning Plant Purchases;Planeando la Compra de Plantas;Read more;Leer más;https://www.siteone.com/en/articles/article/Planning-Plant-Purchases;clpa7
+;;categoryBottomBannercomp45;Category Bottom Banner Component45;;categoryBottomBannercomp45;The Pros of Being a Pro – Customer-Obsessed Service;Los Pros de Ser un Profesional – Servicio Completamente Enfocado en el Cliente;Play video;Ver video;https://youtu.be/C_MO1wyGEEg;clpa14
+
+;;categoryBottomBannercomp51;Category Bottom Banner Component51;;categoryBottomBannercomp51;Keeping Landscape Crews Safe on Jobsites During the COVID-19 Pandemic;Manteniendo Seguros a los Equipos de Jardinería en los Lugares de Trabajo durante la Pandemia de COVID-19;Read more;Leer más;https://www.siteone.com/en/articles/article/Keeping-Landscape-Crews-Safe;clpf6
+;;categoryBottomBannercomp52;Category Bottom Banner Component52;;categoryBottomBannercomp52;Site 101: Preparing for Snow and Ice Removal;Site 101: Preparándote para la Remoción de Nieve y Hielo;Read more;Leer más;https://www.siteone.com/en/articles/article/Preparing-For-Snow-And-Ice-Removal;clpa11
+;;categoryBottomBannercomp53;Category Bottom Banner Component53;;categoryBottomBannercomp53;Keeping Tools in Shape;Manteniendo las Herramientas a Punto;Read more;Leer más;https://youtu.be/WoNSZOm31mI;clpa17
+;;categoryBottomBannercomp54;Category Bottom Banner Component54;;categoryBottomBannercomp54;Tips for Selecting Battery-Powered Equipment;Tips para Seleccionar Equipos de Batería;Read more;Leer más;https://www.siteone.com/en/articles/article/Tips-for-Selecting-Battery-Powered-Equipment;clpa1
+;;categoryBottomBannercomp55;Category Bottom Banner Component55;;categoryBottomBannercomp55;The Pros of Being a Pro – One-Stop Shopping;Los Pros de ser un Profesional – Comprando Todo de Una;Play video;Ver video;https://youtu.be/E9JSNtZMccQ;clpa19
+
+INSERT_UPDATE SiteOneBottomBannerListComponent;$contentCV[unique=true];uid[unique=true];name;bannersList(&componentRef);&componentRef
+;;SiteOneCLPBottomBannerListComponent;SiteOne Bottom Banner List Component1;categoryBottomBannercomp1,categoryBottomBannercomp2,categoryBottomBannercomp3,categoryBottomBannercomp4,categoryBottomBannercomp5;SiteOneCLPBottomBannerListComponent
+;;SiteOneCLPBottomBannerListComponent1;SiteOne Bottom Banner List Component1;categoryBottomBannercomp11,categoryBottomBannercomp12,categoryBottomBannercomp13,categoryBottomBannercomp14,categoryBottomBannercomp15;SiteOneCLPBottomBannerListComponent1
+;;SiteOneCLPBottomBannerListComponent2;SiteOne Bottom Banner List Component1;categoryBottomBannercomp21,categoryBottomBannercomp22,categoryBottomBannercomp23,categoryBottomBannercomp24,categoryBottomBannercomp25;SiteOneCLPBottomBannerListComponent2
+;;SiteOneCLPBottomBannerListComponent3;SiteOne Bottom Banner List Component1;categoryBottomBannercomp31,categoryBottomBannercomp32,categoryBottomBannercomp33,categoryBottomBannercomp34,categoryBottomBannercomp35;SiteOneCLPBottomBannerListComponent3
+;;SiteOneCLPBottomBannerListComponent4;SiteOne Bottom Banner List Component1;categoryBottomBannercomp41,categoryBottomBannercomp42,categoryBottomBannercomp43,categoryBottomBannercomp44,categoryBottomBannercomp45;SiteOneCLPBottomBannerListComponent4
+;;SiteOneCLPBottomBannerListComponent5;SiteOne Bottom Banner List Component1;categoryBottomBannercomp51,categoryBottomBannercomp52,categoryBottomBannercomp53,categoryBottomBannercomp54,categoryBottomBannercomp55;SiteOneCLPBottomBannerListComponent5
+
+
+INSERT_UPDATE SiteOneHomePageMobileBrandBannerComponent;$contentCV[unique=true];uid[unique=true];name;bannerList(&componentRef);&componentRef
+;;SiteOneCLPMobileBrandBannerComponent;SiteOne CLP Mobile Brand Banner Component;BannerCategory1Component,BannerCategory2Component;SiteOneCLPMobileBrandBannerComponent
+;;SiteOneCLPDesktopBrandBannerComponent;SiteOne CLP Desktop Brand Banner Component;BannerCategory3Component,BannerCategory4Component;SiteOneCLPDesktopBrandBannerComponent

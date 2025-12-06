@@ -1,0 +1,50 @@
+
+# -----------------------------------------------------------------------
+# [y] hybris Platform
+#
+# Copyright (c) 2017 SAP SE or an SAP affiliate company.  All rights reserved.
+#
+# This software is the confidential and proprietary information of SAP
+# ("Confidential Information"). You shall not disclose such Confidential
+# Information and shall use it only in accordance with the terms of the
+# license agreement you entered into with SAP.
+# -----------------------------------------------------------------------
+# Import the Solr configuration for the SiteOne store
+#
+# Localization en
+#
+$lang=en
+
+$indexedType=siteoneProductType
+
+UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true,default=$indexedType];name[unique=true];displayName[lang=$lang]
+ ;;soallPromotions;Promotion;
+ #;;sobrand;Brand;
+ ;;socategory;Show results for;
+ ;;socode;Code;
+ #;;sodescription;Description;
+ ;;somanufacturerName;Manufacturer Name;
+ ;;soname;Name;
+ ;;price;Price;
+ #;;sosummary;Summary;
+ ;;soavailableInStores;Available at my branch;
+ ;siteoneContentSearchType;socontenttags;Content Tags;
+ ;siteoneEventSearchType;sostate;Location
+ ;siteoneEventSearchType;soeventdate;Date
+ ;siteoneEventSearchType;soeventtype;Event Type
+ ;;soproductBrandNameFacet;Brand
+
+# Define the available sorts
+UPDATE SolrSort;indexedType(identifier)[unique=true,default=$indexedType];code[unique=true];name[lang=$lang]
+ ;;name-asc;Name (ascending);
+ ;;name-desc;Name (descending);
+ ;;price-asc;Price (lowest first);
+ ;;price-desc;Price (highest first);
+ ;;relevance;Default;
+ #;;topRated;Top Rated;
+ ;siteoneContentSearchType;title-asc;Title (ascending);
+ ;siteoneContentSearchType;title-desc;Title (descending);
+ ;siteoneContentSearchType;relevance;Default;
+ 
+ 
+

@@ -1,0 +1,7 @@
+------ Feature Switch for Project Services SE-33267 ------
+
+INSERT_UPDATE SiteOneFeatureSwitch;key[unique=true];value
+;EnabledB2BUnitsForProjectServices;1426183_US,1682256_CA
+
+INSERT_UPDATE SiteOneFeatureSwitch;key[unique=true];value
+;isProjectServicesEnabled;true

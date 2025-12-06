@@ -1,0 +1,5 @@
+$contentCatalog=siteoneContentCatalog
+$contentCatalogName=SiteOne Content Catalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+INSERT_UPDATE GlobalMessageCMSComponent;$contentCV[unique=true];uid[unique=true];content;mobilecontent;
+;;COVID-19-Global-Message;;;

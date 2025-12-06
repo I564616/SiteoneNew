@@ -1,0 +1,32 @@
+# Information and shall use it only in accordance with the terms of the
+# license agreement you entered into with SAP.
+# -----------------------------------------------------------------------
+# ImpEx for Importing Categories into SiteOne store
+
+# Macros / Replacement Parameter definitions
+$productCatalog=siteoneProductCatalog
+$productCatalogName=SiteOne Product Catalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$contentCatalog=siteoneContentCatalog
+$contentCatalogName=SiteOne Content Catalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$siteResource=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/contentCatalogs/$contentCatalog
+$thumbnail=thumbnail(code, $contentCV);
+
+INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];mime;realfilename;@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator][forceWrite=true];folder(qualifier)[default='images']
+;;L1_Mobile_Agronomics;text/jpg;L1_Mobile_Agronomics.jpg;$siteResource/images/banners/site/category/L1_Mobile_Agronomics.jpg
+;;L1_Mobile_Equipment;text/jpg;L1_Mobile_Equipment.jpg;$siteResource/images/banners/site/category/L1_Mobile_Equipment.jpg
+;;L1_Mobile_Hardscapes;text/jpg;L1_Mobile_Hardscapes.jpg;$siteResource/images/banners/site/category/L1_Mobile_Hardscapes.jpg
+;;L1_Mobile_Irrigation;text/jpg;L1_Mobile_Irrigation.jpg;$siteResource/images/banners/site/category/L1_Mobile_Irrigation.jpg
+;;L1_Mobile_Landscape;text/jpg;L1_Mobile_Landscape.jpg;$siteResource/images/banners/site/category/L1_Mobile_Landscape.jpg
+;;L1_Mobile_Lighting;text/jpg;L1_Mobile_Lighting.jpg;$siteResource/images/banners/site/category/L1_Mobile_Lighting.jpg
+;;L1_Mobile_Nursery;text/jpg;L1_Mobile_Nursery.jpg;$siteResource/images/banners/site/category/L1_Mobile_Nursery.jpg
+
+
+UPDATE Category;$catalogVersion;code[unique=true];$thumbnail;
+;;SH13;L1_Mobile_Agronomics
+;;SH14;L1_Mobile_Irrigation
+;;SH12;L1_Mobile_Landscape
+;;SH11;L1_Mobile_Lighting
+;;SH16;L1_Mobile_Nursery
+;;SH17;L1_Mobile_Equipment

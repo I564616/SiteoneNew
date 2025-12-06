@@ -1,0 +1,5 @@
+INSERT_UPDATE ServicelayerJob; code[unique=true];springid[unique=true]
+;customPushNotificationCronJob;customPushNotificationCronJob;
+
+INSERT_UPDATE CustomPushNotificationCronJob;code[unique=true];job(code)[default=customPushNotificationCronJob];sessionLanguage(isoCode)[default=en]
+;customPushNotificationCronJob

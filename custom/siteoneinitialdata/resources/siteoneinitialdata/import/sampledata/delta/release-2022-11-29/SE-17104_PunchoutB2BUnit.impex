@@ -1,0 +1,5 @@
+INSERT_UPDATE SiteOneFeatureSwitch;key[unique=true];value
+;PunchoutB2BUnit;39526_US|buddgroup,1139985_US|truegreen,1345349_US|truegreen,1722111_US|aptive
+
+REMOVE SiteOneFeatureSwitch;key[unique=true]
+;BuddGroupPunchoutB2BUnit

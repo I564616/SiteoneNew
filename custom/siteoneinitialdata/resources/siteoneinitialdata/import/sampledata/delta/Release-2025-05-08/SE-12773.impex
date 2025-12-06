@@ -1,0 +1,88 @@
+$contentCatalog=siteoneContentCatalog
+$contentCatalogName=SiteOne Content Catalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$siteResource=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/contentCatalogs/$contentCatalog
+$lang=en
+
+INSERT_UPDATE StoreLocatorFeature;code[unique=true];name[lang=en]
+;Hardscapes Tier 1 - Stone Center;Stone Center
+
+INSERT_UPDATE PointOfService;storeId[unique=true];title[$lang]
+;495;SiteOne Stone Center
+;576;SiteOne Stone Center
+;577;SiteOne Stone Center
+;624;SiteOne Stone Center
+;1001;SiteOne Stone Center
+;1002;SiteOne Stone Center
+;1003;SiteOne Stone Center
+;683;SiteOne Stone Center
+;688;SiteOne Stone Center
+;1014;SiteOne Stone Center
+;1015;SiteOne Stone Center
+;1038;SiteOne Stone Center
+;20;SiteOne Stone Center
+;22;SiteOne Stone Center
+;24;SiteOne Stone Center
+;123;SiteOne Stone Center
+;124;SiteOne Stone Center
+;166;SiteOne Stone Center
+;167;SiteOne Stone Center
+;218;SiteOne Stone Center
+;298;SiteOne Stone Center
+;802;SiteOne Stone Center
+;803;SiteOne Stone Center
+;805;SiteOne Stone Center
+;806;SiteOne Stone Center
+;1010;SiteOne Stone Center
+;1063;SiteOne Stone Center
+;162;SiteOne Stone Center
+;320;SiteOne Stone Center
+;526;SiteOne Stone Center
+;527;SiteOne Stone Center
+;528;SiteOne Stone Center
+;531;SiteOne Stone Center
+;1016;SiteOne Stone Center
+;173;SiteOne Stone Center
+;1012;SiteOne Stone Center
+;1088;SiteOne Stone Center
+;147;SiteOne Stone Center
+;408;SiteOne Stone Center
+;418;SiteOne Stone Center
+;419;SiteOne Stone Center
+;420;SiteOne Stone Center
+;422;SiteOne Stone Center
+;430;SiteOne Stone Center
+;434;SiteOne Stone Center
+;451;SiteOne Stone Center
+;457;SiteOne Stone Center
+;1039;SiteOne Stone Center
+;1093;SiteOne Stone Center
+;1094;SiteOne Stone Center
+;1095;SiteOne Stone Center
+;94;SiteOne Stone Center
+;95;SiteOne Stone Center
+;350;SiteOne Stone Center
+;351;SiteOne Stone Center
+;411;SiteOne Stone Center
+;412;SiteOne Stone Center
+;415;SiteOne Stone Center
+;438;SiteOne Stone Center
+;480;SiteOne Stone Center
+;1023;SiteOne Stone Center
+;1024;SiteOne Stone Center
+;1025;SiteOne Stone Center
+;1026;SiteOne Stone Center
+;1027;SiteOne Stone Center
+;1028;SiteOne Stone Center
+;1029;SiteOne Stone Center
+;1090;SiteOne Stone Center
+
+INSERT_UPDATE StoreLocatorFeature;code[unique=true];description[lang=en];image(code, $contentCV)
+;Hardscapes Tier 1 - Stone Center;SiteOne Stone Centers are your base for every build. Helping you gear up with in-stock inventory, trusted tools,and expert advice. One trusted source with everything you need from comprehensive natural stone, manufactured hardscape product, aggregates and synthetic turf offerings. In-ground product displays open for showing. Onsite scale. Delivery available. Experienced, Stone Center Experts on staff to assist all types of customers. From start to stone finish, it’s all at SiteOne. Your Hardscapes HQ.;StoreSpecialty_Hardscapes1
+;Hardscapes Tier 2 - Nursery/Stone Center;Stone yard attached to a SiteOne Landscape Supply Nursery. Fully stocked with natural stone, manufactured hardscape products, aggregates and synthetic turf options. Experienced, Stone Center Experts on staff to assist all types of customers. In-ground product displays open for showing. Onsite scale. Delivery available.;StoreSpecialty_Hardscapes2
+;Hardscapes Tier 3 - Manufactured Hardscapes Center;SiteOne Landscape Supply branch stocked with some manufactured hardscape products. Racks on site to display paver pattern. Delivery available.;StoreSpecialty_Hardscapes3
+
+INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];mime;realfilename;@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator][forceWrite=true];folder(qualifier)[default='images']
+;;StoreSpecialty_Hardscapes1;text/png;StoneCenter_T1.png;$siteResource/images/banners/site/store-specialty/StoneCenter_T1.png
+;;StoreSpecialty_Hardscapes2;text/png;Hardscapes_Tier_2.png;$siteResource/images/banners/site/store-specialty/Hardscapes_Tier_2.png
+;;StoreSpecialty_Hardscapes3;text/png;Hardscapes_Tier_3.png;$siteResource/images/banners/site/store-specialty/Hardscapes_Tier_3.png

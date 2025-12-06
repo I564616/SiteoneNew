@@ -1,0 +1,16 @@
+$lang=en
+INSERT_UPDATE RuleConditionDefinition;id[unique=true];name[lang=$lang];priority;breadcrumb[lang=$lang];allowsChildren;translatorId;translatorParameters;categories(id)
+;y_qualifying_promotioncategories;Qualifying Promotion categories;100;Cart contains products from {categories_operator} promotion categories {categories};false;qualifyingPromotionCategoriesConditionTranslator;;cart
+
+INSERT_UPDATE RuleConditionDefinitionParameter;definition(id)[unique=true];id[unique=true];priority;name[lang=$lang];description[lang=$lang];type;value;required[default=true]
+;y_qualifying_promotioncategories;operator;600;Operator;Operator to compare the quantity required for products in qualifying categories;Enum(de.hybris.platform.ruledefinitions.AmountOperator);"""GREATER_THAN_OR_EQUAL""";
+;y_qualifying_promotioncategories;quantity;500;Quantity;Quantity of products required from qualifying categories;java.lang.Integer;1;
+;y_qualifying_promotioncategories;categories_operator;400;Category selection operator;Select ANY category or select ALL categories from list of qualifying categories;Enum(de.hybris.platform.ruledefinitions.CollectionOperator);"""CONTAINS_ANY""";
+;y_qualifying_promotioncategories;categories;300;Categories;List of qualifying categories;ItemType(PromotionProductCategory);;false
+
+
+INSERT_UPDATE RuleConditionDefinitionRuleTypeMapping;definition(id)[unique=true];ruleType(code)[default=PromotionSourceRule][unique=true]
+;y_qualifying_promotioncategories;
+
+
+

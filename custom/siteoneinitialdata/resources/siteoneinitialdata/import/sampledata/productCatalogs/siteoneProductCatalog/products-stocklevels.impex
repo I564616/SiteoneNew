@@ -1,0 +1,282 @@
+# -----------------------------------------------------------------------
+# [y] hybris Platform
+#
+# Copyright (c) 2017 SAP SE or an SAP affiliate company.  All rights reserved.
+#
+# This software is the confidential and proprietary information of SAP
+# ("Confidential Information"). You shall not disclose such Confidential
+# Information and shall use it only in accordance with the terms of the
+# license agreement you entered into with SAP.
+# -----------------------------------------------------------------------
+# ImpEx for Importing Products stock levels into SiteOne store
+
+# Macros / Replacement Parameter definitions
+$productCatalog=siteoneProductCatalog
+$productCatalogName=SiteOne Product Catalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$vendor=siteone
+
+INSERT_UPDATE Warehouse;code[unique=true];name[lang=en];vendor(code)[default=$vendor];default[default=true]
+#;pw_warehouse_s;SiteOne Warehouse South
+#;pw_warehouse_e;SiteOne Warehouse East
+#;pw_warehouse_w;SiteOne Warehouse West
+#;pw_warehouse_n;SiteOne Warehouse North
+
+#INSERT_UPDATE StockLevel;productCode[unique=true];warehouse(code)[unique=true,default=default];available;inStockStatus(code);maxPreOrder[default=1];maxStockLevelHistoryCount[default=-1];overSelling[default=0];preOrder[default=0];reserved[default=0]
+#;637227;pw_warehouse_s;414;notSpecified
+#
+#INSERT_UPDATE Product;code[unique=true];stockLevels(productCode,warehouse(code));vendors(code)[default=$vendor];$catalogVersion
+#;637227;637227:pw_warehouse_s
+#
+#INSERT_UPDATE StockLevel;productCode[unique=true];warehouse(code)[unique=true,default=default];available;inStockStatus(code);maxPreOrder[default=1];maxStockLevelHistoryCount[default=-1];overSelling[default=0];preOrder[default=0];reserved[default=0]
+#;637227  ;pw_warehouse_s;100;
+#;1101690 ;pw_warehouse_s;100;
+#;1101695 ;pw_warehouse_s;100;
+#;1128762 ;pw_warehouse_s;100;
+#;1128763 ;pw_warehouse_s;100;
+#;1221408 ;pw_warehouse_s;100;
+#;1221409 ;pw_warehouse_s;100;
+#;1221411 ;pw_warehouse_s;100;
+#;1221417 ;pw_warehouse_s;100;
+#;1249191 ;pw_warehouse_s;100;
+# ;1249198 ;pw_warehouse_s;100;
+# ;1249200 ;pw_warehouse_s;100;
+# ;1399957 ;pw_warehouse_s;100;
+# ;1399958 ;pw_warehouse_s;100;
+# ;1399966 ;pw_warehouse_s;100;
+# ;1399984 ;pw_warehouse_s;100;
+# ;1399988 ;pw_warehouse_s;100;
+# ;1408366 ;pw_warehouse_s;100;
+# ;1664617 ;pw_warehouse_s;100;
+# ;1666884 ;pw_warehouse_s;100;
+# ;1669869 ;pw_warehouse_s;100;
+# ;1670353 ;pw_warehouse_s;100;
+# ;1670354 ;pw_warehouse_s;100;
+# ;1670355 ;pw_warehouse_s;100;
+# ;1670427 ;pw_warehouse_s;100;
+# ;1670428 ;pw_warehouse_s;100;
+# ;1670429 ;pw_warehouse_s;100;
+# ;1670430 ;pw_warehouse_s;100;
+# ;1670435 ;pw_warehouse_s;100;
+# ;1670436 ;pw_warehouse_s;100;
+# ;1670448 ;pw_warehouse_s;100;
+# ;1672248 ;pw_warehouse_s;100;
+# ;1672249 ;pw_warehouse_s;100;
+# ;1672250 ;pw_warehouse_s;100;
+# ;1672251 ;pw_warehouse_s;100;
+# ;1677056 ;pw_warehouse_s;100;
+# ;1677065 ;pw_warehouse_s;100;
+#         
+#         
+#
+#INSERT_UPDATE Product;code[unique=true];stockLevels(productCode,warehouse(code));vendors(code)[default=$vendor];$catalogVersion
+#;637227  ;637227  :pw_warehouse_s
+#;1101690 ;1101690 :pw_warehouse_s
+#;1101695 ;1101695 :pw_warehouse_s
+#;1128762 ;1128762 :pw_warehouse_s
+#;1128763 ;1128763 :pw_warehouse_s
+#;1221408 ;1221408 :pw_warehouse_s
+#;1221409 ;1221409 :pw_warehouse_s
+#;1221411 ;1221411 :pw_warehouse_s
+#;1221417 ;1221417 :pw_warehouse_s
+#;1249191 ;1249191 :pw_warehouse_s                                             
+# ;1249198  ;1249198:pw_warehouse_s                                        
+# ;1249200  ;1249200:pw_warehouse_s                                        
+# ;1399957  ;1399957:pw_warehouse_s                                        
+# ;1399958  ;1399958:pw_warehouse_s                                        
+# ;1399966  ;1399966:pw_warehouse_s                                        
+# ;1399984  ;1399984:pw_warehouse_s                                        
+# ;1399988  ;1399988:pw_warehouse_s                                        
+# ;1408366  ;1408366:pw_warehouse_s                                        
+# ;1664617  ;1664617:pw_warehouse_s                                        
+# ;1666884  ;1666884:pw_warehouse_s                                          
+# ;1669869  ;1669869:pw_warehouse_s                                        
+# ;1670353  ;1670353:pw_warehouse_s                                        
+# ;1670354  ;1670354:pw_warehouse_s                                        
+# ;1670355  ;1670355:pw_warehouse_s                                        
+# ;1670427  ;1670427:pw_warehouse_s                                        
+# ;1670428  ;1670428:pw_warehouse_s                                        
+# ;1670429  ;1670429:pw_warehouse_s                                        
+# ;1670430  ;1670430:pw_warehouse_s                                        
+# ;1670435  ;1670435:pw_warehouse_s                                        
+# ;1670436  ;1670436:pw_warehouse_s                                          
+# ;1670448  ;1670448:pw_warehouse_s                                       
+# ;1672248  ;1672248:pw_warehouse_s                                       
+# ;1672249  ;1672249:pw_warehouse_s                                       
+# ;1672250  ;1672250:pw_warehouse_s                                       
+# ;1672251  ;1672251:pw_warehouse_s                                       
+# ;1677056  ;1677056:pw_warehouse_s                                       
+# ;1677065  ;1677065:pw_warehouse_s                                       
+#                                                    
+# 
+# INSERT_UPDATE StockLevel ; productCode[unique=true] ; warehouse(code)[unique=true,default=default] ; available                         ; inStockStatus(code) ; maxPreOrder[default=1] ;
+#                        
+#                         ; 1301_1               ; pw_warehouse_s                               ; 402                               ; notSpecified
+#                         ; 1301_2               ; pw_warehouse_s                               ; 510                               ; notSpecified
+#                         ; 1301_3               ; pw_warehouse_s                               ; 150                               ; notSpecified
+#                         
+#                         ; 1302_1               ; pw_warehouse_s                               ; 150                               ; notSpecified
+#                         ; 1302_2               ; pw_warehouse_s                               ; 75                                ; notSpecified
+#                         ; 1302_3               ; pw_warehouse_s                               ; 402                               ; notSpecified
+#                         ; 1302_4               ; pw_warehouse_s                               ; 510                               ; notSpecified
+#                         
+#                         ; 1303_1               ; pw_warehouse_s                               ; 402                               ; notSpecified
+#                         ; 1303_2               ; pw_warehouse_s                               ; 510                               ; notSpecified
+#                         ; 1303_3               ; pw_warehouse_s                               ; 402                               ; notSpecified
+#                         ; 1303_4               ; pw_warehouse_s                               ; 150                               ; notSpecified
+#                         ; 1303_5               ; pw_warehouse_s                               ; 75                                ; notSpecified
+#                        
+#                         ; 1304_1               ; pw_warehouse_s                               ; 510                               ; notSpecified
+#                         ; 1304_2               ; pw_warehouse_s                               ; 150                               ; notSpecified
+#                         
+#                         ; 1305_1               ; pw_warehouse_s                               ; 75                                ; notSpecified
+#                         ; 1305_2               ; pw_warehouse_s                               ; 402                               ; notSpecified
+#                         ; 1305_3               ; pw_warehouse_s                               ; 510                               ; notSpecified
+#                         
+#                         ; 1401_1               ; pw_warehouse_s                               ; 510                               ; notSpecified
+#                         ; 1401_2               ; pw_warehouse_s                               ; 150                               ; notSpecified
+#                         ; 1401_3               ; pw_warehouse_s                               ; 75                                ; notSpecified
+#                         ; 1401_4               ; pw_warehouse_s                               ; 402                               ; notSpecified
+#                         
+#                         ; 1402_1               ; pw_warehouse_s                               ; 75                                ; notSpecified
+#                         ; 1402_2               ; pw_warehouse_s                               ; 402                               ; notSpecified
+#                          
+#                         ; 1403_1               ; pw_warehouse_s                               ; 510                               ; notSpecified
+#                         ; 1403_2               ; pw_warehouse_s                               ; 150                               ; notSpecified
+#                         ; 1403_3               ; pw_warehouse_s                               ; 75                                ; notSpecified
+#                        
+#                         ; 1404_1               ; pw_warehouse_s                               ; 75                                ; notSpecified
+#                         ; 1404_2               ; pw_warehouse_s                               ; 402                               ; notSpecified
+#                         ; 1404_3               ; pw_warehouse_s                               ; 510                               ; notSpecified
+#                         ; 1404_4               ; pw_warehouse_s                               ; 150                               ; notSpecified
+#                         
+#                         ; 1405_1               ; pw_warehouse_s                               ; 510                               ; notSpecified
+#                         
+#                                                          
+#                         ; 1601_1               ; pw_warehouse_s                               ; 510                               ; notSpecified
+#                         ; 1601_2               ; pw_warehouse_s                               ; 150                               ; notSpecified
+#                                                               
+#                         ; 1602_1               ; pw_warehouse_s                               ; 75                                ; notSpecified
+#                         ; 1602_2               ; pw_warehouse_s                               ; 402                               ; notSpecified
+#                         ; 1602_3               ; pw_warehouse_s                               ; 510                               ; notSpecified
+#                         ; 1602_4               ; pw_warehouse_s                               ; 150                               ; notSpecified
+#                                                              
+#                         ; 1603_1               ; pw_warehouse_s                               ; 510                               ; notSpecified
+#                         ; 1603_2               ; pw_warehouse_s                               ; 150                               ; notSpecified
+#                         ; 1603_3               ; pw_warehouse_s                               ; 75                                ; notSpecified
+#                                                               
+#                         ; 1604_1               ; pw_warehouse_s                               ; 75                                ; notSpecified
+#                         ; 1604_2               ; pw_warehouse_s                               ; 402                               ; notSpecified
+#                         ; 1604_3               ; pw_warehouse_s                               ; 510                               ; notSpecified
+#                         ; 1604_4               ; pw_warehouse_s                               ; 150                               ; notSpecified
+#                         ; 1604_5               ; pw_warehouse_s                               ; 75                                ; notSpecified
+#                                                               
+#                         ; 1605_1               ; pw_warehouse_s                               ; 510                               ; notSpecified
+#                         ; 1605_2               ; pw_warehouse_s                               ; 150                               ; notSpecified
+#                         ; 1605_3               ; pw_warehouse_s                               ; 75                                ; notSpecified
+#                         ; 1605_4               ; pw_warehouse_s                               ; 402                               ; notSpecified
+#                                                                
+#                         ; 1701_1               ; pw_warehouse_s                               ; 75                                ; notSpecified
+#                         ; 1701_2               ; pw_warehouse_s                               ; 402                               ; notSpecified
+#                                                                
+#                         ; 1702_1               ; pw_warehouse_s                               ; 510                               ; notSpecified
+#                         ; 1702_2               ; pw_warehouse_s                               ; 150                               ; notSpecified
+#                         ; 1702_3               ; pw_warehouse_s                               ; 75                                ; notSpecified
+#                                                               
+#                         ; 1703_1               ; pw_warehouse_s                               ; 75                                ; notSpecified
+#                         ; 1703_2               ; pw_warehouse_s                               ; 402                               ; notSpecified
+#                         ; 1703_3               ; pw_warehouse_s                               ; 510                               ; notSpecified
+#                         ; 1703_4               ; pw_warehouse_s                               ; 150                               ; notSpecified
+#                         ; 1703_5               ; pw_warehouse_s                               ; 75                                ; notSpecified
+#                                                               
+#                         ; 1704_1               ; pw_warehouse_s                               ; 510                               ; notSpecified
+#                         ; 1704_5               ; pw_warehouse_s                               ; 150                               ; notSpecified
+#                                                               
+#                         ; 1705_1               ; pw_warehouse_s                               ; 75                                ; notSpecified
+#                        
+# UPDATE Product           ; code[unique=true]        ; stockLevels(productCode,warehouse(code))     ; vendors(code)[default=siteone] ; $catalogVersion
+#                        
+#                        ; 1301_1                ; 1301_1 :pw_warehouse_s
+#						; 1301_2                ; 1301_2 :pw_warehouse_s
+#						; 1301_3                ; 1301_3 :pw_warehouse_s
+#						                                 
+#						; 1302_1                ; 1302_1 :pw_warehouse_s
+#						; 1302_2                ; 1302_2 :pw_warehouse_s
+#						; 1302_3                ; 1302_3 :pw_warehouse_s
+#						; 1302_4                ; 1302_4 :pw_warehouse_s
+#						                                
+#						; 1303_1                ; 1303_1 :pw_warehouse_s
+#						; 1303_2                ; 1303_2 :pw_warehouse_s
+#						; 1303_3                ; 1303_3 :pw_warehouse_s
+#						; 1303_4                ; 1303_4 :pw_warehouse_s
+#						; 1303_5                ; 1303_5 :pw_warehouse_s
+#						                                
+#						; 1304_1                ; 1304_1 :pw_warehouse_s
+#						; 1304_2                ; 1304_2 :pw_warehouse_s
+#						                                
+#						; 1305_1                ; 1305_1 :pw_warehouse_s
+#						; 1305_2                ; 1305_2 :pw_warehouse_s
+#						; 1305_3                ; 1305_3 :pw_warehouse_s
+#						                                 
+#						; 1401_1                ; 1401_1 :pw_warehouse_s
+#						; 1401_2                ; 1401_2 :pw_warehouse_s
+#						; 1401_3                ; 1401_3 :pw_warehouse_s
+#						; 1401_4                ; 1401_4 :pw_warehouse_s
+#						                                 
+#						; 1402_1                ; 1402_1 :pw_warehouse_s
+#						; 1402_2                ; 1402_2 :pw_warehouse_s
+#						                                 
+#						; 1403_1                ; 1403_1 :pw_warehouse_s
+#						; 1403_2                ; 1403_2 :pw_warehouse_s
+#						; 1403_3                ; 1403_3 :pw_warehouse_s
+#						                                
+#						; 1404_1                ; 1404_1 :pw_warehouse_s
+#						; 1404_2                ; 1404_2 :pw_warehouse_s
+#						; 1404_3                ; 1404_3 :pw_warehouse_s
+#						; 1404_4                ; 1404_4 :pw_warehouse_s
+#						                                 
+#						; 1405_1                ; 1405_1 :pw_warehouse_s
+#						                                
+#						                           
+#						; 1601_1                ; 1601_1 :pw_warehouse_s
+#						; 1601_2                ; 1601_2 :pw_warehouse_s
+#						                                
+#						; 1602_1                ; 1602_1 :pw_warehouse_s
+#						; 1602_2                ; 1602_2 :pw_warehouse_s
+#						; 1602_3                ; 1602_3 :pw_warehouse_s
+#						; 1602_4                ; 1602_4 :pw_warehouse_s
+#						                                
+#						; 1603_1                ; 1603_1 :pw_warehouse_s
+#						; 1603_2                ; 1603_2 :pw_warehouse_s
+#						; 1603_3                ; 1603_3 :pw_warehouse_s
+#						                                
+#						; 1604_1                ; 1604_1 :pw_warehouse_s
+#						; 1604_2                ; 1604_2 :pw_warehouse_s
+#						; 1604_3                ; 1604_3 :pw_warehouse_s
+#						; 1604_4                ; 1604_4 :pw_warehouse_s
+#						; 1604_5                ; 1604_5 :pw_warehouse_s
+#						                                 
+#						; 1605_1                ; 1605_1 :pw_warehouse_s
+#						; 1605_2                ; 1605_2 :pw_warehouse_s
+#						; 1605_3                ; 1605_3 :pw_warehouse_s
+#						; 1605_4                ; 1605_4 :pw_warehouse_s
+#						                                
+#						; 1701_1                ; 1701_1 :pw_warehouse_s
+#						; 1701_2                ; 1701_2 :pw_warehouse_s
+#						                                 
+#						; 1702_1                ; 1702_1 :pw_warehouse_s
+#						; 1702_2                ; 1702_2 :pw_warehouse_s
+#						; 1702_3                ; 1702_3 :pw_warehouse_s
+#						                                 
+#						; 1703_1                ; 1703_1 :pw_warehouse_s
+#						; 1703_2                ; 1703_2 :pw_warehouse_s
+#						; 1703_3                ; 1703_3 :pw_warehouse_s
+#						; 1703_4                ; 1703_4 :pw_warehouse_s
+#						; 1703_5                ; 1703_5 :pw_warehouse_s
+#						                                
+#						; 1704_1                ; 1704_1 :pw_warehouse_s
+#						; 1704_5                ; 1704_2 :pw_warehouse_s
+#						                                 
+#						; 1705_1                ; 1705_1 :pw_warehouse_s
+#						
+#						                                    

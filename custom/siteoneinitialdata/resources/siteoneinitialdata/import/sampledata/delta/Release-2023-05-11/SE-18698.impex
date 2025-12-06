@@ -1,0 +1,5 @@
+INSERT_UPDATE ServicelayerJob; code[unique=true];springid[unique=true]
+                             ;siteoneOldOrderRemovalJob;siteoneOldOrderRemovalJob;
+
+INSERT_UPDATE SiteoneOldOrderRemovalJob;code[unique=true];job(code)[default=siteoneOldOrderRemovalJob];sessionLanguage(isoCode)[default=en]
+                                       ;siteoneOldOrderRemovalJob

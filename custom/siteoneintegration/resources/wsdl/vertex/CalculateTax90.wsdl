@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:tns1="http://www.vertexinc.com/oseries/services/CalculateTax90" xmlns:vev="urn:vertexinc:o-series:tps:9:0" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.vertexinc.com/oseries/services/CalculateTax90">
+    <wsdl:types>
+        <xsd:schema>
+            <xsd:import namespace="urn:vertexinc:o-series:tps:9:0" schemaLocation="xsd/9.0/VertexInc_Envelope.xsd"/>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="calculateTaxRequest">
+        <wsdl:part element="vev:VertexEnvelope" name="part"/>
+    </wsdl:message>
+    <wsdl:message name="calculateTaxResponse">
+        <wsdl:part element="vev:VertexEnvelope" name="VertexEnvelope"/>
+    </wsdl:message>
+    <wsdl:portType name="CalculateTaxWS90">
+        <wsdl:operation name="calculateTax90">
+            <wsdl:input message="tns1:calculateTaxRequest" name="calculateTaxRequest"/>
+            <wsdl:output message="tns1:calculateTaxResponse" name="calculateTaxResponse"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="CalculateTax90SoapBinding" type="tns1:CalculateTaxWS90">
+        <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="calculateTax90">
+            <wsdlsoap:operation soapAction=""/>
+            <wsdl:input name="calculateTaxRequest">
+                <wsdlsoap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="calculateTaxResponse">
+                <wsdlsoap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="CalculateTaxWSService90">
+        <wsdl:port binding="tns1:CalculateTax90SoapBinding" name="CalculateTax90">
+            <wsdlsoap:address location="http://vertexdev90.siteone.com:8095/vertex-ws/services/CalculateTax90"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,4 @@
+ext {
+	libraries = []
+}
+libraries << "org.glassfish.web:javax.servlet.jsp.jstl:1.2.5"

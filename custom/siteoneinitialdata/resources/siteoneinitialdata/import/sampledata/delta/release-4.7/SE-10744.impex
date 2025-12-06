@@ -1,0 +1,16 @@
+# ---------------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# ---------------------------------------------------------------------------
+
+UPDATE PointOfService;storeID[unique=true];nearbyStoreSearchRadius
+;5;30
+;7;30
+;131;38
+;406;25
+;437;35
+;739;30
+;754;45
+;769;33
+;770;40
+
+

@@ -1,0 +1,17 @@
+$contentCatalog=siteoneContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+
+INSERT_UPDATE SiteoneParagaraphComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef;;;;content[lang=en];content[lang=es]
+;;PaymentInfoComponent;Payment Info Component;PaymentInfoComponent;;;;If you choose to Pay at Branch, you may pay with cash, a debit or credit card, or you may charge your order to your SiteOne account (if applicable).If you choose Pay Online with Credit Card, you will be prompted to provide your credit card details online before completing your order.<br><br>Payment will be processed when your order is picked up or delivered.<br><br>Questions? Contact us at 1-800-SITEONE, choose the option for Website support.;Si eliges pagar en la sucursal, puedes pagar en efectivo, con trajeta de crédito o débito, o puedes cargar tu orden a tu cuenta SiteOne (si aplica). Si decides pagar en línea con tarjeta de crédito, se te solicitarán en línea los detalles de tu tarjeta de crédito antes de completar la orden.<br><br>Tu pago será procesado cuando recojas tu orden o te sea enviada.<br><br>¿Preguntas? Llámanos a 1-800-SITEONE, elige la opción de soporte para página web.;
+
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='MultiStepCheckoutSummaryPageTemplate'];validComponentTypes(code);compTypeGroup(code)
+;paymentInfo;;;wide
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='MultiStepCheckoutSummaryPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;paymentInfoPage;paymentInfo;;paymentInfoSlot;true
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents(uid,$contentCV)
+;;paymentInfoSlot;PaymentInfoComponent;
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active
+;;paymentInfoSlot;Payment Info Slot;true

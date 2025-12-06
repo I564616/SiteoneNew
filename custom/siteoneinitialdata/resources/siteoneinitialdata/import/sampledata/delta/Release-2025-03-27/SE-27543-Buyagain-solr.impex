@@ -1,0 +1,32 @@
+
+
+$contentCatalog=siteoneContentCatalog
+$productCatalog=siteoneProductCatalog
+$catalogVersions=catalogVersions(catalog(id),version);
+$serverConfigName=siteoneSolrServerConfig
+$indexConfigName=siteoneSolrIndexConfig
+$searchConfigName=siteoneBuyItAgainPageSize
+$searchIndexNamePrefix=siteone
+$solrIndexedType=siteoneBuyItAgainType
+$indexBaseSite=siteone
+$indexLanguages=en
+$indexCurrencies=USD
+
+$solrBuyItAgainSearchIndexedType=siteoneBuyItAgainSearchType
+$buyItAgainSearchConfigName=buyItAgainSearchIndex
+$buyItAgainSearchConfigDescription=Buy It Again Search Solr Index
+
+
+
+# Non-facet properties
+INSERT_UPDATE  SolrIndexedProperty; solrIndexedType(identifier)[unique = true]; name[unique = true]  ; type(code); sortableType(code); currency[default = false]; localized[default = false]; multiValue[default = false]; useForSpellchecking[default = false]; useForAutocomplete[default = false]; fieldValueProvider                             ; valueProviderParameter ; ftsPhraseQuery[default = false]; ftsPhraseQueryBoost; ftsQuery[default = false]; ftsQueryBoost; ftsFuzzyQuery[default = false]; ftsFuzzyQueryBoost; ftsWildcardQuery[default = false]; ftsWildcardQueryType(code)[default = POSTFIX]; ftsWildcardQueryBoost; ftsWildcardQueryMinTermLength
+                                 ; $solrBuyItAgainSearchIndexedType          ; soProductUOM    ; string    ;                   ;                          ;                           ;                            ; false                               ; false                              ; buyItAgainProductUOMValueResolver         ;                        ; false                          ;                    ;                          ;              ; false                         ;                   ;                                  ;                                              ;                      ;
+
+
+
+# Create the queries that will be used to extract data for Solr
+INSERT_UPDATE SolrIndexerQuery;solrIndexedType(identifier)[unique=true];identifier[unique=true];type(code);injectCurrentDate[default=true];injectCurrentTime[default=true];injectLastIndexTime[default=true];query;user(uid)
+                              ;$solrBuyItAgainSearchIndexedType;$searchIndexNamePrefix-buyItAgain-fullQuery;full;;;false;"select MAX({entry.pk}) as pk from {OrderEntry as entry join Order AS o on {entry.order}={o.pk} join B2BUnit as u on {o.orderingAccount} = {u.pk} JOIN OrderStatus as os ON {o.status}={os.pk}} where {os.code} <> 'CANCELLED' AND {u.active} = 1 AND DATEDIFF (DAY,CONVERT (datetime,{o.creationtime}), SYSDATETIME()) <= 50 AND {o.code} not like '%_bak' AND {o.salesApplication} IN (8796110389339,8796110422107,8797463674971) GROUP BY {entry.storeproductcode}, {o.orderingAccount} ORDER BY MAX({entry.pk})";anonymous
+                              ;$solrBuyItAgainSearchIndexedType;$searchIndexNamePrefix-buyItAgain-updateQuery;update;;;;"select MAX({entry.pk}) as pk from {OrderEntry as entry join Order AS o on {entry.order}={o.pk} join B2BUnit as u on {o.orderingAccount} = {u.pk} JOIN OrderStatus as os ON {o.status}={os.pk}} where {os.code} <> 'CANCELLED' AND {u.active} = 1 AND ({o.creationtime}) >=?lastIndexTime AND {o.code} not like '%_bak' AND {o.salesApplication} IN (8796110389339,8796110422107,8797463674971) GROUP BY {entry.storeproductcode}, {o.orderingAccount} ORDER BY MAX({entry.pk})";anonymous
+
+

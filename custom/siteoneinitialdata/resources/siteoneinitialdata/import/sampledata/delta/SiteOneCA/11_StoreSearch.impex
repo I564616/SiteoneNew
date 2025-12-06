@@ -1,0 +1,3 @@
+
+UPDATE SolrFacetSearchConfig;name[unique=true]    ;listeners
+                            ;storeSearchIndex;siteOneStoreSearchListener,siteOneStoreIndexQueryListener

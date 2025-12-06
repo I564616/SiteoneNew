@@ -1,0 +1,174 @@
+## messageSource=classpath:/siteonecore/messages/email-editList_$lang.properties
+#macro( genHtmlBoldFont $text )
+<font color="#414a4f" size="2" face="Arial, Helvetica, sans-serif"><b>$text</b></font>
+#end
+#macro(genHtmlLinkStartTag $url)
+<a href="$url"><font color="#666666">
+#end
+#macro(genHtmlLinkEndTag)
+</font></a>
+#end
+#macro(genHtmlLink $url $textColor $bodyContent)
+<a href="$url"><font color="$textColor">$bodyContent</font></a>
+#end
+<div style="display:none !important;
+            visibility:hidden;
+            mso-hide:all;
+            font-size:1px;
+            color:#ffffff;
+            line-height:1px;
+            max-height:0px;
+            max-width:0px;
+            opacity:0;
+            overflow:hidden;">${ctx.messages.preHeader}</div>
+<html>
+	<head></head>
+	<body bgcolor="#ffffff">
+		<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#ffffff">
+			<tr>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<td align="center" valign="top">
+					<table width="610" border="0" align="center" cellpadding="0" cellspacing="0" bordercolor="#fff">
+						<tr>
+							<td align="center" valign="top" bgcolor="#FFFFFF"   style="border: 1px solid #51585c;">
+								<table width="100%" cellpadding="0" cellspacing="0" border="0" align="center">
+									<tr class="noBorder">
+										<td style="padding:15px;">
+											<a style="text-decoration:none;" href="${ctx.baseThemeUrl}">
+												<img title="SiteoneLogo" src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/SiteoneLogo.jpg" alt="SiteoneLogo" style="outline:0;border:none;">
+												</a>
+											</td>
+											<td style="padding:15px;" align="right" >
+												<span class="col-xs-6 col-md-12">
+														<a style="text-decoration:none;" target="_blank" href="https://www.facebook.com/SiteOneLandscape/">
+														   <img src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/Print_facebook_color.png" alt="Facebook" title="Facebook" style="outline:0;border:none;" width="30" height="30">
+														</a>
+                                  					   <a style="text-decoration:none;" target="_blank" href="https://www.instagram.com/siteonesupply/">
+                                  					      <img src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/Print_instagram_color.png" alt="Instagram" title="Instagram" style="outline:0;border:none;" width="30" height="30">
+                                  					  </a>
+                                 					  <a style="text-decoration:none;" target="_blank" href="https://twitter.com/SiteOneSupply">
+                                 				     	  <img src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/Print_twitter_color.png" alt="Twitter" title="Twitter" style="outline:0;border:none;" width="30" height="30">
+                                 					  </a>
+															</span>
+														</td>
+													</tr>
+													<tr class="noBorder">
+														<td colspan ="2" >
+															<table width=100%>
+																<tr>
+																	<td height="30" style ="padding: 24px 4px 13px 20px;;background-color:#ccc; padding-left:1em;" class="change">
+																		<font color="#000000" face="Arial" style="font-size: 19pt;">
+																			<b>
+																			${ctx.customerName},
+																				<br/>${ctx.messages.editListHeading}
+																			
+																			</b>
+																		</font>
+																		<br/>
+																		<br/>
+																	</tr>
+																</td>
+															</table>
+															<table>
+																<tr>
+																	<td style="padding:20px;font-family: Arial;font-size: 12pt;">
+																		<p style="margin:3px 0">
+																			<font color="#000000">${ctx.messages.listinfo} 
+																				
+																				<b>${ctx.listName}</b>. ${ctx.messages.listinfodetail} 
+																				
+																				<a href="${ctx.baseUrl}/savedList/listDetails?code=${ctx.listCode}">${ctx.messages.updatelistlink}</a>.
+																			
+																			</font>
+																		</p>
+																		<p>
+																			<br/>
+																			<font color="#000000">${ctx.messages.commonMessage}
+																				
+																				<br>
+																					<a href="${ctx.baseThemeUrl}/store/${ctx.storeId}">${ctx.town} ${ctx.storeId}</a> ${ctx.messages.at} 
+																					
+																					<u><a href="tel:${ctx.contactNumber}">${ctx.contactNumber}</a></u>.
+																				
+																				</font>
+																			</p>
+																			<p>
+																				<br/>
+																				<font color="#000000">${ctx.messages.commonsubMessage} 
+																					
+																					<a href="${ctx.baseUrl}/contactus">${ctx.messages.contactyou}</a>.
+																				
+																				</font>
+																			</p>									
+																			
+																			
+																			
+																			<p>
+																				<br/>
+																				<font color="#000000">${ctx.messages.complimentaryClose}
+																					
+																					<br>
+																						<b>
+																							<i>${ctx.messages.signaturename}</i>
+																						</b>
+																					</font>
+																				</p>
+																			</table>
+																		</td>
+																	</tr>
+																	<tr class="noBorder">
+																		<td colspan="2">
+																			<hr color="black" align="center" width="92%">
+																			</td>
+																		</tr>
+																		<tr class="noBorder">
+																			<td height="30" colspan="2" style="padding-top:12px;font-family: Arial;font-size: 10pt;">
+																				<center>
+																					<p>
+																						<font color="#000000">${ctx.messages.toensurethatyoucontinuetoreceiveyouremails}
+																							
+																							<br/>
+																							<u>
+																								<a href="mailto:${ctx.supportEmail}">${ctx.supportEmail}</a>
+																							</u>
+									                                                     	 ${ctx.messages.afterinfoEmailAddress}
+								
+																							
+																							<br/>
+																						</font>
+																					</p>
+																					<p>
+																						${ctx.messages.siteonerights}
+								
+																							
+																						<br/>${ctx.messages.address}
+								
+																					
+																					
+																					</p>
+																					<p>
+																						<a href="${ctx.baseThemeUrl}/privacypolicy">${ctx.messages.privacyPolicy}</a> |
+									
+																							
+																						<a href="${ctx.baseThemeUrl}mailMediaUrl">${ctx.messages.viewinBrowser}</a>
+																					</p>
+																					<br/>
+																				</center>
+																			</td>
+																		</tr>
+																	</table>
+																</td>
+															</tr>
+														</table>
+													</td>
+												</tr>
+												<tr>
+													<td>&nbsp;</td>
+												</tr>
+											</tr>
+										</td>
+									</table>
+								</body>
+							</html>

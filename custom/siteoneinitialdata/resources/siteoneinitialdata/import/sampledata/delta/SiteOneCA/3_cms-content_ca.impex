@@ -1,0 +1,213 @@
+$contentCatalog=siteoneCAContentCatalog
+$contentCatalogName=SiteOne CA Content Catalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$productCatalog=siteoneCAProductCatalog
+$productCatalogName=SiteOne CA Product Catalog
+$productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$picture=media(code, $contentCV);
+$image=image(code, $contentCV);
+$media=media(code, $contentCV);
+$page=page(uid, $contentCV);
+$contentPage=contentPage(uid, $contentCV);
+$product=product(code, $productCV)
+$category=category(code, $productCV)
+$siteResource=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/contentCatalogs/siteoneCAContentCatalog
+$productResource=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/productCatalogs/siteoneProductCatalog
+$jarResourceCms=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/cockpits/cmscockpit
+$addonExtensionName=siteoneacceleratoraddon
+$medias=medias(code, $contentCV);
+$articleMedia=articleMedia(code, $contentCV);
+$mediaContainer=media(qualifier, $contentCV);
+$siteUid=siteone
+$lang=en
+
+UPDATE GenericItem[processor=de.hybris.platform.commerceservices.impex.impl.ConfigPropertyImportProcessor];pk[unique=true]
+$jarResourceCms=$config-jarResourceCmsValue
+
+
+INSERT_UPDATE PageTemplate;$contentCV[unique=true];uid[unique=true];name;frontendTemplateName;restrictedPageTypes(code);active[default=true]
+;;SiteOneCAHomePageTemplate;SiteOne Home Page Template;layout/siteonehomepagetemplate;ContentPage
+
+
+UPDATE PageTemplate;$contentCV[unique=true];uid[unique=true];velocityTemplate[translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+;;SiteOneCAHomePageTemplate      ;$jarResourceCms/structure-view/structure_siteoneCAHomepageTemplate.vm
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active
+;;SiteLogoSlot;Default Site Logo Slot;true
+;;HomepageNavLinkSlot;Default Homepage Link;true
+;;MiniCartSlot;Mini Cart;true
+;;NavigationBarSlot;Navigation Bar;true
+;;TopContentSlot;Top Content;true
+;;BottomContentSlot;Bottom Content;true
+;;SideContentSlot;Side Content;true
+;;FooterSlot;Footer;true
+;;HeaderLinksSlot;Header links;true
+;;SearchBoxSlot;Search Box;true
+;;VariantSelectorSlot;Variant Selector;true
+;;AddToCartSlot;Add To Cart;true
+;;TopHeaderSlot;Top Header;true
+;;BottomHeaderSlot;Bottom Header;true
+;;PlaceholderContentSlot;Placeholder for Addon tag files;true
+;;GlobalMessageSlot;Global Message Slot;true
+;;VerticalNavigationSlot;Vertical Navigation Slot;true
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents(&componentRef)
+;;SearchBoxSlot;SearchBox
+
+INSERT_UPDATE SearchBoxComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef
+;;SearchBox;Search Box;SearchBox
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents(&componentRef)
+;;MiniCartSlot;MiniCart
+
+INSERT_UPDATE MiniCartComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef;totalDisplay(code);shownProductCount;lightboxBannerComponent(&componentRef)
+;;MiniCart;Mini Cart;MiniCart;SUBTOTAL;5;LightboxHomeDeliveryBannerComponent
+
+INSERT_UPDATE SimpleBannerComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef;urlLink
+;;LightboxHomeDeliveryBannerComponent;Lightbox Home Delivery Banner Component;LightboxHomeDeliveryBannerComponent;
+
+## Global Message Slot ##
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents(&componentRef)
+;;GlobalMessageSlot;GlobalMessageComponent
+
+INSERT_UPDATE GlobalMessageCMSComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef;
+;;GlobalMessageComponent;Global Message Component;GlobalMessageComponent;
+
+## navigation bar slot ##
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents(uid, $contentCV)
+;;NavigationBarSlot;breadcrumbComponent
+
+INSERT_UPDATE BreadcrumbComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef;visible
+;;breadcrumbComponent;Breadcrumb CMS Component;breadcrumbComponent;true
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents(&componentRef)
+;;BottomConsentSlot;BottomConsentCMSComponent
+
+INSERT_UPDATE BottomConsentCMSComponent;$contentCV[unique=true];uid[unique=true];name;content[lang=$lang];text[lang=$lang];buttonURL;buttonURLPolicy;&componentRef;
+;;BottomConsentCMSComponent;Bottom Consent Message Component;"We use cookies to ensure that we give you the best experience on our website. If you continue, you agree with our policy statement.";We value your privacy;/en/consentForm;/en/privacypolicy;BottomConsentCMSComponent;
+
+UPDATE FooterNavigationComponent;$contentCV[unique=true];uid[unique=true];extendedNotice
+;;FooterNavigationComponent;SiteOne Landscape Supply, Inc. 2018 – <CURRENT_YEAR>. The Trademarks Used On This Website Are The Property Of SiteOne Landscape Supply, Inc. And LESCO, Inc. Nothing Herein Should Be Construed To Grant Any License To Use Any Trademarks Without The Prior Written Permission Of The Trademark Owner.;
+
+
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='SiteOneCAHomePageTemplate'];validComponentTypes(code);compTypeGroup(code)
+;SiteLogo;;;logo
+;HeaderLinks;;;headerlinks
+;SearchBox;;;searchbox
+;MiniCart;;;minicart
+;NavigationBar;;;navigation
+;SectionS1;;HomePageRotatingBannerComponent,SiteOneHomePageMobileBrandBannerComponent;
+;Section5D;;SiteOneHomeBannerComponent;
+;Section3A;;PromotionBannerComponent;
+;Section3B;;PromotionBannerComponent;
+;Section4A;;HomePageToolsComponent;
+;Section4B;;HomePageToolsComponent;
+;Section4C;;HomePageToolsComponent;
+;Section4H4;;SiteOneHomePageBackgroundImageComponent
+;Footer;;;footer
+;TopHeaderSlot;;;wide
+;BottomHeaderSlot;;;wide
+;PlaceholderContentSlot;;;
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='SiteOneCAHomePageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;SiteLogo-SiteOneCAHomePage;SiteLogo;;SiteLogoSlot;true
+;;NavigationBar-SiteOneCAHomePage;NavigationBar;;NavigationBarSlot;true
+;;MiniCart-SiteOneCAHomePage;MiniCart;;MiniCartSlot;true
+;;Footer-SiteOneCAHomePage;Footer;;FooterSlot;true
+;;HeaderLinks-SiteOneCAHomePage;HeaderLinks;;HeaderLinksSlot;true
+;;SearchBox-SiteOneCAHomePage;SearchBox;;SearchBoxSlot;true
+;;TopHeaderSlot-SiteOneCAHomePage;TopHeaderSlot;;TopHeaderSlot;true
+;;BottomHeaderSlot-SiteOneCAHomePage;BottomHeaderSlot;;BottomHeaderSlot;true
+;;PlaceholderContentSlot-SiteOneCAHomePage;PlaceholderContentSlot;;PlaceholderContentSlot;true
+;;GlobalMessage-SiteOneCAHomePage;GlobalMessage;;GlobalMessageSlot;true
+;;VerticalNavigation-SiteOneCAHomePage;VerticalNavigation;;VerticalNavigationSlot;true
+
+
+INSERT_UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);label;defaultPage[default='true'];approvalStatus(code)[default='approved'];homepage[default='true']
+;;siteonecanada;Siteone Canada HomePage;SiteOneCAHomePageTemplate;/canada
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef)
+;;SectionS1Slot-SiteOneCanada;SectionS1 Slot for SiteOneCanada;true;siteoneHomePageCarouselComponent,SiteOneHomePageMobileBrandBannerComponent1
+;;Section4ASlot-SiteOneCanada;Section4A Slot for SiteOneCanada;true;ToolsComponent
+;;Section4BSlot-SiteOneCanada;Section4B Slot for SiteOneCanada;true;LearnComponent
+;;Section4CSlot-SiteOneCanada;Section4C Slot for SiteOneCanada;true;EventsComponent
+;;Section4H4Slot-SiteOneCanada;Section4H4 Slot for SiteOneCanada;true;backgroundImageComponent
+;;Section5DSlot-SiteOneCanada;Section5D Slot for SiteOneCanada;true;SiteOneHomePromotComponent
+;;Section3ASlot-SiteOneCanada;Section3A Slot for SiteOneCanada;true;HomepagePromotionComponent1
+;;Section3BSlot-SiteOneCanada;Section3B Slot for SiteOneCanada;true;HomepagePromotionComponent2
+
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='siteonecanada'];contentSlot(uid,$contentCV)[unique=true]
+;;SectionS1-SiteOneCanada;SectionS1;;SectionS1Slot-SiteOneCanada
+;;Section4A-SiteOneCanada;Section4A;;Section4ASlot-SiteOneCanada
+;;Section4B-SiteOneCanada;Section4B;;Section4BSlot-SiteOneCanada
+;;Section4C-SiteOneCanada;Section4C;;Section4CSlot-SiteOneCanada
+;;Section4H4-SiteOneCanada;Section4H4;;Section4H4Slot-SiteOneCanada
+;;Section5D-SiteOneCanada;Section5D;;Section5DSlot-SiteOneCanada
+;;Section3A-SiteOneCanada;Section3A;;Section3ASlot-SiteOneCanada
+;;Section3B-SiteOneCanada;Section3B;;Section3BSlot-SiteOneCanada
+
+
+INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='image/jpeg'];altText;&imageRef;folder(qualifier)[default='images']
+;;HomePage-Banner-detail1;$siteResource/images/banners/homepage/responsive/HomePage-Banner-detail1.png;;;""
+;;HomePage-Banner-detail2;$siteResource/images/banners/homepage/responsive/HomePage-Banner-detail2.png;;;""
+;;HomePage-Banner-detail3;$siteResource/images/banners/homepage/responsive/HomePage-Banner-detail3.png;;;""
+;;HomePage-Banner-detail4;$siteResource/images/banners/homepage/responsive/HomePage-Banner-detail4.png;;;""
+;;Brand-banner-1;$siteResource/images/banners/homepage/responsive/Brand-banner-1.png;;;""
+;;Brand-banner-2;$siteResource/images/banners/homepage/responsive/Brand-banner-1.png;;;""
+;;Home-Trio-1;$siteResource/images/banners/homepage/responsive/Home-Trio-1.png;;;""
+;;Home-Trio-2;$siteResource/images/banners/homepage/responsive/Home-Trio-2.png;;;""
+;;Home-Trio-3;$siteResource/images/banners/homepage/responsive/Home-Trio-3.png;;;""
+;;background-image;$siteResource/images/banners/homepage/responsive/background-image.jpg;;;""
+;;Promotion-banner;$siteResource/images/banners/homepage/responsive/Promotion-banner.png;;;""
+;;home-learn-bottom-left;$siteResource/images/banners/homepage/responsive/home-learn-bottom-left.png;;;""
+;;home-learn-bottom-right;$siteResource/images/banners/homepage/responsive/home-learn-bottom-right.png;;;""
+
+INSERT_UPDATE SiteOneStoreDetailPromoComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef;urlLink;$picture[lang=$lang];promotionalText[lang=en];promotionalText[lang=es];headline[lang=en];headline[lang=es];buttonLabel[lang=en];buttonLabel[lang=es];buttonURL;icon
+;;HomePageBannerComponent1;HomePage Banner detail1;HomePageBannerComponent1;/eop?icid=home-carousel-1-EOP;HomePage-Banner-detail1;Early Order Programs are going on now.;Los programas de órdenes anticipados están sucediendo ahora.;ORDER LIKE A PRO;ORDENA COMO UN PROFESIONAL;Learn More;Conoce más;/eop?icid=home-carousel-1-EOP;1
+;;HomePageBannerComponent2;HomePage Banner detail2;HomePageBannerComponent2;/hardscapes?icid=home-carousel-2-hardscapes;HomePage-Banner-detail2;Backed by the most knowledgeable hardscape experts in your market, SiteOne Stone Center is your source for the finest hardscape and outdoor living materials.;Con el respaldo de los expertos más reconocidos en materiales duros en tu mercado, el SiteOne Stone Center es tu fuente de materiales, duros y para exteriores, de la mayor calidad.;BUILD WITH THE BEST;CONSTRUYE CON EL MEJOR;Learn More;Conoce más;/hardscapes?icid=home-carousel-2-hardscapes;2
+;;HomePageBannerComponent3;HomePage Banner detail3;HomePageBannerComponent3;/testimonials?icid=home-carousel-3-testimonials;HomePage-Banner-detail3;Built for speed by landscape professionals for landscape professionals. Hear how customers are getting more done with SiteOne.com.;Construido por profesionales del paisajismo para profesionales del paisajismo y sus necesidades de rapidez. Escucha cómo nuestros clientes hacen más con SiteOne.com.;SiteOne ONLINE;SiteOne EN LÍNEA;Learn More;Conoce más;/testimonials?icid=home-carousel-3-testimonials;3
+;;HomePageBannerComponent4;HomePage Banner detail4;HomePageBannerComponent4;/protrade?icid=home-carousel-4-protrade-lighting;HomePage-Banner-detail4;Pro-Trade Lighting® delivers performance you can count on season after season. Exclusively at SiteOne.;Pro-Trade Lighting® te brinda un desempeño con el que puedes contar temporada tras temporada. Exclusivo de SiteOne.;BUILT TOUGH. PRICED RIGHT.;HECHO PARA RESISTIR. AL PRECIO CORRECTO.;Learn More;Conoce más;/protrade?icid=home-carousel-4-protrade-lighting;4
+
+INSERT_UPDATE HomePageRotatingBannerComponent;$contentCV[unique=true];uid[unique=true];name;rotatingBanner(&componentRef);&componentRef
+;;siteoneHomePageCarouselComponent;Siteone Homepage Component;HomePageBannerComponent1,HomePageBannerComponent2,HomePageBannerComponent3,HomePageBannerComponent4;siteoneHomePageCarouselComponent
+
+INSERT_UPDATE SiteOneBrandBannerComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef;$picture[lang=en];$picture[lang=es];urlLink
+;;SiteOneHomePageBrandBannerComponent1;SiteOne HomePage Brand Banner Component1;SiteOneHomePageBrandBannerComponent1;Brand-banner-1;Brand-banner-1;/events?icid=home-sidebar-1
+;;SiteOneHomePageBrandBannerComponent2;SiteOne HomePage Brand Banner Component2;SiteOneHomePageBrandBannerComponent2;Brand-banner-2;Brand-banner-2;/testimonials?icid=home-sidebar-2
+;;SiteOneHomePageBrandBannerComponent3;SiteOne HomePage Brand Banner Component3;SiteOneHomePageBrandBannerComponent3;Brand-banner-1;Brand-banner-1;/events?icid=home-sidebar-1
+;;SiteOneHomePageBrandBannerComponent4;SiteOne HomePage Brand Banner Component4;SiteOneHomePageBrandBannerComponent4;Brand-banner-2;Brand-banner-2;/testimonials?icid=home-sidebar-2
+
+INSERT_UPDATE SiteOneHomePageMobileBrandBannerComponent;$contentCV[unique=true];uid[unique=true];name;bannerList(&componentRef);&componentRef
+;;SiteOneHomePageMobileBrandBannerComponent1;SiteOne HomePage Mobile Brand Banner Component1;SiteOneHomePageBrandBannerComponent3,SiteOneHomePageBrandBannerComponent4;SiteOneHomePageMobileBrandBannerComponent1
+;;SiteOneHomePageMobileBrandBannerComponent2;SiteOne HomePage Mobile Brand Banner Component2;SiteOneHomePageBrandBannerComponent1,SiteOneHomePageBrandBannerComponent2;SiteOneHomePageMobileBrandBannerComponent2
+
+
+INSERT_UPDATE HomePageToolsComponent;$contentCV[unique=true];uid[unique=true];name;urlLink;&componentRef;title;description;buttonName
+;;ToolsComponent;Tools & Resources Component;/tools;ToolsComponent;;;"Learn more &#8594;"
+;;LearnComponent;Learn Component;/articles;LearnComponent;;;"Learn more &#8594;"
+;;EventsComponent;Events Component;/events;EventsComponent;;;"Learn more &#8594;"
+
+UPDATE HomePageToolsComponent;$contentCV[unique=true];uid[unique=true];$picture[lang=$lang]
+;;ToolsComponent;Home-Trio-1;
+;;LearnComponent;Home-Trio-2;
+;;EventsComponent;Home-Trio-3;
+
+
+INSERT_UPDATE SiteOneHomePageTextBannerComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef;title[lang=en];title[lang=es];description[lang=en];description[lang=es];buttonLabel[lang=en];buttonLabel[lang=es];buttonURL
+;;SiteOneHomePageTextBannerComponent1;SiteOne HomePage PromoBanner Component1;SiteOneHomePageTextBannerComponent1;SAVE TIME.</br>SAVE MONEY.;;Request an Online Account today.;;Request Account;;/request-account/form?icid=home-feature1
+;;SiteOneHomePageTextBannerComponent2;SiteOne HomePage PromoBanner Component2;SiteOneHomePageTextBannerComponent2;NEED A LINE OF CREDIT?;;We’re proud to offer line of credit options to help you get the job done.;;;;/openlineofcredit
+;;SiteOneHomePageTextBannerComponent3;SiteOne HomePage PromoBanner Component3;SiteOneHomePageTextBannerComponent3;INTRODUCING 'BUY AGAIN' ON SITEONE.COM;;Reorder your favorite items quickly and easily.;;;;/my-account/buy-again/${sessionShipTo.uid}
+
+
+INSERT_UPDATE SiteOneHomePageBackgroundImageComponent;$contentCV[unique=true];uid[unique=true];name;bannerList(&componentRef);&componentRef;$picture[lang=$lang]
+;;backgroundImageComponent;background image component;SiteOneHomePageTextBannerComponent1,SiteOneHomePageTextBannerComponent2,SiteOneHomePageTextBannerComponent3;backgroundImageComponent;background-image
+
+INSERT_UPDATE SiteOneHomeBannerComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef;urlLink;$picture[lang=en];$picture[lang=es]
+;;SiteOneHomePromotComponent;Store Homepage Promo1 Component;SiteOneHomePromotComponent;/articles?icid=home-promo-learn;Promotion-banner;Promotion-banner
+
+
+INSERT_UPDATE PromotionBannerComponent;$contentCV[unique=true];uid[unique=true];name;urlLink;buttonName;&componentRef;imageText;$picture[lang=$lang]
+;;HomepagePromotionComponent1;Homepage Brands Promotion Component 1;/articles;"Learn more";HomepagePromotionComponent1;LEARN MORE WORK BETTER;home-learn-bottom-left
+;;HomepagePromotionComponent2;Homepage Brands Promotion Component 2;/articles;"Learn more";HomepagePromotionComponent2;CHECK OUT OUR EDUCATIONAL RESOURCES;home-learn-bottom-right
+

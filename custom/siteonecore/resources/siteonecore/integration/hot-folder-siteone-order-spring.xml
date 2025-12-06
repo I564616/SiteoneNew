@@ -1,0 +1,665 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ [y] hybris Platform
+ Copyright (c) 2000-2016 SAP SE or an SAP affiliate company.
+ All rights reserved.
+ This software is the confidential and proprietary information of SAP
+ ("Confidential Information"). You shall not disclose such Confidential
+ Information and shall use it only in accordance with the terms of the
+ license agreement you entered into with SAP.
+-->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:int="http://www.springframework.org/schema/integration"
+	xmlns:file="http://www.springframework.org/schema/integration/file"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/integration
+	http://www.springframework.org/schema/integration/spring-integration.xsd
+	http://www.springframework.org/schema/integration/file
+	http://www.springframework.org/schema/integration/file/spring-integration-file.xsd
+	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+	http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<context:annotation-config/>
+
+	<bean id="azureHotfolderOrderRemotePath" class="java.lang.String">
+		<constructor-arg name="value"
+			value="${azure.hotfolder.storage.container.hotfolder}/siteoneorder"/>
+	</bean>
+
+	<bean id="azureLocalOrderErrorRegexPatternFileListFilter"
+		class="org.springframework.integration.file.filters.RegexPatternFileListFilter">
+		<constructor-arg name="pattern" value="^error_siteoneorder.*$"/>
+	</bean>
+
+	<bean id="azureHotfolderOrderLocalPath" class="java.lang.String">
+		<constructor-arg name="value"
+			value="#{azureHotfolderLocalDirectoryBase}/#{azureHotfolderOrderRemotePath}"/>
+	</bean>
+
+	<bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+		<property name="targetObject" ref="hotfolderInboundFileChannelMappings"/>
+		<property name="targetMethod" value="put"/>
+		<property name="arguments">
+			<list>
+				<bean class="java.util.regex.Pattern" factory-method="compile">
+					<constructor-arg value="^(siteoneorder)_(\d+)(\S+)_(\d+)(\S+)\.(?i)txt"/>
+				</bean>
+				<ref bean="SiteOneOrderBatchFilesCloudHotFolderProc"/>
+			</list>
+		</property>
+	</bean>
+
+	<int:channel id="SiteOneOrderBatchFilesCloudHotFolderProc"/>
+
+	<int:service-activator input-channel="SiteOneOrderBatchFilesCloudHotFolderProc" output-channel="batchSiteOneFilesHeaderInit"
+		ref="SiteOneOrderCloudHotFolderHeaderSetupTask" method="execute">
+	</int:service-activator>
+
+	<!--  Azure Inbound File Synchronizer and Channel Adapter -->
+	<bean id="SiteOneOrderAzureBlobInboundSynchronizer"
+		class="de.hybris.platform.cloud.azure.hotfolder.remote.inbound.AzureBlobInboundSynchronizer">
+		<constructor-arg name="sessionFactory" ref="azureBlobSessionFactory"/>
+		<property name="remoteDirectory" value="#{azureHotfolderOrderRemotePath}"/>
+		<property name="moveToRemoteDirectory" value="#{azureHotfolderOrderRemotePath}/processing"/>
+		<property name="deleteRemoteFiles" value="${azure.hotfolder.storage.delete.remote.files}"/>
+		<property name="preserveTimestamp" value="true"/>
+		<property name="filter" ref="azureHotfolderFileFilter"/>
+		<property name="comparator" ref="azureHotFolderFileComparator"/>
+	</bean>
+
+	<bean id="SiteOneOrderAzureBlobSynchronizingMessageSource"
+		class="de.hybris.platform.cloud.azure.hotfolder.remote.inbound.AzureBlobSynchronizingMessageSource">
+		<constructor-arg name="synchronizer" ref="SiteOneOrderAzureBlobInboundSynchronizer"/>
+		<property name="autoCreateLocalDirectory" value="true"/>
+		<property name="localDirectory" value="#{azureHotfolderOrderLocalPath}/processing/"/>
+		<property name="maxFetchSize" value="${azure.hotfolder.storage.polling.fetch.batch-size}"/>
+	</bean>
+
+	<bean id="azureOrderChannelAdapterTaskExecutor"
+		class="de.hybris.platform.cloud.commons.scheduling.HybrisAwareThreadPoolTaskExecutor">
+		<property name="waitForTasksToCompleteOnShutdown" value="true"/>
+		<property name="threadNamePrefix" value="AzureOrderIntegrationTaskExecutorThread-${tenantId}-"/>
+		<property name="threadGroupName" value="AzureOrderIntegrationTaskExecutorThread-${tenantId}"/>
+		<property name="corePoolSize" value="${azure.hotfolder.storage.polling.core-pool-size}"/>
+		<property name="maxPoolSize" value="${azure.hotfolder.storage.polling.max-pool-size}"/>
+		<property name="queueCapacity" value="-1"/>
+		<property name="keepAliveSeconds" value="60"/>
+		<property name="rejectedExecutionHandler">
+			<bean class="java.util.concurrent.ThreadPoolExecutor$DiscardPolicy"/>
+		</property>
+		<property name="role" value="integration"/>
+		<property name="autoStartup" value="false"/>
+		<property name="phase" value="10"/>
+		<property name="awaitTerminationSeconds" value="60"/>
+	</bean>
+
+
+	<bean id="SiteOneOrderCloudHotFolderHeaderSetupTask" class="de.hybris.platform.acceleratorservices.dataimport.batch.task.HeaderSetupTask">
+		<property name="catalog" value="${cloud.hotfolder.default.mapping.header.catalog}"/>
+		<property name="net" value="${cloud.hotfolder.default.mapping.header.net}" />
+		<property name="storeBaseDirectory" value="#{azureHotfolderOrderRemotePath}/processing" />
+	</bean>
+
+	<int:inbound-channel-adapter id="SiteOneOrderAzureInboundChannelAdapter"
+		auto-startup="false"
+		role="${cloud.hotfolder.storage.services.role}"
+		phase="50"
+		ref="SiteOneOrderAzureBlobSynchronizingMessageSource"
+		channel="siteOneOrderCloudHotFolderInboundFileHeaderEnricherChannel">
+		<int:poller fixed-rate="${azure.hotfolder.storage.polling.fixed.rate}"
+			task-executor="azureOrderChannelAdapterTaskExecutor"
+			max-messages-per-poll="${azure.hotfolder.storage.polling.fetch.batch-size}">
+		</int:poller>
+	</int:inbound-channel-adapter>
+	
+	<int:channel id="siteOneOrderCloudHotFolderInboundFileHeaderEnricherChannel">
+        <int:interceptors>
+           <ref bean="siteOneOrderHotFolderRoutingChannelInterceptor"/>
+        </int:interceptors>
+    </int:channel>
+
+
+    <bean id="siteOneOrderHotFolderRoutingChannelInterceptor" class="de.hybris.platform.cloud.hotfolder.interceptor.HotFolderRouterChannelInterceptor">
+      <property name="successChannel" ref="SiteOneOrderAzureArchiveOutboundChannelAdapter"/>
+      <property name="failureChannel" ref="SiteOneOrderAzureErrorOutboundChannelAdapter"/>
+    </bean>
+
+    <int:header-enricher id="siteOneOrderCloudHotFolderInboundFileNameHeaderEnricherChannel"
+                input-channel="siteOneOrderCloudHotFolderInboundFileHeaderEnricherChannel"
+                output-channel="hotfolderInboundFileChannel">
+        <int:header name="#{fileNameHeaderKey}" expression="payload.getName()"/>
+        <int:header name="#{fileLastModifiedHeaderKey}" expression="payload.lastModified()"/>
+   </int:header-enricher>
+
+	<!-- Order :: Azure Outbound Channel adapters for moving remote files into archive/error folders -->
+	<bean id="SiteOneOrderAzureArchiveMessageHandler" parent="abstractAzureMoveMessageHandler">
+		<property name="remoteDirectory" value="#{azureHotfolderOrderRemotePath}/archive"/>
+	</bean>
+
+	<bean id="SiteOneOrderAzureErrorMessageHandler" parent="abstractAzureMoveMessageHandler">
+		<property name="remoteDirectory" value="#{azureHotfolderOrderRemotePath}/error"/>
+	</bean>
+
+	<int:outbound-channel-adapter id="SiteOneOrderAzureArchiveOutboundChannelAdapter"
+		ref="SiteOneOrderAzureArchiveMessageHandler">
+	</int:outbound-channel-adapter>
+
+	<int:outbound-channel-adapter id="SiteOneOrderAzureErrorOutboundChannelAdapter"
+		ref="SiteOneOrderAzureErrorMessageHandler" >
+	</int:outbound-channel-adapter>
+
+
+	<!--Start-->
+	<file:inbound-channel-adapter id="azureLocalOrderErrorInboundChannelAdapter"
+		directory="#{azureHotfolderOrderLocalPath}/error"
+		filter="azureLocalOrderErrorHotFolderFileFilter">
+		<int:poller fixed-rate="10000"/>
+	</file:inbound-channel-adapter>
+
+	<bean id="azureLocalOrderErrorHotFolderFileFilter"
+		class="de.hybris.platform.cloud.commons.spring.integration.file.filters.ChainFileListFilter">
+		<constructor-arg name="fileFilters" ref="azureLocalOrderErrorFolderFileListFilter"/>
+	</bean>
+
+	<util:list id="azureLocalOrderErrorFolderFileListFilter">
+		<ref bean="azureLocalOrderErrorRegexPatternFileListFilter"/>
+		<ref bean="azureFileSystemPersistentAcceptOnceListFilter"/>
+	</util:list>
+
+	<bean id="azureFileSystemPersistentAcceptOnceListFilter" class="org.springframework.integration.file.filters.FileSystemPersistentAcceptOnceFileListFilter">
+		<constructor-arg name="store" ref="hotfolderMetadataStore"/>
+		<constructor-arg name="prefix" value="${azure.hotfolder.storage.metadatastore.prefix}"/>
+	</bean>
+
+	<int:outbound-channel-adapter id="azureLocalOrderErrorOutboundChannelAdapter"
+		channel="azureLocalOrderErrorInboundChannelAdapter" ref="azureOrderBlobMessageHandler"/>
+
+	<bean id="azureOrderBlobMessageHandler" class="de.hybris.platform.cloud.azure.hotfolder.remote.outbound.AzureBlobMessageHandler">
+		<constructor-arg ref="azureBlobSessionFactory"/>
+		<property name="remoteDirectory" ref="azureOrderHotfolderErrorRemotePath"/>
+		<property name="fileNameGenerator" ref="azureTimestampFileNameGenerator"/>
+		<property name="deleteSourceFiles" value="true"/>
+	</bean>
+
+	<bean id="azureOrderHotfolderErrorRemotePath" class="java.lang.String">
+		<constructor-arg name="value"
+			value="#{azureHotfolderOrderRemotePath}/error"/>
+	</bean>
+
+	<!--removing order from DB-->
+
+	<bean id="batchSiteOneRemoveConsignmentAddressConverterMapping"
+		class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping"
+		p:mapping="siteoneorder" p:converter-ref="batchSiteOneRemoveConsignmentAddressConverter" />
+
+	<bean id="batchSiteOneRemoveConsignmentAddressConverter"
+		class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>
+				REMOVE Address;guid[unique=true];owner(Consignment.code)[unique=true];duplicate[unique=true,default=false]
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>;{+53}-Address;{53}</value>
+		</property>
+		<property name="rowFilter">
+			<bean
+				class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexRowFilter">
+				<property name="expression" value="row[27]=='shipment'" />
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="batchSiteOneRemoveOrderConverterMapping"
+		class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping"
+		p:mapping="siteoneorder" p:converter-ref="batchSiteOneRemoveOrderConverter" />
+
+	<bean id="batchSiteOneRemoveOrderConverter"
+		class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>
+				REMOVE Order;code[unique=true]
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>;{+0}</value>
+		</property>
+		<property name="rowFilter">
+			<bean
+				class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexRowFilter">
+				<property name="expression" value="row[27]=='order'" />
+			</bean>
+		</property>
+	</bean>
+
+	<!-- removing hybris order fron db -->
+	<bean id="batchSiteOneRemoveHybrisOrderConverterMapping"
+		class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping"
+		p:mapping="siteoneorder" p:converter-ref="batchSiteOneRemoveHybrisOrderConverter" />
+
+	<bean id="batchSiteOneRemoveHybrisOrderConverter"
+		class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>
+				REMOVE Order;code[unique=true][cellDecorator=com.siteone.core.batch.decorator.ConsignmentProcessCheckDecorator]
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>;{1}</value>
+		</property>
+		<property name="rowFilter">
+			<bean
+				class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexRowFilter">
+				<property name="expression" value="row[27]=='order'" />
+			</bean>
+		</property>
+	</bean>
+
+	<!--inserting order to DB-->
+
+	<bean id="batchSiteOneOrderConverterMapping"
+		class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping"
+		p:mapping="siteoneorder" p:converter-ref="batchSiteOneOrderConverter" />
+
+	<bean id="batchSiteOneOrderConverter"
+		class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>
+				INSERT_UPDATE Order;code[unique=true];status(code)[unique=true][cellDecorator=com.siteone.core.batch.decorator.OrderStatusCellDecorator];date[dateformat=MM/dd/yyyy hh:mm:ss a];purchaseOrderNumber;user(uid)[unique=true][cellDecorator=com.siteone.core.batch.decorator.StoreContactCellDecorator];currency(isocode)[unique=true];totalTax;subtotal[default=0];totalPrice;Unit(B2BUnit.uid)[cellDecorator=com.siteone.core.batch.decorator.OrderB2BUnitCellDecorator];orderType(code)[cellDecorator=com.siteone.core.batch.decorator.OrderDeliverymodeDecorator];specialInstruction;contactPerson(B2BCustomer.uid)[cellDecorator=com.siteone.core.batch.decorator.StoreContactCellDecorator];requestedDate[dateformat=MM/dd/yyyy];requestedMeridian(code)[cellDecorator=com.siteone.core.batch.decorator.RequestedMeridianCellDecorator];invoiceNumber;store(uid);orderingAccount(uid)[cellDecorator=com.siteone.core.batch.decorator.OrderB2BUnitCellDecorator];pointOfService(storeId,division(uid))[cellDecorator=com.siteone.core.batch.decorator.StoreDivisionCellDecorator];hybrisOrderNumber;storeUser;storeContact;storeUserName;isOrderStatusEmailSent;freight;isHybrisOrder[default=false];isDuplicate[default=false];totalDiscountAmount;homeBranchNumber;externalSystemId;salesApplication(code)[cellDecorator=com.siteone.core.batch.decorator.OrderSalesApplicationCellDecorator];QuoteNumber
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>;{+0};{4};{2};{3};{5}:{26}:{28};{6};{7};{9};{10};{+26}_{+28};{12};{25};{29}:{26}:{28};{23};{24};{40};siteone;{+26}_{+28};{+11}:{+28};{1};{5};{29};{42};false;{8};;;{44};{61};{62};{62};{66}</value>
+		</property>
+		<property name="rowFilter">
+			<bean
+				class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexRowFilter">
+				<property name="expression" value="row[27]=='order' &amp;&amp; row[61]=='' " />
+			</bean>
+		</property>
+	</bean>
+
+
+	<!--inserting Guest order to DB-->
+	<!-- <bean id="batchSiteOneGuestOrderConverterMapping"
+		class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping"
+		p:mapping="siteoneorder" p:converter-ref="batchSiteOneGuestOrderConverter" />
+
+	<bean id="batchSiteOneGuestOrderConverter"
+		class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>
+				INSERT_UPDATE Order;code[unique=true];status(code)[unique=true][cellDecorator=com.siteone.core.batch.decorator.OrderStatusCellDecorator];date[dateformat=MM/dd/yyyy hh:mm:ss a];purchaseOrderNumber;user(uid)[unique=true][cellDecorator=com.siteone.core.batch.decorator.StoreContactCellDecoratorGuest];currency(isocode)[unique=true];totalTax;subtotal[default=0];totalPrice;orderType(code)[cellDecorator=com.siteone.core.batch.decorator.OrderDeliverymodeDecorator];specialInstruction;isOrderStatusEmailSent;freight;isHybrisOrder[default=false];isDuplicate[default=false];totalDiscountAmount;homeBranchNumber;externalSystemId;salesApplication(code)[cellDecorator=com.siteone.core.batch.decorator.OrderSalesApplicationCellDecorator];pointOfService(storeId);hybrisOrderNumber
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>;{+0};{4};{2};{3};{5}:{26}:{28}:{1};{6};{7};{9};{10};{12};{25};false;{8};;;{44};{61};{62};{62};{11};{1}</value>
+		</property>
+		<property name="rowFilter">
+			<bean
+				class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexRowFilter">
+				<property name="expression" value="row[27]=='order' &amp;&amp; row[61]=='9960' " />
+			</bean>
+		</property>
+	</bean> -->
+
+
+	<bean id="batchSiteOneOrderEntryConverterMapping"
+		class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping"
+		p:mapping="siteoneorder" p:converter-ref="batchSiteOneOrderEntryConverter" />
+
+	<bean id="batchSiteOneOrderEntryConverter"
+		class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>
+				INSERT_UPDATE OrderEntry;entryNumber[unique=true];order(code)[unique=true];unit(code)[default=pieces];product(code)[translator=com.siteone.core.batch.translator.StoreOnlyProductTranslator];quantityText;storeProductCode;basePrice;storeProductItemNumber;storeProductDesc;totalPrice;quantity;couponDescription;discountAmount;actualItemCost
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>;{39};{+0};;{31}_{0};{32};{31};{35};{37};{36};{34};{32};{38};{45};{43}</value>
+		</property>
+		<property name="rowFilter">
+			<bean
+				class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexRowFilter">
+				<property name="expression" value="row[27]=='entries'" />
+			</bean>
+		</property>
+	</bean>
+
+	<!-- SE-9249- TMS Delivery Tracking changes starts -->
+
+	<bean id="batchSiteOneConsignmentShippingAddressConverterMapping"
+		class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping"
+		p:mapping="siteoneorder"
+		p:converter-ref="batchSiteOneConsignmentShippingAddressConverter" />
+
+	<bean id="batchSiteOneConsignmentShippingAddressConverter" class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>
+				INSERT_UPDATE Address;guid[unique=true];line1;line2;district;town;region(isocode)[cellDecorator=com.siteone.core.batch.decorator.RegionCellDecorator];postalcode;country(isocode)[cellDecorator=com.siteone.core.batch.decorator.CountryDivisionCellDecorator];phone1[cellDecorator=com.siteone.core.batch.decorator.PhoneNumberCellDecorator];owner(Order.code)[unique=true]
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>;{+53}-Address;{15};{16};{17};{18};{+21}-{+19};{20};{21};{22};{0};</value>
+		</property>
+		<property name="rowFilter">
+			<bean class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexRowFilter">
+				<property name="expression" value="row[27]=='shipment'"/>
+			</bean>
+		</property>
+	</bean>
+	<!-- removing consignments and consignmententries starts -->
+
+	<bean id="batchSiteOneRemoveConsignmentConverterMapping"
+		class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping"
+		p:mapping="siteoneorder" p:converter-ref="batchSiteOneRemoveConsignmentConverter" />
+
+	<bean id="batchSiteOneRemoveConsignmentConverter"
+		class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>
+				REMOVE Consignment;code[unique=true]
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>;{+53}</value>
+		</property>
+		<property name="rowFilter">
+			<bean
+				class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexRowFilter">
+				<property name="expression" value="row[27]=='shipment'" />
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="batchSiteOneRemoveConsignmentEntryConverterMapping"
+		class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping"
+		p:mapping="siteoneorder" p:converter-ref="batchSiteOneRemoveConsignmentEntryConverter" />
+
+	<bean id="batchSiteOneRemoveConsignmentEntryConverter"
+		class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>
+				REMOVE ConsignmentEntry;consignment(code)[unique=true]
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>;{+53}</value>
+		</property>
+		<property name="rowFilter">
+			<bean
+				class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexRowFilter">
+				<property name="expression" value="row[27]=='shipment_entry'" />
+			</bean>
+		</property>
+	</bean>
+
+	<!-- removing consignments and consignmententries end -->
+
+	<bean id="batchSiteOneOrderDeliveryConverterMapping"
+		class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping"
+		p:mapping="siteoneorder"
+		p:converter-ref="batchSiteOneOrderDeliveryConverter" />
+
+	<bean id="batchSiteOneOrderDeliveryConverter" class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>
+				INSERT_UPDATE Consignment;code[unique=true];status(code)[cellDecorator=com.siteone.core.batch.decorator.ConsignmentStatusCellDecorator];trackingID;shippingAddress(owner(Order.code),guid);consignmentAddress(owner(Order.code),guid);warehouse(code)[translator=com.siteone.core.batch.translator.OrderWarehouseTranslator];order(code);carrier(code);carrierDetails(code);total;scheduledDate[dateformat=MM/dd/yyyy hh:mm:ss a];requestedDate[dateformat=MM/dd/yyyy hh:mm:ss a];invoiceNumber;requestedMeridian(code)[cellDecorator=com.siteone.core.batch.decorator.RequestedMeridianCellDecorator];fullfilmentStatus;specialInstructions[cellDecorator=com.siteone.core.batch.decorator.SpecialInstructionsCellDecorator];tax;freight;subTotal;hybrisConsignmentId;trackingLink
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>;{53};{56};{55};{0}:{+53}-Address;{0}:{+53}-Address;{0};{+0};{54};{54};{60};{58};{59};{40};{24};{12};{25};{7};{8};{9};{63};{64}</value>
+		</property>
+		<property name="rowFilter">
+			<bean class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexRowFilter">
+				<property name="expression" value="row[27]=='shipment'"/>
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="batchSiteOneOrderConsignmentEntryConverterMapping"
+		class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping"
+		p:mapping="siteoneorder"
+		p:converter-ref="batchSiteOneOrderConsignmentEntryConverter" />
+
+	<bean id="batchSiteOneOrderConsignmentEntryConverter" class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>
+				INSERT_UPDATE ConsignmentEntry;consignment(code)[unique=true];entryNumber[unique=true];orderEntry(product(code),order(code))[translator=com.siteone.core.batch.translator.OrderEntryProductTranslator];quantity;shippedQuantity;hybrisConsignmentId
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>;{53};{39};{31}_{0};{32};{57};{63}</value>
+		</property>
+		<property name="rowFilter">
+			<bean class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexRowFilter">
+				<property name="expression" value="row[27]=='shipment_entry'"/>
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="batchSiteOneOrderConsignmentConverterMapping"
+		class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping"
+		p:mapping="siteoneorder" p:converter-ref="batchSiteOneOrderConsignmentConverter" />
+
+	<bean id="batchSiteOneOrderConsignmentConverter"
+		class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>
+				UPDATE Order;code[unique=true];consignments(code)[mode=append]
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>;{+0};{+53}</value>
+		</property>
+		<property name="rowFilter">
+			<bean
+				class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexRowFilter">
+				<property name="expression" value="row[27]=='shipment'" />
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="batchSiteOneOrderEntryConsignmentEntryConverterMapping"
+		class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping"
+		p:mapping="siteoneorder" p:converter-ref="batchSiteOneOrderEntryConsignmentEntryConverter" />
+
+	<bean id="batchSiteOneOrderEntryConsignmentEntryConverter"
+		class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>
+				UPDATE OrderEntry;order(code)[unique=true];entryNumber(product(code),order(code))[unique=true][translator=com.siteone.core.batch.translator.OrderEntryNumberTranslator];consignmentEntries(entryNumber,consignment(code))[mode=append]
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>;{+0};{31}_{0};{39}:{53}</value>
+		</property>
+		<property name="rowFilter">
+			<bean
+				class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexRowFilter">
+				<property name="expression" value="row[27]=='shipment_entry'" />
+			</bean>
+		</property>
+	</bean>
+
+
+	<!-- SE-9249- TMS Delivery Tracking changes ends  -->
+
+	<bean id="batchSiteOneOrder2BillingAddressConverterMapping"
+		class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping"
+		p:mapping="siteoneorder" p:converter-ref="batchSiteOneOrder2BillingAddressConverter" />
+
+	<bean id="batchSiteOneOrder2BillingAddressConverter"
+		class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>
+				UPDATE Order;code[unique=true];status(code)[unique=true][cellDecorator=com.siteone.core.batch.decorator.OrderStatusCellDecorator];paymentAddress(guid)[translator=com.siteone.core.batch.translator.OrderBillingAddressTranslator]
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>;{+0};{4};{+26}_{+28}</value>
+		</property>
+		<property name="rowFilter">
+			<bean
+				class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexRowFilter">
+				<property name="expression" value="row[27]=='order'" />
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="batchSiteOneCreditPaymentInfoConverterMapping"
+		class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping"
+		p:mapping="siteoneorder" p:converter-ref="batchSiteOneCreditPaymentInfoConverter" />
+
+	<bean id="batchSiteOneCreditPaymentInfoConverter"
+		class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>
+				INSERT_UPDATE SiteoneCreditCardPaymentInfo;code;User(uid);paymentType;amountCharged;last4Digits;creditCardType;transactionReferenceNumber[unique=true]
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>;{+0};{+29};{+47};{+48};{+49};{+50};{+52}</value>
+		</property>
+		<property name="rowFilter">
+			<bean
+				class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexRowFilter">
+				<property name="expression" value="row[27]=='payment' &amp;&amp; row[47]=='3'" />
+			</bean>
+		</property>
+		<property name="type" value="SiteoneCreditCardPaymentInfo"/>
+	</bean>
+
+
+	<bean id="batchSiteOneCashPaymentInfoConverterMapping"
+		class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping"
+		p:mapping="siteoneorder" p:converter-ref="batchSiteOneCashPaymentInfoConverter" />
+
+	<bean id="batchSiteOneCashPaymentInfoConverter"
+		class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>
+				INSERT_UPDATE SiteoneCreditCardPaymentInfo;code;User(uid);paymentType;amountCharged;transactionReferenceNumber[unique=true]
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>;{+0};{+29};{+47};{+48};{+52}</value>
+		</property>
+		<property name="rowFilter">
+			<bean
+				class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexRowFilter">
+				<property name="expression" value="row[27]=='payment' &amp;&amp; row[47]=='2'" />
+			</bean>
+		</property>
+		<property name="type" value="SiteoneCreditCardPaymentInfo"/>
+	</bean>
+
+	<bean id="batchSiteOnePOAPaymentInfoConverterMapping"
+		class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping"
+		p:mapping="siteoneorder" p:converter-ref="batchSiteOnePOAPaymentInfoConverter" />
+
+	<bean id="batchSiteOnePOAPaymentInfoConverter"
+		class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>
+				INSERT_UPDATE SiteonePOAPaymentInfo;code;User(uid);paymentType;amountCharged;termsCode;transactionReferenceNumber[unique=true]
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>;{+0};{+29};{+47};{+48};{51};{+52}</value>
+		</property>
+		<property name="rowFilter">
+			<bean
+				class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexRowFilter">
+				<property name="expression" value="row[27]=='payment' &amp;&amp; row[47]=='1'" />
+			</bean>
+		</property>
+		<property name="type" value="SiteonePOAPaymentInfo"/>
+	</bean>
+
+	<bean id="batchSiteOneOrderPaymentInfoConverterMapping"
+		class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping"
+		p:mapping="siteoneorder" p:converter-ref="batchSiteOneOrderPaymentInfoConverter" />
+
+	<bean id="batchSiteOneOrderPaymentInfoConverter"
+		class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>
+				UPDATE Order;code[unique=true];paymentInfoList(transactionReferenceNumber)[mode=append]
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>;{+0};{+52}</value>
+		</property>
+		<property name="rowFilter">
+			<bean
+				class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexRowFilter">
+				<property name="expression" value="row[27]=='payment' &amp;&amp; (row[47]=='2' || row[47]=='3')" />
+			</bean>
+		</property>
+		<property name="type" value="Order"/>
+	</bean>
+
+	<bean id="batchSiteOneOrderPOAInfoConverterMapping"
+		class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping"
+		p:mapping="siteoneorder" p:converter-ref="batchSiteOneOrderPOAInfoConverter" />
+
+	<bean id="batchSiteOneOrderPOAInfoConverter"
+		class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>
+				UPDATE Order;code[unique=true];POAPaymentInfoList(transactionReferenceNumber)[mode=append]
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>;{+0};{+52}</value>
+		</property>
+		<property name="rowFilter">
+			<bean
+				class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexRowFilter">
+				<property name="expression" value="row[27]=='payment' &amp;&amp; row[47]=='1'" />
+			</bean>
+		</property>
+		<property name="type" value="Order"/>
+	</bean>
+
+	<!-- 	<bean id="orderStatusEmailAdapter" class="com.siteone.core.batch.adapter.impl.DefaultOrderStatusEmailAdapter"> -->
+	<!-- 	<property name="modelService" ref="modelService" /> -->
+	<!-- 	<property name="eventService" ref="eventService" /> -->
+	<!-- 	<property name="baseStoreService" ref="baseStoreService" /> -->
+	<!-- 	<property name="baseSiteService" ref="baseSiteService" /> -->
+	<!-- 	<property name="commonI18NService" ref="commonI18NService" /> -->
+	<!-- 	</bean> -->
+
+
+	<!-- Send Email for order status -->
+	<!-- 	<bean id="batchSiteOneOrderStatusEmailMapping" -->
+	<!-- 		class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping" -->
+	<!-- 		p:mapping="siteoneorder" p:converter-ref="batchSiteOneOrderStatusEmailConverter" /> -->
+
+	<!-- 	 <bean id="batchSiteOneOrderStatusEmailConverter" -->
+	<!-- 		class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter"> -->
+	<!-- 		<property name="header"> -->
+	<!-- 			<value> -->
+	<!--               UPDATE Order;code[unique=true];status(code)[unique=true][cellDecorator=com.siteone.core.batch.decorator.OrderStatusCellDecorator];@OrderStatusEmail[translator=com.siteone.core.batch.translator.OrderStatusTranslator,adapter=orderStatusEmailAdapter] -->
+	<!-- 			</value> -->
+	<!-- 		</property> -->
+	<!-- 		<property name="impexRow"> -->
+	<!-- 			<value>;{+0};{4};{4}</value> -->
+	<!-- 		</property> -->
+	<!-- 		<property name="rowFilter"> -->
+	<!-- 			<bean -->
+	<!-- 				class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexRowFilter"> -->
+	<!-- 				<property name="expression" value="row[27]=='order'" /> -->
+	<!-- 			</bean> -->
+	<!-- 		</property> -->
+	<!-- 	</bean> -->
+
+</beans>

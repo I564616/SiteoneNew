@@ -1,0 +1,575 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ [y] hybris Platform
+
+ Copyright (c) 2017 SAP SE or an SAP affiliate company.  All rights reserved.
+
+ This software is the confidential and proprietary information of SAP
+ ("Confidential Information"). You shall not disclose such Confidential
+ Information and shall use it only in accordance with the terms of the
+ license agreement you entered into with SAP.
+-->
+<!--
+	ATTENTION: This is just an example file. You have to edit it according to your needs.
+-->
+
+<items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="items.xsd">
+	<collectiontypes>
+	     <collectiontype code="SiteOneGalleryImagesList" elementtype="Media"
+			autocreate="true" generate="true" type="list" />
+	</collectiontypes>
+	<enumtypes>
+		<enumtype code="brandNameEnum" autocreate="true" generate="true"
+			dynamic="true"></enumtype>
+	</enumtypes>
+	
+	<itemtypes>
+		<itemtype code="Product" autocreate="false" generate="true">
+			<attributes>
+			
+				<attribute qualifier="itemNumber" type="java.lang.String">
+					<description></description>
+					<modifiers read="true" write="true" optional="false"
+						search="true" unique="false" />
+					<persistence type='property'>
+						<columntype database='sap'>
+							<value>VARCHAR(25)</value>
+						</columntype>
+					</persistence>
+				</attribute>
+				
+			<!-- 	<attribute qualifier="corpRank" type="java.lang.Integer">
+					<description></description>
+					<modifiers read="true" write="true" optional="true"
+						search="false" unique="false" />
+					<persistence type='property'/>
+				</attribute> -->
+				
+				<attribute qualifier="productType" type="java.lang.String">
+					<description></description>
+					<modifiers read="true" write="true" optional="true"
+						search="false" unique="false" />
+					<persistence type='property'>
+						<columntype database='sap'>
+							<value>VARCHAR(20)</value>
+						</columntype>
+					</persistence>
+				</attribute>
+
+				<attribute qualifier="case" type="java.lang.Float">
+					<description></description>
+					<modifiers read="true" write="true" optional="true"
+						search="false" unique="false" />
+					<persistence type='property'>
+						<columntype database='sap'>
+							<value>DECIMAL(10,3)</value>
+						</columntype>
+					</persistence>
+				</attribute>
+
+				<attribute qualifier="purchPkg" type="java.lang.Float">
+					<description></description>
+					<modifiers read="true" write="true" optional="true"
+						search="false" unique="false" />
+					<persistence type='property'>
+						<columntype database='sap'>
+							<value>DECIMAL(10,3)</value>
+						</columntype>
+					</persistence>
+				</attribute>
+
+				<attribute qualifier="weight" type="java.lang.Float">
+					<description></description>
+					<modifiers read="true" write="true" optional="true"
+						search="false" unique="false" />
+					<persistence type='property'>
+						<columntype database='sap'>
+							<value>DECIMAL(10,3)</value>
+						</columntype>
+					</persistence>
+				</attribute>
+
+				<attribute qualifier="uom" type="java.lang.String">
+					<description></description>
+					<modifiers read="true" write="true" optional="true"
+						search="false" unique="false" />
+					<persistence type='property'>
+						<columntype database='sap'>
+							<value>VARCHAR(10)</value>
+						</columntype>
+					</persistence>
+				</attribute>
+
+				<attribute qualifier="form" type="java.lang.String">
+					<description></description>
+					<modifiers read="true" write="true" optional="true"
+						search="false" unique="false" />
+					<persistence type='property'>
+						<columntype database='sap'>
+							<value>VARCHAR(100)</value>
+						</columntype>
+					</persistence>
+				</attribute>
+
+				<attribute qualifier="isLescoBranded" type="java.lang.Boolean">
+					<description></description>
+					<modifiers read="true" write="true" optional="true"
+						search="false" unique="false" />
+					<persistence type='property'/>
+					<defaultvalue>java.lang.Boolean.FALSE</defaultvalue>
+				</attribute>
+
+				<attribute qualifier="vendorEDINumber" type="java.lang.String">
+					<description></description>
+					<modifiers read="true" write="true" optional="true"
+						search="false" unique="false" />
+					<persistence type='property'>
+						<columntype database='sap'>
+							<value>VARCHAR(50)</value>
+						</columntype>
+					</persistence>
+				</attribute>
+
+				<attribute qualifier="productBrandName" type="brandNameEnum">
+					<description></description>
+					<modifiers read="true" write="true" optional="true"
+						search="true" unique="false"/>
+					<persistence type='property'>
+						<columntype database='sap'>
+							<value>VARCHAR(25)</value>
+						</columntype>
+					</persistence>
+				</attribute>
+
+				<attribute qualifier="subBrand" type="java.lang.String">
+					<description></description>
+					<modifiers read="true" write="true" optional="true"
+						search="true" unique="false" />
+					<persistence type='property'>
+						<columntype database='sap'>
+							<value>VARCHAR(50)</value>
+						</columntype>
+					</persistence>
+				</attribute>
+
+				<attribute qualifier="vendorPartNumber" type="java.lang.String">
+					<description></description>
+					<modifiers read="true" write="true" optional="true"
+						search="true" unique="false" />
+					<persistence type='property'>
+						<columntype database='sap'>
+							<value>VARCHAR(50)</value>
+						</columntype>
+					</persistence>
+				</attribute>
+
+				<attribute qualifier="upcCode" type="java.lang.Integer">
+					<description></description>
+					<modifiers read="true" write="true" optional="true"
+						search="true" unique="false" />
+					<persistence type='property'/>
+				</attribute>
+
+				<!-- <attribute qualifier="productShortDesc31Char" type="java.lang.String">
+					<description></description>
+					<modifiers read="true" write="true" optional="false"
+						search="true" unique="false" />
+					<persistence type='property'>
+						<columntype database='sap'>
+							<value>VARCHAR(31)</value>
+						</columntype>
+					</persistence>
+				</attribute> -->
+
+				<attribute qualifier="productShortDesc" type="java.lang.String">
+					<description></description>
+					<modifiers read="true" write="true" optional="false"
+						search="true" unique="false" />
+					<persistence type='property'>
+						<columntype database='sap'>
+							<value>VARCHAR(255)</value>
+						</columntype>
+					</persistence>
+				</attribute>
+
+				<attribute qualifier="productLongDesc" type="java.lang.String">
+					<description></description>
+					<modifiers read="true" write="true" optional="true"
+						search="true" unique="false" />
+					<persistence type="property">
+						<columntype database="sap">
+							<value>NCLOB</value>
+						</columntype>
+						<columntype>
+							<value>HYBRIS.LONG_STRING</value>
+						</columntype>
+					</persistence>
+				</attribute>
+
+				<!-- <attribute qualifier="unspsc" type="java.lang.Integer">
+					<description></description>
+					<modifiers read="true" write="true" optional="false"
+						search="true" unique="false" />
+					<persistence type='property'/>
+				</attribute> -->
+
+				<attribute qualifier="isSdsRequired" type="java.lang.Boolean">
+					<description></description>
+					<modifiers read="true" write="true" optional="true"
+						search="false" unique="false" />
+					<persistence type='property'/>
+					<defaultvalue>java.lang.Boolean.FALSE</defaultvalue>
+				</attribute>
+
+				<!-- <attribute qualifier="hazmat" type="java.lang.String">
+					<description></description>
+					<modifiers read="true" write="true" optional="true"
+						search="false" unique="false" />
+					<persistence type='property'>
+						<columntype database='sap'>
+							<value>VARCHAR(3)</value>
+						</columntype>
+					</persistence>
+				</attribute>
+
+				<attribute qualifier="ifHazmatWhatisUNCode" type="java.lang.String">
+					<description></description>
+					<modifiers read="true" write="true" optional="true"
+						search="false" unique="false" />
+					<persistence type='property'>
+						<columntype database='sap'>
+							<value>VARCHAR(3)</value>
+						</columntype>
+					</persistence>
+				</attribute>
+-->
+				<attribute qualifier="isRegulatedItem" type="java.lang.Boolean">
+					<description></description>
+					<modifiers read="true" write="true" optional="true"
+						search="false" unique="false" />
+					<persistence type='property'>
+					</persistence>
+					<defaultvalue>java.lang.Boolean.FALSE</defaultvalue>
+				</attribute>
+
+				<attribute qualifier="isProductDiscontinued" type="java.lang.Boolean">
+					<description></description>
+					<modifiers read="true" write="true" optional="true"
+						search="false" unique="false" />
+					<persistence type='property'>
+					</persistence>
+					<defaultvalue>java.lang.Boolean.FALSE</defaultvalue>
+				</attribute>
+
+				<attribute qualifier="productState" type="java.lang.String">
+					<description></description>
+					<modifiers read="true" write="true" optional="true"
+						search="false" unique="false" />
+					<persistence type='property'>
+						<columntype database='sap'>
+							<value>VARCHAR(5)</value>
+						</columntype>
+					</persistence>
+				</attribute>
+
+				<attribute qualifier="sds" type="java.lang.String">
+					<description></description>
+					<modifiers read="true" write="true" optional="true"
+						search="false" unique="false" />
+					<persistence type='property'>
+						<columntype database='sap'>
+							<value>VARCHAR(50)</value>
+						</columntype>
+					</persistence>
+				</attribute>
+				
+				<attribute qualifier="savedListProductComment" type="java.lang.String">
+ 				<modifiers read="true" write="true" optional="true"
+ 					search="false" unique="false" />
+ 					<persistence type="property"/>
+ 				</attribute>
+				
+				<!-- <attribute qualifier="unitWeightNumeric" type="java.lang.Float">
+					<description></description>
+					<modifiers read="true" write="true" optional="true"
+						search="false" unique="false" />
+					<persistence type='property'>
+						<columntype database='sap'>
+							<value>DECIMAL(30,3)</value>
+						</columntype>
+					</persistence>
+				</attribute> -->
+
+				<!-- <attribute qualifier="unitWeightMeasurement" type="java.lang.String">
+					<description></description>
+					<modifiers read="true" write="true" optional="true"
+						search="false" unique="false" />
+					<persistence type='property'>
+						<columntype database='sap'>
+							<value>VARCHAR(30)</value>
+						</columntype>
+					</persistence>
+				</attribute> -->
+
+				<!-- <attribute qualifier="cubicFeerPerUnit" type="java.lang.String">
+					<description></description>
+					<modifiers read="true" write="true" optional="true"
+						search="false" unique="false" />
+					<persistence type='property'>
+						<columntype database='sap'>
+							<value>VARCHAR(30)</value>
+						</columntype>
+					</persistence>
+				</attribute> -->
+
+				<!-- <attribute qualifier="unitLenghtInches" type="java.lang.String">
+					<description></description>
+					<modifiers read="true" write="true" optional="true"
+						search="false" unique="false" />
+					<persistence type='property'>
+						<columntype database='sap'>
+							<value>VARCHAR(30)</value>
+						</columntype>
+					</persistence>
+				</attribute> -->
+
+				<!-- <attribute qualifier="unitWidthInches" type="java.lang.String">
+					<description></description>
+					<modifiers read="true" write="true" optional="true"
+						search="false" unique="false" />
+					<persistence type='property'>
+						<columntype database='sap'>
+							<value>VARCHAR(30)</value>
+						</columntype>
+					</persistence>
+				</attribute> -->
+
+				<!-- <attribute qualifier="unitHeigthInches" type="java.lang.String">
+					<description></description>
+					<modifiers read="true" write="true" optional="true"
+						search="false" unique="false" />
+					<persistence type='property'>
+						<columntype database='sap'>
+							<value>VARCHAR(30)</value>
+						</columntype>
+					</persistence>
+				</attribute>
+ -->
+				<attribute qualifier="masterPckQtyinUnits" type="java.lang.String">
+					<description></description>
+					<modifiers read="true" write="true" optional="true"
+						search="false" unique="false" />
+					<persistence type='property'>
+						<columntype database='sap'>
+							<value>VARCHAR(60)</value>
+						</columntype>
+					</persistence>
+				</attribute>
+
+				<attribute qualifier="singleCaseQtyinUnits" type="java.lang.String">
+					<description></description>
+					<modifiers read="true" write="true" optional="true"
+						search="false" unique="false" />
+					<persistence type='property'>
+						<columntype database='sap'>
+							<value>VARCHAR(30)</value>
+						</columntype>
+					</persistence>
+				</attribute>
+
+				<!-- <attribute qualifier="caseWeightLBS" type="java.lang.String">
+					<description></description>
+					<modifiers read="true" write="true" optional="true"
+						search="false" unique="false" />
+					<persistence type='property'>
+						<columntype database='sap'>
+							<value>VARCHAR(30)</value>
+						</columntype>
+					</persistence>
+				</attribute>
+ -->
+				<attribute qualifier="isProductSoldbyUom" type="java.lang.Boolean">
+					<description></description>
+					<modifiers read="true" write="true" optional="true"
+						search="false" unique="false" />
+					<persistence type='property'/>
+					<defaultvalue>java.lang.Boolean.FALSE</defaultvalue>
+				</attribute>
+
+				<!-- <attribute qualifier="isUomPerPalletorPerUnit" type="java.lang.Boolean">
+					<description></description>
+					<modifiers read="true" write="true" optional="true"
+						search="false" unique="false" />
+					<persistence type='property'/>
+					<defaultvalue>java.lang.Boolean.FALSE</defaultvalue>
+				</attribute> -->
+
+				<!-- <attribute qualifier="palletQtyinUnits" type="java.lang.String">
+					<description></description>
+					<modifiers read="true" write="true" optional="true"
+						search="false" unique="false" />
+					<persistence type='property'>
+						<columntype database='sap'>
+							<value>VARCHAR(30)</value>
+						</columntype>
+					</persistence>
+				</attribute>
+ -->
+				<!-- <attribute qualifier="palletQtyinCases" type="java.lang.String">
+					<description></description>
+					<modifiers read="true" write="true" optional="true"
+						search="false" unique="false" />
+					<persistence type='property'>
+						<columntype database='sap'>
+							<value>VARCHAR(30)</value>
+						</columntype>
+					</persistence>
+				</attribute> -->
+
+			<!-- 	<attribute qualifier="minimumOrderQty" type="java.lang.String">
+					<description></description>
+					<modifiers read="true" write="true" optional="true"
+						search="false" unique="false" />
+					<persistence type='property'>
+						<columntype database='sap'>
+							<value>VARCHAR(6)</value>
+						</columntype>
+					</persistence>
+				</attribute>
+ -->
+				<attribute qualifier="isDirectShippedProduct" type="java.lang.Boolean">
+					<description></description>
+					<modifiers read="true" write="true" optional="true"
+						search="false" unique="false" />
+					<persistence type='property'/>
+					<defaultvalue>java.lang.Boolean.FALSE</defaultvalue>
+				</attribute>
+
+				<!-- <attribute qualifier="marketingDescription" type="java.lang.String">
+					<description></description>
+					<modifiers read="true" write="true" optional="false"
+						search="true" unique="false" />
+					<persistence type="property">
+						<columntype database="sap">
+							<value>NCLOB</value>
+						</columntype>
+						<columntype>
+							<value>HYBRIS.LONG_STRING</value>
+						</columntype>
+					</persistence>
+				</attribute> -->
+
+				<attribute qualifier="featureBullets" type="java.lang.String">
+					<description></description>
+					<modifiers read="true" write="true" optional="true"
+						search="false" unique="false" />
+					<persistence type="property">
+						<columntype database="sap">
+							<value>NCLOB</value>
+						</columntype>
+						<columntype>
+							<value>HYBRIS.LONG_STRING</value>
+						</columntype>
+					</persistence>
+				</attribute>
+
+				<attribute qualifier="applications" type="java.lang.String">
+					<description></description>
+					<modifiers read="true" write="true" optional="true"
+						search="false" unique="false" />
+					<persistence type="property">
+						<columntype database="sap">
+							<value>VARCHAR(500)</value>
+						</columntype>
+					</persistence>
+				</attribute>
+
+				<attribute qualifier="standardsApprovals" type="java.lang.String">
+					<description></description>
+					<modifiers read="true" write="true" optional="true"
+						search="false" unique="false" />
+					<persistence type="property">
+						<columntype database="sap">
+							<value>VARCHAR(300)</value>
+						</columntype>
+					</persistence>
+				</attribute>
+				<attribute qualifier="categoryCode" type="java.lang.String">
+					<description></description>
+					<modifiers read="true" write="true" optional="true"
+						search="false" unique="false" />
+					<persistence type="property">
+						<columntype database="sap">
+							<value>VARCHAR(20)</value>
+						</columntype>
+					</persistence>
+				</attribute>
+				<attribute qualifier="inventoryUOMID" type="java.lang.Integer">
+					<description></description>
+					<modifiers read="true" write="true" optional="true"
+						search="true" unique="false" />
+					<persistence type='property'/>
+				</attribute>
+				<attribute qualifier="internalVariantAttribute" type="java.lang.String">
+					<description></description>
+					<modifiers read="true" write="true" optional="true"
+						unique="false" />
+					<persistence type='property' />
+				</attribute>
+			</attributes>
+		</itemtype>
+		
+		<!-- Attribute Added for SH Maping -->
+		<itemtype code="Category" autocreate="false" generate="true">
+		<attributes>
+			<attribute qualifier="SalesCategoryMapping" type="java.lang.String">
+				<modifiers read="true" write="true" search="true" optional="true" partof="true"/>              
+				<persistence type="property"/>
+			</attribute>
+			<attribute qualifier="urlLink" type="java.lang.String">
+						<persistence type="property" />
+	    	</attribute>
+	    	<attribute qualifier="productCount" type="java.lang.Integer">
+						<persistence type="property" />
+	    	</attribute>		
+		</attributes>
+		</itemtype>
+		<!-- Attribute Added for SH Maping -->
+		
+		
+		<itemtype generate="true" code="CronJob" autocreate="false">
+			<attributes>
+				<attribute qualifier="lastExecutionTime" type="java.util.Date">
+					<description>This is the date when job was executed last.</description>
+					<modifiers read="true" write="true" optional="true"
+						unique="false" />
+					<persistence type='property' />
+				</attribute>
+			</attributes>
+		</itemtype>
+		
+		<itemtype code="Media" generate="true" autocreate="false">
+			<attributes>
+				<attribute qualifier="sds" type="java.lang.String">
+					<description></description>
+					<modifiers read="true" write="true" optional="true"
+						unique="false" />
+					<persistence type='property' />
+				</attribute>
+				
+				<attribute qualifier="label" type="localized:java.lang.String">
+					<description></description>
+					<modifiers read="true" write="true" optional="true"
+						unique="false" />
+					<persistence type='property' />
+				</attribute>
+				<attribute qualifier="galleryImages" type="SiteOneGalleryImagesList">
+						<modifiers />
+						<persistence type="property" />
+				</attribute>
+			</attributes>
+		</itemtype>
+		
+	</itemtypes>
+</items>

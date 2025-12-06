@@ -1,0 +1,27 @@
+$productCatalog=siteoneCAProductCatalog
+
+$sourceVersion = sourceVersion(catalog(id[default='$productCatalog']),version[default='Staged'])[unique=true,default='$productCatalog:Staged'];;;;;
+$targetVersion = targetVersion(catalog(id[default='$productCatalog']),version[default='Online'])[unique=true,default='$productCatalog:Online'];;;;;
+
+INSERT_UPDATE CatalogVersionSyncJob;active;code[unique=true];syncLanguages(isocode);createNewItems[allownull=true];removeMissingItems[allownull=true];sessionCurrency(isocode);sessionLanguage(isocode);sessionUser(uid);$sourceVersion;$targetVersion;
+;true;siteoneca_SyncProducts_StageToOnline;en;true;false;;en;SyncProductUser_StagedToOnline;;;
+
+
+INSERT_UPDATE CatalogVersionSyncJob;code[unique=true];$sourceVersion;$targetVersion;rootTypes(code)[mode=append]
+;siteoneca_SyncProducts_StageToOnline;;;MediaContainer,Product;
+
+INSERT_UPDATE CatalogVersionSyncJob;active;code[unique=true];syncLanguages(isocode);createNewItems[allownull=true];removeMissingItems[allownull=true];sessionCurrency(isocode);sessionLanguage(isocode);sessionUser(uid);$sourceVersion;$targetVersion;
+;true;siteoneca_Category_Sync_StageToOnline;en;true;false;;en;SyncCategoryUser_StagedToOnline;;;
+
+INSERT_UPDATE CatalogVersionSyncJob;code[unique=true];$sourceVersion;$targetVersion;rootTypes(code);
+;siteoneca_Category_Sync_StageToOnline;;;Category;
+
+INSERT_UPDATE Trigger;Job(code)[unique=true];cronExpression
+;siteoneca_Category_Sync_StageToOnline;0 30 05 * * ?
+;siteoneca_SyncProducts_StageToOnline;0 /15 * ? * *
+
+#Sync Attribute Restriction
+INSERT_UPDATE SyncAttributeDescriptorConfig;syncJob(code)[unique=true];attributeDescriptor(enclosingType(code),qualifier)[unique=true];includedInSync;copyByValue
+;siteoneca_SyncProducts_StageToOnline;Product:stores;false;true
+;siteoneca_SyncProducts_StageToOnline;Product:regulatoryStates;false;true
+;siteoneca_SyncProducts_StageToOnline;Product:lastModifiedTimeStamp;false;true

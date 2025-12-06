@@ -1,0 +1,11 @@
+$lang=en
+
+INSERT_UPDATE RuleActionDefinition;id[unique=true];name[lang=$lang];priority;breadcrumb[lang=$lang];translatorId;translatorParameters;categories(id)
+;y_orderentry_maxlimit_discount;Max Entry limit discount on cart;100;Apply {value}% max entry limit discount on the products;ruleExecutableActionTranslator;actionId->ruleOrderEntryMaxLimitDiscountAction;cart_discounts
+
+INSERT_UPDATE RuleActionDefinitionParameter;definition(id)[unique=true];id[unique=true];priority;name[lang=$lang];description[lang=$lang];type;value;required[default=true]
+;y_orderentry_maxlimit_discount;value;100;Percentage discount value;Percentage discount that will be applied on the qualifying products;java.math.BigDecimal;;
+;y_orderentry_maxlimit_discount;max;100;Max limit discount value;Maximum limit on cart discount value that will be applied on the cart total;Map(ItemType(Currency),java.math.BigDecimal);;
+
+INSERT_UPDATE RuleActionDefinitionRuleTypeMapping;definition(id)[unique=true];ruleType(code)[default=PromotionSourceRule][unique=true]
+;y_orderentry_maxlimit_discount;

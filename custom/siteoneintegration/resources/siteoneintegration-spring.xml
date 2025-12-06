@@ -1,0 +1,710 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ [y] hybris Platform
+ Copyright (c) 2017 SAP SE or an SAP affiliate company.  All rights reserved.
+ This software is the confidential and proprietary information of SAP
+ ("Confidential Information"). You shall not disclose such Confidential
+ Information and shall use it only in accordance with the terms of the
+ license agreement you entered into with SAP.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/aop
+           http://www.springframework.org/schema/aop/spring-aop.xsd
+           http://www.springframework.org/schema/util
+           http://www.springframework.org/schema/util/spring-util.xsd">
+
+	<!--
+	The hybris platform provides one single Spring application context for beans located at the jalo layer.
+	Each extension can add beans to this context by specifying them at this configuration file.
+	 
+	You can use and/or redefine beans defined at configuration files of other extensions as well as
+	adding new one.
+		
+	If you want to locate this file at a different location or want to use several files for better,
+	structuring, please use the '<yourextension>.application-context' property at your project.properties file.
+	There you can specify a comma separated list of files where first is tried to find a file per classpath and
+	then per file system.
+	
+	If you want to configure beans for your web module please have a look at
+	your web/webroot/WEB-INF/<extname>-web-spring.xml.
+	-->
+	
+	<!--  Example how to override a manager -->
+	<!--
+	<bean id="core.productManager"   class="com.siteone.integration.jalo.SiteoneintegrationProductManager" 	init-method="init"	destroy-method="destroy" />
+	-->
+	
+	
+ 	<!--  Example how to configure the class to use for jalo session creation -->
+	<!--
+	<bean id="jalosession"   class="de.hybris.platform.jalo.JaloSessionFactory">
+		<property name="targetClassName" value="com.siteone.integration.jalo.SiteoneintegrationJaloSession"/>
+	</bean>
+	-->
+
+	
+	<!--  Example how to override an item  -->
+	<!-- 
+	<bean id="de.hybris.platform.jalo.product.Product" class="com.siteone.integration.jalo.SiteoneintegrationProduct" scope="prototype" />		
+ 	-->
+
+	<!--  
+	 Example how to register and use an AOP aspect 
+     Also see http://static.springframework.org/spring/docs/2.5.x/reference/aop.html	
+     -->
+	
+	<!-- 
+	<bean id="siteoneintegrationProfBean" class="com.siteone.integration.aop.SiteoneintegrationProfilingAspect"/>
+	<aop:config proxy-target-class="true">
+  		<aop:aspect id="siteoneintegrationProfAspect" ref="siteoneintegrationProfBean" >
+    	  <aop:pointcut id="profiledMethods" 
+	      	expression="execution(* getModificationTime(..))" />  	            
+	   		<aop:around pointcut-ref="profiledMethods" method="profile" />
+  		</aop:aspect>
+	</aop:config>
+	 -->
+
+	
+	<!-- some other examples of a pointcut that matches everything:
+    	  <aop:pointcut id="profiledMethods" 
+	      	expression="bean(de.hybris.platform.jalo.user.Customer) &amp;&amp;
+	      	            !execution(* getPK(..))" />  	            
+	       <aop:pointcut id="profiledMethods" expression="execution(* *(..))" />	
+	  -->
+	
+    <bean id="siteoneintegrationSystemSetup" class="com.siteone.integration.setup.SiteoneintegrationSystemSetup">
+    </bean>
+
+    <bean id="siteOneRestClient" class="com.siteone.integration.rest.client.SiteOneRestClient" parent="abstractSiteOneRestClient">
+    </bean>
+
+	<bean id="resilienceHandler" class="com.siteone.integration.util.ResilienceHandler">
+	</bean>
+    
+    <bean id="restTemplate" class="org.springframework.web.client.RestTemplate" scope="prototype">
+    <constructor-arg>
+      <bean class="org.springframework.http.client.SimpleClientHttpRequestFactory">
+      <property name="connectTimeout" value="${rest.connection.timeout}" />
+      <property name="readTimeout" value="${rest.read.timeout}" />
+      </bean>
+      </constructor-arg>
+    </bean>
+    
+    <bean id="geolocationRestTemplate" class="org.springframework.web.client.RestTemplate" scope="prototype">
+    <constructor-arg>
+      <bean class="org.springframework.http.client.SimpleClientHttpRequestFactory">
+      <property name="connectTimeout" value="${geolocationApi.connection.timeout}" />
+      <property name="readTimeout" value="${geolocationApi.read.timeout}" />
+      </bean>
+      </constructor-arg>
+    </bean>
+    
+    <bean id="siteOneContactWebService" class="com.siteone.integration.services.ue.impl.DefaultSiteOneContactWebService" >
+    <property name="siteOneRestClient" ref="siteOneRestClient"/>
+     <property name="siteOneWsB2BCustomerConverter" ref="siteOneWsB2BCustomerConverter"/> 
+    </bean>
+    
+     <bean id="siteOnePriceWebService" class="com.siteone.integration.services.ue.impl.DefaultSiteOnePriceWebService" >
+    <property name="siteOneRestClient" ref="siteOneRestClient"/>
+    <property name="sessionService" ref="sessionService"/>
+    </bean>
+
+	<alias alias="siteOneDeliveryCostWebService" name="defaultSiteOneDeliveryCostWebService"/>
+	<bean id="defaultSiteOneDeliveryCostWebService" class="com.siteone.integration.services.ue.impl.DefaultSiteOneDeliveryCostWebService" >
+		<property name="siteOneRestClient" ref="siteOneRestClient"/>
+	</bean>
+	<bean id="siteOneVerifyGuestContactWebService" class="com.siteone.integration.services.ue.impl.DefaultSiteOneVerifyGuestContactWebService" >
+		<property name="siteOneRestClient" ref="siteOneRestClient"/>
+	</bean>
+    <bean id="siteOneInventoryWebService" class="com.siteone.integration.services.ue.impl.DefaultSiteOneInventoryWebService" >
+    <property name="siteOneRestClient" ref="siteOneRestClient"/>
+    </bean>
+    
+    <alias name="siteOneWsB2BCustomerConverter" alias="b2BCustomerConverter" /> 
+	<bean id="siteOneWsB2BCustomerConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="com.siteone.integration.customer.data.SiteOneWsB2BCustomerRequestData"/>
+			<property name="populators">
+				<list>
+					<ref bean="SiteOneWsB2BCustomerPopulator"/>
+				</list>
+			</property>
+	</bean>
+	<alias name="SiteOneWsB2BCustomerPopulator" alias="siteOneB2BCustomerPopulator"/>
+	<bean id="SiteOneWsB2BCustomerPopulator" class="com.siteone.integration.converters.populators.SiteOneWsB2BCustomerPopulator" >
+	</bean>	
+		
+	<bean id="siteOneAddressWebService" class="com.siteone.integration.services.ue.impl.DefaultSiteOneAddressWebService" >
+    <property name="siteOneRestClient" ref="siteOneRestClient"/>
+    <property name="siteOneWsAddressConverter" ref="siteOneWsAddressConverter"/>
+    
+    </bean>
+ 	
+ 	<alias name="defaultSiteOneWsAddressConverter" alias="siteOneWsAddressConverter"/> 
+	<bean id="defaultSiteOneWsAddressConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="com.siteone.integration.address.data.SiteOneWsAddressRequestData"/>
+			<property name="populators">
+				<list>
+					<ref bean="siteOneWsAddressPopulator"/>
+				</list>
+			</property>
+	</bean>
+
+	<alias name="defaultSiteOneWsAddressPopulator" alias="siteOneWsAddressPopulator"/>
+	<bean id="defaultSiteOneWsAddressPopulator" class="com.siteone.integration.converters.populators.SiteOneWsAddressPopulator" >
+	</bean>
+
+
+    <bean id="siteOneAddressVerificationWebService" class="com.siteone.integration.services.ue.impl.DefaultSiteOneAddressVerificationWebService" >
+    <property name="siteOneRestClient" ref="siteOneRestClient"/>
+    </bean>
+    
+    <bean id="siteOnePurchasedProductWebService" class="com.siteone.integration.services.ue.impl.DefaultSiteOnePurchasedProductWebService" >
+    <property name="siteOneRestClient" ref="siteOneRestClient"/>
+    </bean>
+
+	  <bean id="siteOneUserPreferenceService" class="com.siteone.integration.watson.impl.DefaultSiteOneUserPreferenceService" >
+      </bean>
+
+    <alias name="defaultSiteOneWsOktaUserConverter" alias="siteOneWsOktaUserConverter"/> 
+	<bean id="defaultSiteOneWsOktaUserConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="com.siteone.integration.services.okta.data.OktaCreateOrUpdateUserRequestData"/>
+			<property name="populators">
+				<list>
+					<ref bean="siteOneWsOktaUserPopulator"/>
+				</list>
+			</property>
+	</bean>
+
+	<alias name="defaultSiteOneWsOktaUserPopulator" alias="siteOneWsOktaUserPopulator"/>
+	<bean id="defaultSiteOneWsOktaUserPopulator" class="com.siteone.integration.converters.populators.SiteOneWsOktaUserPopulator" >
+	</bean>	
+
+
+    <bean id="promotionFeedCronJob" class="com.siteone.integration.jobs.promotion.PromotionFeedCronJob" parent="abstractJobPerformable" > 	         
+        <property name="promotionFeedCronJobService" ref="promotionFeedCronJobService"/>
+    </bean>
+ 	
+ 	<alias name="defaultPromotionFeedCronJobService" alias="promotionFeedCronJobService"/>
+ 	<bean id="defaultPromotionFeedCronJobService" class="com.siteone.integration.jobs.promotion.service.impl.DefaultPromotionFeedCronJobService" >
+		<property name="promotionFeedCronJobDao" ref="promotionFeedCronJobDao"/>
+		<property name="modelService" ref="modelService"/>
+		<property name="blobDataImportService" ref="blobDataImportService"/>
+		<property name="configurationService" ref="configurationService"/>
+	</bean>
+	
+	<alias name="defaultPromotionFeedCronJobDao" alias="promotionFeedCronJobDao"/>
+ 	<bean id="defaultPromotionFeedCronJobDao" class="com.siteone.integration.jobs.promotion.dao.impl.DefaultPromotionFeedCronJobDao" parent="abstractItemDao">
+    </bean>
+    
+    <!-- Google product feed start -->
+    
+    <bean id="productFeedCronJob" class="com.siteone.integration.jobs.product.ProductFeedCronJob" parent="abstractJobPerformable" > 	         
+        <property name="productFeedCronJobService" ref="productFeedCronJobService"/>
+    </bean>
+    
+    <bean id="inventoryFeedCronJob" class="com.siteone.integration.jobs.product.InventoryFeedCronJob" parent="abstractJobPerformable" > 	         
+        <property name="inventoryFeedCronJobService" ref="inventoryFeedCronJobService"/>
+    </bean>
+ 	
+ 	<alias name="defaultProductFeedCronJobService" alias="productFeedCronJobService"/>
+ 	<bean id="defaultProductFeedCronJobService" class="com.siteone.integration.jobs.product.service.impl.DefaultProductFeedCronJobService" >
+		<property name="modelService" ref="modelService"/>
+		<property name="productFeedService" ref="productFeedService"/>
+	</bean>
+	
+	<alias name="defaultInventoryFeedCronJobService" alias="inventoryFeedCronJobService"/>
+ 	<bean id="defaultInventoryFeedCronJobService" class="com.siteone.integration.jobs.product.service.impl.DefaultInventoryFeedCronJobService" >
+		<property name="modelService" ref="modelService"/>
+		<property name="productFeedService" ref="productFeedService"/>
+	</bean>
+	
+	<bean id="regionFeedCronJob" class="com.siteone.integration.jobs.product.RegionFeedCronJob" parent="abstractJobPerformable" > 	         
+        <property name="regionFeedCronJobService" ref="regionFeedCronJobService"/>
+    </bean>
+    
+	<alias name="defaultRegionFeedCronJobService" alias="regionFeedCronJobService"/>
+ 	<bean id="defaultRegionFeedCronJobService" class="com.siteone.integration.jobs.product.service.impl.DefaultRegionFeedCronJobService" >
+		<property name="modelService" ref="modelService"/>
+		<property name="productFeedService" ref="productFeedService"/>
+	</bean>
+ 	
+ 	<alias name="defaultProductFeedCronJobDao" alias="productFeedCronJobDao"/>
+ 	<bean id="defaultProductFeedCronJobDao" class="com.siteone.integration.jobs.product.dao.impl.DefaultProductFeedCronJobDao" parent="abstractItemDao">
+    </bean>
+    
+    <bean id="nurseryInventoryFeedCronJob" class="com.siteone.integration.jobs.product.NurseryInventoryFeedCronJob" parent="abstractJobPerformable" > 	         
+        <property name="nurseryInventoryFeedCronJobService" ref="nurseryInventoryFeedCronJobService"/>
+    </bean>
+ 
+ <alias name="defaultNurseryInventoryFeedCronJobService" alias="nurseryInventoryFeedCronJobService"/>
+ 	<bean id="defaultNurseryInventoryFeedCronJobService" class="com.siteone.integration.jobs.product.service.impl.DefaultNurseryInventoryFeedCronJobService" >
+		<property name="modelService" ref="modelService"/>
+		<property name="productFeedService" ref="productFeedService"/>
+	</bean>
+	
+	
+	
+	<bean id="orphanMediaCronJob" class="com.siteone.integration.jobs.product.OrphanMediaCronJob" parent="abstractJobPerformable" > 	         
+        <property name="orphanMediaCronJobService" ref="orphanMediaCronJobService"/>
+    </bean>
+ 
+ <alias name="defaultOrphanMediaCronJobService" alias="orphanMediaCronJobService"/>
+ 	<bean id="defaultOrphanMediaCronJobService" class="com.siteone.integration.jobs.product.service.impl.DefaultOrphanMediaCronJobService" >
+		<property name="modelService" ref="modelService"/>
+		<property name="productFeedService" ref="productFeedService"/>
+	</bean>
+	
+	<bean id="fullProductFeedCronJob" class="com.siteone.integration.jobs.product.FullProductFeedCronJob" parent="abstractJobPerformable" > 	         
+        <property name="fullProductFeedCronJobService" ref="fullProductFeedCronJobService"/>
+    </bean>
+ 
+ <alias name="defaultFullProductFeedCronJobService" alias="fullProductFeedCronJobService"/>
+ 	<bean id="defaultFullProductFeedCronJobService" class="com.siteone.integration.jobs.product.service.impl.DefaultFullProductFeedCronJobService" >
+		<property name="modelService" ref="modelService"/>
+		<property name="productFeedService" ref="productFeedService"/>
+	</bean>
+    
+    <alias name="defaultProductFeedService" alias="productFeedService"/>
+ 	<bean id="defaultProductFeedService" class="com.siteone.integration.jobs.product.service.impl.DefaultProductFeedService" >
+ 		<property name="blobDataImportService" ref="blobDataImportService"/>
+		<property name="productFeedCronJobDao" ref="productFeedCronJobDao"/>
+		<property name="configurationService" ref="configurationService"/>
+		<property name="enumerationService" ref="enumerationService"/> 	
+		<property name="modelService" ref="modelService"/>
+ 	</bean>
+ 	
+ 	<bean id="productRegionFeedCronJob" class="com.siteone.integration.jobs.product.ProductRegionFeedCronJob" parent="abstractJobPerformable" > 	         
+        <property name="productRegionFeedCronJobService" ref="productRegionFeedCronJobService"/>
+    </bean>
+    
+    <alias name="defaultProductRegionFeedCronJobService" alias="productRegionFeedCronJobService"/>
+ 	<bean id="defaultProductRegionFeedCronJobService" class="com.siteone.integration.jobs.product.service.impl.DefaultProductRegionFeedCronJobService" >
+		<property name="modelService" ref="modelService"/>
+		<property name="productFeedService" ref="productFeedService"/>
+	</bean>
+	
+	<bean id="categoryFeedCronJob" class="com.siteone.integration.jobs.product.CategoryFeedCronJob" parent="abstractJobPerformable" > 	         
+        <property name="categoryFeedCronJobService" ref="categoryFeedCronJobService"/>
+    </bean>
+
+    <alias name="defaultCategoryFeedCronJobService" alias="categoryFeedCronJobService"/>
+ 	<bean id="defaultCategoryFeedCronJobService" class="com.siteone.integration.jobs.product.service.impl.DefaultCategoryFeedCronJobService" >
+		<property name="modelService" ref="modelService"/>
+		<property name="productFeedService" ref="productFeedService"/>
+	</bean>
+	
+	<bean id="localizedProductFeedCronJob" class="com.siteone.integration.jobs.product.LocalizedProductFeedCronJob" parent="abstractJobPerformable" > 	         
+        <property name="localizedProductFeedCronJobService" ref="localizedProductFeedCronJobService"/>
+    </bean>
+
+    <alias name="defaultLocalizedProductFeedCronJobService" alias="localizedProductFeedCronJobService"/>
+ 	<bean id="defaultLocalizedProductFeedCronJobService" class="com.siteone.integration.jobs.product.service.impl.DefaultLocalizedProductFeedCronJobService" >
+		<property name="modelService" ref="modelService"/>
+		<property name="productFeedService" ref="productFeedService"/>
+	</bean>
+ 	
+ 	<!-- Google product feed end -->
+
+	<bean id="oktaAPI" class="com.siteone.integration.okta.OKTAAPIImpl">
+		<property name="siteOneOktaRestClient" ref="siteOneOktaRestClient"/>
+		<property name="siteOneCreateOrUpdateRestClient" ref="siteOneOktaRestClient"/>
+    	<property name="siteOneWsOktaUserConverter" ref="siteOneWsOktaUserConverter"/>
+		<property name="siteOneGetUserRestClient" ref="siteOneOktaRestClient"/>
+		<property name="siteOneForgotPasswordRestClient" ref="siteOneOktaRestClient"/>
+    	<property name="siteOneRecoveryTokenRestClient" ref="siteOneOktaRestClient"/>
+   		<property name="siteOneResetPasswordRestClient" ref="siteOneOktaRestClient"/>
+    	<property name="siteOneChangePasswordRestClient" ref="siteOneOktaRestClient"/>
+    	<property name="siteOneSetPasswordRestClient" ref="siteOneOktaRestClient"/>
+    	<property name="siteOneActivateUserRestClient" ref="siteOneOktaRestClient"/>
+    	<property name="siteOneUnlockUserRestClient" ref="siteOneOktaRestClient"/>
+    	<property name="siteOneResfreshSessionRestClient" ref="siteOneOktaRestClient"/>
+    	<property name="siteOneOktaConfigAppDetailsRestClient" ref="siteOneOktaRestClient"/>
+    	<property name="siteOneOktaConfigUserAppDetailsRestClient" ref="siteOneOktaRestClient"/>
+    	<property name="sessionService" ref="sessionService"/>
+		<property name="restTemplate" ref="restTemplate"/>
+		<property name="clientDetailsService" ref="oauthClientDetails"/>
+		<property name="smarteditOAuth2RequestFactory" ref="smarteditOAuth2RequestFactory"/>
+</bean>
+     
+     <bean id="siteOneLeadGenerationService" class="com.siteone.integration.watson.impl.DefaultSiteOneLeadGenerationService" >
+     </bean>
+     
+     <bean id="messageFactory" class="org.springframework.ws.soap.saaj.SaajSoapMessageFactory">
+		<property name="soapVersion">
+			<util:constant static-field="org.springframework.ws.soap.SoapVersion.SOAP_12" />
+		</property>
+	</bean>
+     
+     <bean id="partnerProgramWebServiceTemplate" class="org.springframework.ws.client.core.WebServiceTemplate">
+		<constructor-arg ref="messageFactory"/>
+		<property name="marshaller" ref="partnerProgramClientMarshaller" />
+		<property name="unmarshaller" ref="partnerProgramClientMarshaller" />
+		<property name="defaultUri" value="${totalpro.opensession.url}"/>
+	</bean>
+	
+	<bean id="partnerProgramClientMarshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
+		<property name="contextPath" value="com.siteone.integration.webserviceclient.partnerssowsclient" />
+	</bean>
+	
+	<bean id="partnerProgramSSOWebService" class="com.siteone.integration.services.partnerprogram.impl.DefaultPartnerProgramSSOWebService" >
+    <property name="webServiceTemplate" ref="partnerProgramWebServiceTemplate"/>    
+    </bean>
+    
+    <bean id="emailSignUpService" class="com.siteone.integration.watson.impl.DefaultEmailSignUpService" >
+     </bean>
+
+ 	<bean id="siteOneCustInfoWebService" class="com.siteone.integration.services.ue.impl.DefaultSiteOneCustInfoWebService" >
+    <property name="siteOneCustInfoRestClient" ref="siteOneRestClient"/>
+    </bean>
+    
+
+    <bean id="vertexMessageFactory" class="org.springframework.ws.soap.saaj.SaajSoapMessageFactory">
+		<property name="soapVersion">
+			<util:constant static-field="org.springframework.ws.soap.SoapVersion.SOAP_11" />
+		</property>
+	</bean>
+	
+    <bean id="vertexClientWebServiceTemplate" class="org.springframework.ws.client.core.WebServiceTemplate">
+		<constructor-arg ref="vertexMessageFactory"/>
+		<property name="messageSender">
+        <bean class="org.springframework.ws.transport.http.HttpComponentsMessageSender">
+        </bean>
+    </property>
+		<property name="marshaller" ref="vertexClientMarshaller" />
+		<property name="unmarshaller" ref="vertexClientMarshaller" />
+		<property name="defaultUri" value="${ue.vertex.url}"/>
+	</bean>
+	
+	<bean id="vertexClientMarshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
+		<property name="contextPath" value="com.siteone.integration.webserviceclient.vertexclient" />
+	</bean>
+	
+	<bean id="taxCalculationWebService" class="com.siteone.integration.services.vertexclient.impl.DefaultTaxCalculationWebService" >
+    <property name="webServiceTemplate" ref="vertexClientWebServiceTemplate"/>
+     <property name="promotionFeedCronJobService" ref="promotionFeedCronJobService"/>
+	 <property name="cartService" ref="cartService"/>
+	 <property name="sessionService" ref="sessionService"/>
+    
+   </bean>
+
+      <bean id="siteOneWsSubmitOrderConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="com.siteone.integration.submitOrder.data.SiteOneWsSubmitOrderRequestData"/>
+			<property name="populators">
+				<list>
+					<ref bean="siteOneWsSubmitOrderPopulator"/>
+				</list>
+			</property>
+	</bean>
+	
+	<bean id="siteOneWsSubmitOrderPopulator" class="com.siteone.integration.converters.populators.SiteOneWsSubmitOrderPopulator" >
+	<property name="promotionFeedCronJobService" ref="promotionFeedCronJobService"/>
+	</bean>	
+		
+	<bean id="siteOneOrderWebService" class="com.siteone.integration.services.ue.impl.DefaultSiteOneOrderWebService" >
+    <property name="siteOneRestClient" ref="siteOneRestClient"/>
+    <property name="siteOneWsSubmitOrderConverter" ref="siteOneWsSubmitOrderConverter"/>
+    
+    </bean>
+    
+    <bean id="customerDataReportCronJob" class="com.siteone.integration.jobs.datareport.CustomerDataReportCronJob" parent="abstractJobPerformable" > 	         
+        <property name="siteOneCustomerDataReportService" ref="siteOneCustomerDataReportService"/>
+    </bean>
+ 	
+ 	<alias name="defaultSiteOneCustomerDataReportService" alias="siteOneCustomerDataReportService"/>
+ 	<bean id="defaultSiteOneCustomerDataReportService" class="com.siteone.integration.jobs.datareport.service.impl.DefaultSiteOneCustomerDataReportService" >
+		<property name="siteOneCustomerDataReportDao" ref="siteOneCustomerDataReportDao"/>
+		<property name="modelService" ref="modelService"/>
+		<property name="blobDataImportService" ref="blobDataImportService"/>
+		<property name="configurationService" ref="configurationService"/>
+	</bean>
+ 	
+ 	<alias name="defaultSiteOneCustomerDataReportDao" alias="siteOneCustomerDataReportDao"/>
+ 	<bean id="defaultSiteOneCustomerDataReportDao" class="com.siteone.integration.jobs.datareport.dao.impl.DefaultSiteOneCustomerDataReportDao" parent="abstractItemDao">
+    </bean>
+    
+    <alias name="defaultSiteOneInvoiceWebService" alias="siteOneInvoiceWebService"/>
+ 	<bean id="defaultSiteOneInvoiceWebService" class="com.siteone.integration.services.invoice.impl.DefaultSiteOneInvoiceWebService" >
+ 	<property name="siteOneRestClient" ref="siteOneRestClient"/>
+ 	<property name="siteOneInvoiceRestClient" ref="siteOneRestClient"/>
+    </bean>
+    <alias name="defaultSiteOneSDSPDFWebService" alias="siteOneSDSPDFWebService"/>
+ 	<bean id="defaultSiteOneSDSPDFWebService" class="com.siteone.integration.services.ue.impl.DefaultSiteOneSDSPDFWebService" >
+    </bean>
+      <alias name="defaultSiteOneBriteVerifyWebService" alias="siteOneBriteVerifyWebService"/>
+ 	<bean id="defaultSiteOneBriteVerifyWebService" class="com.siteone.integration.services.briteVerify.impl.DefaultSiteOneBriteVerifyWebService" >
+    </bean>
+    
+    <bean id="siteOneCayanPaymentMessageFactory" class="org.springframework.ws.soap.saaj.SaajSoapMessageFactory">
+		<property name="soapVersion">
+			<util:constant static-field="org.springframework.ws.soap.SoapVersion.SOAP_12" />
+		</property>
+	</bean> 
+
+	<bean id="siteOneCayanPaymentWebServiceTemplate" class="org.springframework.ws.client.core.WebServiceTemplate">
+		<constructor-arg ref="messageFactory"/>
+		<property name="marshaller" ref="siteOneCayanPaymentClientMarshaller" />
+		<property name="unmarshaller" ref="siteOneCayanPaymentClientMarshaller" />
+		<property name="defaultUri" value="${cayan.payment.url}"/>
+	</bean>
+	
+	<bean id="siteOneCayanPaymentClientMarshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
+		<property name="contextPath" value="com.siteone.integration.webserviceclient.cayanclient" />
+	</bean>
+	
+	<bean id="siteOneCayanPaymentWebService" class="com.siteone.integration.services.cayanclient.impl.DefaultSiteOneCayanPaymentWebService" >
+    	<property name="webServiceTemplate" ref="siteOneCayanPaymentWebServiceTemplate"/>
+    </bean>
+    
+    <bean id="siteOneCayanTransportMessageFactory" class="org.springframework.ws.soap.saaj.SaajSoapMessageFactory">
+		<property name="soapVersion">
+			<util:constant static-field="org.springframework.ws.soap.SoapVersion.SOAP_12" />
+		</property>
+	</bean> 
+
+	<bean id="siteOneCayanTransportWebServiceTemplate" class="org.springframework.ws.client.core.WebServiceTemplate">
+		<constructor-arg ref="messageFactory"/>
+		<property name="marshaller" ref="siteOneCayanTransportClientMarshaller" />
+		<property name="unmarshaller" ref="siteOneCayanTransportClientMarshaller" />
+		<property name="defaultUri" value="${cayan.transport.url}"/>
+	</bean>
+
+	<bean id="siteOneCayanTransportClientMarshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
+		<property name="contextPath" value="com.siteone.integration.webserviceclient.cayantransportclient" />
+	</bean>
+
+	<bean id="siteOneCayanTransportWebService" class="com.siteone.integration.services.cayantransportclient.impl.DefaultSiteOneCayanTransportWebService" >
+    	<property name="webServiceTemplate" ref="siteOneCayanTransportWebServiceTemplate"/>
+    </bean>
+    
+    <!--  Credit Card converter begins -->
+  	<bean id="siteOneWsEwalletConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="com.siteone.integration.ewallet.data.SiteOneWsEwalletRequestData"/>
+		<property name="populators">
+			<list>
+				<ref bean="siteOneWsEwalletPopulator"/>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="siteOneWsEwalletPopulator" class="com.siteone.integration.converters.populators.SiteOneWsEwalletPopulator" >
+	<property name="userService" ref="userService"/>
+	</bean>	
+	
+	<bean id="siteOneEwalletWebService" class="com.siteone.integration.services.ue.impl.DefaultSiteOneEwalletWebService" >
+    	<property name="siteOneRestClient" ref="siteOneRestClient"/>
+    	<property name="siteOneWsEwalletConverter" ref="siteOneWsEwalletConverter"/>
+		<property name="siteOneRestClientForVoidPayment" ref="siteOneRestClient"/>
+    
+    </bean>
+	<!--  Credit Card converter ends-->
+	
+	
+	<util:map id="carrierAdaptors" key-type="java.lang.String">
+		<entry key="DISPATCHTRACK" value-ref="dispatchTrackAdaptor"/>
+		<entry key="Delivery Pilot" value-ref="dispatchTrackAdaptor"/>
+		<entry key="Auto Dispatch" value-ref="dispatchTrackAdaptor"/>
+        <entry key="Branch Dispatch" value-ref="dispatchTrackAdaptor"/>
+        <entry key="Delivery On Hold" value-ref="dispatchTrackAdaptor"/>
+        <entry key="FEDERAL EXPRESS" value-ref="dispatchTrackAdaptor"/>
+	</util:map>	
+
+	<bean id="dispatchTrackAdaptor" class="com.siteone.integration.consignmenttrackingservices.adaptors.impl.DispatchTrackCarrierAdaptor">
+		<property name="configurationService" ref="configurationService"/>
+		<property name="siteBaseUrlResolutionService" ref="siteBaseUrlResolutionService"/>
+		<property name="baseSiteService" ref="baseSiteService"/>
+		<property name="carrierTrackingService" ref="carrierTrackingService"/>
+	</bean>		
+	
+	<alias name="dispatchTrackConsignmentTrackingService" alias="carrierTrackingService"/>	
+	<bean id="dispatchTrackConsignmentTrackingService" class="com.siteone.integration.services.carriers.impl.DispatchTrackConsignmentTrackingService" >
+    	<property name="defaultConsignmentDao" ref="defaultConsignmentDao"/>
+    </bean>
+    
+     <alias name="siteOneIPGeolocationService" alias="siteOneIPGeolocationService"/>
+    <bean id="siteOneIPGeolocationService" class="com.siteone.integration.geolocation.SiteOneIPGeolocationService"></bean>
+	
+	<bean id="sendNotificationApi" class="com.siteone.integration.azure.pushnotification.SendNotificationApiImpl">
+    	 <property name="messageSource" ref="siteOneIntegrationMessageSource" />
+    </bean>
+    <!-- Message Source -->
+	<bean id="siteOneIntegrationMessageSource"
+		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<property name="basenames">
+			<list>
+				<value>classpath:localization/siteoneintegration-base</value>
+			</list>
+		</property>
+	</bean> 
+    <bean id="siteOneScanProductWebService" class="com.siteone.integration.services.mpos.impl.DefaultSiteOneScanProductWebService" >
+   		<property name="siteOneRestClient" ref="siteOneRestClient"/>
+    </bean>
+
+	<bean id="siteOneOktaRestClient" class="com.siteone.integration.rest.client.SiteOneOktaRestClient" parent="abstractSiteOneRestClient">
+	</bean>
+
+	<bean id="abstractSiteOneRestClient" class="com.siteone.integration.rest.client.AbstractSiteOneRestClient"
+	  abstract="true">
+		<property name="restTemplate" ref="restTemplate"/>
+		<property name="modelService" ref="modelService"/>
+	</bean>
+    <bean id="adobeAnalyticsOrderExportCronJob" class="com.siteone.integration.jobs.analytics.AdobeAnalyticsOrderExportCronJob" parent="abstractJobPerformable" > 	         
+        <property name="adobeAnalyticsOrderExportCronJobService" ref="adobeAnalyticsOrderExportCronJobService"/>
+    </bean>
+ 	
+ 	<alias name="defaultAdobeAnalyticsOrderExportCronJobService" alias="adobeAnalyticsOrderExportCronJobService"/>
+ 	<bean id="defaultAdobeAnalyticsOrderExportCronJobService" class="com.siteone.integration.jobs.analytics.service.impl.DefaultAdobeAnalyticsOrderExportCronJobService" >
+    	<property name="adobeAnalyticsOrderExportCronJobDao" ref="adobeAnalyticsOrderExportCronJobDao"/>
+    	<property name="modelService" ref="modelService"/>
+		<property name="blobDataImportService" ref="blobDataImportService"/>
+		<property name="configurationService" ref="configurationService"/>
+    </bean>
+ 	
+ 	<alias name="defaultAdobeAnalyticsOrderExportCronJobDao" alias="adobeAnalyticsOrderExportCronJobDao"/>
+ 	<bean id="defaultAdobeAnalyticsOrderExportCronJobDao" class="com.siteone.integration.jobs.analytics.dao.impl.DefaultAdobeAnalyticsOrderExportCronJobDao" parent="abstractItemDao">
+    </bean>
+    
+    <bean id="adobeAnalyticsCustomerExportCronJob" class="com.siteone.integration.jobs.analytics.AdobeAnalyticsCustomerExportCronJob" parent="abstractJobPerformable" > 	         
+        <property name="adobeAnalyticsCustomerExportCronJobService" ref="adobeAnalyticsCustomerExportCronJobService"/>
+    </bean>
+    
+     <bean id="adobeAnalyticsRealtimeCustomerExportCronJob" class="com.siteone.integration.jobs.analytics.AdobeAnalyticsRealtimeCustomerExportCronJob" parent="abstractJobPerformable" > 	         
+        <property name="adobeAnalyticsCustomerExportCronJobService" ref="adobeAnalyticsCustomerExportCronJobService"/>
+    </bean>
+ 	
+ 	<alias name="defaultAdobeAnalyticsCustomerExportCronJobService" alias="adobeAnalyticsCustomerExportCronJobService"/>
+ 	<bean id="defaultAdobeAnalyticsCustomerExportCronJobService" class="com.siteone.integration.jobs.analytics.service.impl.DefaultAdobeAnalyticsCustomerExportCronJobService" >
+    	<property name="adobeAnalyticsCustomerExportCronJobDao" ref="adobeAnalyticsCustomerExportCronJobDao"/>
+    	<property name="modelService" ref="modelService"/>
+		<property name="blobDataImportService" ref="blobDataImportService"/>
+		<property name="configurationService" ref="configurationService"/>
+    </bean>
+ 	
+ 	<alias name="defaultAdobeAnalyticsCustomerExportCronJobDao" alias="adobeAnalyticsCustomerExportCronJobDao"/>
+ 	<bean id="defaultAdobeAnalyticsCustomerExportCronJobDao" class="com.siteone.integration.jobs.analytics.dao.impl.DefaultAdobeAnalyticsCustomerExportCronJobDao" parent="abstractItemDao">
+    </bean>
+
+	<alias alias="blobDataImportService" name="siteOneBlobDataImportService"/>
+	<bean id="siteOneBlobDataImportService" class="com.siteone.integration.services.dataimport.impl.DefaultSiteOneBlobDataImportService">
+		<property name="configurationService" ref="configurationService"/>
+	</bean>
+	
+	 <!-- Create Customer converter begins -->
+
+    <bean id="siteOneWsCreateCustomerConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="com.siteone.integration.customer.createCustomer.data.SiteOneWsCreateCustomerRequestData"/>
+		<property name="populators">
+			<list>
+				<ref bean="siteOneWsCreateCustomerPopulator"/>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="siteOneWsCreateCustomerPopulator" class="com.siteone.integration.converters.populators.SiteOneWsCreateCustomerPopulator" >
+	</bean>	
+
+	<bean id="siteOneCreateCustomerWebService" class="com.siteone.integration.services.ue.impl.DefaultSiteOneCreateCustomerWebService" >
+    	<property name="siteOneRestClient" ref="siteOneRestClient"/>
+    	<property name="siteOneWsCreateCustomerConverter" ref="siteOneWsCreateCustomerConverter"/>
+
+    </bean>
+    
+    <bean id="siteOneSelfServeWebService" class="com.siteone.integration.services.ue.impl.DefaultSiteOneSelfServeWebService" >
+    	<property name="siteOneRestClient" ref="siteOneRestClient"/>
+    </bean>
+    
+    <bean id="siteOneWsTalonOneLoyaltyEnrollmentConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="com.siteone.integration.customer.talonOneLoyaltyEnrollment.data.SiteOneWsTalonOneLoyaltyEnrollmentRequestData"/>
+		<property name="populators">
+			<list>
+				<ref bean="siteOneWsTalonOneLoyaltyEnrollmentPopulator"/>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="siteOneWsTalonOneLoyaltyEnrollmentPopulator" class="com.siteone.integration.converters.populators.SiteOneWsTalonOneLoyaltyEnrollmentPopulator" >
+	</bean>	
+    
+    <bean id="siteOneTalonOneLoyaltyEnrollmentWebService" class="com.siteone.integration.services.ue.impl.DefaultSiteOneTalonOneLoyaltyEnrollmentWebService" >
+    	<property name="siteOneRestClient" ref="siteOneRestClient"/>
+    	<property name="siteOneWsTalonOneLoyaltyEnrollmentConverter" ref="siteOneWsTalonOneLoyaltyEnrollmentConverter"/>
+
+    </bean>
+
+	<alias name="siteOneAlgonomyService" alias="siteOneAlgonomyService"/>
+    <bean id="siteOneAlgonomyService" class="com.siteone.integration.algonomy.SiteOneAlgonomyService">
+    </bean>
+
+	<alias name="siteOneAlgonomyAuditLogService" alias="siteOneAlgonomyAuditLogService"/>
+	<bean id="siteOneAlgonomyAuditLogService" class="com.siteone.integration.algonomy.impl.DefaultSiteOneAlgonomyAuditLogService">
+	</bean>
+
+	<bean id="algonomyRestTemplate" class="org.springframework.web.client.RestTemplate">
+	</bean>
+
+	<bean id="algonomyObjectMapper" class="com.fasterxml.jackson.databind.ObjectMapper">
+	</bean>
+
+	<bean id="algonomyProperties" class="com.siteone.integration.algonomy.AlgonomyProperties">
+	</bean>
+
+	<bean id="siteOneTalonOneLoyaltyEnrollmentStatusWebService"
+		class="com.siteone.integration.services.ue.impl.DefaultSiteOneTalonOneLoyaltyEnrollmentStatusWebService">
+		<property name="siteOneRestClient" ref="siteOneRestClient" />
+	</bean>
+	<bean id="siteOneLinkToPayWebService"
+		class="com.siteone.integration.services.ue.impl.DefaultSiteOneLinkToPayWebService">
+		<property name="siteOneRestClient" ref="siteOneRestClient" />
+		<property name="restTemplate" ref="restTemplate"/>
+	</bean>
+	
+	<bean id="siteOneQuotesWebService"
+		class="com.siteone.integration.services.ue.impl.DefaultSiteOneQuotesWebService">
+		<property name="siteOneRestClient" ref="siteOneRestClient" />
+		 <property name="siteOneRestClientForQuotes" ref="siteOneRestClient"/>
+		 <property name="siteOneRestClientForUpdateQuotes" ref="siteOneRestClient"/>
+		 <property name="siteOneRestClientForUpdateQuotesDetail" ref="siteOneRestClient"/>
+		 <property name="siteOneRestClientForShiptoQuotes" ref="siteOneRestClient"/>
+		<property name="restTemplate" ref="restTemplate"/>
+	</bean>
+	
+	<bean id="siteOneProjectServicesWebService"
+		class="com.siteone.integration.services.ue.impl.DefaultSiteOneProjectServicesWebService">
+		<property name="siteOneRestClient" ref="siteOneRestClient" />
+		<property name="siteOneRestClientForDashboard" ref="siteOneRestClient" />
+		<property name="siteOneRestClientForBidding" ref="siteOneRestClient" />
+		<property name="siteOneRestClientForHiding" ref="siteOneRestClient" />
+		<property name="sessionService" ref="sessionService"/>
+	</bean>
+	
+	<alias name="siteOneSalesDataWebService" alias="siteOneSalesDataWebService"/>
+	<bean id="siteOneSalesDataWebService"
+		class="com.siteone.integration.services.ue.impl.DefaultSiteOneSalesDataWebService">
+		<property name="siteOneRestClient" ref="siteOneRestClient" />
+	</bean>
+	
+	<!-- Translation Services -->
+     <bean id="defaultSiteOneTranslationWebService"
+      class="com.siteone.integration.translation.impl.DefaultSiteOneTranslationWebService">
+    <property name="siteOneRestClient" ref="siteOneRestClient"/>
+     </bean>
+
+     <bean id="defaultSiteOneTranslationService"
+      class="com.siteone.integration.translation.impl.DefaultSiteOneTranslationService">
+    <property name="translationWebService" ref="defaultSiteOneTranslationWebService"/>
+    </bean>
+    
+	<bean id="salesFeedCronJob" class="com.siteone.integration.jobs.product.SalesFeedCronJob" parent="abstractJobPerformable" > 	         
+        <property name="salesFeedCronJobService" ref="salesFeedCronJobService"/>
+    </bean>
+
+	<alias name="defaultSalesFeedCronJobService" alias="salesFeedCronJobService"/>
+ 	<bean id="defaultSalesFeedCronJobService" class="com.siteone.integration.jobs.product.service.impl.DefaultSalesFeedCronJobService" >
+		<property name="modelService" ref="modelService"/>	
+	</bean>
+
+</beans>

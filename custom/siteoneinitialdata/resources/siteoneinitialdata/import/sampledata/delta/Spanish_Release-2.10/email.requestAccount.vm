@@ -1,0 +1,348 @@
+## messageSource=classpath:/siteonecore/messages/email-requestAccountEmail_$lang.properties
+#macro( genHtmlBoldFont $text )
+<font color="#414a4f" size="2" face="Arial, Helvetica, sans-serif"><b>$text</b></font>
+#end
+#macro(genHtmlLinkStartTag $url)
+<a href="$url"><font color="#666666">
+#end
+#macro(genHtmlLinkEndTag)
+</font></a>
+#end
+#macro(genHtmlLink $url $textColor $bodyContent)
+<a href="$url"><font color="$textColor">$bodyContent</font></a>
+#end
+<html>
+	<head></head>
+	<body bgcolor="#ffffff">
+		<table width="550" border="1" align="center" cellpadding="0" cellspacing="0" bgcolor="#ffffff" style="border: 1px solid #51585c;">
+			<tr>
+				<td align="center" valign="top">
+					<table width="610" border="0" align="center" cellpadding="0" cellspacing="0" bordercolor="#fff">
+						<tr>
+							<td align="center" valign="top" bgcolor="#FFFFFF">
+								<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#ffffff">
+									<tr>
+										<td style="padding:15px;" valign="left">
+											<a style="text-decoration:none;" href="${ctx.baseThemeUrl}">
+												<img title="SiteoneLogo" src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/SiteoneLogo.jpg" alt="SiteoneLogo" style="outline:0;">
+											</a>
+										</td>
+											<td style="padding:15px;" align="right">
+												<span class="col-xs-6 col-md-12">
+													<a style="text-decoration:none;" href="https://www.facebook.com/SiteOneLandscape/">
+														<img src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/Print_facebook_color.png" alt="Facebook" title="Facebook" style="outline:0;">
+														</a>&nbsp;
+														
+														<a style="text-decoration:none;" href="https://www.instagram.com/siteonesupply/">
+															<img src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/Print_instagram_color.png" alt="Instagram" title="Instagram" style="outline:0;">
+															</a>&nbsp;
+															
+															<a style="text-decoration:none;" href="https://twitter.com/SiteOneSupply">
+																<img src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/Print_twitter_color.png" alt="Twitter" title="Twitter" style="outline:0;">
+																</a>
+															</span>
+														</td>
+													</tr>
+													<tr>
+														<td colspan="2">
+															<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#ffffff">
+																<tr>
+																	<td width="100%" colspan="4" height="30" align="left" bgcolor="#CCCCCC" style="padding:20px 10px">
+																		<font color="#000000" size="5" face="Arial, Helvetica, sans-serif">
+																			<b style="text-transform:uppercase;">${ctx.messages.requestonlineacc}</b>
+																		</font>
+																	</td>
+																</tr>
+																<tr>
+																	<td colspan="2">&nbsp;</td>
+																</tr>
+																<tr>
+																	<td style="width:40%;padding:5px;">
+																		<p>
+																			<font style="font-family:Arial;font-weight:regular;font-size:16px;color:#565656;padding-left: 10px;">
+																				<b>${ctx.messages.typeofcust}</b>
+																			</font>
+																		</p>
+																	</td>
+																	<td style="padding:5px;">
+																		<p>
+																			<font style="font-family:Arial;font-weight:regular;font-size:16px;color:#565656;padding-right: 10px;"> ${ctx.typeOfCustomer} </font>
+																		</p>
+																	</td>
+																</tr>
+																<tr>
+																	<td style="width:40%;padding:5px;">
+																		<p>
+																			<font style="font-family:Arial;font-weight:regular;font-size:16px;color:#565656;padding-left: 10px;">
+																				<b>${ctx.messages.acctno}</b>
+																			</font>
+																		</p>
+																	</td>
+																	#if(${ctx.accountNumber} != 'null' && ${ctx.accountNumber} !='' && ${ctx.hasAccountNumber} != 'false')
+																	<td style="padding:5px;">
+																		<p>
+																			<font style="font-family:Arial;font-weight:regular;font-size:16px;color:#565656;padding-right: 10px;"> ${ctx.accountNumber} </font>
+																		</p>
+																	</td>
+																	#else
+																	<td style="padding:5px;">
+																		<p>
+																			<font style="font-family:Arial;font-weight:regular;font-size:16px;color:#565656;padding-right: 10px;"> NA </font>
+																		</p>
+																	</td>
+																	
+																	#end
+																</tr>
+																<tr>
+																	<td style="width:40%;padding:5px;">
+																		<p>
+																			<font style="font-family:Arial;font-weight:regular;font-size:16px;color:#565656;padding-left: 10px;">
+																				<b>${ctx.messages.firstname}</b>
+																			</font>
+																		</p>
+																	</td>
+																	<td style="padding:5px;">
+																		<p>
+																			<font style="font-family:Arial;font-weight:regular;font-size:16px;color:#565656;padding-right: 10px;">  ${ctx.firstName}  </font>
+																		</p>
+																	</td>
+																</tr>
+																<tr>
+																	<td style="width:40%;padding:5px;">
+																		<p>
+																			<font style="font-family:Arial;font-weight:regular;font-size:16px;color:#565656;padding-left: 10px;">
+																				<b>${ctx.messages.lastname}</b>
+																			</font>
+																		</p>
+																	</td>
+																	<td style="padding:5px;">
+																		<p>
+																			<font style="font-family:Arial;font-weight:regular;font-size:16px;color:#565656;padding-right: 10px;"> ${ctx.lastName} </font>
+																		</p>
+																	</td>
+																</tr>
+																<tr>
+																	<td style="width:40%;padding:5px">
+																		<p>
+																			<font style="font-family:Arial;font-weight:regular;font-size:16px;color:#565656;padding-left: 10px;">
+																				<b>${ctx.messages.addressline1}</b>
+																			</font>
+																		</p>
+																	</td>
+																	<td style="padding:5px;">
+																		<p>
+																			<font style="font-family:Arial;font-weight:regular;font-size:16px;color:#565656;padding-right: 10px;"> ${ctx.addressLine1} </font>
+																		</p>
+																	</td>
+																</tr>
+																<tr>
+																	<td style="width:40%;padding:5px">
+																		<p>
+																			<font style="font-family:Arial;font-weight:regular;font-size:16px;color:#565656;padding-left: 10px;">
+																				<b>${ctx.messages.addressline2}</b>
+																			</font>
+																		</p>
+																	</td>
+																	#if(${ctx.addressLine2} != 'null' && ${ctx.addressLine2} != '' )
+																	<td style="padding:5px;">
+																		<p>
+																			<font style="font-family:Arial;font-weight:regular;font-size:16px;color:#565656;padding-right: 10px;">  ${ctx.addressLine2} </font>
+																		</p>
+																	</td>
+																	#else
+																	<td style="padding:5px;">
+																		<p>
+																			<font style="font-family:Arial;font-weight:regular;font-size:16px;color:#565656;padding-right: 10px;">NA </font>
+																		</p>
+																	</td>
+																	#end
+																</tr>
+																<tr>
+																	<td style="width:40%;padding:5px;">
+																		<p>
+																			<font style="font-family:Arial;font-weight:regular;font-size:16px;color:#565656;padding-left: 10px;">
+																				<b>${ctx.messages.city}</b>
+																			</font>
+																		</p>
+																	</td>
+																	<td style="padding:5px;">
+																		<p>
+																			<font style="font-family:Arial;font-weight:regular;font-size:16px;color:#565656;padding-right: 10px;">  ${ctx.city} </font>
+																		</p>
+																	</td>
+																</tr>
+																<tr>
+																	<td style="width:40%;padding:5px;">
+																		<p>
+																			<font style="font-family:Arial;font-weight:regular;font-size:16px;color:#565656;padding-left: 10px;">
+																				<b>${ctx.messages.state}</b>
+																			</font>
+																		</p>
+																	</td>
+																	<td style="padding:5px;">
+																		<p>
+																			<font style="font-family:Arial;font-weight:regular;font-size:16px;color:#565656;padding-right: 10px;"> ${ctx.state} </font>
+																		</p>
+																	</td>
+																</tr>
+																<tr>
+																	<td style="width:40%;padding:5px;">
+																		<p>
+																			<font style="font-family:Arial;font-weight:regular;font-size:16px;color:#565656;padding-left: 10px;">
+																				<b>${ctx.messages.zipcode}</b>
+																			</font>
+																		</p>
+																	</td>
+																	<td style="padding:5px;">
+																		<p>
+																			<font style="font-family:Arial;font-weight:regular;font-size:16px;color:#565656;padding-right: 10px;"> ${ctx.zipcode} </font>
+																		</p>
+																	</td>
+																</tr>
+																<tr>
+																	<td style="width:40%;padding:5px;">
+																		<p>
+																			<font style="font-family:Arial;font-weight:regular;font-size:16px;color:#565656;padding-left: 10px;">
+																				<b>${ctx.messages.phoneno}</b>
+																			</font>
+																		</p>
+																	</td>
+																	<td style="padding:5px;">
+																		<p>
+																			<font style="font-family:Arial;font-weight:regular;font-size:16px;color:#565656;padding-right: 10px;"> ${ctx.phoneNumber} </font>
+																		</p>
+																	</td>
+																</tr>
+																<tr>
+																	<td style="width:40%;padding:5px;">
+																		<p>
+																			<font style="font-family:Arial;font-weight:regular;font-size:16px;color:#565656;padding-left: 10px;">
+																				<b>${ctx.messages.emailaddress}</b>
+																			</font>
+																		</p>
+																	</td>
+																	<td style="padding:5px;">
+																		<p>
+																			<font style="font-family:Arial;font-weight:regular;font-size:16px;color:#565656;padding-right: 10px;"> ${ctx.emailAddress} </font>
+																		</p>
+																	</td>
+																</tr>
+																#if(${ctx.typeOfCustomer} == 'Contractor')
+																<tr>
+																	<td style="width:40%;padding:5px;">
+																		<p>
+																			<font style="font-family:Arial;font-weight:regular;font-size:16px;color:#565656;padding-left: 10px;">
+																				<b>${ctx.messages.yearinbusiness}</b>
+																			</font>
+																		</p>
+																	</td>
+																	<td style="padding:5px;">
+																		<p>
+																			<font style="font-family:Arial;font-weight:regular;font-size:16px;color:#565656;padding-right: 10px;"> ${ctx.yearsInBusiness} </font>
+																		</p>
+																	</td>
+																</tr>
+																<tr>
+																	<td style="width:40%;padding:5px;">
+																		<p>
+																			<font style="font-family:Arial;font-weight:regular;font-size:16px;color:#565656;padding-left: 10px;">
+																				<b>${ctx.messages.noofemploye}</b>
+																			</font>
+																		</p>
+																	</td>
+																	<td style="padding:5px;">
+																		<p>
+																			<font style="font-family:Arial;font-weight:regular;font-size:16px;color:#565656;padding-right: 10px;"> ${ctx.numberOfEmployees} </font>
+																		</p>
+																	</td>
+																</tr>
+																<tr>
+																	<td style="width:40%;padding:5px;">
+																		<p>
+																			<font style="font-family:Arial;font-weight:regular;font-size:16px;color:#565656;padding-left: 10px;">
+																				<b>${ctx.messages.primarybuis}</b>
+																			</font>
+																		</p>
+																	</td>
+																	<td style="padding:5px;">
+																		<p>
+																			<font style="font-family:Arial;font-weight:regular;font-size:16px;color:#565656;padding-right: 10px;"> ${ctx.primaryBusiness} </font>
+																		</p>
+																	</td>
+																</tr>
+																<tr>
+																	<td style="width:40%;padding:5px;">
+																		<p>
+																			<font style="font-family:Arial;font-weight:regular;font-size:16px;color:#565656;padding-left: 10px;">
+																				<b>${ctx.messages.companyName}</b>
+																			</font>
+																		</p>
+																	</td>
+																	<td style="padding:5px;">
+																		<p>
+																			<font style="font-family:Arial;font-weight:regular;font-size:16px;color:#565656;padding-right: 10px;"> ${ctx.companyName} </font>
+																		</p>
+																	</td>
+																</tr>
+																#end
+																<tr>
+																	<td style="width:40%;padding:5px;">
+																		<p>
+																			<font style="font-family:Arial;font-weight:regular;font-size:16px;color:#565656;padding-left: 10px;">
+																				<b>${ctx.messages.yourpreflang}</b>
+																			</font>
+																		</p>
+																	</td>
+																	<td style="padding:5px;">
+																		<p>
+																			<font style="font-family:Arial;font-weight:regular;font-size:16px;color:#565656;padding-right: 10px;"> ${ctx.languagePreference} </font>
+																		</p>
+																	</td>
+																</tr>
+																<tr>
+																	<td colspan="2">&nbsp;</td>
+																</tr>
+																
+																<tr>
+																	<td colspan="2" style="padding:0px 15px;">
+																		<hr color="black" align="center" width="100%">
+																	</td>
+																</tr>								
+																<tr>
+																	<td colspan="2" height="0" align="right" valign="middle">
+																			<tr>
+																				<td colspan="2" style="padding: 10px;margin: 0px;">
+																					<center>
+																						<font color="#000" size="2" face="Arial, Helvetica, sans-serif">${ctx.messages.toensurethatyoucontinuetoreceiveyouremails}<br><a href="mailto:${ctx.messages.infoEmailAddress}">${ctx.messages.infoEmailAddress}</a> ${ctx.messages.afterinfoEmailAddress}</font>
+																					</center>
+																				</td>
+																			</tr>
+																			<tr>
+																				<td colspan="2" style="padding: 10px;margin: 0px;">
+																					<center>
+																						<font color="#000" size="2" face="Arial, Helvetica, sans-serif">${ctx.copyRightYear}${ctx.messages.address}</font>
+																					</center>
+																				</td>
+																			</tr>
+																			<tr>												
+																				<td colspan="2" style="padding: 10px 10px 30px 10px;margin: 0px;">
+																					<center>
+																						<font size="2" face="Arial, Helvetica, sans-serif"><a href="${ctx.baseThemeUrl}/privacypolicy">${ctx.messages.privacyPolicy}</a> | <a href="${ctx.baseThemeUrl}mailMediaUrl">${ctx.messages.viewinBrowser}</a></font>
+																					</center>
+																				</td>
+																			</tr>
+																		</center>
+																	</td>
+																</tr>
+															</table>
+														</td>
+													</tr>
+												</table>
+											</td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+						</table>
+					</body>
+				</html>

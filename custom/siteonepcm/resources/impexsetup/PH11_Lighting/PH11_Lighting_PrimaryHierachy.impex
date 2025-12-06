@@ -1,0 +1,54 @@
+$supercategories=supercategories( code, catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Staged']));;;;;;;;;
+$catalogVersion=catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Staged'])[unique=true,default='siteoneProductCatalog:Staged'];;;;;;;;;
+;;;;;;;;;
+INSERT_UPDATE Category;code[unique=true];name[lang=en];$supercategories;$catalogVersion;allowedPrincipals(uid)
+;PH1;Primary;;siteoneProductCatalog:Staged;admingroup
+;PH11;Lighting;PH1;siteoneProductCatalog:Staged;admingroup 
+;PH1111;Accessories;PH11;siteoneProductCatalog:Staged;admingroup 
+;PH1112;Fixtures;PH11;siteoneProductCatalog:Staged;admingroup 
+;PH1113;Holiday ;PH11;siteoneProductCatalog:Staged;admingroup 
+;PH1114;Lamps;PH11;siteoneProductCatalog:Staged;admingroup 
+;PH1115;Transformers;PH11;siteoneProductCatalog:Staged;admingroup 
+;PH1111100;Fixture Mounting;PH1111;siteoneProductCatalog:Staged;admingroup 
+;PH1111101;Connectors ;PH1111;siteoneProductCatalog:Staged;admingroup 
+;PH1111102;Extensions & Risers;PH1111;siteoneProductCatalog:Staged;admingroup 
+;PH1111103;Lens, Filters & Optics;PH1111;siteoneProductCatalog:Staged;admingroup 
+;PH1111104;Other;PH1111;siteoneProductCatalog:Staged;admingroup 
+;PH1111105;Timers & Photocells;PH1111;siteoneProductCatalog:Staged;admingroup 
+;PH1111106;Tools;PH1111;siteoneProductCatalog:Staged;admingroup 
+;PH1111107;Wire;PH1111;siteoneProductCatalog:Staged;admingroup 
+;PH1112100;Accent & Up Lights;PH1112;siteoneProductCatalog:Staged;admingroup 
+;PH1112101;Deck Lights;PH1112;siteoneProductCatalog:Staged;admingroup 
+;PH1112102;Down Lights;PH1112;siteoneProductCatalog:Staged;admingroup 
+;PH1112103;Hardscape Lights;PH1112;siteoneProductCatalog:Staged;admingroup 
+;PH1112104;In Ground & Well Lights;PH1112;siteoneProductCatalog:Staged;admingroup 
+;PH1112105;Path & Area Lights;PH1112;siteoneProductCatalog:Staged;admingroup 
+;PH1112106;Patio, Bistro & Specialty Lights;PH1112;siteoneProductCatalog:Staged;admingroup 
+;PH1112107;Step Lights;PH1112;siteoneProductCatalog:Staged;admingroup 
+;PH1112108;Underwater Lights;PH1112;siteoneProductCatalog:Staged;admingroup 
+;PH1113100;Accessories;PH1113;siteoneProductCatalog:Staged;admingroup 
+;PH1113101;Bows;PH1113;siteoneProductCatalog:Staged;admingroup 
+;PH1113102;Bulbs;PH1113;siteoneProductCatalog:Staged;admingroup 
+;PH1113103;Icicle, Trunk & Net Lights;PH1113;siteoneProductCatalog:Staged;admingroup 
+;PH1113104;Light Strands;PH1113;siteoneProductCatalog:Staged;admingroup 
+;PH1113105;Other;PH1113;siteoneProductCatalog:Staged;admingroup 
+;PH1113106;Socket Wire;PH1113;siteoneProductCatalog:Staged;admingroup 
+;PH1113107;Wreaths & Garland;PH1113;siteoneProductCatalog:Staged;admingroup 
+;PH1114100;12V LED PAR36 Lamps;PH1114;siteoneProductCatalog:Staged;admingroup 
+;PH1114101;12V LED G4 Bi-Pin Lamps;PH1114;siteoneProductCatalog:Staged;admingroup 
+;PH1114102;12V LED MR11 Lamps;PH1114;siteoneProductCatalog:Staged;admingroup 
+;PH1114103;12V LED Wedge Lamps;PH1114;siteoneProductCatalog:Staged;admingroup 
+;PH1114104;12V LED T5 Wedge Lamps;PH1114;siteoneProductCatalog:Staged;admingroup 
+;PH1114105;12V LED SCB Lamps;PH1114;siteoneProductCatalog:Staged;admingroup 
+;PH1114106;All Low Voltage LED Lamps;PH1114;siteoneProductCatalog:Staged;admingroup 
+;PH1114107;12V Halogen Lamps;PH1114;siteoneProductCatalog:Staged;admingroup 
+;PH1114108;12V LED MR16 Lamps;PH1114;siteoneProductCatalog:Staged;admingroup 
+;PH1115100;<100W;PH1115;siteoneProductCatalog:Staged;admingroup 
+;PH1115101;100W;PH1115;siteoneProductCatalog:Staged;admingroup 
+;PH1115102;120W;PH1115;siteoneProductCatalog:Staged;admingroup 
+;PH1115103;200W;PH1115;siteoneProductCatalog:Staged;admingroup 
+;PH1115104;150W;PH1115;siteoneProductCatalog:Staged;admingroup 
+;PH1115105;300W;PH1115;siteoneProductCatalog:Staged;admingroup 
+;PH1115106;600W+;PH1115;siteoneProductCatalog:Staged;admingroup 
+
+

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ [y] hybris Platform
+
+ Copyright (c) 2000-2015 hybris AG
+ All rights reserved.
+
+ This software is the confidential and proprietary information of hybris
+ ("Confidential Information"). You shall not disclose such Confidential
+ Information and shall use it only in accordance with the terms of the
+ license agreement you entered into with hybris.
+-->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:c="http://www.springframework.org/schema/c"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+			http://www.springframework.org/schema/beans/spring-beans.xsd
+			http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context.xsd"
+       default-lazy-init="true">
+
+    <context:annotation-config/>
+
+    <alias name="defaultSiteOneNavigationCacheRegion" alias="siteOneNavigationCacheRegion"/>
+    <bean name="defaultSiteOneNavigationCacheRegion" class="de.hybris.platform.regioncache.region.impl.DefaultCacheRegion">
+        <!--FRAMEWORK_UPDATE - TODO - Constructors has been changed. Check if you need to adjust your configuration. Please check update guide for more details.-->
+        <constructor-arg name="name" value="siteOneNavigationCacheRegion" />
+        <constructor-arg name="maxEntries" value="#{4000 * ( T(java.lang.Runtime).runtime.maxMemory() / ( 1024 * 1024 * 1024 * 4.0 ) )  }" />
+        <!--
+<constructor-arg name="evictionPolicy" value="${regioncache.siteonenavigationregion.evictionpolicy}" />-->
+        <constructor-arg name="statsEnabled" value="true" />
+        <constructor-arg name="exclusiveComputation" value="${regioncache.exclusivecomputation}" />
+        <constructor-arg name="ttlSeconds" value="${regioncache.siteonenavigationregion.ttl}"/>
+        <property name="handledTypes">
+            <array>
+                <value>QUERY_CACHE</value>
+            </array>
+        </property>
+    </bean>
+
+    <bean id="siteOneNavigationCacheRegionRegistrar" class="de.hybris.platform.regioncache.region.CacheRegionRegistrar" c:region-ref="defaultSiteOneNavigationCacheRegion" />
+
+    <bean id="navigationCacheRegionMBean" class="de.hybris.platform.jmx.mbeans.impl.RegionCacheMBeanImpl">
+        <property name="beanInterface" value="de.hybris.platform.jmx.mbeans.RegionCacheMBean"/>
+        <property name="jmxPath" value="region=SiteOne Navigation Region Cache"/>
+        <property name="cacheRegion" ref="defaultSiteOneNavigationCacheRegion"/>
+    </bean>
+
+</beans>

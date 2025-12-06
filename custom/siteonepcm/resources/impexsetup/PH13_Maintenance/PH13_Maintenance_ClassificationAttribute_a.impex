@@ -1,0 +1,30 @@
+
+INSERT_UPDATE classificationAttribute;code[unique=true];name[lang=en];systemVersion(catalog(id),version);;;;;
+;Maintenance_item;Item;siteoneClassification:1;;;;;
+;Maintenance_type;Type;siteoneClassification:1;;;;;
+;Maintenance_color;Color;siteoneClassification:1;;;;;
+;Maintenance_odorscent;Odor/Scent;siteoneClassification:1;;;;;
+;Maintenance_lightrequirements;Light Requirements;siteoneClassification:1;;;;;
+;Maintenance_ph;ph;siteoneClassification:1;;;;;
+;Maintenance_suitableforusewith;Suitable For Use With;siteoneClassification:1;;;;;
+;Maintenance_width;Width;siteoneClassification:1;;;;;
+;Maintenance_containersize;Container Size;siteoneClassification:1;;;;;
+;Maintenance_dimensions;Dimensions;siteoneClassification:1;;;;;
+;Maintenance_soilph;Soil PH;siteoneClassification:1;;;;;
+;Maintenance_specifications;Specifications;siteoneClassification:1;;;;;
+;Maintenance_height;Height;siteoneClassification:1;;;;;
+;Maintenance_includes;Includes;siteoneClassification:1;;;;;
+;Maintenance_containertype;Container Type;siteoneClassification:1;;;;;
+;Maintenance_compositions;Compositions;siteoneClassification:1;;;;;
+;Maintenance_coveragearea;Coverage Area;siteoneClassification:1;;;;;
+;Maintenance_capacity;Capacity;siteoneClassification:1;;;;;
+;Maintenance_bulbsize;Bulb Size;siteoneClassification:1;;;;;
+;Maintenance_particlesize;Particle Size;siteoneClassification:1;;;;;
+;Maintenance_solubility;Solubility;siteoneClassification:1;;;;;
+;Maintenance_applicationtime;Application Time;siteoneClassification:1;;;;;
+;Maintenance_plantingdepth;Planting Depth;siteoneClassification:1;;;;;
+;Maintenance_form;Formulation;siteoneClassification:1;;;;;
+;Maintenance_closuretype;Closure Type;siteoneClassification:1;;;;;
+;Maintenance_bloomtime;Bloom Time;siteoneClassification:1;;;;;
+;Maintenance_npkratio;NPK Analysis;siteoneClassification:1;;;;;
+

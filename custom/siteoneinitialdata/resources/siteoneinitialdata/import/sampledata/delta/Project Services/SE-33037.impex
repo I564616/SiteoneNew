@@ -1,0 +1,73 @@
+#### STAGED START ####
+
+$contentCatalog=siteoneContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$productCatalog=siteoneProductCatalog
+$productCatalogName=SiteOne Product Catalog
+$productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+
+###### PS Dashboard Page Start ######
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='projectDashboard'];contentSlot(uid,$contentCV)[unique=true];;;
+;;SideContent-dashboard;SideContent;;SideContent-dashboard;;;
+;;BodyContent-dashboard;BodyContent;;BodyContent-dashboard;;;
+
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef);;;
+;;SideContent-dashboard;Side Content Slot for Project Services Dashboard;true;;;;
+;;BodyContent-dashboard;Body Content Slot for Project Services Dashboard;true;PsDashboardComponent;;;
+
+INSERT_UPDATE JspIncludeComponent;$contentCV[unique=true];uid[unique=true];name;page;actions(uid,$contentCV);&componentRef
+;;PsDashboardComponent;Project Services Dashboard Component;projectServicesDashboardPage.jsp;;PsDashboardComponent
+###### PS Dashboard Page End ######
+
+###### PS Info Page Start ######
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='projectInfo'];contentSlot(uid,$contentCV)[unique=true];;;
+;;SideContent-projectInfo;SideContent;;SideContent-projectInfo;;;
+;;BodyContent-projectInfo;BodyContent;;BodyContent-projectInfo;;;
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef);;;
+;;SideContent-projectInfo;Side Content Slot for Project Services Information Page;true;;;;
+;;BodyContent-projectInfo;Body Content Slot for Project Services Information Page;true;PsInformationComponent;;;
+
+INSERT_UPDATE JspIncludeComponent;$contentCV[unique=true];uid[unique=true];name;page;actions(uid,$contentCV);&componentRef
+;;PsInformationComponent;Project Services Information Component;projectServicesInformationPage.jsp;;PsInformationComponent
+###### PS Info Page End ######
+
+#### STAGED END ####
+
+#### ONLINE START ####
+
+$contentCatalog=siteoneContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Online])[default=$contentCatalog:Online]
+$productCatalog=siteoneProductCatalog
+$productCatalogName=SiteOne Product Catalog
+$productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Online'])[unique=true,default=$productCatalog:Online]
+
+###### PS Dashboard Page Start ######
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='projectDashboard'];contentSlot(uid,$contentCV)[unique=true];;;
+;;SideContent-dashboard;SideContent;;SideContent-dashboard;;;
+;;BodyContent-dashboard;BodyContent;;BodyContent-dashboard;;;
+
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef);;;
+;;SideContent-dashboard;Side Content Slot for Project Services Dashboard;true;;;;
+;;BodyContent-dashboard;Body Content Slot for Project Services Dashboard;true;PsDashboardComponent;;;
+
+INSERT_UPDATE JspIncludeComponent;$contentCV[unique=true];uid[unique=true];name;page;actions(uid,$contentCV);&componentRef
+;;PsDashboardComponent;Project Services Dashboard Component;projectServicesDashboardPage.jsp;;PsDashboardComponent
+###### PS Dashboard Page End ######
+
+###### PS Info Page Start ######
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='projectInfo'];contentSlot(uid,$contentCV)[unique=true];;;
+;;SideContent-projectInfo;SideContent;;SideContent-projectInfo;;;
+;;BodyContent-projectInfo;BodyContent;;BodyContent-projectInfo;;;
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef);;;
+;;SideContent-projectInfo;Side Content Slot for Project Services Information Page;true;;;;
+;;BodyContent-projectInfo;Body Content Slot for Project Services Information Page;true;PsInformationComponent;;;
+
+INSERT_UPDATE JspIncludeComponent;$contentCV[unique=true];uid[unique=true];name;page;actions(uid,$contentCV);&componentRef
+;;PsInformationComponent;Project Services Information Component;projectServicesInformationPage.jsp;;PsInformationComponent
+###### PS Info Page End ######
+
+#### ONLINE END ####

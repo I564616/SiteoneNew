@@ -1,0 +1,320 @@
+# -----------------------------------------------------------------------
+# [y] hybris Platform
+#
+# Copyright (c) 2017 SAP SE or an SAP affiliate company.  All rights reserved.
+#
+# This software is the confidential and proprietary information of SAP
+# ("Confidential Information"). You shall not disclose such Confidential
+# Information and shall use it only in accordance with the terms of the
+# license agreement you entered into with SAP.
+# -----------------------------------------------------------------------
+#
+# Import the CMS content for the SiteOne Website emails
+#
+$contentCatalog=siteoneContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$jarEmailResource=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/coredata/contentCatalogs/siteoneContentCatalog/emails
+
+# Import config properties into impex macros for modulegen
+UPDATE GenericItem[processor=de.hybris.platform.commerceservices.impex.impl.ConfigPropertyImportProcessor];pk[unique=true]
+$emailResource=$config-emailResourceValue
+
+# Language
+$lang=en
+
+# CMS components and Email velocity templates
+UPDATE RendererTemplate;code[unique=true];description[lang=$lang];templateScript[lang=$lang,translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+;siteone_Email_Request_Account_Subject;"Request Account Template";$emailResource/email-requestAccountEmailSubject.vm
+;siteone_Email_Request_Account_Body;"Request Account Template";$emailResource/email-requestAccountEmailBody.vm
+
+;SiteOne_Email_Batch_Notification_Subject;"Batch Notification Template";$emailResource/email-batchNotificationSubject.vm
+;SiteOne_Email_Batch_Notification_Body;"Batch Notification Template";$emailResource/email-batchNotificationBody.vm
+
+;siteone_Email_Request_Account_Customer_Subject;"Request Account Customer Template";$emailResource/email-requestAccountCustomerEmailSubject.vm
+;siteone_Email_Request_Account_Customer_Body;"Request Account Customer Template";$emailResource/email-requestAccountCustomerEmailBody.vm
+
+
+;siteone_Email_Shared_Product_Subject;"Shared Product Template";$emailResource/email-sharedProductEmailSubject.vm
+;siteone_Email_Shared_Product_Body;"Shared Product Template";$emailResource/email-sharedProductEmailBody.vm
+
+;siteone_Email_Order_Failure_Body;"Order Failure Email Body";$emailResource/email-orderFailureNotificationBody.vm
+;siteone_Email_Order_Failure_Subject;"Order Failure Email Subject";$emailResource/email-orderFailureNotificationSubject.vm
+ 
+;siteone-CMSImageComponent-template;"CMSBannerComponent Template";$emailResource/email-siteOneBannerComponentTemplate.vm
+
+;powertools-BannerComponent-template;"CMSBannerComponent Template";$emailResource/email-bannerComponentTemplate.vm
+;powertools-CMSImageComponent-template;"CMSImageComponent Template";$emailResource/email-cmsImageComponentTemplate.vm
+;powertools-CMSLinkComponent-template;"CMSLinkComponent Template";$emailResource/email-cmsLinkComponentTemplate.vm
+;powertools-CMSParagraphComponent-template;"CMSParagraphComponent Template";$emailResource/email-cmsParagraphComponentTemplate.vm
+;powertools-SimpleBannerComponent-template;"CMSSimpleBannerComponent Template";$emailResource/email-bannerComponentTemplate.vm
+;powertools_Email_Customer_Registration_Body;"Customer Registration Email Body";$emailResource/email-customerRegistrationBody.vm
+;powertools_Email_Customer_Registration_Subject;"Customer Registration Email Subject";$emailResource/email-customerRegistrationSubject.vm
+;powertools_Email_Delivery_Sent_Body;"Delivery Sent Email Body";$emailResource/email-deliverySentBody.vm
+;powertools_Email_Delivery_Sent_Subject;"Delivery Sent Email Subject";$emailResource/email-deliverySentSubject.vm
+;powertools_Email_Forgotten_Password_Body;"Forgotten Password Email Body";$emailResource/email-forgottenPasswordBody.vm
+;powertools_Email_Forgotten_Password_Subject;"Forgotten Password Email Subject";$emailResource/email-forgottenPasswordSubject.vm
+;powertools_Email_NotPickedUpConsignment_Canceled_Body;"Not Picked Up Consignment Canceled Email Body";$emailResource/email-notPickedUpConsignmentCanceledBody.vm
+;powertools_Email_NotPickedUpConsignment_Canceled_Subject;"Not Picked Up Consignment Canceled Email Subject";$emailResource/email-notPickedUpConsignmentCanceledSubject.vm
+;powertools_Email_Order_Cancelled_Body;"Order Cancelled Email Body";$emailResource/email-orderCancelledBody.vm
+;powertools_Email_Order_Cancelled_Subject;"Order Cancelled Email Subject";$emailResource/email-orderCancelledSubject.vm
+;powertools_Email_Order_Collection_Reminder_Body;"Order Collection Reminder Body";$emailResource/email-orderCollectionReminderBody.vm
+;powertools_Email_Order_Collection_Reminder_Subject;"Order Collection Reminder Subject";$emailResource/email-orderCollectionReminderSubject.vm
+;powertools_Email_Order_Confirmation_Body;"Order Confirmation Email Body";$emailResource/email-orderConfirmationBody.vm
+;powertools_Email_Order_Confirmation_Subject;"Order Confirmation Email Subject";$emailResource/email-orderConfirmationSubject.vm
+;powertools_Email_Order_Move_To_CS_Body;"Order Move To CS Body";$emailResource/email-orderMoveToCsBody.vm
+;powertools_Email_Order_Move_To_CS_Subject;"Order Move To CS Subject";$emailResource/email-orderMoveToCsSubject.vm
+;powertools_Email_Order_Partially_Canceled_Body;"Order Partially Canceled Email Body";$emailResource/email-orderPartiallyCanceledBody.vm
+;powertools_Email_Order_Partially_Canceled_Subject;"Order Partially Canceled Email Subject";$emailResource/email-orderPartiallyCanceledSubject.vm
+;powertools_Email_Order_Partially_Refunded_Body;"Order Partially Refunded Email Body";$emailResource/email-orderPartiallyRefundedBody.vm
+;powertools_Email_Order_Partially_Refunded_Subject;"Order Partially Refunded Email Subject";$emailResource/email-orderPartiallyRefundedSubject.vm
+;powertools_Email_Order_Refund_Body;"Order Refund Email Body";$emailResource/email-orderRefundBody.vm
+;powertools_Email_Order_Refund_Subject;"Order Refund Email Subject";$emailResource/email-orderRefundSubject.vm
+;powertools_Email_Ready_For_Pickup_Body;"Ready For Pickup Email Body";$emailResource/email-readyForPickupBody.vm
+;powertools_Email_Ready_For_Pickup_Subject;"Ready For Pickup Email Subject";$emailResource/email-readyForPickupSubject.vm
+;siteone_Email_Request_Account_Customer_Subject;"Request Account Customer Template";$emailResource/email-requestAccountCustomerEmailSubject.vm
+;siteone_Email_Request_Account_Customer_Body;"Request Account Customer Template";$emailResource/email-requestAccountCustomerEmailBody.vm
+
+# CMS components and Email velocity templates
+UPDATE RendererTemplate;code[unique=true];description[lang=$lang];templateScript[lang=$lang,translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+ ;powertools_Email_Order_ApprovalRejection_Body;"Order Approval Rejection Email Body";$jarEmailResource/email-orderApprovalRejectionBody.vm
+ ;powertools_Email_Order_ApprovalRejection_Subject;"Order Approval Rejection Email Subject";$jarEmailResource/email-orderApprovalRejectionSubject.vm
+ ;powertools_Email_Order_PendingApproval_Body;"Order Pending Approval Email Body";$jarEmailResource/email-orderPendingApprovalBody.vm
+ ;powertools_Email_Order_PendingApproval_Subject;"Order Pending Approval Email Subject";$jarEmailResource/email-orderPendingApprovalSubject.vm
+ ;powertools_Email_Quote_Order_Approve_Body;"Quote Order Approval Email Body";$jarEmailResource/email-quoteOrderApprovalBody.vm
+ ;powertools_Email_Quote_Order_Approve_Subject;"Quote Order Approval Email Subject";$jarEmailResource/email-quoteOrderApprovalSubject.vm
+ ;powertools_Email_Quote_Order_Reject_Body;"Quote Order Reject Email Body";$jarEmailResource/email-quoteOrderRejectionBody.vm
+ ;powertools_Email_Quote_Order_Reject_Subject;"Quote Order Reject Email Subject";$jarEmailResource/email-quoteOrderRejectionSubject.vm
+ ;powertools_Email_Replenishment_Order_Confirmation_Body;"";$jarEmailResource/email-replenishmentOrderConfirmationBody.vm
+ ;powertools_Email_Replenishment_Order_Confirmation_Subject;"Order Confirmation Email Subject";$jarEmailResource/email-replenishmentOrderConfirmationSubject.vm
+ ;powertools_Email_Replenishment_Order_Placed_Body;"Order Confirmation Email Subject";$jarEmailResource/email-replenishmentOrderPlacedBody.vm
+ ;powertools_Email_Replenishment_Order_Placed_Subject;"Order Confirmation Email Subject";$jarEmailResource/email-replenishmentOrderPlacedSubject.vm
+
+# Email Pages
+UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];fromEmail[lang=$lang];fromName[lang=$lang]
+ ;;RequestAccountCustomerEmail;"customersupport@siteone.com";"SiteOne"
+ ;;RequestAccountEmail;"customersupport@siteone.com";"SiteOne"
+ ;;BatchNotificationEmail;"customersupport@siteone.com";"SiteOne"
+ ;;CustomerRegistrationEmail;"customersupport@siteone.com";"SiteOne"
+ ;;DeliverySentEmail;"customersupport@siteone.com";"SiteOne"
+ ;;ForgottenPasswordEmail;"customersupport@siteone.com";"SiteOne"
+ ;;OrderApprovalRejectionEmail;"customersupport@siteone.com";"SiteOne"
+ ;;OrderCancelledEmail;"customersupport@siteone.com";"SiteOne"
+ ;;OrderCollectionReminderEmail;"customersupport@siteone.com";"SiteOne"
+ ;;OrderConfirmationEmail;"customersupport@siteone.com";"SiteOne"
+ ;;OrderMoveToCsEmail;"customersupport@siteone.com";"SiteOne"
+ ;;OrderPartiallyCanceledEmail;"customersupport@siteone.com";"SiteOne"
+ ;;OrderPartiallyRefundedEmail;"customersupport@siteone.com";"SiteOne"
+ ;;OrderPendingApprovalEmail;"customersupport@siteone.com";"SiteOne"
+ ;;OrderRefundEmail;"customersupport@siteone.com";"SiteOne"
+ ;;QuoteOrderApproveEmail;"customersupport@siteone.com";"SiteOne"
+ ;;QuoteOrderRejectEmail;"customersupport@siteone.com";"SiteOne"
+ ;;ReadyForPickupEmail;"customersupport@siteone.com";"SiteOne"
+ ;;ReplenishmentOrderConfirmationEmail;"customersupport@siteone.com";"SiteOne"
+ ;;ReplenishmentOrderPlacedEmail;"customersupport@siteone.com";"SiteOne"
+ ;;SharedProductEmail;"customersupport@siteone.com";"SiteOne"
+ ;;OrderFailureEmail;"customersupport@siteone.com";"SiteOne"
+ 
+ # CMS components and Email velocity templates
+UPDATE RendererTemplate;code[unique=true];description[lang=$lang];templateScript[lang=$lang,translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+;SiteOne_Email_Create_Password_Subject;"Create Password Template";$emailResource/email-createPasswordSubject.vm
+;SiteOne_Email_Create_Password_Body;"Create Password Template";$emailResource/email-createPasswordBody.vm
+ 
+# Email Pages
+UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];fromEmail[lang=$lang];fromName[lang=$lang]
+;;CreatePasswordEmail;"customersupport@siteone.com";"SiteOne"
+ 
+ 
+#Unlock User
+ # CMS components and Email velocity templates
+UPDATE RendererTemplate;code[unique=true];description[lang=$lang];templateScript[lang=$lang,translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+;SiteOne_Email_UnlockUser_Subject;"Unlock User Template";$emailResource/email-unlockUserSubject.vm
+;SiteOne_Email_UnlockUser_Body;"Unlock User Template";$emailResource/email-unlockUserBody.vm
+ 
+# Email Pages
+UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];fromEmail[lang=$lang];fromName[lang=$lang]
+;;UnlockUserEmail;"customersupport@siteone.com";"SiteOne"
+
+ 
+# CMS components and Email velocity templates
+UPDATE RendererTemplate;code[unique=true];description[lang=$lang];templateScript[lang=$lang,translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+;siteone-CMSImageComponent-template;"CMSBannerComponent Template";$emailResource/email-siteOneBannerComponentTemplate.vm
+
+	#################POINTS FOR EQUIPMENT#######################
+# CMS components and Email velocity templates
+UPDATE RendererTemplate;code[unique=true];description[lang=$lang];templateScript[lang=$lang,translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+;siteone_Email_Points_For_Equipment_Subject;"Points For Equipment Template";$emailResource/email-pointsForEquipmentEmailSubject.vm
+;siteone_Email_Points_For_Equipment_Body;"Points For Equipment Template";$emailResource/email-pointsForEquipmentEmailBody.vm
+
+# Email Pages
+UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];fromEmail[lang=$lang];fromName[lang=$lang]
+;;PointsForEquipmentEmail;"customersupport@siteone.com";"SiteOne"
+#################POINTS FOR EQUIPMENT#######################
+ 
+ 
+ 	#################CONTACT US#######################
+# CMS components and Email velocity templates
+UPDATE RendererTemplate;code[unique=true];description[lang=$lang];templateScript[lang=$lang,translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+;siteone_Email_Contact_Us_Subject;"Contact US Template";$emailResource/email-contactUsEmailSubject.vm
+;siteone_Email_Contact_US_Body;"Contact US Template";$emailResource/email-contactUsEmailBody.vm
+
+# Email Pages
+UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];fromEmail[lang=$lang];fromName[lang=$lang]
+;;ContactUsEmail;"customersupport@siteone.com";"SiteOne"
+ 	#################CONTACT US#######################
+ 	
+ #################INVOICE DETAIL#######################
+# CMS components and Email velocity templates
+UPDATE RendererTemplate;code[unique=true];description[lang=$lang];templateScript[lang=$lang,translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+;siteone_Email_Invoice_Details_Subject;"Invoice Details Template";$emailResource/email-invoiceDetailsEmailSubject.vm
+;siteone_Email_Invoice_Details_Body;"Invoice Details Template";$emailResource/email-invoiceDetailsEmailBody.vm
+
+# Email Pages
+UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];fromEmail[lang=$lang];fromName[lang=$lang]
+;;InvoiceDetailsEmail;"customersupport@siteone.com";"SiteOne"
+ 	#################INVOICE DETAIL#######################
+	
+	################# HOME OWNER START #######################
+# CMS components and Email velocity templates
+UPDATE RendererTemplate;code[unique=true];description[lang=$lang];templateScript[lang=$lang,translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+;siteone_Email_Home_Owner_Subject;"Home Owner subject Template";$emailResource/email-homeOwnerEmailSubject.vm
+;siteone_Email_Home_Owner_Body;"Home Owner body Template";$emailResource/email-homeOwnerEmailBody.vm
+
+# Email Pages
+UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];fromEmail[lang=$lang];fromName[lang=$lang]
+;;HomeOwnerEmail;"customersupport@siteone.com";"SiteOne"
+################# HOME OWNER END #######################
+
+##################### CustomerEmailUpdate start ###########################################
+				##### Send to Old Email #####
+# CMS components and Email velocity templates
+UPDATE RendererTemplate;code[unique=true];description[lang=$lang];templateScript[lang=$lang,translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+;Customer_Email_Change_Old_Body;"Customer Email change Email Body";$emailResource/email-customerEmailChangeOldBody.vm
+;Customer_Email_Change_Old_Subject;"Customer Email change Email Subject";$emailResource/email-customerEmailChangeOldSubject.vm
+
+# Email Pages
+UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];fromEmail[lang=$lang];fromName[lang=$lang]
+ ;;CustomerEmailChangeOldEmail;"customersupport@siteone.com";"SiteOne"
+ 
+ 			##### Send to New Email #####
+ 			
+# CMS components and Email velocity templates
+UPDATE RendererTemplate;code[unique=true];description[lang=$lang];templateScript[lang=$lang,translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+;Customer_Email_Change_New_Body;"Customer Email change Email Body";$emailResource/email-customerEmailChangeNewBody.vm
+;Customer_Email_Change_New_Subject;"Customer Email change Email Subject";$emailResource/email-customerEmailChangeNewSubject.vm
+
+# Email Pages
+UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];fromEmail[lang=$lang];fromName[lang=$lang]
+ ;;CustomerEmailChangeNewEmail;"customersupport@siteone.com";"SiteOne" 
+ 
+##################### CustomerEmailUpdate end ###########################################
+ 
+
+ #################Cart Abandonment#######################
+ # CMS components and Email velocity templates
+UPDATE RendererTemplate;code[unique=true];description[lang=$lang];templateScript[lang=$lang,translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+;SiteOne_Email_Cart_Abandonment_Subject;"Cart Abandonment Template";$emailResource/email-cartAbandonmentSubject.vm
+;SiteOne_Email_Cart_Abandonment_Body;"Cart Abandonment Template";$emailResource/email-cartAbandonmentBody.vm
+
+ #############################Order Detail Email###############
+
+# Email Pages
+UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];fromEmail[lang=$lang];fromName[lang=$lang]
+;;CartAbandonmentEmail;"customersupport@siteone.com";"SiteOne"
+#################Cart Abandonment#######################
+
+ # CMS components and Email velocity templates
+UPDATE RendererTemplate;code[unique=true];description[lang=$lang];templateScript[lang=$lang,translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+;siteone_Email_Send_Order_Detail_Subject;"Send Order Detail Email Template";$emailResource/email-orderDetailEmailSubject.vm
+;siteone_Email_Send_Order_Detail_Body;"Send Order Detail Email Template";$emailResource/email-orderDetailEmailBody.vm
+
+# Email Pages
+UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];fromEmail[lang=$lang];fromName[lang=$lang]
+;;SendorderDetailEmail;"customersupport@siteone.com";"SiteOne"
+
+#############################Order Detail Email ###############
+ 
+############################# Password Changed Email################
+ # CMS components and Email velocity templates
+UPDATE RendererTemplate;code[unique=true];description[lang=$lang];templateScript[lang=$lang,translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+;SiteOne_Email_PasswordChanged_Subject;"Password Changed Template";$emailResource/email-passwordChangedSubject.vm
+;SiteOne_Email_PasswordChanged_Body;"Password Changed Template";$emailResource/email-passwordChangedBody.vm
+ 
+# Email Pages
+UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];fromEmail[lang=$lang];fromName[lang=$lang]
+;;PasswordChangedEmail;"customersupport@siteone.com";"SiteOne"
+
+############################# Password Changed Email End################
+
+############################# Order Ready For PickUp Email################
+ # CMS components and Email velocity templates
+UPDATE RendererTemplate;code[unique=true];description[lang=$lang];templateScript[lang=$lang,translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+;SiteOne_Email_OrderReadyForPickUp_Subject;"Order Ready For PickUp Template";$emailResource/email-orderReadyOrScheduledEmailSubject.vm
+;SiteOne_Email_OrderReadyForPickUp_Body;"Order Ready For PickUp Template";$emailResource/email-orderReadyOrScheduledEmailBody.vm
+ 
+# Email Pages
+UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];fromEmail[lang=$lang];fromName[lang=$lang]
+;;OrderReadyToPickUpEmail;"customersupport@siteone.com";"SiteOne"
+
+#############################Order Ready For PickUp End################
+
+############################# Order Scheduled For Delivery Email Start################
+ # CMS components and Email velocity templates
+UPDATE RendererTemplate;code[unique=true];description[lang=$lang];templateScript[lang=$lang,translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+;SiteOne_Email_OrderScheduledForDelivery_Subject;"Order Scheduled For Delivery Template";$emailResource/email-orderReadyOrScheduledEmailSubject.vm
+;SiteOne_Email_OrderScheduledForDelivery_Body;"Order Scheduled For Delivery Template";$emailResource/email-orderReadyOrScheduledEmailBody.vm
+ 
+# Email Pages
+UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];fromEmail[lang=$lang];fromName[lang=$lang]
+;;OrderScheduledForDeliveryEmail;"customersupport@siteone.com";"SiteOne"
+
+############################# Order Scheduled For Delivery Email End################
+
+############################# Share Cart Email ################
+
+# CMS components and Email velocity templates
+UPDATE RendererTemplate;code[unique=true];description[lang=$lang];templateScript[lang=$lang,translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+;SiteOne_Email_Share_Cart_Subject;"Share Cart Template";$emailResource/email-shareCartEmailSubject.vm
+;SiteOne_Email_Share_Cart_Body;"Share Cart Template";$emailResource/email-shareCartEmailBody.vm
+ 
+# Email Pages
+UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];fromEmail[lang=$lang];fromName[lang=$lang]
+;;ShareCartEmail;"customersupport@siteone.com";"SiteOne"
+
+############################# Share Cart Email End ################
+
+ 	#################Edit List#######################
+# CMS components and Email velocity templates
+UPDATE RendererTemplate;code[unique=true];description[lang=$lang];templateScript[lang=$lang,translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+;siteone_Email_Edit_List_Subject;"Edit List Template";$emailResource/email-editListSubject.vm
+;siteone_Email_Edit_List_Body;"Edit List Template";$emailResource/email-editListBody.vm
+
+# Email Pages
+UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];fromEmail[lang=$lang];fromName[lang=$lang]
+;;listEditEmail;"customersupport@siteone.com";"SiteOne"
+ 	#################Edit Lsit#######################
+ 	
+ 	
+ 	#################Share List#######################
+# CMS components and Email velocity templates
+UPDATE RendererTemplate;code[unique=true];description[lang=$lang];templateScript[lang=$lang,translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+;siteone_Email_Share_List_Subject;"Share List Template";$emailResource/email-shareListSubject.vm
+;siteone_Email_share_List_Body;"Share List Template";$emailResource/email-shareListBody.vm
+;siteone_Email_Share_Assembly_Subject;"Share Assembly Template";$emailResource/email-shareAssemblySubject.vm
+;siteone_Email_share_Assembly_Body;"Share Assembly Template";$emailResource/email-shareAssemblyBody.vm
+# Email Pages
+UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];fromEmail[lang=$lang];fromName[lang=$lang]
+;;shareListEmail;"customersupport@siteone.com";"SiteOne"
+;;shareAssemblyEmail;"customersupport@siteone.com";"SiteOne"
+ 	#################Share Lsit#######################
+	
+	
+	 	#################CONTACT US Customer#######################
+# CMS components and Email velocity templates
+UPDATE RendererTemplate;code[unique=true];description[lang=$lang];templateScript[lang=$lang,translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+;siteone_Email_Contact_Us_Customer_Subject;"Contact US Customer Template";$emailResource/email-contactUsCustomerEmailSubject.vm
+;siteone_Email_Contact_US_Customer_Body;"Contact US Customer Template";$emailResource/email-contactUsCustomerEmailBody.vm
+
+# Email Pages
+UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];fromEmail[lang=$lang];fromName[lang=$lang]
+;;ContactUsCustomerEmail;"customersupport@siteone.com";"SiteOne"
+ 	#################CONTACT US Customer#######################

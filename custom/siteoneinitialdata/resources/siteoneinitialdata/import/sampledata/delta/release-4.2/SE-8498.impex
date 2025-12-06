@@ -1,0 +1,4 @@
+INSERT_UPDATE AutoPhraseConfig;code[unique=true];indexName   ;matchPhrase  ;seqNo
+							  ;knockoutrose     ;siteoneIndex;"knock out"  ;1
+							  ;uplight          ;siteoneIndex;"up light"   ;2
+							  ;instalight       ;siteoneIndex;"insta-light";3

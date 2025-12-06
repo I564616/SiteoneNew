@@ -1,0 +1,77 @@
+$contentCatalog=siteoneContentCatalog
+$productCatalog=siteoneProductCatalog
+$catalogVersions=catalogVersions(catalog(id),version);
+$serverConfigName=siteoneSolrServerConfig
+$indexConfigName=siteoneSolrIndexConfig
+$searchConfigName=siteoneBuyItAgainPageSize
+$searchIndexNamePrefix=siteone
+$solrIndexedType=siteoneBuyItAgainType
+$indexBaseSite=siteone
+$indexLanguages=en
+$indexCurrencies=USD
+
+$solrBuyItAgainSearchIndexedType=siteoneBuyItAgainSearchType
+$buyItAgainSearchConfigName=buyItAgainSearchIndex
+$buyItAgainSearchConfigDescription=Buy It Again Search Solr Index
+
+# Create the faceted search configuration
+INSERT_UPDATE SolrSearchConfig;description[unique=true];pageSize
+;$searchConfigName;24
+
+
+
+#
+# Setup the indexed types, their properties, and the update queries
+#
+
+# Declare the indexed type Buy Again
+INSERT_UPDATE SolrIndexedType;identifier[unique=true];indexName;type(code);variant;sorts(&sortRefID)
+;$solrBuyItAgainSearchIndexedType;$buyItAgainSearchConfigName;OrderEntry;false;sortRef12
+
+INSERT_UPDATE SolrFacetSearchConfig;name[unique=true];description;indexNamePrefix;languages(isocode);currencies(isocode);solrServerConfig(name);solrSearchConfig(description);solrIndexConfig(name);solrIndexedTypes(identifier);enabledLanguageFallbackMechanism;$catalogVersions
+;$buyItAgainSearchConfigName;$buyItAgainSearchConfigDescription;$searchIndexNamePrefix;$indexLanguages;$indexCurrencies;$serverConfigName;$searchConfigName;$indexConfigName;$solrBuyItAgainSearchIndexedType;true;$contentCatalog:Online,$contentCatalog:Staged
+
+# Non-facet properties
+INSERT_UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true];name[unique=true];type(code);sortableType(code);currency[default=false];localized[default=false];multiValue[default=false];useForSpellchecking[default=false];useForAutocomplete[default=false];fieldValueProvider                               ;valueProviderParameter;ftsPhraseQuery[default=false] ;ftsPhraseQueryBoost;ftsQuery[default=false];ftsQueryBoost;ftsFuzzyQuery[default=false];ftsFuzzyQueryBoost;ftsWildcardQuery[default=false];ftsWildcardQueryType(code)[default=POSTFIX];ftsWildcardQueryBoost;ftsWildcardQueryMinTermLength
+                                 ;$solrBuyItAgainSearchIndexedType             ; soProductCode       ;string    ;                  ;                       ;                        ;                         ;false                             ;false                   ;springELValueProvider                            ;storeProductCode       ;true                         ;                   ;true                   ;             ;true                        ;                  ;                               ;                                           ;                     ;
+                                 ;$solrBuyItAgainSearchIndexedType             ; soProductDescription     ;text    ;                  ;                       ;                        ;                         ;false                             ;false              ;buyItAgainProductShortDescriptionValueResolver   ;storeProductDesc       ;true                         ;                   ;true                   ;             ;true                        ;                  ;                               ;                                           ;                     ;
+                                 ;$solrBuyItAgainSearchIndexedType             ; soProductItemNumber     ;string    ;                  ;                       ;                        ;                         ;false                             ;false               ;springELValueProvider                            ;storeProductItemNumber ;false                        ;                   ;                       ;             ;false                       ;                  ;                               ;                                           ;                     ;
+                                 ;$solrBuyItAgainSearchIndexedType             ; soOrderingAccount     ;string    ;                  ;                       ;                        ;                         ;false                             ;false                 ;buyItAgainOrderingAccountValueResolver           ;                       ;false                        ;                   ;                       ;            ;false                       ;                  ;                               ;                                           ;                     ;
+                                 ;$solrBuyItAgainSearchIndexedType             ; soLastPurchasedDate     ;date    ; date                ;                       ;                        ;                         ;false                             ;false              ;buyItAgainLastPurchasedDateValueResolver         ;                       ;false                        ;                   ;                       ;            ;false                       ;                  ;                               ;                                           ;                     ;
+                                 ;$solrBuyItAgainSearchIndexedType             ; soIsOnlineProduct     ;boolean    ;                  ;                       ;                        ;                         ;false                             ;false                ;buyItAgainIsOnlineProductValueResolver           ;                       ;false                        ;                   ;                       ;            ;false                       ;                  ;                               ;                                           ;                     ;
+								 ;$solrBuyItAgainSearchIndexedType			   ; soimg-96Wx96H          ;string ;            ;    ;    ;    ;    ;    ;buyItAgainImageValueResolver                     ;              ;    ;   ;    ;   ;    ;  ;    ;   ;  ;
+
+
+# Other facet properties
+INSERT_UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true];name[unique=true];type(code);multiValue[default=false];facet[default=true];facetType(code);facetSort(code);priority;visible;fieldValueProvider;facetDisplayNameProvider;topValuesProvider;valueProviderParameter
+								 ;$solrBuyItAgainSearchIndexedType     ; soLastPurchasedDateFilter  ;string      ;true                    ; true              ;Refine         ;Alpha          ;3000    ;true   ;buyItAgainLastPurchasedDateFacetValueProvider  ;                       ;
+							
+# Define the available sorts for Buy Again
+INSERT_UPDATE SolrSort;&sortRefID;indexedType(identifier)[unique=true];code[unique=true];useBoost
+;sortRef12;$solrBuyItAgainSearchIndexedType;lastpurchaseddate-desc;false
+
+# Define the available sorts for Buy Again
+INSERT_UPDATE SolrSortField;sort(indexedType(identifier),code)[unique=true];fieldName[unique=true];ascending[unique=true]
+;$solrBuyItAgainSearchIndexedType:lastpurchaseddate-desc;soLastPurchasedDate;false
+
+# Create the queries that will be used to extract data for Solr
+INSERT_UPDATE SolrIndexerQuery;solrIndexedType(identifier)[unique=true];identifier[unique=true];type(code);injectCurrentDate[default=true];injectCurrentTime[default=true];injectLastIndexTime[default=true];query;user(uid)
+;$solrBuyItAgainSearchIndexedType;$searchIndexNamePrefix-buyItAgain-fullQuery;full;;;false;"select MAX({entry.pk}) as pk from {OrderEntry as entry join Order AS o on {entry.order}={o.pk} join B2BUnit as u on {o.orderingAccount} = {u.pk}} where {u.active} = 1 AND DATEDIFF (DAY,CONVERT (datetime,{o.creationtime}), SYSDATETIME()) <= 365 AND {o.code} not like '%_bak' GROUP BY {entry.storeproductcode}, {o.orderingAccount} ORDER BY MAX({entry.pk})";anonymous
+;$solrBuyItAgainSearchIndexedType;$searchIndexNamePrefix-buyItAgain-updateQuery;update;;;;"select MAX({entry.pk}) as pk from {OrderEntry as entry join Order AS o on {entry.order}={o.pk} join B2BUnit as u on {o.orderingAccount} = {u.pk}} where {u.active} = 1 AND ({o.creationtime}) >=?lastIndexTime AND {o.code} not like '%_bak' GROUP BY {entry.storeproductcode}, {o.orderingAccount} ORDER BY MAX({entry.pk})";anonymous
+;$solrBuyItAgainSearchIndexedType;$searchIndexNamePrefix-buyItAgain-deleteQuery;delete;;;;"select {pk} from {orderentry}";anonymous
+
+
+#UPDATE SolrFacetSearchConfig;name[unique=true]    ;listeners
+#                            ;$buyItAgainSearchConfigName;siteOneStoreSearchListener
+
+# Create cronjob for the full buyagainSearchIndex
+INSERT_UPDATE SolrIndexerCronJob;code[unique=true]            ;job(code)     ;sessionLanguage(isocode);sessionCurrency(isocode);sessionUser(uid);indexerOperation(code);facetSearchConfig(name)
+                               ;full-BuyItAgainSearchIndex-cronJob;solrIndexerJob;$indexLanguages         ;$indexCurrencies        ;anonymous       ;full                  ;buyItAgainSearchIndex
+							   ;update-BuyItAgainSearchIndex-cronJob;solrIndexerJob;$indexLanguages         ;$indexCurrencies        ;anonymous       ;update                  ;buyItAgainSearchIndex
+
+
+# Create a trigger/schedule for full-buyagainSearchIndex-cronJob
+INSERT_UPDATE Trigger;Cronjob(code)[unique=true];cronExpression;active[default=true]
+;full-BuyItAgainSearchIndex-cronJob;0 0 19 * * ?
+;update-BuyItAgainSearchIndex-cronJob;0 0 09,13,17,22 * * ?
+

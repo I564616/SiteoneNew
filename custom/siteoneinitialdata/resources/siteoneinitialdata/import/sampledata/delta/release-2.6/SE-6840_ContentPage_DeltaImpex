@@ -1,0 +1,48 @@
+$contentCatalog=siteoneContentCatalog
+$contentCatalogName=SiteOne Content Catalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$productCatalog=siteoneProductCatalog
+$productCatalogName=SiteOne Product Catalog
+$productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Online'])[unique=true,default=$productCatalog:Online]
+$picture=media(code, $contentCV);
+$image=image(code, $contentCV);
+$media=media(code, $contentCV);
+$page=page(uid, $contentCV);
+$contentPage=contentPage(uid, $contentCV);
+$product=product(code, $productCV)
+$category=category(code, $productCV)
+$siteResource=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/contentCatalogs/$contentCatalog
+$productResource=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/productCatalogs/$productCatalog
+$jarResourceCms=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/cockpits/cmscockpit
+$addonExtensionName=siteoneacceleratoraddon
+$medias=medias(code, $contentCV);
+$articleMedia=articleMedia(code, $contentCV);
+$mediaContainer=media(qualifier, $contentCV);
+$siteUid=siteone
+$lang=en
+
+INSERT_UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];label;includeInSiteMap
+;;siteonehomepage;/;true
+;;termsAndCondition;/termsandconditions;true
+;;contactUs;/contactus;true
+;;directSales;/directsales;true
+;;faq;/faq;true
+;;golfSales;/golfSales;true
+;;videoOverview;/help;true
+;;testimonialsLanding;/testimonials;true
+;;companyHistory;/companyhistory;true
+;;irrigationDesign;/irrigationdesign;true
+;;openLineofCredit;/openlineofcredit;true
+;;greenTechServices;/greentech;true
+;;nurseryDirect;/nurserydirect;true
+;;partnerProgram;/partnersprogram;true
+;;projectServices;/projectservices;true
+;;businessResource;/businessresource;true
+;;spreaderSprayer;/spreadersprayer;true
+;;catalogs;/catalogs;true
+;;soilAmendment;/soilamendment;true
+;;aboutUs;/aboutus;true
+;;careers;/careers;true
+;;ourBrands;/ourbrands;true
+;;ourBrands2;/ourbrands;true
+;;Responsibility;/responsibility;true

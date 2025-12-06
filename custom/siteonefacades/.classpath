@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry exported="true" kind="src" path="/acceleratorfacades"/>
+	<classpathentry exported="true" kind="src" path="/siteoneintegration"/>
+	<classpathentry kind="src" output="eclipsebin/classes" path="gensrc"/>
+	<classpathentry exported="true" kind="src" path="/siteonecore"/>
+	<classpathentry exported="true" kind="src" path="/b2bcommercefacades"/>
+	<classpathentry exported="true" kind="src" path="/b2bcommerce"/>
+	<classpathentry exported="true" kind="src" path="/b2bacceleratorfacades"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="/platform"/>
+	<classpathentry kind="src" output="eclipsebin/classes" path="testsrc"/>
+	<classpathentry exported="true" kind="src" path="/wishlist"/>
+	<classpathentry exported="true" kind="lib" path="lib/granule-1.0.9.jar"/>
+	<classpathentry exported="true" kind="lib" path="resources"/>
+	<classpathentry kind="src" output="eclipsebin/classes" path="src"/>
+	<classpathentry exported="true" kind="src" path="/siteonefulfilmentprocess"/>
+	<classpathentry kind="output" path="eclipsebin/notused"/>
+</classpath>

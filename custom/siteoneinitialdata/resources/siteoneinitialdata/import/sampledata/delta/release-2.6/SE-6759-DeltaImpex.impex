@@ -1,0 +1,53 @@
+
+$contentCatalog=siteoneContentCatalog
+$contentCatalogName=SiteOne Content Catalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$productCatalog=siteoneProductCatalog
+$productCatalogName=SiteOne Product Catalog
+$productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$picture=media(code, $contentCV);
+$image=image(code, $contentCV);
+$media=media(code, $contentCV);
+$page=page(uid, $contentCV);
+$contentPage=contentPage(uid, $contentCV);
+$product=product(code, $productCV)
+$category=category(code, $productCV)
+$siteResource=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/contentCatalogs/$contentCatalog
+$productResource=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/productCatalogs/$productCatalog
+$jarResourceCms=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/cockpits/cmscockpit
+$addonExtensionName=siteoneacceleratoraddon
+$medias=medias(code, $contentCV);
+$articleMedia=articleMedia(code, $contentCV);
+$mediaContainer=media(qualifier, $contentCV);
+$siteUid=siteone
+$lang=en
+
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='SiteOneHomePageTemplate'];validComponentTypes(code);compTypeGroup(code)
+;Section1B;;HomePageRotatingBannerComponent;wide
+;Section1C;;HomePageRotatingBannerComponent;wide
+
+
+
+
+
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='SiteOneHomePageTemplate'];validComponentTypes(code);compTypeGroup(code)
+;Section1D;;HomePagePromoBannerComponent;wide
+;Section1E;;HomePagePromoBannerComponent;wide
+
+
+
+
+###########################Cockpit Delta Impex#############################
+
+
+
+$jarResource=jar:com.siteone.cockpits.constants.SiteoneCockpitsConstants&/siteonecockpits/cmscockpit
+$siteResource=jar:com.siteone.cockpits.constants.SiteoneCockpitsConstants&/siteonecockpits-config
+
+INSERT_UPDATE CockpitUIConfigurationMedia;code[unique=true];mime;realfilename;@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator][forceWrite=true]
+;editorArea_HomePageRotatingBannerComponent_cockpitgroup_ui_config;text/xml;editorArea_HomePageRotatingBannerComponent.xml;$jarResource/xml/editorArea_HomePageRotatingBannerComponent.xml
+
+INSERT_UPDATE CockpitUIComponentConfiguration;code[unique=true];factoryBean;objectTemplateCode[unique=true];principal(uid)[unique=true];media(code);
+;editorArea;editorConfigurationFactory;HomePageRotatingBannerComponent;cockpitgroup;editorArea_HomePageRotatingBannerComponent_cockpitgroup_ui_config;
+
+

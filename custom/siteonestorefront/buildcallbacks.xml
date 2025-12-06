@@ -1,0 +1,833 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+ [y] hybris Platform
+
+ Copyright (c) 2017 SAP SE or an SAP affiliate company.  All rights reserved.
+
+ This software is the confidential and proprietary information of SAP
+ ("Confidential Information"). You shall not disclose such Confidential
+ Information and shall use it only in accordance with the terms of the
+ license agreement you entered into with SAP.
+--><!--
+ All hybris buildcallbacks.xml macrodefinitions:
+
+ Build/Documentation
+
+	 before/after ant macro "clean"
+		 <macrodef name="siteonestorefront_before_clean"/>
+		 <macrodef name="siteonestorefront_after_clean"/>
+
+	 before/after ant macro "build"
+		 <macrodef name="siteonestorefront_before_build"/>
+		 <macrodef name="siteonestorefront_after_build"/>
+
+	 before/after ant macro "compile_core" - the core module of the extension
+		 <macrodef name="siteonestorefront_before_compile_core">
+		 <macrodef name="siteonestorefront_after_compile_core">
+
+	 before/after ant macro "compile_web" - the web module of the extension
+		 <macrodef name="siteonestorefront_before_compile_web" />
+		 <macrodef name="siteonestorefront_after_compile_web" />
+
+	 before/after ant macro "compile_hmc" - the hmc module of the extension
+		 <macrodef name="siteonestorefront_before_compile_hmc" />
+		 <macrodef name="siteonestorefront_after_compile_hmc" />
+
+ Preparing extension
+
+	 will be called in the beginning of the ant call and only once (also when using multiple 
+	 ant targets e.g. ant build yunittest)
+		 <macrodef name="siteonestorefront_only_once_prepare"/>
+
+ Creating ear module/production
+
+	 before/after ant macro "ear"
+		 <macrodef name="siteonestorefront_before_ear"/>
+		 <macrodef name="siteonestorefront_after_ear"/>
+
+	 before/after ant macro "production" - for hybris server only
+		 <macrodef name="siteonestorefront_before_production" />
+		 <macrodef name="siteonestorefront_after_production" />
+
+ JUnit Test
+
+	 before/after ant macro "yunitinit" 
+		 <macrodef name="siteonestorefront_before_yunitinit" />
+		 <macrodef name="siteonestorefront_after_yunitinit" />
+
+	 before/after ant macro "yunit"
+		 <macrodef name="siteonestorefront_before_yunit" />
+		 <macrodef name="siteonestorefront_after_yunit" /> 
+
+ Distribution package
+
+	 before/after ant macro "dist" - internal target; only for use when platform is available in source code
+		 <macrodef name="siteonestorefront_after_dist"/>
+		 <macrodef name="siteonestorefront_before_dist"/>
+
+	 before/after ant macro "dist_copy" - internal target; only for use when platform is available in source code
+		 <macrodef name="siteonestorefront_before_dist_copy"/>
+		 <macrodef name="siteonestorefront_after_dist_copy"/>
+
+--><project name="siteonestorefront_buildcallbacks">
+	<property location="${ext.siteonestorefront.path}/web/webroot/WEB-INF/lib/less-rhino-1.7.3.js" name="tool.less"/>
+	<property location="${ext.siteonestorefront.path}/web/webroot/WEB-INF/lib/lessc-rhino-1.7.3.js" name="tool.lessc"/>
+	<property location="${ext.siteonestorefront.path}/web/webroot/WEB-INF/lib/rhino-1.7.7.jar" name="tool.rhino"/>
+	<property location="${ext.siteonestorefront.path}/web/webroot/WEB-INF/lib/yuicompressor-2.4.2.jar" name="tool.yuic"/>
+	<property location="${ext.siteonestorefront.path}/web/webroot/WEB-INF/lib/closure-compiler-v20191111.jar" name="tool.gclosure"/>
+	<property location="${ext.siteonestorefront.path}" name="ext.siteonestorefront.mapperToPath"/>
+	<property name="wro.addons.template.path" value="${ext.siteonestorefront.path}/wro_addons_template.xml"/>
+	<property name="wro.addons.dest.path" value="${ext.siteonestorefront.path}/resources/wro_addons.xml"/>
+	<property name="wro.group.node" value="&lt;groups xmlns=&quot;http://www.isdc.ro/wro&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:schemaLocation=&quot;http://www.isdc.ro/wro wro.xsd&quot;&gt;"/>
+
+
+	<path id="grunt.lib.path">
+    	<pathelement path="${ext.siteonestorefront.path}/web/webroot/WEB-INF/lib/ant-grunt-launcher-0.0.2.jar" />
+	</path>
+
+	<taskdef name="grunt" classname="org.jberta93.gruntlauncher.core.GruntLauncher" classpathref="grunt.lib.path"/>
+
+	<if>
+		<os family="windows"/>
+	    <then>
+	        <propertyregex global="true" input="${ext.siteonestorefront.path}" override="yes" property="ext.siteonestorefront.mapperToPath" regexp="\\" replace="/"/>
+	    </then>
+	</if>
+
+	<!-- The following macros and targets are used to create a new responsive theme based on an existing one (i.e. alpha or lambda) -->
+	
+	<!-- This is not required to run during each and every build
+	<target description="Adds a new responsive theme based on an existing responsive source theme" name="siteonestorefront_responsive_theme_setup">
+		<siteonestorefront_responsive_theme_setup/>
+	</target>-->
+
+	<macrodef name="siteonestorefront_check_responsive_theme_setup_parameters">
+		<sequential>
+			<var name="themeSetupCommand" value="ant siteonestorefront_responsive_theme_setup -DsourceThemeCode=code1 -DtargetThemeCode=code2"/>
+
+			<!-- check if sourceThemeCode is set -->
+			<if>
+				<not>
+					<isset property="sourceThemeCode"/>
+				</not>
+				<then>
+					<input addproperty="sourceThemeCode">Please enter the code of the responsive source theme</input>
+				</then>
+			</if>
+
+			<!-- check if sourceThemeCode is not empty -->
+			<if>
+				<and>
+					<equals arg1="${sourceThemeCode}" arg2=""/>
+				</and>
+				<then>
+					<fail message="Source theme's code cannot be empty. Enter correct code or set 'sourceThemeCode' in command line : ${themeSetupCommand}"/>
+				</then>
+			</if>
+
+			<if>
+				<not>
+					<available file="${ext.siteonestorefront.path}/web/webroot/WEB-INF/_ui-src/responsive/themes/${sourceThemeCode}"/>
+				</not>
+				<then>
+					<fail message="Source theme must be an existing responsive theme."/>
+				</then>
+			</if>
+
+			<!-- check if targetThemeCode is set -->
+			<if>
+				<not>
+					<isset property="targetThemeCode"/>
+				</not>
+				<then>
+					<input addproperty="targetThemeCode">Please enter the code of the new responsive theme.</input>
+				</then>
+			</if>
+
+			<!-- check if targetThemeCode is not empty -->
+			<if>
+				<and>
+					<equals arg1="${targetThemeCode}" arg2=""/>
+				</and>
+				<then>
+					<fail message="New theme's code cannot be empty. Enter correct code or set 'targetThemeCode' in command line : ${themeSetupCommand}"/>
+				</then>
+			</if>
+
+			<if>
+				<available file="${ext.siteonestorefront.path}/web/webroot/WEB-INF/_ui-src/responsive/themes/${targetThemeCode}"/>
+				<then>
+					<fail message="New theme seems to already exist."/>
+				</then>
+			</if>
+		</sequential>
+	</macrodef>
+
+	<macrodef name="siteonestorefront_responsive_theme_setup">
+		<sequential>
+			<siteonestorefront_check_responsive_theme_setup_parameters/>
+			<siteonestorefront_sync_responsive_theme isThemeSync="false" sourceCode="${sourceThemeCode}" targetCode="${targetThemeCode}"/>
+			<xmltask dest="${ext.siteonestorefront.path}/web/webroot/WEB-INF/wro.xml" omitHeader="true" source="${ext.siteonestorefront.path}/web/webroot/WEB-INF/wro.xml">
+				<remove path="/*[local-name()='groups']/*[local-name()='group'][@name='${targetThemeCode}_responsive']"/>
+				<insert path="/*[local-name()='groups']">
+					<![CDATA[
+						<group name="${targetThemeCode}_responsive" xmlns="http://www.isdc.ro/wro">
+							<css>/_ui/responsive/theme-${targetThemeCode}/css/style.css</css>
+						</group>
+					]]>
+				</insert>
+			</xmltask>
+		</sequential>
+	</macrodef>
+
+	<macrodef name="siteonestorefront_sync_responsive_theme">
+		<attribute name="sourceCode"/>
+		<attribute name="targetCode"/>
+		<attribute default="true" name="isThemeSync"/>
+		<sequential>
+			<if>
+				<available file="${ext.siteonestorefront.path}/web/webroot/WEB-INF/_ui-src/responsive/themes/@{sourceCode}" type="dir"/>
+				<then>
+					<touchFutureTimestamp distDir="${ext.siteonestorefront.path}/web/webroot/WEB-INF/_ui-src/responsive/themes/@{targetCode}"/>
+					<sync todir="${ext.siteonestorefront.path}/web/webroot/WEB-INF/_ui-src/responsive/themes/@{targetCode}">
+						<fileset dir="${ext.siteonestorefront.path}/web/webroot/WEB-INF/_ui-src/responsive/themes/@{sourceCode}" erroronmissingdir="false"/>
+					</sync>
+				</then>
+			</if>
+
+			<property name="theme.img.key.list" value="img.favIcon,img.iconArrowCategoryTile,img.missingProductImage.responsive.product,img.missingProductImage.responsive.thumbnail,img.missingProductImage.responsive.cartIcon,img.missingProductImage.responsive.styleSwatch,img.spinner"/>
+			<propertyregex input="${theme.img.key.list}" property="theme.img.regexp" regexp="," replace="=|"/>
+
+			<copy overwrite="true" todir="${ext.siteonestorefront.path}/web/webroot/WEB-INF/messages">
+				<fileset dir="${ext.siteonestorefront.path}/web/webroot/WEB-INF/messages" includes="theme-@{sourceCode}-desktop_*.properties"/>
+				<regexpmapper from="theme-(.*)-desktop_(.*).properties" to="theme-@{targetCode}-desktop_\2.properties"/>
+				<filterchain>
+					<filterreader classname="org.apache.tools.ant.filters.LineContainsRegExp">
+						<param type="regexp" value="${theme.img.regexp}="/>
+					</filterreader>
+					<filterreader classname="org.apache.tools.ant.filters.ReplaceTokens">
+						<param name="begintoken" type="tokenchar" value="/"/>
+						<param name="endtoken" type="tokenchar" value="/"/>
+						<param name="desktop" type="token" value="/responsive/"/>
+					</filterreader>
+					<filterreader classname="org.apache.tools.ant.filters.ReplaceTokens">
+						<param name="begintoken" type="tokenchar" value="/"/>
+						<param name="endtoken" type="tokenchar" value="/"/>
+						<param name="theme-@{sourceCode}" type="token" value="/theme-@{targetCode}/"/>
+					</filterreader>
+				</filterchain>
+			</copy>
+
+			<for param="messageResource">
+				<path>
+					<fileset dir="${ext.siteonestorefront.path}/web/webroot/WEB-INF/messages" includes="theme-@{targetCode}-desktop_*.properties"/>
+				</path>
+				<sequential>
+					<loadproperties srcFile="@{messageResource}"/>
+					<for list="${theme.img.key.list}" param="imageFileKey">
+						<sequential>
+							<propertycopy from="@{imageFileKey}" name="theme.@{imageFileKey}"/>
+							<if>
+								<istrue value="@{isThemeSync}"/>
+								<then>
+									<propertyregex input="${@{imageFileKey}}" override="true" property="@{imageFileKey}" regexp="/responsive/" replace="/desktop/"/>
+								</then>
+							</if>
+							<propertyregex input="${@{imageFileKey}}" override="true" property="@{imageFileKey}" regexp="/theme-@{targetCode}/" replace="/theme-@{sourceCode}/"/>
+							<echo>copy from: ${@{imageFileKey}} to: ${theme.@{imageFileKey}}</echo>
+
+							<copy failonerror="false" file="${ext.siteonestorefront.path}/web/webroot${@{imageFileKey}}" quiet="true" tofile="${ext.siteonestorefront.path}/web/webroot${theme.@{imageFileKey}}"/>
+
+							<var name="theme.@{imageFileKey}" unset="true"/>
+							<var name="@{imageFileKey}" unset="true"/>
+						</sequential>
+					</for>
+				</sequential>
+			</for>
+		</sequential>
+	</macrodef>
+	<!-- end of macros & targets for creating a new responsive theme -->
+
+	<macrodef name="css.full">
+		<sequential>
+			<echo>[UI Build] Converting LESS to CSS and minify...</echo>
+			<apply dir="${ext.siteonestorefront.path}/web/webroot/WEB-INF/_ui-src/responsive/themes/" executable="java" failonerror="true" force="true" parallel="false">
+				<!-- Give the input bundle of less files-->
+				<fileset dir="${ext.siteonestorefront.path}/web/webroot/WEB-INF/_ui-src/responsive/themes/">
+					<include name="**/style.less"/>
+					<include name="**/addons.less"/>
+				</fileset>
+				<arg value="-jar"/>
+				<arg path="${tool.rhino}"/>
+				<arg value="-f"/>
+				<arg path="${tool.less}"/>
+				<arg path="${tool.lessc}"/>
+				<!-- Practically no documentation, but 'x' argument is for compression/minification -->
+				<arg value="-x" />
+				<srcfile/>
+				<!-- Output the compiled css file with corresponding name -->
+				<regexpmapper from="(.*)/less/(.*)\.less$$" handledirsep="yes" to="${ext.siteonestorefront.mapperToPath}/web/webroot/_ui/responsive/theme-\1/css/\2.css"/>
+				<targetfile/>
+			</apply>
+		</sequential>
+	</macrodef>
+
+	<macrodef name="js.concat.main">
+		<sequential>
+			<echo>[UI Build] Concating JS __main.js...</echo>
+			<concat destfile="${ext.siteonestorefront.path}/web/webroot/WEB-INF/_ui-src/responsive/lib/ybase-0.1.0/js/__main.js" encoding="UTF-8" fixlastline="yes" outputencoding="UTF-8">
+				<!-- Give the input bundle of less files-->
+				<filelist dir="${ext.siteonestorefront.path}/">
+					<file name="web/webroot/_ui/shared/js/generatedVariables.js"/>
+					<file name="web/webroot/WEB-INF/_ui-src/responsive/lib/ybase-0.1.0/bootstrap/dist/js/bootstrap.min.js"/>
+					<file name="web/webroot/WEB-INF/_ui-src/responsive/lib/ybase-0.1.0/js/vendor/enquire.min.js"/>
+					<file name="web/webroot/WEB-INF/_ui-src/responsive/lib/ybase-0.1.0/js/vendor/Imager.min.js"/>
+					<file name="web/webroot/WEB-INF/_ui-src/responsive/lib/ybase-0.1.0/js/vendor/jquery.blockUI-2.66.js"/>
+					<file name="web/webroot/WEB-INF/_ui-src/responsive/lib/ybase-0.1.0/js/vendor/jquery.colorbox-min.js"/>
+					<file name="web/webroot/WEB-INF/_ui-src/responsive/lib/ybase-0.1.0/js/vendor/jquery.form.min.js"/>
+					<file name="web/webroot/WEB-INF/_ui-src/responsive/lib/ybase-0.1.0/js/vendor/jquery.hoverIntent.js"/>
+					<file name="web/webroot/WEB-INF/_ui-src/responsive/lib/ybase-0.1.0/js/vendor/jquery.pstrength.custom-1.2.0.js"/>
+					<file name="web/webroot/WEB-INF/_ui-src/responsive/lib/ybase-0.1.0/js/vendor/jquery.syncheight.custom.js"/>
+					<file name="web/webroot/WEB-INF/_ui-src/responsive/lib/ybase-0.1.0/js/vendor/jquery.tabs.custom.js"/>
+					<file name="web/webroot/WEB-INF/_ui-src/responsive/lib/ybase-0.1.0/js/vendor/jquery-ui-1.12.1.min.js"/>
+					<file name="web/webroot/WEB-INF/_ui-src/responsive/lib/ybase-0.1.0/js/vendor/jquery.zoom.custom.js"/>
+					<file name="web/webroot/WEB-INF/_ui-src/responsive/lib/ybase-0.1.0/js/vendor/owl.carousel.custom.js"/>
+					<file name="web/webroot/WEB-INF/_ui-src/responsive/lib/ybase-0.1.0/js/vendor/jquery.tmpl-1.0.0pre.min.js"/>
+					<file name="web/webroot/WEB-INF/_ui-src/responsive/lib/ybase-0.1.0/js/vendor/jquery.currencies.min.js"/>
+					<file name="web/webroot/WEB-INF/_ui-src/responsive/lib/ybase-0.1.0/js/vendor/jquery.waitforimages.min.js"/>
+					<file name="web/webroot/WEB-INF/_ui-src/responsive/lib/ybase-0.1.0/js/vendor/jquery.slideviewer.custom.1.2.js"/>
+					<file name="web/webroot/WEB-INF/_ui-src/responsive/lib/ybase-0.1.0/js/vendor/jquery.menu-aim.js"/>
+					<file name="web/webroot/WEB-INF/_ui-src/responsive/lib/ybase-0.1.0/js/vendor/uuidv4.min.js"/>
+					<file name="web/webroot/WEB-INF/_ui-src/responsive/lib/ybase-0.1.0/js/vendor/Chart.min.js"/>
+					<file name="web/webroot/WEB-INF/_ui-src/responsive/lib/ybase-0.1.0/js/vendor/chartjs-plugin-datalabels.min.js"/>
+					<file name="web/webroot/WEB-INF/_ui-src/responsive/lib/ybase-0.1.0/js/acc.address.js"/>
+					<file name="web/webroot/WEB-INF/_ui-src/responsive/lib/ybase-0.1.0/js/acc.autocomplete.js"/>
+					<file name="web/webroot/WEB-INF/_ui-src/responsive/lib/ybase-0.1.0/js/acc.carousel.js"/>
+					<file name="web/webroot/WEB-INF/_ui-src/responsive/lib/ybase-0.1.0/js/acc.cart.js"/>
+					<file name="web/webroot/WEB-INF/_ui-src/responsive/lib/ybase-0.1.0/js/acc.cartitem.js"/>
+					<file name="web/webroot/WEB-INF/_ui-src/responsive/lib/ybase-0.1.0/js/acc.checkout.js"/>
+					<file name="web/webroot/WEB-INF/_ui-src/responsive/lib/ybase-0.1.0/js/acc.mixedcartcheckout.js"/>
+					<file name="web/webroot/WEB-INF/_ui-src/responsive/lib/ybase-0.1.0/js/acc.checkoutaddress.js"/>
+					<file name="web/webroot/WEB-INF/_ui-src/responsive/lib/ybase-0.1.0/js/acc.checkoutsteps.js"/>
+					<file name="web/webroot/WEB-INF/_ui-src/responsive/lib/ybase-0.1.0/js/acc.cms.js"/>
+					<file name="web/webroot/WEB-INF/_ui-src/responsive/lib/ybase-0.1.0/js/acc.colorbox.js"/>
+					<file name="web/webroot/WEB-INF/_ui-src/responsive/lib/ybase-0.1.0/js/acc.common.js"/>
+					<file name="web/webroot/WEB-INF/_ui-src/responsive/lib/ybase-0.1.0/js/acc.forgottenpassword.js"/>
+					<file name="web/webroot/WEB-INF/_ui-src/responsive/lib/ybase-0.1.0/js/acc.global.js"/>
+					<file name="web/webroot/WEB-INF/_ui-src/responsive/lib/ybase-0.1.0/js/acc.hopdebug.js"/>
+					<file name="web/webroot/WEB-INF/_ui-src/responsive/lib/ybase-0.1.0/js/acc.imagegallery.js"/>
+					<file name="web/webroot/WEB-INF/_ui-src/responsive/lib/ybase-0.1.0/js/acc.langcurrencyselector.js"/>
+					<file name="web/webroot/WEB-INF/_ui-src/responsive/lib/ybase-0.1.0/js/acc.minicart.js"/>
+					<file name="web/webroot/WEB-INF/_ui-src/responsive/lib/ybase-0.1.0/js/acc.navigation.js"/>
+					<file name="web/webroot/WEB-INF/_ui-src/responsive/lib/ybase-0.1.0/js/acc.order.js"/>
+					<file name="web/webroot/WEB-INF/_ui-src/responsive/lib/ybase-0.1.0/js/acc.paginationsort.js"/>
+					<file name="web/webroot/WEB-INF/_ui-src/responsive/lib/ybase-0.1.0/js/acc.partner.js"/>
+					<file name="web/webroot/WEB-INF/_ui-src/responsive/lib/ybase-0.1.0/js/acc.payment.js"/>
+					<file name="web/webroot/WEB-INF/_ui-src/responsive/lib/ybase-0.1.0/js/acc.paymentDetails.js"/>
+					<file name="web/webroot/WEB-INF/_ui-src/responsive/lib/ybase-0.1.0/js/acc.pickupinstore.js"/>
+					<file name="web/webroot/WEB-INF/_ui-src/responsive/lib/ybase-0.1.0/js/acc.product.js"/>
+					<file name="web/webroot/WEB-INF/_ui-src/responsive/lib/ybase-0.1.0/js/acc.productVariant.js"/>
+					<file name="web/webroot/WEB-INF/_ui-src/responsive/lib/ybase-0.1.0/js/acc.productcardvariant.js"/>
+					<file name="web/webroot/WEB-INF/_ui-src/responsive/lib/ybase-0.1.0/js/acc.facets.js"/>
+					<file name="web/webroot/WEB-INF/_ui-src/responsive/lib/ybase-0.1.0/js/acc.productDetail.js"/>
+					<file name="web/webroot/WEB-INF/_ui-src/responsive/lib/ybase-0.1.0/js/acc.quickview.js"/>
+					<file name="web/webroot/WEB-INF/_ui-src/responsive/lib/ybase-0.1.0/js/acc.quote.js"/>
+					<file name="web/webroot/WEB-INF/_ui-src/responsive/lib/ybase-0.1.0/js/acc.ratingstars.js"/>
+					<file name="web/webroot/WEB-INF/_ui-src/responsive/lib/ybase-0.1.0/js/acc.refinements.js"/>
+					<file name="web/webroot/WEB-INF/_ui-src/responsive/lib/ybase-0.1.0/js/acc.adobelinktracking.js"/>
+					<file name="web/webroot/WEB-INF/_ui-src/responsive/lib/ybase-0.1.0/js/acc.ga4analytics.js"/>
+					<file name="web/webroot/WEB-INF/_ui-src/responsive/lib/ybase-0.1.0/js/acc.silentorderpost.js"/>
+					<file name="web/webroot/WEB-INF/_ui-src/responsive/lib/ybase-0.1.0/js/acc.tabs.js"/>
+					<file name="web/webroot/WEB-INF/_ui-src/responsive/lib/ybase-0.1.0/js/acc.termsandconditions.js"/>
+					<file name="web/webroot/WEB-INF/_ui-src/responsive/lib/ybase-0.1.0/js/acc.track.js"/>
+					<file name="web/webroot/WEB-INF/_ui-src/responsive/lib/ybase-0.1.0/js/acc.storefinder.js"/>
+					<file name="web/webroot/WEB-INF/_ui-src/responsive/lib/ybase-0.1.0/js/acc.futurelink.js"/>
+					<file name="web/webroot/WEB-INF/_ui-src/responsive/lib/ybase-0.1.0/js/acc.productorderform.js"/>
+					<file name="web/webroot/WEB-INF/_ui-src/responsive/lib/ybase-0.1.0/js/acc.savedcarts.js"/>
+					<file name="web/webroot/WEB-INF/_ui-src/responsive/lib/ybase-0.1.0/js/acc.pendo.js"/>
+					<file name="web/webroot/WEB-INF/_ui-src/responsive/lib/ybase-0.1.0/js/acc.multidgrid.js"/>
+					<file name="web/webroot/WEB-INF/_ui-src/responsive/lib/ybase-0.1.0/js/acc.quickorder.js"/>
+					<file name="web/webroot/WEB-INF/_ui-src/responsive/lib/ybase-0.1.0/js/acc.csv-import.js"/>
+					<file name="web/webroot/WEB-INF/_ui-src/responsive/lib/ybase-0.1.0/js/autoload.js"/>
+					<file name="web/webroot/WEB-INF/_ui-src/responsive/lib/ybase-0.1.0/js/acc.accountdashboard.js"/>
+					<file name="web/webroot/WEB-INF/_ui-src/responsive/lib/ybase-0.1.0/js/acc.unlockuser.js"/>
+					<file name="web/webroot/WEB-INF/_ui-src/responsive/lib/ybase-0.1.0/js/acc.sdssearch.js"/>
+					<file name="web/webroot/WEB-INF/_ui-src/responsive/lib/ybase-0.1.0/js/acc.mystores.js"/>
+					<file name="web/webroot/WEB-INF/_ui-src/responsive/lib/ybase-0.1.0/js/acc.passwordvalidation.js"/>
+					<file name="web/webroot/WEB-INF/_ui-src/responsive/lib/ybase-0.1.0/js/acc.promotions.js"/>
+					<file name="web/webroot/WEB-INF/_ui-src/responsive/lib/ybase-0.1.0/js/acc.savedlist.js"/>
+					<file name="web/webroot/WEB-INF/_ui-src/responsive/lib/ybase-0.1.0/js/acc.recommendedlist.js"/>
+					<file name="web/webroot/WEB-INF/_ui-src/responsive/lib/ybase-0.1.0/js/acc.estimate.js"/>
+					<file name="web/webroot/WEB-INF/_ui-src/responsive/lib/ybase-0.1.0/js/acc.myquotes.js"/>
+					<file name="web/webroot/WEB-INF/_ui-src/responsive/lib/ybase-0.1.0/js/acc.briteverify.js"/>
+					<file name="web/webroot/WEB-INF/_ui-src/responsive/lib/ybase-0.1.0/js/acc.shareproductemail.js"/>
+					<file name="web/webroot/WEB-INF/_ui-src/responsive/lib/ybase-0.1.0/js/acc.sharecart.js"/>
+					<file name="web/webroot/WEB-INF/_ui-src/responsive/lib/ybase-0.1.0/js/acc.formvalidation.js"/>
+					<file name="web/webroot/WEB-INF/_ui-src/responsive/lib/ybase-0.1.0/js/acc.monthlyflyer.js"/>
+					<file name="web/webroot/WEB-INF/_ui-src/responsive/lib/ybase-0.1.0/js/acc.sharelistemail.js"/>
+					<file name="web/webroot/WEB-INF/_ui-src/responsive/lib/ybase-0.1.0/js/acc.invoicepage.js"/>
+					<file name="web/webroot/WEB-INF/_ui-src/responsive/lib/ybase-0.1.0/js/acc.calculator.js"/>
+					<file name="web/webroot/WEB-INF/_ui-src/responsive/lib/ybase-0.1.0/js/cms/addtocartaction.js"/>
+					<file name="web/webroot/WEB-INF/_ui-src/responsive/lib/ybase-0.1.0/js/cms/listaddtocartaction.js"/>
+					<file name="web/webroot/WEB-INF/_ui-src/responsive/lib/ybase-0.1.0/js/cms/listorderformaction.js"/>
+					<file name="web/webroot/WEB-INF/_ui-src/responsive/lib/ybase-0.1.0/js/cms/listpickupinstoreaction.js"/>
+					<file name="web/webroot/WEB-INF/_ui-src/responsive/lib/ybase-0.1.0/js/cms/pickupinstoreaction.js"/>
+					<file name="web/webroot/WEB-INF/_ui-src/responsive/lib/ybase-0.1.0/js/cms/shareonsocialnetworkaction.js"/>
+					<file name="web/webroot/WEB-INF/_ui-src/responsive/lib/ybase-0.1.0/js/cms/viewstoreaction.js"/>
+					<file name="web/webroot/WEB-INF/_ui-src/responsive/lib/ybase-0.1.0/js/acc.pdp-bulk-calculator.js" />
+					<file name="web/webroot/WEB-INF/_ui-src/responsive/lib/ybase-0.1.0/js/acc.project-calc-enhancements.js" />
+					<file name="web/webroot/WEB-INF/_ui-src/responsive/lib/ybase-0.1.0/js/acc.project.js" />
+				</filelist>
+			</concat>
+		</sequential>
+	</macrodef>
+
+	<macrodef name="js.minify.main">
+		<sequential>
+			<echo>[UI Build] Minifying JS _main.js...</echo>
+			<apply executable="java" parallel="false">
+				<fileset dir="${ext.siteonestorefront.path}/web/webroot/WEB-INF/_ui-src/responsive/lib/ybase-0.1.0/js/" includes="__main.js" />
+				<mapper type="glob" from="__main.js" to="${ext.siteonestorefront.path}/web/webroot/_ui/responsive/common/js/_main.js" />
+				<arg line="-jar" />
+				<arg path="${tool.gclosure}" />
+				<arg line="--strict_mode_input=false" />
+				<arg line="--jscomp_off=es5Strict" />
+				<arg line="--jscomp_off=uselessCode" />
+				<arg line="--warning_level=QUIET" />
+				<arg line="--js" />
+				<srcfile />
+				<arg line="--js_output_file" />
+				<targetfile />
+			</apply>
+		</sequential>
+	</macrodef>
+
+	<macrodef name="js.concat.addons">
+		<sequential>
+			<echo>[UI Build] Concating __addons.js...</echo>
+			<concat destfile="${ext.siteonestorefront.path}/web/webroot/WEB-INF/_ui-src/responsive/lib/ybase-0.1.0/js/__addons.js" encoding="UTF-8" fixlastline="yes" eol="crlf" outputencoding="UTF-8">
+				<!-- Give the input bundle of less files-->
+				<filelist dir="${ext.siteonestorefront.path}/">
+					<file name="web/webroot/_ui/addons/assistedservicestorefront/responsive/common/js/jquery.tablesorter.min.js"/>
+					<file name="web/webroot/_ui/addons/assistedservicestorefront/responsive/common/js/jquery.tablesorter.pager.js"/>
+					<file name="web/webroot/_ui/addons/assistedservicestorefront/responsive/common/js/assistedservicestorefront.js"/>
+					<file name="web/webroot/_ui/addons/assistedservicestorefront/responsive/common/js/Chart.min.js"/>
+					<file name="web/webroot/_ui/addons/assistedservicestorefront/responsive/common/js/asm.storefinder.js"/>
+					<file name="web/webroot/_ui/addons/siteonepunchoutaddon/responsive/common/js/acc.punchout.js"/>
+					<file name="web/webroot/_ui/addons/siteoneorgaddon/responsive/common/js/commerceorgnavigation.js"/>
+					<file name="web/webroot/_ui/addons/siteoneorgaddon/responsive/common/js/siteoneorgaddon.js"/>
+					<file name="web/webroot/_ui/addons/siteoneorgaddon/responsive/common/js/jquery.validate.js"/>
+					<file name="web/webroot/_ui/addons/siteoneacceleratoraddon/responsive/common/js/acc.checkoutsummary.js"/>
+					<file name="web/webroot/_ui/addons/siteoneacceleratoraddon/responsive/common/js/acc.paymentType.js"/>
+					<file name="web/webroot/_ui/addons/siteoneacceleratoraddon/responsive/common/js/acc.replenishment.js"/>
+					<file name="web/webroot/_ui/addons/siteoneacceleratoraddon/responsive/common/js/acc.orderform.js"/>
+					<file name="web/webroot/_ui/addons/siteoneacceleratoraddon/responsive/common/js/acc.approval.js"/>
+					<file name="web/webroot/_ui/addons/smarteditaddon/responsive/common/js/smarteditaddon.js"/>
+				</filelist>
+			</concat>
+		</sequential>
+	</macrodef>
+
+	<macrodef name="js.minify.addons">
+		<sequential>
+			<echo>[UI Build] Minifying JS _addons.js...</echo>
+			<apply executable="java" parallel="false">
+				<fileset dir="${ext.siteonestorefront.path}/web/webroot/WEB-INF/_ui-src/responsive/lib/ybase-0.1.0/js/" includes="__addons.js" />
+				<mapper type="glob" from="__addons.js" to="${ext.siteonestorefront.path}/web/webroot/_ui/responsive/common/js/_addons.js" />
+				<arg line="-jar" />
+				<arg path="${tool.gclosure}" />
+				<arg line="--strict_mode_input=false" />
+				<arg line="--jscomp_off=es5Strict" />
+				<arg line="--jscomp_off=uselessCode" />
+				<arg line="--warning_level=QUIET" />
+				<arg line="--js" />
+				<srcfile />
+				<arg line="--js_output_file" />
+				<targetfile />
+			</apply>
+		</sequential>
+	</macrodef>
+
+	<macrodef name="move.fonts">
+		<sequential>
+			<echo>[UI Build] Moving font library...</echo>
+			<copy todir="${ext.siteonestorefront.path}/web/webroot/_ui/responsive/">
+				<fileset dir="${ext.siteonestorefront.path}/web/webroot/WEB-INF/_ui-src/responsive/" includes="themes/**/fonts/*"/>
+				<regexpmapper from="themes/(.*)/fonts/(.*)" handledirsep="yes" to="theme-\1/fonts/\2"/>        
+			</copy>
+		</sequential>
+	</macrodef>
+
+		<macrodef name="move.jquery">
+		<sequential>
+			<echo>[UI Build] Moving jQuery library...</echo>
+			<copy todir="${ext.siteonestorefront.path}/web/webroot/_ui/responsive/common/js/">
+				<fileset dir="${ext.siteonestorefront.path}/web/webroot/WEB-INF/_ui-src/responsive/lib/ybase-0.1.0/js/vendor/" includes="jquery-3.5.1.min.js, jquery-editable-select.min.js"/>
+			</copy>
+		</sequential>
+	</macrodef>
+
+	<macrodef name="siteonestorefront_generatevariables">
+		<sequential>
+			<uptodate property="updates" targetfile="${ext.siteonestorefront.path}/resources/generateVariables.properties" value="true">
+				<srcfiles file="${ext.siteonestorefront.path}/web/webroot/WEB-INF/tags/shared/variables/generatedVariables.tag"/>
+				<srcfiles file="${ext.siteonestorefront.path}/web/webroot/_ui/shared/js/generatedVariables.js"/>
+				<srcfiles file="${ext.siteonestorefront.path}/web/webroot/WEB-INF/_ui-src/shared/less/generatedVariables.less"/>
+			</uptodate>
+			<if>
+				<equals arg1="${updates}" arg2="true"/>
+				<then>
+					<concat destfile="${ext.siteonestorefront.path}/web/webroot/WEB-INF/tags/shared/variables/generatedVariables.tag" overwrite="no">
+						<string>&lt;%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %&gt;
+</string>
+						<filelist dir="${ext.siteonestorefront.path}/resources" files="generateVariables.properties"/>
+					</concat>
+
+					<replaceregexp byline="true" file="${ext.siteonestorefront.path}/web/webroot/WEB-INF/tags/shared/variables/generatedVariables.tag" match="^(?!&lt;%@)(.*)=(.*)" replace="&lt;c:set var=&quot;\1&quot; value=&quot;\2&quot; scope=&quot;session&quot;/&gt;"/>
+
+					<concat destfile="${ext.siteonestorefront.path}/web/webroot/_ui/shared/js/generatedVariables.js" overwrite="yes">
+						<filelist dir="${ext.siteonestorefront.path}/resources" files="generateVariables.properties"/>
+					</concat>
+
+					<replaceregexp byline="true" file="${ext.siteonestorefront.path}/web/webroot/_ui/shared/js/generatedVariables.js" match="(.*)=(.*)" replace="var \1=&quot;\2&quot;;"/>
+
+					<concat destfile="${ext.siteonestorefront.path}/web/webroot/WEB-INF/_ui-src/shared/less/generatedVariables.less" overwrite="no">
+						<filelist dir="${ext.siteonestorefront.path}/resources" files="generateVariables.properties"/>
+					</concat>
+					
+					<replaceregexp byline="true" file="${ext.siteonestorefront.path}/web/webroot/WEB-INF/_ui-src/shared/less/generatedVariables.less" match="(.*)=(.*)" replace="@\1:\2;"/>
+				</then>
+			</if>
+		</sequential>
+	</macrodef>
+
+	<macrodef name="siteonestorefront_after_build">
+		<sequential>
+			<echo message="siteonestorefront_after_build"/>
+			<impexGenerate extname="siteonestorefront"/>
+			<containsExact separator=";" string="${extension.names}" substring="addonsupport">
+				<do>
+					<foreachext>
+						<do>
+							<for delimiter=";" list="${addon.folder}" param="addOnFile">
+								<sequential>
+									<if>
+										<available file="${ext.@{extname}.path}/acceleratoraddon/@{addOnFile}"/>
+										<then>
+											<copyAddOnToExtension addonextension="@{extname}" addonresource="@{addOnFile}" target="siteonestorefront"/>
+										</then>
+									</if>
+								</sequential>
+							</for>
+							<generate_wro_addons_xml extname="@{extname}"/>
+						</do>
+					</foreachext>
+				</do>
+			</containsExact>
+			<siteonestorefront_compileuisrc_executor/>
+			<create_empty_wro_addons_xml/>
+			<fix_root_node_for_wro_addons_xml/>
+		</sequential>
+	</macrodef>
+
+
+	<macrodef name="siteonestorefront_before_build">
+		<sequential>
+			<echo message="siteonestorefront_before_build"/>
+			<siteonestorefront_generatevariables/>
+			<delete_wro_addons_xml/>
+			<foreachext>
+				<do>
+					<if>
+						<available file="${ext.@{extname}.path}/commonweb"/>
+						<then>
+							<echo message="Found commonweb extension:  @{extname}"/>
+							<copyCommonWebToExtension commonwebextension="@{extname}" commonwebresource="/src" target="siteonestorefront"/>
+						</then>
+					</if>
+				</do>
+			</foreachext>
+		</sequential>
+
+
+	</macrodef>
+
+
+	<macrodef name="delete_wro_addons_xml">
+		<sequential>
+			<if>
+        		<available file="${wro.addons.dest.path}"/>
+				<then>
+					<delete failonerror="false" file="${wro.addons.dest.path}"/>
+				</then>
+			</if>
+		</sequential>
+	</macrodef>
+
+
+	<macrodef name="create_empty_wro_addons_xml">
+		<sequential>
+			<if>
+				<not>
+	        		<available file="${wro.addons.dest.path}"/>
+				</not>
+	        	<then>
+	        		<echo> *** ${wro.addons.dest.path} not found, creating an empty one from the template... ***</echo>
+	        		<copy file="${wro.addons.template.path}" tofile="${wro.addons.dest.path}"/>
+        		</then>
+			</if>
+		</sequential>
+	</macrodef>
+
+
+	<macrodef name="generate_wro_addons_xml">
+		<attribute name="extname"/>
+		<sequential>
+			<if>
+	        	<available file="${ext.@{extname}.path}/project.properties"/>
+	        	<then>
+	        		<echo>generate_wro_addons_xml for @{extname}</echo>
+	        		<property file="${ext.@{extname}.path}/project.properties"/>
+	        		<if>
+	            		<equals arg1="${siteonestorefront.wro4jconfigscan.@{extname}}" arg2="true"/>
+	            		<then>
+	            			<echo>siteonestorefront.wro4jconfigscan.@{extname}: ${siteonestorefront.wro4jconfigscan.@{extname}}</echo>
+	            			<if>
+	            				<!-- if key doesn't exist in project.properties, the key itself is returned, so we need to escape 'arg2' -->
+			            		<equals arg1="${@{extname}.javascript.paths.desktop}" arg2="$${@{extname}.javascript.paths.desktop}"/>
+			            		<then>
+			            			<var name="jsPathsDesktop" value=""/>
+		            			</then>
+	            				<else>
+	            					<var name="jsPathsDesktop" value="${@{extname}.javascript.paths.desktop}"/>
+	            				</else>
+	            			</if>
+	            			<if>
+			            		<equals arg1="${@{extname}.javascript.paths.mobile}" arg2="$${@{extname}.javascript.paths.mobile}"/>
+			            		<then>
+			            			<var name="jsPathsMobile" value=""/>
+		            			</then>
+	            				<else>
+	            					<var name="jsPathsMobile" value="${@{extname}.javascript.paths.mobile}"/>
+	            				</else>
+	            			</if>
+	            			<if>
+			            		<equals arg1="${@{extname}.javascript.paths.responsive}" arg2="$${@{extname}.javascript.paths.responsive}"/>
+			            		<then>
+			            			<var name="jsPathsResponsive" value=""/>
+		            			</then>
+	            				<else>
+	            					<var name="jsPathsResponsive" value="${@{extname}.javascript.paths.responsive}"/>
+	            				</else>
+	            			</if>
+	            			<if>
+			            		<equals arg1="${@{extname}.css.paths.desktop}" arg2="$${@{extname}.css.paths.desktop}"/>
+			            		<then>
+			            			<var name="cssPathsDesktop" value=""/>
+		            			</then>
+	            				<else>
+	            					<var name="cssPathsDesktop" value="${@{extname}.css.paths.desktop}"/>
+	            				</else>
+	            			</if>
+	            			<if>
+			            		<equals arg1="${@{extname}.css.paths.mobile}" arg2="$${@{extname}.css.paths.mobile}"/>
+			            		<then>
+			            			<var name="cssPathsMobile" value=""/>
+		            			</then>
+	            				<else>
+	            					<var name="cssPathsMobile" value="${@{extname}.css.paths.mobile}"/>
+	            				</else>
+	            			</if>
+	            			<if>
+			            		<equals arg1="${@{extname}.css.paths.responsive}" arg2="$${@{extname}.css.paths.responsive}"/>
+			            		<then>
+			            			<var name="cssPathsResponsive" value=""/>
+		            			</then>
+	            				<else>
+	            					<var name="cssPathsResponsive" value="${@{extname}.css.paths.responsive}"/>
+	            				</else>
+	            			</if>
+	            			<create_wro_addons_xml cssPathsDesktop="${cssPathsDesktop}" cssPathsMobile="${cssPathsMobile}" cssPathsResponsive="${cssPathsResponsive}" extname="@{extname}" jsPathsDesktop="${jsPathsDesktop}" jsPathsMobile="${jsPathsMobile}" jsPathsResponsive="${jsPathsResponsive}"/>
+	            		</then>
+	        		</if>
+	       		</then>
+           	</if>
+		</sequential>
+	</macrodef>
+
+
+	<macrodef name="create_wro_addons_xml">
+		<attribute name="extname"/>
+		<attribute name="jsPathsDesktop"/>
+		<attribute name="jsPathsMobile"/>
+		<attribute name="jsPathsResponsive"/>
+		<attribute name="cssPathsDesktop"/>
+		<attribute name="cssPathsMobile"/>
+		<attribute name="cssPathsResponsive"/>
+		
+		<sequential>
+			<var name="addonPath" value="/_ui/addons/@{extname}"/>
+			<echo>create_wro_addons_xml for @{extname}</echo>
+			<if>
+	        	<available file="${wro.addons.template.path}"/>
+	        	<then>
+	        		<create_empty_wro_addons_xml/>
+	        		<xmltask destbuffer="buffer" omitHeader="true" source="${wro.addons.dest.path}"/>
+	        		<xmltask dest="${wro.addons.dest.path}" omitHeader="true" sourcebuffer="buffer">
+						<call path="/groups/group">
+							<param name="uiexperience" path="@name"/>
+							<actions>
+								<!-- ### responsive ### -->
+								<if>
+									<equals arg1="@{uiexperience}" arg2="addons"/>
+									<then>
+										<echo> &gt;&gt;&gt; Adding resources for @{uiexperience}</echo>
+										<for delimiter=";" list="@{jsPathsResponsive}" param="jsfile">
+											<sequential>
+												<xmltask destbuffer="buffer" sourcebuffer="buffer">
+													<insert path="/groups/group[@name='addons']">
+														<![CDATA[
+															<js>${addonPath}@{jsfile}</js>
+														]]>
+													</insert>
+												</xmltask>
+											</sequential>
+										</for>
+										<for delimiter=";" list="@{cssPathsResponsive}" param="cssfile">
+											<sequential>
+												<xmltask destbuffer="buffer" sourcebuffer="buffer">
+													<insert path="/groups/group[@name='addons']">
+														<![CDATA[
+															<css>${addonPath}@{cssfile}</css>
+														]]>
+													</insert>
+												</xmltask>
+											</sequential>
+										</for>
+									</then>
+								</if>
+								<!-- ### desktop ### -->
+								<if>
+									<equals arg1="@{uiexperience}" arg2="addons_desktop"/>
+									<then>
+										<echo> &gt;&gt;&gt; Adding resources for @{uiexperience}</echo>
+										<for delimiter=";" list="@{jsPathsDesktop}" param="jsfile">
+											<sequential>
+												<xmltask destbuffer="buffer" sourcebuffer="buffer">
+													<insert path="/groups/group[@name='addons_desktop']">
+														<![CDATA[
+															<js>${addonPath}@{jsfile}</js>
+														]]>
+													</insert>
+												</xmltask>
+											</sequential>
+										</for>
+										<for delimiter=";" list="@{cssPathsDesktop}" param="cssfile">
+											<sequential>
+												<xmltask destbuffer="buffer" sourcebuffer="buffer">
+													<insert path="/groups/group[@name='addons_desktop']">
+														<![CDATA[
+															<css>${addonPath}@{cssfile}</css>
+														]]>
+													</insert>
+												</xmltask>
+											</sequential>
+										</for>
+									</then>
+								</if>
+								<!-- ### mobile ### -->
+								<if>
+									<equals arg1="@{uiexperience}" arg2="addons_mobile"/>
+									<then>
+										<echo> &gt;&gt;&gt; Adding resources for @{uiexperience}</echo>
+										<for delimiter=";" list="@{jsPathsMobile}" param="jsfile">
+											<sequential>
+												<xmltask destbuffer="buffer" sourcebuffer="buffer">
+													<insert path="/groups/group[@name='addons_mobile']">
+														<![CDATA[
+															<js>${addonPath}@{jsfile}</js>
+														]]>
+													</insert>
+												</xmltask>
+											</sequential>
+										</for>
+										<for delimiter=";" list="@{cssPathsMobile}" param="cssfile">
+											<sequential>
+												<xmltask destbuffer="buffer" sourcebuffer="buffer">
+													<insert path="/groups/group[@name='addons_mobile']">
+														<![CDATA[
+															<css>${addonPath}@{cssfile}</css>
+														]]>
+													</insert>
+												</xmltask>
+											</sequential>
+										</for>
+									</then>
+								</if>
+							</actions>
+						</call>
+					</xmltask>
+			    	<xmltask dest="${wro.addons.dest.path}" omitHeader="true" outputter="simple:3" sourcebuffer="buffer"/>
+        		</then>
+				<else>
+					<echo message="-----------WARNING----------- : Could not find template wro file = ${wro.addons.template.path}..."/>
+				</else>
+			</if>
+			
+		</sequential>
+    </macrodef>
+
+	<macrodef name="fix_root_node_for_wro_addons_xml">
+		<sequential>
+			<replaceregexp file="${wro.addons.dest.path}" match="&lt;groups&gt;" replace="${wro.group.node}"/>
+		</sequential>
+	</macrodef>
+
+	<!-- 
+		Called whenever 'ant ear' is used. this callback can be used to modify the content of the ear file
+
+		${ear.path}: 			path to ear
+	 -->
+	<macrodef name="siteonestorefront_after_clean">
+		<sequential>
+			<!-- Addon folders in storefronts are always cleaned (even if there is no addonsupport on localextension list) -->
+			<addonclean/>
+			<commonwebclean/>
+			<delete_wro_addons_xml/>
+		</sequential>
+	</macrodef>
+
+	<macrodef name="siteonestorefront_compileuisrc_executor">
+		<sequential>
+			<!--<grunt gruntfiledir="${ext.siteonestorefront.path}" grunttask="build" executenpminstall="false" executebowerinstall="false"/>-->
+			<css.full/>
+			<js.concat.main/>
+			<js.minify.main/>
+			<js.concat.addons/>
+			<js.minify.addons/>
+			<move.fonts/>
+			<move.jquery/>
+		</sequential>
+	</macrodef>
+	
+	<macrodef name="touchFutureTimestamp">
+		<attribute name="distDir"/>
+		<sequential>
+			<property name="tstamp.pattern" value="MM/dd/yyyy HH:mm a"/>
+			<tstamp>
+				<format pattern="${tstamp.pattern}" property="tstamp.now"/>
+			</tstamp>
+			<touch>
+				<fileset dir="@{distDir}" erroronmissingdir="false">
+					<date datetime="${tstamp.now}" pattern="${tstamp.pattern}" when="after"/>
+					<type type="file"/>
+				</fileset>
+			</touch>
+		</sequential>
+	</macrodef>
+
+	<target description="compile the _ui-src folder in _ui" name="siteonestorefront_compileuisrc">
+		<siteonestorefront_compileuisrc_executor/>
+	</target>
+
+</project>

@@ -1,0 +1,164 @@
+$supercategories=supercategories( code, catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Staged']));;;;;;;;;
+$catalogVersion=catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Staged'])[unique=true,default='siteoneProductCatalog:Staged'];;;;;;;;;
+;;;;;;;;;
+INSERT_UPDATE Category;code[unique=true];name[lang=en];$supercategories;$catalogVersion;allowedPrincipals(uid)
+;SH1;Primary;;siteoneProductCatalog:Staged;admingroup
+;SH14;Irrigation;SH1;siteoneProductCatalog:Staged;admingroup 
+;SH1411;Backflow;SH14;siteoneProductCatalog:Staged;admingroup 
+;SH1412;Clamps;SH14;siteoneProductCatalog:Staged;admingroup 
+;SH1413;Container Irrigation;SH14;siteoneProductCatalog:Staged;admingroup 
+;SH1414;Controllers;SH14;siteoneProductCatalog:Staged;admingroup 
+;SH1415;Drip & Micro Irrigation;SH14;siteoneProductCatalog:Staged;admingroup 
+;SH1416;Enclosures;SH14;siteoneProductCatalog:Staged;admingroup 
+;SH1417;Filtration;SH14;siteoneProductCatalog:Staged;admingroup 
+;SH1418;Fittings;SH14;siteoneProductCatalog:Staged;admingroup 
+;SH1419;Fountains & Aerators;SH14;siteoneProductCatalog:Staged;admingroup 
+;SH1420;Pipe Cements, Primers, Cleaners & Lubricants;SH14;siteoneProductCatalog:Staged;admingroup 
+;SH1421;Hoses, Fittings & Nozzles;SH14;siteoneProductCatalog:Staged;admingroup 
+;SH1422;Identification Products & Markers;SH14;siteoneProductCatalog:Staged;admingroup 
+;SH1423;Injection Systems;SH14;siteoneProductCatalog:Staged;admingroup 
+;SH1424;Pipe & Tubing;SH14;siteoneProductCatalog:Staged;admingroup 
+;SH1425;Pumps;SH14;siteoneProductCatalog:Staged;admingroup 
+;SH1426;Rainwater ;SH14;siteoneProductCatalog:Staged;admingroup 
+;SH1427;Sensors;SH14;siteoneProductCatalog:Staged;admingroup 
+;SH1428;Sprinklers;SH14;siteoneProductCatalog:Staged;admingroup 
+;SH1429;Tools & Accessories;SH14;siteoneProductCatalog:Staged;admingroup 
+;SH1430;Valve Boxes;SH14;siteoneProductCatalog:Staged;admingroup 
+;SH1431;Valves;SH14;siteoneProductCatalog:Staged;admingroup 
+;SH1432;Wire, Cable & Electrical Products;SH14;siteoneProductCatalog:Staged;admingroup 
+;SH1411110;Atmospheric Vacuum Breakers;SH1411;siteoneProductCatalog:Staged;admingroup 
+;SH1411111;Dual Check Valves;SH1411;siteoneProductCatalog:Staged;admingroup 
+;SH1411112;Double Check Assemblies;SH1411;siteoneProductCatalog:Staged;admingroup 
+;SH1411113;Parts & Accessories;SH1411;siteoneProductCatalog:Staged;admingroup 
+;SH1411114;Pressure Vacuum Breakers;SH1411;siteoneProductCatalog:Staged;admingroup 
+;SH1411115;Reduced Pressure Assemblies;SH1411;siteoneProductCatalog:Staged;admingroup 
+;SH1412110;Pinch;SH1412;siteoneProductCatalog:Staged;admingroup 
+;SH1412111;Specialty;SH1412;siteoneProductCatalog:Staged;admingroup 
+;SH1412112;Tools;SH1412;siteoneProductCatalog:Staged;admingroup 
+;SH1412113;Worm Drive;SH1412;siteoneProductCatalog:Staged;admingroup 
+;SH1414110;Battery & Solar Powered;SH1414;siteoneProductCatalog:Staged;admingroup 
+;SH1414111;Central Control;SH1414;siteoneProductCatalog:Staged;admingroup 
+;SH1414112;Commercial;SH1414;siteoneProductCatalog:Staged;admingroup 
+;SH1414113;Hose Timers;SH1414;siteoneProductCatalog:Staged;admingroup 
+;SH1414114;Light Commercial;SH1414;siteoneProductCatalog:Staged;admingroup 
+;SH1414115;Parts & Accessories;SH1414;siteoneProductCatalog:Staged;admingroup 
+;SH1414116;Residential;SH1414;siteoneProductCatalog:Staged;admingroup 
+;SH1414117;Sensors;SH1414;siteoneProductCatalog:Staged;admingroup 
+;SH1415110;Control Zone & Conversion Kits;SH1415;siteoneProductCatalog:Staged;admingroup 
+;SH1415111;Emission Devices;SH1415;siteoneProductCatalog:Staged;admingroup 
+;SH1415112;Filtration;SH1415;siteoneProductCatalog:Staged;admingroup 
+;SH1415113;Fittings;SH1415;siteoneProductCatalog:Staged;admingroup 
+;SH1415114;Parts & Accessories;SH1415;siteoneProductCatalog:Staged;admingroup 
+;SH1415115;Pressure Regulators;SH1415;siteoneProductCatalog:Staged;admingroup 
+;SH1415116;Tubing;SH1415;siteoneProductCatalog:Staged;admingroup 
+;SH1416110;Accessories;SH1416;siteoneProductCatalog:Staged;admingroup 
+;SH1416111;Backflow;SH1416;siteoneProductCatalog:Staged;admingroup 
+;SH1416112;Controller;SH1416;siteoneProductCatalog:Staged;admingroup 
+;SH1416113;Decorative & Specialty;SH1416;siteoneProductCatalog:Staged;admingroup 
+;SH1417110;Automatic Filters;SH1417;siteoneProductCatalog:Staged;admingroup 
+;SH1417111;Manual Filters;SH1417;siteoneProductCatalog:Staged;admingroup 
+;SH1418110;Aluminum Fittings;SH1418;siteoneProductCatalog:Staged;admingroup 
+;SH1418111;Brass Fittings;SH1418;siteoneProductCatalog:Staged;admingroup 
+;SH1418112;Copper Fittings;SH1418;siteoneProductCatalog:Staged;admingroup 
+;SH1418113;Ductile Iron Fittings;SH1418;siteoneProductCatalog:Staged;admingroup 
+;SH1418114;Galvanized Fittings;SH1418;siteoneProductCatalog:Staged;admingroup 
+;SH1418115;HDPE Fittings;SH1418;siteoneProductCatalog:Staged;admingroup 
+;SH1418116;Marlex Fittings;SH1418;siteoneProductCatalog:Staged;admingroup 
+;SH1418117;Poly Insert Fittings;SH1418;siteoneProductCatalog:Staged;admingroup 
+;SH1418118;PVC Fittings;SH1418;siteoneProductCatalog:Staged;admingroup 
+;SH1418119;Repair Fittings;SH1418;siteoneProductCatalog:Staged;admingroup 
+;SH1418120;Swing / Flex Pipe Fittings;SH1418;siteoneProductCatalog:Staged;admingroup 
+;SH1418121;Specialty Fittings;SH1418;siteoneProductCatalog:Staged;admingroup 
+;SH1418122;Stainless Steel Fittings;SH1418;siteoneProductCatalog:Staged;admingroup 
+;SH1419110;Aerators;SH1419;siteoneProductCatalog:Staged;admingroup 
+;SH1419111;Fountains;SH1419;siteoneProductCatalog:Staged;admingroup 
+;SH1419112;Parts & Accessories;SH1419;siteoneProductCatalog:Staged;admingroup 
+;SH1420110;Accessories;SH1420;siteoneProductCatalog:Staged;admingroup 
+;SH1420111;Solvent Cements;SH1420;siteoneProductCatalog:Staged;admingroup 
+;SH1420112;Cleaner & Primer;SH1420;siteoneProductCatalog:Staged;admingroup 
+;SH1420113;Lubricants;SH1420;siteoneProductCatalog:Staged;admingroup 
+;SH1420114;Sealant;SH1420;siteoneProductCatalog:Staged;admingroup 
+;SH1422110;Flags;SH1422;siteoneProductCatalog:Staged;admingroup 
+;SH1422111;ID Tags;SH1422;siteoneProductCatalog:Staged;admingroup 
+;SH1422112;Marking Paint;SH1422;siteoneProductCatalog:Staged;admingroup 
+;SH1422113;Warning & Marking Tape;SH1422;siteoneProductCatalog:Staged;admingroup 
+;SH1423110;Equipment;SH1423;siteoneProductCatalog:Staged;admingroup 
+;SH1423111;Treatments;SH1423;siteoneProductCatalog:Staged;admingroup 
+;SH1424110;Accessories;SH1424;siteoneProductCatalog:Staged;admingroup 
+;SH1424111;Aluminum;SH1424;siteoneProductCatalog:Staged;admingroup 
+;SH1424112;Copper;SH1424;siteoneProductCatalog:Staged;admingroup 
+;SH1424113;Drainage;SH1424;siteoneProductCatalog:Staged;admingroup 
+;SH1424114;Galvanized;SH1424;siteoneProductCatalog:Staged;admingroup 
+;SH1424115;HDPE;SH1424;siteoneProductCatalog:Staged;admingroup 
+;SH1424116;Pex;SH1424;siteoneProductCatalog:Staged;admingroup 
+;SH1424117;Poly;SH1424;siteoneProductCatalog:Staged;admingroup 
+;SH1424118;Specialty & Other;SH1424;siteoneProductCatalog:Staged;admingroup 
+;SH1424119;Swing & Flex Pipe;SH1424;siteoneProductCatalog:Staged;admingroup 
+;SH1424120;PVC;SH1424;siteoneProductCatalog:Staged;admingroup 
+;SH1425110;Accessories;SH1425;siteoneProductCatalog:Staged;admingroup 
+;SH1425111;Centrifugal & Jet Pumps;SH1425;siteoneProductCatalog:Staged;admingroup 
+;SH1425112;Gas Powered Pumps;SH1425;siteoneProductCatalog:Staged;admingroup 
+;SH1425113;Hand & Manual Pumps;SH1425;siteoneProductCatalog:Staged;admingroup 
+;SH1425114;Sewage, Sump & Effluent;SH1425;siteoneProductCatalog:Staged;admingroup 
+;SH1425115;Submersible Pumps;SH1425;siteoneProductCatalog:Staged;admingroup 
+;SH1426110;Pre-filters;SH1426;siteoneProductCatalog:Staged;admingroup 
+;SH1426111;Pumps;SH1426;siteoneProductCatalog:Staged;admingroup 
+;SH1426112;Water Storage Tanks;SH1426;siteoneProductCatalog:Staged;admingroup 
+;SH1428110;Nozzles;SH1428;siteoneProductCatalog:Staged;admingroup 
+;SH1428111;Rotors;SH1428;siteoneProductCatalog:Staged;admingroup 
+;SH1428112;Specialty & Miscellaneous;SH1428;siteoneProductCatalog:Staged;admingroup 
+;SH1428113;Sprays;SH1428;siteoneProductCatalog:Staged;admingroup 
+;SH1429110;Adjustment Tools;SH1429;siteoneProductCatalog:Staged;admingroup 
+;SH1429111;Boring & Trenching;SH1429;siteoneProductCatalog:Staged;admingroup 
+;SH1429112;Clamp Tools;SH1429;siteoneProductCatalog:Staged;admingroup 
+;SH1429113;Electrical;SH1429;siteoneProductCatalog:Staged;admingroup 
+;SH1429114;Gauges;SH1429;siteoneProductCatalog:Staged;admingroup 
+;SH1429115;Locators & Valve Tools;SH1429;siteoneProductCatalog:Staged;admingroup 
+;SH1429116;Other Tools & Accessories;SH1429;siteoneProductCatalog:Staged;admingroup 
+;SH1429117;PVC & Poly Pipe Tools;SH1429;siteoneProductCatalog:Staged;admingroup 
+;SH1429118;Soldering & Torches;SH1429;siteoneProductCatalog:Staged;admingroup 
+;SH1429119;Tape & Adhesives;SH1429;siteoneProductCatalog:Staged;admingroup 
+;SH1430110;Composite;SH1430;siteoneProductCatalog:Staged;admingroup 
+;SH1430111;Concrete;SH1430;siteoneProductCatalog:Staged;admingroup 
+;SH1430112;Lids;SH1430;siteoneProductCatalog:Staged;admingroup 
+;SH1430113;Plastic;SH1430;siteoneProductCatalog:Staged;admingroup 
+;SH1430114;Steel;SH1430;siteoneProductCatalog:Staged;admingroup 
+;SH1431110;Electric Valves;SH1431;siteoneProductCatalog:Staged;admingroup 
+;SH1431111;Manifolds & Accessories;SH1431;siteoneProductCatalog:Staged;admingroup 
+;SH1431112;Manual Valves;SH1431;siteoneProductCatalog:Staged;admingroup 
+;SH1432110;Accessories;SH1432;siteoneProductCatalog:Staged;admingroup 
+;SH1432111;Communication Wire;SH1432;siteoneProductCatalog:Staged;admingroup 
+;SH1432112;Conduit;SH1432;siteoneProductCatalog:Staged;admingroup 
+;SH1432113;Conduit Fittings;SH1432;siteoneProductCatalog:Staged;admingroup 
+;SH1432114;Connectors;SH1432;siteoneProductCatalog:Staged;admingroup 
+;SH1432115;Grounding Products;SH1432;siteoneProductCatalog:Staged;admingroup 
+;SH1432116;Irrigation Wire;SH1432;siteoneProductCatalog:Staged;admingroup 
+;SH1432117;Low Voltage Lighting Wire;SH1432;siteoneProductCatalog:Staged;admingroup 
+;SH1432118;Pump Cable;SH1432;siteoneProductCatalog:Staged;admingroup 
+;SH1432119;Specialty;SH1432;siteoneProductCatalog:Staged;admingroup 
+;SH1432120;Two Wire;SH1432;siteoneProductCatalog:Staged;admingroup 
+;SH1428111100;Parts & Accessories;SH1428111;siteoneProductCatalog:Staged;admingroup 
+;SH1428113100;Parts & Accessories;SH1428113;siteoneProductCatalog:Staged;admingroup 
+;SH1431110100;3-Way;SH1431110;siteoneProductCatalog:Staged;admingroup 
+;SH1431110101;Three Way;SH1431110;siteoneProductCatalog:Staged;admingroup 
+;SH1431110102;Anti-Siphon;SH1431110;siteoneProductCatalog:Staged;admingroup 
+;SH1431110103;In-Line;SH1431110;siteoneProductCatalog:Staged;admingroup 
+;SH1431110104;Parts & Accessories;SH1431110;siteoneProductCatalog:Staged;admingroup 
+;SH1431110105;Specialty Valves;SH1431110;siteoneProductCatalog:Staged;admingroup 
+;SH1431112100;Angle Valves;SH1431112;siteoneProductCatalog:Staged;admingroup 
+;SH1431112101;Anti-Siphon Valves;SH1431112;siteoneProductCatalog:Staged;admingroup 
+;SH1431112102;Ball Valve ;SH1431112;siteoneProductCatalog:Staged;admingroup 
+;SH1431112103;Butterfly Valves;SH1431112;siteoneProductCatalog:Staged;admingroup 
+;SH1431112104;Check Valves;SH1431112;siteoneProductCatalog:Staged;admingroup 
+;SH1431112105;Foot Valves;SH1431112;siteoneProductCatalog:Staged;admingroup 
+;SH1431112106;Garden Valves;SH1431112;siteoneProductCatalog:Staged;admingroup 
+;SH1431112107;Gate Valves;SH1431112;siteoneProductCatalog:Staged;admingroup 
+;SH1431112108;Globe Valves;SH1431112;siteoneProductCatalog:Staged;admingroup 
+;SH1431112109;Industrial Valves;SH1431112;siteoneProductCatalog:Staged;admingroup 
+;SH1431112110;Meter Valves;SH1431112;siteoneProductCatalog:Staged;admingroup 
+;SH1431112111;Parts & Accessories;SH1431112;siteoneProductCatalog:Staged;admingroup 
+;SH1431112112;Pressure Regulating Valves;SH1431112;siteoneProductCatalog:Staged;admingroup 
+;SH1431112113;Quick Coupling Valves;SH1431112;siteoneProductCatalog:Staged;admingroup 
+;SH1431112114;Specialty Valves;SH1431112;siteoneProductCatalog:Staged;admingroup 
+
+

@@ -1,0 +1,26 @@
+$supercategories=supercategories( code, catalogVersion(catalog(id[default='siteoneCAProductCatalog']),version[default='Staged']));;;;;;;;;
+$catalogVersion=catalogVersion(catalog(id[default='siteoneCAProductCatalog']),version[default='Staged'])[unique=true,default='siteoneCAProductCatalog:Staged'];;;;;;;;;
+
+
+INSERT_UPDATE Category;code[unique=true];name[lang=en];$supercategories;$catalogVersion;allowedPrincipals(uid);productCount
+;SH1;Primary;;siteoneCAProductCatalog:Staged;admingroup;
+;SH11;Lighting;SH1;siteoneCAProductCatalog:Staged;admingroup;1
+;SH12;Landscape Supply;SH1;siteoneCAProductCatalog:Staged;admingroup;1
+;SH13;Agronomic Maintenance;SH1;siteoneCAProductCatalog:Staged;admingroup;1
+;SH14;Irrigation;SH1;siteoneCAProductCatalog:Staged;admingroup;1
+;SH15;Hardscapes & Outdoor Living;SH1;siteoneCAProductCatalog:Staged;admingroup;1
+;SH16;Nursery;SH1;siteoneCAProductCatalog:Staged;admingroup;1
+;SH17;Tools, Equipment & Safety;SH1;siteoneCAProductCatalog:Staged;admingroup;1
+
+
+
+
+INSERT_UPDATE Category;code[unique=true];name[lang=en];$supercategories;$catalogVersion;allowedPrincipals(uid);productCount
+;PH1;Primary;;siteoneCAProductCatalog:Staged;admingroup
+;PH11;Lighting;PH1;siteoneCAProductCatalog:Staged;admingroup;1
+;PH12;Landscape Supply;PH1;siteoneCAProductCatalog:Staged;admingroup;1
+;PH13;Agronomic Maintenance;PH1;siteoneCAProductCatalog:Staged;admingroup;1
+;PH14;Irrigation;PH1;siteoneCAProductCatalog:Staged;admingroup;1
+;PH15;Hardscapes & Outdoor Living;PH1;siteoneCAProductCatalog:Staged;admingroup;1
+;PH16;Nursery;PH1;siteoneCAProductCatalog:Staged;admingroup;1
+;PH17;Tools, Equipment & Safety;PH1;siteoneCAProductCatalog:Staged;admingroup;1

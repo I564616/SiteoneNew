@@ -1,0 +1,6 @@
+$contentCatalog=siteoneContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+
+# CMS Footer Component
+UPDATE FooterNavigationComponent;$contentCV[unique=true];uid[unique=true];extendedNotice
+;;FooterNavigationComponent;SiteOne Landscape Supply, Inc. 2018 – <CURRENT_YEAR>. The Trademarks Used On This Website Are The Property Of SiteOne Landscape Supply, Inc. And LESCO, Inc. Nothing Herein Should Be Construed To Grant Any License To Use Any Trademarks Without The Prior Written Permission Of The Trademark Owner.;

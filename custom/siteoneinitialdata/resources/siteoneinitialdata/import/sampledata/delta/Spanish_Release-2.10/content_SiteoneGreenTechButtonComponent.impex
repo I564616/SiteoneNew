@@ -1,0 +1,26 @@
+$contentCatalog=siteoneContentCatalog
+$contentCatalogName=SiteOne Content Catalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+
+
+
+INSERT_UPDATE SiteoneGreenTechButtonComponent;$contentCV[unique=true];uid[unique=true];name;headline[lang=en];headline[lang=es];urlLink
+;;comp_000004MV;Partner Program Button Component-1a;Learn More;Ganar Puntos;/earnpoints
+;;comp_000004N0;Partner Program Button Component-2a;Learn More;Conoce Más;/redeempoints
+;;comp_000004N2;Partner Program Button Component-3a;Learn More;Conoce Más;/businesssolutions
+;;comp_00000JAM;Partner Event Button Component;Register Today;;https://siteonewbmrsvp2019.com/Registration/Login.aspx?RegistrationPageID=4046
+;;comp_00000K2G;Android Button Component;Download for Android;;https://play.google.com/store/apps/details?id=com.siteone.landscape
+;;comp_00000K2H;Apple Button Component;For iPhone and iPad;;https://itunes.apple.com/us/app/siteone-landscape-supply/id1044205781?mt=8&ign-mpt=uo%3D4
+;;comp_00000KUX;Spreader Conversion Button Component;How To Use Chart;Cómo Usar La Tabla;/hmc/medias/sys_master/root/h46/hb0/8877753565214/Spreader-Setting-Conversion-Chart-Instructions.pdf
+;;comp_00000KUY;Spreader SGN 240 Button Component;SGN 240 Setting Chart;Tabla Config. SGN 240;/hmc/medias/sys_master/root/h8c/hc3/8877753499678/SGN-240-Spreader-Setting-Chart.pdf
+;;comp_00000N5I;CoOp Brochure Button Component;Download Brochure;;/hmc/medias/sys_master/root/hf9/h17/8881473650718/2019-Co-op-Brochure.pdf
+;;partnerProgramButtonComponent3;Partner Program Button Component2;Learn More;;/earnpoints 
+;;partnerProgramButtonComponent3;Partner Program Button Component2;Learn More;;/earnpoints 
+;;partnerProgramButtonComponent4;Partner Program Button Component4;Learn More;;/businesssolutions
+;;partnerProgramButtonComponent4;Partner Program Button Component4;Learn More;;/businesssolutions
+;;redeemPointsButtonComponent4;Partner Program Button Component4;View Events;;/events
+;;technicalTrainingButtonComponent1;Partner Program Button Component;Join Now;;
+;;technicalTrainingButtonComponent2;Partner Program Button Component2;Learn more;Conoce Más;
+;;technicalTrainingButtonComponent3;Partner Program Button Component3;Learn more;Conoce Más;
+;;technicalTrainingButtonComponent4;Partner Program Button Component4;Learn more;Conoce Más;
+;;comp_00000VNX;Request Account Button Component;Request Account;Solicita Cuenta;/request-account/form?icid=online-button-request-account

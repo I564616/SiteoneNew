@@ -1,0 +1,9 @@
+$contentCatalog=siteoneContentCatalog
+$contentCatalogName=SiteOne Content Catalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+
+
+
+INSERT_UPDATE SiteoneLeftNavigationComponent;$contentCV[unique=true];uid[unique=true];name;linkName[lang=en];linkName[lang=es];
+;;siteoneLeftNavigationComponent18;Site one Left Navigation;About Us;Sobre Nosotros
+;;siteoneLeftNavigationComponent19;Site one Left Navigation;History;Historia

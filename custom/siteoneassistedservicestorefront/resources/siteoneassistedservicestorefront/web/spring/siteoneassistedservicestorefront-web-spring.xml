@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ [y] hybris Platform
+
+ Copyright (c) 2017 SAP SE or an SAP affiliate company.  All rights reserved.
+
+ This software is the confidential and proprietary information of SAP
+ ("Confidential Information"). You shall not disclose such Confidential
+ Information and shall use it only in accordance with the terms of the
+ license agreement you entered into with SAP.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/aop
+           http://www.springframework.org/schema/aop/spring-aop.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context.xsd">
+           
+    <context:annotation-config/>
+
+	<!--<context:component-scan base-package="com.siteone.siteoneassistedservicestorefront" />-->
+	<context:component-scan base-package="com.siteone.siteoneassistedservicestorefront" scope-resolver="de.hybris.platform.spring.IgnoreTenantScopeMetadataResolver"/>
+
+	<!-- Expose /acceleratoraddon/web/webroot/WEB-INF/messages/base.js.properties  resource bundle as javascript variables -->
+	<bean id="defaultSiteoneassistedservicestorefrontJavaScriptMessageResourceAccessor" parent="abstractJavaScriptMessageResourceAccessor">
+		<property name="addOnName" value="siteoneassistedservicestorefront"/>
+	</bean>
+
+	<bean id="defaultSiteoneassistedservicestorefrontBeforeViewJsPropsHandlerAdaptee" parent="abstractBeforeViewJsPropsHandlerAdaptee"
+		  class="com.siteone.siteoneassistedservicestorefront.controllers.cms.SiteoneExportJsPropertiesBeforeViewHandler">
+		<property name="messageSource" ref="defaultSiteoneassistedservicestorefrontJavaScriptMessageResourceAccessor"/>
+	</bean>
+
+	<bean id="getSiteoneassistedservicestorefrontBeforeViewHandler" parent="beforeViewHandlerAdapter">
+		<property name="adaptee">
+			<ref bean="defaultSiteoneassistedservicestorefrontBeforeViewJsPropsHandlerAdaptee"/>
+		</property>
+	</bean>
+	<bean id="SiteoneassistedservicestorefrontBeforeViewHandlerListMergeDirective" depends-on="beforeViewHandlersList" parent="listMergeDirective">
+		<property name="add" ref="getSiteoneassistedservicestorefrontBeforeViewHandler"/>
+	</bean>
+
+
+<!--	<alias name="siteoneAssistedServiceComponentRenderer" alias="assistedServiceComponentRenderer" />-->
+<!--	<bean id="siteoneAssistedServiceComponentRenderer"-->
+<!--		  class="com.siteone.siteoneassistedservicestorefront.component.renderer.SiteoneAssistedServiceComponentRenderer" parent="addOnJspIncludeCMSComponentRenderer">-->
+<!--		<property name="typeService" ref="typeService"/>-->
+<!--		<property name="uiExperienceService" ref="defaultUiExperienceService"/>-->
+<!--		<property name="cmsComponentService" ref="cmsComponentService"/>-->
+<!--		<property name="modelService" ref="modelService"/>-->
+<!--		<property name="assistedServiceFacade" ref="assistedServiceFacade"/>-->
+<!--	</bean>-->
+
+	<alias name="siteoneAssistedServiceComponentController" alias="assistedServiceComponentController"/>
+	<bean name="siteoneAssistedServiceComponentController" class="com.siteone.siteoneassistedservicestorefront.controllers.cms.SiteoneAssistedServiceComponentController"/>
+
+	<alias name="siteoneCustomerListController" alias="customerListController"/>
+	<bean name="siteoneCustomerListController" class="com.siteone.siteoneassistedservicestorefront.controllers.SiteoneCustomerListController"/>
+
+	<alias name="siteoneAdditionalInformationController" alias="additionalInformationController"/>
+	<bean name="siteoneAdditionalInformationController" class="com.siteone.siteoneassistedservicestorefront.controllers.SiteoneAdditionalInformationController"/>
+	
+	
+	<bean depends-on="customer360JspProvidersMap" parent="mapMergeDirective">
+		<property name="key" value="headingFragment" />
+		<property name="value" value="addon:/siteoneassistedservicestorefront/fragments/customer360/heading" />
+	</bean>
+</beans>

@@ -1,0 +1,73 @@
+############ FeedFile Cronjob changes #################
+# Language
+$lang=en
+$contentCatalog=siteoneContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$wideContent=CMSImageComponent,BannerComponent
+$jarEmailResource=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/coredata/contentCatalogs/siteoneContentCatalog/emails
+
+# Import modulegen config properties into impex macros
+UPDATE GenericItem[processor=de.hybris.platform.commerceservices.impex.impl.ConfigPropertyImportProcessor];pk[unique=true]
+$jarResourceCms=$config-jarResourceCmsValue
+$emailPackageName=$config-emailContextPackageName
+$emailResource=$config-emailResourceValue
+
+INSERT_UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];fromEmail[lang=$lang];fromName[lang=$lang]
+;;FeedFileMonitorNotificationEmail;"customersupport@ec.siteone.com";"SiteOne"
+
+############ Email changes #################
+# Import the CMS content for the SiteOne Website emails
+#
+$contentCatalog=siteoneContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$jarEmailResource=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/coredata/contentCatalogs/siteoneContentCatalog/emails
+
+# Import config properties into impex macros for modulegen
+UPDATE GenericItem[processor=de.hybris.platform.commerceservices.impex.impl.ConfigPropertyImportProcessor];pk[unique=true]
+$emailResource=$config-emailResourceValue
+
+# Language
+$lang=en
+
+# Email Pages
+INSERT_UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];fromEmail[lang=$lang];fromName[lang=$lang]
+;;RequestAccountCustomerEmail;"customersupport@ec.siteone.com";"SiteOne"
+;;RequestAccountEmail;"customersupport@ec.siteone.com";"SiteOne"
+;;BatchNotificationEmail;"customersupport@ec.siteone.com";"SiteOne"
+;;CustomerRegistrationEmail;"customersupport@ec.siteone.com";"SiteOne"
+;;DeliverySentEmail;"customersupport@ec.siteone.com";"SiteOne"
+;;ForgottenPasswordEmail;"customersupport@ec.siteone.com";"SiteOne"
+;;OrderApprovalRejectionEmail;"customersupport@ec.siteone.com";"SiteOne"
+;;OrderCancelledEmail;"customersupport@ec.siteone.com";"SiteOne"
+;;OrderCollectionReminderEmail;"customersupport@ec.siteone.com";"SiteOne"
+;;OrderConfirmationEmail;"customersupport@ec.siteone.com";"SiteOne"
+;;OrderMoveToCsEmail;"customersupport@ec.siteone.com";"SiteOne"
+;;OrderPartiallyCanceledEmail;"customersupport@ec.siteone.com";"SiteOne"
+;;OrderPartiallyRefundedEmail;"customersupport@ec.siteone.com";"SiteOne"
+;;OrderPendingApprovalEmail;"customersupport@ec.siteone.com";"SiteOne"
+;;OrderRefundEmail;"customersupport@ec.siteone.com";"SiteOne"
+;;QuoteOrderApproveEmail;"customersupport@ec.siteone.com";"SiteOne"
+;;QuoteOrderRejectEmail;"customersupport@ec.siteone.com";"SiteOne"
+;;ReadyForPickupEmail;"customersupport@ec.siteone.com";"SiteOne"
+;;ReplenishmentOrderConfirmationEmail;"customersupport@ec.siteone.com";"SiteOne"
+;;ReplenishmentOrderPlacedEmail;"customersupport@ec.siteone.com";"SiteOne"
+;;SharedProductEmail;"customersupport@ec.siteone.com";"SiteOne"
+;;OrderFailureEmail;"customersupport@ec.siteone.com";"SiteOne"
+;;CreatePasswordEmail;"customersupport@ec.siteone.com";"SiteOne"
+;;UnlockUserEmail;"customersupport@ec.siteone.com";"SiteOne"
+;;PointsForEquipmentEmail;"customersupport@ec.siteone.com";"SiteOne"
+;;ContactUsEmail;"customersupport@ec.siteone.com";"SiteOne"
+;;InvoiceDetailsEmail;"customersupport@ec.siteone.com";"SiteOne"
+;;HomeOwnerEmail;"customersupport@ec.siteone.com";"SiteOne"
+;;CustomerEmailChangeOldEmail;"customersupport@ec.siteone.com";"SiteOne"
+;;CustomerEmailChangeNewEmail;"customersupport@ec.siteone.com";"SiteOne" 
+;;CartAbandonmentEmail;"customersupport@ec.siteone.com";"SiteOne"
+;;SendorderDetailEmail;"customersupport@ec.siteone.com";"SiteOne"
+;;PasswordChangedEmail;"customersupport@ec.siteone.com";"SiteOne"
+;;OrderReadyToPickUpEmail;"customersupport@ec.siteone.com";"SiteOne"
+;;OrderScheduledForDeliveryEmail;"customersupport@ec.siteone.com";"SiteOne"
+;;ShareCartEmail;"customersupport@ec.siteone.com";"SiteOne"
+;;listEditEmail;"customersupport@ec.siteone.com";"SiteOne"
+;;shareListEmail;"customersupport@ec.siteone.com";"SiteOne"
+;;shareAssemblyEmail;"customersupport@ec.siteone.com";"SiteOne"
+;;ContactUsCustomerEmail;"customersupport@ec.siteone.com";"SiteOne"

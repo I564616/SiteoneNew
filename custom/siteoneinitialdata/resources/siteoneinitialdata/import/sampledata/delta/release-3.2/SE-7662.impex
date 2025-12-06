@@ -1,0 +1,71 @@
+##############################################################################
+# SE-7662:  Search: Remove unnecessary solr properties from the product index
+# ---------------------------------------------------------------------------
+$facetSearchConfigName=siteoneIndex
+$indexedType=siteoneProductType
+$lang=en
+
+REMOVE SolrIndexedProperty;solrIndexedType(identifier)[unique=true,default=$indexedType];name[unique=true]
+                          ;                                                             ;irgFittingType
+                          ;                                                             ;irgLength
+                          ;                                                             ;irgMaterial
+                          ;                                                             ;irgNominalSize
+                          ;                                                             ;irgNSF
+                          ;                                                             ;irgPipeCategory
+                          ;                                                             ;irgPumpType
+                          ;                                                             ;irgSensorConnection
+                          ;                                                             ;irgSensorType
+                          ;                                                             ;lghtBeamAngle
+                          ;                                                             ;lghtBulbShape
+                          ;                                                             ;lghtBulbSpacing
+                          ;                                                             ;lghtColorTemperature
+                          ;                                                             ;lghtDimmable
+                          ;                                                             ;lghtLampType
+                          ;                                                             ;lghtLightColor
+                          ;                                                             ;lghtVoltageRating
+                          ;                                                             ;lghtWireSize
+                          ;                                                             ;lndscpBladeLength
+                          ;                                                             ;lndscpBladeSize
+                          ;                                                             ;lndscpBladeThickness
+                          ;                                                             ;lndscpCFM
+                          ;                                                             ;lndscpContainerSize
+                          ;                                                             ;lndscpContainerType
+                          ;                                                             ;lndscpCuttingDepth
+                          ;                                                             ;lndscpFlagSize
+                          ;                                                             ;lndscpFrameMaterial
+                          ;                                                             ;lndscpGritType
+                          ;                                                             ;lndscpHandleType
+                          ;                                                             ;lndscpHeadSize
+                          ;                                                             ;lndscpHeight
+                          ;                                                             ;lndscpHoseLength
+                          ;                                                             ;lndscpHoseSize
+                          ;                                                             ;lndscpInsulated
+                          ;                                                             ;lndscpLampBase
+                          ;                                                             ;lndscpLampWattage
+                          ;                                                             ;lndscpLegend
+                          ;                                                             ;lndscpLength
+                          ;                                                             ;lndscpLoadCapacity
+                          ;                                                             ;lndscpManimumLoadCapacity
+                          ;                                                             ;lndscpMountingType
+                          ;                                                             ;lndscpMPH
+                          ;                                                             ;lndscpNominalSize
+                          ;                                                             ;lndscpNumberofLamps
+                          ;                                                             ;lndscpOverallHeight
+                          ;                                                             ;lndscpOverallLength
+                          ;                                                             ;lndscpPoleMaterial
+                          ;                                                             ;lndscpShape
+                          ;                                                             ;lndscpSize
+                          ;                                                             ;lndscpSoundPowerLevel
+                          ;                                                             ;lndscpStorageCapacity
+                          ;                                                             ;lndscpThickness
+                          ;                                                             ;lndscpToothPattern
+                          ;                                                             ;lndscpTotalWeight
+                          ;                                                             ;lndscpTubingWallThickness
+                          ;                                                             ;lndscpWallThickness
+                          ;                                                             ;lndscpWaterproof
+                          ;                                                             ;lndscpWeightCapacity
+                          ;                                                             ;lndscpWidth
+                          ;                                                             ;Maintenance_capacity
+                          ;                                                             ;Maintenance_npkratio
+                          ;                                                             ;Maintenance_plantingdepth
+                          ;                                                             ;Maintenance_width

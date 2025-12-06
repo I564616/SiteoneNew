@@ -1,0 +1,8 @@
+# Run line number 1 and 2 in Dev and QA Environments
+INSERT_UPDATE SiteOneFeatureSwitch;key[unique=true];value
+;boomiPlatformLinux;true
+
+
+# Run line number 7 and 8 in Stage and Prod Environments
+INSERT_UPDATE SiteOneFeatureSwitch;key[unique=true];value
+;boomiPlatformLinux;false

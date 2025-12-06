@@ -1,0 +1,55 @@
+﻿INSERT_UPDATE SiteOneContrPrimaryBusiness;code[unique=true];PrimaryBusinessL1[unique=true];parentId;PrimaryBusinessL1_ES[unique=true];Active
+;20000;Installation;null;Installation;true
+;20001;Hardscapes Only;20000;Hardscapes Only;true
+;20002;Irrigation Only;20000;Irrigation Only;true
+;20003;Lighting Only;20000;Lighting Only;true
+;20004;Nursery Only;20000;Nursery Only;true
+;20050;All (more than 1);20000;All (more than 1);true
+;21000;Maintenance;null;Maintenance;true
+;21001;Agronomics Only;21000;Agronomics Only;true
+;21002;Irrigation Only;21000;Irrigation Only;true
+;21050;All (more than 1);21000;All (more than 1);true
+;22000;Full Service(Installation & Maintenance);null;Full Service(Installation & Maintenance);true
+;22001;Hardscapes Only;22000;Hardscapes Only;true
+;22002;Agronomics Only;22000;Agronomics Only;true
+;22003;Irrigation Only;22000;Irrigation Only;true
+;22004;Lighting Only;22000;Lighting Only;true
+;22050;All (more than 1);22000;All (more than 1);true
+;23000;Specialty;null;Specialty;true
+;23001;Pest Control;23000;Pest Control;true
+;23002;Erosion Control;23000;Erosion Control;true
+;23003;Snow Removal;23000;Snow Removal;true
+;23004;Tree Care;23000;Tree Care;true
+;23005;International;23000;International;true
+;23050;Other;23000;Other;true
+;24000;Municipalities/Institutional;null;Municipalities/Institutional;true
+;25000;Golf;null;Golf;true
+;26000;Distribution/Reseller;null;Distribution/Reseller;true
+;101009;Golf/Country-Yacht Club;null;Golf/Country-Yacht Club;false
+;203011;Landscape/Grnd Maint. Co.;null;Landscape/Grnd Maint. Co.;false
+;203020;Fence/General Contracting;null;Fence/General Contracting;false
+;203025;Cnstrction/Remodel/Realty;null;Cnstrction/Remodel/Realty;false
+;203050;"Seed Hydro Soil Mulch";null;"Seed Hydro Soil Mulch";false
+;203519;Cemetery (not funeral hom;null;Cemetery (not funeral hom;false
+;203520;Condo/Apt/Retirement/HOA;null;Condo/Apt/Retirement/HOA;false
+;203521;Church (non school)/Hosp.;null;Church (non school)/Hosp.;false
+;203522;Amusement/Plaza/Hall/Air.;null;Amusement/Plaza/Hall/Air.;false
+;203523;Hotel/Inn/Resort/Plantati;null;Hotel/Inn/Resort/Plantati;false
+;203535;School/Training/Ed. Facil;null;School/Training/Ed. Facil;false
+;203537;Athletic/Rec/Sports ;null;Athletic/Rec/Sports ;false
+;203538;Sod Grower;null;Sod Grower;false
+;203540;Irrigation/Sprinkler;null;Irrigation/Sprinkler;false
+;204028;Govt/Military � Lawn Care;null;Govt/Military � Lawn Care;false
+;204029;Govt/Military - Golf;null;Govt/Military - Golf;false
+;303030;Pest Mgt./Animal Ctrl.;null;Pest Mgt./Animal Ctrl.;false
+;409033;Homeowner/Retail;null;Homeowner/Retail;false
+;409800;LESCO Associate;null;LESCO Associate;false
+;455150;Reseller � Lawn Care;null;Reseller � Lawn Care;false
+;455151;Reseller - Golf;null;Reseller - Golf;false
+;455152;"Reseller Irrigation";null;"Reseller Irrigation";false
+;500500;LESCO Vendor;null;LESCO Vendor;false
+;508500;Nursery/Greenhouse/Garden;null;Nursery/Greenhouse/Garden;false
+;709998;International � Lawn Care;null;International � Lawn Care;false
+;709999;International � Golf;null;International � Golf;false
+;999998;Do Not Use;null;Do Not Use;false
+;999999;Other Misc. Company Type;null;Other Misc. Company Type;false

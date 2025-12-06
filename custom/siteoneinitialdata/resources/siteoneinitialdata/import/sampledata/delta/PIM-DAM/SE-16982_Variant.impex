@@ -1,0 +1,88 @@
+#--------------------------Variant Product IntegrationObject-----------------------#
+
+INSERT_UPDATE IntegrationObject; code[unique = true]; integrationType(code)
+; SiteOneGenericVariantProduct; INBOUND
+ 
+INSERT_UPDATE IntegrationObjectItem; integrationObject(code)[unique = true]; code[unique = true]; type(code)
+; SiteOneGenericVariantProduct  ; GenericVariantProduct              ; GenericVariantProduct
+; SiteOneGenericVariantProduct  ; Catalog              ; Catalog
+; SiteOneGenericVariantProduct  ; CatalogVersion       ; CatalogVersion
+; SiteOneGenericVariantProduct  ; InventoryUPC		 ; InventoryUPC
+; SiteOneGenericVariantProduct ; SiteOneProductTransformation		 ; SiteOneProductTransformation
+; SiteOneGenericVariantProduct ; SiteOneProductImage		     ; SiteOneProductImage
+; SiteOneGenericVariantProduct ; SiteOneProductItemImages		         ; SiteOneProductItemImages
+
+; SiteOneGenericVariantProduct	; SiteOneProductSpecificationAttribute	; SiteOneProductSpecificationAttribute	; 	; 	;  
+ 
+INSERT_UPDATE IntegrationObjectItemAttribute; integrationObjectItem(integrationObject(code), code)[unique = true]; attributeName[unique = true]; attributeDescriptor(enclosingType(code), qualifier); returnIntegrationObjectItem(integrationObject(code), code); unique[default = false]
+; SiteOneGenericVariantProduct:Catalog              ; id                      ; Catalog:id                      ;
+; SiteOneGenericVariantProduct:CatalogVersion       ; catalog                 ; CatalogVersion:catalog          ; SiteOneGenericVariantProduct:Catalog
+; SiteOneGenericVariantProduct:CatalogVersion       ; version                 ; CatalogVersion:version          ;
+; SiteOneGenericVariantProduct:GenericVariantProduct              ; catalogVersion          ; GenericVariantProduct:catalogVersion          ; SiteOneGenericVariantProduct:CatalogVersion
+; SiteOneGenericVariantProduct:GenericVariantProduct              ; code                    ; GenericVariantProduct:code                    ;
+; SiteOneGenericVariantProduct:GenericVariantProduct              ; name                    ; GenericVariantProduct:name                    ;
+
+; SiteOneGenericVariantProduct:GenericVariantProduct              ; itemNumber              ; GenericVariantProduct:itemNumber              ;
+; SiteOneGenericVariantProduct:GenericVariantProduct              ; shortDescription        ; GenericVariantProduct:productShortDesc        ;
+; SiteOneGenericVariantProduct:GenericVariantProduct              ; longDescription        ; GenericVariantProduct:productLongDesc        ;
+; SiteOneGenericVariantProduct:GenericVariantProduct              ; variantValues     ; GenericVariantProduct:runtimeAttribute        ;
+; SiteOneGenericVariantProduct:GenericVariantProduct              ; isdirectshippedproduct     ; GenericVariantProduct:isDirectShippedProduct        ;
+; SiteOneGenericVariantProduct:GenericVariantProduct              ; productKind        ; GenericVariantProduct:runtimeAttribute        ;
+; SiteOneGenericVariantProduct:GenericVariantProduct              ; categoryText        ; GenericVariantProduct:runtimeAttribute        ;
+; SiteOneGenericVariantProduct:GenericVariantProduct              ; siteoneItemID        ; GenericVariantProduct:siteoneItemID        ;
+
+
+; SiteOneGenericVariantProduct:SiteOneProductSpecificationAttribute	; name                   ; SiteOneProductSpecificationAttribute:name	;; true	;  
+; SiteOneGenericVariantProduct:SiteOneProductSpecificationAttribute	; text                   ; SiteOneProductSpecificationAttribute:text	;; true	;
+; SiteOneGenericVariantProduct:SiteOneProductSpecificationAttribute	; creationTime                   ; SiteOneProductSpecificationAttribute:creationtime	;; true	; 
+; SiteOneGenericVariantProduct:SiteOneProductSpecificationAttribute	; modifiedTime                   ; SiteOneProductSpecificationAttribute:modifiedtime	;; true	;  
+; SiteOneGenericVariantProduct:GenericVariantProduct              ; specificationAttribute   ; GenericVariantProduct:specificationAttribute; SiteOneGenericVariantProduct:SiteOneProductSpecificationAttribute	; 	;
+
+; SiteOneGenericVariantProduct:SiteOneProductTransformation	; url     ; SiteOneProductTransformation:url	    ;; true	; 
+; SiteOneGenericVariantProduct:SiteOneProductTransformation	; format  ; SiteOneProductTransformation:format	;; true	; 
+
+; SiteOneGenericVariantProduct:SiteOneProductImage	; id               ; SiteOneProductImage:id	        ;; true	; 
+; SiteOneGenericVariantProduct:SiteOneProductImage	; priority         ; SiteOneProductImage:priority	;; true	; 
+; SiteOneGenericVariantProduct:SiteOneProductImage	; mimetype         ; SiteOneProductImage:mimetype	;; true	; 
+; SiteOneGenericVariantProduct:SiteOneProductImage	; fullpath         ; SiteOneProductImage:fullpath	;; true	;
+; SiteOneGenericVariantProduct:SiteOneProductImage	; videoId          ; SiteOneProductImage:videoId	;; true	;
+; SiteOneGenericVariantProduct:SiteOneProductImage	; transformations  ; SiteOneProductImage:transformations	; SiteOneGenericVariantProduct:SiteOneProductTransformation ;; 
+; SiteOneGenericVariantProduct:SiteOneProductItemImages	        ; image            ; SiteOneProductItemImages:image	; SiteOneGenericVariantProduct:SiteOneProductImage ; true ;
+; SiteOneGenericVariantProduct:GenericVariantProduct                      ; itemImage        ; GenericVariantProduct:itemImage    ; SiteOneGenericVariantProduct:SiteOneProductItemImages	; 	;
+
+; SiteOneGenericVariantProduct:GenericVariantProduct              ; vendorEDINumber        ; GenericVariantProduct:vendorEDINumber        ;
+; SiteOneGenericVariantProduct:GenericVariantProduct              ; productType        ; GenericVariantProduct:productType        ;
+; SiteOneGenericVariantProduct:GenericVariantProduct              ; case        ; GenericVariantProduct:case        ;
+; SiteOneGenericVariantProduct:GenericVariantProduct              ; purchPkg        ; GenericVariantProduct:purchPkg        ;
+; SiteOneGenericVariantProduct:GenericVariantProduct              ; weight        ; GenericVariantProduct:weight        ;
+; SiteOneGenericVariantProduct:GenericVariantProduct              ; manufacturerName        ; GenericVariantProduct:manufacturerName        ;
+; SiteOneGenericVariantProduct:GenericVariantProduct              ; featureBullets        ; GenericVariantProduct:featureBullets        ;
+; SiteOneGenericVariantProduct:GenericVariantProduct              ; isLescoBranded        ; GenericVariantProduct:isLescoBranded        ;
+; SiteOneGenericVariantProduct:GenericVariantProduct              ; isSDSRequired         ; GenericVariantProduct:isSdsRequired        ;
+; SiteOneGenericVariantProduct:GenericVariantProduct              ; productBrandName        ; GenericVariantProduct:runtimeAttribute        ;
+
+; SiteOneGenericVariantProduct:GenericVariantProduct              ; subBrand        ; GenericVariantProduct:subBrand        ;
+; SiteOneGenericVariantProduct:GenericVariantProduct              ; vendorPartNumber        ; GenericVariantProduct:vendorPartNumber        ;
+; SiteOneGenericVariantProduct:GenericVariantProduct              ; isRegulatedItem        ; GenericVariantProduct:isRegulatedItem        ;
+; SiteOneGenericVariantProduct:GenericVariantProduct              ; isDiscontinued        ; GenericVariantProduct:isProductDiscontinued        ;
+; SiteOneGenericVariantProduct:GenericVariantProduct              ; applications        ; GenericVariantProduct:applications        ;
+; SiteOneGenericVariantProduct:GenericVariantProduct              ; standardAndApprovals        ; GenericVariantProduct:standardsApprovals        ;
+; SiteOneGenericVariantProduct:GenericVariantProduct              ; categoryCode        ; GenericVariantProduct:categoryCode        ;
+; SiteOneGenericVariantProduct:GenericVariantProduct              ; isShippable        ; GenericVariantProduct:isShippable        ;
+; SiteOneGenericVariantProduct:GenericVariantProduct              ; maxShippableDollarAmount        ; GenericVariantProduct:maxShippableDollarAmount        ;
+; SiteOneGenericVariantProduct:GenericVariantProduct              ; maxShippableQuantity        ; GenericVariantProduct:maxShippableQuantity        ;
+; SiteOneGenericVariantProduct:GenericVariantProduct              ; baseProductCode ; GenericVariantProduct:runtimeAttribute ;  
+
+; SiteOneGenericVariantProduct:InventoryUPC             ; upcId                      ; InventoryUPC:inventoryUPCID                   ;;
+; SiteOneGenericVariantProduct:InventoryUPC             ; upcCode                      ; InventoryUPC:code                      ;;
+; SiteOneGenericVariantProduct:InventoryUPC              ; upcDescription                   ; InventoryUPC:inventoryUPCDesc                     ;
+; SiteOneGenericVariantProduct:InventoryUPC              ; upcMultiplier                      ; InventoryUPC:inventoryMultiplier                      ;;
+; SiteOneGenericVariantProduct:InventoryUPC              ; upcVendorEDINumber                      ; InventoryUPC:vendorEDINumber                      ;;
+; SiteOneGenericVariantProduct:InventoryUPC              ; upcVendorPartNumber                      ; InventoryUPC:vendorPartNumber                      ;;
+; SiteOneGenericVariantProduct:InventoryUPC              ; upcWeight                      ; InventoryUPC:weight                      ;;
+; SiteOneGenericVariantProduct:InventoryUPC              ; upcLength                      ; InventoryUPC:length                      ;;
+; SiteOneGenericVariantProduct:InventoryUPC              ; upcHeight                      ; InventoryUPC:height                      ;;
+; SiteOneGenericVariantProduct:InventoryUPC              ; upcHidden                      ; InventoryUPC:hideUPCOnline                      ;
+; SiteOneGenericVariantProduct:GenericVariantProduct     ; upcData        ; GenericVariantProduct:upcData        ;SiteOneGenericVariantProduct:InventoryUPC  ;
+; SiteOneGenericVariantProduct:GenericVariantProduct     ; baseUPCCode    ; GenericVariantProduct:runtimeAttribute        ;
+; SiteOneGenericVariantProduct:GenericVariantProduct              ; salientBullets        ; GenericVariantProduct:salientBullets        ;

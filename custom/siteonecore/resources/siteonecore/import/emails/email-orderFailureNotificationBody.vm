@@ -1,0 +1,106 @@
+## messageSource=classpath:/siteonecore/messages/email-orderFailureNotification_$lang.properties
+#macro(genHtmlLinkStartTag $url)
+<a href="$url"><font color="#666666">
+#end
+#macro(genHtmlLinkEndTag)
+</font></a>
+#end
+#macro(genHtmlLink $url $textColor $bodyContent)
+<a href="$url"><font color="$textColor">$bodyContent</font></a>
+#end
+
+<html>
+	<head>
+	</head>
+	<body bgcolor="#ffffff">
+	
+	<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#ffffff">
+	
+		<style>
+	 .eis-logo a img{
+	 width:92px;
+	
+	}
+    </style>
+		<tr>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td align="center" valign="top">
+				<table width="610" border="0" align="center" cellpadding="0" cellspacing="0" bordercolor="#fff">
+					<tr>
+						<td align="center" valign="top" bgcolor="#FFFFFF">
+							<table width="570" cellpadding="0" cellspacing="0" border="0" align="center">
+								<tr>
+									<td valign="middle">&nbsp;</td>
+								</tr>
+								<tr>
+                  <td valign="middle" style="height:73px;">
+
+                    <div class="eis-logo" style="width:92px;display: table-cell;vertical-align: middle;">
+										${ctx.cmsSlotContents.SiteLogo}
+										</div>
+                    <div  style="padding-left:10px;display: table-cell;vertical-align: middle;font-family:Arial;font-weight:bold;font-size:16px;color:#565656;text-transform:uppercase">
+                      SUBMIT ORDER FAILED 
+                    </div>
+									</td>
+								</tr>
+								
+								<tr>
+									<td>&nbsp;</td>
+								</tr>
+								<tr>
+									<td align="left" valign="top" style="padding:30px;">
+
+                                        <p><font style="font-family:Arial;font-weight:regular;font-size:16px;color:#565656;">Environment: ${ctx.environment} </font></p>
+
+                                        <p><font style="font-family:Arial;font-weight:regular;font-size:16px;color:#565656;">Hybris order id: ${ctx.orderNumber} </font></p>
+             
+                                        <p><font style="font-family:Arial;font-weight:regular;font-size:16px;color:#565656;">Placed By: ${ctx.customerNumber} </font></p> 
+                                        
+                                        <p><font style="font-family:Arial;font-weight:regular;font-size:16px;color:#565656;">Placed By GUID: #if(${ctx.order.getUser().getGuid()}) ${ctx.order.getUser().getGuid()} #else Not Found. #end</font></p>                                   
+																			    
+										<p><font style="font-family:Arial;font-weight:regular;font-size:16px;color:#565656;">Contact Person GUID: #if(${ctx.order.getContactPerson().getGuid()}) ${ctx.order.getContactPerson().getGuid()} #else Not Found. #end</font></p>                                   
+																		   
+										<p><font style="font-family:Arial;font-weight:regular;font-size:16px;color:#565656;">Billing Account GUID:  #if(${ctx.order.getUnit().getGuid()}) ${ctx.order.getUnit().getGuid()} #else Not Found. #end</font></p>                                   
+																			
+										<p><font style="font-family:Arial;font-weight:regular;font-size:16px;color:#565656;">Ordering Account GUID: #if(${ctx.order.getOrderingAccount().getGuid()}) ${ctx.order.getOrderingAccount().getGuid()}  #else Not Found. #end </font></p>                                   
+																				
+										<p><font style="font-family:Arial;font-weight:regular;font-size:16px;color:#565656;">Address GUID: #if(${ctx.order.getDeliveryAddress().getGuid()}) ${ctx.order.getDeliveryAddress().getGuid()} #else Not Found. #end </font></p>                                   	
+									   
+									    <p><font style="font-family:Arial;font-weight:regular;font-size:16px;color:#565656;">Log Message : #if(${ctx.logMessage}) ${ctx.logMessage} #else Not Found. #end </font></p>
+									   
+									    <p><font style="font-family:Arial;font-weight:regular;font-size:16px;color:#565656;">Thank you.</font></p>
+										
+									</td>
+								</tr>
+                <tr>
+                  <td>
+                    </br>
+                    </br>
+                    </br>
+                    </br>
+                    </br>
+                    
+                  </td>
+                </tr>
+								<tr>
+									<td><p><font style="font-family:Arial;font-weight:regular;font-size:14px;color:#565656;">This is an automated email message. Please do not reply to this email.</font></p></td>
+								</tr>
+								
+								<tr>
+									<td>&nbsp;</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+		</tr>
+	</table>
+</body>
+</html>
+

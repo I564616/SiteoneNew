@@ -1,0 +1,128 @@
+$contentCatalog=siteoneContentCatalog
+$contentCatalogName=SiteOne Content Catalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$productCatalog=siteoneProductCatalog
+$productCatalogName=SiteOne Product Catalog
+$productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Online'])[unique=true,default=$productCatalog:Online]
+$picture=media(code, $contentCV);
+$image=image(code, $contentCV);
+$media=media(code, $contentCV);
+$page=page(uid, $contentCV);
+$contentPage=contentPage(uid, $contentCV);
+$product=product(code, $productCV)
+$category=category(code, $productCV)
+$siteResource=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/contentCatalogs/$contentCatalog
+$productResource=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/productCatalogs/$productCatalog
+$jarResourceCms=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/cockpits/cmscockpit
+$addonExtensionName=siteoneacceleratoraddon
+$medias=medias(code, $contentCV);
+$articleMedia=articleMedia(code, $contentCV);
+$mediaContainer=media(qualifier, $contentCV);
+$siteUid=siteone
+$lang=en
+
+
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='SiteOneHomePageTemplate'];validComponentTypes(code);compTypeGroup(code)
+;Section1B;;HomePageRotatingBannerComponent,SiteOneHomePageMobileBrandBannerComponent;
+;Section1C;;HomePageRotatingBannerComponent;
+;Section2H;;SiteOneHomePageMobileBrandBannerComponent
+;Section4H1;;SiteOneHomePageTextBannerComponent
+;Section4H2;;SiteOneHomePageTextBannerComponent
+;Section4H3;;SiteOneHomePageTextBannerComponent
+;Section4H4;;SiteOneHomePageBackgroundImageComponent
+;Section4H5;;SiteOneHomePageBackgroundImageComponent
+
+
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef)
+;;Section1BSlot-SiteOneHomePage;Section1B Slot for SiteOneHomePage;true;siteoneCarouselComponent,SiteOneHomePageMobileBrandBannerComponent2
+;;Section1CSlot-SiteOneHomePage;Section1C Slot for SiteOneHomePage;true;siteoneMobileCarouselComponent
+;;Section2HSlot-SiteOneHomePage;Sectio2H Slot for SiteOneHomePage;true;SiteOneHomePageMobileBrandBannerComponent1
+;;Section4H1Slot-SiteOneHomePage;Section4H1 Slot for SiteOneHomePage;true;SiteOneHomePageTextBannerComponent1
+;;Section4H2Slot-SiteOneHomePage;Section4H2 Slot for SiteOneHomePage;true;SiteOneHomePageTextBannerComponent2
+;;Section4H3Slot-SiteOneHomePage;Section4H3 Slot for SiteOneHomePage;true;SiteOneHomePageTextBannerComponent3
+;;Section4H4Slot-SiteOneHomePage;Section4H4 Slot for SiteOneHomePage;true;backgroundImageComponent
+;;Section4H5Slot-SiteOneHomePage;Section4H5 Slot for SiteOneHomePage;true;backgroundImageMobileComponent
+
+
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='siteonehomepage'];contentSlot(uid,$contentCV)[unique=true]
+;;Section1B-SiteOneHomePage;Section1B;;Section1BSlot-SiteOneHomePage
+;;Section1C-SiteOneHomePage;Section1C;;Section1CSlot-SiteOneHomePage
+;;Section2H-SiteOneHomePage;Section2H;;Section2HSlot-SiteOneHomePage
+;;Section4H1-SiteOneHomePage;Section4H1;;Section4H1Slot-SiteOneHomePage
+;;Section4H2-SiteOneHomePage;Section4H2;;Section4H2Slot-SiteOneHomePage
+;;Section4H3-SiteOneHomePage;Section4H3;;Section4H3Slot-SiteOneHomePage
+;;Section4H4-SiteOneHomePage;Section4H4;;Section4H4Slot-SiteOneHomePage
+;;Section4H5-SiteOneHomePage;Section4H5;;Section4H5Slot-SiteOneHomePage
+
+
+INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='image/jpeg'];altText;&imageRef;folder(qualifier)[default='images']
+;;CrslEOPD.jpg;$siteResource/images/banners/homepage/responsive/CrslEOPD.jpg;;;""
+;;CrslHardscapesD.jpg;$siteResource/images/banners/homepage/responsive/CrslHardscapesD.jpg;;;""
+;;CrslTestimonialsD.jpg;$siteResource/images/banners/homepage/responsive/CrslTestimonialsD.jpg;;;""
+;;CrslProTradeD.jpg;$siteResource/images/banners/homepage/responsive/CrslProTradeD.jpg;;;""
+;;CrslEOPM.jpg;$siteResource/images/banners/homepage/responsive/CrslEOPM.jpg;;;""
+;;CrslHardscapesM.jpg;$siteResource/images/banners/homepage/responsive/CrslHardscapesM.jpg;;;""
+;;CrslTestimonialsM.jpg;$siteResource/images/banners/homepage/responsive/CrslTestimonialsM.jpg;;;""
+;;CrslProTradeM.jpg;$siteResource/images/banners/homepage/responsive/CrslProTradeM.jpg;;;""
+;;SDB1es.jpg;$siteResource/images/banners/homepage/responsive/SDB1es.jpg;;;""
+;;SDB1en.jpg;$siteResource/images/banners/homepage/responsive/SDB1en.jpg;;;""
+;;SDB2en.jpg;$siteResource/images/banners/homepage/responsive/SDB2en.jpg;;;""
+;;SDB2es.jpg;$siteResource/images/banners/homepage/responsive/SDB2es.jpg;;;""
+;;whitebox-bg.jpg;$siteResource/images/banners/homepage/responsive/whitebox-bg.jpg;;;""
+;;whitebox-bg-mobile.jpg;$siteResource/images/banners/homepage/responsive/whitebox-bg-mobile.jpg;;;""
+;;HPBF1.jpg;$siteResource/images/banners/homepage/responsive/HPBF1.jpg;;;""
+;;HPBF2.jpg;$siteResource/images/banners/homepage/responsive/HPBF2.jpg;;;""
+;;S1TrioLESCO.jpg;$siteResource/images/banners/homepage/responsive/S1TrioLESCO.jpg;;;""
+;;S1TrioProTradeLighting.jpg;$siteResource/images/banners/homepage/responsive/S1TrioProTradeLighting.jpg;;;""
+;;S1TrioProTradeTools.jpg;$siteResource/images/banners/homepage/responsive/S1TrioProTradeTools.jpg;;;""
+;;S1TrioTurf.jpg;$siteResource/images/banners/homepage/responsive/S1TrioTurf.jpg;;;""
+
+
+INSERT_UPDATE SiteOneStoreDetailsPromoComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef;urlLink;$picture[lang=$lang];promotionalText[lang=en];promotionalText[lang=es];headline[lang=en];headline[lang=es];buttonLabel[lang=en];buttonLabel[lang=es];buttonURL;icon
+;;HomeBannerComponent1;Banner detail1;HomeBannerComponent1;/eop?icid=home-carousel-1-EOP;CrslEOPD.jpg;Early Order Programs are going on now.;Los programas de órdenes anticipados están sucediendo ahora.;ORDER LIKE A PRO;ORDENA COMO UN PROFESIONAL;Learn More;Conoce más;/eop?icid=home-carousel-1-EOP;1
+;;HomeBannerComponent2;Banner detail2;HomeBannerComponent2;/hardscapes?icid=home-carousel-2-hardscapes;CrslHardscapesD.jpg;Backed by the most knowledgeable hardscape experts in your market, SiteOne Stone Center is your source for the finest hardscape and outdoor living materials.;Con el respaldo de los expertos más reconocidos en materiales duros en tu mercado, el SiteOne Stone Center es tu fuente de materiales, duros y para exteriores, de la mayor calidad.;BUILD WITH THE BEST;CONSTRUYE CON EL MEJOR;Learn More;Conoce más;/hardscapes?icid=home-carousel-2-hardscapes;2
+;;HomeBannerComponent3;Banner detail3;HomeBannerComponent3;/testimonials?icid=home-carousel-3-testimonials;CrslTestimonialsD.jpg;Built for speed by landscape professionals for landscape professionals. Hear how customers are getting more done with SiteOne.com.;Construido por profesionales del paisajismo para profesionales del paisajismo y sus necesidades de rapidez. Escucha cómo nuestros clientes hacen más con SiteOne.com.;SiteOne ONLINE;SiteOne EN LÍNEA;Learn More;Conoce más;/testimonials?icid=home-carousel-3-testimonials;3
+;;HomeBannerComponent4;Banner detail4;HomeBannerComponent4;/protrade?icid=home-carousel-4-protrade-lighting;CrslProTradeD.jpg;Pro-Trade Lighting® delivers performance you can count on season after season. Exclusively at SiteOne.;Pro-Trade Lighting® te brinda un desempeño con el que puedes contar temporada tras temporada. Exclusivo de SiteOne.;BUILT TOUGH. PRICED RIGHT.;HECHO PARA RESISTIR. AL PRECIO CORRECTO.;Learn More;Conoce más;/protrade?icid=home-carousel-4-protrade-lighting;4
+;;HomeMobileBannerComponent1;Mobile Banner detail1;HomeMobileBannerComponent1;/eop?icid=home-carousel-1-EOP;CrslEOPM.jpg;Early Order Programs are going on now.;Los programas de órdenes anticipados están sucediendo ahora.;ORDER LIKE A PRO;ORDENA COMO UN PROFESIONAL;Learn More;Conoce más;/eop?icid=home-carousel-1-EOP;1
+;;HomeMobileBannerComponent2;Mobile Banner detail2;HomeMobileBannerComponent2;/hardscapes?icid=home-carousel-2-hardscapes;CrslHardscapesM.jpg;Backed by the most knowledgeable hardscape experts in your market, SiteOne Stone Center is your source for the finest hardscape and outdoor living materials.;Con el respaldo de los expertos más reconocidos en materiales duros en tu mercado, el SiteOne Stone Center es tu fuente de materiales, duros y para exteriores, de la mayor calidad.;BUILD WITH THE BEST;CONSTRUYE CON EL MEJOR;Learn More;Conoce más;/hardscapes?icid=home-carousel-2-hardscapes;2
+;;HomeMobileBannerComponent3;Mobile Banner detail3;HomeMobileBannerComponent3;/testimonials?icid=home-carousel-3-testimonials;CrslTestimonialsM.jpg;Built for speed by landscape professionals for landscape professionals. Hear how customers are getting more done with SiteOne.com.;Construido por profesionales del paisajismo para profesionales del paisajismo y sus necesidades de rapidez. Escucha cómo nuestros clientes hacen más con SiteOne.com.;SiteOne ONLINE;SiteOne EN LÍNEA;Learn More;Conoce más;/testimonials?icid=home-carousel-3-testimonials;3
+;;HomeMobileBannerComponent4;Mobile Banner detail4;HomeMobileBannerComponent4;/protrade?icid=home-carousel-4-protrade-lighting;CrslProTradeM.jpg;Pro-Trade Lighting® delivers performance you can count on season after season. Exclusively at SiteOne.;Pro-Trade Lighting® te brinda un desempeño con el que puedes contar temporada tras temporada. Exclusivo de SiteOne.;BUILT TOUGH. PRICED RIGHT.;HECHO PARA RESISTIR. AL PRECIO CORRECTO.;Learn More;Conoce más;/protrade?icid=home-carousel-4-protrade-lighting;4
+
+INSERT_UPDATE HomePageRotatingBannerComponent;$contentCV[unique=true];uid[unique=true];name;rotatingBanner(&componentRef);&componentRef
+;;siteoneCarouselComponent;Siteone Homepage Component;HomeBannerComponent1,HomeBannerComponent2,HomeBannerComponent3,HomeBannerComponent4;siteoneCarouselComponent
+;;siteoneMobileCarouselComponent;Siteone Mobile Homepage Component;HomeMobileBannerComponent1,HomeMobileBannerComponent2,HomeMobileBannerComponent3,HomeMobileBannerComponent4;siteoneMobileCarouselComponent
+
+INSERT_UPDATE SiteOneBrandBannerComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef;$picture[lang=en];$picture[lang=es];urlLink
+;;SiteOneHomePageBrandBannerComponent1;SiteOne HomePage Brand Banner Component1;SiteOneHomePageBrandBannerComponent1;SDB1en.jpg;SDB1es.jpg;/events?icid=home-sidebar-1
+;;SiteOneHomePageBrandBannerComponent2;SiteOne HomePage Brand Banner Component2;SiteOneHomePageBrandBannerComponent2;SDB2en.jpg;SDB2es.jpg;/testimonials?icid=home-sidebar-2
+;;SiteOneHomePageBrandBannerComponent3;SiteOne HomePage Brand Banner Component3;SiteOneHomePageBrandBannerComponent3;SDB1en.jpg;SDB1es.jpg;/events?icid=home-sidebar-1
+;;SiteOneHomePageBrandBannerComponent4;SiteOne HomePage Brand Banner Component4;SiteOneHomePageBrandBannerComponent4;SDB2en.jpg;SDB2es.jpg;/testimonials?icid=home-sidebar-2
+
+
+
+INSERT_UPDATE SiteOneHomePageTextBannerComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef;title[lang=en];title[lang=es];description[lang=en];description[lang=es];buttonLabel[lang=en];buttonLabel[lang=es];buttonURL
+;;SiteOneHomePageTextBannerComponent1;SiteOne HomePage PromoBanner Component1;SiteOneHomePageTextBannerComponent1;SAVE TIME.</br>SAVE MONEY.;;Request an Online Account today.;;Request Account;;/request-account/form?icid=home-feature1
+;;SiteOneHomePageTextBannerComponent2;SiteOne HomePage PromoBanner Component2;SiteOneHomePageTextBannerComponent2;NEED A LINE OF CREDIT?;;We’re proud to offer line of credit options to help you get the job done.;;;;/openlineofcredit
+;;SiteOneHomePageTextBannerComponent3;SiteOne HomePage PromoBanner Component3;SiteOneHomePageTextBannerComponent3;INTRODUCING 'BUY AGAIN' ON SITEONE.COM;;Reorder your favorite items quickly and easily.;;;;/my-account/buy-again/${sessionShipTo.uid}
+
+
+INSERT_UPDATE SiteOneHomePageBackgroundImageComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef;$picture[lang=$lang]
+;;backgroundImageComponent;background image component;backgroundImageComponent;whitebox-bg.jpg
+;;backgroundImageMobileComponent;background image mobile component;backgroundImageMobileComponent;whitebox-bg-mobile.jpg
+
+
+INSERT_UPDATE SiteOneHomePageMobileBrandBannerComponent;$contentCV[unique=true];uid[unique=true];name;bannerList(&componentRef);&componentRef
+;;SiteOneHomePageMobileBrandBannerComponent1;SiteOne HomePage Mobile Brand Banner Component1;SiteOneHomePageBrandBannerComponent3,SiteOneHomePageBrandBannerComponent4;SiteOneHomePageMobileBrandBannerComponent1
+;;SiteOneHomePageMobileBrandBannerComponent2;SiteOne HomePage Mobile Brand Banner Component2;SiteOneHomePageBrandBannerComponent1,SiteOneHomePageBrandBannerComponent2;SiteOneHomePageMobileBrandBannerComponent2
+
+
+INSERT_UPDATE PromotionBannerComponent;$contentCV[unique=true];uid[unique=true];name;urlLink;&componentRef;title[lang=en];title[lang=es];buttonName[lang=en];buttonName[lang=es];$picture[lang=en];$picture[lang=es]
+;;comp_0000109X;HomeLearnComponent;/articles/Turf-Care?icid=home-bottom-turf-1;comp_0000109X;EVERYTHING YOU NEED TO KNOW ABOUT TURF;TODO LO QUE NECESITA SABER SOBRE CÉSPED;Learn more;Conoce más;HPBF2.jpg;HPBF2.jpg
+;;PartnersProgramComponent1;Partner Program Component;/partnersprogram?icid=home-bottom-partnersprogram-2;PartnersProgramComponent1;EARN PARTNERS PROGRAM POINTS WITH EVERY PURCHASE;GANA PUNTOS DEL PROGRAMA DE SOCIOS CON CADA COMPRA;Learn more;Conoce más;HPBF1.jpg;HPBF1.jpg
+
+INSERT_UPDATE HomePageToolsComponent;$contentCV[unique=true];uid[unique=true];&componentRef;name;urlLink;title[lang=en];title[lang=es];description[lang=en];description[lang=es];$picture[lang=en];$picture[lang=es]
+;;comp_000012KX;comp_000012KX;LESCO;/agronomic-maintenance-fertility-nutrition/c/sh1315110?q=%3Arelevance%3AsoproductBrandNameFacet%3ALESCO&searchtype=product&viewtype=All&Brand=on#?icid=home-trio-lesco-1;UPGRADE WHAT YOU PUT DOWN;ACTUALIZA TU FERTILIZANTE;Advanced, commercial-grade fertilizer from LESCO;Fertilizante Avanzado de grado commercial de LESCO;S1TrioLESCO.jpg;S1TrioLESCO.jpg
+;;ToolsComponent;ToolsComponent;Pro-Trade Tools;/protradetools?icid=home-trio-protradetools-2;PRO-TRADE TOOLS STARTING AT $17.99;HERRAMIENTAS PRO-TRADE DESDE $ 17.99;SiteOne is your one stop for long handle tools;SiteOne es tu nuevo destino para herramientas de mango largo;S1TrioProTradeTools.jpg;S1TrioProTradeTools.jpg
+;;ProTrade-Trio;ProTrade-Trio;Pro-Trade Lighting;/protrade?icid=home-trio-protrade-lighting-3;TRUSTED NIGHT IN AND NIGHT OUT;NOCHE DE CONFIANZA Y SALIDA NOCTURNA;Pro-Trade Lighting® delivers performance you can count on;Pro-Trade Lighting® ofrece un rendimiento en el que puede confiar;S1TrioProTradeLighting.jpg;S1TrioProTradeLighting.jpg

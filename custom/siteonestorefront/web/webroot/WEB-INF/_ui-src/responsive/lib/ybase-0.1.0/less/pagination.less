@@ -1,0 +1,298 @@
+//
+// Pagination (multiple pages)
+// --------------------------------------------------
+
+
+.pagination-wrap {
+	float: right;
+	text-align: right;
+	font-size:10pt;
+
+	@media(max-width: @screen-sm-max){
+		.pagination {
+			width: auto;
+			margin: 0 auto;
+		}
+	}
+}
+
+.pagination {
+	margin: 0;
+	@media screen and (-ms-high-contrast: active), screen and (-ms-high-contrast: none) {  
+		li.active{margin-right:5px;}
+	}
+	> li {
+		
+		display: inline-block;
+
+		> a,
+		> span {
+			position: static;
+			border: none;
+			margin: 0;
+			float: none;
+			display: inline-block;
+			text-decoration:underline;
+			font-weight: normal;
+		}
+
+		&.pagination-prev,
+		&.pagination-next {
+			> a, > span {
+				&:hover,
+				&:focus {
+					color: #5a5b5d;
+				}
+			}
+			&.disabled {
+				> a, > span {
+					&:hover,
+					&:focus {
+						color: @pagination-disabled-color;
+					}
+				}
+			}
+		}
+
+		&.pagination-prev {
+			text-align: left;
+			color:#999;
+			text-decoration:none;
+			line-height: 27pt;
+			@media (max-width: @screen-sm-max) {line-height:32pt;}
+			 margin-right:2px;
+			
+		}
+		&.pagination-next {
+			text-align: right;
+			color: #999;
+			text-decoration:none; 
+			line-height: 27pt;
+			@media (max-width: @screen-sm-max) {line-height:32pt;}
+		}
+		
+	}
+
+	> .active > a,
+	> .active > span {
+		&,
+		&:hover,
+		&:focus {
+			background-color: transparent;
+			border: none;
+			font-weight: @pagination-active-font-weight;
+			text-decoration:none !important;
+			color: #000;
+    		font-weight: bold;
+		}
+	}
+
+	.pagination-size(@pagination-height-base; @pagination-width-base; @pagination-font-size; @grid-gutter-width/4);
+}
+
+@media (max-width: @screen-sm-max) {
+	@button-height: floor((@padding-large-vertical * 2) + (@btn-font-size * @btn-line-height) + (@btn-border-width * 2));
+	.pagination {
+		.pagination-size((@button-height - (@pagination-border-width * 2)); @pagination-width-base; @pagination-font-size; @grid-gutter-width/2);
+	}
+}
+
+@media (max-width: @screen-xs-max) {
+	.pagination {
+		display: table;
+		width: 100%;
+
+		> li {
+			display: table-cell;
+			vertical-align: middle;
+			text-align: center;
+
+			> a,
+			> span {
+				float: none;
+			}
+		}
+		.pagination-size(@pagination-height-large; @pagination-width-large; @pagination-font-size; @grid-gutter-width);
+	}
+
+  .pagination-with-pager .pagination-wrap {
+    float: none;
+  }
+}
+
+
+// Pagination size
+.pagination-size(@pagination-height; @pagination-width; @font-size; @next-prev-offset) {
+	> li {
+		> a,
+		> span {
+			line-height: @pagination-height;
+			padding: 0;
+			text-align: center;
+
+			@media(max-width: @screen-sm-max) {
+				padding-left: 15px;
+			}
+		}
+		&.pagination-prev {
+			padding-right: 10px;
+		}
+
+		&.pagination-next {
+			padding-left: 10px;
+	  	}
+	}
+}
+
+.pageType-CategoryPage .pagination-bar.top, .page-searchGrid .pagination-bar.top , .pageType-ContentPage .cplp-pagination , .template-pages-layout-siteOneCuratedPlpLayout .pagination-bar.top{
+	.pagination-wrap { display: none; }
+	.sort-refine-bar .short-option { float: right; margin: 0px; padding: 0px; }
+	.sortSelectSpan { 
+		float: right;
+		select {
+			background-color: #fff;
+			border-radius: 40px;
+			min-width: 155px;
+			height: 30px;
+			font-size: 14px;
+			font-weight: 400;
+			font-style: italic;
+			color: #9e9e9e;
+			padding: 5px 12px;
+			option {
+				color: #999999;
+				font-style: normal;
+			}
+		} 
+	}
+}
+
+.pageType-CategoryPage .pagination-bar.bottom, .page-searchGrid .pagination-bar.bottom , .pageType-ContentPage .cplp-pagination{
+	.short-option { display: none; }
+	.pagination-wrap {
+		display: block;
+		margin: 0 auto;
+		float: none;
+		text-align: center;
+	}
+	.pagination {
+		margin: 0 auto;
+	}
+}
+
+.pageType-CategoryPage .pagination-bar, .page-searchGrid .pagination-bar , .pageType-ContentPage .cplp-pagination{
+	.itemCount, .pageSizeDropDown { display: none; }
+}
+
+// Pagination Search/PLP
+
+.pageType-CategoryPage .pagination, .page-searchGrid .pagination, .pageType-ContentPage .cplp-pagination {
+	li {
+		background: #FFF;
+		border: 1px solid #999;
+		width: 35px;
+		height: 35px;
+		text-align: center;
+		margin: 0px -3px;
+		padding: 0px;
+		a {
+			color: #78a22f;
+			@media(max-width: @screen-sm-max) {
+				padding-left: 0px;
+			}
+		}
+		&.active {
+			background-color: #78a22f;
+			a { color: #FFF; }
+		}
+		&.pagination-prev, &.pagination-next {
+			background-color: transparent;
+			border: 0px;
+			font-weight: bold;
+			font-size: 20px;
+			a { text-decoration: none; }
+		}
+		span {
+			@media(max-width: @screen-sm-max) {
+				padding-left: 0px;
+			}
+		}
+	}
+}
+
+// mobile pagination
+.page-accountOrdersPage {
+.pagination li:nth-last-child(2){display:none;
+@media(max-width: @screen-sm-max) {display:inline-block !important;}
+@media(max-width: @screen-xs-max) {display:table-cell !important;}
+}
+.empty-pagination{display:none !important;
+@media(max-width: @screen-sm-max) {display:inline-block !important;}
+@media(max-width: @screen-xs-max) {display:table-cell !important;}
+}
+.pagination{
+@media(max-width: @screen-sm-max) {
+	li {
+		background: #FFF;
+		border: 1px solid #999;
+		width: 35px;
+		height: 35px;
+		text-align: center;
+		margin: 0px -3px;
+		padding: 0px;
+		a {
+			color: #78a22f;
+			@media(max-width: @screen-sm-max) {
+				padding-left: 0px;
+				line-height:normal;
+			}
+		}
+		&.active {
+			background-color: #78a22f;
+			a { color: #FFF; }
+			span{width:100%;}
+		}
+		&.pagination-prev, &.pagination-next {
+			background-color: transparent;
+			border: 0px;
+			font-weight: bold;
+			font-size: 20px;
+			a { text-decoration: none; }
+		}
+		span {
+			@media(max-width: @screen-sm-max) {
+				padding-left: 0px;
+			}
+		}
+	}
+  }
+ }
+}
+
+.cplp-pagination {
+    text-align: center;
+    
+    .pagination {
+
+		> li {
+			vertical-align: middle;
+		}
+	
+	}
+}
+.cplp-showmoreitems{
+
+	.btn-showmore {
+	    border-radius: 17px;
+	    color: #50a0c5;
+	    background-color: #FFFFFF;
+	    font-size: 14px;
+	    font-family: Arial-BoldMT, Arial;
+	    font-weight: 700;
+	    border-radius: 25px;
+	    padding: 10px 15px;
+	    line-height: 1.375;
+	    border: none;
+		box-shadow: 0 1px 10px #e0e0e0;
+	}
+}

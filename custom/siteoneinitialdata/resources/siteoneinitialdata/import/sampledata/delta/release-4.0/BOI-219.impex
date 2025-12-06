@@ -1,0 +1,32 @@
+
+$jarEmailResource=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/coredata/contentCatalogs/siteoneContentCatalog/emails
+
+# Import config properties into impex macros for modulegen
+UPDATE GenericItem[processor=de.hybris.platform.commerceservices.impex.impl.ConfigPropertyImportProcessor];pk[unique=true]
+$emailResource=$config-emailResourceValue
+# Language
+$lang=en
+
+UPDATE RendererTemplate;code[unique=true];description[lang=$lang];templateScript[lang=$lang,translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+;SiteOne_Email_OrderReadyForPickUp_Body;"Order Ready For PickUp Template";$emailResource/email-orderReadyOrScheduledEmailBody.vm
+;SiteOne_Email_OrderScheduledForDelivery_Body;"Order Scheduled For Delivery Template";$emailResource/email-orderReadyOrScheduledEmailBody.vm
+;powertools_Email_Order_Confirmation_Body;"Order Confirmation Email Body";$emailResource/email-orderConfirmationBody.vm
+;siteone_Email_Ready_For_Pickup_Body;"Ready For Pickup Email Body";$emailResource/email-readyForPickupBody.vm
+;siteone_Email_Invoice_Details_Body;"Invoice Details Template";$emailResource/email-invoiceDetailsEmailBody.vm
+;siteone_Email_Send_Order_Detail_Body;"Send Order Detail Email Template";$emailResource/email-orderDetailEmailBody.vm
+
+$jarEmailResource=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/coredata/contentCatalogs/siteoneContentCatalog/emails
+
+# Import config properties into impex macros for modulegen
+UPDATE GenericItem[processor=de.hybris.platform.commerceservices.impex.impl.ConfigPropertyImportProcessor];pk[unique=true]
+$emailResource=$config-emailResourceValue
+# Language
+$lang=es
+
+UPDATE RendererTemplate;code[unique=true];description[lang=$lang];templateScript[lang=$lang,translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+;SiteOne_Email_OrderReadyForPickUp_Body;"Order Ready For PickUp Template";$emailResource/email-orderReadyOrScheduledEmailBody.vm
+;SiteOne_Email_OrderScheduledForDelivery_Body;"Order Scheduled For Delivery Template";$emailResource/email-orderReadyOrScheduledEmailBody.vm
+;powertools_Email_Order_Confirmation_Body;"Order Confirmation Email Body";$emailResource/email-orderConfirmationBody.vm
+;siteone_Email_Ready_For_Pickup_Body;"Ready For Pickup Email Body";$emailResource/email-readyForPickupBody.vm
+;siteone_Email_Invoice_Details_Body;"Invoice Details Template";$emailResource/email-invoiceDetailsEmailBody.vm
+;siteone_Email_Send_Order_Detail_Body;"Send Order Detail Email Template";$emailResource/email-orderDetailEmailBody.vm

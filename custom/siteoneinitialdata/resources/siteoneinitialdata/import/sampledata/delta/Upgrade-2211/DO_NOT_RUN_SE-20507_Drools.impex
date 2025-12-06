@@ -1,0 +1,195 @@
+import de.hybris.platform.promotionengineservices.model.RuleBasedPromotionModel
+import de.hybris.platform.promotions.model.PromotionResultModel
+import de.hybris.platform.ruleengine.model.AbstractRuleEngineRuleModel
+import de.hybris.platform.tx.Transaction
+import org.apache.commons.collections.CollectionUtils
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+
+import com.google.common.collect.ImmutableMap
+import com.google.common.collect.ImmutableSet
+import de.hybris.platform.servicelayer.config.ConfigurationService;
+import de.hybris.platform.core.Registry
+import de.hybris.platform.ruleengineservices.compiler.impl.DefaultRuleCompilerService
+import de.hybris.platform.ruleengineservices.model.AbstractRuleModel
+import de.hybris.platform.servicelayer.interceptor.impl.InterceptorExecutionPolicy
+import de.hybris.platform.servicelayer.search.FlexibleSearchQuery
+import de.hybris.platform.servicelayer.search.SearchResult
+import de.hybris.platform.servicelayer.search.FlexibleSearchService
+import de.hybris.platform.servicelayer.model.ModelService
+import de.hybris.platform.ruleengine.model.DroolsRuleModel
+import de.hybris.platform.servicelayer.session.SessionExecutionBody
+import de.hybris.platform.servicelayer.session.SessionService
+import org.slf4j.LoggerFactory
+
+Transaction.current().commit()
+
+def log = LoggerFactory.getLogger("promotion-fix-groovy-script")
+
+Date startedAt = new Date();
+log.error("   ------------------------------\nNew execution of PromotionSourceRules upgrade script - started at: " + startedAt + "------------------------------")
+
+int resultPageSize = 50
+// NOTE: Keeping this low to prevent script from crashing - means MULTIPLE RUNS may be necessary.
+long maxToRemove = 2000
+long fiveMinutesInMilliseconds = 300000
+
+FlexibleSearchService flexibleSearchService = (FlexibleSearchService) Registry.getApplicationContext().getBean("flexibleSearchService")
+ModelService modelService = Registry.getApplicationContext().getBean("modelService") as ModelService
+DefaultRuleCompilerService ruleCompilerService = Registry.getApplicationContext().getBean("ruleCompilerService") as DefaultRuleCompilerService
+ConfigurationService configurationService = Registry.getApplicationContext().getBean("configurationService") as ConfigurationService
+SessionService sessionService = Registry.getApplicationContext().getBean("sessionService") as SessionService
+
+String env = configurationService.getConfiguration().getString("sap.deployment.environment")
+long nextEmailTime = new Date().getTime() + fiveMinutesInMilliseconds
+
+List<String> csvOutputLines = new ArrayList()
+
+FlexibleSearchQuery query = new FlexibleSearchQuery("select {r.pk} from {DroolsRule as r} "
+        + "where {r.currentVersion}=1 and {r.active}=1 and ({r.ruleContent} like '%OrderConsumedRAO%' or {r.ruleContent} like '%ProductRAO%' or {r.ruleContent} like '%CategoryRAO%' or {r.ruleContent} like '%ProductConsumedRAO%' or {r.ruleContent} like '%CartRAO%')")
+
+query.setNeedTotal(true)
+query.setCount(resultPageSize)
+
+
+long initialTotal = 1
+long total = 1
+long counter = 0
+long loop = 0
+long totalRemoved = 0
+
+Set<AbstractRuleModel> promotions = new HashSet<>()
+// Map (promotion source rule, rule based promotion) both associated to the same DroolsRuleModel
+Map<AbstractRuleModel, RuleBasedPromotionModel> ruleBasedPromotionMap = new HashMap<>()
+
+// This will loop to a maximum
+while (total > 0 && totalRemoved < maxToRemove) {
+    loop++
+
+    query.setStart(0) // set the starting point
+    SearchResult<DroolsRuleModel> searchResult = flexibleSearchService.<DroolsRuleModel>search(query)
+
+    total = searchResult.getTotalCount() // total might be changing while we are querying the system
+
+    log.error("  total number of old promotions: {}", total)
+
+    if (initialTotal == 1 && total == 0) {
+        // Nothing to do
+        log.error("   PromotionSourceRules upgrade script on " + env + " started at: " + startedAt + " was executed but it has nothing to do.")
+        return "Nothing to do"
+    }
+    if (initialTotal == 1) {
+        initialTotal = total
+    }
+    
+    log.error("  Initial number of rules found: " + initialTotal + ", total rules found on last query: " + total);
+    
+    counter = counter + searchResult.getResult().size()
+    log.error("  Loop: " + loop + ", counter: " + counter + ", total: " + total + ", initial total: " + initialTotal)
+
+    List<DroolsRuleModel> toRemove = new ArrayList()
+    for (DroolsRuleModel ruleModel : searchResult.getResult()) {
+        //log.error("  Marking ruleModel '" + ruleModel.getCode() + "' for removal...");
+        toRemove.add(ruleModel)
+        if (ruleModel.getSourceRule() != null) {
+            promotions.add(ruleModel.getSourceRule())
+
+            // Save the rule based promotions to adjust the data of already applied promos
+            if (ruleModel.getPromotion() != null) {
+                ruleBasedPromotionMap.put(ruleModel.getSourceRule(), ruleModel.getPromotion())
+            }
+        }
+        csvOutputLines.add(ruleModel.getCode() + "," + ruleModel.getRuleGroupCode() + "," + ruleModel.getVersion())
+        totalRemoved++
+        if (totalRemoved >= maxToRemove) {
+            break
+        }
+    }
+    log.error("  toRemoveSize: " + toRemove.size())
+    //log.error("To remove: " + toRemove.size())
+    if (total != 0) {
+        final Map<String, Object> params = ImmutableMap.of(InterceptorExecutionPolicy.DISABLED_INTERCEPTOR_TYPES,
+                ImmutableSet.of(InterceptorExecutionPolicy.InterceptorType.REMOVE))
+        sessionService.executeInLocalViewWithParams(params, new SessionExecutionBody() {
+            @Override
+            void executeWithoutResult() {
+                String msg = "";
+                for (DroolsRuleModel ruleModel :toRemove) {
+                    msg = msg + "\n- " + ruleModel.getCode();
+                }
+                log.error("  Removing:" + msg);
+
+                for (DroolsRuleModel ruleModel :toRemove) {
+                    try {
+                        modelService.remove(ruleModel)
+                    } catch (Exception e) {
+                        log.error("  Error removing '"+ ruleModel.getCode() + "' - " + e.getMessage())
+                    }
+                }
+                log.error("  Removed.");
+            }
+        })
+    }
+    
+    // Long running script so notify via email at intervals
+    long currentTime = new Date().getTime()
+    if (currentTime > nextEmailTime) {
+        log.error("  UPDATE: This is an update for the long running PromotionSourceRules upgrade script on " + env + " (started at: " + startedAt + ").\nThis notification is a timed notification to provide feedback as to the running status of the script and a report of its progress.\nCurrently processing " + initialTotal + " DroolsRuleModels that have removed or deprecated RAOs in ruleContent.\nTotal DroolsRuleModels removed so far: " + totalRemoved + ", number of items left to remove: " + (total - searchResult.getResult().size()) + ".\nMaximum DroolsRuleModels in this execution of the script is limited to " + maxToRemove + ".\nItems deleted so far:");
+
+        csvOutputLines.add(0, "code,ruleGroup,ruleModelVersion");
+
+        csvOutputLines = new ArrayList()
+
+        nextEmailTime = currentTime + fiveMinutesInMilliseconds;
+    }
+}
+
+log.error( "  Finished removing DroolsRuleModels, next re-compile promotions:" + promotions.size() + ".")
+log.error( "Finished removing DroolsRuleModels, next re-compile promotions: " + promotions.size() + ".")
+
+for (int i = 0; i< promotions.size(); i++) {
+    // Generate DroolsRuleModel with compiled rule code and a RuleBasedPromotionModel associated to it
+    AbstractRuleModel abstractRuleModel = promotions[i]
+    log.error("  Compiling promo [{}], [{} of {}]", abstractRuleModel.code, i, promotions.size())
+    ruleCompilerService.compile(abstractRuleModel, "promotions-module")
+
+    // Associate the new RuleBasedPromotionModel to the PromotionResultModel of carts/orders the promotion was applied to before the script
+    RuleBasedPromotionModel oldRuleBasedPromotion = ruleBasedPromotionMap.get(abstractRuleModel) // Old rule based promotion model
+
+    query = new FlexibleSearchQuery("select {pk} from {PromotionResult} "
+            + "where {promotion}=" + oldRuleBasedPromotion.getPk().toString()) // Obtain all PromotionResults associated to that old rule based promotion
+
+    SearchResult<PromotionResultModel> promotionResultSearchResult = flexibleSearchService.<PromotionResultModel>search(query)
+    log.error("  Number of promotionresults for promo [{}]: [{}]", abstractRuleModel.code, promotionResultSearchResult.totalCount)
+    if (CollectionUtils.isNotEmpty(promotionResultSearchResult.getResult())) {// Its empty if the promotion was never applied
+        DroolsRuleModel droolsRuleModel = null
+        for (AbstractRuleEngineRuleModel abstractRuleEngineRuleModel : abstractRuleModel.getEngineRules()) {
+            if (((DroolsRuleModel)abstractRuleEngineRuleModel).getCurrentVersion() && ((DroolsRuleModel)abstractRuleEngineRuleModel).getActive()) {
+                droolsRuleModel = (DroolsRuleModel)abstractRuleEngineRuleModel // The new DroolsRuleModel
+                break;
+            }
+        }
+
+        if (droolsRuleModel != null) {
+            for (PromotionResultModel promotionResultModel : promotionResultSearchResult.getResult()) {
+                promotionResultModel.setPromotion(droolsRuleModel.getPromotion()) // Apply the new rule based promotion to promotion results
+                modelService.save(promotionResultModel)
+            }
+        }
+    }
+    modelService.remove(oldRuleBasedPromotion)
+}
+
+log.error("  The PromotionSourceRules upgrade script (started at: " + startedAt + ") is complete on " + env + ".\nFINAL REPORT:\nFound " + initialTotal + " DroolsRuleModels that have removed or deprecated RAOs in ruleContent.\nMaximum DroolsRuleModels in this execution of the script is limited to " + maxToRemove + "\nTotal DroolsRuleModels removed: " + totalRemoved + "\nDroolsRuleModels deleted since the last update are shown below. If no previous notification was exists, all deleted items are contained here.")
+
+csvOutputLines.add(0, "code,ruleGroup,ruleModelVersion")
+
+log.error("  \n------------------------------\nEnd of PromotionSourceRules upgrade script.\n------------------------------")
+
+Transaction.current().begin()
+
+String getStoreEnv() {
+    return configurationService.getConfiguration().getString("sap.deployment.environment");
+}

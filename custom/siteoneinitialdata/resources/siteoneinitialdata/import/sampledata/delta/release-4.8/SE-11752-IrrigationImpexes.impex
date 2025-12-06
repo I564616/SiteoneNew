@@ -1,0 +1,192 @@
+
+##------------------ Irrigation Impexes for PTH-90 ------------------
+
+##------------------ NEW CATEGORIES
+
+## --- Primary Hierarchy ---
+## Define supercategories and catalogVersion 
+$supercategories=supercategories(code, catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Staged']));;;;;;;;;
+$catalogVersion=catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Staged'])[unique=true,default='siteoneProductCatalog:Staged'];;;;;;;;;;;;;;;;;;
+
+## Irrigation>Fountains & Aerators>Liners
+## Irrigation>Fountains & Aerators>Pumps
+## Irrigation>Fountains & Aerators>Waterfall Kits
+## Create Level 3 category
+INSERT_UPDATE Category;code[unique=true];name[lang=en];$supercategories;$catalogVersion;allowedPrincipals(uid)
+;PH1419113;Liners;PH1419;siteoneProductCatalog:Staged;admingroup
+;PH1419114;Pumps;PH1419;siteoneProductCatalog:Staged;admingroup
+;PH1419115;Waterfall Kits;PH1419;siteoneProductCatalog:Staged;admingroup
+
+## Irrigation>Ponds & Pond Equipment
+## Create level 2 category
+;PH1433;Ponds & Pond Equipment;PH14;siteoneProductCatalog:Staged;admingroup
+
+
+## --- Sales Hierarchy ---
+## Define supercategories and catalogVersion 
+$supercategories=supercategories(code, catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Staged']));;;;;;;;;
+$catalogVersion=catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Staged'])[unique=true,default='siteoneProductCatalog:Staged'];;;;;;;;;;;;;;;;;;
+
+## Irrigation>Fountains & Aerators>Liners
+## Irrigation>Fountains & Aerators>Pumps
+## Irrigation>Fountains & Aerators>Waterfall Kits
+## Create Level 3 category
+INSERT_UPDATE Category;code[unique=true];name[lang=en];$supercategories;$catalogVersion;allowedPrincipals(uid)
+;SH1419113;Liners;SH1419;siteoneProductCatalog:Staged;admingroup
+;SH1419114;Pumps;SH1419;siteoneProductCatalog:Staged;admingroup
+;SH1419115;Waterfall Kits;SH1419;siteoneProductCatalog:Staged;admingroup
+
+## Irrigation>Ponds & Pond Equipment
+## Create level 2 category
+;SH1433;Ponds & Pond Equipment;SH14;siteoneProductCatalog:Staged;admingroup
+
+
+##----------------------------------------------------------------------------------------------
+
+## Primary hierarchy - Sales hierarchy Mapping
+$productCatalog=siteoneProductCatalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+INSERT_UPDATE category;code[unique=true];salescategorymapping;$catalogVersion;
+;PH1419113;SH1419113;
+;PH1419114;SH1419114;
+;PH1419115;SH1419115;
+;PH1433;SH1433;
+
+
+##----------------------------------------------------------------------------------------------
+
+## Classifying Class creation
+INSERT_UPDATE classificationclass;code[unique=true];name[lang=en];catalogVersion(catalog(id),version);;;;;
+;CH01_1419113;Product Details;siteoneClassification:1;;;;;
+;CH01_1419114;Product Details;siteoneClassification:1;;;;;
+;CH01_1419115;Product Details;siteoneClassification:1;;;;;
+;CH01_1433;Product Details;siteoneClassification:1;;;;;
+
+
+$productCatalog=siteoneProductCatalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+INSERT_UPDATE classificationclass;code[unique=true];name[lang=en];$catalogVersion;;;;;
+;CH01_1419;Product Details;siteoneClassification:1;;;;;
+
+
+##----------------------------------------------------------------------------------------------
+
+## Class attribute assignment
+
+$classCatalogVersion=catalogversion(catalog(id[default='siteoneClassification']),version[default='1'])[unique=true,default='siteoneClassification:1']
+$classSystemVersion=systemversion(catalog(id[default='siteoneClassification']),version[default='1'])[unique=true,default='siteoneClassification:1']
+
+INSERT_UPDATE classAttributeAssignment;classificationAttribute(code,$classSystemVersion)[unique=true];attributeType(code);classificationClass(code,$classCatalogVersion)[unique=true];attributeValues(code)[mode=append];multiValued(code);mandatory(code);formatDefinition
+
+## Liners
+##;irgItem;string;CH01_1419113;;false;false;30;
+;irgType;string;CH01_1419113;;false;false;30;
+;irgSeries;string;CH01_1419113;;false;false;30;
+;irgColor;string;CH01_1419113;;false;false;30;
+;irgDimensions;string;CH01_1419113;;false;false;30;
+;irgConnectionSize;string;CH01_1419113;;false;false;30;
+;irgLength;string;CH01_1419113;;false;false;30;
+;irgVoltageRating;string;CH01_1419113;;false;false;30;
+;irgWidth;string;CH01_1419113;;false;false;30;
+;irgHPRating;string;CH01_1419113;;false;false;30;
+;irgThickness;string;CH01_1419113;;false;false;30;
+;irgSuitableForUseWith;string;CH01_1419113;;false;false;30;
+;irgWattageRating;string;CH01_1419113;;false;false;30;
+;irgWeight;string;CH01_1419113;;false;false;30;
+;irgIncludes;string;CH01_1419113;;false;false;30;
+
+## Pumps
+##;irgItem;string;CH01_1419114;;false;false;30;
+;irgType;string;CH01_1419114;;false;false;30;
+;irgSeries;string;CH01_1419114;;false;false;30;
+;irgColor;string;CH01_1419114;;false;false;30;
+;irgDimensions;string;CH01_1419114;;false;false;30;
+;irgConnectionSize;string;CH01_1419114;;false;false;30;
+;irgLength;string;CH01_1419114;;false;false;30;
+;irgVoltageRating;string;CH01_1419114;;false;false;30;
+;irgWidth;string;CH01_1419114;;false;false;30;
+;irgHPRating;string;CH01_1419114;;false;false;30;
+;irgThickness;string;CH01_1419114;;false;false;30;
+;irgSuitableForUseWith;string;CH01_1419114;;false;false;30;
+;irgWattageRating;string;CH01_1419114;;false;false;30;
+;irgWeight;string;CH01_1419114;;false;false;30;
+;irgIncludes;string;CH01_1419114;;false;false;30;
+
+## Waterfall Kits
+##;irgItem;string;CH01_1419115;;false;false;30;
+;irgType;string;CH01_1419115;;false;false;30;
+;irgSeries;string;CH01_1419115;;false;false;30;
+;irgColor;string;CH01_1419115;;false;false;30;
+;irgDimensions;string;CH01_1419115;;false;false;30;
+;irgConnectionSize;string;CH01_1419115;;false;false;30;
+;irgLength;string;CH01_1419115;;false;false;30;
+;irgVoltageRating;string;CH01_1419115;;false;false;30;
+;irgWidth;string;CH01_1419115;;false;false;30;
+;irgHPRating;string;CH01_1419115;;false;false;30;
+;irgThickness;string;CH01_1419115;;false;false;30;
+;irgSuitableForUseWith;string;CH01_1419115;;false;false;30;
+;irgWattageRating;string;CH01_1419115;;false;false;30;
+;irgWeight;string;CH01_1419115;;false;false;30;
+;irgIncludes;string;CH01_1419115;;false;false;30;
+
+
+## Ponds & Pond Equipment
+##;irgItem;string;CH01_1433;;false;false;30;
+;irgType;string;CH01_1433;;false;false;30;
+;irgSeries;string;CH01_1433;;false;false;30;
+;irgColor;string;CH01_1433;;false;false;30;
+;irgDimensions;string;CH01_1433;;false;false;30;
+;irgConnectionSize;string;CH01_1433;;false;false;30;
+;irgLength;string;CH01_1433;;false;false;30;
+;irgVoltageRating;string;CH01_1433;;false;false;30;
+;irgWidth;string;CH01_1433;;false;false;30;
+;irgHPRating;string;CH01_1433;;false;false;30;
+;irgThickness;string;CH01_1433;;false;false;30;
+;irgSuitableForUseWith;string;CH01_1433;;false;false;30;
+;irgWattageRating;string;CH01_1433;;false;false;30;
+;irgWeight;string;CH01_1433;;false;false;30;
+;irgIncludes;string;CH01_1433;;false;false;30;
+
+
+##----------------------------------------------------------------------------------------------
+
+##--e with Staged catalog version 
+$productCatalog=siteoneProductCatalog
+$catalogVersion=catalogversion(catalog(id[default='siteoneProductCatalog']),version[default='Staged'])[unique=true,default='siteoneProductCatalog:Staged']
+$classCatalogVersion=catalogversion(catalog(id[default='siteoneClassification']),version[default='1'])[unique=true,default='siteoneClassification:1']
+$supercategories=source(code, $classCatalogVersion)[unique=true]
+$categories=target(code, $catalogVersion)[unique=true]
+INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories
+;PH1419113;CH01_1419113;
+;PH1419114;CH01_1419114;
+;PH1419115;CH01_1419115;
+;PH1433;CH01_1433;
+
+
+##----------------------------------------------------------------------------------------------
+
+##------------------------------------- OK
+##--e with online catalog version 
+$productCatalog=siteoneProductCatalog
+$catalogVersion=catalogversion(catalog(id[default='siteoneProductCatalog']),version[default='Online'])[unique=true,default='siteoneProductCatalog:Online']
+$classCatalogVersion=catalogversion(catalog(id[default='siteoneClassification']),version[default='1'])[unique=true,default='siteoneClassification:1']
+$supercategories=source(code, $classCatalogVersion)[unique=true]
+$categories=target(code, $catalogVersion)[unique=true]
+INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories
+;PH1419113;CH01_1419113;
+;PH1419114;CH01_1419114;
+;PH1419115;CH01_1419115;
+;PH1433;CH01_1433;
+
+
+##-----------------------------------------------------------------------------------
+##--f
+
+$classCatalogVersion=catalogversion(catalog(id[default='siteoneClassification']),version[default='1'])[unique=true,default='siteoneClassification:1']
+$supercategories=source(code, $classCatalogVersion)[unique=true]
+$categories=target(code, $classCatalogVersion)[unique=true]
+INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories
+;CH01_1419113;CH01_1419;
+;CH01_1419114;CH01_1419;
+;CH01_1419115;CH01_1419;
+;CH01_1433;CH01_14;

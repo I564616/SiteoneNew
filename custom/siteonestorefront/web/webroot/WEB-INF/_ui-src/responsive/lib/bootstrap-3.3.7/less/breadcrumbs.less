@@ -1,0 +1,30 @@
+//
+// Breadcrumbs
+// --------------------------------------------------
+
+
+.breadcrumb {
+  margin-bottom: @line-height-computed;
+  list-style: none;
+  background-color:#fafafa;
+  border-radius: @border-radius-base;
+
+  > li {
+    display: inline-block;
+	 color: @btn-primary-bg;
+    + li:before {
+      //content: "@{breadcrumb-separator}\00a0"; // Unicode space added since inline-block means non-collapsing white-space
+      //padding: 0 5px;
+      content: "/" !important;
+      color:  #ccc;
+      margin: 0px 2px;
+      @media(max-width: @screen-sm-max) {margin: 0px !important;}
+    }
+  }
+	>li:last-child{color:#b6b5b5;
+    	a{color:#b6b5b5 !important;}
+    }
+  > .active {
+    color: @btn-primary-bg;
+  }
+}

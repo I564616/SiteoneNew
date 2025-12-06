@@ -1,0 +1,49 @@
+##----------------------------------------------------------------------------------------------
+
+##--e with Staged catalog version 
+$productCatalog=siteoneProductCatalog
+$catalogVersion=catalogversion(catalog(id[default='siteoneProductCatalog']),version[default='Staged'])[unique=true,default='siteoneProductCatalog:Staged']
+$classCatalogVersion=catalogversion(catalog(id[default='siteoneClassification']),version[default='1'])[unique=true,default='siteoneClassification:1']
+$supercategories=source(code, $classCatalogVersion)[unique=true]
+$categories=target(code, $catalogVersion)[unique=true]
+INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories
+;PH1516112;CH01_1516112;
+;PH1516110;CH01_1516110;
+;PH1516111;CH01_1516111;
+;PH1516113;CH01_1516113;
+;PH1518110;CH01_1518110;
+;PH1518111;CH01_1518111;
+;PH1518112;CH01_1518112;
+;PH1517114;CH01_1517114;
+;PH1517110;CH01_1517110;
+;PH1517111;CH01_1517111;
+;PH1517113;CH01_1517113;
+;PH1517116;CH01_1517116;
+;PH1517115;CH01_1517115;
+
+
+
+
+##----------------------------------------------------------------------------------------------
+
+##------------------------------------- OK
+##--e with online catalog version 
+$productCatalog=siteoneProductCatalog
+$catalogVersion=catalogversion(catalog(id[default='siteoneProductCatalog']),version[default='Online'])[unique=true,default='siteoneProductCatalog:Online']
+$classCatalogVersion=catalogversion(catalog(id[default='siteoneClassification']),version[default='1'])[unique=true,default='siteoneClassification:1']
+$supercategories=source(code, $classCatalogVersion)[unique=true]
+$categories=target(code, $catalogVersion)[unique=true]
+INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories
+;PH1516112;CH01_1516112;
+;PH1516110;CH01_1516110;
+;PH1516111;CH01_1516111;
+;PH1516113;CH01_1516113;
+;PH1518110;CH01_1518110;
+;PH1518111;CH01_1518111;
+;PH1518112;CH01_1518112;
+;PH1517114;CH01_1517114;
+;PH1517110;CH01_1517110;
+;PH1517111;CH01_1517111;
+;PH1517113;CH01_1517113;
+;PH1517116;CH01_1517116;
+;PH1517115;CH01_1517115;

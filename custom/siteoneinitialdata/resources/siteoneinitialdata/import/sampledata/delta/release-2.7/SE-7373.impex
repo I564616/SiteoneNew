@@ -1,0 +1,29 @@
+INSERT_UPDATE Script; code[unique = true]              ; content
+                    ; generateMissingB2BUnitPathScript ; "import de.hybris.platform.servicelayer.search.FlexibleSearchQuery
+
+flexibleSearchService = spring.getBean ""flexibleSearchService""
+orgUnitHierarchyService = spring.getBean ""orgUnitHierarchyService""
+siteOneB2BUnitService = spring.getBean ""defaultSiteOneB2BUnitService""
+
+println ""Update Traversal unit path for Parent unit"";
+def findB2BUnitWithoutPath() {
+query = new FlexibleSearchQuery(""SELECT {pk} FROM {B2BUnit} WHERE {path} IS NULL"")
+
+flexibleSearchService.search(query).result
+}
+findB2BUnitWithoutPath().each {
+mainAccount = siteOneB2BUnitService.getMainAccountForUnit(it.getUid())
+orgUnitHierarchyService.saveChangesAndUpdateUnitPath(mainAccount)
+println Main = ""Main Account = "" + mainAccount.getUid() + ""  ####  New path for "" + it.getUid()
+}"
+
+INSERT_UPDATE ScriptingJob; code[unique = true]           ; scriptURI
+                          ; generateMissingB2BUnitPathJob ; model://generateMissingB2BUnitPathScript
+
+
+INSERT_UPDATE CronJob; code[unique = true]               ; job(code)                     ; sessionLanguage(isocode)[default = en]
+                     ; generateMissingB2BUnitPathCronJob ; generateMissingB2BUnitPathJob ; en
+
+
+INSERT_UPDATE Trigger; cronJob(code)[unique = true]; cronExpression; relative; active; maxAcceptableDelay
+                     ; generateMissingB2BUnitPathCronJob ; 0 15 6,13,19 * * ?  ; false   ; true  ; -1

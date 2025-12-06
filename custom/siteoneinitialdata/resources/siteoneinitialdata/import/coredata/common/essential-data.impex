@@ -1,0 +1,157 @@
+# -----------------------------------------------------------------------
+# [y] hybris Platform
+#
+# Copyright (c) 2017 SAP SE or an SAP affiliate company.  All rights reserved.
+#
+# This software is the confidential and proprietary information of SAP
+# ("Confidential Information"). You shall not disclose such Confidential
+# Information and shall use it only in accordance with the terms of the
+# license agreement you entered into with SAP.
+# -----------------------------------------------------------------------
+# Import essential data for the Accelerator
+#
+# Includes:
+# * Languages
+# * Currencies
+# * Titles
+# * Vendors
+# * Warehouses
+# * Supported Credit/Debit cards
+# * User Groups
+# * DistanceUnits for Storelocator
+# * MediaFolders
+# * MediaFormats
+# * Tax & Tax Groups
+# * Jobs
+
+# Languages
+INSERT_UPDATE Language;isocode[unique=true];fallbackLanguages(isocode);active[default=true]
+;en;;;
+
+
+
+# Currencies
+INSERT_UPDATE Currency;isocode[unique=true];conversion;digits;symbol
+;USD;1,4;2;$
+
+
+# Vendor
+INSERT_UPDATE Vendor;code[unique=true];name
+;default;Default Vendor
+;siteone;SiteOne
+
+# Disable preview for email pages
+UPDATE CMSPageType;code[unique=true];previewDisabled
+;EmailPage;true
+
+# Titles
+INSERT_UPDATE Title;code[unique=true];name
+ ;2;Owner, Partner
+ ;3;Office Manager, Supervisor
+ ;4;Foreman, Crew Leader, Superintendent
+ ;5;Office Staff
+ ;6;Buyer
+ ;7;Crew Member
+ ;8;Directory of Agronomy
+ ;9;Director of GC Maintenance
+ ;10;Assistant Superintendent
+ ;11;Controller
+ ;12;Other
+ ;13;Guarantor
+ ;14;Estimator
+
+# Media Folders
+INSERT_UPDATE MediaFolder;qualifier[unique=true];path[unique=true]
+;images;images
+;email-body;email-body
+;email-attachments;email-attachments
+;documents;documents
+
+# Media formats
+#INSERT_UPDATE MediaFormat;qualifier[unique=true]
+#;1200Wx1200H
+#;515Wx515H
+#;365Wx246H
+#;300Wx300H
+#;96Wx96H
+#;65Wx65H
+#;30Wx30H
+
+# Tax & Tax Groups
+INSERT_UPDATE UserTaxGroup;code[unique=true]
+;us-taxes
+;ca-taxes
+
+INSERT_UPDATE ProductTaxGroup;code[unique=true]
+;us-sales-tax-full
+;ca-sales-tax-full
+
+INSERT_UPDATE Tax;code[unique=true];value;currency(isocode)
+;us-sales-tax-full;0
+;ca-sales-tax-full;0
+
+INSERT_UPDATE ServicelayerJob;code[unique=true];springId[unique=true]
+;cartRemovalJob;cartRemovalJob
+;siteMapMediaJob;siteMapMediaJob
+
+# Deactivate Frontend Restriction on category by default for perfomance purposes
+UPDATE SearchRestriction;code[unique=true];active[default=false]
+;Frontend_RestrictedCategory
+;branch_restriction
+;employee_restriction
+
+#Search Restrictions | Migration - Query Change
+INSERT_UPDATE SearchRestriction;code[unique=true];name[lang=en];query;principal(UID);restrictedType(code);active;generate
+#;order_restriction_hana;Order Restriction Hana;DAYS_BETWEEN (TO_TIMESTAMP ({creationtime}), TO_TIMESTAMP (NOW())) <= 730;b2bgroup;Order;true;true
+#;invoice_restriction_hana;Invoice Restriction Hana;DAYS_BETWEEN (TO_TIMESTAMP ({invoicedDate}), TO_TIMESTAMP (NOW())) <= 730 or  {status} = ( {{  select {pk}  from {InvoiceStatus} where {code}='UNPAID' }} );b2bgroup;SiteOneInvoice;true;true
+;order_restriction_hana;Order Restriction Hana;DATEDIFF (DAY,CONVERT(datetime,{creationtime}), SYSDATETIME()) <= 730;b2bgroup;Order;true;true
+;invoice_restriction_hana;Invoice Restriction Hana;DATEDIFF (DAY,CONVERT(datetime,{invoicedDate}), SYSDATETIME()) <= 730 or  {status} = ( {{  select {pk}  from {InvoiceStatus} where {code}='UNPAID' }} );b2bgroup;SiteOneInvoice;true;true
+;dummy_customer_restriction;Dummy Customer Restriction;{uid} NOT LIKE 'storecontact%';b2bgroup;B2BCustomer;true;true
+;duplicate_order;Duplicate Order;{code} NOT LIKE '%_bak';b2bgroup;Order;true;true
+
+
+
+$defaultPassword=1234;
+$readableCatalogVersions=readableCatalogVersions(catalog(id),version);
+
+INSERT_UPDATE UserGroup;UID[unique=true];locname[lang=en];hmcLoginDisabled[default='false'];groups(uid);backOfficeLoginDisabled[default='false'];$readableCatalogVersions;
+;ReadOnlyGroup;Read Only Group;;"hac_platform_tenants,
+hac_platform_system,
+hac_platform_extensions,
+hac_platform_configuration_limited,
+hac_platform_system,
+hac_platform_logging,
+hac_platform_extensions,
+hac_platform_sqlscripts,
+hac_platform_license,
+hac_platform_support,
+hac_platform_pkanalyzer,
+hac_platform_classpathanalyzer,
+hac_maintenance_cleanup,
+hac_maintenance_encryptionkeys,
+hac_maintenance_deployment,
+hac_monitoring_cache,
+hac_monitoring_cluster,
+hac_monitoring_database,
+hac_monitoring_cronjobs,
+hac_monitoring_jmx,
+hac_monitoring_memory,
+hac_monitoring_threaddump,
+hac_monitoring_performance,
+hac_monitoring_transactiontracking,
+hac_console_scriptinglanguages,
+hac_console_flexiblesearch,
+hac_console_impexexport,
+hac_console_ldap";;;;;
+
+INSERT_UPDATE Usergroup;UID[unique=true];$readableCatalogVersions;
+;ReadOnlyGroup;siteoneProductCatalog:Staged,siteoneProductCatalog:Online,siteoneContentCatalog:Staged,siteoneContentCatalog:Online;
+
+$START_USERRIGHTS;;;;;;;;;
+Type;UID;MemberOfGroups;Password;Target;read;change;create;remove;change_perm
+UserGroup;ReadOnlyGroup;;;;;;;;
+;;;;Item;+;-;-;-;
+$END_USERRIGHTS;;;;;
+
+INSERT_UPDATE Employee;uid[unique=true];name;password[default=$defaultPassword];groups(uid)[mode=append]
+;ReadOnlyUser;Read Only user;;;

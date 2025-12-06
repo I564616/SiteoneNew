@@ -1,0 +1,13 @@
+$productCatalog=siteoneProductCatalog
+$lang=en
+
+#Cronjob Impex
+INSERT_UPDATE CategoryProductCountCronJob;code[unique=true];job(code)[default=categoryProductCountCronJob];sessionLanguage(isoCode)[default=en]
+;categoryProductCountCronJob
+
+INSERT_UPDATE Trigger;cronJob(code)[unique=true];cronExpression;relative;active;maxAcceptableDelay
+;categoryProductCountCronJob;0 04 00 * * ?;false;true;-1
+
+INSERT_UPDATE ServicelayerJob; code[unique=true];springid[unique=true]
+;categoryProductCountCronJob;categoryProductCountCronJob;
+

@@ -1,0 +1,8 @@
+INSERT_UPDATE ServicelayerJob; code[unique=true];springid[unique=true]
+;siteoneCleanUpImpexMediaCronJob;SiteoneCleanUpImpexMediaCronJob;
+
+INSERT_UPDATE SiteoneCleanUpImpexMediaCronJob;code[unique=true];job(code)[default=siteoneCleanUpImpexMediaCronJob];sessionLanguage(isoCode)[default=en]
+;siteoneCleanUpImpexMediaCronJob
+
+INSERT_UPDATE Trigger;Cronjob(code)[unique=true];cronExpression;active[default=true]
+;siteoneCleanUpImpexMediaCronJob;0 0 8 1/1 * ? *

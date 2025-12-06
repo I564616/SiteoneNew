@@ -1,0 +1,9 @@
+
+INSERT_UPDATE IntegrationObjectItemAttribute; integrationObjectItem(integrationObject(code), code)[unique = true]; attributeName[unique = true]; attributeDescriptor(enclosingType(code), qualifier); returnIntegrationObjectItem(integrationObject(code), code); unique[default = false]
+; SiteOneProduct:Product              ; baseUPCCode        ; Product:baseUPCCode        ;
+; SiteOneProduct:Product              ; productKind        ; Product:productKind        ;
+; SiteOneGenericVariantProduct:GenericVariantProduct     ; baseUPCCode    ; GenericVariantProduct:baseUPCCode        ;
+; SiteOneGenericVariantProduct:GenericVariantProduct              ; productKind        ;GenericVariantProduct:productKind        ;
+
+
+ 

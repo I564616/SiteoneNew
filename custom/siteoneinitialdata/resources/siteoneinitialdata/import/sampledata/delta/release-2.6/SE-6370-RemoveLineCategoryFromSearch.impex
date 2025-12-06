@@ -1,0 +1,14 @@
+###################################################################
+### Impex for SE-6370 - Line and Category: Requesting removal of fields from search ###
+###################################################################
+
+$solrIndexedType=siteoneProductType
+
+# Non-facet properties for event page
+INSERT_UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true];name[unique=true];ftsPhraseQuery[default=false];ftsQuery[default=false];ftsFuzzyQuery[default=false];ftsWildcardQuery[default=false]
+                                 ;$solrIndexedType                        ;socategoryName   ;                             ;                       ;                            ;
+
+# Non-facet properties
+INSERT_UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true];name[unique=true];useForSpellchecking[default=false];useForAutocomplete[default=false]
+                                 ;$solrIndexedType                        ;soname           ;                                  ;
+                                 ;$solrIndexedType                        ;socategoryName   ;                                  ;

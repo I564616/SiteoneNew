@@ -1,0 +1,11 @@
+INSERT_UPDATE IntegrationObjectItemAttribute; integrationObjectItem(integrationObject(code), code)[unique = true]; attributeName[unique = true]; attributeDescriptor(enclosingType(code), qualifier); returnIntegrationObjectItem(integrationObject(code), code); unique[default = false]
+; SiteOneGenericVariantProduct:SiteOneOwnersManual	; code  ; SiteOneOwnersManual:code	;; true	; 
+; SiteOneGenericVariantProduct:SiteOneInstallationInstructions	; code  ; SiteOneInstallationInstructions:code	;; true	;
+; SiteOneGenericVariantProduct:SiteOneTechnicalDrawing	; code  ; SiteOneTechnicalDrawing:code	;; true	;
+; SiteOneGenericVariantProduct:SiteOneWarrantyInformation	; code  ; SiteOneWarrantyInformation:code	;; true	;
+; SiteOneGenericVariantProduct:SiteOneBrochures	; code  ; SiteOneBrochures:code	;; true	; 
+; SiteOneGenericVariantProduct:SiteOneProductTransformation	; code  ; SiteOneProductTransformation:code	;; true	; 
+; SiteOneGenericVariantProduct:SiteOnePartsDiagram	; code  ; SiteOnePartsDiagram:code	;; true	;
+; SiteOneGenericVariantProduct:SiteOneProductSpecificationSheet	; code  ; SiteOneProductSpecificationSheet:code	;; true	; 
+; SiteOneGenericVariantProduct:SiteOneProductLabelSheet	; code  ; SiteOneProductLabelSheet:code	;; true	;
+; SiteOneGenericVariantProduct:SiteOneProductSafetyDataSheet	; code  ; SiteOneProductSafetyDataSheet:code	;; true	;

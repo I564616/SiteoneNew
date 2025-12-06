@@ -1,0 +1,25 @@
+$contentCatalog=siteoneContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$jarEmailResource=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/coredata/contentCatalogs/siteoneContentCatalog/emails
+$wideContent=CMSImageComponent,BannerComponent
+
+# Import config properties into impex macros for modulegen
+UPDATE GenericItem[processor=de.hybris.platform.commerceservices.impex.impl.ConfigPropertyImportProcessor];pk[unique=true]
+$emailResource=$config-emailResourceValue
+$jarResourceCms=$config-jarResourceCmsValue
+$emailPackageName=$config-emailContextPackageName
+
+#############################Points For Equipment Email###############
+
+INSERT_UPDATE RendererTemplate;code[unique=true];contextClass;rendererType(code)[default='velocity']
+;siteone_Kount_Decline_Email_Subject;$emailPackageName.KountDeclineEmailContext
+;siteone_Kount_Decline_Email_Body;$emailPackageName.KountDeclineEmailContext
+
+# Email page Template
+
+INSERT_UPDATE EmailPageTemplate;$contentCV[unique=true];uid[unique=true];name;active;frontendTemplateName;subject(code);htmlTemplate(code);restrictedPageTypes(code)
+;;KountDeclineEmailTemplate;Kount Decline Email Template;true;kountDeclineEmail;siteone_Kount_Decline_Email_Subject;siteone_Kount_Decline_Email_Body;EmailPage
+
+
+UPDATE EmailPageTemplate;$contentCV[unique=true];uid[unique=true];velocityTemplate[translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+;;KountDeclineEmailTemplate;$jarResourceCms/structure-view/structure_kountDeclineEmailTemplate.vm

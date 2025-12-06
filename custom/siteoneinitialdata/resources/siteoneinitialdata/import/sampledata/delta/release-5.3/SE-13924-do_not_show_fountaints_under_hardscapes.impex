@@ -1,0 +1,11 @@
+$productCatalog=siteoneProductCatalog
+
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+
+INSERT_UPDATE category;code[unique=true];salescategorymapping;$catalogVersion;
+
+;PH1419110;SH1419110
+
+;PH1419111;SH1419111
+
+;PH1419112;SH1419112

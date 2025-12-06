@@ -1,0 +1,11 @@
+ext {
+	libraries = []
+}
+libraries << "javax.ws.rs:javax.ws.rs-api:2.0"
+libraries << "javax.xml.soap:javax.xml.soap-api:1.4.0"
+libraries << "javax.xml.bind:jaxb-api:2.3.0"
+libraries << "com.sun.xml.messaging.saaj:saaj-impl:1.5.0"
+libraries << "javax.xml.ws:jaxws-api:2.2.6"
+libraries << "com.lowagie:itext:2.1.7"
+libraries << "org.jvnet.staxex:stax-ex:1.8.2"
+libraries << "org.owasp.esapi:esapi:2.2.2.0"

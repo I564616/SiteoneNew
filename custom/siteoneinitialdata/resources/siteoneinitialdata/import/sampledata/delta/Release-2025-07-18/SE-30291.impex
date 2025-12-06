@@ -1,0 +1,100 @@
+$contentCatalog=siteoneContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$wideContent=CMSImageComponent,BannerComponent
+$jarEmailResource=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/coredata/contentCatalogs/siteoneContentCatalog/emails
+
+# Import modulegen config properties into impex macros
+UPDATE GenericItem[processor=de.hybris.platform.commerceservices.impex.impl.ConfigPropertyImportProcessor];pk[unique=true]
+$jarResourceCms=$config-jarResourceCmsValue
+$emailPackageName=$config-emailContextPackageName
+$emailResource=$config-emailResourceValue
+
+
+INSERT_UPDATE RendererTemplate;code[unique=true];contextClass;rendererType(code)[default='velocity']
+;siteone_Quote_To_Order_Confirmation_Email_Subject;$emailPackageName.QuoteToOrderStatusEmailContext
+;siteone_Quote_To_Order_Confirmation_Email_Body;$emailPackageName.QuoteToOrderStatusEmailContext
+
+# Email page Template
+INSERT_UPDATE EmailPageTemplate;$contentCV[unique=true];uid[unique=true];name;active;frontendTemplateName;subject(code);htmlTemplate(code);restrictedPageTypes(code)
+;;QuoteToOrderStatusEmailTemplate;Quote To Order Email Template;true;quoteToOrderStatusEmail;siteone_Quote_To_Order_Confirmation_Email_Subject;siteone_Quote_To_Order_Confirmation_Email_Body;EmailPage
+
+# Templates for CMS Cockpit Page Edit
+UPDATE EmailPageTemplate;$contentCV[unique=true];uid[unique=true];velocityTemplate[translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+;;QuoteToOrderStatusEmailTemplate;$jarResourceCms/structure-view/mobile/structure_quoteToOrderStatusEmailTemplate.vm
+
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='QuoteToOrderStatusEmailTemplate'];validComponentTypes(code)
+;SiteLogo;;;logo
+;TopContent;;$wideContent;
+;BottomContent;;$wideContent;
+
+# Bind Content Slots to Email Page Templates
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='QuoteToOrderStatusEmailTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;SiteLogo-quoteToOrderStatusEmail;SiteLogo;;EmailSiteLogoSlot;true
+;;TopContent-quoteToOrderStatusEmail;TopContent;;EmailTopSlot;true
+;;BottomContent-quoteToOrderStatusEmail;BottomContent;;EmailBottomSlot;true
+
+# Email Pages
+INSERT_UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);defaultPage;approvalStatus(code)[default='approved']
+;;quoteToOrderStatusEmail;Quote To Order Status Email;QuoteToOrderStatusEmailTemplate;true
+
+UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];previewImage(code, $contentCV)
+;;quoteToOrderStatusEmail;EmailPageModel_preview
+
+# CMS components and Email velocity templates
+UPDATE RendererTemplate;code[unique=true];description[lang=en];templateScript[lang=en,translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+;siteone_Quote_To_Order_Confirmation_Email_Subject;"Quote To Order Status Email Subject";$emailResource/email-quoteToOrderStatusEmailSubject.vm
+;siteone_Quote_To_Order_Confirmation_Email_Body;"Quote To Order Status Email Body";$emailResource/email-quoteToOrderStatusEmailBody.vm
+
+UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];fromEmail[lang=en];fromName[lang=en]
+;;quoteToOrderStatusEmail;"customersupport@ec.siteone.com";"SiteOne"
+###### Staged End ######
+
+$contentCatalog=siteoneContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Online])[default=$contentCatalog:Online]
+$wideContent=CMSImageComponent,BannerComponent
+$jarEmailResource=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/coredata/contentCatalogs/siteoneContentCatalog/emails
+
+# Import modulegen config properties into impex macros
+UPDATE GenericItem[processor=de.hybris.platform.commerceservices.impex.impl.ConfigPropertyImportProcessor];pk[unique=true]
+$jarResourceCms=$config-jarResourceCmsValue
+$emailPackageName=$config-emailContextPackageName
+$emailResource=$config-emailResourceValue
+
+INSERT_UPDATE RendererTemplate;code[unique=true];contextClass;rendererType(code)[default='velocity']
+;siteone_Quote_To_Order_Confirmation_Email_Subject;$emailPackageName.QuoteToOrderStatusEmailContext
+;siteone_Quote_To_Order_Confirmation_Email_Body;$emailPackageName.QuoteToOrderStatusEmailContext
+
+# Email page Template
+INSERT_UPDATE EmailPageTemplate;$contentCV[unique=true];uid[unique=true];name;active;frontendTemplateName;subject(code);htmlTemplate(code);restrictedPageTypes(code)
+;;QuoteToOrderStatusEmailTemplate;Quote To Order Email Template;true;quoteToOrderStatusEmail;siteone_Quote_To_Order_Confirmation_Email_Subject;siteone_Quote_To_Order_Confirmation_Email_Body;EmailPage
+
+# Templates for CMS Cockpit Page Edit
+UPDATE EmailPageTemplate;$contentCV[unique=true];uid[unique=true];velocityTemplate[translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+;;QuoteToOrderStatusEmailTemplate;$jarResourceCms/structure-view/mobile/structure_quoteToOrderStatusEmailTemplate.vm
+
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='QuoteToOrderStatusEmailTemplate'];validComponentTypes(code)
+;SiteLogo;;;logo
+;TopContent;;$wideContent;
+;BottomContent;;$wideContent;
+
+# Bind Content Slots to Email Page Templates
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='QuoteToOrderStatusEmailTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;SiteLogo-quoteToOrderStatusEmail;SiteLogo;;EmailSiteLogoSlot;true
+;;TopContent-quoteToOrderStatusEmail;TopContent;;EmailTopSlot;true
+;;BottomContent-quoteToOrderStatusEmail;BottomContent;;EmailBottomSlot;true
+
+# Email Pages
+INSERT_UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);defaultPage;approvalStatus(code)[default='approved']
+;;quoteToOrderStatusEmail;Quote To Order Status Email;QuoteToOrderStatusEmailTemplate;true
+
+UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];previewImage(code, $contentCV)
+;;quoteToOrderStatusEmail;EmailPageModel_preview
+
+# CMS components and Email velocity templates
+UPDATE RendererTemplate;code[unique=true];description[lang=en];templateScript[lang=en,translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+;siteone_Quote_To_Order_Confirmation_Email_Subject;"Quote To Order Status Email Subject";$emailResource/email-quoteToOrderStatusEmailSubject.vm
+;siteone_Quote_To_Order_Confirmation_Email_Body;"Quote To Order Status Email Body";$emailResource/email-quoteToOrderStatusEmailBody.vm
+
+UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];fromEmail[lang=en];fromName[lang=en]
+;;quoteToOrderStatusEmail;"customersupport@ec.siteone.com";"SiteOne"
+###### Online End ######

@@ -1,0 +1,5 @@
+
+/* SE-29355 - Feature switch for Bulk Big Bag */
+
+INSERT_UPDATE SiteOneFeatureSwitch;key[unique=true];longvalue
+;BulkBigBag;172

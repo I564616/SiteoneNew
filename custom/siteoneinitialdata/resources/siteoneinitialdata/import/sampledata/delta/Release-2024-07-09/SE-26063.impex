@@ -1,0 +1,12 @@
+INSERT_UPDATE SiteOneFeatureSwitch;key[unique=true];value
+;DCShippingFeeBranches;8201|6.99,8200|6.99
+
+INSERT_UPDATE PointOfService;StoreId[unique=true];shippingHubBranches(storeId)
+;5;8201
+;437;8201
+;739;8201
+;140;8201
+;318;8201
+;134;8200
+;153;8200
+;458;8200

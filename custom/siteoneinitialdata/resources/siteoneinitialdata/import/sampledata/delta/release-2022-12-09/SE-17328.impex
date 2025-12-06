@@ -1,0 +1,63 @@
+$contentCatalog=siteoneContentCatalog
+$contentCatalogName=SiteOne Content Catalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$productCatalog=siteoneProductCatalog
+$productCatalogName=SiteOne Product Catalog
+$productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$picture=media(code, $contentCV);
+$image=image(code, $contentCV);
+$media=media(code, $contentCV);
+$page=page(uid, $contentCV);
+$contentPage=contentPage(uid, $contentCV);
+$product=product(code, $productCV)
+$category=category(code, $productCV)
+$siteResource=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/contentCatalogs/$contentCatalog
+$productResource=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/productCatalogs/$productCatalog
+$jarResourceCms=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/cockpits/cmscockpit
+$addonExtensionName=siteoneacceleratoraddon
+$medias=medias(code, $contentCV);
+$articleMedia=articleMedia(code, $contentCV);
+$mediaContainer=media(qualifier, $contentCV);
+$siteUid=siteone
+$lang=en
+
+
+UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];title[lang=$lang]
+;;order-approval-dashboard;"Order Approval Dashboard Page"
+;;order-approval-details;"Order Approval Details Page"
+
+###### Account order approval dashboard Start ######
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='order-approval-dashboard'];contentSlot(uid,$contentCV)[unique=true];;;
+;;SideContent-order-approval-dashboard;SideContent;;SideContent-order-approval-dashboard;;;
+;;BodyContent-order-approval-dashboard;BodyContent;;BodyContent-order-approval-dashboard;;;
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef);;;
+;;SideContent-order-approval-dashboard;Side Content Slot for Account order approval dashbaord;true;;;;
+;;BodyContent-order-approval-dashboard;Body Content Slot for Account order approval dashbaord;true;AccountOrderApprovalDashboardComponent;;;
+
+INSERT_UPDATE JspIncludeComponent;$contentCV[unique=true];uid[unique=true];name;page;actions(uid,$contentCV);&componentRef
+;;AccountOrderApprovalDashboardComponent;Account OrderApproval Dashboard Component;/WEB-INF/views/addons/siteoneacceleratoraddon/responsive/pages/account/accountOrderApprovalDashboardPage.jsp;;AccountOrderApprovalDashboardComponent
+###### Account order approval dashboard End ######
+
+
+
+###### Account order approval details Start ######
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='order-approval-details'];contentSlot(uid,$contentCV)[unique=true];;;
+;;SideContent-order-approval-details;SideContent;;SideContent-order-approval-details;;;
+;;BodyContent-order-approval-details;BodyContent;;BodyContent-order-approval-details;;;
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef);;;
+;;SideContent-order-approval-details;Side Content Slot for Account order approval details;true;;;;
+;;BodyContent-order-approval-details;Body Content Slot for Account order approval details;true;AccountOrderApprovalDetailsHeadlineComponent,AccountOrderApprovalDetailsOverviewComponent,AccountOrderApprovalDetailsComponent,AccountOrderDetailsItemsComponent,AccountOrderDetailsTotalsComponent,AccountOrderApprovalDetailsBottomActionsComponent;;;
+
+INSERT_UPDATE JspIncludeComponent;$contentCV[unique=true];uid[unique=true];name;page;actions(uid,$contentCV);&componentRef
+;;AccountOrderApprovalDetailsHeadlineComponent;Account OrderApproval Details Headline Component;/WEB-INF/views/addons/siteoneacceleratoraddon/responsive/pages/account/accountOrderApprovalDetailHeadline.jsp;;AccountOrderApprovalDetailsHeadlineComponent
+;;AccountOrderApprovalDetailsOverviewComponent;Account OrderApproval Details Overview Component;/WEB-INF/views/addons/siteoneacceleratoraddon/responsive/pages/account/accountOrderDetailOverview.jsp;ApproveOrderAction;AccountOrderApprovalDetailsOverviewComponent
+;;AccountOrderApprovalDetailsComponent;Account Order Approval Details Component;/WEB-INF/views/addons/siteoneacceleratoraddon/responsive/pages/account/accountOrderApprovalDetailsPage.jsp;;AccountOrderApprovalDetailsComponent
+;;AccountOrderApprovalDetailsBottomActionsComponent;Account Order Approval Details Bottom Actions Component;/WEB-INF/views/addons/siteoneacceleratoraddon/responsive/pages/account/accountOrderApprovalDetailBottomActions.jsp;ApproveOrderAction;AccountOrderApprovalDetailsBottomActionsComponent
+;;AccountOrderDetailsTotalsComponent;Account Order Details Order Totals Component;accountOrderDetailOrderTotals.jsp;;AccountOrderDetailsTotalsComponent
+;;AccountOrderDetailsItemsComponent;Account Order Details Items Info Component;/WEB-INF/views/addons/siteoneacceleratoraddon/responsive/pages/account/accountOrderDetailItems.jsp;;AccountOrderDetailsItemsComponent
+
+INSERT_UPDATE ApproveOrderAction;$contentCV[unique=true];uid[unique=true];url;name;&actionRef
+;;ApproveOrderAction;/my-account/order/approvalDecision;Accept Order Action;ApproveOrderAction
+###### Account order approval details End ######

@@ -1,0 +1,3 @@
+INSERT_UPDATE SearchRestriction;code[unique=true];name[lang=en];query;principal(UID);restrictedType(code);active;generate
+;invoice_restriction_hana;Invoice Restriction Hana;DAYS_BETWEEN (TO_TIMESTAMP ({invoicedDate}), TO_TIMESTAMP (NOW())) <= 730 or {amountdue} not like '0';b2bgroup;SiteOneInvoice;true;true
+

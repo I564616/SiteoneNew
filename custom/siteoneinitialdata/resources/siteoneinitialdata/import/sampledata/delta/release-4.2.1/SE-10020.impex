@@ -1,0 +1,2 @@
+INSERT_UPDATE CatalogVersionSyncJob;code[unique=true];rootTypes(code)[mode=append];
+;sync siteoneContentCatalog:Staged->Online;CxCmsAction

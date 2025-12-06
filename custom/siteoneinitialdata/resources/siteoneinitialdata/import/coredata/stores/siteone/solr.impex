@@ -1,0 +1,380 @@
+# -----------------------------------------------------------------------
+# [y] hybris Platform
+#
+# Copyright (c) 2017 SAP SE or an SAP affiliate company.  All rights reserved.
+#
+# This software is the confidential and proprietary information of SAP
+# ("Confidential Information"). You shall not disclose such Confidential
+# Information and shall use it only in accordance with the terms of the
+# license agreement you entered into with SAP.
+# -----------------------------------------------------------------------
+#
+# Import the Solr configuration for the SiteOne store
+#
+$contentCatalog=siteoneContentCatalog
+$productCatalog=siteoneProductCatalog
+$catalogVersions=catalogVersions(catalog(id),version);
+$serverConfigName=siteoneSolrServerConfig
+$indexConfigName=siteoneSolrIndexConfig
+$searchConfigName=siteonePageSize
+$facetSearchConfigName=siteoneIndex
+$facetSearchConfigDescription=SiteOne Solr Index
+$searchIndexNamePrefix=siteone
+$solrIndexedType=siteoneProductType
+$indexBaseSite=siteone
+$indexLanguages=en
+$indexCurrencies=USD
+
+$solrContentSearchIndexedType=siteoneContentSearchType
+$contentSearchConfigName=contentSearchIndex
+$contentSearchConfigDescription=Content Search Solr Index
+
+$solrEventSearchIndexedType=siteoneEventSearchType
+$eventSearchConfigName=eventSearchIndex
+$eventSearchConfigDescription=Event Search Solr Index
+
+$solrListSearchIndexedType=siteoneListSearchType
+$listSearchConfigName=listSearchIndex
+$listSearchConfigDescription=List Search Solr Index
+
+
+#
+# Setup the Solr server, indexer, and search configs
+#
+
+# Create the solr server configuration
+INSERT_UPDATE SolrServerConfig;name[unique=true];mode(code)
+;$serverConfigName;standalone
+
+INSERT_UPDATE SolrEndpointUrl;solrServerConfig(name)[unique=true];url[unique=true];master[unique=true,default=false]
+#;$serverConfigName;http://localhost:8983/solr;true
+
+# Create the solr indexer configuration
+INSERT_UPDATE SolrIndexConfig;name[unique=true];batchSize;numberOfThreads;indexMode(code);ignoreErrors
+;$indexConfigName;2000;4;DIRECT;true
+
+# Create the faceted search configuration
+INSERT_UPDATE SolrSearchConfig;description[unique=true];pageSize
+;$searchConfigName;24
+
+
+#
+# Setup the indexed types, their properties, and the update queries
+#
+
+# Declare the indexed type Product
+INSERT_UPDATE SolrIndexedType;identifier[unique=true];type(code);variant;sorts(&sortRefID)
+#;$solrIndexedType;Product;false;sortRef1,sortRef2,sortRef3,sortRef4,sortRef5,sortRef6
+;$solrIndexedType;Product;false;
+
+# Declare the indexed type Content
+INSERT_UPDATE SolrIndexedType;identifier[unique=true];type(code);variant;sorts(&sortRefID)
+;$solrContentSearchIndexedType;ContentPage;false;sortRef7,sortRef8,sortRef9
+
+# Declare the indexed type Event
+INSERT_UPDATE SolrIndexedType;identifier[unique=true];type(code);variant;sorts(&sortRefID)
+;$solrEventSearchIndexedType;SiteOneEvent;false;sortRef10
+
+# Declare the indexed type List
+INSERT_UPDATE SolrIndexedType;identifier[unique=true];type(code);variant;sorts(&sortRefID)
+;$solrListSearchIndexedType;Wishlist2Entry;false;sortRef11
+
+# Declare the indexed type Content(ContentPage)
+INSERT_UPDATE SolrIndexedType;identifier[unique=true];type(code);variant;
+;$solrContentSearchIndexedType;ContentPage;false;
+
+# Declare the indexed type Event(EventPage)
+INSERT_UPDATE SolrIndexedType;identifier[unique=true];type(code);variant;
+;$solrEventSearchIndexedType;SiteOneEvent;false;
+
+# Declare the indexed type List(ListPage)
+INSERT_UPDATE SolrIndexedType;identifier[unique=true];type(code);variant;
+;$solrListSearchIndexedType;Wishlist2Entry;false;
+
+INSERT_UPDATE SolrFacetSearchConfig;name[unique=true];description;indexNamePrefix;languages(isocode);currencies(isocode);solrServerConfig(name);solrSearchConfig(description);solrIndexConfig(name);solrIndexedTypes(identifier);enabledLanguageFallbackMechanism;$catalogVersions
+;$facetSearchConfigName;$facetSearchConfigDescription;$searchIndexNamePrefix;$indexLanguages;$indexCurrencies;$serverConfigName;$searchConfigName;$indexConfigName;$solrIndexedType;true;$productCatalog:Online,$productCatalog:Staged
+
+INSERT_UPDATE SolrFacetSearchConfig;name[unique=true];description;indexNamePrefix;languages(isocode);currencies(isocode);solrServerConfig(name);solrSearchConfig(description);solrIndexConfig(name);solrIndexedTypes(identifier);enabledLanguageFallbackMechanism;$catalogVersions
+;$contentSearchConfigName;$contentSearchConfigDescription;$searchIndexNamePrefix;$indexLanguages;$indexCurrencies;$serverConfigName;$searchConfigName;$indexConfigName;$solrContentSearchIndexedType;true;$contentCatalog:Online,$contentCatalog:Staged
+
+INSERT_UPDATE SolrFacetSearchConfig;name[unique=true];description;indexNamePrefix;languages(isocode);currencies(isocode);solrServerConfig(name);solrSearchConfig(description);solrIndexConfig(name);solrIndexedTypes(identifier);enabledLanguageFallbackMechanism;$catalogVersions
+;$eventSearchConfigName;$eventSearchConfigDescription;$searchIndexNamePrefix;$indexLanguages;$indexCurrencies;$serverConfigName;$searchConfigName;$indexConfigName;$solrEventSearchIndexedType;true;$contentCatalog:Online,$contentCatalog:Staged
+
+INSERT_UPDATE SolrFacetSearchConfig;name[unique=true];description;indexNamePrefix;languages(isocode);currencies(isocode);solrServerConfig(name);solrSearchConfig(description);solrIndexConfig(name);solrIndexedTypes(identifier);enabledLanguageFallbackMechanism;$catalogVersions
+;$listSearchConfigName;$listSearchConfigDescription;$searchIndexNamePrefix;$indexLanguages;$indexCurrencies;$serverConfigName;$searchConfigName;$indexConfigName;$solrListSearchIndexedType;true;$contentCatalog:Online,$contentCatalog:Staged
+
+UPDATE BaseSite;uid[unique=true];solrFacetSearchConfiguration(name)
+;$indexBaseSite;$facetSearchConfigName
+
+# Define price range set
+INSERT_UPDATE SolrValueRangeSet;name[unique=true];qualifier;type;solrValueRanges(&rangeValueRefID)
+;siteonePriceRangeUSD;USD;double;rangeRefUSD1,rangeRefUSD2,rangeRefUSD3,rangeRefUSD4,rangeRefUSD5
+
+# Define price ranges
+INSERT_UPDATE SolrValueRange;&rangeValueRefID;solrValueRangeSet(name)[unique=true];name[unique=true];from;to
+;rangeRefUSD1;siteonePriceRangeUSD;      $0-$49.99;   0;  49.99
+;rangeRefUSD2;siteonePriceRangeUSD;    $50-$199.99;  50; 199.99
+;rangeRefUSD3;siteonePriceRangeUSD;   $200-$499.99; 200; 499.99
+;rangeRefUSD4;siteonePriceRangeUSD;   $500-$999.99; 500; 999.99
+;rangeRefUSD5;siteonePriceRangeUSD;$1,000-$100,000;1000; 100000
+
+# Non-facet properties
+INSERT_UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true];name[unique=true];type(code);sortableType(code);currency[default=false];localized[default=false];multiValue[default=false];useForSpellchecking[default=false];useForAutocomplete[default=false];fieldValueProvider;valueProviderParameter;ftsPhraseQuery[default=false];ftsPhraseQueryBoost;ftsQuery[default=false];ftsQueryBoost;ftsFuzzyQuery[default=false];ftsFuzzyQueryBoost;ftsWildcardQuery[default=false];ftsWildcardQueryType(code)[default=POSTFIX];ftsWildcardQueryBoost;ftsWildcardQueryMinTermLength
+#;$solrIndexedType; soitemtype               ;string ;            ;    ;    ;    ;    ;    ;springELValueProvider                     ;itemtype      ;    ;   ;    ;   ;    ;  ;    ;   ;  ;
+;$solrIndexedType; socode                   ;string ;            ;    ;    ;    ;    ;true;genericSingleVariantValueProvider                     ;code          ;    ;   ;true;90 ;    ;  ;true;POSTFIX;45;3
+;$solrIndexedType; soname                   ;text   ;sortabletext;    ;true;    ;true;true;springELValueProvider                     ;getName(#lang);true;100;true;50 ;true;25;    ;   ;  ;
+#;$solrIndexedType; sodescription            ;text   ;sortabletext;    ;true;    ;true;    ;springELValueProvider                     ;description   ;    ;   ;    ;   ;    ;  ;    ;   ;  ;
+#;$solrIndexedType; sosummary                ;text   ;            ;    ;true;    ;    ;    ;springELValueProvider                     ;summary       ;    ;   ;    ;   ;    ;  ;    ;   ;  ;
+;$solrIndexedType; somanufacturerName       ;text   ;            ;    ;    ;    ;true;true;springELValueProvider                     ;manufacturerName;true;80 ;true;40 ;true;20;    ;   ;  ;
+#;$solrIndexedType; somanufacturerAID        ;string ;            ;    ;    ;    ;    ;    ;springELValueProvider                     ;manufacturerAID;    ;   ;    ;   ;    ;  ;    ;   ;  ;
+#;$solrIndexedType; soean                    ;string ;            ;    ;    ;    ;true;true;springELValueProvider                     ;ean           ;    ;   ;true;100;    ;  ;true;POSTFIX;50;3
+;$solrIndexedType; priceValue               ;double ;            ;true;    ;    ;    ;    ;productPriceStoreValueProvider            ;              ;    ;   ;    ;   ;    ;  ;    ;   ;  ;
+#;$solrIndexedType; sovolumePrices           ;boolean;            ;true;    ;    ;    ;    ;productVolumePricesProvider               ;              ;    ;   ;    ;   ;    ;  ;    ;   ;  ;
+;$solrIndexedType; sokeywords               ;text   ;            ;    ;true;    ;true;true;productKeywordsValueProvider              ;              ;true;40 ;true;20 ;true;10;    ;   ;  ;
+#;$solrIndexedType; soreviewAvgRating        ;double ;            ;    ;true;    ;    ;    ;productReviewAverageRatingValueProvider   ;              ;    ;   ;    ;   ;    ;  ;    ;   ;  ;
+#;$solrIndexedType; soimg-515Wx515H          ;string ;            ;    ;    ;    ;    ;    ;image515ValueProvider                     ;              ;    ;   ;    ;   ;    ;  ;    ;   ;  ;
+;$solrIndexedType; soimg-300Wx300H          ;string ;            ;    ;    ;    ;    ;    ;image300ValueProvider                     ;              ;    ;   ;    ;   ;    ;  ;    ;   ;  ;
+;$solrIndexedType; soimg-96Wx96H            ;string ;            ;    ;    ;    ;    ;    ;image96ValueProvider                      ;              ;    ;   ;    ;   ;    ;  ;    ;   ;  ;
+#;$solrIndexedType; soimg-65Wx65H            ;string ;            ;    ;    ;    ;    ;    ;image65ValueProvider                      ;              ;    ;   ;    ;   ;    ;  ;    ;   ;  ;
+#;$solrIndexedType; soimg-30Wx30H            ;string ;            ;    ;    ;    ;    ;    ;image30ValueProvider                      ;              ;    ;   ;    ;   ;    ;  ;    ;   ;  ;
+;$solrIndexedType; sourl                    ;string ;            ;    ;true;    ;    ;    ;siteOneProductUrlValueProvider                   ;              ;    ;   ;    ;   ;    ;  ;    ;   ;  ;
+#;$solrIndexedType; soprimaryPromotionCode   ;string ;            ;    ;    ;    ;    ;    ;promotionCodeValueProvider                ;              ;    ;   ;    ;   ;    ;  ;    ;   ;  ;
+#;$solrIndexedType; soprimaryPromotionBanner ;string ;            ;    ;    ;    ;    ;    ;promotionImageValueProvider               ;              ;    ;   ;    ;   ;    ;  ;    ;   ;  ;
+#;$solrIndexedType; sostockLevelStatus       ;string ;            ;    ;    ;    ;    ;    ;productStockLevelStatusValueProvider      ;              ;    ;   ;    ;   ;    ;  ;    ;   ;  ;
+;$solrIndexedType; somultidimensional       ;boolean;            ;    ;    ;    ;    ;    ;multidimentionalProductFlagValueProvider  ;              ;    ;   ;    ;   ;    ;  ;    ;   ;  ;
+;$solrIndexedType; priceRange               ;string ;            ;    ;    ;    ;    ;    ;productPriceRangeStoreValueProvider       ;              ;    ;   ;    ;   ;    ;  ;    ;   ;  ;
+#;$solrIndexedType; sofirstVariantUrl        ;string ;            ;    ;    ;    ;    ;    ;firstGenericVariantProductUrlValueProvider;              ;    ;   ;    ;   ;    ;  ;    ;   ;  ;
+#;$solrIndexedType; sofirstCategoryNameList  ;string ;            ;    ;    ;    ;    ;    ;firstVariantCategoryNameListValueProvider ;              ;    ;   ;    ;   ;    ;  ;    ;   ;  ;
+#;$solrIndexedType; soconfigurable           ;boolean;            ;    ;    ;    ;    ;    ;productConfigurableProvider               ;              ;    ;   ;    ;   ;    ;  ;    ;   ;  ;
+;$solrIndexedType; priceLowSortValue        ;double;             ;    ;    ;    ;    ;    ;siteOneProductPriceLowSortValueProvider   ;              ;    ;   ;    ;   ;    ;  ;    ;   ;  ;
+#;$solrIndexedType; sostoreId                ;string ;            ;    ;    ;true;    ;    ;productStoreValueProvider		         ;              ;    ;   ;    ;   ;    ;  ;    ;   ;  ;
+;$solrIndexedType; sovariantCount           ;int;                ;    ;    ;    ;    ;    ;productVariantCountValueProvider          ;              ;    ;   ;    ;   ;    ;  ;    ;   ;  ;
+;$solrIndexedType; soproductShortDesc       ;text   ;sortabletext;    ;true;    ;    ;   ;productShortDescriptionValueProvider                     ;productShortDesc;true;100;true;50 ;true;25;    ;   ;  ;
+;$solrIndexedType; soproductShortDescForSuggestion       ;text   ;    ;    ;true;    ;true;true;productShortDescriptionAutoSuggestValueProvider                     ;productShortDesc;true;100;true;50 ;true;25;    ;   ;  ;
+;$solrIndexedType; sovendorPartNumber       ;string ;            ;    ;    ;    ;    ;    ;springELValueProvider                     ;vendorPartNumber;    ;   ;    ;   ;    ;  ;    ;   ;  ;
+;$solrIndexedType; soproductBrandName       ;string ;            ;    ;    ;    ;true;    ;springELValueProvider                     ;productBrandName;    ;   ;    ;   ;    ;  ;    ;   ;  ;
+;$solrIndexedType; sovariantsku             ;string ;            ;    ;    ;true;    ;    ;productVariantSkuValueProvider            ;              ;    ;   ;    ;   ;    ;  ;    ;   ;  ;
+;$solrIndexedType; soisRegulateditem        ;boolean ;           ;    ;    ;    ;    ;    ;genericSingleVariantValueProvider                     ;isRegulatedItem  ;    ;   ;    ;   ;    ;  ;    ;   ;  ;
+;$solrIndexedType; soisProductDiscontinued  ;boolean ;           ;    ;    ;    ;    ;      ;genericSingleVariantValueProvider                     ;isProductDiscontinued;    ;   ;    ;   ;    ;  ;    ;   ;  ;
+;$solrIndexedType; soregulatoryStates       ;string ;            ;    ;    ;true;    ;     ;productRegulatoryStatesValueProvider      ;regulatoryStates;    ;   ;    ;   ;    ;  ;    ;   ;  ;
+;$solrIndexedType; sosds                    ;string ;            ;    ;    ;true;    ;    ;sdsMediaValueProvider                     ;              ;    ;   ;    ;   ;    ;  ;    ;   ;  ; 
+;$solrIndexedType; solabel                  ;string ;            ;    ;    ;true;    ;    ;labelValueProvider                        ;              ;    ;   ;    ;   ;    ;  ;    ;   ;  ; 
+;$solrIndexedType; soproductLongDesc        ;text   ;            ;    ;    ;    ;    ;    ;springELValueProvider                     ;productLongDesc ;    ;   ;    ;   ;    ;  ;    ;   ;  ;  
+;$solrIndexedType; sopromotion              ;string ;            ;    ;    ;    ;    ;    ;promotionPriceValueProvider               ;				 ;    ;   ;    ;   ;    ;  ;    ;   ;  ;  
+;$solrIndexedType; soitemNumber             ;string ;            ;    ;    ;    ;    ;true;genericSingleVariantValueProvider                     ;itemNumber     ;    ;   ;true;90 ;    ;  ;true;POSTFIX;45;3
+;$solrIndexedType; sosellableUom            ;int ;            ;    ;    ;    ;    ;    ;sellableUomValueProvider                     ;     ;    ;   ;	;	 ;    ;  ;	;	;	;
+;$solrIndexedType; sostockForNLA            ;boolean;         ;    ;    ;    ;    ;    ;nlaProductStockValueProvider              ;     ;    ;   ;	;	 ;    ;  ;	;	;	;
+;$solrIndexedType; soLowerCaseItemNumber    ;string ;            ;    ;    ;true;    ;true;genericCaseConvertionValueProvider                     ;itemNumber     ;    ;   ;true;90 ;    ;  ;true;POSTFIX;45;3
+;$solrIndexedType; soLowerCaseVendorPartNumber       ;string ;            ;   ;    ; true   ;    ;    ;genericCaseConvertionValueProvider                     ;vendorPartNumber;    ;   ;true;90 ;    ;  ;true;POSTFIX;45;3
+;$solrIndexedType; soLowerCaseProductBrandName       ;string ;            ;  ;    ; true  ;true;    ;genericCaseConvertionValueProvider                     ;productBrandName;    ;   ;true;90 ;    ;  ;true;POSTFIX;45;3
+;$solrIndexedType; soinventoryUom          ;string;                ;    ;    ;    ;    ;    ;inventoryUomValueProvider          ;              ;    ;   ;    ;   ;    ;  ;    ;   ;  ;
+;$solrIndexedType; soIsStockAvailable        ;boolean;                ;    ;    ;    ;    ;    ;stockLevelValueProvider          ;              ;    ;   ;    ;   ;    ;  ;    ;   ;  ;
+;$solrIndexedType; sohideList           ;boolean;         ;    ;    ;    ;    ;    ;springELValueProvider              ;hideList  ;    ;   ;	;	 ;    ;  ;	;	;	;
+;$solrIndexedType; sohideCSP            ;boolean;         ;    ;    ;    ;    ;    ;hideCSPValueProvider              ;hideCSP   ;    ;   ;	;	 ;    ;  ;	;	;	;
+;$solrIndexedType; soInventoryFlag          ;boolean;         ;    ;    ;    ;    ;    ;productInventoryFlagValueProvider              ;  ;    ;   ;	;	 ;    ;  ;	;	;	;
+;$solrIndexedType; soinventoryCheck           ;boolean;         ;    ;    ;    ;    ;    ;springELValueProvider              ;inventoryCheck  ;    ;   ;	;	 ;    ;  ;	;	;	;
+;$solrIndexedType;soisDeliverable;boolean;         ;    ;    ;    ;    ;    ;springELValueProvider              ;isDeliverable  ;    ;   ;	;	 ;    ;  ;	;	;	;
+;$solrIndexedType;soisTransferrable;boolean;         ;    ;    ;    ;    ;    ;springELValueProvider              ;isTransferrable  ;    ;   ;	;	 ;    ;  ;	;	;	;
+;$solrIndexedType; socouponEnabled            ;boolean;         ;    ;    ;    ;    ;    ;couponEnabledValueProvider              ;couponEnabled   ;    ;   ;	;	 ;    ;  ;	;	;	;
+
+# Non-facet properties for content page
+INSERT_UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true];name[unique=true];type(code);sortableType(code);currency[default=false];localized[default=false];multiValue[default=false];useForSpellchecking[default=false];useForAutocomplete[default=false];fieldValueProvider;valueProviderParameter;ftsPhraseQuery[default=false];ftsPhraseQueryBoost;ftsQuery[default=false];ftsQueryBoost;ftsFuzzyQuery[default=false];ftsFuzzyQueryBoost;ftsWildcardQuery[default=false];ftsWildcardQueryType(code)[default=POSTFIX];ftsWildcardQueryBoost;ftsWildcardQueryMinTermLength
+                                 ;$solrContentSearchIndexedType           ; sopagecontent   ;text      ;                  ;                       ;                        ;                         ;                                  ;                         ;contentSearchCrawledContentValueProvider;        ;true                         ;100                ;true                   ;90           ;true                        ;45                ;true                           ;                                           ;                     ;
+                                 ;$solrContentSearchIndexedType           ; sopagetitle     ;text      ;      ;                       ;                        ;                         ;true                              ;                         ;springELValueProvider                   ;title   ;true                         ;90                 ;true                   ;70           ;true                        ;35                ;true                           ;POSTFIX                                    ;45                   ;3
+                                 ;$solrContentSearchIndexedType           ; sopagename      ;text      ;   sortabletext               ;                       ;                        ;                         ;true                              ;                         ;springELValueProvider                   ;name    ;true                         ;80                 ;true                   ;50           ;true                        ;25                ;true                           ;POSTFIX                                    ;45                   ;3
+                                 ;$solrContentSearchIndexedType           ; sopageurl       ;text      ;                  ;                       ;                        ;                         ;                                  ;                         ;contentSearchUrlValueProvider           ;        ;                             ;                   ;                       ;             ;                            ;                  ;                               ;                                           ;                     ;
+                                 ;$solrContentSearchIndexedType           ; sopagecode      ;text      ;                  ;                       ;                        ;                         ;                                  ;                         ;springELValueProvider                   ;uid     ;                             ;                   ;                       ;             ;                            ;                  ;true                           ;POSTFIX                                    ;45                   ;3
+                                 ;$solrContentSearchIndexedType           ; sopagedescription;text     ;                  ;                       ;                        ;                         ;true                              ;                         ;springELValueProvider                   ;description;true                      ;70                 ;true                   ;40           ;true                        ;20                ;true                           ;POSTFIX                                    ;45                   ;3
+                                 ;$solrContentSearchIndexedType           ; sopagemedia      ;string   ;                  ;                       ;                        ;                         ;                                  ;                         ;contentPageMediaValueProvider           ;        ;                             ;                   ;                       ;             ;                            ;                  ;                               ;                                           ;                     ;
+ 								 ;$solrContentSearchIndexedType           ; sosearchcontenttags;text   ;                  ;                       ;                        ;true                         ;                                  ;                         ;contentTagsValueProvider                ;        ;                             ;                   ;                       ;             ;                            ;                  ;                               ;                                           ;                     ;
+ 
+
+# Other facet properties
+INSERT_UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true];name[unique=true];type(code);multiValue[default=true];facet[default=true];facetType(code);facetSort(code);priority;visible;fieldValueProvider      ;facetDisplayNameProvider;topValuesProvider
+								 ;$solrContentSearchIndexedType           ; socontenttags   ;string    ;true                    ; true              ;MultiSelectOr  ;Alpha          ;4000    ;true   ;contentTagsValueProvider;                        ;
+# Non-facet properties for event page
+INSERT_UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true];name[unique=true];type(code);sortableType(code);currency[default=false];localized[default=false];multiValue[default=false];useForSpellchecking[default=false];useForAutocomplete[default=false];fieldValueProvider;valueProviderParameter;ftsPhraseQuery[default=false];ftsPhraseQueryBoost;ftsQuery[default=false];ftsQueryBoost;ftsFuzzyQuery[default=false];ftsFuzzyQueryBoost;ftsWildcardQuery[default=false];ftsWildcardQueryType(code)[default=POSTFIX];ftsWildcardQueryBoost;ftsWildcardQueryMinTermLength                                
+                                 ;$solrEventSearchIndexedType              ;sodivision                ;string       ;                  ;                       ;                        ;                         ;                                  ;                         ;springELValueProvider        ;division                  ;true                         ;                ;true                   ;           ;true                        ;              ;true                           ;                                           ;                     ;
+                                 ;$solrEventSearchIndexedType              ;soeventname               ;string       ;                  ;                       ;                        ;                         ;                                  ;                         ;springELValueProvider        ;name                  ;true                         ;                ;true                   ;           ;true                        ;              ;true                           ;                                           ;                     ;
+                                 ;$solrEventSearchIndexedType              ;soeventshortdescription   ;string       ;                  ;                       ;                        ;                         ;                                  ;                         ;springELValueProvider        ;shortDescription      ;true                         ;                ;true                   ;           ;true                        ;              ;true                           ;                                           ;                     ;
+                                 ;$solrEventSearchIndexedType              ;soeventlongdescription    ;string       ;                  ;                       ;                        ;                         ;                                  ;                         ;springELValueProvider        ;longDescription       ;true                         ;                ;true                   ;           ;true                        ;              ;true                           ;                                           ;                     ;
+							     ;$solrEventSearchIndexedType              ;sotitle                   ;text         ;                  ;                       ;                        ;                         ;                                  ;                         ;springELValueProvider        ;title                 ;true                         ;100             ;true                   ;90         ;true                        ;45            ;true                           ;                                           ;                     ;
+							     ;$solrEventSearchIndexedType              ;sodate                    ;string       ;                  ;                       ;                        ;                         ;                                  ;                         ;eventDateValueProvider 		 ;                      ;true                         ;                ;true                   ;           ;true                        ;              ;true                           ;                                           ;                     ;
+								 ;$solrEventSearchIndexedType              ;soeventtime               ;string       ;                  ;                       ;                        ;                         ;                                  ;                         ;springELValueProvider        ;time                  ;true                         ;                ;true                   ;           ;true                        ;              ;true                           ;                                           ;                     ;
+								 ;$solrEventSearchIndexedType              ;soeventlocation           ;string       ;                  ;                       ;                        ;                         ;                                  ;                         ;springELValueProvider        ;location              ;true                         ;                ;true                   ;           ;true                        ;              ;true                           ;                                           ;                     ;
+								 ;$solrEventSearchIndexedType              ;soeventvenue              ;string       ;                  ;                       ;                        ;                         ;                                  ;                         ;springELValueProvider        ;venue                 ;true                         ;                ;true                   ;           ;true                        ;              ;true                           ;                                           ;                     ;
+								 ;$solrEventSearchIndexedType              ;soeventcode               ;string       ;                  ;                       ;                        ;                         ;                                  ;                         ;springELValueProvider        ;code                  ;true                         ;                ;true                   ;           ;true                        ;              ;true                           ;                                           ;                     ;
+								 ;$solrEventSearchIndexedType              ;eventStartDate            ;date         ;date              ;                       ;                        ;                         ;                                  ;                         ;        ;        ;                         ;                ;                   ;           ;                        ;              ;                           ;                                           ;                     ;
+
+# Non-facet properties for list page
+INSERT_UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true];name[unique=true];type(code);sortableType(code);currency[default=false];localized[default=false];multiValue[default=false];useForSpellchecking[default=false];useForAutocomplete[default=false];fieldValueProvider;valueProviderParameter;ftsPhraseQuery[default=false];ftsPhraseQueryBoost;ftsQuery[default=false];ftsQueryBoost;ftsFuzzyQuery[default=false];ftsFuzzyQueryBoost;ftsWildcardQuery[default=false];ftsWildcardQueryType(code)[default=POSTFIX];ftsWildcardQueryBoost;ftsWildcardQueryMinTermLength                                
+                                 ;$solrListSearchIndexedType              ;soproductcode               ;string       ;                  ;                       ;                        ;                         ;                                  ;                         ;listProductCodeValueResolver              ;                   ;true                         ;                ;true                   ;           ;true                        ;              ;true                           ;                                           ;                     ;
+                                 ;$solrListSearchIndexedType              ;soitemnumber                ;string       ;                  ;                       ;                        ;                         ;                                  ;                         ;listProductItemNumberValueResolver        ;                   ;true                         ;                ;true                   ;           ;true                        ;              ;true                           ;                                           ;                     ;
+                                 ;$solrListSearchIndexedType              ;soimages                    ;string       ;                  ;                       ;                        ;                         ;                                  ;                         ;listProductImagesValueResolver            ;                   ;true                         ;                ;true                   ;           ;true                        ;              ;true                           ;                                           ;                     ;
+							     ;$solrListSearchIndexedType              ;soproductshortdesc          ;text         ;                  ;                       ;                        ;                         ;                                  ;                         ;listProductShortDescValueResolver         ;                   ;true                         ;                ;true                   ;           ;true                        ;              ;true                           ;                                           ;                     ;
+							     ;$solrListSearchIndexedType              ;sobrand                     ;string       ;                  ;                       ;                        ;                         ;                                  ;                         ;listProductBrandValueResolver             ;                   ;true                         ;                ;true                   ;           ;true                        ;              ;true                           ;                                           ;                     ;
+                                 ;$solrListSearchIndexedType              ;sowishlist                  ;string       ;                  ;                       ;                        ;                         ;                                  ;                         ;springELValueProvider                     ; wishlist          ;true                         ;                ;true                   ;           ;true                        ;              ;true                           ;                                           ;                     ;
+                                 ;$solrListSearchIndexedType              ;soquantity                  ;integer      ;                  ;                       ;                        ;                         ;                                  ;                         ;springELValueProvider                     ; quantity          ;true                         ;                ;true                   ;           ;true                        ;              ;true                           ;                                           ;                     ;
+                                 ;$solrListSearchIndexedType              ;socategory                  ;string       ;                  ;                       ;                        ;                         ;                                  ;                         ;listCategoryCodeValueProvider             ;                   ;true                         ;                ;true                   ;           ;true                        ;              ;true                           ;                                           ;                     ;
+								 
+# Other facet properties
+INSERT_UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true];name[unique=true];type(code);multiValue[default=false];facet[default=true];facetType(code);facetSort(code);priority;visible;fieldValueProvider;facetDisplayNameProvider;topValuesProvider;valueProviderParameter
+								 ;$solrEventSearchIndexedType          ; sostate           ;string    ;                    ; true              ;MultiSelectOr  ;Alpha          ;4000    ;true   ;eventStateFacetValueProvider	 ;   	                 ;;
+								 ;$solrEventSearchIndexedType          ; soeventdate       ;string    ; true               ; true              ;MultiSelectOr  ;Alpha          ;3000    ;true   ;eventDateFacetValueProvider  ;                       ;
+								 ;$solrEventSearchIndexedType          ; soeventtype       ;string    ;                    ; true              ;MultiSelectOr  ;Alpha          ;2000    ;true   ;eventTypeValueProvider  ;                       ;
+								 ;$solrEventSearchIndexedType          ; soeventgroup      ;string    ;                    ; true               ;MultiSelectOr ;Alpha          ;4000    ;false   ;eventTypeGroupValueProvider  ;                       ;
+
+# Category fields
+INSERT_UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true];name[unique=true];type(code);localized[default=false];multiValue[default=true];categoryField[default=true];useForSpellchecking[default=false];useForAutocomplete[default=false];fieldValueProvider;ftsPhraseQuery[default=false];ftsPhraseQueryBoost;ftsQuery[default=false];ftsQueryBoost;ftsFuzzyQuery[default=false];ftsFuzzyQueryBoost
+;$solrIndexedType; socategoryName     ;text   ;true;;;true;true;siteoneCategoryNameValueProvider     ;true;40;true;20;true;10
+#;$solrIndexedType; sobrandName        ;text   ;true;;;    ;    ;siteoneBrandCategoryNameValueProvider;    ;  ;    ;  ;    ;
+
+# Category facets
+INSERT_UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true];name[unique=true];type(code);multiValue[default=true];facet[default=true];facetType(code);facetSort(code);priority;visible;categoryField[default=true];fieldValueProvider;facetDisplayNameProvider;topValuesProvider
+;$solrIndexedType; allCategories     ;string;;;Refine;Alpha;-9999;false;;siteoneCategoryCodeValueProvider;
+;$solrIndexedType; socategoryPath    ;string;;;Refine;Alpha;-9999;false;false;siteoneCategoryPathValueProvider;
+;$solrIndexedType; socategory        ;string;;;Refine;Alpha; 6000;true;;siteoneCategoryFacetValueProvider;categoryFacetDisplayNameProvider;
+#;$solrIndexedType; sobrand           ;string;;;Refine;Alpha; 5000;true;;siteoneBrandCategoryCodeValueProvider;categoryFacetDisplayNameProvider;
+#;$solrIndexedType; sotype	         ;string;;;Refine;Alpha; 2000;true;;siteoneVariantCategoryCodeValueProvider;categoryFacetDisplayNameProvider;
+#;$solrIndexedType; somaterial	     ;string;;;Refine;Alpha; 2000;true;;siteoneVariantCategoryCodeValueProvider;categoryFacetDisplayNameProvider;
+
+
+# Other facet properties
+INSERT_UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true];name[unique=true];type(code);sortableType(code);currency[default=false];localized[default=false];multiValue[default=false];facet[default=true];facetType(code);facetSort(code);priority;visible;useForSpellchecking[default=false];useForAutocomplete[default=false];fieldValueProvider;facetDisplayNameProvider;customFacetSortProvider;topValuesProvider;rangeSets(name)
+;$solrIndexedType; price        	;double ;	 ;true ;     ;true    ;     ;MultiSelectOr ;Alpha ; 4000;true;     ;     ;productPriceStoreFacetValueProvider;;;;siteonePriceRangeUSD
+;$solrIndexedType; soallPromotions	;string ;	 ;     ;     ;true ;     ;MultiSelectOr ;Alpha ; 0   ;false;     ;     ;promotionFacetCodeValueProvider	;promotionFacetDisplayNameProvider;
+;$solrIndexedType; soavailableInStores;string	;	 ;     ;     ;true ;     ;MultiSelectOr ;Custom;10000;true;     ;     ;productStoreValueProvider
+;$solrIndexedType; soIsSDSAvailable ;boolean ;   ;    ;    ;     ;    ; MultiSelectOr ;Alpha ; 0   ;false;     ;     ;sdsAvailabilityValueProvider      ;     
+;$solrIndexedType; isSellable       ;boolean ;   ;    ;    ;     ;    ; MultiSelectOr ;Custom ; 9000   ;false;     ;     ;productInventoryHitValueProvider      ;
+;$solrIndexedType; soproductBrandNameFacet	;string ;	 ;     ;     ;true ;     ;MultiSelectOr ;Custom ; 1000   ;true;     ;     ;productBrandNameValueProvider	;;facetNameSortProviderAscending
+
+# Create the queries that will be used to extract data for Solr
+INSERT_UPDATE SolrIndexerQuery;solrIndexedType(identifier)[unique=true];identifier[unique=true];type(code);injectCurrentDate[default=true];injectCurrentTime[default=true];injectLastIndexTime[default=true];query;user(uid)
+;$solrIndexedType;$searchIndexNamePrefix-fullQuery;full;;;false;"
+SELECT {p.pk}
+FROM   {Product! as p
+JOIN   Catalog as c ON {c.pk}={p.catalog}
+JOIN   CatalogVersion as cv ON {cv.pk}={p.catalogversion}
+JOIN   ArticleApprovalStatus as a ON {a.pk}={p.approvalStatus}}
+WHERE  {c.pk} = {cv.catalog}
+AND    {c.id} = 'siteoneProductCatalog'
+AND    {p.isProductOffline} = '0'
+AND    {p.isProductDiscontinued} = '0'
+AND    {a.name} = 'approved'
+AND    {p.code} != '9999999'
+
+";anonymous
+;$solrIndexedType;$searchIndexNamePrefix-updateQuery;update;;;;"
+
+SELECT uniontable.PK FROM (
+
+({{
+
+SELECT {p.pk} as pk
+FROM {Product! as p
+LEFT JOIN StockLevel as sl ON {sl.productcode}={p.code}
+LEFT JOIN PriceRow as pr ON {pr.productid}={p.code}
+JOIN Catalog as c ON {c.pk}={p.catalog}
+JOIN CatalogVersion as cv ON {cv.pk}={p.catalogversion}
+JOIN ArticleApprovalStatus as a ON {a.pk}={p.approvalStatus}}
+WHERE {c.pk} = {cv.catalog}
+AND {c.id} = 'siteoneProductCatalog'
+AND {p.isProductOffline} = '0'
+AND {p.isProductDiscontinued} = '0'
+AND {a.name} = 'approved'
+AND {p.code} != '9999999'
+AND ({p:modifiedTime}>='2021-12-10 02:32:32.437' OR {sl:modifiedTime} >= ?lastIndexTime OR {pr:modifiedTime}>= ?lastIndexTime)
+
+}})
+
+UNION
+
+({{
+SELECT distinct {v.baseProduct} as pk
+FROM {GenericVariantProduct as v
+LEFT JOIN StockLevel as sl ON {sl.productcode}={v.code}
+LEFT JOIN PriceRow as pr ON {pr.productid}={v.code}
+JOIN Catalog as c ON {c.pk}={v.catalog}
+JOIN CatalogVersion as cv ON {cv.pk}={v.catalogversion}
+JOIN ArticleApprovalStatus as a ON {a.pk}={v.approvalStatus}}
+WHERE {c.pk} = {cv.catalog}
+AND {c.id} = 'siteoneProductCatalog'
+AND {v.isProductOffline} = '0'
+AND {v.isProductDiscontinued} = '0'
+AND {a.name} = 'approved'
+AND {v.code} != '9999999'
+AND ({v:modifiedTime}>=?lastIndexTime OR {sl:modifiedTime} >= ?lastIndexTime OR {pr:modifiedTime}>= ?lastIndexTime)
+
+}})
+)uniontable
+";anonymous
+
+;$solrIndexedType;$searchIndexNamePrefix-deleteQuery;delete;;;;"
+SELECT   {Base.PK} FROM {Product! as Base} WHERE {Base.isProductOffline} = '1' 
+";anonymous
+
+# Create the queries that will be used to extract content data for Solr
+INSERT_UPDATE SolrIndexerQuery;solrIndexedType(identifier)[unique=true];identifier[unique=true];type(code);injectCurrentDate[default=true];injectCurrentTime[default=true];injectLastIndexTime[default=true];query;user(uid)
+;$solrContentSearchIndexedType;$searchIndexNamePrefix-content-fullQuery;full;;;false;"SELECT {p:PK} FROM {ContentPage as p} where {p:isIndexable} = '1'";anonymous
+
+;$solrContentSearchIndexedType;$searchIndexNamePrefix-content-deleteQuery;delete;;;;"
+SELECT {p:PK} FROM {ContentPage as p} where {p:isIndexable} = '0'
+";anonymous
+
+# Create the queries that will be used to extract event data for Solr
+INSERT_UPDATE SolrIndexerQuery;solrIndexedType(identifier)[unique=true];identifier[unique=true];type(code);injectCurrentDate[default=true];injectCurrentTime[default=true];injectLastIndexTime[default=true];query;user(uid)
+;$solrEventSearchIndexedType;$searchIndexNamePrefix-event-fullQuery;full;;;false;"SELECT {PK} FROM {SiteOneEvent} where {eventEndDate} >= SYSDATETIME()";anonymous
+
+;$solrEventSearchIndexedType;$searchIndexNamePrefix-event-deleteQuery;delete;;;;"SELECT {PK} FROM {SiteOneEvent}";anonymous
+
+;$solrEventSearchIndexedType;$searchIndexNamePrefix-event-updateQuery;update;;;;"SELECT {PK} FROM {SiteOneEvent} where {eventEndDate} >= SYSDATETIME()";anonymous
+
+# Create the queries that will be used to extract list data for Solr
+INSERT_UPDATE SolrIndexerQuery;solrIndexedType(identifier)[unique=true];identifier[unique=true];type(code);injectCurrentDate[default=true];injectCurrentTime[default=true];injectLastIndexTime[default=true];query;user(uid)
+;$solrListSearchIndexedType;$searchIndexNamePrefix-list-fullQuery;full;;;false;"SELECT {Wishlist2Entry.PK} FROM {Wishlist2Entry},{Product} WHERE  {Wishlist2Entry.product}={Product.pk} and {Wishlist2Entry.wishlist} is not null  and {Product.isProductOffline} = 0 order by {creationtime} desc";anonymous
+
+;$solrListSearchIndexedType;$searchIndexNamePrefix-list-deleteQuery;delete;;;;"SELECT {PK} FROM {Wishlist2Entry},{Product} WHERE  {Wishlist2Entry.product}={Product.pk} and {Wishlist2Entry.wishlist} is not null  and {Product.isProductOffline} = 0 order by {creationtime} desc";anonymous
+
+;$solrListSearchIndexedType;$searchIndexNamePrefix-list-updateQuery;update;;;;"SELECT {PK} FROM {Wishlist2Entry},{Product} WHERE  {Wishlist2Entry.product}={Product.pk} and {Wishlist2Entry.wishlist} is not null  and {Product.isProductOffline} = 0 order by {creationtime} desc";anonymous
+
+# Define the available sorts
+INSERT_UPDATE SolrSort;&sortRefID;indexedType(identifier)[unique=true];code[unique=true];useBoost
+;sortRef1;$solrIndexedType;relevance;true
+;sortRef3;$solrIndexedType;name-asc;false
+;sortRef4;$solrIndexedType;name-desc;false
+;sortRef5;$solrIndexedType;price-asc;false
+;sortRef6;$solrIndexedType;price-desc;false
+
+# Define the sort fields
+INSERT_UPDATE SolrSortField;sort(indexedType(identifier),code)[unique=true];fieldName[unique=true];ascending[unique=true]
+;$solrIndexedType:relevance;score;false
+;$solrIndexedType:name-asc;soproductShortDesc;true
+;$solrIndexedType:name-desc;soproductShortDesc;false
+;$solrIndexedType:price-asc;priceLowSortValue;true
+;$solrIndexedType:price-desc;priceLowSortValue;false
+
+# Define the available sorts
+INSERT_UPDATE SolrSort;&sortRefID;indexedType(identifier)[unique=true];code[unique=true];useBoost
+;sortRef7;$solrContentSearchIndexedType;relevance;true
+;sortRef8;$solrContentSearchIndexedType;title-asc;false
+;sortRef9;$solrContentSearchIndexedType;title-desc;false
+
+# Define the sort fields
+INSERT_UPDATE SolrSortField;sort(indexedType(identifier),code)[unique=true];fieldName[unique=true];ascending[unique=true]
+;$solrContentSearchIndexedType:relevance;score;false
+;$solrContentSearchIndexedType:title-asc;sopagename;true
+;$solrContentSearchIndexedType:title-desc;sopagename;false
+
+# Define the available sorts for events
+INSERT_UPDATE SolrSort;&sortRefID;indexedType(identifier)[unique=true];code[unique=true];useBoost
+;sortRef10;$solrEventSearchIndexedType;date-asc;true
+
+# Define the available sorts for list
+INSERT_UPDATE SolrSort;&sortRefID;indexedType(identifier)[unique=true];code[unique=true];useBoost
+;sortRef11;$solrListSearchIndexedType;date-asc;false
+
+
+# Define the sort fields for events
+INSERT_UPDATE SolrSortField;sort(indexedType(identifier),code)[unique=true];fieldName[unique=true];ascending[unique=true]
+;$solrEventSearchIndexedType:date-asc;eventStartDate;true
+

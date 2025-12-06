@@ -1,0 +1,333 @@
+​## messageSource=classpath:/siteonecore/messages/email-readyForPickup_$lang.properties
+#macro( genHtmlBoldFont $text )
+<font color="#414a4f" size="2" face="Arial, Helvetica, sans-serif"><b>$text</b></font>
+#end
+#macro(genHtmlLinkStartTag $url)
+<a href="$url"><font color="#666666">
+#end
+#macro(genHtmlLinkEndTag)
+</font></a>
+#end
+#macro(genHtmlLink $url $textColor $bodyContent)
+<a href="$url"><font color="$textColor">$bodyContent</font></a>
+#end
+<html>
+   <head>
+	</head>
+	    <body bgcolor="#ffffff">
+	        
+		<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#ffffff">
+		<tr>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td align="center" valign="top">
+				<table width="610" border="0" align="center" cellpadding="0" cellspacing="0" bordercolor="#fff">
+					<tr>
+						<td align="center" valign="top" bgcolor="#FFFFFF">	
+			
+			<table style="border: 1px solid #000000;" width="570" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#ffffff">
+	                <tr>
+		              	<td>&nbsp;</td>
+		              </tr>
+		              
+		                <tr>
+		              					<td valign="left">
+		              								<a href="${ctx.baseThemeUrl}">
+											<img title="SiteoneLogo" src="${ctx.baseThemeUrl}/_ui/responsive/common/images/SiteoneLogo.jpg" alt="SiteoneLogo">
+													</a>
+		              					</td>
+		              					
+		              					<td align="right" valign="right">
+		              								<span class="col-xs-6 col-md-12">
+                                                         <a href="https://www.facebook.com/SiteOneLandscape/"><img src="https://www.siteone.com/images/facebook-green-24x24.png" alt="Facebook" title="Facebook"></a><a href="https://www.instagram.com/SiteOneLandscape/"><img src="https://www.siteone.com/images/instagram-green-24x24.png" alt="Instagram" title="Instagram"></a><a href="https://www.twitter.com/SiteOneLandscape/"><img src="https://www.siteone.com/images/twitter-green-24x24.png" alt="Twitter" title="Twitter"></a>
+	                                                </span>
+		              	  						</td>
+</tr>
+<tr>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+<td colspan="2" align="left" valign="top">
+														
+								<table width="100%" cellpadding="0" cellspacing="0">
+							<tr height="80px">
+								<td style="padding-left:15px" bgcolor="#cccccc" width="100%" colspan="4" height="40" align="left">
+									<p><font color="#000000" size="3" face="Arial, Helvetica, sans-serif"><b>${ctx.messages.getMessage('salutation', ${ctx.title},${ctx.displayName})},<br />${ctx.messages.readyForPickup}</b></font></p>
+								</td>
+							</tr>
+							<tr>
+								<td style="padding:10px 15px">
+									<p><font color="#000000" size="2" face="Arial, Helvetica, sans-serif">
+										<b style="font-weight:normal;">Your order #</b>
+										${ctx.order.code}
+										<b style="font-weight:normal;">is ready for pick-up.</b></font>
+									</p>
+								</td>
+							</tr>
+							
+							<table style="padding: 0px 15px;" width="100%" border="0" align="center" cellpadding="0" cellspacing="0" bordercolor="#51585c" class="products" >
+								<tr>
+									<td width="100%" colspan="4" height="30" align="left" bgcolor="#cccccc"><font color="#000000" size="2" face="Arial, Helvetica, sans-serif" style="padding-left:5px"><b style="font-weight:normal;text-transform:uppercase;">Pick Up Information</b></font></td>
+								</tr>
+								<tr>
+									<td>
+										<table>
+												<tr>
+													<td width="50%" valign="top" rowspan="2">
+														<font color="#333" size="2" face="Arial, Helvetica, sans-serif"><b>Account Number:</b></font>${ctx.order.orderingAccount.uid}
+						
+														<p style="margin:3px 0">
+															<font color="#333" size="2" face="Arial, Helvetica, sans-serif"><b>Pick Up Location:</b></font>
+														</p>
+														<p style="margin:3px 0">
+															<font color="#666666" size="2" face="Arial, Helvetica, sans-serif">
+												   				${ctx.order.pointOfService.name}<br>
+																#if(${ctx.order.pointOfService.name})
+																	${ctx.order.pointOfService.title}
+																#end
+																${ctx.order.pointOfService.address.line1},<br/> 
+																${ctx.order.pointOfService.address.town} ${ctx.order.pointOfService.address.region.isocodeShort} 
+																${ctx.order.pointOfService.address.postalCode}<br/>
+																${ctx.order.pointOfService.address.phone}
+															</font>
+														</p>
+													</td>
+													<td width="34%" valign="top">
+													<br/>
+														<font color="#333" size="2" face="Arial, Helvetica, sans-serif"><b>Pick Up Contact:</b></font>
+															<p style="margin:3px 0">
+																	<font color="#666666" size="2" face="Arial, Helvetica, sans-serif">
+																		${ctx.order.contactPerson.name}<br/>
+																		#if($ctx.order.contactPerson.contactNumber)
+																			${ctx.order.contactPerson.contactNumber}<br/> 
+																		#end
+																		${ctx.order.contactPerson.email}
+																	</font>
+															</p>
+													</td>
+												<tr>
+										</table>
+												<p style="margin:3px 0">
+													<font color="#333" size="2" face="Arial, Helvetica, sans-serif"><b>Pick Up Information</b><br/></font>
+												</p>
+												<br/>
+												<p style="margin:3px 0">
+													<font color="#333" size="2" face="Arial, Helvetica, sans-serif"><b>DATE & TIME:</b><br/></font>
+															<font color="#666666" size="2" face="Arial, Helvetica, sans-serif">
+																${ctx.requestedDate}<br>
+																#if(${ctx.order.requestedMeridian} == "AM")
+																	<p style="margin:3px 0">
+																	${ctx.messages.morning}
+																	</p>
+																#end
+																#if(${ctx.order.requestedMeridian} == "PM")
+																	<p style="margin:3px 0">
+																	${ctx.messages.afternoon}
+																	</p>
+																#end<br>
+															</font>
+												</p>
+												<br/>
+												<p style="margin:3px 0">
+													<font color="#333" size="2" face="Arial, Helvetica, sans-serif"><b>PICK UP INSTRUCTIONS:</b><br/></font>
+													<font color="#666666" size="2" face="Arial, Helvetica, sans-serif">
+														${ctx.order.specialInstruction}<br/><br/>
+													</font>
+												</p>
+									</td>
+								</tr>
+							</table>
+						    <table style="padding: 0px 15px;" width="100%" cellpadding="0" cellspacing="0">
+						    <tr>
+							      <td width="100%" colspan="4" height="30" align="left" bgcolor="#cccccc"><font color="#000000" size="2" face="Arial, Helvetica, sans-serif" style="padding-left:5px"><b style="font-weight:normal;text-transform:uppercase;">PO NUMBER</b></font>
+								  </td>
+						    </tr>
+						 <table style="padding: 0px 15px;" width="100%" border="0" align="center" cellpadding="0" cellspacing="0" bordercolor="#51585c" class="products" >
+							<tr>
+								<td>
+									<table>
+										<tr>
+											<td width="33%" valign="top" rowspan="2">
+												<font color="#333" size="2" face="Arial, Helvetica, sans-serif"><b>PO Number:</b></font>
+												${ctx.orderDetails.purchaseOrderNumber}																							
+											</td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+						</table>
+						
+						
+					
+	
+		<table style="padding: 15px 15px;" width="100%" border="0" align="center" cellpadding="0" cellspacing="0" bordercolor="#51585c" class="products" >
+			<tr>
+				<td>
+					<table width="100%" cellpadding="0" cellspacing="0">
+						#if ($ctx.order.pickupOrderGroups.size() > 0)
+							#foreach( $orderGroup in ${ctx.order.pickupOrderGroups} )
+								<tr>
+									<td width="100%" colspan="4" height="30" align="left" bgcolor="#cccccc"><font color="#000000" size="2" face="Arial, Helvetica, sans-serif" style="padding-left:5px"><b style="font-weight:normal;text-transform:uppercase;">ORDER:</b></font>
+									</td>
+								</tr>
+								#foreach( $entry in ${orderGroup.entries} )
+									<tr bgcolor="#e0e0e0">
+										<td width="50%"><font color="#000000" size="2" face="Arial, Helvetica, sans-serif">Product Information</font></td>
+										<td align="center" width="17%" height="30px"><font color="#000000" size="2" face="Arial, Helvetica, sans-serif">Unit Price</font></td>
+										<td align="center" width="17%" height="30px"><font color="#000000" size="2" face="Arial, Helvetica, sans-serif">Quantity</font></td>
+										<td style="padding-right: 25px;" align="right" width="16%" height="30px"><font color="#000000" size="2" face="Arial, Helvetica, sans-serif">Total</font></td>
+									</tr>
+									<tr>
+										<td style="padding: 15px 0px;">
+											<table width="100%" border="0" cellpadding="0" cellspacing="0">
+												<tr>
+													<td valign="top" width="110px" style="width:110px;padding-left:10px;padding-right:10px">
+														<a href="${ctx.baseUrl}$entry.product.url" style="text-decoration:none">
+															#foreach($image in $entry.product.images) #if($image.imageType == "PRIMARY" && $image.format == "thumbnail" )
+																<img src="${ctx.baseUrl}$image.url" alt="" title="$entry.product.name"/>
+															#end
+														</a>
+														&nbsp;
+													</td>
+													<td height="120px"  valign="top">
+														<p><font color="#000000" size="2" face="Arial, Helvetica, sans-serif">
+															<a style="text-decoration:none;" href="http://sio-d-adm.ms.ycs.io$entry.product.url">
+																<font color="#000000">$entry.product.name</font>
+															</a>
+															$entry.product.code<br>
+															#if (!$entry.product.baseOptions.isEmpty())
+																#foreach ($option in $entry.product.baseOptions)
+																	#if ($option.selected && ($option.selected.url == $entry.product.url))
+																		<table width="100%" cellpadding="0" cellspacing="0">
+																			#foreach ($selectedOption in $option.selected.variantOptionQualifiers)
+																				<tr>
+																					<td width="30%" valign="top"><p><font color="#666666" size="2" face="Arial, Helvetica, sans-serif">$selectedOption.name:</font></p></td>
+																					<td width="70%" valign="top"><p><font color="#666666" size="2" face="Arial, Helvetica, sans-serif">$selectedOption.value</font></p></td>
+																				</tr>
+																			#end
+																		</table>
+																	#end
+																#end
+															#end
+															#if (!$ctx.order.appliedProductPromotions.isEmpty())
+																#foreach( $promotion in $ctx.order.appliedProductPromotions)
+																	#set ($displayed = false)
+																	#foreach ($consumedEntry in $promotion.consumedEntries)
+																		#if (!$displayed && ($consumedEntry.orderEntryNumber == $entry.entryNumber))
+																			#set ($displayed = true)
+																			<p><font color="#414a4f" size="2" face="Arial, Helvetica, sans-serif"><b>${promotion.description}</b></font></p>
+																		#end
+																	#end
+																#end
+															#end
+														</p>
+													</td>
+												</tr>
+											</table>
+										</td>
+										<td style="padding: 15px 0px;" align="center" valign="top"><p><font color="#000000" size="2" face="Arial, Helvetica, sans-serif">$${ctx.numberTool.format(${ctx.unitpriceFormat}, $entry.basePrice.value)}</font></p></td>
+										<td style="padding: 15px 0px;" align="center" valign="top"><p><font color="#000000" size="2" face="Arial, Helvetica, sans-serif">$entry.quantity</font></p></td>
+										<td style="padding: 15px 0px;padding-right: 25px;" align="right" valign="top">
+											<p>
+												<font color="#000000" size="2" face="Arial, Helvetica, sans-serif">
+													#if($entry.totalPrice.value > 0) 
+														$entry.totalPrice.formattedValue 
+													#else 
+														${ctx.messages.free} 
+													#end
+												</font>
+											</p>
+										</td>
+									</tr>
+								#end
+							#end
+						#end
+					</table>
+				</td>
+			</tr>
+		</table>
+		<br/>
+<table style="padding: 0px 15px;" width="100%" border="0" align="center" cellpadding="0" cellspacing="0" bordercolor="#51585c" class="products" >
+	<tr>
+		<td style="border-top: 1px solid #000000;padding-bottom:15px;" valign="top">
+			<table width="100%">
+				<tr>
+					<td width="30%">&nbsp;</td>
+					<td width="20%">&nbsp;</td>
+					<td width="50%">&nbsp;</td>
+				</tr>
+				<tr>
+					<td width="50%" valign="top">
+						&nbsp;
+					</td>
+					<td width="50%" valign="top">
+						<table width="100%" cellpadding="0" cellspacing="0">
+							<tr>
+								<td align="center" valign="top" width="45%"><p style="margin: 0"><font color="#000000" size="2" face="Arial, Helvetica, sans-serif">Subtotal</font></p></td>
+								<td valign="top" width="10%">&nbsp;</td>
+								<td style="padding-right:15px;" align="right" valign="top" width="45%"><p style="margin: 0"><font color="#000000" size="2" face="Arial, Helvetica, sans-serif">${ctx.order.subTotal.formattedValue}</font></p></td>
+							</tr>
+							                            <tr>
+                                <td style="padding-right:30px;padding-top:5px;" align="center"  valign="top"><p style="margin: 0"><font color="#000000" size="2" face="Arial, Helvetica, sans-serif">Tax</font></p></td>
+                                <td valign="top">&nbsp;</td>
+                                <td style="padding-right:15px;padding-top:5px;" align="right" valign="top"><p style="margin: 0"><font color="#000000" size="2" face="Arial, Helvetica, sans-serif">${ctx.order.totalTax.formattedValue}</font></p></td>
+                            </tr>
+							
+							<tr>
+								<td style="padding-right:15px;padding-top:7px;" align="center"  valign="top"><p><font color="#000000" size="3" face="Arial, Helvetica, sans-serif"><b>Total</b></font></p></td>
+								<td valign="top">&nbsp;</td>
+								<td style="padding-right:15px;padding-top:7px;" align="right" valign="top"><p><font color="#000000" size="3" face="Arial, Helvetica, sans-serif"><b>${ctx.order.totalPriceWithTax.formattedValue}</b></font></p></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+					<tr>
+						<td width="100%" colspan="4" height="30" align="left" bgcolor="#cccccc"><font color="#000000" size="2" face="Arial, Helvetica, sans-serif" style="padding-left:5px"><b style="font-weight:normal;text-transform:uppercase;">BILLING INFORMATION</b></font>
+						</td>
+					</tr>
+					<tr>
+						<td style="padding: 15px 0px;">
+							<p style="margin:5px 0"><font color="#000000" size="2" face="Arial, Helvetica, sans-serif">
+							Your SiteOne Branch will contact you to confirm payment method.</font></p>
+							<p style="margin:5px 0">
+								<font color="#000000" size="2" face="Arial, Helvetica, sans-serif">
+									Questions on your order? Contact your selected SiteOne branch,<br/>${ctx.order.pointOfService.address.town} at ${ctx.order.pointOfService.address.phone}
+								</font>
+							</p>
+								
+														<p><font color="#000000" size="2" face="Arial, Helvetica, sans-serif">Questions about SiteOne.com?<a href="http://sio-d-adm.ms.ycs.io/contactus"><font color="#000000">Contact Us</font></p>
+						</td>
+					</tr>
+		
+	
+<tr>
+<td>
+<p style="margin:5px 0"><font color="#000000" size="2" face="Arial, Helvetica, sans-serif">Thanks,</font></p>
+<p style="margin:5px 0"><font color="#000000" size="2" face="Arial, Helvetica, sans-serif"><b><i>SiteOne Landscape Supply</i></b></font></p>
+</td>
+</tr>
+</table>
+<tr>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+</tr>
+<tr>
+	<td>&nbsp;</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+	<td>&nbsp;</td>
+</tr>
+</table>
+</body>
+</html>

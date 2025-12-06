@@ -1,0 +1,6 @@
+$contentCatalog=siteoneContentCatalog
+$contentCatalogName=SiteOne Content Catalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$lang=es
+UPDATE FooterNavigationComponent;$contentCV[unique=true];uid[unique=true];extendedNotice[lang=$lang]
+;;FooterNavigationComponent;"SiteOne Landscape Supply, Inc. 2018 – <CURRENT_YEAR>. Las Marcas Registradas En Esta Página Web Son Propiedad De SiteOne Landscape Supply, Inc. Y Lesco, Inc. Nada De Lo Aquí Esta Establecido Debe Interpretarse Para Otorgar Licencia De Uso De Las Marcas Comerciales Sin El Permiso Previo Por Escrito Del Propietario De La Marca Comercial.";

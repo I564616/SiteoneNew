@@ -1,0 +1,73 @@
+$contentCatalog=siteoneContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+
+INSERT_UPDATE SiteOneStoreDetailsPromoComponent;$contentCV[unique=true];uid[unique=true];name;headline[lang=en];headline[lang=es];urlLink;promotionalText[lang=en];promotionalText[lang=es];buttonLabel[lang=en];buttonLabel[lang=es]
+;;COVID-19-Mobile-Carousel;COVID-19 Mobile Carousel;;;/covid-19?icid=home-carousel-mobile-1covid19;;;;
+;;COVID-19-Mobile-Carousel;COVID-19 Mobile Carousel;;;/covid-19?icid=home-carousel-mobile-1-covid19;;;;
+;;California-power-mobile;California Power Mobile Carousel;;;mailto:customersupport@siteone.com;;;;
+;;California-power-mobile;California Power Mobile Carousel;;;mailto:customersupport@siteone.com;;;;
+;;Create-Account-Mobile-Carousel;Create Account Mobile Carousel;;;/request-account/form?icid=home-mobile-carousel-4-request-account;;;;
+;;EOP-Fall-2019-Carousel;EOP Fall 2019 Carousel;;;/eop?icid=home-carousel-eop;;;;
+;;EOP-Fall-2019-Carousel;EOP Fall 2019 Carousel;;;/eop?icid=home-carousel-eop;;;;
+;;EOP-Fall-2019-Mobile;EOP Fall 2019 Mobile;;;/eop?icid=home-carousel-eop;;;;
+;;EOP-Fall-2019-Mobile;EOP Fall 2019 Mobile;;;/eop?icid=home-carousel-eop;;;;
+;;HardscapePromoBannerComponent1;Hardscape Banner detail1;<p>YOU DREAM IT.</p><p>WE CAN HELP CREATE IT.</p>;<p>TÚ LO SUEÑAS</p><p>NOSOTROS TE AYUDAMOS A CREARLO</p>;;<p>No matter what you have in mind, we have made the materials and expertise you need to bring it to life. From outdoor kitchens to pools and fire pits, the possibilities are endless.</p>;<p>No importa qué tengas en mente, hemos hecho los materiales y tenemos la experiencia necesaria para hacerlo realidad. Desde cocinas exteriores hasta piscinas y áreas de fogatas, las posibilidades son infinitas.</p>;View Gallery;Ver Galería
+;;HardscapePromoBannerComponent1;Hardscape Banner detail1;<p>YOU DREAM IT.</p><p>WE CAN HELP CREATE IT.</p>;<p>TÚ LO SUEÑAS</p><p>NOSOTROS TE AYUDAMOS A CREARLO</p>;;<p>No matter what you have in mind, we have made the materials and expertise you need to bring it to life. From outdoor kitchens to pools and fire pits, the possibilities are endless.</p>;<p>No importa qué tengas en mente, hemos hecho los materiales y tenemos la experiencia necesaria para hacerlo realidad. Desde cocinas exteriores hasta piscinas y áreas de fogatas, las posibilidades son infinitas.</p>;View Gallery;Ver Galería
+;;Hardscapes-Carousel;Hardscapes Carousel;;;/hardscapes?icid=home-carousel-4-hardscapes;;;;
+;;Hardscapes-Carousel;Hardscapes Carousel;;;/hardscapes?icid=home-carousel-4-hardscapes;;;;
+;;HomeBannerComponent1;Banner detail1;;;/search?q=Pro-Trade%3Arelevance%3Asocategory%3ASH11&viewtype=All;;;;
+;;HomeBannerComponent1;Banner detail1;;;/search?q=Pro-Trade%3Arelevance%3Asocategory%3ASH11&viewtype=All;;;;
+;;HomeBannerComponent2;Banner detail2;;;/search?q=Rain+Bird%3Arelevance%3Asocategory%3ASH14&viewtype=All;;;;
+;;HomeBannerComponent2;Banner detail2;;;/search?q=Rain+Bird%3Arelevance%3Asocategory%3ASH14&viewtype=All;;;;
+;;HomeBannerComponent3;Banner detai2;;;/partnersprogram;;;;
+;;HomeBannerComponent3;Banner detai2;;;/partnersprogram;;;;
+;;HomeBannerComponent4;Banner detail4;;;/request-account/form;;;;
+;;HomeBannerComponent4;Banner detail4;;;/request-account/form;;;;
+;;HomeMobileBannerComponent1;ProTrade Mobile Carousel;;;/protrade?icid=home-mobile-carousel-3-protrade-lighting;;;;
+;;HomeMobileBannerComponent1;ProTrade Mobile Carousel;;;/protrade?icid=home-mobile-carousel-3-protrade-lighting;;;;
+;;HomeMobileBannerComponent2;Mobile Banner detail2;;;/search?q=Rain+Bird%3Arelevance%3Asocategory%3ASH14&viewtype=All;;;;
+;;HomeMobileBannerComponent2;Mobile Banner detail2;;;/search?q=Rain+Bird%3Arelevance%3Asocategory%3ASH14&viewtype=All;;;;
+;;HomeMobileBannerComponent3;Mobile Banner detail3;;;/partnersprogram;;;;
+;;HomeMobileBannerComponent3;Mobile Banner detail3;;;/partnersprogram;;;;
+;;Partners Program Mobile Carousel;Partners Program Mobile Carousel;;;/partnersprogram?icid=home-mobile-carousel-4;;;;
+;;Partners Program Mobile Carousel;Partners Program Mobile Carousel;;;/partnersprogram?icid=home-mobile-carousel-4;;;;
+;;PartnersProgram-Mobile-Carousel;PartnersProgram Mobile Carousel;;;/partnersprogram?icid=home-mobile-carousel-4-partners-program;;;;
+;;PartnersProgram-Mobile-Carousel;PartnersProgram Mobile Carousel;;;/partnersprogram?icid=home-mobile-carousel-4-partners-program;;;;
+;;Pay-Online-Carousel;Pay Online Carousel;;;/payonline?icid=home-carousel-2-payonline;;;;
+;;Pay-Online-Carousel;Pay Online Carousel;;;/payonline?icid=home-carousel-2-payonline;;;;
+;;Pay-Online-Mobile-Carousel;Pay Online Mobile Carousel;;;/payonline?icid=home-mobile-carousel-2-payonline;;;;
+;;Pay-Online-Mobile-Carousel;Pay Online Mobile Carousel;;;/payonline?icid=home-mobile-carousel-2-payonline;;;;
+;;ReelPro-Desktop-Carousel;ReelPro Desktop Carousel;;;/reelpro?icid=home-carousel-1-reelpro;;;;
+;;ReelPro-Desktop-Carousel;ReelPro Desktop Carousel;;;/reelpro?icid=home-carousel-1-reelpro;;;;
+;;ReelPro-Mobile-Carousel;ReelPro Mobile Carousel;;;/reelpro?icid=home-carousel-mobile-1-reelpro;;;;
+;;ReelPro-Mobile-Carousel;ReelPro Mobile Carousel;;;/reelpro?icid=home-carousel-mobile-1-reelpro;;;;
+;;SiteOneProductPromotionSpotComponent;Store Promo1 Component;;;;;;;
+;;SiteOneProductPromotionSpotComponent;Store Promo1 Component;;;;;;;
+;;SiteOneStoreDetailsPromoComponent1;Store Promo1 Component;;;/articles;;;;
+;;SiteOneStoreDetailsPromoComponent1;Store Promo1 Component;;;/articles;;;;
+;;SiteOneStoreDetailsPromoComponent2;Store Promo2 Component;;;/articles;;;;
+;;SiteOneStoreDetailsPromoComponent2;Store Promo2 Component;;;/articles;;;;
+;;SiteOneStoreDetailsPromoComponent3;Store Promo3 Component;;;/articles;;;;
+;;SiteOneStoreDetailsPromoComponent3;Store Promo3 Component;;;/articles;;;;
+;;create-account-carousel;create account carousel;;;/request-account/form?icid=home-carousel-4-request-account;;;;
+;;create-account-carousel;create account carousel;;;/request-account/form?icid=home-carousel-4-request-account;;;;
+;;hardscapes-mobile-carousel;Hardscapes Mobile Carousel;;;/hardscapes?icid=home-carousel-mobile-4-hardscapes;;;;
+;;hardscapes-mobile-carousel;Hardscapes Mobile Carousel;;;/hardscapes?icid=home-carousel-mobile-4-hardscapes;;;;
+;;new-to-siteone-carousel;new to siteone carousel;;;/aboutus?icid=home-carousel-new_to_siteone;;;;
+;;new-to-siteone-carousel;new to siteone carousel;;;/aboutus?icid=home-carousel-new_to_siteone;;;;
+;;new-to-siteone-mobile-carousel;New to SiteOne Mobile Carousel;;;/aboutus?icid=home-carousel-new_to_siteone;;;;
+;;new-to-siteone-mobile-carousel;New to SiteOne Mobile Carousel;;;/aboutus?icid=home-carousel-new_to_siteone;;;;
+;;partners-program-carousel;partners program carousel;;;/partnersprogram?icid=home-carousel-4-partners-program;;;;
+;;partners-program-carousel;partners program carousel;;;/partnersprogram?icid=home-carousel-4-partners-program;;;;
+;;protrade-carousel;pro-trade carousel;;;/protrade?icid=home-carousel-2-protrade-lighting;;;;
+;;protrade-carousel;pro-trade carousel;;;/protrade?icid=home-carousel-2-protrade-lighting;;;;
+;;request_account_mobile_carousel;Request Account mobile carousel;;;/request-account/form?icid=home-carousel-create_online_account;;;;
+;;request_account_mobile_carousel;Request Account mobile carousel;;;/request-account/form?icid=home-carousel-create_online_account;;;;
+;;smart-irrigation-carousel;smart irrigation carousel;;;/smart-irrigation-month?icid=home-carousel-smart-irrigation-month;;;;
+;;smart-irrigation-carousel;smart irrigation carousel;;;/smart-irrigation-month?icid=home-carousel-smart-irrigation-month;;;;
+;;smart-irrigation-mobile-carousel;Smart Irrigation Mobile Carousel;;;/smart-irrigation-month?icid=home-carousel-smart-irrigation-month;;;;
+;;smart-irrigation-mobile-carousel;Smart Irrigation Mobile Carousel;;;/smart-irrigation-month?icid=home-carousel-smart-irrigation-month;;;;
+;;summer-of-green-carousel;summer of green carousel;;;/summer-of-green?icid=home-carousel-summer_of_green;;;;
+;;summer-of-green-carousel;summer of green carousel;;;/summer-of-green?icid=home-carousel-summer_of_green;;;;
+;;summer-of-green-mobile-carousel;Summer of Green Mobile Carousel;;;/summer-of-green?icid=home-carousel-summer_of_green;;;;
+;;summer-of-green-mobile-carousel;Summer of Green Mobile Carousel;;;/summer-of-green?icid=home-carousel-summer_of_green;;;;

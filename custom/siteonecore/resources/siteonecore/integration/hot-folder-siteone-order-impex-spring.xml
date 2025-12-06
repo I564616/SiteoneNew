@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ [y] hybris Platform
+
+ Copyright (c) 2000-2016 SAP SE or an SAP affiliate company.
+ All rights reserved.
+
+ This software is the confidential and proprietary information of SAP
+ ("Confidential Information"). You shall not disclose such Confidential
+ Information and shall use it only in accordance with the terms of the
+ license agreement you entered into with SAP.
+-->
+
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:int="http://www.springframework.org/schema/integration"
+	xmlns:file="http://www.springframework.org/schema/integration/file"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/integration
+	http://www.springframework.org/schema/integration/spring-integration.xsd
+	http://www.springframework.org/schema/integration/file
+	http://www.springframework.org/schema/integration/file/spring-integration-file.xsd
+	http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<context:annotation-config/>
+
+	<bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+		<property name="targetObject" ref="hotfolderInboundFileChannelMappings"/>
+		<property name="targetMethod" value="put"/>
+		<property name="arguments">
+			<list>
+				<bean class="java.util.regex.Pattern" factory-method="compile">
+					<constructor-arg value="^(.*)_(\d+)(\S+)_(\d+)(\S+)\.(?i)impex"/>
+				</bean>
+				<ref bean="SiteOneOrderImpexBatchFilesCloudHotFolderProc"/>
+			</list>
+		</property>
+	</bean>
+
+	<int:channel id="SiteOneOrderImpexBatchFilesCloudHotFolderProc"/>
+
+	<int:service-activator input-channel="SiteOneOrderImpexBatchFilesCloudHotFolderProc" output-channel="batchSiteOneFilesHeader2"
+		ref="SiteOneCloudHotFolderHeaderSetupTask" method="execute">
+	</int:service-activator>
+
+
+	<int:service-activator input-channel="batchSiteOneFilesHeader2" output-channel="batchSiteOneOrderImpexRunner"
+		ref="batchSiteOneImpexSevenTransformerTask"
+		method="execute"/>
+
+
+	<bean id="batchSiteOneImpexSevenTransformerTask"
+		class="com.siteone.core.impex.transformer.SiteOneImpexSevenTransformerTask">
+	</bean>
+
+
+	<int:service-activator input-channel="batchSiteOneOrderImpexRunner" output-channel="batchFilesClean" ref="batchRunnerTask"
+		method="execute"/>
+
+	<alias alias="batchRunnerTask" name="siteOneBatchRunnerTask"/>
+	<bean id="siteOneBatchRunnerTask" class="com.siteone.core.batch.task.SiteOneImpexRunnerTask">
+		<property name="user" value="batchuser"/>
+		<property name="sessionService" ref="sessionService"/>
+		<property name="importService" ref="importService"/>
+		<lookup-method name="getImportConfig" bean="importConfig"/>
+		<property name="baseStoreService" ref="baseStoreService"/>
+		<property name="baseSiteService" ref="baseSiteService"/>
+		<property name="eventService" ref="eventService"/>
+		<property name="commonI18NService" ref="commonI18NService"/>
+	</bean>
+
+	<bean id="importConfig" class="de.hybris.platform.servicelayer.impex.ImportConfig" scope="prototype">
+		<property name="removeOnSuccess" value="true"/>
+		<property name="failOnError" value="false"/>
+		<property name="synchronous" value="true"/>
+		<property name="legacyMode" value="false"/>
+		<property name="locale" value="en"/>
+	</bean>
+
+	<!-- Order Impex :: Azure Inbound File Synchronizer and Channel Adapter -->
+	<bean id="SiteOneOrderImpexAzureBlobInboundSynchronizer"
+		class="de.hybris.platform.cloud.azure.hotfolder.remote.inbound.AzureBlobInboundSynchronizer">
+		<constructor-arg name="sessionFactory" ref="azureBlobSessionFactory"/>
+		<property name="remoteDirectory" value="#{azureHotfolderRemotePath}/siteonecustomer"/>
+		<property name="moveToRemoteDirectory" value="#{azureHotfolderRemotePath}/siteonecustomer/processing"/>
+		<property name="deleteRemoteFiles" value="${azure.hotfolder.storage.delete.remote.files}"/>
+		<property name="preserveTimestamp" value="true"/>
+		<property name="filter" ref="azureHotfolderFileFilter"/>
+		<property name="comparator" ref="azureHotFolderFileComparator"/>
+	</bean>
+
+	<bean id="SiteOneOrderImpexAzureBlobSynchronizingMessageSource"
+		class="de.hybris.platform.cloud.azure.hotfolder.remote.inbound.AzureBlobSynchronizingMessageSource">
+		<constructor-arg name="synchronizer" ref="SiteOneOrderImpexAzureBlobInboundSynchronizer"/>
+		<property name="autoCreateLocalDirectory" value="true"/>
+		<property name="localDirectory" value="#{azureHotfolderLocalDirectoryBase}/#{azureHotfolderRemotePath}"/>
+		<property name="maxFetchSize" value="${azure.hotfolder.storage.polling.fetch.batch-size}"/>
+	</bean>
+
+	<bean id="azureOrderChannelAdapterTaskExecutor"
+		class="de.hybris.platform.cloud.commons.scheduling.HybrisAwareThreadPoolTaskExecutor">
+		<property name="waitForTasksToCompleteOnShutdown" value="true"/>
+		<property name="threadNamePrefix" value="AzureIntegrationTaskExecutorThread-${tenantId}-"/>
+		<property name="threadGroupName" value="AzureIntegrationTaskExecutor-${tenantId}"/>
+		<property name="corePoolSize" value="${azure.hotfolder.storage.polling.core-pool-size}"/>
+		<property name="maxPoolSize" value="${azure.hotfolder.storage.polling.max-pool-size}"/>
+		<property name="queueCapacity" value="-1"/>
+		<property name="keepAliveSeconds" value="60"/>
+		<property name="rejectedExecutionHandler">
+			<bean class="java.util.concurrent.ThreadPoolExecutor$DiscardPolicy"/>
+		</property>
+		<property name="role" value="integration"/>
+		<property name="autoStartup" value="false"/>
+		<property name="phase" value="10"/>
+		<property name="awaitTerminationSeconds" value="60"/>
+	</bean>
+
+
+	<int:inbound-channel-adapter id="SiteOneOrderImpexAzureInboundChannelAdapter"
+		auto-startup="false"
+		role="${cloud.hotfolder.storage.services.role}"
+		phase="50"
+		ref="SiteOneOrderImpexAzureBlobSynchronizingMessageSource"
+		channel="siteOneOrderImpexCloudHotFolderInboundFileHeaderEnricherChannel">
+		<int:poller fixed-rate="${azure.hotfolder.storage.polling.fixed.rate}"
+			task-executor="azureOrderChannelAdapterTaskExecutor"
+			max-messages-per-poll="${azure.hotfolder.storage.polling.fetch.batch-size}">
+		</int:poller>
+	</int:inbound-channel-adapter>
+
+    <int:channel id="siteOneOrderImpexCloudHotFolderInboundFileHeaderEnricherChannel">
+        <int:interceptors>
+           <ref bean="siteOneOrderImpexHotFolderRoutingChannelInterceptor"/>
+        </int:interceptors>
+    </int:channel>
+
+
+    <bean id="siteOneOrderImpexHotFolderRoutingChannelInterceptor" class="de.hybris.platform.cloud.hotfolder.interceptor.HotFolderRouterChannelInterceptor">
+      <property name="successChannel" ref="SiteOneOrderImpexAzureArchiveOutboundChannelAdapter"/>
+      <property name="failureChannel" ref="SiteOneOrderImpexAzureErrorOutboundChannelAdapter"/>
+    </bean>
+
+    <int:header-enricher id="siteOneOrderImpexCloudHotFolderInboundFileNameHeaderEnricherChannel"
+                input-channel="siteOneOrderImpexCloudHotFolderInboundFileHeaderEnricherChannel"
+                output-channel="hotfolderInboundFileChannel">
+        <int:header name="#{fileNameHeaderKey}" expression="payload.getName()"/>
+        <int:header name="#{fileLastModifiedHeaderKey}" expression="payload.lastModified()"/>
+   </int:header-enricher>
+
+	<!-- OrderImpex :: Azure Outbound Channel adapters for moving remote files into archive/error folders -->
+	<bean id="SiteOneOrderImpexAzureArchiveMessageHandler" parent="abstractAzureMoveMessageHandler">
+		<property name="remoteDirectory" value="#{azureHotfolderRemotePath}/siteonecustomer/archive"/>
+	</bean>
+
+	<bean id="SiteOneOrderImpexAzureErrorMessageHandler" parent="abstractAzureMoveMessageHandler">
+		<property name="remoteDirectory" value="#{azureHotfolderRemotePath}/siteonecustomer/error"/>
+	</bean>
+
+	<int:outbound-channel-adapter id="SiteOneOrderImpexAzureArchiveOutboundChannelAdapter"
+		ref="SiteOneOrderImpexAzureArchiveMessageHandler">
+	</int:outbound-channel-adapter>
+
+	<int:outbound-channel-adapter id="SiteOneOrderImpexAzureErrorOutboundChannelAdapter"
+		ref="SiteOneOrderImpexAzureErrorMessageHandler">
+	</int:outbound-channel-adapter>
+
+
+	<int:service-activator input-channel="batchFilesClean" ref="batchCleanupTask" method="execute"/>
+	<bean id="batchCleanupTask" class="de.hybris.platform.acceleratorservices.dataimport.batch.task.CleanupTask">
+		<property name="cleanupHelper" ref="cleanupHelper"/>
+	</bean>
+
+
+</beans>

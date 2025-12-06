@@ -1,0 +1,71 @@
+## messageSource=classpath:/siteonecore/messages/email-requestAccountCustomerEmail_$lang.properties
+<table width="100%" cellpadding="0" cellspacing="0" border="0" align="center" style="max-width: 600px; min-width: 400px; font-size: 15px; font-family: Arial, Helvetica, sans-serif; color: #000000; border: 1px solid #C9C9C9;">
+	<thead>
+		<tr>
+			<th colspan="6" valign="left" align="left">
+				<a style="text-decoration:none;" href="${ctx.baseThemeUrl}">
+					<img title="SiteoneLogo" src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/SiteoneLogo.jpg" alt="SiteoneLogo" width="200">
+				</a>
+			</th>
+			<th colspan="6" valign="right" align="right" style="padding: 15px;">
+				#if(${ctx.countryBaseSiteID} == 'siteone-ca')
+					<a style="text-decoration:none; padding-right: 15px;" href="https://www.facebook.com/SiteOneLandscapecanada/">
+						<img src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/Print_facebook_color.png" alt="Facebook" title="Facebook" width="24">
+					</a>
+					<a style="text-decoration:none; padding-right: 15px;" href="https://www.instagram.com/Siteonesupplycanada">
+						<img src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/Print_instagram_color.png" alt="Instagram" title="Instagram" width="24">
+					</a>
+					<a style="text-decoration:none;" href="https://twitter.com/SiteOneCanada/">
+						<img src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/Print_twitter_color.png" alt="Twitter" title="Twitter" width="24">
+					</a>
+					#else
+					<a style="text-decoration:none; padding-right: 15px;" href="https://www.facebook.com/SiteOneLandscape/">
+						<img src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/Print_facebook_color.png" alt="Facebook" title="Facebook" width="24">
+					</a>
+					<a style="text-decoration:none; padding-right: 15px;" href="https://www.instagram.com/siteonesupply">
+						<img src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/Print_instagram_color.png" alt="Instagram" title="Instagram" width="24">
+					</a>
+					<a style="text-decoration:none;" href="https://twitter.com/SiteOneSupply/">
+						<img src="${ctx.baseThemeUrl}/_ui/responsive/theme-lambda/images/Print_twitter_color.png" alt="Twitter" title="Twitter" width="24">
+					</a>
+				#end
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td colspan="12">
+				<p style="padding: 20px; background-color: #f1f2f2; color:#414244; font-weight:bold;">${ctx.firstName},<br><br>
+				${ctx.messages.weHaveReceived}</p>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="12" height="50" style="padding: 40px 25px 35px 25px;">
+				<a href="${ctx.baseThemeUrl}/login" style="text-decoration:none !important; text-decoration:none; text-align: center; font-weight:bold; font-size: 16px; color: #ffffff; background-color: #78a22f; padding: 16px 60px; border-radius: 3px;">${ctx.messages.resetPassword}</a>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="12" style="padding: 10px 25px 35px 25px; font-size: 14px; color: #5a5b5d; line-height: 25px;">
+				<p style="font-weight: bold; margin-bottom: 0;">${ctx.messages.linkNotWorking}:</p>
+				<p style="margin-top: 0;"><a href="${ctx.baseThemeUrl}/login" style="color: #2196f3;" target="_blank">${ctx.baseThemeUrl}/login</a></p>
+				<p>${ctx.messages.expiryTime}</p>
+				<p><span style="font-weight: bold;">${ctx.messages.messageByMistake}</p>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="12" style="border-top: 1px solid #C9C9C9;"></td>
+		</tr>
+	</tbody>
+	<tfoot>
+		<tr>
+			<td colspan="12" style="padding: 35px 25px 15px 25px; font-size: 14px; line-height: 25px;">
+				<p style="color: #5a5b5d;">${ctx.messages.additionalQuestions} (<a href="tel:18007483663" style="color: #5a5b5d;">1-800-748-3663</a>). ${ctx.messages.youMayAlsoEmail} <a href="mailto:customersupport@ec.siteone.com" style="color: #2196f3;">${ctx.messages.customersupportemail}</a>. ${ctx.messages.availableMessage}</p>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="12" style="padding: 0px 25px 35px 25px; font-size: 14px;"><span style="color: #5a5b5d;">${ctx.messages.complimentaryClosing}</span>
+				<p style="font-weight: bold; font-style: italic;">${ctx.messages.signature}</p>
+			</td>
+		</tr>
+	</tfoot>
+</table>

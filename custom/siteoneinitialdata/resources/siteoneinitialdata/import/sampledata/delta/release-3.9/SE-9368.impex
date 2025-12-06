@@ -1,0 +1,24 @@
+$contentCatalog=siteoneContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&linkRef);&nodeRef
+;accessibilityStatementNavNode;;Accessibility Statement;CompanyServiceNavNode;;accessibilityStatementNavNode
+
+INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV);
+;AccessibilityStatementNavNodeEntry;;Accessibility Statement Navigation Node Entry;accessibilityStatementNavNode;AccessibilityStatementLink;
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;&linkRef;&componentRef;target(code)[default='sameWindow'];linkname
+;;AccessibilityStatementLink;Accessibility Statement Link;/accessibilityStatement;AccessibilityStatementLink;AccessibilityStatementLink;;Accessibility Statement
+
+INSERT_UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);label;defaultPage[default='true'];approvalStatus(code)[default='approved'];homepage[default='false']
+;;accessibilityStatement;Accessibility Statement;SiteOneContentPageTemplate;/accessibilityStatement;
+
+
+INSERT_UPDATE SiteoneParagaraphComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef;content[lang=en]
+;;AccessibilityStatementParagraphComponent;Accessibility Statement Paragraph Component;AccessibilityStatementParagraphComponent;"<div id=""a40AccessibilityStatement""></div><script type=""text/javascript"" src=""https://siteone.usablenet.com/pt/accessibilitystatement.js?l=1""></script>"
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='accessibilityStatement'];contentSlot(uid,$contentCV)[unique=true];;;
+;;Section1-accessibilityStatement;Section1;accessibilityStatement;Section1Slot-accessibilityStatement;;;
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef)
+;;Section1Slot-accessibilityStatement;Section 1 Accessibility Statement Slot;true;AccessibilityStatementParagraphComponent

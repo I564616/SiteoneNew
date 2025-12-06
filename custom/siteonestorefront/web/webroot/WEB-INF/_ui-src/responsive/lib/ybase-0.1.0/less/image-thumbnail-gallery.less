@@ -1,0 +1,106 @@
+.page-productDetails{
+	.thumbnail-m-t-5{
+		margin-top: 5px !important;
+	}
+	.pdp-img-variant-message{
+		position: relative;
+		top: -15px;
+    	border: 1px solid #e0e0e0;
+		padding-bottom: 5px !important;
+		border-top: none;
+		padding-left: 0 !important;
+		margin-left: 0px !important;
+	}
+	
+	.gallery-thumbnail-wrapper{
+		display: flex;
+		flex-flow: column;
+		margin-top: -3px;
+		.galleyImageItem{
+			border: 1px solid #D9D9D9;
+			border-radius: 4px;
+			padding: 1px;
+			margin-bottom: 5px;
+			height: auto;
+			&.hactive{
+				border: 1px solid #78a22f !important;
+				border-radius: 4px;
+			}
+			img{
+				width: 100%;
+				display: flex;
+				align-items:flex-end;
+				height: 100%;
+				max-height: 100%;
+				min-height: 100%;
+				border-radius: 4px;
+				-webkit-tap-highlight-color: transparent;
+				-webkit-touch-callout: none;
+				-webkit-user-select: none;
+				-khtml-user-select: none;
+				-moz-user-select: none;
+				-ms-user-select: none;
+				user-select: none;
+				
+			}
+			
+		}
+		.arrow-icon{
+			text-align: center;
+			cursor: pointer;
+		}
+		.disabled{
+			opacity: 0.3;
+    		pointer-events: none;
+		}
+		button[name="play"]{
+			background:#FFF !important;
+		}
+		button[name="play"]::after{
+			border-color: transparent transparent transparent #000 !important;
+		}
+	}
+	.main-image-wrapper{
+		button[name="play"]{
+			background:#FFF !important;
+		}
+		button[name="play"]::after{
+			border-color: transparent transparent transparent #000 !important;
+		}
+		.owl-wrapper-outer{
+			@media(min-width: @screen-md-min) {
+				border: 1px solid #e0e0e0;
+			}
+		.owl-item{
+			background: none !important;
+			 @media(max-width: @screen-sm-max) {
+				margin-right: 10px;
+			 }
+		}
+		img{
+			-webkit-tap-highlight-color: transparent;
+			-webkit-touch-callout: none;
+			-webkit-user-select: none;
+			-khtml-user-select: none;
+			-moz-user-select: none;
+			-ms-user-select: none;
+			user-select: none;
+		}
+		 @media(max-width: @screen-sm-max) {
+		.image-inner-wrapper{
+			border: 1px solid #e0e0e0;
+		}
+	}
+	}
+	@media(min-width: @screen-md-min) {
+		.js-gallery-image{
+				transform: rotate(90deg);
+				.item{
+					transform: rotate(-90deg);
+				}
+		}
+	}
+	}
+	
+	
+}

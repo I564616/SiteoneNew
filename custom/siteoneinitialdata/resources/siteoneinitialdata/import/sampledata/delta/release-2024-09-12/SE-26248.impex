@@ -1,0 +1,2 @@
+INSERT_UPDATE SiteoneFeatureSwitch;key[unique=true];value
+;SegmentLevelShippingEnabled;contractor,homeowner,guest

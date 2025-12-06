@@ -1,0 +1,24 @@
+INSERT_UPDATE ServicelayerJob; code[unique=true];springid[unique=true]
+;productRegionFeedCronJob;productRegionFeedCronJob;
+;regionFeedCronJob;regionFeedCronJob;
+;categoryFeedCronJob;categoryFeedCronJob;
+;localizedProductFeedCronJob;localizedProductFeedCronJob
+
+INSERT_UPDATE ProductRegionFeedCronJob;code[unique=true];job(code)[default=productRegionFeedCronJob];sessionLanguage(isoCode)[default=en]
+;productRegionFeedCronJob
+
+INSERT_UPDATE RegionFeedCronJob;code[unique=true];job(code)[default=regionFeedCronJob];sessionLanguage(isoCode)[default=en]
+;regionFeedCronJob
+
+INSERT_UPDATE CategoryFeedCronJob;code[unique=true];job(code)[default=categoryFeedCronJob];sessionLanguage(isoCode)[default=en]
+;categoryFeedCronJob
+
+INSERT_UPDATE LocalizedProductFeedCronJob;code[unique=true];job(code)[default=localizedProductFeedCronJob];sessionLanguage(isoCode)[default=en]
+;localizedProductFeedCronJob
+
+INSERT_UPDATE Trigger;cronjob(code)[unique=true];active;cronExpression
+#Fires at 10:15 AM everyday
+;productRegionFeedCronJob;true;0 15 10 * * ?
+;regionFeedCronJob;true;0 15 10 * * ?
+;categoryFeedCronJob;true;0 15 10 * * ?
+;localizedProductFeedCronJob;true;0 15 10 * * ?

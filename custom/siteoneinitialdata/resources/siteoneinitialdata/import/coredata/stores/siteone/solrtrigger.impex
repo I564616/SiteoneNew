@@ -1,0 +1,48 @@
+# -----------------------------------------------------------------------
+# [y] hybris Platform
+#
+# Copyright (c) 2017 SAP SE or an SAP affiliate company.  All rights reserved.
+#
+# This software is the confidential and proprietary information of SAP
+# ("Confidential Information"). You shall not disclose such Confidential
+# Information and shall use it only in accordance with the terms of the
+# license agreement you entered into with SAP.
+# -----------------------------------------------------------------------
+#
+# Import the Solr CronJob Trigger configuration for the SiteOne Product Catalog
+#
+
+$defaultLanguage=en
+$defaultCurrency=USD
+
+INSERT_UPDATE Trigger;cronJob(code)[unique=true];second;minute;hour;day;month;year;relative;active;maxAcceptableDelay
+
+# Run the full-siteoneIndex-cronJob at 3:05 AM every day
+#;full-siteoneIndex-cronJob;0;5;3;-1;-1;-1;false;false;-1
+#;full-eventSearchIndex-cronJob;0;0;24;-1;-1;-1;false;false;-1
+#;full-contentSearchIndex-cronJob;0;0;24;-1;-1;-1;false;false;-1
+
+# Run the update-siteoneIndex-cronJob every 1 minutes
+#;update-siteoneIndex-cronJob;0;1;-1;-1;-1;-1;true;false;-1
+
+#------------------------------Events and content serach full index cronjob------------------------------------
+
+INSERT_UPDATE SolrIndexerCronJob;code[unique=true];job(code);sessionLanguage(isocode);sessionCurrency(isocode);sessionUser(uid);indexerOperation(code);facetSearchConfig(name)
+;full-eventSearchIndex-cronJob;solrIndexerJob;$defaultLanguage;$defaultCurrency;anonymous;full;eventSearchIndex
+;full-contentSearchIndex-cronJob;solrIndexerJob;$defaultLanguage;$defaultCurrency;anonymous;full;contentSearchIndex
+
+#----------------------------Composite CronJob--------------------------------------------------------------------
+
+INSERT_UPDATE CompositeCronJob;code[unique=true];job(code);sessionLanguage(isocode)
+;solrUpdateCompositeCronjob;compositeJobPerformable;en
+
+# Items to run from the Composite Cron Job
+INSERT_UPDATE CompositeEntry;code[unique=true];executableCronJob(code);compositecronjob(code);compositecronjobpos
+ ;entry1;delete-siteoneIndex-cronJob;solrUpdateCompositeCronjob;1
+ 
+INSERT_UPDATE CompositeEntry;code[unique=true];executableCronJob(code);compositecronjob(code);compositecronjobpos
+ ;entry2;update-siteoneIndex-cronJob;solrUpdateCompositeCronjob;2
+ 
+ # Trigger for Composite Cron Job
+INSERT_UPDATE Trigger;cronJob(code)[unique=true];second;minute;hour;day;month;year;relative;active;maxAcceptableDelay
+;solrUpdateCompositeCronjob;0;30;-1;-1;-1;-1;true;true;-1

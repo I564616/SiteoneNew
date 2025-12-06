@@ -1,0 +1,1306 @@
+##Primary Hierarchy
+
+$supercategories=supercategories( code, catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Staged']));;;;;;;;;
+$catalogVersion=catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Staged'])[unique=true,default='siteoneProductCatalog:Staged'];;;;;;;;;
+;;;;;;;;;
+INSERT_UPDATE Category;code[unique=true];name[lang=en];$supercategories;$catalogVersion;allowedPrincipals(uid)
+;PH1216101103;Towels;PH1216101;siteoneProductCatalog:Staged;admingroup
+;PH1216103103;Burlap;PH1216103;siteoneProductCatalog:Staged;admingroup
+;PH1220100106;Multi-Tools;PH1220100;siteoneProductCatalog:Staged;admingroup
+;PH1220100107;Pliers & Wrenches;PH1220100;siteoneProductCatalog:Staged;admingroup
+;PH1220100108;Screwdrivers;PH1220100;siteoneProductCatalog:Staged;admingroup
+;PH1220100109;Power Tools;PH1220100;siteoneProductCatalog:Staged;admingroup
+;PH1220100110;Knives & Machetes;PH1220100;siteoneProductCatalog:Staged;admingroup
+;PH1220100111;Wire Strippers;PH1220100;siteoneProductCatalog:Staged;admingroup
+;PH1220100112;Axes;PH1220100;siteoneProductCatalog:Staged;admingroup
+;PH1220100113;Caulking Guns;PH1220100;siteoneProductCatalog:Staged;admingroup
+;PH1220100114;Soil Probes;PH1220100;siteoneProductCatalog:Staged;admingroup
+;PH1220101103;Brushes;PH1220100;siteoneProductCatalog:Staged;admingroup
+
+;PH1220102102;Parts & Accessories;PH1220102;siteoneProductCatalog:Staged;admingroup
+;PH1220102103;Tool Boxes;PH1220102;siteoneProductCatalog:Staged;admingroup
+;PH1220103103;Head Trimmers & Extractors;PH1220103;siteoneProductCatalog:Staged;admingroup
+;PH1220103104;Parts;PH1220103;siteoneProductCatalog:Staged;admingroup
+
+;PH1220105107;Tamps & Bars;PH1220105;siteoneProductCatalog:Staged;admingroup
+;PH1220106100;Levels;PH1220106;siteoneProductCatalog:Staged;admingroup
+;PH1220106101;Measuring Wheels;PH1220106;siteoneProductCatalog:Staged;admingroup
+;PH1220106102;Tape Measures;PH1220106;siteoneProductCatalog:Staged;admingroup
+;PH1222;Arbor Supply;PH12;siteoneProductCatalog:Staged;admingroup
+;PH1222100;Flagging;PH1222;siteoneProductCatalog:Staged;admingroup
+;PH1222101;Tree Bracing;PH1222;siteoneProductCatalog:Staged;admingroup
+;PH1222102;Watering Bags;PH1222;siteoneProductCatalog:Staged;admingroup
+;PH1223;Golf Supply;PH12;siteoneProductCatalog:Staged;admingroup
+;PH1223100;Course Marking;PH1223;siteoneProductCatalog:Staged;admingroup
+;PH1223100100;Flags;PH1223100;siteoneProductCatalog:Staged;admingroup
+;PH1223100101;Signage;PH1223100;siteoneProductCatalog:Staged;admingroup
+;PH1223101;Golf Course Accessories;PH1223;siteoneProductCatalog:Staged;admingroup
+;PH1223102;Greens;PH1223;siteoneProductCatalog:Staged;admingroup
+;PH1223103;Sensor & Measuring Devices;PH1223;siteoneProductCatalog:Staged;admingroup
+;PH1223104;Tees;PH1223;siteoneProductCatalog:Staged;admingroup
+;PH1223105;Tools;PH1223;siteoneProductCatalog:Staged;admingroup
+;PH1223106;Athletic Field;PH1223;siteoneProductCatalog:Staged;admingroup
+;PH1223107;Other Sports & Turf;PH1223;siteoneProductCatalog:Staged;admingroup
+;PH1223108;Parks & Recreation;PH1223;siteoneProductCatalog:Staged;admingroup
+;PH1224;Job Site Essentials;PH12;siteoneProductCatalog:Staged;admingroup
+;PH1224100;Coolers;PH1224;siteoneProductCatalog:Staged;admingroup
+;PH1224101;Degreasers;PH1224;siteoneProductCatalog:Staged;admingroup
+;PH1224102;Flashlights;PH1224;siteoneProductCatalog:Staged;admingroup
+;PH1224103;Gas Cans;PH1224;siteoneProductCatalog:Staged;admingroup
+;PH1224104;Spill Kits;PH1224;siteoneProductCatalog:Staged;admingroup
+;PH1224105;Beverages;PH1224;siteoneProductCatalog:Staged;admingroup
+;PH1224106;Batteries;PH1224;siteoneProductCatalog:Staged;admingroup
+;PH1224107;Driveway Stakes;PH1224;siteoneProductCatalog:Staged;admingroup
+;PH1224108;Drum Pumps;PH1224;siteoneProductCatalog:Staged;admingroup
+;PH1224109;Rope & Twine;PH1224;siteoneProductCatalog:Staged;admingroup
+
+
+
+
+##---------------------------------------------------------------------------------------------
+
+##Sales Hierarchy
+
+$supercategories=supercategories( code, catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Staged']));;;;;;;;;
+$catalogVersion=catalogVersion(catalog(id[default='siteoneProductCatalog']),version[default='Staged'])[unique=true,default='siteoneProductCatalog:Staged'];;;;;;;;;
+;;;;;;;;;
+INSERT_UPDATE Category;code[unique=true];name[lang=en];$supercategories;$catalogVersion;allowedPrincipals(uid)
+;SH1216101103;Towels;SH1216101;siteoneProductCatalog:Staged;admingroup
+;SH1216103103;Burlap;SH1216103;siteoneProductCatalog:Staged;admingroup
+;SH1220100106;Multi-Tools;SH1220100;siteoneProductCatalog:Staged;admingroup
+;SH1220100107;Pliers & Wrenches;SH1220100;siteoneProductCatalog:Staged;admingroup
+;SH1220100108;Screwdrivers;SH1220100;siteoneProductCatalog:Staged;admingroup
+;SH1220100109;Power Tools;SH1220100;siteoneProductCatalog:Staged;admingroup
+;SH1220100110;Knives & Machetes;SH1220100;siteoneProductCatalog:Staged;admingroup
+;SH1220100111;Wire Strippers;SH1220100;siteoneProductCatalog:Staged;admingroup
+;SH1220100112;Axes;SH1220100;siteoneProductCatalog:Staged;admingroup
+;SH1220100113;Caulking Guns;SH1220100;siteoneProductCatalog:Staged;admingroup
+;SH1220100114;Soil Probes;SH1220100;siteoneProductCatalog:Staged;admingroup
+;SH1220101103;Brushes;SH1220100;siteoneProductCatalog:Staged;admingroup
+
+;SH1220102102;Parts & Accessories;SH1220102;siteoneProductCatalog:Staged;admingroup
+;SH1220102103;Tool Boxes;SH1220102;siteoneProductCatalog:Staged;admingroup
+;SH1220103103;Head Trimmers & Extractors;SH1220103;siteoneProductCatalog:Staged;admingroup
+;SH1220103104;Parts;SH1220103;siteoneProductCatalog:Staged;admingroup
+
+;SH1220105107;Tamps & Bars;SH1220105;siteoneProductCatalog:Staged;admingroup
+;SH1220106100;Levels;SH1220106;siteoneProductCatalog:Staged;admingroup
+;SH1220106101;Measuring Wheels;SH1220106;siteoneProductCatalog:Staged;admingroup
+;SH1220106102;Tape Measures;SH1220106;siteoneProductCatalog:Staged;admingroup
+;SH1222;Arbor Supply;SH12;siteoneProductCatalog:Staged;admingroup
+;SH1222100;Flagging;SH1222;siteoneProductCatalog:Staged;admingroup
+;SH1222101;Tree Bracing;SH1222;siteoneProductCatalog:Staged;admingroup
+;SH1222102;Watering Bags;SH1222;siteoneProductCatalog:Staged;admingroup
+;SH1223;Golf Supply;SH12;siteoneProductCatalog:Staged;admingroup
+;SH1223100;Course Marking;SH1223;siteoneProductCatalog:Staged;admingroup
+;SH1223100100;Flags;SH1223100;siteoneProductCatalog:Staged;admingroup
+;SH1223100101;Signage;SH1223100;siteoneProductCatalog:Staged;admingroup
+;SH1223101;Golf Course Accessories;SH1223;siteoneProductCatalog:Staged;admingroup
+;SH1223102;Greens;SH1223;siteoneProductCatalog:Staged;admingroup
+;SH1223103;Sensor & Measuring Devices;SH1223;siteoneProductCatalog:Staged;admingroup
+;SH1223104;Tees;SH1223;siteoneProductCatalog:Staged;admingroup
+;SH1223105;Tools;SH1223;siteoneProductCatalog:Staged;admingroup
+;SH1223106;Athletic Field;SH1223;siteoneProductCatalog:Staged;admingroup
+;SH1223107;Other Sports & Turf;SH1223;siteoneProductCatalog:Staged;admingroup
+;SH1223108;Parks & Recreation;SH1223;siteoneProductCatalog:Staged;admingroup
+;SH1224;Job Site Essentials;SH12;siteoneProductCatalog:Staged;admingroup
+;SH1224100;Coolers;SH1224;siteoneProductCatalog:Staged;admingroup
+;SH1224101;Degreasers;SH1224;siteoneProductCatalog:Staged;admingroup
+;SH1224102;Flashlights;SH1224;siteoneProductCatalog:Staged;admingroup
+;SH1224103;Gas Cans;SH1224;siteoneProductCatalog:Staged;admingroup
+;SH1224104;Spill Kits;SH1224;siteoneProductCatalog:Staged;admingroup
+;SH1224105;Beverages;SH1224;siteoneProductCatalog:Staged;admingroup
+;SH1224106;Batteries;SH1224;siteoneProductCatalog:Staged;admingroup
+;SH1224107;Driveway Stakes;SH1224;siteoneProductCatalog:Staged;admingroup
+;SH1224108;Drum Pumps;SH1224;siteoneProductCatalog:Staged;admingroup
+;SH1224109;Rope & Twine;SH1224;siteoneProductCatalog:Staged;admingroup
+
+
+##------------------------------------------
+##primary hierarchy - sales hierarchy mapping ------------------------------------
+$productCatalog=siteoneProductCatalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+INSERT_UPDATE category;code[unique=true];salescategorymapping;$catalogVersion;
+;PH1216101103;SH1216101103;
+;PH1216103103;SH1216103103;
+;PH1220100106;SH1220100106;
+;PH1220100107;SH1220100107;
+;PH1220100108;SH1220100108;
+;PH1220100109;SH1220100109;
+;PH1220100110;SH1220100110;
+;PH1220100111;SH1220100111;
+;PH1220100112;SH1220100112;
+;PH1220100113;SH1220100113;
+;PH1220100114;SH1220100114;
+;PH1220101103;SH1220101103  ;
+
+;PH1220102102;SH1220102102;
+;PH1220102103;SH1220102103;
+;PH1220103103;SH1220103103;
+;PH1220103104;SH1220103104;
+
+;PH1220105107;SH1220105107;
+;PH1220106100;SH1220106100;
+;PH1220106101;SH1220106101;
+;PH1220106102;SH1220106102;
+;PH1222;SH1222;
+;PH1222100;SH1222100;
+;PH1222101;SH1222101;
+;PH1222102;SH1222102;
+;PH1223;SH1223;
+;PH1223100;SH1223100;
+;PH1223100100;SH1223100100;
+;PH1223100101;SH1223100101;
+;PH1223101;SH1223101;
+;PH1223102;SH1223102;
+;PH1223103;SH1223103;
+;PH1223104;SH1223104;
+;PH1223105;SH1223105;
+;PH1223106;SH1223106;
+;PH1223107;SH1223107;
+;PH1223108;SH1223108;
+;PH1224;SH1224;
+;PH1224100;SH1224100;
+;PH1224101;SH1224101;
+;PH1224102;SH1224102;
+;PH1224103;SH1224103;
+;PH1224104;SH1224104;
+;PH1224105;SH1224105;
+;PH1224106;SH1224106;
+;PH1224107;SH1224107;
+;PH1224108;SH1224108;
+;PH1224109;SH1224109;
+
+## ---c
+#Classifying;Class;creation;;;;;;;
+#-----------------------------;;;;;;;;;
+INSERT_UPDATE classificationclass;code[unique=true];name[lang=en];catalogVersion(catalog(id),version);;;;;
+;CH01_1216101103;Product Details;siteoneClassification:1;;;;;
+;CH01_1216103103;Product Details;siteoneClassification:1;;;;;
+;CH01_1220100106;Product Details;siteoneClassification:1;;;;;
+;CH01_1220100107;Product Details;siteoneClassification:1;;;;;
+;CH01_1220100108;Product Details;siteoneClassification:1;;;;;
+;CH01_1220100109;Product Details;siteoneClassification:1;;;;;
+;CH01_1220100110;Product Details;siteoneClassification:1;;;;;
+;CH01_1220100111;Product Details;siteoneClassification:1;;;;;
+;CH01_1220100112;Product Details;siteoneClassification:1;;;;;
+;CH01_1220100113;Product Details;siteoneClassification:1;;;;;
+;CH01_1220100114;Product Details;siteoneClassification:1;;;;;
+;CH01_1220101103;Product Details;siteoneClassification:1;;;;;
+;CH01_1220102102;Product Details;siteoneClassification:1;;;;;
+;CH01_1220102103;Product Details;siteoneClassification:1;;;;;
+;CH01_1220103103;Product Details;siteoneClassification:1;;;;;
+;CH01_1220103104;Product Details;siteoneClassification:1;;;;;
+;CH01_1220105107;Product Details;siteoneClassification:1;;;;;
+;CH01_1220106100;Product Details;siteoneClassification:1;;;;;
+;CH01_1220106101;Product Details;siteoneClassification:1;;;;;
+;CH01_1220106102;Product Details;siteoneClassification:1;;;;;
+;CH01_1222;Product Details;siteoneClassification:1;;;;;
+;CH01_1222100;Product Details;siteoneClassification:1;;;;;
+;CH01_1222101;Product Details;siteoneClassification:1;;;;;
+;CH01_1222102;Product Details;siteoneClassification:1;;;;;
+;CH01_1223;Product Details;siteoneClassification:1;;;;;
+;CH01_1223100;Product Details;siteoneClassification:1;;;;;
+;CH01_1223100100;Product Details;siteoneClassification:1;;;;;
+;CH01_1223100101;Product Details;siteoneClassification:1;;;;;
+;CH01_1223101;Product Details;siteoneClassification:1;;;;;
+;CH01_1223102;Product Details;siteoneClassification:1;;;;;
+;CH01_1223103;Product Details;siteoneClassification:1;;;;;
+;CH01_1223104;Product Details;siteoneClassification:1;;;;;
+;CH01_1223105;Product Details;siteoneClassification:1;;;;;
+;CH01_1223106;Product Details;siteoneClassification:1;;;;;
+;CH01_1223107;Product Details;siteoneClassification:1;;;;;
+;CH01_1223108;Product Details;siteoneClassification:1;;;;;
+;CH01_1224;Product Details;siteoneClassification:1;;;;;
+;CH01_1224100;Product Details;siteoneClassification:1;;;;;
+;CH01_1224101;Product Details;siteoneClassification:1;;;;;
+;CH01_1224102;Product Details;siteoneClassification:1;;;;;
+;CH01_1224103;Product Details;siteoneClassification:1;;;;;
+;CH01_1224104;Product Details;siteoneClassification:1;;;;;
+;CH01_1224105;Product Details;siteoneClassification:1;;;;;
+;CH01_1224106;Product Details;siteoneClassification:1;;;;;
+;CH01_1224107;Product Details;siteoneClassification:1;;;;;
+;CH01_1224108;Product Details;siteoneClassification:1;;;;;
+;CH01_1224109;Product Details;siteoneClassification:1;;;;;
+
+
+
+
+##d
+##-------------------------------------------------------------------------	
+
+$classCatalogVersion=catalogversion(catalog(id[default='siteoneClassification']),version[default='1'])[unique=true,default='siteoneClassification:1']
+$classSystemVersion=systemversion(catalog(id[default='siteoneClassification']),version[default='1'])[unique=true,default='siteoneClassification:1']
+INSERT_UPDATE classAttributeAssignment;classificationAttribute(code,$classSystemVersion)[unique=true];attributeType(code);classificationClass(code,$classCatalogVersion)[unique=true];attributeValues(code)[mode=append];multiValued(code);mandatory(code);formatDefinition
+
+
+
+#Burlap
+;lndscpItem;string;CH01_1216103103;;false;false;30;
+;lndscpType;string;CH01_1216103103;;false;false;30;
+;lndscpSeries;string;CH01_1216103103;;false;false;30;
+;lndscpDimensions;string;CH01_1216103103;;false;false;30;
+;lndscpColor;string;CH01_1216103103;;false;false;30;
+;lndscpMaterial;string;CH01_1216103103;;false;false;30;
+;lndscpFinish;string;CH01_1216103103;;false;false;30;
+;lndscpHeight;string;CH01_1216103103;;false;false;30;
+;lndscpSuitableForUseWith;string;CH01_1216103103;;false;false;30;
+;lndscpLength;string;CH01_1216103103;;false;false;30;
+;lndscpSize;string;CH01_1216103103;;false;false;30;
+;lndscpWidth;string;CH01_1216103103;;false;false;30;
+;lndscpCoverageArea;string;CH01_1216103103;;false;false;30;
+;lndscpThickness;string;CH01_1216103103;;false;false;30;
+;lndscpPattern;string;CH01_1216103103;;false;false;30;
+#Towels
+;lndscpItem;string;CH01_1216101103;;false;false;30;
+;lndscpType;string;CH01_1216101103;;false;false;30;
+;lndscpSeries;string;CH01_1216101103;;false;false;30;
+;lndscpDimensions;string;CH01_1216101103;;false;false;30;
+;lndscpColor;string;CH01_1216101103;;false;false;30;
+;lndscpMaterial;string;CH01_1216101103;;false;false;30;
+;lndscpSuitableForUseWith;string;CH01_1216101103;;false;false;30;
+;lndscpLength;string;CH01_1216101103;;false;false;30;
+;lndscpSize;string;CH01_1216101103;;false;false;30;
+#Multi-Tools
+;lndscpItem;string;CH01_1220100106;;false;false;30;
+;lndscpType;string;CH01_1220100106;;false;false;30;
+;lndscpSeries;string;CH01_1220100106;;false;false;30;
+;lndscpDimensions;string;CH01_1220100106;;false;false;30;
+;lndscpColor;string;CH01_1220100106;;false;false;30;
+;lndscpMaterial;string;CH01_1220100106;;false;false;30;
+;lndscpFinish;string;CH01_1220100106;;false;false;30;
+;lndscpBladeThickness;string;CH01_1220100106;;false;false;30;
+;lndscpHeight;string;CH01_1220100106;;false;false;30;
+;lndscpSuitableForUseWith;string;CH01_1220100106;;false;false;30;
+;lndscpOverallLength;string;CH01_1220100106;;false;false;30;
+;lndscpHandleLength;string;CH01_1220100106;;false;false;30;
+;lndscpHandleMaterial;string;CH01_1220100106;;false;false;30;
+;lndscpOverallHeight;string;CH01_1220100106;;false;false;30;
+;lndscpLength;string;CH01_1220100106;;false;false;30;
+;lndscpSize;string;CH01_1220100106;;false;false;30;
+;lndscpHeadSize;string;CH01_1220100106;;false;false;30;
+;lndscpSpecifications;string;CH01_1220100106;;false;false;30;
+;lndscpTotalWeight;string;CH01_1220100106;;false;false;30;
+;lndscpBladeLength;string;CH01_1220100106;;false;false;30;
+;lndscpBladeMaterial;string;CH01_1220100106;;false;false;30;
+#Pliers & Wrenches
+;lndscpItem;string;CH01_1220100107;;false;false;30;
+;lndscpType;string;CH01_1220100107;;false;false;30;
+;lndscpSeries;string;CH01_1220100107;;false;false;30;
+;lndscpDimensions;string;CH01_1220100107;;false;false;30;
+;lndscpColor;string;CH01_1220100107;;false;false;30;
+;lndscpMaterial;string;CH01_1220100107;;false;false;30;
+;lndscpFinish;string;CH01_1220100107;;false;false;30;
+;lndscpShape;string;CH01_1220100107;;false;false;30;
+;lndscpBladeThickness;string;CH01_1220100107;;false;false;30;
+;lndscpHeight;string;CH01_1220100107;;false;false;30;
+;lndscpOverallLength;string;CH01_1220100107;;false;false;30;
+;lndscpHandleType;string;CH01_1220100107;;false;false;30;
+;lndscpSoundPressureLevel;string;CH01_1220100107;;false;false;30;
+;lndscpHandleLength;string;CH01_1220100107;;false;false;30;
+;lndscpToothPattern;string;CH01_1220100107;;false;false;30;
+;lndscpHandleMaterial;string;CH01_1220100107;;false;false;30;
+;lndscpHandleColor;string;CH01_1220100107;;false;false;30;
+;lndscpOverallHeight;string;CH01_1220100107;;false;false;30;
+;lndscpPowerSource;string;CH01_1220100107;;false;false;30;
+;lndscpLength;string;CH01_1220100107;;false;false;30;
+;lndscpToothSpacing;string;CH01_1220100107;;false;false;30;
+;lndscpHeadSize;string;CH01_1220100107;;false;false;30;
+;lndscpTotalWeight;string;CH01_1220100107;;false;false;30;
+;lndscpCuttingCapacity;string;CH01_1220100107;;false;false;30;
+;lndscpVibrationLevel;string;CH01_1220100107;;false;false;30;
+;lndscpBladeLength;string;CH01_1220100107;;false;false;30;
+;lndscpBladeWidth;string;CH01_1220100107;;false;false;30;
+;lndscpBladeType;string;CH01_1220100107;;false;false;30;
+;lndscpVoltageRating;string;CH01_1220100107;;false;false;30;
+;lndscpMaximumCutDiameter;string;CH01_1220100107;;false;false;30;
+;lndscpStrokes;string;CH01_1220100107;;false;false;30;
+;lndscpPowerRating;string;CH01_1220100107;;false;false;30;
+;lndscpSoundPowerLevel;string;CH01_1220100107;;false;false;30;
+#Screwdrivers
+;lndscpItem;string;CH01_1220100108;;false;false;30;
+;lndscpType;string;CH01_1220100108;;false;false;30;
+;lndscpSeries;string;CH01_1220100108;;false;false;30;
+;lndscpDimensions;string;CH01_1220100108;;false;false;30;
+;lndscpColor;string;CH01_1220100108;;false;false;30;
+;lndscpMaterial;string;CH01_1220100108;;false;false;30;
+;lndscpFinish;string;CH01_1220100108;;false;false;30;
+;lndscpShape;string;CH01_1220100108;;false;false;30;
+;lndscpBladeThickness;string;CH01_1220100108;;false;false;30;
+;lndscpHeight;string;CH01_1220100108;;false;false;30;
+;lndscpOverallLength;string;CH01_1220100108;;false;false;30;
+;lndscpHandleType;string;CH01_1220100108;;false;false;30;
+;lndscpSoundPressureLevel;string;CH01_1220100108;;false;false;30;
+;lndscpHandleLength;string;CH01_1220100108;;false;false;30;
+;lndscpToothPattern;string;CH01_1220100108;;false;false;30;
+;lndscpHandleMaterial;string;CH01_1220100108;;false;false;30;
+;lndscpHandleColor;string;CH01_1220100108;;false;false;30;
+;lndscpOverallHeight;string;CH01_1220100108;;false;false;30;
+;lndscpPowerSource;string;CH01_1220100108;;false;false;30;
+;lndscpLength;string;CH01_1220100108;;false;false;30;
+;lndscpToothSpacing;string;CH01_1220100108;;false;false;30;
+;lndscpHeadSize;string;CH01_1220100108;;false;false;30;
+;lndscpTotalWeight;string;CH01_1220100108;;false;false;30;
+;lndscpCuttingCapacity;string;CH01_1220100108;;false;false;30;
+;lndscpVibrationLevel;string;CH01_1220100108;;false;false;30;
+;lndscpBladeLength;string;CH01_1220100108;;false;false;30;
+;lndscpBladeWidth;string;CH01_1220100108;;false;false;30;
+;lndscpBladeType;string;CH01_1220100108;;false;false;30;
+;lndscpVoltageRating;string;CH01_1220100108;;false;false;30;
+;lndscpMaximumCutDiameter;string;CH01_1220100108;;false;false;30;
+;lndscpStrokes;string;CH01_1220100108;;false;false;30;
+;lndscpPowerRating;string;CH01_1220100108;;false;false;30;
+;lndscpSoundPowerLevel;string;CH01_1220100108;;false;false;30;
+#Power Tools
+;lndscpItem;string;CH01_1220100109;;false;false;30;
+;lndscpType;string;CH01_1220100109;;false;false;30;
+;lndscpSeries;string;CH01_1220100109;;false;false;30;
+;lndscpColor;string;CH01_1220100109;;false;false;30;
+;lndscpMaterial;string;CH01_1220100109;;false;false;30;
+;lndscpShape;string;CH01_1220100109;;false;false;30;
+;lndscpBladeThickness;string;CH01_1220100109;;false;false;30;
+;lndscpHeight;string;CH01_1220100109;;false;false;30;
+;lndscpOverallLength;string;CH01_1220100109;;false;false;30;
+;lndscpHandleType;string;CH01_1220100109;;false;false;30;
+;lndscpFrameMaterial;string;CH01_1220100109;;false;false;30;
+;lndscpHandleLength;string;CH01_1220100109;;false;false;30;
+;lndscpToothPattern;string;CH01_1220100109;;false;false;30;
+;lndscpHandleMaterial;string;CH01_1220100109;;false;false;30;
+;lndscpHandleColor;string;CH01_1220100109;;false;false;30;
+;lndscpOverallHeight;string;CH01_1220100109;;false;false;30;
+;lndscpLength;string;CH01_1220100109;;false;false;30;
+;lndscpToothSpacing;string;CH01_1220100109;;false;false;30;
+;lndscpSpecifications;string;CH01_1220100109;;false;false;30;
+;lndscpTotalWeight;string;CH01_1220100109;;false;false;30;
+;lndscpCuttingCapacity;string;CH01_1220100109;;false;false;30;
+;lndscpBladeLength;string;CH01_1220100109;;false;false;30;
+;lndscpBladeMaterial;string;CH01_1220100109;;false;false;30;
+;lndscpBatteryCapacity;string;CH01_1220100109;;false;false;30;
+;lndscpConnection;string;CH01_1220100109;;false;false;30;
+;lndscpBladeWidth;string;CH01_1220100109;;false;false;30;
+;lndscpBatteryType;string;CH01_1220100109;;false;false;30;
+;lndscpBladeType;string;CH01_1220100109;;false;false;30;
+;lndscpRechargeTime;string;CH01_1220100109;;false;false;30;
+;lndscpTeethperInch;string;CH01_1220100109;;false;false;30;
+#Knives & Machetes
+;lndscpItem;string;CH01_1220100110;;false;false;30;
+;lndscpType;string;CH01_1220100110;;false;false;30;
+;lndscpSeries;string;CH01_1220100110;;false;false;30;
+;lndscpColor;string;CH01_1220100110;;false;false;30;
+;lndscpMaterial;string;CH01_1220100110;;false;false;30;
+;lndscpShape;string;CH01_1220100110;;false;false;30;
+;lndscpBladeThickness;string;CH01_1220100110;;false;false;30;
+;lndscpHeight;string;CH01_1220100110;;false;false;30;
+;lndscpOverallLength;string;CH01_1220100110;;false;false;30;
+;lndscpHandleType;string;CH01_1220100110;;false;false;30;
+;lndscpFrameMaterial;string;CH01_1220100110;;false;false;30;
+;lndscpHandleLength;string;CH01_1220100110;;false;false;30;
+;lndscpToothPattern;string;CH01_1220100110;;false;false;30;
+;lndscpHandleMaterial;string;CH01_1220100110;;false;false;30;
+;lndscpHandleColor;string;CH01_1220100110;;false;false;30;
+;lndscpOverallHeight;string;CH01_1220100110;;false;false;30;
+;lndscpLength;string;CH01_1220100110;;false;false;30;
+;lndscpToothSpacing;string;CH01_1220100110;;false;false;30;
+;lndscpTotalWeight;string;CH01_1220100110;;false;false;30;
+;lndscpCuttingCapacity;string;CH01_1220100110;;false;false;30;
+;lndscpBladeLength;string;CH01_1220100110;;false;false;30;
+;lndscpBladeMaterial;string;CH01_1220100110;;false;false;30;
+;lndscpBladeWidth;string;CH01_1220100110;;false;false;30;
+;lndscpBladeType;string;CH01_1220100110;;false;false;30;
+;lndscpTeethperInch;string;CH01_1220100110;;false;false;30;
+#Wire Strippers
+;lndscpItem;string;CH01_1220100111;;false;false;30;
+;lndscpType;string;CH01_1220100111;;false;false;30;
+;lndscpSeries;string;CH01_1220100111;;false;false;30;
+;lndscpDimensions;string;CH01_1220100111;;false;false;30;
+;lndscpColor;string;CH01_1220100111;;false;false;30;
+;lndscpMaterial;string;CH01_1220100111;;false;false;30;
+;lndscpFinish;string;CH01_1220100111;;false;false;30;
+;lndscpShape;string;CH01_1220100111;;false;false;30;
+;lndscpBladeThickness;string;CH01_1220100111;;false;false;30;
+;lndscpHeight;string;CH01_1220100111;;false;false;30;
+;lndscpSuitableForUseWith;string;CH01_1220100111;;false;false;30;
+;lndscpOverallLength;string;CH01_1220100111;;false;false;30;
+;lndscpHandleType;string;CH01_1220100111;;false;false;30;
+;lndscpHandleLength;string;CH01_1220100111;;false;false;30;
+;lndscpToothPattern;string;CH01_1220100111;;false;false;30;
+;lndscpHandleMaterial;string;CH01_1220100111;;false;false;30;
+;lndscpHandleColor;string;CH01_1220100111;;false;false;30;
+;lndscpOverallHeight;string;CH01_1220100111;;false;false;30;
+;lndscpLength;string;CH01_1220100111;;false;false;30;
+;lndscpSize;string;CH01_1220100111;;false;false;30;
+;lndscpToothSpacing;string;CH01_1220100111;;false;false;30;
+;lndscpHeadSize;string;CH01_1220100111;;false;false;30;
+;lndscpSpecifications;string;CH01_1220100111;;false;false;30;
+;lndscpTotalWeight;string;CH01_1220100111;;false;false;30;
+#Axes
+;lndscpItem;string;CH01_1220100112;;false;false;30;
+;lndscpType;string;CH01_1220100112;;false;false;30;
+;lndscpSeries;string;CH01_1220100112;;false;false;30;
+;lndscpDimensions;string;CH01_1220100112;;false;false;30;
+;lndscpColor;string;CH01_1220100112;;false;false;30;
+;lndscpMaterial;string;CH01_1220100112;;false;false;30;
+;lndscpFinish;string;CH01_1220100112;;false;false;30;
+;lndscpShape;string;CH01_1220100112;;false;false;30;
+;lndscpBladeThickness;string;CH01_1220100112;;false;false;30;
+;lndscpHeight;string;CH01_1220100112;;false;false;30;
+;lndscpSuitableForUseWith;string;CH01_1220100112;;false;false;30;
+;lndscpOverallLength;string;CH01_1220100112;;false;false;30;
+;lndscpHandleType;string;CH01_1220100112;;false;false;30;
+;lndscpHandleLength;string;CH01_1220100112;;false;false;30;
+;lndscpToothPattern;string;CH01_1220100112;;false;false;30;
+;lndscpHandleMaterial;string;CH01_1220100112;;false;false;30;
+;lndscpHandleColor;string;CH01_1220100112;;false;false;30;
+;lndscpOverallHeight;string;CH01_1220100112;;false;false;30;
+;lndscpLength;string;CH01_1220100112;;false;false;30;
+;lndscpSize;string;CH01_1220100112;;false;false;30;
+;lndscpToothSpacing;string;CH01_1220100112;;false;false;30;
+;lndscpHeadSize;string;CH01_1220100112;;false;false;30;
+;lndscpSpecifications;string;CH01_1220100112;;false;false;30;
+;lndscpTotalWeight;string;CH01_1220100112;;false;false;30;
+#Caulking Guns
+;lndscpItem;string;CH01_1220100113;;false;false;30;
+;lndscpType;string;CH01_1220100113;;false;false;30;
+;lndscpSeries;string;CH01_1220100113;;false;false;30;
+;lndscpDimensions;string;CH01_1220100113;;false;false;30;
+;lndscpColor;string;CH01_1220100113;;false;false;30;
+;lndscpMaterial;string;CH01_1220100113;;false;false;30;
+;lndscpSuitableForUseWith;string;CH01_1220100113;;false;false;30;
+;lndscpHandleMaterial;string;CH01_1220100113;;false;false;30;
+;lndscpContainerSize;string;CH01_1220100113;;false;false;30;
+;lndscpCapacity;string;CH01_1220100113;;false;false;30;
+#Soil Probes
+;lndscpItem;string;CH01_1220100114;;false;false;30;
+;lndscpType;string;CH01_1220100114;;false;false;30;
+;lndscpSeries;string;CH01_1220100114;;false;false;30;
+;lndscpDimensions;string;CH01_1220100114;;false;false;30;
+;lndscpColor;string;CH01_1220100114;;false;false;30;
+;lndscpMaterial;string;CH01_1220100114;;false;false;30;
+;lndscpFinish;string;CH01_1220100114;;false;false;30;
+;lndscpHeight;string;CH01_1220100114;;false;false;30;
+;lndscpSuitableForUseWith;string;CH01_1220100114;;false;false;30;
+;lndscpHandleType;string;CH01_1220100114;;false;false;30;
+;lndscpLength;string;CH01_1220100114;;false;false;30;
+;lndscpSize;string;CH01_1220100114;;false;false;30;
+;lndscpProbeSize;string;CH01_1220100114;;false;false;30;
+#Parts & Accessories
+;lndscpItem;string;CH01_1220102102;;false;false;30;
+;lndscpType;string;CH01_1220102102;;false;false;30;
+;lndscpSeries;string;CH01_1220102102;;false;false;30;
+;lndscpDimensions;string;CH01_1220102102;;false;false;30;
+;lndscpColor;string;CH01_1220102102;;false;false;30;
+;lndscpMaterial;string;CH01_1220102102;;false;false;30;
+;lndscpFinish;string;CH01_1220102102;;false;false;30;
+;lndscpShape;string;CH01_1220102102;;false;false;30;
+;lndscpWallThickness;string;CH01_1220102102;;false;false;30;
+;lndscpHeight;string;CH01_1220102102;;false;false;30;
+;lndscpOverallLength;string;CH01_1220102102;;false;false;30;
+;lndscpHandleType;string;CH01_1220102102;;false;false;30;
+;lndscpHandleLength;string;CH01_1220102102;;false;false;30;
+;lndscpWheelMaterial;string;CH01_1220102102;;false;false;30;
+;lndscpAxleSize;string;CH01_1220102102;;false;false;30;
+;lndscpHandleMaterial;string;CH01_1220102102;;false;false;30;
+;lndscpOverallHeight;string;CH01_1220102102;;false;false;30;
+;lndscpLength;string;CH01_1220102102;;false;false;30;
+;lndscpStorageCapacity;string;CH01_1220102102;;false;false;30;
+;lndscpCapacity;string;CH01_1220102102;;false;false;30;
+;lndscpWheelSize;string;CH01_1220102102;;false;false;30;
+;lndscpTotalWeight;string;CH01_1220102102;;false;false;30;
+;lndscpLoadCapacity;string;CH01_1220102102;;false;false;30;
+;lndscpTraySize;string;CH01_1220102102;;false;false;30;
+;lndscpNumberofWheels;string;CH01_1220102102;;false;false;30;
+;lndscpWheelType;string;CH01_1220102102;;false;false;30;
+;lndscpWeightCapacity;string;CH01_1220102102;;false;false;30;
+#Tool Boxes
+;lndscpItem;string;CH01_1220102103;;false;false;30;
+;lndscpType;string;CH01_1220102103;;false;false;30;
+;lndscpSeries;string;CH01_1220102103;;false;false;30;
+;lndscpDimensions;string;CH01_1220102103;;false;false;30;
+;lndscpColor;string;CH01_1220102103;;false;false;30;
+;lndscpMaterial;string;CH01_1220102103;;false;false;30;
+;lndscpFinish;string;CH01_1220102103;;false;false;30;
+;lndscpShape;string;CH01_1220102103;;false;false;30;
+;lndscpWallThickness;string;CH01_1220102103;;false;false;30;
+;lndscpHeight;string;CH01_1220102103;;false;false;30;
+;lndscpOverallLength;string;CH01_1220102103;;false;false;30;
+;lndscpHandleType;string;CH01_1220102103;;false;false;30;
+;lndscpHandleLength;string;CH01_1220102103;;false;false;30;
+;lndscpWheelMaterial;string;CH01_1220102103;;false;false;30;
+;lndscpAxleSize;string;CH01_1220102103;;false;false;30;
+;lndscpHandleMaterial;string;CH01_1220102103;;false;false;30;
+;lndscpOverallHeight;string;CH01_1220102103;;false;false;30;
+;lndscpLength;string;CH01_1220102103;;false;false;30;
+;lndscpStorageCapacity;string;CH01_1220102103;;false;false;30;
+;lndscpCapacity;string;CH01_1220102103;;false;false;30;
+;lndscpWheelSize;string;CH01_1220102103;;false;false;30;
+;lndscpTotalWeight;string;CH01_1220102103;;false;false;30;
+;lndscpLoadCapacity;string;CH01_1220102103;;false;false;30;
+;lndscpTraySize;string;CH01_1220102103;;false;false;30;
+;lndscpNumberofWheels;string;CH01_1220102103;;false;false;30;
+;lndscpWheelType;string;CH01_1220102103;;false;false;30;
+;lndscpWeightCapacity;string;CH01_1220102103;;false;false;30;
+#Head Trimmers & Extractors
+;lndscpItem;string;CH01_1220103103;;false;false;30;
+;lndscpType;string;CH01_1220103103;;false;false;30;
+;lndscpSeries;string;CH01_1220103103;;false;false;30;
+;lndscpDimensions;string;CH01_1220103103;;false;false;30;
+;lndscpColor;string;CH01_1220103103;;false;false;30;
+;lndscpMaterial;string;CH01_1220103103;;false;false;30;
+;lndscpFinish;string;CH01_1220103103;;false;false;30;
+;lndscpBladeThickness;string;CH01_1220103103;;false;false;30;
+;lndscpSuitableForUseWith;string;CH01_1220103103;;false;false;30;
+;lndscpOverallLength;string;CH01_1220103103;;false;false;30;
+;lndscpHandleType;string;CH01_1220103103;;false;false;30;
+;lndscpToothPattern;string;CH01_1220103103;;false;false;30;
+;lndscpHandleMaterial;string;CH01_1220103103;;false;false;30;
+;lndscpOverallHeight;string;CH01_1220103103;;false;false;30;
+;lndscpLength;string;CH01_1220103103;;false;false;30;
+;lndscpToothSpacing;string;CH01_1220103103;;false;false;30;
+;lndscpSpecifications;string;CH01_1220103103;;false;false;30;
+;lndscpTotalWeight;string;CH01_1220103103;;false;false;30;
+;lndscpCuttingCapacity;string;CH01_1220103103;;false;false;30;
+;lndscpBladeMaterial;string;CH01_1220103103;;false;false;30;
+;lndscpRechargeTime;string;CH01_1220103103;;false;false;30;
+#Parts
+;lndscpItem;string;CH01_1220103104;;false;false;30;
+;lndscpType;string;CH01_1220103104;;false;false;30;
+;lndscpSeries;string;CH01_1220103104;;false;false;30;
+;lndscpDimensions;string;CH01_1220103104;;false;false;30;
+;lndscpColor;string;CH01_1220103104;;false;false;30;
+;lndscpMaterial;string;CH01_1220103104;;false;false;30;
+;lndscpFinish;string;CH01_1220103104;;false;false;30;
+;lndscpBladeThickness;string;CH01_1220103104;;false;false;30;
+;lndscpSuitableForUseWith;string;CH01_1220103104;;false;false;30;
+;lndscpOverallLength;string;CH01_1220103104;;false;false;30;
+;lndscpHandleType;string;CH01_1220103104;;false;false;30;
+;lndscpHandleType;string;CH01_1220103104;;false;false;30;
+;lndscpToothPattern;string;CH01_1220103104;;false;false;30;
+;lndscpHandleMaterial;string;CH01_1220103104;;false;false;30;
+;lndscpOverallHeight;string;CH01_1220103104;;false;false;30;
+;lndscpLength;string;CH01_1220103104;;false;false;30;
+;lndscpToothSpacing;string;CH01_1220103104;;false;false;30;
+;lndscpSpecifications;string;CH01_1220103104;;false;false;30;
+;lndscpTotalWeight;string;CH01_1220103104;;false;false;30;
+;lndscpCuttingCapacity;string;CH01_1220103104;;false;false;30;
+;lndscpBladeMaterial;string;CH01_1220103104;;false;false;30;
+;lndscpRechargeTime;string;CH01_1220103104;;false;false;30;
+#Tamps & Bars
+;lndscpItem;string;CH01_1220105107;;false;false;30;
+;lndscpType;string;CH01_1220105107;;false;false;30;
+;lndscpSeries;string;CH01_1220105107;;false;false;30;
+;lndscpDimensions;string;CH01_1220105107;;false;false;30;
+;lndscpColor;string;CH01_1220105107;;false;false;30;
+;lndscpMaterial;string;CH01_1220105107;;false;false;30;
+;lndscpFinish;string;CH01_1220105107;;false;false;30;
+;lndscpShape;string;CH01_1220105107;;false;false;30;
+;lndscpBladeThickness;string;CH01_1220105107;;false;false;30;
+;lndscpHeight;string;CH01_1220105107;;false;false;30;
+;lndscpOverallLength;string;CH01_1220105107;;false;false;30;
+;lndscpHandleLength;string;CH01_1220105107;;false;false;30;
+;lndscpHandleMaterial;string;CH01_1220105107;;false;false;30;
+;lndscpOverallHeight;string;CH01_1220105107;;false;false;30;
+;lndscpHeadSize;string;CH01_1220105107;;false;false;30;
+;lndscpTotalWeight;string;CH01_1220105107;;false;false;30;
+;lndscpWidth;string;CH01_1220105107;;false;false;30;
+;lndscpBladeLength;string;CH01_1220105107;;false;false;30;
+;lndscpBladeMaterial;string;CH01_1220105107;;false;false;30;
+;lndscpBladeWidth;string;CH01_1220105107;;false;false;30;
+;lndscpGauge;string;CH01_1220105107;;false;false;30;
+;lndscpWeight;string;CH01_1220105107;;false;false;30;
+#Levels
+;lndscpItem;string;CH01_1220106100;;false;false;30;
+;lndscpType;string;CH01_1220106100;;false;false;30;
+;lndscpSeries;string;CH01_1220106100;;false;false;30;
+;lndscpDimensions;string;CH01_1220106100;;false;false;30;
+;lndscpColor;string;CH01_1220106100;;false;false;30;
+;lndscpMaterial;string;CH01_1220106100;;false;false;30;
+;lndscpFinish;string;CH01_1220106100;;false;false;30;
+;lndscpPressureRange;string;CH01_1220106100;;false;false;30;
+;lndscpFrameMaterial;string;CH01_1220106100;;false;false;30;
+;lndscpHandleLength;string;CH01_1220106100;;false;false;30;
+;lndscpWheelMaterial;string;CH01_1220106100;;false;false;30;
+;lndscpHandleMaterial;string;CH01_1220106100;;false;false;30;
+;lndscpPowerSource;string;CH01_1220106100;;false;false;30;
+;lndscpWheelSize;string;CH01_1220106100;;false;false;30;
+;lndscpTotalWeight;string;CH01_1220106100;;false;false;30;
+;lndscpSensingMethod;string;CH01_1220106100;;false;false;30;
+;lndscpHumiditySensing;string;CH01_1220106100;;false;false;30;
+;lndscpWheelType;string;CH01_1220106100;;false;false;30;
+;lndscpDisplay;string;CH01_1220106100;;false;false;30;
+;lndscpAccuracy;string;CH01_1220106100;;false;false;30;
+#Measuring Wheels
+;lndscpItem;string;CH01_1220106101;;false;false;30;
+;lndscpType;string;CH01_1220106101;;false;false;30;
+;lndscpSeries;string;CH01_1220106101;;false;false;30;
+;lndscpDimensions;string;CH01_1220106101;;false;false;30;
+;lndscpColor;string;CH01_1220106101;;false;false;30;
+;lndscpMaterial;string;CH01_1220106101;;false;false;30;
+;lndscpFinish;string;CH01_1220106101;;false;false;30;
+;lndscpPressureRange;string;CH01_1220106101;;false;false;30;
+;lndscpFrameMaterial;string;CH01_1220106101;;false;false;30;
+;lndscpHandleLength;string;CH01_1220106101;;false;false;30;
+;lndscpWheelMaterial;string;CH01_1220106101;;false;false;30;
+;lndscpHandleMaterial;string;CH01_1220106101;;false;false;30;
+;lndscpPowerSource;string;CH01_1220106101;;false;false;30;
+;lndscpWheelSize;string;CH01_1220106101;;false;false;30;
+;lndscpTotalWeight;string;CH01_1220106101;;false;false;30;
+;lndscpSensingMethod;string;CH01_1220106101;;false;false;30;
+;lndscpHumiditySensing;string;CH01_1220106101;;false;false;30;
+;lndscpWheelType;string;CH01_1220106101;;false;false;30;
+;lndscpDisplay;string;CH01_1220106101;;false;false;30;
+;lndscpAccuracy;string;CH01_1220106101;;false;false;30;
+#Tape Measures
+;lndscpItem;string;CH01_1220106102;;false;false;30;
+;lndscpType;string;CH01_1220106102;;false;false;30;
+;lndscpSeries;string;CH01_1220106102;;false;false;30;
+;lndscpColor;string;CH01_1220106102;;false;false;30;
+;lndscpDimensions;string;CH01_1220106102;;false;false;30;
+;lndscpColor;string;CH01_1220106102;;false;false;30;
+;lndscpMaterial;string;CH01_1220106102;;false;false;30;
+;lndscpFinish;string;CH01_1220106102;;false;false;30;
+;lndscpPressureRange;string;CH01_1220106102;;false;false;30;
+;lndscpFrameMaterial;string;CH01_1220106102;;false;false;30;
+;lndscpHandleLength;string;CH01_1220106102;;false;false;30;
+;lndscpWheelMaterial;string;CH01_1220106102;;false;false;30;
+;lndscpHandleMaterial;string;CH01_1220106102;;false;false;30;
+;lndscpPowerSource;string;CH01_1220106102;;false;false;30;
+;lndscpWheelSize;string;CH01_1220106102;;false;false;30;
+;lndscpTotalWeight;string;CH01_1220106102;;false;false;30;
+;lndscpSensingMethod;string;CH01_1220106102;;false;false;30;
+;lndscpHumiditySensing;string;CH01_1220106102;;false;false;30;
+;lndscpWheelType;string;CH01_1220106102;;false;false;30;
+;lndscpDisplay;string;CH01_1220106102;;false;false;30;
+;lndscpAccuracy;string;CH01_1220106102;;false;false;30;
+#Flagging
+;lndscpItem;string;CH01_1222100;;false;false;30;
+;lndscpType;string;CH01_1222100;;false;false;30;
+;lndscpSeries;string;CH01_1222100;;false;false;30;
+;lndscpColor;string;CH01_1222100;;false;false;30;
+;lndscpMaterial;string;CH01_1222100;;false;false;30;
+;lndscpShape;string;CH01_1222100;;false;false;30;
+;lndscpBackgroundColor;string;CH01_1222100;;false;false;30;
+;lndscpMinimumFlagpoleHeight;string;CH01_1222100;;false;false;30;
+;lndscpSuitableForUseWith;string;CH01_1222100;;false;false;30;
+;lndscpLength;string;CH01_1222100;;false;false;30;
+;lndscpLegendColor;string;CH01_1222100;;false;false;30;
+;lndscpWidth;string;CH01_1222100;;false;false;30;
+;lndscpThickness;string;CH01_1222100;;false;false;30;
+;lndscpLegend;string;CH01_1222100;;false;false;30;
+#Tree Bracing
+;lndscpItem;string;CH01_1222101;;false;false;30;
+;lndscpType;string;CH01_1222101;;false;false;30;
+;lndscpSeries;string;CH01_1222101;;false;false;30;
+;lndscpDimensions;string;CH01_1222101;;false;false;30;
+;lndscpColor;string;CH01_1222101;;false;false;30;
+;lndscpMaterial;string;CH01_1222101;;false;false;30;
+;lndscpHeight;string;CH01_1222101;;false;false;30;
+;lndscpSuitableForUseWith;string;CH01_1222101;;false;false;30;
+;lndscpContainerSize;string;CH01_1222101;;false;false;30;
+;lndscpLength;string;CH01_1222101;;false;false;30;
+;lndscpBuckleType;string;CH01_1222101;;false;false;30;
+;lndscpWidth;string;CH01_1222101;;false;false;30;
+;lndscpNumberofPieces;string;CH01_1222101;;false;false;30;
+;lndscpDiameter;string;CH01_1222101;;false;false;30;
+;lndscpMaximumTreeSize;string;CH01_1222101;;false;false;30;
+;lndscpLoadCapacity;string;CH01_1222101;;false;false;30;
+;lndscpHookMaterial;string;CH01_1222101;;false;false;30;
+#Watering Bags
+;lndscpItem;string;CH01_1222102;;false;false;30;
+;lndscpType;string;CH01_1222102;;false;false;30;
+;lndscpSeries;string;CH01_1222102;;false;false;30;
+;lndscpDimensions;string;CH01_1222102;;false;false;30;
+;lndscpColor;string;CH01_1222102;;false;false;30;
+;lndscpMaterial;string;CH01_1222102;;false;false;30;
+;lndscpFlowRate;string;CH01_1222102;;false;false;30;
+;lndscpCapacity;string;CH01_1222102;;false;false;30;
+;lndscpContainerType;string;CH01_1222102;;false;false;30;
+;lndscpMaximumTreeSize;string;CH01_1222102;;false;false;30;
+;lndscpDripTime;string;CH01_1222102;;false;false;30;
+#Flags
+;lndscpItem;string;CH01_1223100100;;false;false;30;
+;lndscpType;string;CH01_1223100100;;false;false;30;
+;lndscpSeries;string;CH01_1223100100;;false;false;30;
+;lndscpDimensions;string;CH01_1223100100;;false;false;30;
+;lndscpColor;string;CH01_1223100100;;false;false;30;
+;lndscpMaterial;string;CH01_1223100100;;false;false;30;
+;lndscpShape;string;CH01_1223100100;;false;false;30;
+;lndscpBackgroundColor;string;CH01_1223100100;;false;false;30;
+;lndscpMinimumFlagpoleHeight;string;CH01_1223100100;;false;false;30;
+;lndscpHeight;string;CH01_1223100100;;false;false;30;
+;lndscpSuitableForUseWith;string;CH01_1223100100;;false;false;30;
+;lndscpOverallHeight;string;CH01_1223100100;;false;false;30;
+;lndscpContainerSize;string;CH01_1223100100;;false;false;30;
+;lndscpStitchRate;string;CH01_1223100100;;false;false;30;
+;lndscpLength;string;CH01_1223100100;;false;false;30;
+;lndscpLegendColor;string;CH01_1223100100;;false;false;30;
+;lndscpWidth;string;CH01_1223100100;;false;false;30;
+;lndscpDiameter;string;CH01_1223100100;;false;false;30;
+;lndscpThickness;string;CH01_1223100100;;false;false;30;
+;lndscpLegend;string;CH01_1223100100;;false;false;30;
+;lndscpPattern;string;CH01_1223100100;;false;false;30;
+;lndscpPoleMaterial;string;CH01_1223100100;;false;false;30;
+#Signage
+;lndscpItem;string;CH01_1223100101;;false;false;30;
+;lndscpType;string;CH01_1223100101;;false;false;30;
+;lndscpSeries;string;CH01_1223100101;;false;false;30;
+;lndscpDimensions;string;CH01_1223100101;;false;false;30;
+;lndscpColor;string;CH01_1223100101;;false;false;30;
+;lndscpMaterial;string;CH01_1223100101;;false;false;30;
+;lndscpShape;string;CH01_1223100101;;false;false;30;
+;lndscpBackgroundColor;string;CH01_1223100101;;false;false;30;
+;lndscpMinimumFlagpoleHeight;string;CH01_1223100101;;false;false;30;
+;lndscpHeight;string;CH01_1223100101;;false;false;30;
+;lndscpSuitableForUseWith;string;CH01_1223100101;;false;false;30;
+;lndscpOverallHeight;string;CH01_1223100101;;false;false;30;
+;lndscpContainerSize;string;CH01_1223100101;;false;false;30;
+;lndscpStitchRate;string;CH01_1223100101;;false;false;30;
+;lndscpLength;string;CH01_1223100101;;false;false;30;
+;lndscpLegendColor;string;CH01_1223100101;;false;false;30;
+;lndscpWidth;string;CH01_1223100101;;false;false;30;
+;lndscpDiameter;string;CH01_1223100101;;false;false;30;
+;lndscpThickness;string;CH01_1223100101;;false;false;30;
+;lndscpLegend;string;CH01_1223100101;;false;false;30;
+;lndscpPattern;string;CH01_1223100101;;false;false;30;
+;lndscpPoleMaterial;string;CH01_1223100101;;false;false;30;
+#Golf Course Accessories
+;lndscpItem;string;CH01_1223101;;false;false;30;
+;lndscpType;string;CH01_1223101;;false;false;30;
+;lndscpSeries;string;CH01_1223101;;false;false;30;
+;lndscpDimensions;string;CH01_1223101;;false;false;30;
+;lndscpColor;string;CH01_1223101;;false;false;30;
+;lndscpMaterial;string;CH01_1223101;;false;false;30;
+;lndscpFinish;string;CH01_1223101;;false;false;30;
+;lndscpShape;string;CH01_1223101;;false;false;30;
+;lndscpBackgroundColor;string;CH01_1223101;;false;false;30;
+;lndscpFlowRate;string;CH01_1223101;;false;false;30;
+;lndscpBladeThickness;string;CH01_1223101;;false;false;30;
+;lndscpPressureRange;string;CH01_1223101;;false;false;30;
+;lndscpHeight;string;CH01_1223101;;false;false;30;
+;lndscpSuitableForUseWith;string;CH01_1223101;;false;false;30;
+;lndscpFrameMaterial;string;CH01_1223101;;false;false;30;
+;lndscpContainerSize;string;CH01_1223101;;false;false;30;
+;lndscpLength;string;CH01_1223101;;false;false;30;
+;lndscpLegendColor;string;CH01_1223101;;false;false;30;
+;lndscpSize;string;CH01_1223101;;false;false;30;
+;lndscpContainerType;string;CH01_1223101;;false;false;30;
+;lndscpWidth;string;CH01_1223101;;false;false;30;
+;lndscpBladeLength;string;CH01_1223101;;false;false;30;
+;lndscpCoverageArea;string;CH01_1223101;;false;false;30;
+;lndscpDiameter;string;CH01_1223101;;false;false;30;
+;lndscpBladeMaterial;string;CH01_1223101;;false;false;30;
+;lndscpThickness;string;CH01_1223101;;false;false;30;
+;lndscpBladeSize;string;CH01_1223101;;false;false;30;
+;lndscpLegend;string;CH01_1223101;;false;false;30;
+;lndscpRechargeTime;string;CH01_1223101;;false;false;30;
+;lndscpLinerMaterial;string;CH01_1223101;;false;false;30;
+;lndscpConnectionType;string;CH01_1223101;;false;false;30;
+;lndscpGritMaterial;string;CH01_1223101;;false;false;30;
+;lndscpTemperatureRange;string;CH01_1223101;;false;false;30;
+;lndscpGritSize;string;CH01_1223101;;false;false;30;
+;lndscpPattern;string;CH01_1223101;;false;false;30;
+;lndscpGritGrade;string;CH01_1223101;;false;false;30;
+;lndscpGripType;string;CH01_1223101;;false;false;30;
+;lndscpFlagSize;string;CH01_1223101;;false;false;30;
+;lndscpMounting;string;CH01_1223101;;false;false;30;
+;lndscpStripeColor;string;CH01_1223101;;false;false;30;
+;lndscpPoleMaterial;string;CH01_1223101;;false;false;30;
+;lndscpGritType;string;CH01_1223101;;false;false;30;
+;lndscpCoolingCapacity;string;CH01_1223101;;false;false;30;
+;lndscpAirflow;string;CH01_1223101;;false;false;30;
+;lndscpHoseLength;string;CH01_1223101;;false;false;30;
+;lndscpCFM;string;CH01_1223101;;false;false;30;
+;lndscpMPH;string;CH01_1223101;;false;false;30;
+;lndscpHoseSize;string;CH01_1223101;;false;false;30;
+#Greens
+;lndscpItem;string;CH01_1223102;;false;false;30;
+;lndscpType;string;CH01_1223102;;false;false;30;
+;lndscpSeries;string;CH01_1223102;;false;false;30;
+;lndscpDimensions;string;CH01_1223102;;false;false;30;
+;lndscpColor;string;CH01_1223102;;false;false;30;
+;lndscpMaterial;string;CH01_1223102;;false;false;30;
+;lndscpShape;string;CH01_1223102;;false;false;30;
+;lndscpBackgroundColor;string;CH01_1223102;;false;false;30;
+;lndscpMinimumFlagpoleHeight;string;CH01_1223102;;false;false;30;
+;lndscpHeight;string;CH01_1223102;;false;false;30;
+;lndscpSuitableForUseWith;string;CH01_1223102;;false;false;30;
+;lndscpOverallHeight;string;CH01_1223102;;false;false;30;
+;lndscpContainerSize;string;CH01_1223102;;false;false;30;
+;lndscpStitchRate;string;CH01_1223102;;false;false;30;
+;lndscpLength;string;CH01_1223102;;false;false;30;
+;lndscpLegendColor;string;CH01_1223102;;false;false;30;
+;lndscpSize;string;CH01_1223102;;false;false;30;
+;lndscpMountingType;string;CH01_1223102;;false;false;30;
+;lndscpWidth;string;CH01_1223102;;false;false;30;
+;lndscpNumberofPieces;string;CH01_1223102;;false;false;30;
+;lndscpDiameter;string;CH01_1223102;;false;false;30;
+;lndscpBladeMaterial;string;CH01_1223102;;false;false;30;
+;lndscpThickness;string;CH01_1223102;;false;false;30;
+;lndscpBladeSize;string;CH01_1223102;;false;false;30;
+;lndscpLegend;string;CH01_1223102;;false;false;30;
+;lndscpRechargeTime;string;CH01_1223102;;false;false;30;
+;lndscpLinerMaterial;string;CH01_1223102;;false;false;30;
+;lndscpPattern;string;CH01_1223102;;false;false;30;
+;lndscpFlagSize;string;CH01_1223102;;false;false;30;
+;lndscpMounting;string;CH01_1223102;;false;false;30;
+;lndscpHoleDiameter;string;CH01_1223102;;false;false;30;
+;lndscpStripeColor;string;CH01_1223102;;false;false;30;
+;lndscpPoleMaterial;string;CH01_1223102;;false;false;30;
+;lndscpCuttingDepth;string;CH01_1223102;;false;false;30;
+;lndscpGritType;string;CH01_1223102;;false;false;30;
+;lndscpCFM;string;CH01_1223102;;false;false;30;
+;lndscpMPH;string;CH01_1223102;;false;false;30;
+#Sensor & Measuring Devices
+;lndscpItem;string;CH01_1223103;;false;false;30;
+;lndscpType;string;CH01_1223103;;false;false;30;
+;lndscpSeries;string;CH01_1223103;;false;false;30;
+;lndscpDimensions;string;CH01_1223103;;false;false;30;
+;lndscpColor;string;CH01_1223103;;false;false;30;
+;lndscpFinish;string;CH01_1223103;;false;false;30;
+;lndscpFlowRate;string;CH01_1223103;;false;false;30;
+;lndscpPressureRange;string;CH01_1223103;;false;false;30;
+;lndscpSuitableForUseWith;string;CH01_1223103;;false;false;30;
+;lndscpProbeSize;string;CH01_1223103;;false;false;30;
+;lndscpTemperatureRating;string;CH01_1223103;;false;false;30;
+;lndscpSensingDistance;string;CH01_1223103;;false;false;30;
+;lndscpConnectionSize;string;CH01_1223103;;false;false;30;
+;lndscpPressureRating;string;CH01_1223103;;false;false;30;
+;lndscpConnectionType;string;CH01_1223103;;false;false;30;
+;lndscpTemperatureRange;string;CH01_1223103;;false;false;30;
+;lndscpVoltageRating;string;CH01_1223103;;false;false;30;
+;lndscpAmperageRating;string;CH01_1223103;;false;false;30;
+;lndscpSensingMethod;string;CH01_1223103;;false;false;30;
+;lndscpHumiditySensing;string;CH01_1223103;;false;false;30;
+;lndscpVaporPressure;string;CH01_1223103;;false;false;30;
+;lndscpEvaporationRate;string;CH01_1223103;;false;false;30;
+;lndscppH;string;CH01_1223103;;false;false;30;
+;lndscpAccuracy;string;CH01_1223103;;false;false;30;
+#Tees
+;lndscpItem;string;CH01_1223104;;false;false;30;
+;lndscpType;string;CH01_1223104;;false;false;30;
+;lndscpSeries;string;CH01_1223104;;false;false;30;
+;lndscpDimensions;string;CH01_1223104;;false;false;30;
+;lndscpColor;string;CH01_1223104;;false;false;30;
+;lndscpMaterial;string;CH01_1223104;;false;false;30;
+;lndscpFinish;string;CH01_1223104;;false;false;30;
+;lndscpShape;string;CH01_1223104;;false;false;30;
+;lndscpBackgroundColor;string;CH01_1223104;;false;false;30;
+;lndscpHeight;string;CH01_1223104;;false;false;30;
+;lndscpSuitableForUseWith;string;CH01_1223104;;false;false;30;
+;lndscpFrameMaterial;string;CH01_1223104;;false;false;30;
+;lndscpContainerSize;string;CH01_1223104;;false;false;30;
+;lndscpLength;string;CH01_1223104;;false;false;30;
+;lndscpLegendColor;string;CH01_1223104;;false;false;30;
+;lndscpCapacity;string;CH01_1223104;;false;false;30;
+;lndscpContainerType;string;CH01_1223104;;false;false;30;
+;lndscpWidth;string;CH01_1223104;;false;false;30;
+;lndscpNumberofPieces;string;CH01_1223104;;false;false;30;
+;lndscpLegend;string;CH01_1223104;;false;false;30;
+;lndscpPattern;string;CH01_1223104;;false;false;30;
+#Tools
+;lndscpItem;string;CH01_1223105;;false;false;30;
+;lndscpType;string;CH01_1223105;;false;false;30;
+;lndscpSeries;string;CH01_1223105;;false;false;30;
+;lndscpDimensions;string;CH01_1223105;;false;false;30;
+;lndscpColor;string;CH01_1223105;;false;false;30;
+;lndscpMaterial;string;CH01_1223105;;false;false;30;
+;lndscpFinish;string;CH01_1223105;;false;false;30;
+;lndscpShape;string;CH01_1223105;;false;false;30;
+;lndscpBladeThickness;string;CH01_1223105;;false;false;30;
+;lndscpSuitableForUseWith;string;CH01_1223105;;false;false;30;
+;lndscpHandleType;string;CH01_1223105;;false;false;30;
+;lndscpHandleLength;string;CH01_1223105;;false;false;30;
+;lndscpHandleMaterial;string;CH01_1223105;;false;false;30;
+;lndscpContainerSize;string;CH01_1223105;;false;false;30;
+;lndscpSize;string;CH01_1223105;;false;false;30;
+;lndscpContainerType;string;CH01_1223105;;false;false;30;
+;lndscpBladeLength;string;CH01_1223105;;false;false;30;
+;lndscpCoverageArea;string;CH01_1223105;;false;false;30;
+;lndscpBladeMaterial;string;CH01_1223105;;false;false;30;
+;lndscpBladeWidth;string;CH01_1223105;;false;false;30;
+;lndscpRechargeTime;string;CH01_1223105;;false;false;30;
+;lndscpPattern;string;CH01_1223105;;false;false;30;
+#Athletic Field
+;lndscpItem;string;CH01_1223106;;false;false;30;
+;lndscpType;string;CH01_1223106;;false;false;30;
+;lndscpSeries;string;CH01_1223106;;false;false;30;
+;lndscpDimensions;string;CH01_1223106;;false;false;30;
+;lndscpColor;string;CH01_1223106;;false;false;30;
+;lndscpMaterial;string;CH01_1223106;;false;false;30;
+;lndscpFinish;string;CH01_1223106;;false;false;30;
+;lndscpSuitableForUseWith;string;CH01_1223106;;false;false;30;
+;lndscpSpecifications;string;CH01_1223106;;false;false;30;
+;lndscpWidth;string;CH01_1223106;;false;false;30;
+;lndscpNumberofPieces;string;CH01_1223106;;false;false;30;
+#Other Sports & Turf
+;lndscpItem;string;CH01_1223107;;false;false;30;
+;lndscpType;string;CH01_1223107;;false;false;30;
+;lndscpSeries;string;CH01_1223107;;false;false;30;
+;lndscpDimensions;string;CH01_1223107;;false;false;30;
+;lndscpColor;string;CH01_1223107;;false;false;30;
+;lndscpMaterial;string;CH01_1223107;;false;false;30;
+;lndscpFinish;string;CH01_1223107;;false;false;30;
+;lndscpSuitableForUseWith;string;CH01_1223107;;false;false;30;
+;lndscpSpecifications;string;CH01_1223107;;false;false;30;
+;lndscpWidth;string;CH01_1223107;;false;false;30;
+;lndscpNumberofPieces;string;CH01_1223107;;false;false;30;
+#Parks & Recreation
+;lndscpItem;string;CH01_1223107;;false;false;30;
+;lndscpType;string;CH01_1223107;;false;false;30;
+;lndscpSeries;string;CH01_1223107;;false;false;30;
+;lndscpDimensions;string;CH01_1223107;;false;false;30;
+;lndscpColor;string;CH01_1223107;;false;false;30;
+;lndscpMaterial;string;CH01_1223107;;false;false;30;
+;lndscpFinish;string;CH01_1223107;;false;false;30;
+;lndscpSuitableForUseWith;string;CH01_1223107;;false;false;30;
+;lndscpSpecifications;string;CH01_1223107;;false;false;30;
+;lndscpWidth;string;CH01_1223107;;false;false;30;
+;lndscpNumberofPieces;string;CH01_1223107;;false;false;30;
+#Coolers
+;lndscpItem;string;CH01_1224100;;false;false;30;
+;lndscpType;string;CH01_1224100;;false;false;30;
+;lndscpSeries;string;CH01_1224100;;false;false;30;
+;lndscpDimensions;string;CH01_1224100;;false;false;30;
+;lndscpColor;string;CH01_1224100;;false;false;30;
+;lndscpHeight;string;CH01_1224100;;false;false;30;
+;lndscpContainerSize;string;CH01_1224100;;false;false;30;
+;lndscpLength;string;CH01_1224100;;false;false;30;
+;lndscpStorageCapacity;string;CH01_1224100;;false;false;30;
+;lndscpCapacity;string;CH01_1224100;;false;false;30;
+;lndscpWidth;string;CH01_1224100;;false;false;30;
+#Degreasers
+;lndscpItem;string;CH01_1224101;;false;false;30;
+;lndscpType;string;CH01_1224101;;false;false;30;
+;lndscpSeries;string;CH01_1224101;;false;false;30;
+;lndscpColor;string;CH01_1224101;;false;false;30;
+;lndscpHeight;string;CH01_1224101;;false;false;30;
+;lndscpContainerSize;string;CH01_1224101;;false;false;30;
+;lndscpLength;string;CH01_1224101;;false;false;30;
+;lndscpStorageCapacity;string;CH01_1224101;;false;false;30;
+;lndscpCapacity;string;CH01_1224101;;false;false;30;
+;lndscpWidth;string;CH01_1224101;;false;false;30;
+#Flashlights
+;lndscpItem;string;CH01_1224102;;false;false;30;
+;lndscpType;string;CH01_1224102;;false;false;30;
+;lndscpSeries;string;CH01_1224102;;false;false;30;
+;lndscpDimensions;string;CH01_1224102;;false;false;30;
+;lndscpColor;string;CH01_1224102;;false;false;30;
+;lndscpWattageRating;string;CH01_1224102;;false;false;30;
+;lndscpAverageLife;string;CH01_1224102;;false;false;30;
+;lndscpPowerSource;string;CH01_1224102;;false;false;30;
+;lndscpLumens;string;CH01_1224102;;false;false;30;
+;lndscpBatteryCapacity;string;CH01_1224102;;false;false;30;
+;lndscpBatteryType;string;CH01_1224102;;false;false;30;
+;lndscpRechargeTime;string;CH01_1224102;;false;false;30;
+;lndscpVoltageRating;string;CH01_1224102;;false;false;30;
+;lndscpAmperageRating;string;CH01_1224102;;false;false;30;
+;lndscpLightingTechnology;string;CH01_1224102;;false;false;30;
+;lndscpLampType;string;CH01_1224102;;false;false;30;
+;lndscpLampWattage;string;CH01_1224102;;false;false;30;
+;lndscpLampBase;string;CH01_1224102;;false;false;30;
+;lndscpNumberofLamps;string;CH01_1224102;;false;false;30;
+#Gas Cans
+;lndscpItem;string;CH01_1224103;;false;false;30;
+;lndscpType;string;CH01_1224103;;false;false;30;
+;lndscpSeries;string;CH01_1224103;;false;false;30;
+;lndscpDimensions;string;CH01_1224103;;false;false;30;
+;lndscpColor;string;CH01_1224103;;false;false;30;
+;lndscpMaterial;string;CH01_1224103;;false;false;30;
+;lndscpFinish;string;CH01_1224103;;false;false;30;
+;lndscpSuitableForUseWith;string;CH01_1224103;;false;false;30;
+;lndscpContainerSize;string;CH01_1224103;;false;false;30;
+;lndscpStorageCapacity;string;CH01_1224103;;false;false;30;
+;lndscpClosureType;string;CH01_1224103;;false;false;30;
+;lndscpCapacity;string;CH01_1224103;;false;false;30;
+;lndscpContainerType;string;CH01_1224103;;false;false;30;
+;lndscpWidth;string;CH01_1224103;;false;false;30;
+;lndscpDiameter;string;CH01_1224103;;false;false;30;
+;lndscpGraduations;string;CH01_1224103;;false;false;30;
+#Spill Kits
+;lndscpItem;string;CH01_1224104;;false;false;30;
+;lndscpType;string;CH01_1224104;;false;false;30;
+;lndscpSeries;string;CH01_1224104;;false;false;30;
+;lndscpDimensions;string;CH01_1224104;;false;false;30;
+;lndscpColor;string;CH01_1224104;;false;false;30;
+;lndscpFinish;string;CH01_1224104;;false;false;30;
+;lndscpSuitableForUseWith;string;CH01_1224104;;false;false;30;
+;lndscpSpecifications;string;CH01_1224104;;false;false;30;
+;lndscpNumberofPieces;string;CH01_1224104;;false;false;30;
+#Beverages
+;lndscpItem;string;CH01_1224105;;false;false;30;
+;lndscpType;string;CH01_1224105;;false;false;30;
+;lndscpSeries;string;CH01_1224105;;false;false;30;
+;lndscpColor;string;CH01_1224105;;false;false;30;
+;lndscpContainerSize;string;CH01_1224105;;false;false;30;
+;lndscpContainerType;string;CH01_1224105;;false;false;30;
+#Batteries
+;lndscpItem;string;CH01_1224106;;false;false;30;
+;lndscpType;string;CH01_1224106;;false;false;30;
+;lndscpSeries;string;CH01_1224106;;false;false;30;
+;lndscpDimensions;string;CH01_1224106;;false;false;30;
+;lndscpColor;string;CH01_1224106;;false;false;30;
+;lndscpWattageRating;string;CH01_1224106;;false;false;30;
+;lndscpAverageLife;string;CH01_1224106;;false;false;30;
+;lndscpVoltageRating;string;CH01_1224106;;false;false;30;
+#Driveway Stakes
+;lndscpItem;string;CH01_1224107;;false;false;30;
+;lndscpType;string;CH01_1224107;;false;false;30;
+;lndscpSeries;string;CH01_1224107;;false;false;30;
+;lndscpColor;string;CH01_1224107;;false;false;30;
+;lndscpMaterial;string;CH01_1224107;;false;false;30;
+;lndscpMaterial;string;CH01_1224107;;false;false;30;
+;lndscpFinish;string;CH01_1224107;;false;false;30;
+;lndscpHeight;string;CH01_1224107;;false;false;30;
+;lndscpSize;string;CH01_1224107;;false;false;30;
+;lndscpSpecifications;string;CH01_1224107;;false;false;30;
+#Drum Pumps
+;lndscpItem;string;CH01_1224108;;false;false;30;
+;lndscpType;string;CH01_1224108;;false;false;30;
+;lndscpSeries;string;CH01_1224108;;false;false;30;
+;lndscpDimensions;string;CH01_1224108;;false;false;30;
+;lndscpColor;string;CH01_1224108;;false;false;30;
+;lndscpMaterial;string;CH01_1224108;;false;false;30;
+;lndscpMaterial;string;CH01_1224108;;false;false;30;
+;lndscpHeight;string;CH01_1224108;;false;false;30;
+#Rope & Twine
+;lndscpItem;string;CH01_1224109;;false;false;30;
+;lndscpType;string;CH01_1224109;;false;false;30;
+;lndscpSeries;string;CH01_1224109;;false;false;30;
+;lndscpColor;string;CH01_1224109;;false;false;30;
+;lndscpMaterial;string;CH01_1224109;;false;false;30;
+;lndscpThickness;string;CH01_1224109;;false;false;30;
+
+ ##-------------------------------------
+##--e with Staged catalog version 
+$productCatalog=siteoneProductCatalog
+$catalogVersion=catalogversion(catalog(id[default='siteoneProductCatalog']),version[default='Staged'])[unique=true,default='siteoneProductCatalog:Staged']
+$classCatalogVersion=catalogversion(catalog(id[default='siteoneClassification']),version[default='1'])[unique=true,default='siteoneClassification:1']
+$supercategories=source(code, $classCatalogVersion)[unique=true]
+$categories=target(code, $catalogVersion)[unique=true]
+INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories
+;PH1216101103;CH01_1216101103;
+;PH1216103103;CH01_1216103103;
+;PH1220100106;CH01_1220100106;
+;PH1220100107;CH01_1220100107;
+;PH1220100108;CH01_1220100108;
+;PH1220100109;CH01_1220100109;
+;PH1220100110;CH01_1220100110;
+;PH1220100111;CH01_1220100111;
+;PH1220100112;CH01_1220100112;
+;PH1220100113;CH01_1220100113;
+;PH1220100114;CH01_1220100114;
+;PH1220101103;CH01_1220101103;
+
+;PH1220102102;CH01_1220102102;
+;PH1220102103;CH01_1220102103;
+;PH1220103103;CH01_1220103103;
+;PH1220103104;CH01_1220103104;
+
+;PH1220105107;CH01_1220105107;
+;PH1220106100;CH01_1220106100;
+;PH1220106101;CH01_1220106101;
+;PH1220106102;CH01_1220106102;
+;PH1222;CH01_1222;
+;PH1222100;CH01_1222100;
+;PH1222101;CH01_1222101;
+;PH1222102;CH01_1222102;
+;PH1223;CH01_1223;
+;PH1223100;CH01_1223100;
+;PH1223100100;CH01_1223100100;
+;PH1223100101;CH01_1223100101;
+;PH1223101;CH01_1223101;
+;PH1223102;CH01_1223102;
+;PH1223103;CH01_1223103;
+;PH1223104;CH01_1223104;
+;PH1223105;CH01_1223105;
+;PH1223106;CH01_1223106;
+;PH1223107;CH01_1223107;
+;PH1223108;CH01_1223108;
+;PH1224;CH01_1224;
+;PH1224100;CH01_1224100;
+;PH1224101;CH01_1224101;
+;PH1224102;CH01_1224102;
+;PH1224103;CH01_1224103;
+;PH1224104;CH01_1224104;
+;PH1224105;CH01_1224105;
+;PH1224106;CH01_1224106;
+;PH1224107;CH01_1224107;
+;PH1224108;CH01_1224108;
+;PH1224109;CH01_1224109;
+
+
+
+##-------------------------------------
+##--e with online catalog version 
+$productCatalog=siteoneProductCatalog
+$catalogVersion=catalogversion(catalog(id[default='siteoneProductCatalog']),version[default='Online'])[unique=true,default='siteoneProductCatalog:Online']
+$classCatalogVersion=catalogversion(catalog(id[default='siteoneClassification']),version[default='1'])[unique=true,default='siteoneClassification:1']
+$supercategories=source(code, $classCatalogVersion)[unique=true]
+$categories=target(code, $catalogVersion)[unique=true]
+INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories
+;PH1216101103;CH01_1216101103;
+;PH1216103103;CH01_1216103103;
+;PH1220100106;CH01_1220100106;
+;PH1220100107;CH01_1220100107;
+;PH1220100108;CH01_1220100108;
+;PH1220100109;CH01_1220100109;
+;PH1220100110;CH01_1220100110;
+;PH1220100111;CH01_1220100111;
+;PH1220100112;CH01_1220100112;
+;PH1220100113;CH01_1220100113;
+;PH1220100114;CH01_1220100114;
+;PH1220101103;CH01_1220101103;
+
+;PH1220102102;CH01_1220102102;
+;PH1220102103;CH01_1220102103;
+;PH1220103103;CH01_1220103103;
+;PH1220103104;CH01_1220103104;
+
+;PH1220105107;CH01_1220105107;
+;PH1220106100;CH01_1220106100;
+;PH1220106101;CH01_1220106101;
+;PH1220106102;CH01_1220106102;
+;PH1222;CH01_1222;
+;PH1222100;CH01_1222100;
+;PH1222101;CH01_1222101;
+;PH1222102;CH01_1222102;
+;PH1223;CH01_1223;
+;PH1223100;CH01_1223100;
+;PH1223100100;CH01_1223100100;
+;PH1223100101;CH01_1223100101;
+;PH1223101;CH01_1223101;
+;PH1223102;CH01_1223102;
+;PH1223103;CH01_1223103;
+;PH1223104;CH01_1223104;
+;PH1223105;CH01_1223105;
+;PH1223106;CH01_1223106;
+;PH1223107;CH01_1223107;
+;PH1223108;CH01_1223108;
+;PH1224;CH01_1224;
+;PH1224100;CH01_1224100;
+;PH1224101;CH01_1224101;
+;PH1224102;CH01_1224102;
+;PH1224103;CH01_1224103;
+;PH1224104;CH01_1224104;
+;PH1224105;CH01_1224105;
+;PH1224106;CH01_1224106;
+;PH1224107;CH01_1224107;
+;PH1224108;CH01_1224108;
+;PH1224109;CH01_1224109;
+
+
+##-----------------------------------------------------------------------------------
+##--f
+
+$classCatalogVersion=catalogversion(catalog(id[default='siteoneClassification']),version[default='1'])[unique=true,default='siteoneClassification:1']
+$supercategories=source(code, $classCatalogVersion)[unique=true]
+$categories=target(code, $classCatalogVersion)[unique=true]
+INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories
+;CH01_1216101103;CH01_1216101;
+;CH01_1216103103;CH01_1216103;
+;CH01_1220100106;CH01_1220100;
+;CH01_1220100107;CH01_1220100;
+;CH01_1220100108;CH01_1220100;
+;CH01_1220100109;CH01_1220100;
+;CH01_1220100110;CH01_1220100;
+;CH01_1220100111;CH01_1220100;
+;CH01_1220100112;CH01_1220100;
+;CH01_1220100113;CH01_1220100;
+;CH01_1220100114;CH01_1220100;
+;CH01_1220101103;CH01_1220100;
+
+;CH01_1220102102;CH01_1220102;
+;CH01_1220102103;CH01_1220102;
+;CH01_1220103103;CH01_1220103;
+;CH01_1220103104;CH01_1220103;
+
+;CH01_1220105107;CH01_1220105;
+;CH01_1220106100;CH01_1220106;
+;CH01_1220106101;CH01_1220106;
+;CH01_1220106102;CH01_1220106;
+
+;CH01_1222100;CH01_1222;
+;CH01_1222101;CH01_1222;
+;CH01_1222102;CH01_1222;
+
+;CH01_1223100;CH01_1223;
+;CH01_1223100100;CH01_1223100;
+;CH01_1223100101;CH01_1223100;
+;CH01_1223101;CH01_1223;
+;CH01_1223102;CH01_1223;
+;CH01_1223103;CH01_1223;
+;CH01_1223104;CH01_1223;
+;CH01_1223105;CH01_1223;
+;CH01_1223106;CH01_1223;
+;CH01_1223107;CH01_1223;
+;CH01_1223108;CH01_1223;
+;CH01_1224100;CH01_1224;
+;CH01_1224101;CH01_1224;
+;CH01_1224102;CH01_1224;
+;CH01_1224103;CH01_1224;
+;CH01_1224104;CH01_1224;
+;CH01_1224105;CH01_1224;
+;CH01_1224106;CH01_1224;
+;CH01_1224107;CH01_1224;
+;CH01_1224108;CH01_1224;
+;CH01_1224109;CH01_1224;
+
+
+  #--navigation nodes-------------------------------
+
+#CMS Impexes for category nav nodes in header-------------------------
+
+$contentCatalog=siteoneContentCatalog
+$contentCatalogName=SiteOne Content Catalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$productCatalog=siteoneProductCatalog
+$productCatalogName=SiteOne Product Catalog
+$productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$picture=media(code, $contentCV);
+$image=image(code, $contentCV);
+$media=media(code, $contentCV);
+$page=page(uid, $contentCV);
+$contentPage=contentPage(uid, $contentCV);
+$product=product(code, $productCV)
+$category=category(code, $productCV)
+$siteResource=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/contentCatalogs/$contentCatalog
+$productResource=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/productCatalogs/$productCatalog
+$jarResourceCms=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/cockpits/cmscockpit
+$addonExtensionName=siteoneacceleratoraddon
+$medias=medias(code, $contentCV);
+$articleMedia=articleMedia(code, $contentCV);
+$mediaContainer=media(qualifier, $contentCV);
+$siteUid=siteone
+$lang=en
+
+INSERT_UPDATE GlobalProductNavigationNode;$contentCV[unique=true];uid[unique=true];name;parent(uid, $contentCV);category(code, $productCV);&nodeRef;sequenceNumber;
+
+;;LandscapeSupplyArborSupplyNavNode;LandscapeSupplyArborSupplyNavNode;LandscapeSupplyNavNode;SH1222;LandscapeSupplyArborSupplyNavNode;11;
+;;LandscapeSupplyFlaggingNavNode;LandscapeSupplyFlaggingNavNode;LandscapeAccessoriesNavNode;SH1222100;LandscapeSupplyFlaggingNavNode;1;
+;;LandscapeSupplyTreeBracingNavNode;LandscapeSupplyTreeBracingNavNode;LandscapeSupplyArborSupplyNavNode;SH1222100;LandscapeSupplyTreeBracingNavNode;2;
+;;LandscapeSupplyWateringBagsNavNode;LandscapeSupplyWateringBagsNavNode;LandscapeSupplyArborSupplyNavNode;SH1222100;LandscapeSupplyWateringBagsNavNode;3;
+
+;;LandscapeSupplyGolfSupplyNavNode;LandscapeSupplyGolfSupplyNavNode;LandscapeSupplyNavNode;SH1223;LandscapeSupplyGolfSupplyNavNode;12;
+;;LandscapeSupplyCourseMarkingNavNode;LandscapeSupplyCourseMarkingNavNode;LandscapeSupplyGolfSupplyNavNode;SH1223100;LandscapeSupplyCourseMarkingNavNode;1;
+;;LandscapeSupplyGolfCourseAccessoriesNavNode;LandscapeSupplyGolfCourseAccessoriesNavNode;LandscapeSupplyGolfSupplyNavNode;SH1223101;LandscapeSupplyGolfCourseAccessoriesNavNode;2;
+;;LandscapeSupplyGreensNavNode;LandscapeSupplyGreensNavNode;LandscapeSupplyGolfSupplyNavNode;SH1223102;LandscapeSupplyGreensNavNode;3;
+;;LandscapeSupplySensorMeasuringDevicesNavNode;LandscapeSupplySensorMeasuringDevicesNavNode;LandscapeSupplyGolfSupplyNavNode;SH1223103;LandscapeSupplySensorMeasuringDevicesNavNode;4;
+;;LandscapeSupplyTeesNavNode;LandscapeSupplyTeesNavNode;LandscapeSupplyGolfSupplyNavNode;SH1223104;LandscapeSupplyTeesNavNode;5;
+;;LandscapeSupplyToolsNode;LandscapeSupplyToolsNode;LandscapeSupplyGolfSupplyNavNode;SH1223105;LandscapeSupplyToolsNode;6;
+;;LandscapeSupplyAthleticFieldNavNode;LandscapeSupplyAthleticFieldNavNode;LandscapeSupplyGolfSupplyNavNode;SH1223106;LandscapeSupplyAthleticFieldNavNode;7;
+;;LandscapeSupplyOtherSportsTurfNavNode;LandscapeSupplyOtherSportsTurfNavNode;LandscapeSupplyGolfSupplyNavNode;SH1223107;LandscapeSupplyOtherSportsTurfNavNode;8;
+;;LandscapeSupplyParksRecreationNavNode;LandscapeSupplyParksRecreationNavNode;LandscapeSupplyGolfSupplyNavNode;SH1223108;LandscapeSupplyParksRecreationNavNode;9;
+
+;;LandscapeSupplyJobSiteEssentialsNavNode;LandscapeSupplyJobSiteEssentialsNavNode;LandscapeSupplyNavNode;SH1224;LandscapeSupplyJobSiteEssentialsNavNode;13;
+;;LandscapeSupplyCoolersNavNode;LandscapeSupplyCoolersNavNode;LandscapeSupplyJobSiteEssentialsNavNode;SH1224100;LandscapeSupplyCoolersNavNode;1;
+;;LandscapeSupplyDegreasersNavNode;LandscapeSupplyDegreasersNavNode;LandscapeSupplyJobSiteEssentialsNavNode;SH1224101;LandscapeSupplyDegreasersNavNode;2;
+;;LandscapeSupplyFlashlightsNavNode;LandscapeSupplyFlashlightsNavNode;LandscapeSupplyJobSiteEssentialsNavNode;SH1224102;LandscapeSupplyFlashlightsNavNode;3;
+;;LandscapeSupplyGasCansNavNode;LandscapeSupplyGasCansNavNode;LandscapeSupplyJobSiteEssentialsNavNode;SH1224103;LandscapeSupplyGasCansNavNode;4;
+;;LandscapeSupplySpillKitsNavNode;LandscapeSupplySpillKitsNavNode;LandscapeSupplyJobSiteEssentialsNavNode;SH1224104;LandscapeSupplySpillKitsNavNode;5;
+;;LandscapeSupplyBeveragesNavNode;LandscapeSupplyBeveragesNavNode;LandscapeSupplyJobSiteEssentialsNavNode;SH1224105;LandscapeSupplyBeveragesNavNode;6;
+;;LandscapeSupplyBatteriesNavNode;LandscapeSupplyBatteriesNavNode;LandscapeSupplyJobSiteEssentialsNavNode;SH1224106;LandscapeSupplyBatteriesNavNode;7;
+;;LandscapeSupplyDrivewayStakesNavNode;LandscapeSupplyDrivewayStakesNavNode;LandscapeSupplyJobSiteEssentialsNavNode;SH1224107;LandscapeSupplyDrivewayStakesNavNode;8;
+;;LandscapeSupplyDrumPumpsNavNode;LandscapeSupplyDrumPumpsNavNode;LandscapeSupplyJobSiteEssentialsNavNode;SH1224108;LandscapeSupplyDrumPumpsNavNode;9;
+;;LandscapeSupplyRopeTwineNavNode;LandscapeSupplyRopeTwineNavNode;LandscapeSupplyJobSiteEssentialsNavNode;SH1224109;LandscapeSupplyRopeTwineNavNode;10;
+
+
+

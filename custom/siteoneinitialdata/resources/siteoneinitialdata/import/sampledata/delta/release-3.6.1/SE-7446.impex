@@ -1,0 +1,12 @@
+# -----------------------------------------------------------------------
+# SE-7446 - Sox: Purge audit logs
+# -----------------------------------------------------------------------
+#
+INSERT_UPDATE ServicelayerJob;code[unique=true];springid[unique=true]
+                             ;siteOneAuditExportCronJob;siteOneAuditExportCronJob;
+
+INSERT_UPDATE CronJob;code[unique=true];job(code);singleExecutable;sessionLanguage(isocode);nodeID;
+                     ;siteOneAuditExportCronJob;siteOneAuditExportCronJob;false;en;0;​
+
+INSERT_UPDATE Trigger;cronJob(code)[unique=true];cronExpression;relative;active;maxAcceptableDelay
+                     ;siteOneAuditExportCronJob;0 0 19 * * ?;false;true;-1

@@ -1,0 +1,5 @@
+$productCatalog=siteoneProductCatalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Online'])[unique=true,default=$productCatalog:Online]
+
+Update product[batchmode=true];itemtype(code)[unique=true];secretSku[default='false'];$catalogVersion
+;Product;

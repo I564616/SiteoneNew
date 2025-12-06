@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+--><extensioninfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="extensioninfo.xsd">
+           
+    
+    <extension abstractclassprefix="Generated" classprefix="Siteonepimintegration" jaloLogicFree="true" managername="SiteonepimintegrationManager" managersuperclass="de.hybris.platform.jalo.extension.Extension" name="siteonepimintegration" usemaven="false">
+                  
+      	<requires-extension name="b2bcommerce"/>
+       	<requires-extension name="odata2services"/>
+		<requires-extension name="integrationservices"/>
+		<requires-extension name="inboundservices"/>
+        <requires-extension name="siteoneintegration"/>
+        <requires-extension name="siteonecore"/>
+
+        <coremodule generated="true" manager="com.siteone.pimintegration.jalo.SiteonepimintegrationManager" packageroot="com.siteone.pimintegration"/>
+                      
+        
+        <webmodule jspcompile="false" webroot="/siteonepimintegration"/>
+                					
+	
+        
+           
+    
+    </extension>
+              
+
+
+</extensioninfo>

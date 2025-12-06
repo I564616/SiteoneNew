@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ [y] hybris Platform
+
+ Copyright (c) 2000-2016 SAP SE or an SAP affiliate company.
+ All rights reserved.
+
+ This software is the confidential and proprietary information of SAP
+ ("Confidential Information"). You shall not disclose such Confidential
+ Information and shall use it only in accordance with the terms of the
+ license agreement you entered into with SAP.
+-->
+
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:int="http://www.springframework.org/schema/integration"
+	xmlns:file="http://www.springframework.org/schema/integration/file"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/spring-integration.xsd
+		http://www.springframework.org/schema/integration/file http://www.springframework.org/schema/integration/file/spring-integration-file.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!--Common head Setup Task-->
+	<bean id="SiteOneCloudHotFolderHeaderSetupTask" class="de.hybris.platform.acceleratorservices.dataimport.batch.task.HeaderSetupTask">
+		<property name="catalog" value="${cloud.hotfolder.default.mapping.header.catalog}"/>
+		<property name="net" value="${cloud.hotfolder.default.mapping.header.net}" />
+		<property name="storeBaseDirectory" ref="baseDirectoryCloudHotFolder" />
+	</bean>
+
+	<!-- 1) File accepting as txt file (override the existing csv to txt file oob service)  -->
+	<int:service-activator input-channel="batchSiteOneFilesHeaderInit" output-channel="batchSiteOneFilesHeader" ref="siteOneheaderInitTask"
+		method="execute" />
+
+	<int:service-activator input-channel="batchSiteOneFilesHeader" output-channel="batchFilesTran" ref="batchSiteOneTransformerTask"
+		method="execute" />
+
+
+	<bean id="siteOneheaderInitTask" class="de.hybris.platform.acceleratorservices.dataimport.batch.task.HeaderInitTask">
+		<property name="sequenceIdParser" ref="batchSiteOneSequenceIdParser"/>
+		<property name="languageParser" ref="batchSiteOneLanguageParser"/>
+		<property name="fallbackLanguage" value="en" />
+	</bean>
+
+	<bean id="batchSiteOneSequenceIdParser" class="de.hybris.platform.acceleratorservices.dataimport.batch.util.SequenceIdParser">
+		<property name="parser">
+			<bean class="de.hybris.platform.acceleratorservices.util.RegexParser">
+				<property name="regex" value="_(\d+)(\S+)_(\d+)(\S+)\.(?i)txt" />
+			</bean>
+		</property>
+	</bean>
+	<bean id="batchSiteOneLanguageParser" class="de.hybris.platform.acceleratorservices.util.RegexParser">
+		<property name="regex" value="-(\w{2})_(\d+)(\S+)_(\d+)(\S+)\.(?i)txt" />
+	</bean>
+
+
+	<bean id="batchSiteOneTransformerTask"
+		class="com.siteone.core.impex.transformer.SiteOneImpexTransformerTask" init-method="initConvertersMap">
+		<property name="cleanupHelper" ref="cleanupHelper" />
+		<property name="baseStoreService" ref="baseStoreService" />
+		<property name="baseSiteService" ref="baseSiteService" />
+		<property name="eventService" ref="eventService" />
+		<property name="modelService" ref="modelService"/>
+		<property name="fieldSeparator" value="|" />
+		<property name="encoding" value="UTF-8" />
+		<property name="linesToSkip" value="1"/>
+	</bean>
+
+
+	<alias alias="batchRunnerTask" name="siteOneBatchRunnerTask"  />
+	<bean id="siteOneBatchRunnerTask" class="com.siteone.core.batch.task.SiteOneImpexRunnerTask">
+		<property name="user" value="batchuser" />
+		<property name="sessionService" ref="sessionService" />
+		<property name="importService" ref="importService" />
+		<lookup-method name="getImportConfig" bean="importConfig" />
+		<property name="baseStoreService" ref="baseStoreService" />
+		<property name="baseSiteService" ref="baseSiteService" />
+		<property name="eventService" ref="eventService" />
+		<property name="commonI18NService" ref="commonI18NService" />
+	</bean>
+
+
+</beans>

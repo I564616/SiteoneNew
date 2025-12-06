@@ -1,0 +1,3 @@
+INSERT_UPDATE PointOfService;storeid[unique=true];deliveryorshippingthreshold(key(code),value(code))[map-delimiter=|]
+;8201;shippingThresholdForHomeownerOrGuest -> 250|shippingThresholdForContractor -> 150|shippingFeeForHomeownerOrGuest -> 9.99|shippingFeeForContractor -> 6.99
+;131;shippingThresholdForHomeownerOrGuest -> 250|shippingThresholdForContractor -> 200|shippingFeeForHomeownerOrGuest -> 12.00|shippingFeeForContractor -> 10.00

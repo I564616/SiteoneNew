@@ -1,0 +1,457 @@
+# Information and shall use it only in accordance with the terms of the
+# license agreement you entered into with SAP.
+# -----------------------------------------------------------------------
+# ImpEx for Importing Categories into SiteOne store
+
+# Macros / Replacement Parameter definitions
+$productCatalog=siteoneProductCatalog
+$productCatalogName=SiteOne Product Catalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$supercategories=source(code, $catalogVersion)[unique=true]
+$categories=target(code, $catalogVersion)[unique=true]
+$contentCatalog=siteoneContentCatalog
+$contentCatalogName=SiteOne Content Catalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$contentPage=contentPage(uid, $contentCV);
+$product=product(code, $productCV)
+$category=category(code, $productCV)
+$siteResource=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/contentCatalogs/$contentCatalog
+$productResource=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/productCatalogs/$productCatalog
+$jarResourceCms=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/cockpits/cmscockpit
+
+
+$thumbnail=thumbnail(code, $contentCV);
+$lang=en
+
+
+# Insert Categories
+#INSERT_UPDATE Category;code[unique=true];allowedPrincipals(uid)[default='customergroup'];$catalogVersion
+#;1
+#;1355
+#;1359
+#;c001
+#;c002
+#;c003
+#;c004
+#;c005
+#;c006
+#;c007
+
+#UPDATE Category;$catalogVersion;code[unique=true];name[lang=$lang];description[lang=$lang]
+#;;1;Open Catalogue;
+#;;1355;Tools;
+#;;1359;Tongs;
+#;;c001;Irrigation
+#;;c002;OutdoorLighting
+#;;c003;Handscapes and Outdoor Living
+#;;c004;Landscape Supplies
+#;;c005;Pest Solutions,Fertilizer,and Seed
+#;;c006;Nursery
+#;;c007;Tools,Safety,and Equipment
+
+INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];mime;realfilename;@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator][forceWrite=true];folder(qualifier)[default='images']
+#;;Powertools_1400x480_BigSplash_EN_01_1400W;text/jpg;Powertools_1400x480_BigSplash_EN_01_1400W.jpg;$siteResource/images/banners/homepage/responsive/Powertools_1400x480_BigSplash_EN_01_1400W.jpg
+
+
+
+#INSERT_UPDATE Category;code[unique=true];allowedPrincipals(uid)[default='customergroup'];$catalogVersion
+#;CL1
+#;CL2
+#;CL3
+#;CL4
+#;CL5
+#;CL6
+#;CL11
+#;CL12
+#;CL13
+#;CL14
+#;CL15
+#;CL16
+#;CL17
+#;CL18
+#;CL21
+#;CL22
+#;CL23
+#;CL24
+#;CL25
+#;CL26
+#;CL27
+#;CL28
+#;CL31
+#;CL32
+#;CL41
+#;CL42
+#;CL51
+#;CL52
+#;CL61
+#;CL62
+#;CL111
+#;CL112
+#;CL113
+#;CL114
+#;CL115
+#;CL116
+#;CL117
+#;CL118
+#;CL121
+#;CL122
+#;CL123
+#;CL124
+#;CL125
+#;CL126
+#;CL127
+#;CL128
+#;CL1111
+#;CL1112
+#;CL1113
+#;CL1114
+#;CL1115
+#;CL1116
+#;CL1117
+#;CL1118
+## Insert Category Structure
+#INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories
+#;CL11;CL1
+#;CL12;CL1
+#;CL13;CL1
+#;CL14;CL1
+#;CL15;CL1
+#;CL16;CL1
+#;CL17;CL1
+#;CL18;CL1
+#;CL21;CL2
+#;CL22;CL2
+#;CL23;CL2
+#;CL24;CL2
+#;CL25;CL2
+#;CL26;CL2
+#;CL31;CL3
+#;CL32;CL3
+#;CL41;CL4
+#;CL42;CL4
+#;CL51;CL5
+#;CL52;CL5
+#;CL61;CL6
+#;CL62;CL6
+#;CL111;CL11
+#;CL112;CL11
+#;CL113;CL11
+#;CL114;CL11
+#;CL115;CL11
+#;CL116;CL11
+#;CL117;CL11
+#;CL118;CL11
+#;CL1111;CL111
+#;CL1112;CL111
+#;CL1113;CL111
+#;CL1114;CL111
+#;CL1115;CL111
+#;CL1116;CL111
+#;CL1117;CL111
+#;CL1118;CL111
+#
+#
+#UPDATE Category;$catalogVersion;code[unique=true];name[lang=$lang];description[lang=$lang];$thumbnail;
+#;;CL1;Equipement;Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed risus quam, finibus eget pellentesque non eros.Integer dignissim fermentum quam ut tincidunt.;Powertools_1400x480_BigSplash_EN_01_1400W
+#;;CL2;Hardscapes;Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed risus quam, finibus eget pellentesque non eros.Integer dignissim fermentum quam ut tincidunt.;Powertools_1400x480_BigSplash_EN_01_1400W
+#;;CL3;Irrigation;Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed risus quam, finibus eget pellentesque non eros.Integer dignissim fermentum quam ut tincidunt.;Powertools_1400x480_BigSplash_EN_01_1400W
+#;;CL4;Landscape;Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed risus quam, finibus eget pellentesque non eros.Integer dignissim fermentum quam ut tincidunt.;Powertools_1400x480_BigSplash_EN_01_1400W
+#;;CL5;Lighting;Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed risus quam, finibus eget pellentesque non eros.Integer dignissim fermentum quam ut tincidunt.;Powertools_1400x480_BigSplash_EN_01_1400W
+#;;CL6;Maintenance;Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed risus quam, finibus eget pellentesque non eros.Integer dignissim fermentum quam ut tincidunt.;Powertools_1400x480_BigSplash_EN_01_1400W
+#;;CL11;EnginePowered;Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed risus quam, finibus eget pellentesque non eros.Integer dignissim fermentum quam ut tincidunt.;Powertools_1400x480_BigSplash_EN_01_1400W
+#;;CL12;HandheldPowerEquipment;Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed risus quam, finibus eget pellentesque non eros.Integer dignissim fermentum quam ut tincidunt.;Powertools_1400x480_BigSplash_EN_01_1400W
+#;;CL13;Parts;Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed risus quam, finibus eget pellentesque non eros.Integer dignissim fermentum quam ut tincidunt.;Powertools_1400x480_BigSplash_EN_01_1400W
+#;;CL14;Renovation;Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed risus quam, finibus eget pellentesque non eros.Integer dignissim fermentum quam ut tincidunt.;Powertools_1400x480_BigSplash_EN_01_1400W
+#;;CL15;Specialty Equipment;Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed risus quam, finibus eget pellentesque non eros.Integer dignissim fermentum quam ut tincidunt.;Powertools_1400x480_BigSplash_EN_01_1400W
+#;;CL16;Sprayers;Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed risus quam, finibus eget pellentesque non eros.Integer dignissim fermentum quam ut tincidunt.;Powertools_1400x480_BigSplash_EN_01_1400W
+#;;CL17;Spreaders;Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed risus quam, finibus eget pellentesque non eros.Integer dignissim fermentum quam ut tincidunt.;Powertools_1400x480_BigSplash_EN_01_1400W
+#;;CL18; Spreader Sprayer;Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed risus quam, finibus eget pellentesque non eros.Integer dignissim fermentum quam ut tincidunt.;Powertools_1400x480_BigSplash_EN_01_1400W
+#;;CL21;ArchitecturalProducts;Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed risus quam, finibus eget pellentesque non eros.Integer dignissim fermentum quam ut tincidunt.;Powertools_1400x480_BigSplash_EN_01_1400W
+#;;CL22;ConcreteProducts;Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed risus quam, finibus eget pellentesque non eros.Integer dignissim fermentum quam ut tincidunt.;Powertools_1400x480_BigSplash_EN_01_1400W
+#;;CL23;Edging;Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed risus quam, finibus eget pellentesque non eros.Integer dignissim fermentum quam ut tincidunt.;Powertools_1400x480_BigSplash_EN_01_1400W
+#;;CL24;Hardscape Accessories;Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed risus quam, finibus eget pellentesque non eros.Integer dignissim fermentum quam ut tincidunt.;Powertools_1400x480_BigSplash_EN_01_1400W
+#;;CL25;Manufactured HS Product;Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed risus quam, finibus eget pellentesque non eros.Integer dignissim fermentum quam ut tincidunt.;Powertools_1400x480_BigSplash_EN_01_1400W
+#;;CL26;Natural Stone;Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed risus quam, finibus eget pellentesque non eros.Integer dignissim fermentum quam ut tincidunt.;Powertools_1400x480_BigSplash_EN_01_1400W
+#;;CL31;Backflow;Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed risus quam, finibus eget pellentesque non eros.Integer dignissim fermentum quam ut tincidunt.;Powertools_1400x480_BigSplash_EN_01_1400W
+#;;CL32;Clamps;Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed risus quam, finibus eget pellentesque non eros.Integer dignissim fermentum quam ut tincidunt.;Powertools_1400x480_BigSplash_EN_01_1400W
+#;;CL41;Consumables;Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed risus quam, finibus eget pellentesque non eros.Integer dignissim fermentum quam ut tincidunt.;Powertools_1400x480_BigSplash_EN_01_1400W
+#;;CL42;ErosionControl;Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed risus quam, finibus eget pellentesque non eros.Integer dignissim fermentum quam ut tincidunt.;Powertools_1400x480_BigSplash_EN_01_1400W
+#;;CL51;Accessories;Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed risus quam, finibus eget pellentesque non eros.Integer dignissim fermentum quam ut tincidunt.;Powertools_1400x480_BigSplash_EN_01_1400W
+#;;CL52;Holiday;Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed risus quam, finibus eget pellentesque non eros.Integer dignissim fermentum quam ut tincidunt.;Powertools_1400x480_BigSplash_EN_01_1400W
+#;;CL61;IceMelt;Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed risus quam, finibus eget pellentesque non eros.Integer dignissim fermentum quam ut tincidunt.;Powertools_1400x480_BigSplash_EN_01_1400W
+#;;CL62;Paint;Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed risus quam, finibus eget pellentesque non eros.Integer dignissim fermentum quam ut tincidunt.;Powertools_1400x480_BigSplash_EN_01_1400W
+#;;CL111;Multi Purpose;Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed risus quam, finibus eget pellentesque non eros.Integer dignissim fermentum quam ut tincidunt.;Powertools_1400x480_BigSplash_EN_01_1400W
+#;;CL112;Single Purpose;Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed risus quam, finibus eget pellentesque non eros.Integer dignissim fermentum quam ut tincidunt.;Powertools_1400x480_BigSplash_EN_01_1400W
+#;;CL113;Spreader/Sprayer Accessories;Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed risus quam, finibus eget pellentesque non eros.Integer dignissim fermentum quam ut tincidunt.;Powertools_1400x480_BigSplash_EN_01_1400W
+#;;CL114;Handheld Bat. Powered Accessories;Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed risus quam, finibus eget pellentesque non eros.Integer dignissim fermentum quam ut tincidunt.;Powertools_1400x480_BigSplash_EN_01_1400W
+#;;CL115;Misc. Parts;Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed risus quam, finibus eget pellentesque non eros.Integer dignissim fermentum quam ut tincidunt.;Powertools_1400x480_BigSplash_EN_01_1400W
+#;;CL116;Lubrication/Fuel Treatment;Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed risus quam, finibus eget pellentesque non eros.Integer dignissim fermentum quam ut tincidunt.;Powertools_1400x480_BigSplash_EN_01_1400W
+#;;CL117;Aerating Accessories;Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed risus quam, finibus eget pellentesque non eros.Integer dignissim fermentum quam ut tincidunt.;Powertools_1400x480_BigSplash_EN_01_1400W
+#;;CL118;Renovation Equip.;Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed risus quam, finibus eget pellentesque non eros.Integer dignissim fermentum quam ut tincidunt.;Powertools_1400x480_BigSplash_EN_01_1400W
+#;;CL1111;EquipementCL1111;
+#;;CL1112;EquipementCL1112;
+#;;CL1113;EquipementCL1113;
+#;;CL1114;EquipementCL1114;
+#;;CL1115;EquipementCL1115;
+#;;CL1116;EquipementCL1116;
+#
+#
+## Insert Categories
+#INSERT_UPDATE Category;code[unique=true];allowedPrincipals(uid)[default='customergroup'];$catalogVersion
+#;PH11
+#;PH1111
+#;PH1112
+#;PH1113
+#;PH1114
+#;PH1115
+#;PH1116
+#;PH1117
+#;PH1118
+#;PH1119
+#;PH1120
+#;PH1121
+#;PH1122
+#;PH1123
+#;PH1124
+#;PH1111100
+#;PH1111101
+#;PH1111102
+#;PH1112100
+#;PH1112101
+#;PH1112102
+#;PH1113100
+#;PH1113101
+#;PH1113102
+#;PH1114100
+#;PH1114101
+#;PH1114102
+#;PH1115100
+#;PH1115101
+#;PH1115102
+#;PH1116100
+#;PH1116101
+#;PH1116102
+#;PH1117100
+#;PH1117101
+#;PH1117102
+#;PH1119100
+#;PH1119101
+#;PH1120100
+#;PH1120101
+#;PH1120102
+#;PH1120103
+#;PH1120104
+#;PH1120105
+#;PH1120106
+#;PH1120107
+#;PH1121100
+#;PH1121101
+#;PH1121102
+#;PH1112103
+#;PH1120108
+#;PH1124100
+#;PH1124101
+#;PH1124102
+#;PH1119100100
+#;PH1119101100
+#;PH1119100101
+#;PH1119101101
+#;PH1119100102
+#;PH1119101102
+#;PH1119100103
+#;PH1119101103
+#;PH1119100104
+#;PH1119101104
+#;PH1119100105
+#;PH1119101105
+#;PH1119100106
+#;PH1119101106
+#;PH1121100100
+#;PH1121100101
+#;PH1121100102
+#;PH1121100103
+#;PH1121101100
+#;PH1121101101
+#;PH1121101102
+#;PH1121101103
+#;PH1119100107
+#;PH1119100108
+#;PH1119100109
+#;PH1119100110
+#;PH1119100111
+#;PH1119100112
+#;PH1119100113
+#;PH1119100114
+#;PH1119100115
+#;PH1119100116
+#
+#
+#
+#UPDATE Category;$catalogVersion;code[unique=true];name[lang=$lang];description[lang=$lang]
+#;;PH1                               ; Root                          ;
+#;;PH11                              ; Lighting                      ;
+#;;PH1111                            ;  Uplight/Accent               ;
+#;;PH1112                            ;  Path/Area                    ;
+#;;PH1113                            ;   Hardscape/Step/Deck         ;
+#;;PH1114                            ;  Well                         ;
+#;;PH1115                            ;  Down Light                   ;
+#;;PH1116                            ;  Underwater Lights            ;
+#;;PH1117                            ; Bistro/Patio Lighting         ;
+#;;PH1118                            ;   Accessories                 ;
+#;;PH1119                            ; Lamps/Bulbs                   ;
+#;;PH1120                            ;   Transformers                ;
+#;;PH1121                            ;  Holiday                      ;
+#;;PH1122                            ;    Fixtures                   ;
+#;;PH1123                            ;  Lighting Controllers & Timers;
+#;;PH1124                            ;  Wall Light                   ;
+#;;PH1111100                         ;  No Lamp                      ;
+#;;PH1111101                         ;  w/ LED                       ;
+#;;PH1111102                         ;  w/ Halogen                   ;
+#;;PH1112100                         ;  No Lamp                      ;
+#;;PH1112101                         ;  w/ LED                       ;
+#;;PH1112102                         ;  w/ Halogen                   ;
+#;;PH1113100                         ;  No Lamp                      ;
+#;;PH1113101                         ;  w/ LED                       ;
+#;;PH1113102                         ;  w/ Halogen                   ;
+#;;PH1114100                         ;  No Lamp                      ;
+#;;PH1114101                         ;  w/ LED                       ;
+#;;PH1114102                         ;  w/ Halogen                   ;
+#;;PH1115100                         ;  No Lamp                      ;
+#;;PH1115101                         ;  w/ LED                       ;
+#;;PH1115102                         ;  w/ Halogen                   ;
+#;;PH1116100                         ;  No Lamp                      ;
+#;;PH1116101                         ;  w/ LED                       ;
+#;;PH1116102                         ;  w/ Halogen                   ;
+#;;PH1117100                         ;  Wire                         ;
+#;;PH1117101                         ;  Bulb                         ;
+#;;PH1117102                         ;  Accessories                  ;
+#;;PH1119100                         ;  LED                          ;
+#;;PH1119101                         ;  Halogen                      ;
+#;;PH1120100                         ; 1200W                         ;
+#;;PH1120101                         ; 900W                          ;
+#;;PH1120102                         ; 600W                          ;
+#;;PH1120103                         ; 300W                          ;
+#;;PH1120104                         ; 150W                          ;
+#;;PH1120105                         ; 120W                          ;
+#;;PH1120106                         ; 100W                          ;
+#;;PH1120107                         ; <100W                         ;
+#;;PH1121100                         ;  LED                          ;
+#;;PH1121101                         ;  Halogen                      ;
+#;;PH1121102                         ;  Incandescent                 ;
+#;;PH1112103                         ; Accessories                   ;
+#;;PH1120108                         ;  500w                         ;
+#;;PH1124100                         ; No Lamp                       ;
+#;;PH1124101                         ; w/ Halogen                    ;
+#;;PH1124102                         ; w/ LED                        ;
+#;;PH1119100100                      ; MR16                          ;
+#;;PH1119101100                      ; MR16                          ;
+#;;PH1119100101                      ; T3/JC                         ;
+#;;PH1119101101                      ; T3/JC                         ;
+#;;PH1119100102                      ; PAR36                         ;
+#;;PH1119101102                      ; PAR36                         ;
+#;;PH1119100103                      ; PAR38                         ;
+#;;PH1119101103                      ; PAR38                         ;
+#;;PH1119100104                      ; PAR30                         ;
+#;;PH1119101104                      ; PAR30                         ;
+#;;PH1119100105                      ; PAR20                         ;
+#;;PH1119101105                      ; PAR20                         ;
+#;;PH1119100106                      ; A19                           ;
+#;;PH1119101106                      ; A19                           ;
+#;;PH1121100100                      ; C7                            ;
+#;;PH1121100101                      ; C9                            ;
+#;;PH1121100102                      ; M5                            ;
+#;;PH1121100103                      ; 5MM                           ;
+#;;PH1121101100                      ; C7                            ;
+#;;PH1121101101                      ; C9                            ;
+#;;PH1121101102                      ; M5                            ;
+#;;PH1121101103                      ; 5MM                           ;
+#;;PH1119100107                      ; Other                         ;
+#;;PH1119100108                      ; G4                            ;
+#;;PH1119100109                      ; Candelabra                    ;
+#;;PH1119100110                      ; MR11                          ;
+#;;PH1119100111                      ; E17                           ;
+#;;PH1119100112                      ; AR11                          ;
+#;;PH1119100113                      ; S14                           ;
+#;;PH1119100114                      ; S8                            ;
+#;;PH1119100115                      ; SCB                           ;
+#;;PH1119100116                      ; T5                            ;
+#           
+#INSERT_UPDATE CategoryCategoryRelation ; $categories       ; $supercategories
+#                                       ; PH11              ; PH1
+#									   ; PH1111            ; PH11
+#                                       ; PH1112            ; PH11
+#                                       ; PH1113            ; PH11
+#                                       ; PH1114            ; PH11
+#                                       ; PH1115            ; PH11
+#									   ; PH1116            ; PH11
+#                                       ; PH1117            ; PH11
+#                                       ; PH1118            ; PH11
+#                                       ; PH1119            ; PH11
+#                                       ; PH1120            ; PH11               
+#                                       ; PH1121            ; PH11
+#                                       ; PH1123            ; PH11
+#                                       ; PH1124            ; PH11
+#                                       ;PH1111100        ; PH1111 
+#									   ;PH1111101	     ; PH1111 
+#									   ;PH1111102	     ; PH1111 
+#                                       ;PH1112100        ; PH1112 
+#									   ;PH1112101	     ; PH1112 
+#									   ;PH1112102	     ; PH1112 
+#									   ;PH1112103	     ; PH1112 
+#                                       ;PH1113100        ; PH1113 
+#									   ;PH1113101	     ; PH1113 
+#									   ;PH1113102	     ; PH1113 
+#                                       ;PH1114100        ; PH1114 
+#									   ;PH1114101	     ; PH1114 
+#									   ;PH1114102	     ; PH1114 
+#                                       ;PH1115100        ; PH1115 
+#									   ;PH1115101	     ; PH1115 
+#									   ;PH1115102	     ; PH1115 
+#                                       ;PH1116100        ; PH1116 
+#									   ;PH1116101	     ; PH1116 
+#									   ;PH1116102	     ; PH1116 
+#                                       ;PH1117100        ; PH1117 
+#									   ;PH1117101	     ; PH1117  
+#									   ;PH1117102	     ; PH1117  
+#                                       ;PH1119100        ; PH1119
+#                                       ;PH1119101        ; PH1119             
+#                                       ;PH1120100        ; PH1120 
+#                                       ;PH1120101        ; PH1120 
+#                                       ;PH1120102        ; PH1120 
+#                                       ;PH1120103        ; PH1120 
+#                                       ;PH1120104        ; PH1120 
+#                                       ;PH1120105        ; PH1120 
+#                                       ;PH1120106        ; PH1120 
+#                                       ;PH1120107        ; PH1120 
+#                                       ;PH1120108        ; PH1120 
+#                                       ;PH1121100        ; PH1121 
+#                                       ;PH1121101        ; PH1121 
+#                                       ;PH1124100        ; PH1124
+#                                       ;PH1124101        ; PH1124 
+#                                       ;PH1124102        ; PH1124
+#                                       ;PH1119100100    ;PH1119100  
+#                                       ;PH1119101100    ;PH1119101
+#                                       ;PH1119100101    ;PH1119100 
+#                                       ;PH1119101101    ;PH1119101 
+#                                       ;PH1119100102    ;PH1119100 
+#                                       ;PH1119101102    ;PH1119101 
+#                                       ;PH1119100103    ;PH1119100 
+#                                       ;PH1119101103    ;PH1119101 
+#                                       ;PH1119100104    ;PH1119100 
+#                                       ;PH1119101104    ;PH1119101 
+#                                       ;PH1119100105    ;PH1119100 
+#                                       ;PH1119101105    ;PH1119101 
+#                                       ;PH1119100106    ;PH1119100 
+#                                       ;PH1119101106    ;PH1119101
+#                                       ;PH1121100100    ;PH1121100
+#                                       ;PH1121100101    ;PH1121100
+#                                       ;PH1121100102    ;PH1121100
+#                                       ;PH1121100103    ;PH1121100
+#                                       ;PH1121101100    ;PH1121101
+#                                       ;PH1121101101    ;PH1121101
+#                                       ;PH1121101102    ;PH1121101
+#                                       ;PH1121101103    ;PH1121101
+#
+#
+

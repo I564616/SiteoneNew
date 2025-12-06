@@ -1,0 +1,185 @@
+
+$contentCatalog=siteoneContentCatalog
+$contentCatalogName=SiteOne Content Catalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$productCatalog=siteoneProductCatalog
+$productCatalogName=SiteOne Product Catalog
+$productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$picture=media(code, $contentCV);
+$image=image(code, $contentCV);
+$media=media(code, $contentCV);
+$page=page(uid, $contentCV);
+$contentPage=contentPage(uid, $contentCV);
+$product=product(code, $productCV)
+$category=category(code, $productCV)
+$siteResource=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/contentCatalogs/$contentCatalog
+$productResource=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/productCatalogs/$productCatalog
+$jarResourceCms=jar:com.siteone.initialdata.constants.SiteoneInitialDataConstants&/siteoneinitialdata/import/sampledata/cockpits/cmscockpit
+$addonExtensionName=siteoneacceleratoraddon
+$medias=medias(code, $contentCV);
+$articleMedia=articleMedia(code, $contentCV);
+$mediaContainer=media(qualifier, $contentCV);
+$siteUid=siteone
+$lang=en
+
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='SiteOneHomePageTemplate'];validComponentTypes(code);compTypeGroup(code)
+;Section1B;;HomePageRotatingBannerComponent;
+;Section1C;;HomePageRotatingBannerComponent;
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef)
+;;Section1BSlot-SiteOneHomePage;Section1B Slot for SiteOneHomePage;true;siteoneCarouselComponent
+;;Section1CSlot-SiteOneHomePage;Section1C Slot for SiteOneHomePage;true;siteoneMobileCarouselComponent
+
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='siteonehomepage'];contentSlot(uid,$contentCV)[unique=true]
+;;Section1C-SiteOneHomePage;Section1C;;Section1CSlot-SiteOneHomePage
+
+INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='image/jpeg'];altText;&imageRef;folder(qualifier)[default='images']
+;;banner1.jpg;$siteResource/images/banners/homepage/responsive/banner1.jpg;;;""
+;;banner2.jpg;$siteResource/images/banners/homepage/responsive/banner2.jpg;;;""
+;;banner3.jpg;$siteResource/images/banners/homepage/responsive/banner3.jpg;;;""
+;;banner4.jpg;$siteResource/images/banners/homepage/responsive/banner4.jpg;;;""
+;;mobileBanner1;$siteResource/images/banners/homepage/responsive/mobileBanner1.jpg;;;""
+;;mobileBanner2;$siteResource/images/banners/homepage/responsive/mobileBanner2.jpg;;;""
+;;mobileBanner3;$siteResource/images/banners/homepage/responsive/mobileBanner3.jpg;;;""
+;;mobileBanner4;$siteResource/images/banners/homepage/responsive/mobileBanner4.jpg;;;""
+
+INSERT_UPDATE SiteOneStoreDetailsPromoComponent;$contentCV[unique=true];uid[unique=true];name;headline[lang=en];&componentRef;urlLink;$picture[lang=$lang];promotionalText;subheadText;buttonLabel;buttonURL;icon
+;;HomeBannerComponent1;Banner detail1;;HomeBannerComponent1;/search?q=Pro-Trade%3Arelevance%3Asocategory%3ASH11&viewtype=All;banner1.jpg;;;;;1
+;;HomeBannerComponent2;Banner detail2;;HomeBannerComponent2;/search?q=Rain+Bird%3Arelevance%3Asocategory%3ASH14&viewtype=All;banner2.jpg;;;;;2
+;;HomeBannerComponent3;Banner detail3;;HomeBannerComponent3;/partnersprogram;banner3.jpg;;;;;3
+;;HomeBannerComponent4;Banner detail4;;HomeBannerComponent4;/request-account/form;banner4.jpg;;;;;4
+;;HomeMobileBannerComponent1;Mobile Banner detail1;;HomeMobileBannerComponent1;/search?q=Pro-Trade%3Arelevance%3Asocategory%3ASH11&viewtype=All;mobileBanner1;;;;;1
+;;HomeMobileBannerComponent2;Mobile Banner detail2;;HomeMobileBannerComponent2;/search?q=Rain+Bird%3Arelevance%3Asocategory%3ASH14&viewtype=All;mobileBanner2;;;;;2
+;;HomeMobileBannerComponent3;Mobile Banner detail3;;HomeMobileBannerComponent3;/partnersprogram;mobileBanner3;;;;;3
+;;HomeMobileBannerComponent4;Mobile Banner detail4;;HomeMobileBannerComponent4;/request-account/form;mobileBanner4;;;;;4
+INSERT_UPDATE HomePageRotatingBannerComponent;$contentCV[unique=true];uid[unique=true];name;rotatingBanner(&componentRef);&componentRef
+;;siteoneCarouselComponent;Siteone Homepage Component;HomeBannerComponent1,HomeBannerComponent2,HomeBannerComponent3,HomeBannerComponent4;siteoneCarouselComponent
+;;siteoneMobileCarouselComponent;Siteone Mobile Homepage Component;HomeMobileBannerComponent1,HomeMobileBannerComponent2,HomeMobileBannerComponent3,HomeMobileBannerComponent4;siteoneMobileCarouselComponent
+
+
+
+
+
+#########Footer Component#####################################
+
+
+
+INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];realfilename;@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='image/svg+xml'];altText;&imageRef;folder(qualifier)[default='images']
+;;footernavitunes;apple_app.svg;$siteResource/images/theme/apple_app.svg;image/svg+xml;;""
+;;footernavplaystore;android_app.svg;$siteResource/images/theme/android_app.svg;image/svg+xml;;""
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&componentRef);&nodeRef
+;FooterNavNode;;Footer Pages;SiteOneNavNode;;FooterNavNode
+
+INSERT_UPDATE FooterNavigationComponent;$contentCV[unique=true];uid[unique=true];wrapAfter;&componentRef;showLanguageCurrency;navigationNode(&nodeRef);iTunesUrl;playStoreUrl;iTunesImage(code,$contentCV);playStoreImage(code,$contentCV)
+;;FooterNavigationComponent;15;FooterNavigationComponent;true;FooterNavNode;https://itunes.apple.com/us/app/siteone-landscape-supply/id1044205781?mt=8;https://play.google.com/store/apps/details?id=com.siteone.landscape&hl=en;footernavitunes;footernavplaystore
+
+#########Footer Component end #####################################
+
+###############Homepage Banner Component#############################
+
+
+
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='SiteOneHomePageTemplate'];validComponentTypes(code);compTypeGroup(code)
+;Section1D;;HomePagePromoBannerComponent;
+;Section1E;;HomePagePromoBannerComponent;
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef)
+;;Section1DSlot-SiteOneHomePage;Section1D Slot for SiteOneHomePage;true;SiteOneHomepagePromoComp1
+;;Section1ESlot-SiteOneHomePage;Section1E Slot for SiteOneHomePage;true;SiteOneHomepageMobilePromoComp
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='siteonehomepage'];contentSlot(uid,$contentCV)[unique=true]
+;;Section1D-SiteOneHomePage;Section1D;;Section1DSlot-SiteOneHomePage
+;;Section1E-SiteOneHomePage;Section1E;;Section1ESlot-SiteOneHomePage
+
+INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];mime;realfilename;@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator][forceWrite=true];folder(qualifier)[default='images']
+;;homePromo1;image/jpeg;homePromo1;$siteResource/images/banners/homepage/responsive/Cruise-ad.jpg
+;;homeMobilePromo;image/jpeg;homeMobilePromo;$siteResource/images/banners/homepage/responsive/homepromomobile.jpg
+
+INSERT_UPDATE HomePagePromoBannerComponent;$contentCV[unique=true];uid[unique=true];name;headline[lang=en];&componentRef;urlLink;$picture[lang=$lang];promotionalText;subHeadText;buttonURL;buttonLabel
+;;SiteOneHomepagePromoComp1;Store Homepage Promo1 Component;;SiteOneHomepagePromoComp1;/;homePromo1;
+;;SiteOneHomepageMobilePromoComp;Store Homepage Mobile Promo Component;;SiteOneHomepageMobilePromoComp;/;homeMobilePromo;
+
+
+##########Forgot Password Starts##############
+
+
+INSERT_UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);label;defaultPage[default='true'];approvalStatus(code)[default='approved'];homepage[default='false'];navigationNodeList(uid,$contentCV)
+;;forgotPassword;Forgot Password;AccountPageTemplate;/forgotpassword;;;;
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='forgotPassword'];contentSlot(uid,$contentCV)[unique=true];;;
+;;SideContent-forgotPassword;SideContent;;SideContent-forgotPassword;;;
+;;BodyContent-forgotPassword;BodyContent;;BodyContent-forgotPassword;;;
+
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef);;;
+;;SideContent-forgotPassword;Side Content Slot for forgotPassword;true;;;;
+;;BodyContent-forgotPassword;Body Content Slot for ForgotPassword;true;forgotPasswordComponent
+
+INSERT_UPDATE JspIncludeComponent;$contentCV[unique=true];uid[unique=true];name;page;actions(uid,$contentCV);&componentRef
+;;forgotPasswordComponent;forgot Password Component;/WEB-INF/views/responsive/fragments/password/forgotPassword.jsp;;forgotPasswordComponent
+
+
+
+########Homepage Promo banner and Home page tools component####################
+
+
+
+INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];mime;realfilename;@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator][forceWrite=true];folder(qualifier)[default='images']
+;;homePagePromobanner1;image/jpeg;homePagePromobanner1;$siteResource/images/banners/homepage/responsive/Bottom-ad1-no-text.jpg
+;;homePagePromobanner2;image/jpeg;homePagePromobanner2;$siteResource/images/banners/homepage/responsive/Bottom-ad2-no-text.jpg
+;;ToolsComponent1;image/jpeg;ToolsComponent1;$siteResource/images/banners/homepage/responsive/Ad-trio1.jpg
+;;LearnComponent1;image/jpeg;LearnComponent1;$siteResource/images/banners/homepage/responsive/Ad-trio2.jpg
+;;EventsComponent1;image/jpeg;EventsComponent1;$siteResource/images/banners/homepage/responsive/Ad-trio3.jpg
+
+INSERT_UPDATE PromotionBannerComponent;$contentCV[unique=true];uid[unique=true];name;urlLink;buttonName;&componentRef;imageText;$picture[lang=$lang]
+;;HomepagePromotionComponent1;Homepage Brands Promotion Component 1;/aboutus;"Learn more";HomepagePromotionComponent1;NEW TO SITEONE? HERE'S OUR STORY.;homePagePromobanner1
+;;HomepagePromotionComponent2;Homepage Brands Promotion Component 2;/partnersprogram;"Learn more";HomepagePromotionComponent2;CHECK OUT OUR PARTNERS PROGRAM.;homePagePromobanner2
+
+INSERT_UPDATE HomePageToolsComponent;$contentCV[unique=true];uid[unique=true];name;urlLink;&componentRef;title[lang=en];description[lang=en];buttonName[lang=en];$picture[lang=en]
+;;ToolsComponent;Tools & Resources Component;/tools;ToolsComponent;"The Next Level is Only a Bag Away";"Advanced, commercial-grade fertilizer from LESCO";"Learn more &#8594;";ToolsComponent1
+;;LearnComponent;Learn Component;/articles;LearnComponent;"Hunter HC Series Wifi Controller";"Professional-grade Wifi controllers with hydrawise";"Learn more &#8594;";LearnComponent1
+;;EventsComponent;Events Component;/events;EventsComponent;"Save Now on Pro-Trade Lighting";"America's best selling line of outdoor lighting";"Learn more &#8594;";EventsComponent1
+
+############# Content Impexes ######################
+
+
+UPDATE CMSSite;uid[unique=true];productPriceDisclaimer[lang=$lang]
+;$siteUid;"Prices may vary from branch to branch and online. Branch is not responsible for the errors or omissions in pricing and quantity. Suppliers of the products listed on this Web site are subject to change at any time. While the individuals and entities responsible for this catalog attempt to provide accurate supplier information, for these reasons and others, the suppliers noted may not be the supplier of the product ultimately sold by SiteOne or distributors of products."
+
+UPDATE SiteoneParagaraphComponent;$contentCV[unique=true];uid[unique=true];headline[lang=$lang];content
+;;EmptyCartParagraphComponent;"Your cart is empty.";;
+
+INSERT_UPDATE SiteonePageTitleBannerComponent;$contentCV[unique=true];uid[unique=true];name;headline[lang=$lang];content[lang=$lang];&componentRef
+;;contactUsPageTitleComponent;Contact Us Page Title Component;Contact Us;"Questions? Comments? Call or email to let us know what's on your mind.";contactUsPageTitleComponent 
+
+INSERT_UPDATE SiteoneParagaraphComponent;$contentCV[unique=true];uid[unique=true];name;headline[lang=$lang];content[lang=$lang];&componentRef
+;;contactUsParagraphComponent1;Call your store Component;Call Your Branch;"For product, inventory, pick up, and delivery information please contact your branch:";contactUsParagraphComponent1 
+;;contactUsParagraphComponent3;Call customer service Component;Call Customer Service;"Call us at 1-800-SITEONE (<a class='tel-phone' href='tel:1-800-748-3663'>1-800-748-3663</a>). We are available Monday through Friday from 8 a.m. to 5 p.m. EST.";contactUsParagraphComponent3
+
+UPDATE FooterNavigationComponent;$contentCV[unique=true];uid[unique=true];extendedNotice[lang=$lang]
+;;FooterNavigationComponent;"SiteOne Landscape Supply, Inc. 2018 – <CURRENT_YEAR>. The Trademarks Used On This Website Are The Property Of SiteOne Landscape Supply, Inc. And LESCO, Inc. Nothing Herein Should Be Construed To Grant Any License To Use Any Trademarks Without The Prior Written Permission Of The Trademark Owner.";
+
+INSERT_UPDATE SiteonePageTitleBannerComponent;$contentCV[unique=true];uid[unique=true];name;headline[lang=$lang];&componentRef
+;;termsAndConditionPageTitleBannerComponent;Privacy Policy Page Title Component;LEGAL;termsAndConditionPageTitleBannerComponent;"We're sorry, but the page you're looking for is either missing, broken or no longer exists. But don't worry, we'll have Steve look into it as soon as his break is over. In the mean time, please try re-typing the address, or use the box below to search our site."
+
+
+INSERT_UPDATE SiteoneParagaraphComponent;$contentCV[unique=true];uid[unique=true];name;headline[lang=$lang];content[lang=$lang];&componentRef
+;;SearchInstructionParagraphComponent;Search Instruction Paragraph;;"We're sorry, but the page you're looking for is either missing, broken or no longer exists.Please try re-typing the address, or use the menu above to search our site.";SearchInstructionParagraphComponent
+;;PageNotFoundParagraphComponent;Page Not Found Paragraph;Search tips:;"<ul><li>Use different words</li><li>Check your spelling</li><li>Start with something less specific-then narrow your results</li></ul>";PageNotFoundParagraphComponent
+
+#/login
+INSERT_UPDATE SiteOneLoginPageComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef;content[lang=$lang];buttonLabel[lang=$lang];buttonURL
+;;RequestAccountLoginParagraphComponent1;RequestAccountLoginParagraphComponent1;RequestAccountLoginParagraphComponent1;"<h1 class='headline'>Customer Registration</h1><p><br ><strong>Request online access</strong><br/><br>New or existing SiteOne customers can create an online <br /><br>account to take advantage of these benefits:<br /></p><ul><li>View your customer-specific pricing</li></ul><ul><li>Access order history, past purchases, and invoices</li></ul><ul><li>Create and manage shopping lists</li></ul>";Request an Account;/request-account/form
+
+#/login/checkout
+INSERT_UPDATE SiteOneLoginPageComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef;content;buttonLabel;buttonURL
+;;RequestAccount12;RequestAccount12;RequestAccount12;"<h1 class='headline'>Customer Registration</h1><p><br ><strong>Request online access</strong><br/><br>New or existing SiteOne customers can create an online <br /><br>account to take advantage of these benefits:<br /></p><ul><li>View your customer-specific pricing</li></ul><ul><li>Access order history, past purchases, and invoices</li></ul><ul><li>Create and manage shopping lists</li></ul>";Request an Account;/request-account/form
+
+
+
+UPDATE SiteoneParagaraphComponent;$contentCV[unique=true];uid[unique=true];headline[lang=$lang];content[lang=$lang]
+;;NoSearchResultsParagraphComponent;Search tips:;"<ul><li>Use different words.</li><li>Check your spelling.</li><li>Start with something less specific, then narrow your results.</li></ul>";
+
+

@@ -1,0 +1,6 @@
+INSERT_UPDATE ProprietaryBrandConfig;	brandName[unique=true]	;indexName   ;seqNo
+							  ;LESCO     ;siteoneIndex		;1
+							  ;Pro-Trade	;siteoneIndex	;2
+							  ;Portfolio	;siteoneIndex	;3
+							  ;Solstice		;siteoneIndex	;4
+							 

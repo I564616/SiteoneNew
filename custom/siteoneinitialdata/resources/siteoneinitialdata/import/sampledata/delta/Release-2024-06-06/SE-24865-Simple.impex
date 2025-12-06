@@ -1,0 +1,19 @@
+#--------------------------SIMPLE/BASE Product IntegrationObject-----------------------#
+
+INSERT_UPDATE IntegrationObject; code[unique = true]; integrationType(code)
+; SiteOneProduct; INBOUND
+
+INSERT_UPDATE IntegrationObjectItem; integrationObject(code)[unique = true]; code[unique = true]; type(code); root[default = false]
+; SiteOneProduct ; Product              ; Product ; true
+;SiteOneProduct;SiteOneBrochures ; SiteOneBrochures
+;SiteOneProduct;SiteOneDataSheet ; SiteOneDataSheet;
+
+INSERT_UPDATE IntegrationObjectItemAttribute; integrationObjectItem(integrationObject(code), code)[unique = true]; attributeName[unique = true]; attributeDescriptor(enclosingType(code), qualifier); returnIntegrationObjectItem(integrationObject(code), code); unique[default = false]
+; SiteOneProduct:SiteOneBrochures	; id     ; SiteOneBrochures:id	    ;; true	; 
+; SiteOneProduct:SiteOneBrochures	; mimetype  ; SiteOneBrochures:mimetype	;; true	; 
+; SiteOneProduct:SiteOneBrochures	; fullpath     ; SiteOneBrochures:fullpath	    ;; true	; 
+; SiteOneProduct:SiteOneBrochures	; priority  ; SiteOneBrochures:priority	;; true	; 
+
+; SiteOneProduct:SiteOneDataSheet	; brochures  ; SiteOneDataSheet:brochures	; SiteOneProduct:SiteOneBrochures ;; 
+; SiteOneProduct:SiteOneDataSheet	; id  ; SiteOneDataSheet:id	;  ;true; 
+; SiteOneProduct:Product	        ; sheets          ; Product:sheets 	; SiteOneProduct:SiteOneDataSheet ; 

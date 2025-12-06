@@ -1,0 +1,80 @@
+$solrIndexedType=siteoneProductType
+
+INSERT_UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true];name[unique=true];customFacetSortProvider;
+;$solrIndexedType; Maintenance_capacity ;uomFacetNameSortProviderDescending
+
+INSERT_UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true];name[unique=true];customFacetSortProvider;
+;$solrIndexedType; Maintenance_containersize ;uomFacetNameSortProviderDescending
+
+INSERT_UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true];name[unique=true];customFacetSortProvider;
+;$solrIndexedType; Maintenance_coveragearea	;uomFacetNameSortProviderDescending
+
+INSERT_UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true];name[unique=true];customFacetSortProvider;
+;$solrIndexedType; irgInletConnection ;uomFacetNameSortProviderAscending
+
+INSERT_UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true];name[unique=true];customFacetSortProvider;
+;$solrIndexedType; lndscpSize ;uomFacetNameSortProviderAscending
+
+INSERT_UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true];name[unique=true];customFacetSortProvider;
+;$solrIndexedType; lndscpGloveLength ;uomFacetNameSortProviderDescending
+
+INSERT_UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true];name[unique=true];customFacetSortProvider;
+;$solrIndexedType; lndscpHeadSize ;uomFacetNameSortProviderAscending
+
+INSERT_UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true];name[unique=true];customFacetSortProvider;
+;$solrIndexedType; lndscpHeight	;uomFacetNameSortProviderAscending
+
+INSERT_UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true];name[unique=true];customFacetSortProvider;
+;$solrIndexedType; lndscpCapacity ;uomFacetNameSortProviderAscending
+
+
+
+INSERT_UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true];name[unique=true];customFacetSortProvider;
+;$solrIndexedType; lndscpFlowRate ;uomFacetNameSortProviderAscending
+
+INSERT_UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true];name[unique=true];customFacetSortProvider;
+;$solrIndexedType; lndscpHoseLength ;uomFacetNameSortProviderAscending
+
+INSERT_UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true];name[unique=true];customFacetSortProvider;
+;$solrIndexedType; lndscpRechargeTime ;uomFacetNameSortProviderAscending
+
+INSERT_UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true];name[unique=true];customFacetSortProvider;
+;$solrIndexedType; lndscpWeight ;uomFacetNameSortProviderAscending
+
+
+
+INSERT_UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true];name[unique=true];customFacetSortProvider;
+;$solrIndexedType; irgHPRating	;uomFacetNameSortProviderAscending
+
+INSERT_UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true];name[unique=true];customFacetSortProvider;
+;$solrIndexedType; irgLength	;uomFacetNameSortProviderAscending
+
+INSERT_UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true];name[unique=true];customFacetSortProvider;
+;$solrIndexedType; lndscpBladeWidth	;uomFacetNameSortProviderAscending
+
+
+
+INSERT_UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true];name[unique=true];customFacetSortProvider;
+;$solrIndexedType; irgNumberofConductors	;numericFacetSortProviderAsc
+
+INSERT_UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true];name[unique=true];customFacetSortProvider;
+;$solrIndexedType; irgWireSize	;uomFacetNameSortProviderAscending
+
+INSERT_UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true];name[unique=true];customFacetSortProvider;
+;$solrIndexedType; irgCoilLength	;uomFacetNameSortProviderDescending
+
+INSERT_UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true];name[unique=true];customFacetSortProvider;
+;$solrIndexedType; irgEmitterSpacing	;uomFacetNameSortProviderDescending
+
+INSERT_UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true];name[unique=true];customFacetSortProvider;
+;$solrIndexedType; lndscpGloveThickness	;uomFacetNameSortProviderDescending
+
+INSERT_UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true];name[unique=true];customFacetSortProvider;
+;$solrIndexedType; lndscpTotalWeight	;uomFacetNameSortProviderAscending
+
+INSERT_UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true];name[unique=true];customFacetSortProvider;
+;$solrIndexedType; lndscpWidth	;uomFacetNameSortProviderAscending
+
+
+INSERT_UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true];name[unique=true];customFacetSortProvider;
+;$solrIndexedType; price	;priceRangeFacetNameSortProviderAscending

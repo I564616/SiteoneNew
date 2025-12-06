@@ -1,0 +1,2 @@
+INSERT_UPDATE SiteOneFeatureSwitch;key[unique=true];longValue
+;KountDeclineMailAddress;bcooper@siteone.com,customersupport@ec.siteone.com,customerandproductsupport@siteone.com

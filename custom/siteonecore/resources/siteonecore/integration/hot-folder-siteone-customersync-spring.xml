@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ [y] hybris Platform
+
+ Copyright (c) 2000-2016 SAP SE or an SAP affiliate company.
+ All rights reserved.
+
+ This software is the confidential and proprietary information of SAP
+ ("Confidential Information"). You shall not disclose such Confidential
+ Information and shall use it only in accordance with the terms of the
+ license agreement you entered into with SAP.
+-->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:int="http://www.springframework.org/schema/integration"
+	xmlns:file="http://www.springframework.org/schema/integration/file"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/integration
+	http://www.springframework.org/schema/integration/spring-integration.xsd
+	http://www.springframework.org/schema/integration/file
+	http://www.springframework.org/schema/integration/file/spring-integration-file.xsd
+	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+	http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<context:annotation-config/>
+
+	<bean id="azureHotfolderCustomerSyncRemotePath" class="java.lang.String">
+		<constructor-arg name="value"
+			value="${azure.hotfolder.storage.container.hotfolder}/siteonecustomersync"/>
+	</bean>
+
+	<bean id="azureHotfolderCustomerSyncLocalPath" class="java.lang.String">
+		<constructor-arg name="value"
+			value="#{azureHotfolderLocalDirectoryBase}/#{azureHotfolderCustomerSyncRemotePath}"/>
+	</bean>
+	
+	<bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+		<property name="targetObject" ref="hotfolderInboundFileChannelMappings"/>
+		<property name="targetMethod" value="put"/>
+		<property name="arguments">
+			<list>
+				<bean class="java.util.regex.Pattern" factory-method="compile">
+					<constructor-arg value="^(siteonecustomersync)_(\d+)(\S+)_(\d+)(\S+)\.(?i)txt"/>
+				</bean>
+				<ref bean="SiteOneCustomerSyncBatchFilesCloudHotFolderProc"/>
+			</list>
+		</property>
+	</bean>
+
+	<int:channel id="SiteOneCustomerSyncBatchFilesCloudHotFolderProc"/>
+
+	<int:service-activator input-channel="SiteOneCustomerSyncBatchFilesCloudHotFolderProc" output-channel="batchSiteOneFilesHeaderInit"
+		ref="SiteOneCustomerSyncCloudHotFolderHeaderSetupTask" method="execute">
+	</int:service-activator>
+	
+	<!--  Azure Inbound File Synchronizer and Channel Adapter -->
+	<bean id="SiteOneCustomerSyncAzureBlobInboundSynchronizer"
+		class="de.hybris.platform.cloud.azure.hotfolder.remote.inbound.AzureBlobInboundSynchronizer">
+		<constructor-arg name="sessionFactory" ref="azureBlobSessionFactory"/>
+		<property name="remoteDirectory" value="#{azureHotfolderCustomerSyncRemotePath}"/>
+		<property name="moveToRemoteDirectory" value="#{azureHotfolderCustomerSyncRemotePath}/processing"/>
+		<property name="deleteRemoteFiles" value="${azure.hotfolder.storage.delete.remote.files}"/>
+		<property name="preserveTimestamp" value="true"/>
+		<property name="filter" ref="azureHotfolderFileFilter"/>
+		<property name="comparator" ref="azureHotFolderFileComparator"/>
+	</bean>
+
+	<bean id="SiteOneCustomerSyncAzureBlobSynchronizingMessageSource"
+		class="de.hybris.platform.cloud.azure.hotfolder.remote.inbound.AzureBlobSynchronizingMessageSource">
+		<constructor-arg name="synchronizer" ref="SiteOneCustomerSyncAzureBlobInboundSynchronizer"/>
+		<property name="autoCreateLocalDirectory" value="true"/>
+		<property name="localDirectory" value="#{azureHotfolderCustomerSyncLocalPath}/processing/"/>
+		<property name="maxFetchSize" value="${azure.hotfolder.storage.polling.fetch.batch-size}"/>
+	</bean>
+	
+	<bean id="azureCustomerSyncChannelAdapterTaskExecutor"
+		class="de.hybris.platform.cloud.commons.scheduling.HybrisAwareThreadPoolTaskExecutor">
+		<property name="waitForTasksToCompleteOnShutdown" value="true"/>
+		<property name="threadNamePrefix" value="AzureCustomerSyncIntegrationTaskExecutorThread-${tenantId}-"/>
+		<property name="threadGroupName" value="AzureCustomerSyncIntegrationTaskExecutorThread-${tenantId}"/>
+		<property name="corePoolSize" value="${azure.hotfolder.storage.polling.core-pool-size}"/>
+		<property name="maxPoolSize" value="${azure.hotfolder.storage.polling.max-pool-size}"/>
+		<property name="queueCapacity" value="-1"/>
+		<property name="keepAliveSeconds" value="60"/>
+		<property name="rejectedExecutionHandler">
+			<bean class="java.util.concurrent.ThreadPoolExecutor$DiscardPolicy"/>
+		</property>
+		<property name="role" value="integration"/>
+		<property name="autoStartup" value="false"/>
+		<property name="phase" value="10"/>
+		<property name="awaitTerminationSeconds" value="60"/>
+	</bean>
+
+
+	<bean id="SiteOneCustomerSyncCloudHotFolderHeaderSetupTask" class="de.hybris.platform.acceleratorservices.dataimport.batch.task.HeaderSetupTask">
+		<property name="catalog" value="${cloud.hotfolder.default.mapping.header.catalog}"/>
+		<property name="net" value="${cloud.hotfolder.default.mapping.header.net}" />
+		<property name="storeBaseDirectory" value="#{azureHotfolderCustomerSyncRemotePath}/processing" />
+	</bean>
+	
+	<int:inbound-channel-adapter id="SiteOneCustomerSyncAzureInboundChannelAdapter"
+		auto-startup="false"
+		role="${cloud.hotfolder.storage.services.role}"
+		phase="50"
+		ref="SiteOneCustomerSyncAzureBlobSynchronizingMessageSource"
+		channel="siteOneCustomerSyncCloudHotFolderInboundFileHeaderEnricherChannel">
+		<int:poller fixed-rate="${azure.hotfolder.storage.polling.fixed.rate}"
+			task-executor="azureCustomerSyncChannelAdapterTaskExecutor"
+			max-messages-per-poll="${azure.hotfolder.storage.polling.fetch.batch-size}">
+		</int:poller>
+	</int:inbound-channel-adapter>
+	
+	<int:channel id="siteOneCustomerSyncCloudHotFolderInboundFileHeaderEnricherChannel">
+        <int:interceptors>
+           <ref bean="siteOneCustomerSyncHotFolderRoutingChannelInterceptor"/>
+        </int:interceptors>
+    </int:channel>
+
+
+    <bean id="siteOneCustomerSyncHotFolderRoutingChannelInterceptor" class="de.hybris.platform.cloud.hotfolder.interceptor.HotFolderRouterChannelInterceptor">
+      <property name="successChannel" ref="SiteOneCustomerSyncAzureArchiveOutboundChannelAdapter"/>
+      <property name="failureChannel" ref="SiteOneCustomerSyncAzureErrorOutboundChannelAdapter"/>
+    </bean>
+
+    <int:header-enricher id="siteOneCustSyncCloudHotFolderInboundFileNameHeaderEnricherChannel"
+                input-channel="siteOneCustomerSyncCloudHotFolderInboundFileHeaderEnricherChannel"
+                output-channel="hotfolderInboundFileChannel">
+        <int:header name="#{fileNameHeaderKey}" expression="payload.getName()"/>
+        <int:header name="#{fileLastModifiedHeaderKey}" expression="payload.lastModified()"/>
+   </int:header-enricher>
+
+
+	<!-- Customer :: Azure Outbound Channel adapters for moving remote files into archive/error folders -->
+	<bean id="SiteOneCustomerSyncAzureArchiveMessageHandler" parent="abstractAzureMoveMessageHandler">
+		<property name="remoteDirectory" value="#{azureHotfolderCustomerSyncRemotePath}/archive"/>
+	</bean>
+
+	<bean id="SiteOneCustomerSyncAzureErrorMessageHandler" parent="abstractAzureMoveMessageHandler">
+		<property name="remoteDirectory" value="#{azureHotfolderCustomerSyncRemotePath}/error"/>
+	</bean>
+	
+	<int:outbound-channel-adapter id="SiteOneCustomerSyncAzureArchiveOutboundChannelAdapter"
+		ref="SiteOneCustomerSyncAzureArchiveMessageHandler">
+	</int:outbound-channel-adapter>
+
+	<int:outbound-channel-adapter id="SiteOneCustomerSyncAzureErrorOutboundChannelAdapter"
+		ref="SiteOneCustomerSyncAzureErrorMessageHandler" >
+	</int:outbound-channel-adapter>
+	
+	<!--Start-->
+	<file:inbound-channel-adapter id="azureLocalCustomerSyncErrorInboundChannelAdapter"
+		directory="#{azureHotfolderCustomerSyncLocalPath}/error"
+		filter="azureLocalCustomerSyncErrorHotFolderFileFilter">
+		<int:poller fixed-rate="10000"/>
+	</file:inbound-channel-adapter>
+
+	<bean id="azureLocalCustomerSyncErrorHotFolderFileFilter"
+		class="de.hybris.platform.cloud.commons.spring.integration.file.filters.ChainFileListFilter">
+		<constructor-arg name="fileFilters" ref="azureLocalCustomerSyncErrorFolderFileListFilter"/>
+	</bean>
+
+	<util:list id="azureLocalCustomerSyncErrorFolderFileListFilter">
+		<ref bean="azureLocalCustomerSyncErrorRegexPatternFileListFilter"/>
+		<ref bean="azureFileSystemPersistentAcceptOnceListFilter"/>
+	</util:list>
+
+	<bean id="azureLocalCustomerSyncErrorRegexPatternFileListFilter"
+		class="org.springframework.integration.file.filters.RegexPatternFileListFilter">
+		<constructor-arg name="pattern" value="^error_siteonecustomersync.*$"/>
+	</bean>
+	
+	<bean id="azureFileSystemPersistentAcceptOnceListFilter" class="org.springframework.integration.file.filters.FileSystemPersistentAcceptOnceFileListFilter">
+		<constructor-arg name="store" ref="hotfolderMetadataStore"/>
+		<constructor-arg name="prefix" value="${azure.hotfolder.storage.metadatastore.prefix}"/>
+	</bean>
+
+	<int:outbound-channel-adapter id="azureLocalCustomerSyncErrorOutboundChannelAdapter"
+		channel="azureLocalCustomerSyncErrorInboundChannelAdapter" ref="azureCustomerSyncBlobMessageHandler"/>
+
+	<bean id="azureCustomerSyncBlobMessageHandler" class="de.hybris.platform.cloud.azure.hotfolder.remote.outbound.AzureBlobMessageHandler">
+		<constructor-arg ref="azureBlobSessionFactory"/>
+		<property name="remoteDirectory" ref="azureCustomerSyncHotfolderErrorRemotePath"/>
+		<property name="fileNameGenerator" ref="azureTimestampFileNameGenerator"/>
+		<property name="deleteSourceFiles" value="true"/>
+	</bean>
+
+	<bean id="azureCustomerSyncHotfolderErrorRemotePath" class="java.lang.String">
+		<constructor-arg name="value"
+			value="#{azureHotfolderCustomerSyncRemotePath}/error"/>
+	</bean>
+	
+	<bean id="batchSiteOneB2BCustomerSyncForShipToB2BUnitConverterMapping"
+		class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping"
+		p:mapping="siteonecustomersync"
+		p:converter-ref="batchSiteOneB2BCustomerSyncForShipToB2BUnitConverter" />
+
+	<bean id="batchSiteOneB2BCustomerSyncForShipToB2BUnitConverter" class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>
+				INSERT_UPDATE B2BCustomer;guid[unique=true,translator=com.siteone.core.translator.RemoveCustomerFromOktaTranslator];active
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>;{+0},{+4};0</value>
+		</property>
+		<property name="rowFilter">
+			<bean class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexRowFilter">
+		<property name="expression" value="row[2]=='Contact' &amp;&amp; row[1]=='2'"/>
+			</bean>
+		</property>
+		<property name="type" value="B2BCustomer"/>
+	</bean>
+	
+	<bean id="batchSiteOneB2BCustomerSyncForProjectServicesMapping"
+		class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping"
+		p:mapping="siteonecustomersync"
+		p:converter-ref="batchSiteOneB2BCustomerSyncForProjectServices" />
+
+	<bean id="batchSiteOneB2BCustomerSyncForProjectServices" class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>
+				UPDATE B2BCustomer;uid[unique=true,cellDecorator=com.siteone.core.batch.decorator.UserIdCellDecorator];isProjectServicesEnabled[translator=com.siteone.core.translator.ProjectServicesEnabledTranslator]
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>;{4};{1}</value>
+		</property>
+		<property name="rowFilter">
+			<bean class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexRowFilter">
+		<property name="expression" value="(row[1]=='2' || row[1]=='6')"/>
+			</bean>
+		</property>
+		<property name="type" value="B2BCustomer"/>
+	</bean>
+
+	<bean id="batchSiteOneB2BCustomerSyncAddressConverterMapping"
+		class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping"
+		p:mapping="siteonecustomersync"
+		p:converter-ref="batchSiteOneB2BCustomerSyncAddressConverter" />
+	
+	<bean id="batchSiteOneB2BCustomerSyncAddressConverter" class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>
+				INSERT_UPDATE Address;guid[unique=true];visibleInAddressBook
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>;{+0};0</value>
+		</property> 
+		<property name="rowFilter">
+			<bean class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexRowFilter">
+				<property name="expression" value="row[2]=='Address' &amp;&amp; row[1]=='3'"/>
+			</bean>
+		</property>
+		<property name="type" value="Address"/>
+	</bean>
+	
+	<bean id="batchSiteOneB2BCustomerSyncB2BUnitConverterMapping"
+		class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping"
+		p:mapping="siteonecustomersync"
+		p:converter-ref="batchSiteOneB2BCustomerSyncB2BUnitConverter" />
+	
+	<bean id="batchSiteOneB2BCustomerSyncB2BUnitConverter" class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>
+				INSERT_UPDATE B2BUnit;guid[unique=true];creditCode
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>;{+0};{3}</value>
+		</property> 
+		<property name="rowFilter">
+			<bean class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexRowFilter">
+				<property name="expression" value="row[2]=='CreditStatusChange' &amp;&amp; row[1]=='4'"/>
+			</bean>
+		</property>
+		<property name="type" value="B2BUnit"/>
+	</bean>
+
+	<bean id="batchSiteOneB2BCustomerSyncConverterMapping"
+		  class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping"
+		  p:mapping="siteonecustomersync"
+		  p:converter-ref="batchSiteOneB2BCustomerSyncConverter" />
+
+	<bean id="batchSiteOneB2BCustomerSyncConverter" class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>
+				INSERT_UPDATE B2BCustomer;guid[unique=true,translator=com.siteone.core.translator.RemoveCustomerFromOktaTranslator];active
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>;{+0},{+4};0</value>
+		</property>
+		<property name="rowFilter">
+			<bean class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexRowFilter">
+				<property name="expression" value="row[2]=='ContactEmailChange' &amp;&amp; row[1]=='5'"/>
+			</bean>
+		</property>
+		<property name="type" value="B2BCustomer"/>
+	</bean>
+	</beans>

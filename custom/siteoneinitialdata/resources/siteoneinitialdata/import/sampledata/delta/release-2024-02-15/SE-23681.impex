@@ -1,0 +1,6 @@
+INSERT_UPDATE PointOfService;storeId[unique=true];nearbyStoreSearchRadius
+;181     ;350
+;19      ;350
+;4       ;350
+;318     ;350
+;1091    ;350

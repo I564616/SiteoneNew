@@ -1,0 +1,25 @@
+INSERT_UPDATE ServicelayerJob; code[unique=true];springid[unique=true]
+;orderReadyForPickUpRemainderEmailCronJob;orderReadyForPickUpRemainderEmailCronJob;
+
+INSERT_UPDATE OrderReadyForPickUpRemainderEmailCronJob;code[unique=true];job(code)[default=orderReadyForPickUpRemainderEmailCronJob];sessionLanguage(isoCode)[default=en]
+;orderReadyForPickUpRemainderEmailCronJob
+
+INSERT_UPDATE Trigger;cronJob(code)[unique=true];cronExpression;relative;active;maxAcceptableDelay
+;orderReadyForPickUpRemainderEmailCronJob;* */15 * * * ?;false;true;-1 
+
+
+# Import config properties into impex macros for modulegen
+UPDATE GenericItem[processor=de.hybris.platform.commerceservices.impex.impl.ConfigPropertyImportProcessor];pk[unique=true]
+$emailResource=$config-emailResourceValue
+$emailPackageName=$config-emailContextPackageName
+# Language
+$lang=en
+
+UPDATE RendererTemplate;code[unique=true];description[lang=$lang];templateScript[lang=$lang,translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+;SiteOne_Email_OrderReadyForPickUp_Body;"Order Ready For PickUp Template";$emailResource/email-orderReadyOrScheduledEmailBody.vm
+
+# Language
+$lang=es
+
+UPDATE RendererTemplate;code[unique=true];description[lang=$lang];templateScript[lang=$lang,translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+;SiteOne_Email_OrderReadyForPickUp_Body;"Order Ready For PickUp Template";$emailResource/email-orderReadyOrScheduledEmailBody.vm
