@@ -31,6 +31,13 @@
 		Annotation driven controllers, and a list of packages to scan. Can be extended by adding (or removing) packages.
 	-->
     <context:annotation-config/>
+
+    <bean id="pathMatcher" class="org.springframework.util.AntPathMatcher" />
+
+    <mvc:annotation-driven>
+        <mvc:path-matching path-matcher="pathMatcher"/>
+    </mvc:annotation-driven>
+
     <bean id="webLazyInitOverrideBeanFactoryPostProcessor" parent="lazyInitOverrideBeanFactoryPostProcessor" />
 
 	<!-- activates annotation driven binding -->
