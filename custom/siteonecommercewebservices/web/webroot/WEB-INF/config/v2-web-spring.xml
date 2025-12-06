@@ -19,9 +19,8 @@
 	<import resource="v2/jaxb-converters-spring.xml"/>
 	<import resource="v2/error-config-v2-spring.xml"/>
 	<import resource="v2/filter-config-v2-spring.xml"/>
-<!--	<import resource="v2/security-v2-spring.xml"/>-->
+	<import resource="v2/security-v2-spring.xml"/>
     <import resource="v2/validators-v2-spring.xml"/>
-    <import resource="v2/springmvc-v2-servlet.xml"/>
 
 	<!-- Extension point to inject beans from other sources -->
 	<import resource="classpath*:/commercewebservices/v2/additional-web-spring-context.xml"/>
