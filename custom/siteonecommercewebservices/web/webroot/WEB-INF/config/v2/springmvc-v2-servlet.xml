@@ -71,4 +71,17 @@
             </map>
         </constructor-arg>
     </bean>
+
+    <alias name="applicationHybrisProperties" alias="occHybrisProperties"/>
+    <bean id="applicationHybrisProperties" parent="hybrisProperties"
+          class="com.siteone.v2.config.OCCPropertiesFactory">
+    </bean>
+
+    <alias name="occPropertyPlaceholderConfigurer" alias="platformPropertyPlaceHolder"/>
+    <bean id="occPropertyPlaceholderConfigurer"
+          class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="properties" ref="occHybrisProperties"/>
+        <property name="ignoreUnresolvablePlaceholders" value="true"/>
+        <property name="order" value="-10"/>
+    </bean>
 </beans>
