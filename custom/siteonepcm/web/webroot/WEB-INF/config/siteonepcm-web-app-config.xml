@@ -24,7 +24,7 @@
            http://www.springframework.org/schema/context
            http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <import resource="siteonepcm-spring-security-config.xml"/>
+<!--    <import resource="siteonepcm-spring-security-config.xml"/>-->
 
     <context:annotation-config/>
 

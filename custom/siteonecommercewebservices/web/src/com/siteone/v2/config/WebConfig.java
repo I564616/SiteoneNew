@@ -48,7 +48,6 @@ import com.google.common.collect.ImmutableSet;
  */
 
 @Configuration
-@ImportResource({ "WEB-INF/config/v2/springmvc-v2-servlet.xml" })
 public class WebConfig extends DelegatingWebMvcConfiguration
 {
 	private static final String PASSWORD_AUTHORIZATION_SCOPE = "siteonecommercewebservices.oauth2.password.scope";
