@@ -11,7 +11,6 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:util="http://www.springframework.org/schema/util"
-       xmlns:c="http://www.springframework.org/schema/c"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
            http://www.springframework.org/schema/beans/spring-beans.xsd
            http://www.springframework.org/schema/util
@@ -29,11 +28,13 @@
         <constructor-arg name="exclusiveComputation" value="${category.product.count.cache.exclusivecomputation}" />
         <constructor-arg name="ttlSeconds" value="${category.product.count.cache.ttl.seconds}"/>
         <property name="handledTypes">
-            <null/>
+            <array></array>
         </property>
     </bean>
 
 
-    <bean id="categoryProductCountCacheRegionRegistrar" class="de.hybris.platform.regioncache.region.CacheRegionRegistrar" c:region-ref="categoryProductCountCacheRegion" />
+    <bean id="categoryProductCountCacheRegionRegistrar" class="de.hybris.platform.regioncache.region.CacheRegionRegistrar">
+        <constructor-arg name="region" ref="categoryProductCountCacheRegion"/>
+    </bean>
 
 </beans>

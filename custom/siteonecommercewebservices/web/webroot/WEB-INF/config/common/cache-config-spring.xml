@@ -36,14 +36,26 @@
 
 	<!-- Default cache manager for OCC: -->
 
-	<alias name="defaultWSCacheManager" alias="wsCacheManager"/>
-	<bean id="defaultWSCacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager">
-		<property name="cacheManager" ref="wsEhcache"/>
-	</bean>
+<!--	<alias name="defaultWSCacheManager" alias="wsCacheManager"/>-->
+<!--	<bean id="defaultWSCacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager">-->
+<!--		<property name="cacheManager" ref="wsEhcache"/>-->
+<!--	</bean>-->
 
-	<alias name="defaultWSEhcache" alias="wsEhcache"/>
-	<bean id="defaultWSEhcache" class="de.hybris.platform.webservicescommons.cache.TenantAwareEhCacheManagerFactoryBean">
-		<property name="configLocation" value="${siteonecommercewebservices.ehcache.location:/WEB-INF/cache/ehcache.xml}"/>
-	</bean>
+    <!-- instantiates a JCacheCacheManager instance using above created factory bean -->
+    <alias name="defaultWSCacheManager" alias="wsCacheManager"/>
+    <bean id="defaultWSCacheManager" class="org.springframework.cache.jcache.JCacheCacheManager">
+        <property name="cacheManager" ref="wsEhcache"/>
+    </bean>
+
+<!--	<alias name="defaultWSEhcache" alias="wsEhcache"/>-->
+<!--	<bean id="defaultWSEhcache" class="de.hybris.platform.webservicescommons.cache.TenantAwareEhCacheManagerFactoryBean">-->
+<!--		<property name="configLocation" value="${siteonecommercewebservices.ehcache.location:/WEB-INF/cache/ehcache.xml}"/>-->
+<!--	</bean>-->
+
+    <!-- instantiates a JCacheManagerFactoryBean instance using the cache configuration provided at the mentioned location -->
+    <alias name="defaultWSEhcache" alias="wsEhcache"/>
+    <bean id="defaultWSEhcache" class="org.springframework.cache.jcache.JCacheManagerFactoryBean">
+        <property name="cacheManagerUri" value="classpath:${ywebservices.ehcache.location:ywebservices/cache/ehcache.xml}" />
+    </bean>
 	
 </beans>

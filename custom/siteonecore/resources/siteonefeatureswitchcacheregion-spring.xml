@@ -11,7 +11,6 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:util="http://www.springframework.org/schema/util"
-       xmlns:c="http://www.springframework.org/schema/c"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
            http://www.springframework.org/schema/beans/spring-beans.xsd
            http://www.springframework.org/schema/util
@@ -29,11 +28,13 @@
         <constructor-arg name="exclusiveComputation" value="${siteone.feature.switch.cache.exclusivecomputation}" />
         <constructor-arg name="ttlSeconds" value="${siteone.feature.switch.cache.ttl.seconds}"/>
         <property name="handledTypes">
-            <null/>
+            <array></array>
         </property>
     </bean>
 
 
-    <bean id="siteOneFeatureSwitchCacheRegionRegistrar" class="de.hybris.platform.regioncache.region.CacheRegionRegistrar" c:region-ref="siteOneFeatureSwitchCacheRegion" />
+    <bean id="siteOneFeatureSwitchCacheRegionRegistrar" class="de.hybris.platform.regioncache.region.CacheRegionRegistrar" >
+        <constructor-arg name="region" ref="storeBySupplyChainNodeIdCacheRegion"/>
+    </bean>
 
 </beans>
