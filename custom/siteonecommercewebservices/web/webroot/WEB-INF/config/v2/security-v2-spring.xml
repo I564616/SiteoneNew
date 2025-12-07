@@ -25,7 +25,7 @@
     <security:http pattern="/v2/api-docs*/**" security="none"/> 
 
 	<!-- Commerce Webservices V2-->
-	<http pattern="/v2/**" entry-point-ref="oauthAuthenticationEntryPointV2"
+	<http pattern="/**" entry-point-ref="oauthAuthenticationEntryPointV2"
 	      access-decision-manager-ref="webSecurityAccessDecisionManager"
 	      xmlns="http://www.springframework.org/schema/security" create-session="stateless">
 

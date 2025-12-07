@@ -43,6 +43,10 @@
         <bean class="de.hybris.platform.webservicescommons.interceptors.CacheControlHandlerInterceptor"/>
     </mvc:interceptors>
 
+    <mvc:default-servlet-handler />
+    <alias name="defaultWsDateFormatter" alias="wsDateFormatter" />
+    <bean id="defaultWsDateFormatter" class="de.hybris.platform.ycommercewebservices.formatters.impl.DefaultWsDateFormatter" />
+
     <security:global-method-security order="-2147483648" secured-annotations="enabled" pre-post-annotations="enabled" proxy-target-class="true"/>
     <!-- FRAMEWORK_UPDATE - TODO - AntPathMatcher was replaced with PathPatternParser as the new default path parser in Spring 6. This path should be adjusted to the new matching rules see: https://spring.io/blog/2020/06/30/url-matching-with-pathpattern-in-spring-mvc-->
     <mvc:resources mapping="**/swagger-ui.html" location="classpath:/META-INF/resources/"/>

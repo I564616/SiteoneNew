@@ -18,13 +18,13 @@
 	<display-name>siteonecommercewebservices</display-name>
 
 	<!-- spring based filter chain -->
-	<filter>
-		<description>
-			Spring configured chain of spring filter beans
-		</description>
-		<filter-name>commerceWebServicesFilterChain</filter-name>
-		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
-	</filter>
+<!--	<filter>-->
+<!--		<description>-->
+<!--			Spring configured chain of spring filter beans-->
+<!--		</description>-->
+<!--		<filter-name>commerceWebServicesFilterChain</filter-name>-->
+<!--		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>-->
+<!--	</filter>-->
 
 	<!-- provides support for ETag and If-None-Match, shallow -->
 	<filter>
@@ -101,10 +101,10 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 
-	<filter-mapping>
-		<filter-name>commerceWebServicesFilterChain</filter-name>
-		<servlet-name>springmvc</servlet-name>
-	</filter-mapping>
+<!--	<filter-mapping>-->
+<!--		<filter-name>commerceWebServicesFilterChain</filter-name>-->
+<!--		<servlet-name>springmvc</servlet-name>-->
+<!--	</filter-mapping>-->
 
 	<!-- Uncomment to make v1 version available -->
 	
@@ -156,26 +156,26 @@
 	
 	<!-- END Uncomment to make v1 version available -->
 
-	<servlet>
-		<servlet-name>springmvc</servlet-name>
-		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-		<init-param>
-			<param-name>contextConfigLocation</param-name>
-			<param-value>WEB-INF/config/common/springmvc-servlet.xml</param-value>
-		</init-param>
-		<load-on-startup>1</load-on-startup>
-        <multipart-config>
-            <location></location>
-            <max-file-size>10485760</max-file-size>
-            <max-request-size>-1</max-request-size>
-            <file-size-threshold>0</file-size-threshold>
-        </multipart-config>
-	</servlet>
+<!--	<servlet>-->
+<!--		<servlet-name>springmvc</servlet-name>-->
+<!--		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>-->
+<!--		<init-param>-->
+<!--			<param-name>contextConfigLocation</param-name>-->
+<!--			<param-value></param-value>-->
+<!--		</init-param>-->
+<!--		<load-on-startup>1</load-on-startup>-->
+<!--        <multipart-config>-->
+<!--            <location></location>-->
+<!--            <max-file-size>10485760</max-file-size>-->
+<!--            <max-request-size>-1</max-request-size>-->
+<!--            <file-size-threshold>0</file-size-threshold>-->
+<!--        </multipart-config>-->
+<!--	</servlet>-->
 
-	<servlet-mapping>
-		<servlet-name>springmvc</servlet-name>
-		<url-pattern>/</url-pattern>
-	</servlet-mapping>
+<!--	<servlet-mapping>-->
+<!--		<servlet-name>springmvc</servlet-name>-->
+<!--		<url-pattern>/</url-pattern>-->
+<!--	</servlet-mapping>-->
 
 	<!-- Uncomment to make v2 available -->
 	<filter>
@@ -215,6 +215,15 @@
 	<servlet>
 		<servlet-name>springmvc-v2</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <!--
+        disable detect all handler exception resolvers to let the bean created by WebMvcConfigurationSupport#HandlerExceptionResolver takes effect.
+        Otherwise, there might be other resolvers defined and inserted before the above bean. As a result the above bean will never be used.
+        Always configure The HandlerExceptionResolver in the sub class of WebMvcConfigurationSupport, that means WebConfig class.
+        -->
+        <init-param>
+            <param-name>detectAllHandlerExceptionResolvers</param-name>
+            <param-value>false</param-value>
+        </init-param>
 		<init-param>
 			<param-name>contextClass</param-name>
 			<param-value>
@@ -224,7 +233,6 @@
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
 			<param-value>
-				com.siteone.v2.config.WebConfig
 			</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
