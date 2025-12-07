@@ -20,7 +20,7 @@
 		http://www.springframework.org/schema/util
 		http://www.springframework.org/schema/util/spring-util.xsd">
 
-	<security:http pattern="${siteonepunchoutaddon.mapping.cxml.pattern}"  disable-url-rewriting="true" use-expressions="false">
+	<security:http pattern="${siteonepunchoutaddon.mapping.cxml.pattern}"  disable-url-rewriting="false" use-expressions="true">
 	
 		<security:csrf disabled="true"/>
 	

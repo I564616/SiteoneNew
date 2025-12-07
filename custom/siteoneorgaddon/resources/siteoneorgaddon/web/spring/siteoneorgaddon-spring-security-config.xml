@@ -20,7 +20,7 @@
 		http://www.springframework.org/schema/util
 		http://www.springframework.org/schema/util/spring-util.xsd">
 
-	<security:http disable-url-rewriting="true" pattern="/my-company/**" use-expressions="false">
+	<security:http disable-url-rewriting="true" pattern="/my-company/**" use-expressions="true" use-authorization-manager="false">
 
 <!--		<security:session-management session-authentication-strategy-ref="fixation" />-->
 		

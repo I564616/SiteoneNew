@@ -27,7 +27,7 @@
     <security:http security="none" pattern="/favicon.ico"/>
 
     <!-- Secured pages -->
-    <security:http entry-point-ref="samlEntryPoint" use-expressions="false">
+    <security:http entry-point-ref="samlEntryPoint" use-expressions="false" use-authorization-manager="false">
 		<security:intercept-url pattern="/**" access="IS_AUTHENTICATED_FULLY"/>
         <security:custom-filter before="FIRST" ref="metadataGeneratorFilter"/>
         <security:custom-filter after="BASIC_AUTH_FILTER" ref="samlFilter"/>
