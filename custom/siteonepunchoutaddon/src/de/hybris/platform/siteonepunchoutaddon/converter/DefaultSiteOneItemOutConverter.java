@@ -12,7 +12,7 @@ import de.hybris.platform.product.ProductService;
 import de.hybris.platform.servicelayer.exceptions.UnknownIdentifierException;
 
 import org.apache.log4j.Logger;
-import org.assertj.core.util.Compatibility.System;
+//import org.assertj.core.util.Compatibility.System;
 import org.cxml.ItemOut;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.http.HttpStatus;

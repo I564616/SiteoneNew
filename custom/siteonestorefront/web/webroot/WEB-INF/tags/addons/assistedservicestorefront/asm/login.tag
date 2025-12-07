@@ -1,6 +1,6 @@
 <%@ tag body-content="empty" trimDirectiveWhitespaces="true" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%@ taglib prefix="c" uri="jakarta.tags.core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ attribute name="actionNameKey" required="true" type="java.lang.String" %>
 <%@ attribute name="action" required="true" type="java.lang.String" %>
 <%@ attribute name="error" required="true" type="java.lang.String" %>

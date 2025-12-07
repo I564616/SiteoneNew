@@ -43,14 +43,14 @@ import java.util.function.Predicate;
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
 
-import org.apache.commons.collections.CollectionUtils;
-import org.apache.commons.lang.StringEscapeUtils;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.text.StringEscapeUtils;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.google.common.collect.Lists;
@@ -80,7 +80,7 @@ public class AdvanceSearchPageController extends AbstractSearchPageController
 	@Resource(name = "b2bSolrProductSearchFacade")
 	private SearchFacade<ProductData, SearchStateData> b2bSolrProductSearchFacade;
 
-	@RequestMapping(value = "/advanced", method = RequestMethod.GET)
+	@GetMapping("/advanced")
 	public String advanceSearchResults(
 			@RequestParam(value = "keywords", required = false, defaultValue = StringUtils.EMPTY) String keywords,
 			@RequestParam(value = "searchResultType", required = false, defaultValue = ADVANCED_SEARCH_RESULT_TYPE_ORDER_FORM) final String searchResultType,
@@ -234,7 +234,7 @@ public class AdvanceSearchPageController extends AbstractSearchPageController
 		if (currentQuery != null)
 		{
 			final SearchQueryData query = currentQuery.getQuery();
-			final String encodedQueryValue = StringEscapeUtils.escapeHtml(query.getValue());
+			final String encodedQueryValue = StringEscapeUtils.escapeHtml4(query.getValue());
 			query.setValue(encodedQueryValue);
 			currentQuery.setQuery(query);
 			searchPageData.setCurrentQuery(currentQuery);
@@ -256,7 +256,7 @@ public class AdvanceSearchPageController extends AbstractSearchPageController
 							{
 								final String[] queryValues = queryValue.split(":");
 								final StringBuilder queryValueBuilder = new StringBuilder();
-								queryValueBuilder.append(StringEscapeUtils.escapeHtml(queryValues[0]));
+								queryValueBuilder.append(StringEscapeUtils.escapeHtml4(queryValues[0]));
 								for (int i = 1; i < queryValues.length; i++)
 								{
 									queryValueBuilder.append(":").append(queryValues[i]);
@@ -278,7 +278,7 @@ public class AdvanceSearchPageController extends AbstractSearchPageController
 							{
 								final String[] queryValues = queryValue.split(":");
 								final StringBuilder queryValueBuilder = new StringBuilder();
-								queryValueBuilder.append(StringEscapeUtils.escapeHtml(queryValues[0]));
+								queryValueBuilder.append(StringEscapeUtils.escapeHtml4(queryValues[0]));
 								for (int i = 1; i < queryValues.length; i++)
 								{
 									queryValueBuilder.append(":").append(queryValues[i]);

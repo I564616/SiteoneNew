@@ -12,7 +12,7 @@ import de.hybris.platform.commercefacades.user.data.RegionData;
 
 import jakarta.annotation.Resource;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 
 public class AddressDataUtil

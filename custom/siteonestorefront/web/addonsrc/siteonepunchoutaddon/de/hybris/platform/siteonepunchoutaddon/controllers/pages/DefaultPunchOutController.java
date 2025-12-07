@@ -33,17 +33,16 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
-import org.apache.commons.configuration.Configuration;
-import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang.builder.ToStringBuilder;
-import org.apache.commons.lang.builder.ToStringStyle;
+import org.apache.commons.configuration2.Configuration;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 import org.apache.log4j.Logger;
 import org.cxml.CXML;
 import org.springframework.stereotype.Component;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import de.hybris.platform.b2b.punchout.PunchOutUtils;
@@ -85,7 +84,7 @@ public class DefaultPunchOutController extends AbstractPageController implements
 	 * @param sessionId
 	 *           the hybris session ID
 	 */
-	@RequestMapping(value = "/punchout/cxml/session", method = RequestMethod.GET)
+	@GetMapping("/punchout/cxml/session")
 	public void handlePunchOutSession(@RequestParam("sid") final String sessionId,
 			final HttpServletRequest request, final HttpServletResponse response)
 	{
@@ -113,7 +112,7 @@ public class DefaultPunchOutController extends AbstractPageController implements
 	 * @throws InvalidCartException
 	 * @throws CMSItemNotFoundException
 	 */
-	@RequestMapping(value = "/punchout/cxml/cancel", method = RequestMethod.GET)
+	@GetMapping("/punchout/cxml/cancel")
 	public String cancelRequisition(final Model model, final HttpServletRequest request) throws InvalidCartException,
 			CMSItemNotFoundException
 	{
@@ -147,7 +146,7 @@ public class DefaultPunchOutController extends AbstractPageController implements
 	 * @throws InvalidCartException
 	 * @throws CMSItemNotFoundException
 	 */
-	@RequestMapping(value = "/punchout/cxml/requisition", method = RequestMethod.GET)
+	@GetMapping("/punchout/cxml/requisition")
 	public String placeRequisition(final Model model, final HttpServletRequest request) throws InvalidCartException,
 			CMSItemNotFoundException
 	{

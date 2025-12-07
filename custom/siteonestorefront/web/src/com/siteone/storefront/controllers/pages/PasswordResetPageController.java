@@ -32,7 +32,7 @@ import jakarta.validation.Valid;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
-import org.springframework.security.oauth2.common.exceptions.InvalidTokenException;
+//import org.springframework.security.oauth2.common.exceptions.InvalidTokenException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -292,12 +292,13 @@ public class PasswordResetPageController extends AbstractPageController
 			((SiteOneCustomerFacade) customerFacade).getClientInformation(request);
 			((SiteOneCustomerFacade) customerFacade).verifyRecoveryToken(token);
 		}
-		catch (final InvalidTokenException invalidTokenException)
-		{
-			LOG.error(invalidTokenException.getMessage() + "  token="+token, invalidTokenException);
-			GlobalMessages.addFlashMessage(redirectModel, GlobalMessages.CONF_MESSAGES_HOLDER, "system.error.link.expired.title");
-			return REDIRECT_LOGIN;
-		}
+        //JDK-21 Fix needed
+//		catch (final InvalidTokenException invalidTokenException)
+//		{
+//			LOG.error(invalidTokenException.getMessage() + "  token="+token, invalidTokenException);
+//			GlobalMessages.addFlashMessage(redirectModel, GlobalMessages.CONF_MESSAGES_HOLDER, "system.error.link.expired.title");
+//			return REDIRECT_LOGIN;
+//		}
 		catch (final ResourceAccessException resourceAccessException)
 		{
 			LOG.error(resourceAccessException.getMessage() + "  token="+token, resourceAccessException);
@@ -355,12 +356,13 @@ public class PasswordResetPageController extends AbstractPageController
 							"account.confirmation.password.updated");
 				}
 			}
-			catch (final InvalidTokenException invalidTokenException)
-			{
-				LOG.error(invalidTokenException.getMessage(), invalidTokenException);
-				GlobalMessages.addFlashMessage(redirectModel, GlobalMessages.ERROR_MESSAGES_HOLDER,
-						"system.error.link.expired.title");
-			}
+            //JDK-21 Fix needed
+//			catch (final InvalidTokenException invalidTokenException)
+//			{
+//				LOG.error(invalidTokenException.getMessage(), invalidTokenException);
+//				GlobalMessages.addFlashMessage(redirectModel, GlobalMessages.ERROR_MESSAGES_HOLDER,
+//						"system.error.link.expired.title");
+//			}
 			catch (final ResourceAccessException resourceAccessException)
 			{
 				return REDIRECT_LOGIN;

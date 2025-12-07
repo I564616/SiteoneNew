@@ -208,7 +208,7 @@ function personifyForm() {
         checkCartIdFieldAndToggleBind(this);
     });
 
-    $("#_asmBindForm input[name='cartId']").bind('paste', function (e) {
+    $("#_asmBindForm input[name='cartId']").on('paste', function (e) {
         var inputField = this;
         setTimeout(function () {
             checkCartIdFieldAndToggleBind(inputField);
@@ -284,7 +284,7 @@ function addASMHandlers() {
     personifyForm();
 
     $("#_asmPersonifyForm input[name='customerName'], input[name='customerId']").hover(function () {
-            var item = ($(this).attr('data-hover')) ? jQuery.parseJSON($(this).attr('data-hover')) : $(this).data("hover");
+            var item = ($(this).attr('data-hover')) ? JSON.parse($(this).attr('data-hover')) : $(this).data("hover");
             var disabled = ($(this).attr('data-hover')) ? "disabled" : "";
 
             if (!(item === null || item === undefined)) {
@@ -1044,7 +1044,7 @@ $(function () {
                     c = c.substring(1, c.length);
                 }
                 if (c.indexOf(nameEQ) === 0) {
-                    return jQuery.parseJSON(decodeURIComponent(c.substring(nameEQ.length, c.length)));
+                    return JSON.parse(decodeURIComponent(c.substring(nameEQ.length, c.length)));
                 }
             }
             return null;
@@ -1127,7 +1127,7 @@ $(function () {
 });
 
 /*
- * Copyright (c) 2024 SAP SE or an SAP affiliate company. All rights reserved.
+ * Copyright (c) 2025 SAP SE or an SAP affiliate company. All rights reserved.
  */
 
 ASM.storefinder = {
@@ -1386,7 +1386,7 @@ ASM.storefinder = {
 			success: function (response) {
 				var storeData;
 				try {
-					storeData = $.parseJSON(response);
+					storeData = JSON.parse(response);
 				} catch (e) {
 					storeData = { total: 0, data: [] };
 				}

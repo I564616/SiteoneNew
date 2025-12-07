@@ -18,7 +18,6 @@ import de.hybris.platform.servicelayer.exceptions.UnknownIdentifierException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-import org.springframework.beans.factory.annotation.Required;
 import org.springframework.web.servlet.ModelAndView;
 
 
@@ -82,7 +81,6 @@ public class SmarteditaddonCmsPageBeforeViewHandler implements BeforeViewHandler
 		return uniqueItemIdentifierService;
 	}
 
-	@Required
 	public void setUniqueItemIdentifierService(final UniqueItemIdentifierService uniqueItemIdentifierService)
 	{
 		this.uniqueItemIdentifierService = uniqueItemIdentifierService;

@@ -15,8 +15,7 @@ package com.siteone.siteoneassistedservicestorefront.controllers;
 
 import de.hybris.platform.assistedservicestorefront.controllers.CustomerListController;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
@@ -39,7 +38,7 @@ public class SiteoneCustomerListController extends CustomerListController {
      * @return paginated view with customer data
      */
 
-    @RequestMapping(value = "/listCustomers", method = RequestMethod.GET)
+    @GetMapping("/listCustomers")
     public String listPaginatedCustomers(final Model model, @RequestParam(value = "page", defaultValue = "0") final int page,
                                          @RequestParam(value = "show", defaultValue = "Page") final ShowMode showMode,
                                          @RequestParam(value = "sort", required = false) final String sortCode,

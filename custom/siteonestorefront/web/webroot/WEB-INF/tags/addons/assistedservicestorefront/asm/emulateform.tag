@@ -1,11 +1,11 @@
 <%@ tag body-content="empty" trimDirectiveWhitespaces="true" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%@ taglib prefix="c" uri="jakarta.tags.core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ attribute name="actionNameKey" required="true" type="java.lang.String" %>
 <%@ attribute name="actionNameKeyEnding" required="true" type="java.lang.String" %>
 <%@ attribute name="action" required="true" type="java.lang.String" %>
 <%@ attribute name="disabledButton" required="false" type="java.lang.Boolean" %>
-<%@ taglib prefix="fn" uri="jakarta.tags.functions"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <c:set var="usernamePlaceholder"><spring:theme code="asm.emulate.username.placeholder"/></c:set>
 <c:set var="cartPlaceholder">

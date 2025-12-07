@@ -15,7 +15,6 @@ import de.hybris.platform.b2b.enums.CheckoutPaymentType;
 import de.hybris.platform.commercefacades.order.CheckoutFacade;
 
 import de.hybris.platform.commercefacades.order.data.CartData;
-import org.springframework.beans.factory.annotation.Required;
 
 
 public class B2BPaymentMethodCheckoutStep extends CheckoutStep
@@ -38,7 +37,6 @@ public class B2BPaymentMethodCheckoutStep extends CheckoutStep
 		return checkoutFacade;
 	}
 
-	@Required
 	public void setCheckoutFacade(final CheckoutFacade checkoutFacade)
 	{
 		this.checkoutFacade = checkoutFacade;

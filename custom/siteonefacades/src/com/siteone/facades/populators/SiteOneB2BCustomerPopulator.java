@@ -209,8 +209,9 @@ public class SiteOneB2BCustomerPopulator extends B2BCustomerPopulator
 	{
 		final ArrayList roles = new ArrayList();
 		final HashSet roleModels = new HashSet(source.getGroups());
-		roleModels.removeIf(Predicate.not(PredicateUtils.notPredicate(PredicateUtils.instanceofPredicate(B2BUnitModel.class))));
-		roleModels.removeIf(Predicate.not(PredicateUtils.notPredicate(PredicateUtils.instanceofPredicate(B2BUserGroupModel.class))));
+        //JDK-21 Fix needed
+		//roleModels.removeIf(Predicate.not(PredicateUtils.notPredicate(PredicateUtils.instanceofPredicate(B2BUnitModel.class))));
+		//roleModels.removeIf(Predicate.not(PredicateUtils.notPredicate(PredicateUtils.instanceofPredicate(B2BUserGroupModel.class))));
 		final Iterator arg5 = roleModels.iterator();
 		while (arg5.hasNext())
 		{

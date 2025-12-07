@@ -14,8 +14,6 @@ import de.hybris.platform.assistedservicefacades.AssistedServiceFacade;
 
 import java.util.function.Supplier;
 
-import org.springframework.beans.factory.annotation.Required;
-
 
 /**
  * Boolean Supplier returning {@link Boolean#TRUE} if an assisted service agent is logged and {@link Boolean#FALSE}
@@ -36,7 +34,6 @@ public class AgentLoggedInSupplier implements Supplier<Boolean>
 		return assistedServiceFacade;
 	}
 
-	@Required
 	public void setAssistedServiceFacade(final AssistedServiceFacade assistedServiceFacade)
 	{
 		this.assistedServiceFacade = assistedServiceFacade;

@@ -28,11 +28,11 @@ import org.springframework.http.*;
 import org.springframework.http.client.SimpleClientHttpRequestFactory;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-import org.springframework.security.oauth2.core.OAuth2AccessToken;
-import org.springframework.security.oauth2.provider.ClientDetails;
-import org.springframework.security.oauth2.provider.ClientDetailsService;
-import org.springframework.security.oauth2.provider.OAuth2RequestFactory;
-import org.springframework.security.oauth2.provider.TokenRequest;
+//import org.springframework.security.oauth2.common.OAuth2AccessToken;
+//import org.springframework.security.oauth2.provider.ClientDetails;
+//import org.springframework.security.oauth2.provider.ClientDetailsService;
+//import org.springframework.security.oauth2.provider.OAuth2RequestFactory;
+//import org.springframework.security.oauth2.provider.TokenRequest;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.HttpClientErrorException;
@@ -54,8 +54,9 @@ import jakarta.annotation.Resource;
 public class OKTAAPIImpl implements OKTAAPI {
 
     private static final Logger log = Logger.getLogger(OKTAAPIImpl.class);
-    private ClientDetailsService clientDetailsService;
-    private OAuth2RequestFactory smarteditOAuth2RequestFactory;
+    //JDK-21 Fix needed
+//    private ClientDetailsService clientDetailsService;
+//    private OAuth2RequestFactory smarteditOAuth2RequestFactory;
     private static final String AUTH_ENDPOINT = "/api/v1/authn";
     private static final String SESSION_ENDPOINT = "/api/v1/sessions?additionalFields=cookieToken";
     private static final String USER_ENDPOINT = "/api/v1/users/";
@@ -967,30 +968,32 @@ public class OKTAAPIImpl implements OKTAAPI {
 		HttpEntity<MultiValueMap<String, String>> requestEntity= 
 		new HttpEntity<>(map, headers);
 		try{
-		 OAuth2AccessToken res = getRestTemplate().postForObject(url, requestEntity, OAuth2AccessToken.class);		 
-		 sessionService.setAttribute("refreshToken",res.getRefreshToken().getValue());
+            //JDK-21 Fix needed
+//		 OAuth2AccessToken res = getRestTemplate().postForObject(url, requestEntity, OAuth2AccessToken.class);
+//		 sessionService.setAttribute("refreshToken",res.getRefreshToken().getValue());
 		}
 		catch(Exception e){
 			log.error("exception on Oauth "+ e);
 		}
 	}
 
+    //JDK-21 Fix needed
 
-	public ClientDetailsService getClientDetailsService() {
-		return clientDetailsService;
-	}
-
-	public void setClientDetailsService(ClientDetailsService clientDetailsService) {
-		this.clientDetailsService = clientDetailsService;
-	}
-
-	public OAuth2RequestFactory getSmarteditOAuth2RequestFactory() {
-		return smarteditOAuth2RequestFactory;
-	}
-
-	public void setSmarteditOAuth2RequestFactory(OAuth2RequestFactory smarteditOAuth2RequestFactory) {
-		this.smarteditOAuth2RequestFactory = smarteditOAuth2RequestFactory;
-	}
+//	public ClientDetailsService getClientDetailsService() {
+//		return clientDetailsService;
+//	}
+//
+//	public void setClientDetailsService(ClientDetailsService clientDetailsService) {
+//		this.clientDetailsService = clientDetailsService;
+//	}
+//
+//	public OAuth2RequestFactory getSmarteditOAuth2RequestFactory() {
+//		return smarteditOAuth2RequestFactory;
+//	}
+//
+//	public void setSmarteditOAuth2RequestFactory(OAuth2RequestFactory smarteditOAuth2RequestFactory) {
+//		this.smarteditOAuth2RequestFactory = smarteditOAuth2RequestFactory;
+//	}
 
     @Override
     public Boolean suspendUser(String userId) {

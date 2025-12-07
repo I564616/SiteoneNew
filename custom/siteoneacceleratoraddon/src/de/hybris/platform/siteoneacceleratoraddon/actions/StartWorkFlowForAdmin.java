@@ -116,7 +116,8 @@ public class StartWorkFlowForAdmin extends AbstractSimpleB2BApproveOrderDecision
 		final List<B2BCustomerModel> b2bAdminGroupUsers = new ArrayList<B2BCustomerModel>(getB2bUnitService().getUsersOfUserGroup(
 				getB2bUnitService().getParent(customer), B2BConstants.B2BADMINGROUP, true));
 		// remove the user who placed the order.
-		b2bAdminGroupUsers.removeIf(Predicate.not(PredicateUtils.notPredicate(PredicateUtils.equalPredicate(customer))));
+        //JDK-21 Fix needed
+		//b2bAdminGroupUsers.removeIf(Predicate.not(PredicateUtils.notPredicate(PredicateUtils.equalPredicate(customer))));
 		return (CollectionUtils.isNotEmpty(b2bAdminGroupUsers) ? b2bAdminGroupUsers.get(0) : null);
 	}
 

@@ -44,6 +44,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -85,7 +86,7 @@ public class MyReplenishmentOrdersController extends AbstractSearchPageControlle
 	@Resource(name = "accountBreadcrumbBuilder")
 	private ResourceBreadcrumbBuilder accountBreadcrumbBuilder;
 
-	@RequestMapping(value = "/my-replenishment", method = RequestMethod.GET)
+	@GetMapping("/my-replenishment")
 	@RequireHardLogIn
 	public String myReplenishment(@RequestParam(value = "page", defaultValue = "0") final int page,
 			@RequestParam(value = "show", defaultValue = "Page") final ShowMode showMode,
@@ -116,7 +117,7 @@ public class MyReplenishmentOrdersController extends AbstractSearchPageControlle
 		return REDIRECT_TO_MYREPLENISHMENTS_PAGE;
 	}
 
-	@RequestMapping(value = "/my-replenishment/confirmation/cancel/" + JOB_CODE_PATH_VARIABLE_PATTERN, method = RequestMethod.GET)
+	@GetMapping("/my-replenishment/confirmation/cancel/" + JOB_CODE_PATH_VARIABLE_PATTERN)
 	@RequireHardLogIn
 	public String confirmCancelReplenishment(@PathVariable("jobCode") final String jobCode, final Model model,
 			final HttpServletRequest request) throws CMSItemNotFoundException
@@ -140,7 +141,7 @@ public class MyReplenishmentOrdersController extends AbstractSearchPageControlle
 		return getViewForPage(model);
 	}
 
-	@RequestMapping(value = "/my-replenishment/" + JOB_CODE_PATH_VARIABLE_PATTERN, method = RequestMethod.GET)
+	@GetMapping("/my-replenishment/" + JOB_CODE_PATH_VARIABLE_PATTERN)
 	@RequireHardLogIn
 	public String replenishmentDetails(@RequestParam(value = "page", defaultValue = "0") final int page,
 			@RequestParam(value = "show", defaultValue = "Page") final ShowMode showMode,
@@ -182,7 +183,7 @@ public class MyReplenishmentOrdersController extends AbstractSearchPageControlle
 		return String.format(REDIRECT_TO_MYREPLENISHMENTS_DETAILS_PAGE, jobCode);
 	}
 
-	@RequestMapping(value = "/my-replenishment/detail/confirmation/cancel/" + JOB_CODE_PATH_VARIABLE_PATTERN, method = RequestMethod.GET)
+	@GetMapping("/my-replenishment/detail/confirmation/cancel/" + JOB_CODE_PATH_VARIABLE_PATTERN)
 	@RequireHardLogIn
 	public String confirmCancelReplenishmentFromDetailsPage(@PathVariable("jobCode") final String jobCode, final Model model,
 			final HttpServletRequest request) throws CMSItemNotFoundException
@@ -210,7 +211,7 @@ public class MyReplenishmentOrdersController extends AbstractSearchPageControlle
 		return getViewForPage(model);
 	}
 
-	@RequestMapping(value = "/my-replenishment/" + JOB_CODE_PATH_VARIABLE_PATTERN + "/" + ORDER_CODE_PATH_VARIABLE_PATTERN, method = RequestMethod.GET)
+	@GetMapping("/my-replenishment/" + JOB_CODE_PATH_VARIABLE_PATTERN + "/" + ORDER_CODE_PATH_VARIABLE_PATTERN)
 	@RequireHardLogIn
 	public String replenishmentOrderDetail(@PathVariable("jobCode") final String jobCode,
 			@PathVariable("orderCode") final String orderCode, final Model model) throws CMSItemNotFoundException
@@ -244,8 +245,8 @@ public class MyReplenishmentOrdersController extends AbstractSearchPageControlle
 		return getViewForPage(model);
 	}
 	
-	@RequestMapping(value = "/my-replenishment/" + JOB_CODE_PATH_VARIABLE_PATTERN
-			+ "/getReadOnlyProductVariantMatrix", method = RequestMethod.GET)
+	@GetMapping("/my-replenishment/" + JOB_CODE_PATH_VARIABLE_PATTERN
+			+ "/getReadOnlyProductVariantMatrix")
 	@RequireHardLogIn
 	public String getProductVariantMatrixForResponsive(@PathVariable("jobCode") final String jobCode,
 			@RequestParam("productCode") final String productCode, final Model model)

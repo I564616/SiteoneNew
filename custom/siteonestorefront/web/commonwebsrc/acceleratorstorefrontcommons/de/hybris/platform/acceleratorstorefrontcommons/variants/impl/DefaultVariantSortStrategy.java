@@ -11,8 +11,6 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Required;
-
 
 /**
  * Default strategy for comparing variants. <br>
@@ -33,7 +31,6 @@ public class DefaultVariantSortStrategy implements VariantSortStrategy
 	}
 
 	@Override
-	@Required
 	public void setSortingFieldsOrder(final List<String> sortingFieldsOrder)
 	{
 		this.sortingFieldsOrder = sortingFieldsOrder;
@@ -45,7 +42,6 @@ public class DefaultVariantSortStrategy implements VariantSortStrategy
 	}
 
 	@Override
-	@Required
 	public void setComparators(final Map<String, Comparator<String>> comparators)
 	{
 		this.comparators = comparators;
@@ -57,7 +53,6 @@ public class DefaultVariantSortStrategy implements VariantSortStrategy
 	}
 
 	@Override
-	@Required
 	public void setDefaultComparator(final Comparator<String> defaultComparator)
 	{
 		this.defaultComparator = defaultComparator;

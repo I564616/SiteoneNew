@@ -44,16 +44,16 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.ServletRequestDataBinder;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
@@ -68,7 +68,7 @@ public class SummaryCheckoutStepController extends AbstractCheckoutStepControlle
 	private static final String TEXT_STORE_DATEFORMAT_KEY = "text.store.dateformat";
 	private static final String DEFAULT_DATEFORMAT = "MM/dd/yyyy";
 
-	@RequestMapping(value = "/view", method = RequestMethod.GET)
+	@GetMapping("/view")
 	@RequireHardLogIn
 	@Override
 	@PreValidateQuoteCheckoutStep
@@ -288,7 +288,7 @@ public class SummaryCheckoutStepController extends AbstractCheckoutStepControlle
 		return REDIRECT_URL_ORDER_CONFIRMATION + orderData.getCode();
 	}
 
-	@RequestMapping(value = "/back", method = RequestMethod.GET)
+	@GetMapping("/back")
 	@RequireHardLogIn
 	@Override
 	public String back(final RedirectAttributes redirectAttributes)
@@ -296,7 +296,7 @@ public class SummaryCheckoutStepController extends AbstractCheckoutStepControlle
 		return getCheckoutStep().previousStep();
 	}
 
-	@RequestMapping(value = "/next", method = RequestMethod.GET)
+	@GetMapping("/next")
 	@RequireHardLogIn
 	@Override
 	public String next(final RedirectAttributes redirectAttributes)

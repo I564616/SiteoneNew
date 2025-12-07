@@ -10,13 +10,12 @@ import de.hybris.platform.commercefacades.order.QuoteFacade;
 import de.hybris.platform.commercefacades.quote.data.QuoteData;
 
 import org.aspectj.lang.ProceedingJoinPoint;
-import org.springframework.beans.factory.annotation.Required;
 import org.springframework.web.servlet.mvc.support.RedirectAttributesModelMap;
 
 
 public class QuoteCheckoutStepValidationAspect
 {
-	private static final String REDIRECT_QUOTE_DETAILS = "redirect:/my-account/my-quotes/%s/";
+	private static final String REDIRECT_QUOTE_DETAILS = "redirect:/my-account/my-quotes/%s";
 	private QuoteFacade quoteFacade;
 	private CartFacade cartFacade;
 
@@ -42,7 +41,6 @@ public class QuoteCheckoutStepValidationAspect
 		return quoteFacade;
 	}
 
-	@Required
 	public void setQuoteFacade(final QuoteFacade quoteFacade)
 	{
 		this.quoteFacade = quoteFacade;
@@ -53,7 +51,6 @@ public class QuoteCheckoutStepValidationAspect
 		return cartFacade;
 	}
 
-	@Required
 	public void setCartFacade(final CartFacade cartFacade)
 	{
 		this.cartFacade = cartFacade;

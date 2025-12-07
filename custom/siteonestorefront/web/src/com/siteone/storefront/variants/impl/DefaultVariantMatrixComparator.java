@@ -17,7 +17,7 @@ public class DefaultVariantMatrixComparator implements Comparator<String>
 	@Override
 	public int compare(final String variant1, final String variant2)
 	{
-		return NumberUtils.compare(Double.parseDouble(variant1), Double.parseDouble(variant2));
+		return Double.compare(Double.parseDouble(variant1), Double.parseDouble(variant2));
 	}
 
 	protected int getResult(final String variant1, final String variant2)

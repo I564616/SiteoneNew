@@ -13,8 +13,6 @@ import java.io.Serializable;
 import java.util.Deque;
 import java.util.LinkedList;
 
-import org.springframework.beans.factory.annotation.Required;
-
 
 /**
  */
@@ -32,7 +30,6 @@ public class DefaultBrowseHistory implements BrowseHistory
 		return sessionService;
 	}
 
-	@Required
 	public void setSessionService(final SessionService sessionService)
 	{
 		this.sessionService = sessionService;
@@ -43,7 +40,6 @@ public class DefaultBrowseHistory implements BrowseHistory
 		return cmsSiteService;
 	}
 
-	@Required
 	public void setCmsSiteService(final CMSSiteService cmsSiteService)
 	{
 		this.cmsSiteService = cmsSiteService;
@@ -54,7 +50,6 @@ public class DefaultBrowseHistory implements BrowseHistory
 		return capacity;
 	}
 
-	@Required
 	public void setCapacity(final int capacity)
 	{
 		this.capacity = capacity;

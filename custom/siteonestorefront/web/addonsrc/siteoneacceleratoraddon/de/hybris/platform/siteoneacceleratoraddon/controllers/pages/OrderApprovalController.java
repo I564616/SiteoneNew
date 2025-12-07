@@ -38,19 +38,20 @@ import java.util.List;
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.siteone.facade.order.SiteOneOrderFacade;
+
 //import com.siteone.storefront.forms.SiteOneRequestAccountOnlineAccessForm;
 
 
@@ -77,7 +78,7 @@ public class OrderApprovalController extends AbstractSearchPageController
 	@Resource(name = "baseStoreService")
 	private BaseStoreService baseStoreService;
 
-	@RequestMapping(value = "/approval-dashboard", method = RequestMethod.GET)
+	@GetMapping("/approval-dashboard")
 	@RequireHardLogIn
 	public String orderApprovalDashboard(@RequestParam(value = "page", defaultValue = "0") final int page,
 			@RequestParam(value = "show", defaultValue = "Page") final AbstractSearchPageController.ShowMode showMode,
@@ -97,7 +98,7 @@ public class OrderApprovalController extends AbstractSearchPageController
 	}
 
 
-	@RequestMapping(value = "/orderApprovalDetails/" + WORKFLOW_ACTION_CODE_PATH_VARIABLE_PATTERN, method = RequestMethod.GET)
+	@GetMapping("/orderApprovalDetails/" + WORKFLOW_ACTION_CODE_PATH_VARIABLE_PATTERN)
 	@RequireHardLogIn
 	public String orderApprovalDetails(@PathVariable("workflowActionCode") final String workflowActionCode, final Model model)
 			throws CMSItemNotFoundException
@@ -134,7 +135,7 @@ public class OrderApprovalController extends AbstractSearchPageController
 		return getViewForPage(model);
 	}
 
-	@RequestMapping(value = "/order/approvalDecision", method = RequestMethod.POST)
+	@PostMapping("/order/approvalDecision")
 	@RequireHardLogIn
 	public String orderApprovalDecision(
 			@ModelAttribute("orderApprovalDecisionForm") final OrderApprovalDecisionForm orderApprovalDecisionForm,

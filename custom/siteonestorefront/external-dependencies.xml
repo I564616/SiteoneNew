@@ -60,11 +60,12 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 			<artifactId>stax-ex</artifactId>
 			<version>1.8.2</version>
 		</dependency>
-		<dependency>
-    		<groupId>org.owasp.esapi</groupId>
-    		<artifactId>esapi</artifactId>
-    		<version>2.2.2.0</version>
-		</dependency>
+        <dependency>
+            <groupId>org.owasp.esapi</groupId>
+            <artifactId>esapi</artifactId>
+            <version>2.7.0.0</version>
+            <classifier>jakarta</classifier>
+        </dependency>
 		<dependency>
 			<groupId>com.sun.xml.ws</groupId>
 			<artifactId>jaxws-rt</artifactId>

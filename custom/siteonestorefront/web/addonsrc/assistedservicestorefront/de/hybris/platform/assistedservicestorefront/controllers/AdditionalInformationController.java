@@ -21,13 +21,13 @@ import java.util.Map;
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletResponse;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
 
 
 /**
@@ -60,7 +60,7 @@ public class AdditionalInformationController
 	 * @param model
 	 * @return list of sections to display
 	 */
-	@RequestMapping(value = "/customer360", method = RequestMethod.GET)
+	@GetMapping("/customer360")
 	public String getCustomer360(final Model model, final HttpServletResponse response)
 	{
 		if (!assistedServiceFacade.isAssistedServiceAgentLoggedIn())
@@ -81,9 +81,9 @@ public class AdditionalInformationController
 	 *           section id to retrieve fragments for
 	 * @return section info along with its fragments
 	 */
-	@RequestMapping(value = "/customer360section", method = RequestMethod.GET)
+	@GetMapping("/customer360section")
 	public String getCustomer360Section(final Model model,
-			@RequestParam("sectionId")
+			@RequestParam
 			final String sectionId, final HttpServletResponse response)
 	{
 		if (!assistedServiceFacade.isAssistedServiceAgentLoggedIn())
@@ -108,8 +108,7 @@ public class AdditionalInformationController
 	 *           all request parameters
 	 * @return fragment with populated data and renderer
 	 */
-	@RequestMapping(value = "/customer360Fragment", method =
-	{ RequestMethod.GET })
+	@GetMapping("/customer360Fragment")
 	public String getCustomer360Fragment(final Model model,
 			@RequestParam
 			final Map<String, String> allRequestParams, final HttpServletResponse response)
@@ -125,8 +124,7 @@ public class AdditionalInformationController
 	 *           all request parameters
 	 * @return fragment with populated data and renderer
 	 */
-	@RequestMapping(value = "/customer360Fragment", method =
-	{ RequestMethod.POST })
+	@PostMapping("/customer360Fragment")
 	public String customer360FragmentPost(final Model model,
 			@RequestParam
 			final Map<String, String> allRequestParams, final HttpServletResponse response)

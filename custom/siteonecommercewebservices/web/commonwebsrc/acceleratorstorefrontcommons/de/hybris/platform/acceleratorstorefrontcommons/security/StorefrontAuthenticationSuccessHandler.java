@@ -20,11 +20,10 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-import org.apache.commons.collections.CollectionUtils;
-import org.apache.commons.lang.BooleanUtils;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.BooleanUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
-import org.springframework.beans.factory.annotation.Required;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -123,7 +122,6 @@ public class StorefrontAuthenticationSuccessHandler extends SavedRequestAwareAut
 		return cartFacade;
 	}
 
-	@Required
 	public void setCartFacade(final CartFacade cartFacade)
 	{
 		this.cartFacade = cartFacade;
@@ -134,7 +132,6 @@ public class StorefrontAuthenticationSuccessHandler extends SavedRequestAwareAut
 		return customerFacade;
 	}
 
-	@Required
 	public void setCustomerFacade(final CustomerFacade customerFacade)
 	{
 		this.customerFacade = customerFacade;
@@ -191,7 +188,6 @@ public class StorefrontAuthenticationSuccessHandler extends SavedRequestAwareAut
 		return forceDefaultTargetForUiExperienceLevel;
 	}
 
-	@Required
 	public void setForceDefaultTargetForUiExperienceLevel(
 			final Map<UiExperienceLevel, Boolean> forceDefaultTargetForUiExperienceLevel)
 	{
@@ -203,7 +199,6 @@ public class StorefrontAuthenticationSuccessHandler extends SavedRequestAwareAut
 		return bruteForceAttackCounter;
 	}
 
-	@Required
 	public void setBruteForceAttackCounter(final BruteForceAttackCounter bruteForceAttackCounter)
 	{
 		this.bruteForceAttackCounter = bruteForceAttackCounter;
@@ -214,7 +209,6 @@ public class StorefrontAuthenticationSuccessHandler extends SavedRequestAwareAut
 		return uiExperienceService;
 	}
 
-	@Required
 	public void setUiExperienceService(final UiExperienceService uiExperienceService)
 	{
 		this.uiExperienceService = uiExperienceService;
@@ -225,7 +219,6 @@ public class StorefrontAuthenticationSuccessHandler extends SavedRequestAwareAut
 		return listRedirectUrlsForceDefaultTarget;
 	}
 
-	@Required
 	public void setListRedirectUrlsForceDefaultTarget(final List<String> listRedirectUrlsForceDefaultTarget)
 	{
 		this.listRedirectUrlsForceDefaultTarget = listRedirectUrlsForceDefaultTarget;
@@ -257,7 +250,6 @@ public class StorefrontAuthenticationSuccessHandler extends SavedRequestAwareAut
 		return cartRestorationStrategy;
 	}
 
-	@Required
 	public void setCartRestorationStrategy(final CartRestorationStrategy cartRestorationStrategy)
 	{
 		this.cartRestorationStrategy = cartRestorationStrategy;
@@ -268,7 +260,6 @@ public class StorefrontAuthenticationSuccessHandler extends SavedRequestAwareAut
 		return customerConsentDataStrategy;
 	}
 
-	@Required
 	public void setCustomerConsentDataStrategy(CustomerConsentDataStrategy customerConsentDataStrategy)
 	{
 		this.customerConsentDataStrategy = customerConsentDataStrategy;

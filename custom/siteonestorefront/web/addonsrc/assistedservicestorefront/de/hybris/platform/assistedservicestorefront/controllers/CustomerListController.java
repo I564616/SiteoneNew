@@ -19,13 +19,13 @@ import java.util.Map;
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletResponse;
 
-import org.apache.commons.collections.CollectionUtils;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
@@ -59,7 +59,7 @@ public class CustomerListController extends AbstractSearchPageController
 	 *           model to hold the populated data
 	 * @return the popup with list of customers list populated
 	 */
-	@RequestMapping(value = "/availableCustomerLists", method = RequestMethod.GET)
+	@GetMapping("/availableCustomerLists")
 	public String getCustomersListPopup(final Model model, final HttpServletResponse response)
 	{
 		if (!assistedServiceFacade.isAssistedServiceAgentLoggedIn())
@@ -100,12 +100,12 @@ public class CustomerListController extends AbstractSearchPageController
 	 *           the query provided by the user to filter the results
 	 * @return paginated view with customer data
 	 */
-	@RequestMapping(value = "/listCustomers", method = RequestMethod.GET)
-	public String listPaginatedCustomers(final Model model, @RequestParam(value = "page", defaultValue = "0") final int page,
+	@GetMapping("/listCustomers")
+	public String listPaginatedCustomers(final Model model, @RequestParam(defaultValue = "0") final int page,
 			@RequestParam(value = "show", defaultValue = "Page") final ShowMode showMode,
 			@RequestParam(value = "sort", required = false) final String sortCode,
 			@RequestParam(value = "customerListUId", required = false) final String customerListUid,
-			@RequestParam(value = "query", required = false) final String query)
+			@RequestParam(required = false) final String query)
 	{
 		try
 		{

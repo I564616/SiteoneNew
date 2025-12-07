@@ -14,8 +14,6 @@ import de.hybris.platform.servicelayer.security.spring.HybrisSessionFixationProt
 
 import jakarta.servlet.http.HttpServletRequest;
 
-import org.springframework.beans.factory.annotation.Required;
-
 
 public class AssistedServiceAgentLogoutStrategy
 {
@@ -31,7 +29,6 @@ public class AssistedServiceAgentLogoutStrategy
 		return sessionFixationStrategy;
 	}
 
-	@Required
 	public void setSessionFixationStrategy(final HybrisSessionFixationProtectionStrategy sessionFixationStrategy)
 	{
 		this.sessionFixationStrategy = sessionFixationStrategy;

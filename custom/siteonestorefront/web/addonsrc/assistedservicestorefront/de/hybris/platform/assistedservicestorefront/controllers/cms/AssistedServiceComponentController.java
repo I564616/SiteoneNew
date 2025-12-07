@@ -32,8 +32,8 @@ import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-import org.apache.commons.collections.CollectionUtils;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -41,11 +41,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -95,7 +91,7 @@ public class AssistedServiceComponentController extends AbstractController
 	@Resource(name = "assistedServiceAgentAuthoritiesManager")
 	private AssistedServiceAgentAuthoritiesManager authoritiesManager;
 
-	@RequestMapping(value = "/quit", method = RequestMethod.POST)
+	@PostMapping("/quit")
 	@ResponseStatus(HttpStatus.OK)
 	public void quitAssistedServiceMode(final Model model)
 	{
@@ -104,10 +100,10 @@ public class AssistedServiceComponentController extends AbstractController
 		model.addAttribute(ASM_REDIRECT_URL_ATTRIBUTE, "/");
 	}
 
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	@PostMapping("/login")
 	public String loginAssistedServiceAgent(final Model model, final HttpServletRequest request,
-			final HttpServletResponse response, @RequestParam("username") final String username,
-			@RequestParam("password") final String password)
+			final HttpServletResponse response, @RequestParam final String username,
+			@RequestParam final String password)
 	{
 		try
 		{
@@ -129,7 +125,7 @@ public class AssistedServiceComponentController extends AbstractController
 		   return ASSISTED_SERVICE_COMPONENT;
 	}
 
-	@RequestMapping(value = "/logoutasm", method = RequestMethod.POST)
+	@PostMapping("/logoutasm")
 	public String logoutAssistedServiceAgent(final Model model, final HttpServletRequest request)
 	{
 		try
@@ -147,9 +143,9 @@ public class AssistedServiceComponentController extends AbstractController
 		return ASSISTED_SERVICE_COMPONENT;
 	}
 
-	@RequestMapping(value = "/personify-customer", method = RequestMethod.POST)
+	@PostMapping("/personify-customer")
 	public String emulateCustomer(final Model model, @RequestParam(CUSTOMER_ID) final String customerId,
-			@RequestParam(CUSTOMER_NAME) final String customerName, @RequestParam("cartId") final String cartId)
+			@RequestParam(CUSTOMER_NAME) final String customerName, @RequestParam final String cartId)
 	{
 		try
 		{
@@ -170,13 +166,13 @@ public class AssistedServiceComponentController extends AbstractController
 		return ASSISTED_SERVICE_COMPONENT;
 	}
 
-	@RequestMapping(value = "/emulate", method = RequestMethod.GET)
+	@GetMapping({"/emulate", "/emulate/"})
 	public String emulateCustomerByLink(final RedirectAttributes redirectAttrs,
 			@RequestParam(value = CUSTOMER_ID, required = false) final String customerId,
-			@RequestParam(value = "cartId", required = false) final String cartId,
-			@RequestParam(value = "orderId", required = false) final String orderId,
-			@RequestParam(value = "fwd", required = false) final String fwd,
-			@RequestParam(value = "enable360View", required = false) final boolean enable360View)
+			@RequestParam(required = false) final String cartId,
+			@RequestParam(required = false) final String orderId,
+			@RequestParam(required = false) final String fwd,
+			@RequestParam(required = false, defaultValue = "false") final boolean enable360View)
 	{
 		try
 		{
@@ -204,7 +200,7 @@ public class AssistedServiceComponentController extends AbstractController
 			assistedServiceFacade.emulateCustomer(customerId, cartId, orderId);
 			LOG.debug(String.format(
 					"Link-emulate request successfuly started an emulation with parameters: customerId:[%s], cartId:[%s]", Sanitizer.sanitize(customerId),
-					Sanitizer.sanitize(cartId)));
+							Sanitizer.sanitize(cartId)));
 			refreshSpringSecurityToken();
 			return REDIRECT_PREFIX + assistedServiceRedirectStrategy.getRedirectPath();
 		}
@@ -221,7 +217,7 @@ public class AssistedServiceComponentController extends AbstractController
 		return REDIRECT_PREFIX + assistedServiceRedirectStrategy.getErrorRedirectPath();
 	}
 
-	@RequestMapping(value = "/create-account", method = RequestMethod.POST)
+	@PostMapping("/create-account")
 	public String createCustomer(final Model model, @RequestParam(CUSTOMER_ID) final String customerId,
 			@RequestParam(CUSTOMER_NAME) final String customerName)
 	{
@@ -264,7 +260,7 @@ public class AssistedServiceComponentController extends AbstractController
 		return redirectTo;
 	}
 
-	@RequestMapping(value = "/personify-stop", method = RequestMethod.POST)
+	@PostMapping("/personify-stop")
 	public String endEmulateCustomer(final Model model)
 	{
 		authoritiesManager.restoreInitialAuthorities();
@@ -275,23 +271,23 @@ public class AssistedServiceComponentController extends AbstractController
 		return ASSISTED_SERVICE_COMPONENT;
 	}
 
-	@RequestMapping(value = "/resetSession", method = RequestMethod.POST)
+	@PostMapping("/resetSession")
 	@ResponseStatus(HttpStatus.OK)
 	public void resetSession()
 	{
 		return;
 	}
 
-	@RequestMapping(value = "/autocomplete", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(value = "/autocomplete", produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public List<AutoSuggestionCustomerData> autocomplete(@RequestParam(CUSTOMER_ID) final String customerId)
 	{
 		return assistedServiceFacade.getSuggestedCustomerData(customerId);
 	}
 
-	@RequestMapping(value = "/bind-cart", method = RequestMethod.POST)
+	@PostMapping("/bind-cart")
 	public String bindCart(@RequestParam(value = CUSTOMER_ID, required = false) final String customerId,
-			@RequestParam(value = "cartId", required = false) final String cartId, final Model model)
+			@RequestParam(required = false) final String cartId, final Model model)
 	{
 		try
 		{
@@ -309,7 +305,7 @@ public class AssistedServiceComponentController extends AbstractController
 		return ASSISTED_SERVICE_COMPONENT;
 	}
 
-	@RequestMapping(value = "/add-to-cart", method = RequestMethod.POST)
+	@PostMapping("/add-to-cart")
 	public String addToCartEventHandler(final Model model)
 	{
 		try
@@ -325,7 +321,7 @@ public class AssistedServiceComponentController extends AbstractController
 		return refresh(model);
 	}
 
-	@RequestMapping(value = "/refresh", method = RequestMethod.POST)
+	@PostMapping("/refresh")
 	public String refresh(final Model model)
 	{
 		model.addAllAttributes(assistedServiceFacade.getAssistedServiceSessionAttributes());
@@ -385,7 +381,7 @@ public class AssistedServiceComponentController extends AbstractController
 		}
 		catch (final UnsupportedEncodingException e)
 		{
-			LOG.error("Error occurred during encoding the input value: " + Sanitizer.sanitize(inputValue), e);
+			LOG.error("Error occured during encoding the input value: " + Sanitizer.sanitize(inputValue), e);
 		}
 		return null;
 	}

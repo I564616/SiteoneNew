@@ -457,8 +457,11 @@ public class DefaultSiteOneCustomerAccountService extends DefaultCustomerAccount
 		Collection<AddressModel> addresses = new ArrayList<>();
 		final B2BCustomerModel customer = (B2BCustomerModel) b2bCustomerService.getCurrentB2BCustomer();
 
-		final Collection<UserGroupModel> userGroups = CollectionUtils.select(customer.getGroups(),
-				PredicateUtils.instanceofPredicate(UserGroupModel.class));
+        //JDK-21 Fix needed
+//		final Collection<UserGroupModel> userGroups = CollectionUtils.select(customer.getGroups(),
+//				PredicateUtils.instanceofPredicate(UserGroupModel.class));
+
+        final Collection<UserGroupModel> userGroups=new ArrayList<>();
 
 		if (((SiteOneB2BUnitService) b2bUnitService).getParentUnitForCustomer().equals(b2bUnitModel)
 				&& userGroups.stream().anyMatch(group -> group.getUid().equalsIgnoreCase("b2badmingroup")))

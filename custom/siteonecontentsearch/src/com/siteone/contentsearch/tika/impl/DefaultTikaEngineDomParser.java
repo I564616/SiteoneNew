@@ -75,7 +75,8 @@ public class DefaultTikaEngineDomParser implements TikaEngineDomParser
 			final CloseableHttpClient client = HttpClients.custom().build();
 			HttpResponse response;
 			response = client.execute(httpget);
-			entity = response.getEntity();
+            //JDK-21 Fix needed
+//			entity = response.getEntity();
 			if (entity != null)
 			{
 				InputStream instream;

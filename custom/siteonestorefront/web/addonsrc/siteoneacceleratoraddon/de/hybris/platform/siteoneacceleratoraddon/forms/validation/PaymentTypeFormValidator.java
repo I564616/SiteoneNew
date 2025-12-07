@@ -13,7 +13,7 @@ package de.hybris.platform.siteoneacceleratoraddon.forms.validation;
 import de.hybris.platform.siteoneacceleratoraddon.forms.PaymentTypeForm;
 import de.hybris.platform.b2b.enums.CheckoutPaymentType;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;

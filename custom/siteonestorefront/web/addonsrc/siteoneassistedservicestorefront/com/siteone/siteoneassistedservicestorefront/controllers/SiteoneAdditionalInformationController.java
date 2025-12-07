@@ -31,11 +31,12 @@ import jakarta.servlet.http.HttpServletResponse;
 import de.hybris.platform.util.Config;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 
 /**
@@ -93,7 +94,7 @@ public class SiteoneAdditionalInformationController extends AdditionalInformatio
 	 * @param model
 	 * @return list of sections to display
 	 */
-	@RequestMapping(value = "/customer360", method = RequestMethod.GET)
+	@GetMapping("/customer360")
 	public String getCustomer360(final Model model, final HttpServletResponse response)
 	{
 		if (!assistedServiceFacade.isAssistedServiceAgentLoggedIn())

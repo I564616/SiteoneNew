@@ -4,7 +4,6 @@
 package de.hybris.platform.acceleratorstorefrontcommons.strategy.impl;
 
 import de.hybris.platform.acceleratorstorefrontcommons.strategy.CustomerConsentDataStrategy;
-import org.springframework.beans.factory.annotation.Required;
 
 /**
  * Default implementation of @{@link CustomerConsentDataStrategy}
@@ -27,7 +26,6 @@ public class DefaultCustomerConsentDataStrategy implements CustomerConsentDataSt
         return customerConsentDataStrategy;
     }
 
-    @Required
     public void setCustomerConsentDataStrategy(de.hybris.platform.commercefacades.consent.CustomerConsentDataStrategy customerConsentDataStrategy)
     {
         this.customerConsentDataStrategy = customerConsentDataStrategy;

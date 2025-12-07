@@ -29,9 +29,8 @@ import org.cxml.CXML;
 import org.cxml.OrderRequest;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import de.hybris.platform.b2b.punchout.services.CXMLElementBrowser;
 
@@ -83,7 +82,7 @@ public class DefaultPurchaseOrderController implements PunchOutController
 	 *           The servlet response.
 	 * @return A cXML with the Order Response, containing the status of the processing of the order.
 	 */
-	@RequestMapping(value = "/punchout/cxml/order", method = RequestMethod.POST)
+	@PostMapping("/punchout/cxml/order")
 	@ResponseBody
 	public CXML handlePunchOutPurchaseOrderRequest(@RequestBody final CXML requestBody, final HttpServletRequest request,
 			final HttpServletResponse response)

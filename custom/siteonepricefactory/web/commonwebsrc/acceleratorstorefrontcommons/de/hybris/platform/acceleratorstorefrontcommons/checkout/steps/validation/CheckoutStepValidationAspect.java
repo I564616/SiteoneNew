@@ -13,7 +13,6 @@ import java.util.Map;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.reflect.MethodSignature;
-import org.springframework.beans.factory.annotation.Required;
 import org.springframework.web.servlet.mvc.support.RedirectAttributesModelMap;
 
 
@@ -44,7 +43,6 @@ public class CheckoutStepValidationAspect
 		return checkoutFacade;
 	}
 
-	@Required
 	public void setCheckoutFacade(final AcceleratorCheckoutFacade checkoutFacade)
 	{
 		this.checkoutFacade = checkoutFacade;
@@ -55,7 +53,6 @@ public class CheckoutStepValidationAspect
 		return checkoutFlowGroupMap;
 	}
 
-	@Required
 	public void setCheckoutFlowGroupMap(final Map<String, CheckoutGroup> checkoutFlowGroupMap)
 	{
 		this.checkoutFlowGroupMap = checkoutFlowGroupMap;

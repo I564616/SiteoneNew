@@ -6,7 +6,6 @@ package de.hybris.platform.acceleratorstorefrontcommons.checkout.steps.validatio
 import de.hybris.platform.acceleratorfacades.flow.CheckoutFlowFacade;
 import de.hybris.platform.commercefacades.order.CheckoutFacade;
 
-import org.springframework.beans.factory.annotation.Required;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
@@ -29,7 +28,6 @@ public abstract class AbstractCheckoutStepValidator implements CheckoutStepValid
 		return checkoutFacade;
 	}
 
-	@Required
 	public void setCheckoutFacade(final CheckoutFacade checkoutFacade)
 	{
 		this.checkoutFacade = checkoutFacade;
@@ -40,7 +38,6 @@ public abstract class AbstractCheckoutStepValidator implements CheckoutStepValid
 		return checkoutFlowFacade;
 	}
 
-	@Required
 	public void setCheckoutFlowFacade(final CheckoutFlowFacade checkoutFlowFacade)
 	{
 		this.checkoutFlowFacade = checkoutFlowFacade;

@@ -9,7 +9,6 @@ import de.hybris.platform.acceleratorstorefrontcommons.checkout.steps.validation
 
 import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Required;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
@@ -87,7 +86,6 @@ public class CheckoutStep implements StepTransition
 		return transitions;
 	}
 
-	@Required
 	public void setTransitions(final Map<String, String> transitions)
 	{
 		this.transitions = transitions;
@@ -108,7 +106,6 @@ public class CheckoutStep implements StepTransition
 		return checkoutGroup;
 	}
 
-	@Required
 	public void setCheckoutGroup(final CheckoutGroup checkoutGroup)
 	{
 		this.checkoutGroup = checkoutGroup;
@@ -119,7 +116,6 @@ public class CheckoutStep implements StepTransition
 		return progressBarId;
 	}
 
-	@Required
 	public void setProgressBarId(final String progressBarId)
 	{
 		this.progressBarId = progressBarId;

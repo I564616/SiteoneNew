@@ -23,18 +23,17 @@ import java.io.StringWriter;
 import java.util.Date;
 
 import jakarta.annotation.Resource;
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Marshaller;
+import jakarta.xml.bind.JAXBContext;
+import jakarta.xml.bind.JAXBException;
+import jakarta.xml.bind.Marshaller;
 
 import org.apache.log4j.Logger;
 import org.cxml.CXML;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import de.hybris.platform.b2b.punchout.PunchOutUtils;
@@ -70,7 +69,7 @@ public class DefaultPunchOutSetUpController implements PunchOutController
 	 *           The cXML file with the punchout user requisition.
 	 * @return A cXML file with the access information.
 	 */
-	@RequestMapping(value = "/punchout/cxml/setup", method = RequestMethod.POST)
+	@PostMapping("/punchout/cxml/setup")
 	@ResponseBody
 	public CXML handlePunchOutSetUpRequest(@RequestBody final CXML requestBody)
 	{

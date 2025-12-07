@@ -5,8 +5,6 @@ package de.hybris.platform.acceleratorstorefrontcommons.checkout.steps;
 
 import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Required;
-
 
 public class CheckoutGroup
 {
@@ -20,7 +18,6 @@ public class CheckoutGroup
 		return groupId;
 	}
 
-	@Required
 	public void setGroupId(final String groupId)
 	{
 		this.groupId = groupId;
@@ -31,7 +28,6 @@ public class CheckoutGroup
 		return checkoutStepMap;
 	}
 
-	@Required
 	public void setCheckoutStepMap(final Map<String, CheckoutStep> checkoutStepMap)
 	{
 		this.checkoutStepMap = checkoutStepMap;
@@ -42,7 +38,6 @@ public class CheckoutGroup
 		return validationResultsMap;
 	}
 
-	@Required
 	public void setValidationResultsMap(final Map<String, String> validationResultsMap)
 	{
 		this.validationResultsMap = validationResultsMap;
@@ -53,7 +48,6 @@ public class CheckoutGroup
 		return checkoutProgressBar;
 	}
 
-	@Required
 	public void setCheckoutProgressBar(final Map<String, CheckoutStep> checkoutProgressBar)
 	{
 		this.checkoutProgressBar = checkoutProgressBar;

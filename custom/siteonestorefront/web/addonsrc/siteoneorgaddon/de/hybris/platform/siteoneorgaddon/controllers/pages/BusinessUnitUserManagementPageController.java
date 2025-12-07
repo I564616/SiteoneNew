@@ -37,6 +37,8 @@ import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -55,7 +57,7 @@ public class BusinessUnitUserManagementPageController extends MyCompanyPageContr
 	@Resource(name = "profileValidator")
 	private ProfileValidator profileValidator;
 
-	@RequestMapping(value = "/createuser", method = RequestMethod.GET)
+	@GetMapping("/createuser")
 	@RequireHardLogIn
 	public String createCustomerOfUnit(@RequestParam("unit") final String unit, @RequestParam("role") final String role,
 			final Model model, final HttpServletRequest request) throws CMSItemNotFoundException
@@ -82,7 +84,7 @@ public class BusinessUnitUserManagementPageController extends MyCompanyPageContr
 		return url;
 	}
 
-	@RequestMapping(value = "/createuser", method = RequestMethod.POST)
+	@PostMapping("/createuser")
 	@RequireHardLogIn
 	public String createCustomerOfUnit(@RequestParam("unit") final String unit, @RequestParam("role") final String role,
 			@Valid final B2BCustomerForm b2bCustomerForm, final BindingResult bindingResult, final Model model,
@@ -123,7 +125,7 @@ public class BusinessUnitUserManagementPageController extends MyCompanyPageContr
 		}
 	}
 
-	@RequestMapping(value = "/viewuser", method = RequestMethod.GET)
+	@GetMapping("/viewuser")
 	@RequireHardLogIn
 	public String viewCustomerOfUnit(@RequestParam("unit") final String unit, @RequestParam("user") final String user,
 			final Model model, final HttpServletRequest request) throws CMSItemNotFoundException
@@ -144,7 +146,7 @@ public class BusinessUnitUserManagementPageController extends MyCompanyPageContr
 	}
 
 
-	@RequestMapping(value = "/approvers", method = RequestMethod.GET)
+	@GetMapping("/approvers")
 	@RequireHardLogIn
 	public String getPagedApproversForUnit(@RequestParam(value = "page", defaultValue = "0") final int page,
 			@RequestParam(value = "show", defaultValue = "Page") final AbstractSearchPageController.ShowMode showMode,
@@ -175,7 +177,7 @@ public class BusinessUnitUserManagementPageController extends MyCompanyPageContr
 		return ControllerConstants.Views.Pages.MyCompany.MyCompanyManageUnitApproverListPage;
 	}
 
-	@RequestMapping(value = "/customers", method = RequestMethod.GET)
+	@GetMapping("/customers")
 	@RequireHardLogIn
 	public String getPagedCustomersForUnit(@RequestParam(value = "page", defaultValue = "0") final int page,
 			@RequestParam(value = "show", defaultValue = "Page") final AbstractSearchPageController.ShowMode showMode,
@@ -206,7 +208,7 @@ public class BusinessUnitUserManagementPageController extends MyCompanyPageContr
 		return ControllerConstants.Views.Pages.MyCompany.MyCompanyManageUnitUserListPage;
 	}
 
-	@RequestMapping(value = "/administrators", method = RequestMethod.GET)
+	@GetMapping("/administrators")
 	@RequireHardLogIn
 	public String getPagedAdministratorsForUnit(@RequestParam(value = "page", defaultValue = "0") final int page,
 			@RequestParam(value = "show", defaultValue = "Page") final AbstractSearchPageController.ShowMode showMode,
@@ -240,7 +242,7 @@ public class BusinessUnitUserManagementPageController extends MyCompanyPageContr
 		return ControllerConstants.Views.Pages.MyCompany.MyCompanyManageUnitUserListPage;
 	}
 
-	@RequestMapping(value = "/managers", method = RequestMethod.GET)
+	@GetMapping("/managers")
 	@RequireHardLogIn
 	public String getPagedManagersForUnit(@RequestParam(value = "page", defaultValue = "0") final int page,
 			@RequestParam(value = "show", defaultValue = "Page") final AbstractSearchPageController.ShowMode showMode,
@@ -304,8 +306,7 @@ public class BusinessUnitUserManagementPageController extends MyCompanyPageContr
 		return String.format(REDIRECT_TO_UNIT_DETAILS, urlEncode(unit));
 	}
 
-	@RequestMapping(value = "/approvers/confirm/remove", method =
-	{ RequestMethod.GET })
+	@GetMapping("/approvers/confirm/remove")
 	@RequireHardLogIn
 	public String confirmRemoveApproverFromUnit(@RequestParam("unit") final String unit, @RequestParam("user") final String user,
 			@RequestParam("role") final String role, final Model model, final HttpServletRequest request)
@@ -344,8 +345,7 @@ public class BusinessUnitUserManagementPageController extends MyCompanyPageContr
 		return String.format(REDIRECT_TO_UNIT_DETAILS, urlEncode(unit));
 	}
 
-	@RequestMapping(value = "/members/confirm/remove", method =
-	{ RequestMethod.GET })
+	@GetMapping("/members/confirm/remove")
 	@RequireHardLogIn
 	public String confirmRemoveMemberFromUnit(@RequestParam("unit") final String unit, @RequestParam("user") final String user,
 			@RequestParam("role") final String role, final Model model, final HttpServletRequest request)

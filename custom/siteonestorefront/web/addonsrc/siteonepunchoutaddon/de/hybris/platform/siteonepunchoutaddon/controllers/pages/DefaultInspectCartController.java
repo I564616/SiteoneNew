@@ -21,8 +21,8 @@ import jakarta.annotation.Resource;
 
 import org.springframework.stereotype.Component;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 
 /**
@@ -39,7 +39,7 @@ public class DefaultInspectCartController extends AbstractCartPageController imp
 	private CartFacade cartFacade;
 
 
-	@RequestMapping(method = RequestMethod.GET)
+	@GetMapping
 	public String showCart(final Model model) throws CMSItemNotFoundException
 	{
 		super.prepareDataForPage(model);

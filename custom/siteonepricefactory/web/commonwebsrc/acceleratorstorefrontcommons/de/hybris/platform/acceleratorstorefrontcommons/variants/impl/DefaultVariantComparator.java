@@ -5,9 +5,6 @@ package de.hybris.platform.acceleratorstorefrontcommons.variants.impl;
 
 import java.util.Comparator;
 
-import org.apache.commons.lang.math.NumberUtils;
-
-
 /**
  * Default comparator for variant values
  */
@@ -20,7 +17,7 @@ public class DefaultVariantComparator implements Comparator<Object>
 		{
 			final double number1 = ((Number) variant1).doubleValue();
 			final double number2 = ((Number) variant2).doubleValue();
-			return NumberUtils.compare(number1, number2);
+			return Double.compare(number1, number2);
 		}
 		else if (variant1 instanceof String)
 		{

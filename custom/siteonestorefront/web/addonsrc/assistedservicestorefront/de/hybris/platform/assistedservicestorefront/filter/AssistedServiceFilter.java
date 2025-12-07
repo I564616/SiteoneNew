@@ -27,9 +27,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import de.hybris.platform.util.Config;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
-import org.springframework.beans.factory.annotation.Required;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 
@@ -143,7 +142,6 @@ public class AssistedServiceFilter extends OncePerRequestFilter
 	 * @param assistedServicePathRestrictionEvaluator
 	 *           the assistedServicePathRestrictionEvaluator to set
 	 */
-	@Required
 	public void setAssistedServicePathRestrictionEvaluator(
 			final AssistedServicePathRestrictionEvaluator assistedServicePathRestrictionEvaluator)
 	{
@@ -162,7 +160,6 @@ public class AssistedServiceFilter extends OncePerRequestFilter
 	 * @param assistedServiceFacade
 	 *           the assistedServiceFacade to set
 	 */
-	@Required
 	public void setAssistedServiceFacade(final AssistedServiceFacade assistedServiceFacade)
 	{
 		this.assistedServiceFacade = assistedServiceFacade;
@@ -180,7 +177,6 @@ public class AssistedServiceFilter extends OncePerRequestFilter
 	 * @param assistedServiceAgentLoginStrategy
 	 *           the assistedServiceAgentLoginStrategy to set
 	 */
-	@Required
 	public void setAssistedServiceAgentLoginStrategy(final AssistedServiceAgentLoginStrategy assistedServiceAgentLoginStrategy)
 	{
 		this.assistedServiceAgentLoginStrategy = assistedServiceAgentLoginStrategy;

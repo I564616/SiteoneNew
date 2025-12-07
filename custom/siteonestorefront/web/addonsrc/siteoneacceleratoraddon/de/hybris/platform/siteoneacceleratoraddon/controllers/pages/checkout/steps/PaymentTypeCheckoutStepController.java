@@ -37,14 +37,15 @@ import java.util.List;
 
 import jakarta.annotation.Resource;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.CollectionUtils;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
@@ -77,7 +78,7 @@ public class PaymentTypeCheckoutStepController extends AbstractCheckoutStepContr
 	}
 
 	@Override
-	@RequestMapping(value = "/choose", method = RequestMethod.GET)
+	@GetMapping("/choose")
 	@RequireHardLogIn
 	@PreValidateQuoteCheckoutStep
 	@PreValidateCheckoutStep(checkoutStep = PAYMENT_TYPE)
@@ -98,7 +99,7 @@ public class PaymentTypeCheckoutStepController extends AbstractCheckoutStepContr
 		return B2bacceleratoraddonControllerConstants.Views.Pages.MultiStepCheckout.ChoosePaymentTypePage;
 	}
 
-	@RequestMapping(value = "/choose", method = RequestMethod.POST)
+	@PostMapping("/choose")
 	@RequireHardLogIn
 	public String choose(@ModelAttribute final PaymentTypeForm paymentTypeForm, final BindingResult bindingResult,
 			final Model model) throws CMSItemNotFoundException, CommerceCartModificationException
@@ -151,7 +152,7 @@ public class PaymentTypeCheckoutStepController extends AbstractCheckoutStepContr
 		b2bCheckoutFacade.updateCheckoutCart(cartData);
 	}
 
-	@RequestMapping(value = "/next", method = RequestMethod.GET)
+	@GetMapping("/next")
 	@RequireHardLogIn
 	@Override
 	public String next(final RedirectAttributes redirectAttributes)
@@ -159,7 +160,7 @@ public class PaymentTypeCheckoutStepController extends AbstractCheckoutStepContr
 		return getCheckoutStep().nextStep();
 	}
 
-	@RequestMapping(value = "/back", method = RequestMethod.GET)
+	@GetMapping("/back")
 	@RequireHardLogIn
 	@Override
 	public String back(final RedirectAttributes redirectAttributes)

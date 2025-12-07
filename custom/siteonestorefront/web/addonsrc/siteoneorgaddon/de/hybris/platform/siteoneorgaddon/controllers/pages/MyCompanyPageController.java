@@ -51,7 +51,7 @@ import de.hybris.platform.siteoneorgaddon.forms.B2BPermissionForm;
 import de.hybris.platform.siteoneorgaddon.forms.validation.B2BBudgetFormValidator;
 import de.hybris.platform.siteoneorgaddon.forms.validation.B2BPermissionFormValidator;
 import de.hybris.platform.store.services.BaseStoreService;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;

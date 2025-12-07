@@ -1,6 +1,6 @@
 <%@ tag body-content="empty" trimDirectiveWhitespaces="true" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%@ taglib prefix="c" uri="jakarta.tags.core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <c:url value="/assisted-service/create-account" var="createAccountActionUrl" />
 <form action="${createAccountActionUrl}" method="post" id="_asmCreateAccountForm" class="asmForm">

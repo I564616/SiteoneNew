@@ -9,7 +9,6 @@ import de.hybris.platform.servicelayer.i18n.I18NService;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Required;
 import org.springframework.context.MessageSource;
 
 
@@ -30,7 +29,6 @@ public class StorefinderBreadcrumbBuilder
 		return i18nService;
 	}
 
-	@Required
 	public void setI18nService(final I18NService i18nService)
 	{
 		this.i18nService = i18nService;
@@ -41,7 +39,6 @@ public class StorefinderBreadcrumbBuilder
 		return messageSource;
 	}
 
-	@Required
 	public void setMessageSource(final MessageSource messageSource)
 	{
 		this.messageSource = messageSource;

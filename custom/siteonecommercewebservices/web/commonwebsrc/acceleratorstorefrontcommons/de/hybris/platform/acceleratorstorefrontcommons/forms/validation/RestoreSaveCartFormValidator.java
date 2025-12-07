@@ -4,7 +4,7 @@
 package de.hybris.platform.acceleratorstorefrontcommons.forms.validation;
 
 import de.hybris.platform.acceleratorstorefrontcommons.forms.RestoreSaveCartForm;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;

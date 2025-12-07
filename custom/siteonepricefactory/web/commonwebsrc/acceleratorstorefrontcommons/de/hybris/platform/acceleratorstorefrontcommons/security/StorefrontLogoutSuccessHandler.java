@@ -13,8 +13,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-import org.apache.commons.lang.StringUtils;
-import org.springframework.beans.factory.annotation.Required;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.logout.SimpleUrlLogoutSuccessHandler;
 
@@ -34,7 +33,6 @@ public class StorefrontLogoutSuccessHandler extends SimpleUrlLogoutSuccessHandle
 		return guidCookieStrategy;
 	}
 
-	@Required
 	public void setGuidCookieStrategy(final GUIDCookieStrategy guidCookieStrategy)
 	{
 		this.guidCookieStrategy = guidCookieStrategy;
@@ -88,7 +86,6 @@ public class StorefrontLogoutSuccessHandler extends SimpleUrlLogoutSuccessHandle
 		return sessionService;
 	}
 
-	@Required
 	public void setSessionService(final SessionService sessionService)
 	{
 		this.sessionService = sessionService;

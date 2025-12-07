@@ -19,10 +19,9 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
-import org.apache.commons.collections.CollectionUtils;
-import org.apache.commons.lang.StringEscapeUtils;
+import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.text.StringEscapeUtils;
 import org.apache.log4j.Logger;
-import org.springframework.beans.factory.annotation.Required;
 
 
 /**
@@ -42,7 +41,7 @@ public class SearchBreadcrumbBuilder
 	{
 		final boolean emptyBreadcrumbs = CollectionUtils.isEmpty(searchPageData.getBreadcrumbs());
 		final String searchText = searchPageData.getFreeTextSearch();
-		final String unescapedSearchText = StringEscapeUtils.unescapeHtml(searchText);
+		final String unescapedSearchText = StringEscapeUtils.unescapeHtml4(searchText);
 
 		return getBreadcrumbs(categoryCode, unescapedSearchText, emptyBreadcrumbs);
 	}
@@ -130,7 +129,6 @@ public class SearchBreadcrumbBuilder
 		return commerceCategoryService;
 	}
 
-	@Required
 	public void setCommerceCategoryService(final CommerceCategoryService commerceCategoryService)
 	{
 		this.commerceCategoryService = commerceCategoryService;
@@ -141,7 +139,6 @@ public class SearchBreadcrumbBuilder
 		return categoryModelUrlResolver;
 	}
 
-	@Required
 	public void setCategoryModelUrlResolver(final UrlResolver<CategoryModel> categoryModelUrlResolver)
 	{
 		this.categoryModelUrlResolver = categoryModelUrlResolver;

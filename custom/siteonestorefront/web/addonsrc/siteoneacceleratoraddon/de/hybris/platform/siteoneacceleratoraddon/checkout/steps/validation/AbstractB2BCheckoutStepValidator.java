@@ -18,7 +18,6 @@ import de.hybris.platform.commercefacades.order.data.CartData;
 import de.hybris.platform.servicelayer.user.UserService;
 import de.hybris.platform.siteoneacceleratoraddon.security.B2BUserGroupProvider;
 import org.apache.log4j.Logger;
-import org.springframework.beans.factory.annotation.Required;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import jakarta.annotation.Resource;
@@ -96,7 +95,6 @@ public abstract class AbstractB2BCheckoutStepValidator extends AbstractCheckoutS
 		return b2bUserGroupProvider;
 	}
 
-	@Required
 	public void setB2bUserGroupProvider(final B2BUserGroupProvider b2bUserGroupProvider)
 	{
 		this.b2bUserGroupProvider = b2bUserGroupProvider;

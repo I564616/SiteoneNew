@@ -18,8 +18,6 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Required;
-
 
 /**
  * ProductBreadcrumbBuilder implementation for {@link ProductData}
@@ -121,7 +119,6 @@ public class ProductBreadcrumbBuilder
 		return productModelUrlResolver;
 	}
 
-	@Required
 	public void setProductModelUrlResolver(final UrlResolver<ProductModel> productModelUrlResolver)
 	{
 		this.productModelUrlResolver = productModelUrlResolver;
@@ -132,7 +129,6 @@ public class ProductBreadcrumbBuilder
 		return categoryModelUrlResolver;
 	}
 
-	@Required
 	public void setCategoryModelUrlResolver(final UrlResolver<CategoryModel> categoryModelUrlResolver)
 	{
 		this.categoryModelUrlResolver = categoryModelUrlResolver;
@@ -143,7 +139,6 @@ public class ProductBreadcrumbBuilder
 		return browseHistory;
 	}
 
-	@Required
 	public void setBrowseHistory(final BrowseHistory browseHistory)
 	{
 		this.browseHistory = browseHistory;
@@ -154,7 +149,6 @@ public class ProductBreadcrumbBuilder
 		return productService;
 	}
 
-	@Required
 	public void setProductService(final ProductService productService)
 	{
 		this.productService = productService;
@@ -165,7 +159,6 @@ public class ProductBreadcrumbBuilder
 		return productAndCategoryHelper;
 	}
 
-	@Required
 	public void setProductAndCategoryHelper(final ProductAndCategoryHelper productAndCategoryHelper)
 	{
 		this.productAndCategoryHelper = productAndCategoryHelper;

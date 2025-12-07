@@ -24,14 +24,14 @@ import de.hybris.platform.servicelayer.exceptions.ModelNotFoundException;
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 
 /**
@@ -64,7 +64,7 @@ public class CheckoutReplenishmentController extends AbstractCheckoutController
 		return FORWARD_PREFIX + "/404";
 	}
 
-	@RequestMapping(value = "/confirmation/" + JOB_CODE_PATH_VARIABLE_PATTERN, method = RequestMethod.GET)
+	@GetMapping("/confirmation/" + JOB_CODE_PATH_VARIABLE_PATTERN)
 	@RequireHardLogIn
 	public String orderConfirmation(@PathVariable("jobCode") final String jobCode, final Model model)
 			throws CMSItemNotFoundException

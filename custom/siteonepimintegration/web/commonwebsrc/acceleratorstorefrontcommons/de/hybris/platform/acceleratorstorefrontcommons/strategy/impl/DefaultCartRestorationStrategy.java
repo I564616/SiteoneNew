@@ -12,7 +12,6 @@ import de.hybris.platform.servicelayer.session.SessionService;
 import jakarta.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
-import org.springframework.beans.factory.annotation.Required;
 
 
 /**
@@ -52,7 +51,6 @@ public class DefaultCartRestorationStrategy implements CartRestorationStrategy
 		return sessionService;
 	}
 
-	@Required
 	public void setSessionService(final SessionService sessionService)
 	{
 		this.sessionService = sessionService;
@@ -63,7 +61,6 @@ public class DefaultCartRestorationStrategy implements CartRestorationStrategy
 		return cartFacade;
 	}
 
-	@Required
 	public void setCartFacade(final CartFacade cartFacade)
 	{
 		this.cartFacade = cartFacade;

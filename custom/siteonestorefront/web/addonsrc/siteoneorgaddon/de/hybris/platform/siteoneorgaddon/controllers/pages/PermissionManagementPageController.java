@@ -34,13 +34,14 @@ import java.util.List;
 
 import jakarta.validation.Valid;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -54,7 +55,7 @@ public class PermissionManagementPageController extends MyCompanyPageController
 {
 	private static final Logger LOG = Logger.getLogger(PermissionManagementPageController.class);
 
-	@RequestMapping(method = RequestMethod.GET)
+	@GetMapping
 	@RequireHardLogIn
 	public String managePermissions(@RequestParam(value = "page", defaultValue = "0") final int page,
 			@RequestParam(value = "show", defaultValue = "Page") final AbstractSearchPageController.ShowMode showMode,
@@ -75,7 +76,7 @@ public class PermissionManagementPageController extends MyCompanyPageController
 		return ControllerConstants.Views.Pages.MyCompany.MyCompanyManagePermissionsPage;
 	}
 
-	@RequestMapping(value = "/view", method = RequestMethod.GET)
+	@GetMapping("/view")
 	@RequireHardLogIn
 	public String viewPermissionDetails(@RequestParam("permissionCode") final String permissionCode, final Model model)
 			throws CMSItemNotFoundException
@@ -91,7 +92,7 @@ public class PermissionManagementPageController extends MyCompanyPageController
 	}
 
 	@Override
-	@RequestMapping(value = "/edit", method = RequestMethod.GET)
+	@GetMapping("/edit")
 	@RequireHardLogIn
 	public String editPermission(@RequestParam("permissionCode") final String permissionCode, final Model model)
 			throws CMSItemNotFoundException
@@ -100,7 +101,7 @@ public class PermissionManagementPageController extends MyCompanyPageController
 	}
 
 	@Override
-	@RequestMapping(value = "/edit", method = RequestMethod.POST)
+	@PostMapping("/edit")
 	@RequireHardLogIn
 	public String editPermission(@Valid final B2BPermissionForm b2BPermissionForm, final BindingResult bindingResult,
 			final Model model, final RedirectAttributes redirectModel) throws CMSItemNotFoundException, ParseException
@@ -108,7 +109,7 @@ public class PermissionManagementPageController extends MyCompanyPageController
 		return super.editPermission(b2BPermissionForm, bindingResult, model, redirectModel);
 	}
 
-	@RequestMapping(value = "/add", method = RequestMethod.GET)
+	@GetMapping("/add")
 	@RequireHardLogIn
 	public String getSelectPermissionTypePage(final Model model) throws CMSItemNotFoundException
 	{
@@ -137,7 +138,7 @@ public class PermissionManagementPageController extends MyCompanyPageController
 	}
 
 
-	@RequestMapping(value = "/getNewPermissionForm", method = RequestMethod.GET)
+	@GetMapping("/getNewPermissionForm")
 	@RequireHardLogIn
 	public String addNewPermissionForm(@RequestParam("permissionType") final String permissionType, final Model model)
 			throws CMSItemNotFoundException
@@ -157,7 +158,7 @@ public class PermissionManagementPageController extends MyCompanyPageController
 	}
 
 
-	@RequestMapping(value = "/add", method = RequestMethod.POST)
+	@PostMapping("/add")
 	@RequireHardLogIn
 	public String addNewPermission(@Valid final B2BPermissionTypeSelectionForm b2BPermissionTypeSelectionForm,
 			final BindingResult bindingResult, final Model model) throws CMSItemNotFoundException
@@ -184,7 +185,7 @@ public class PermissionManagementPageController extends MyCompanyPageController
 		return getAddPermissionPage(model);
 	}
 
-	@RequestMapping(value = "/addPermission", method = RequestMethod.GET)
+	@GetMapping("/addPermission")
 	@RequireHardLogIn
 	public String getAddPermissionPage(final Model model) throws CMSItemNotFoundException
 	{
@@ -201,7 +202,7 @@ public class PermissionManagementPageController extends MyCompanyPageController
 		return ControllerConstants.Views.Pages.MyCompany.MyCompanyManagePermissionAddPage;
 	}
 
-	@RequestMapping(value = "/addPermissionResponsive", method = RequestMethod.GET)
+	@GetMapping("/addPermissionResponsive")
 	@RequireHardLogIn
 	public String getAddErrorPermissionPage(final Model model) throws CMSItemNotFoundException
 	{
@@ -216,7 +217,7 @@ public class PermissionManagementPageController extends MyCompanyPageController
 		return ControllerConstants.Views.Pages.MyCompany.MyCompanyManagePermissionAddErrorPage;
 	}
 
-	@RequestMapping(value = "/add/save", method = RequestMethod.POST)
+	@PostMapping("/add/save")
 	@RequireHardLogIn
 	public String saveNewPermissionDetails(@Valid final B2BPermissionForm b2BPermissionForm, final BindingResult bindingResult,
 			final Model model, final RedirectAttributes redirectModel) throws CMSItemNotFoundException, ParseException
@@ -255,7 +256,7 @@ public class PermissionManagementPageController extends MyCompanyPageController
 		return String.format(REDIRECT_TO_PERMISSION_DETAILS, urlEncode(b2BPermissionData.getCode()));
 	}
 
-	@RequestMapping(value = "/enable", method = RequestMethod.GET)
+	@GetMapping("/enable")
 	@RequireHardLogIn
 	public String enablePermission(@RequestParam("permissionCode") final String permissionCode, final Model model)
 			throws CMSItemNotFoundException
@@ -274,7 +275,7 @@ public class PermissionManagementPageController extends MyCompanyPageController
 		return String.format(REDIRECT_TO_PERMISSION_DETAILS, urlEncode(permissionCode));
 	}
 
-	@RequestMapping(value = "/disable", method = RequestMethod.GET)
+	@GetMapping("/disable")
 	@RequireHardLogIn
 	public String confirmDisablePermission(@RequestParam("permissionCode") final String permissionCode, final Model model)
 			throws CMSItemNotFoundException
@@ -292,7 +293,7 @@ public class PermissionManagementPageController extends MyCompanyPageController
 		return ControllerConstants.Views.Pages.MyCompany.MyCompanyManagePermissionDisablePage;
 	}
 
-	@RequestMapping(value = "/disable", method = RequestMethod.POST)
+	@PostMapping("/disable")
 	@RequireHardLogIn
 	public String disablePermission(@RequestParam("permissionCode") final String permissionCode, final Model model)
 			throws CMSItemNotFoundException
