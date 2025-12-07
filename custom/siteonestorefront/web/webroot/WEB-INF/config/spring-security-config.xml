@@ -38,7 +38,7 @@
 																   
 		<security:csrf token-repository-ref="csrfTokenRepository" request-matcher-ref="csrfProtectionMatcher" />
 		<security:custom-filter before="CSRF_FILTER" ref="logoutFilter" />
-		<security:session-management session-authentication-strategy-ref="fixation" />
+<!--		<security:session-management session-authentication-strategy-ref="fixation" />-->
 		<security:intercept-url pattern="/**" requires-channel="https" access="permitAll()"/>
 
 		<security:form-login
@@ -91,7 +91,7 @@
 		<security:csrf token-repository-ref="csrfTokenRepository" request-matcher-ref="csrfProtectionMatcher" />
 		<security:custom-filter before="CSRF_FILTER" ref="logoutFilter" />
 
-		<security:session-management session-authentication-strategy-ref="fixation" />
+<!--		<security:session-management session-authentication-strategy-ref="fixation" />-->
 
 		<!-- RememberMe -->
 		<security:remember-me key="siteonestorefront" services-ref="rememberMeServices" />

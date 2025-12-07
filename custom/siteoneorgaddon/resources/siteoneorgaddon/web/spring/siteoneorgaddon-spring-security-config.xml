@@ -22,7 +22,7 @@
 
 	<security:http disable-url-rewriting="true" pattern="/my-company/**" use-expressions="false">
 
-		<security:session-management session-authentication-strategy-ref="fixation" />
+<!--		<security:session-management session-authentication-strategy-ref="fixation" />-->
 		
 		<security:anonymous username="anonymous" granted-authority="ROLE_ANONYMOUS"/>
 

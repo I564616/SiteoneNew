@@ -25,6 +25,13 @@
 		<property name="defaultEncoding" value="UTF-8" />
 	</bean>
 
+    <bean id="restHandlerExceptionResolver" class="de.hybris.platform.webservicescommons.resolver.RestExceptionResolver"
+          parent="wsBaseRestExceptionResolver">
+        <property name="webserviceErrorFactory" ref="webserviceErrorFactory" />
+        <property name="messageConverters" ref="jaxbMessageConverters" />
+        <property name="extensionName" value="ywebservices" />
+    </bean>
+
 	<!-- webservice error factory & converters -->
 
 	<alias alias="webserviceErrorFactory" name="defaultWebserviceErrorFactory" />

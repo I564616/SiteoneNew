@@ -16,7 +16,7 @@ import java.util.Collection;
 import org.springframework.security.access.AccessDecisionVoter;
 import org.springframework.security.access.ConfigAttribute;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.oauth2.provider.OAuth2Authentication;
+//import org.springframework.security.oauth2.provider.OAuth2Authentication;
 
 
 /**
@@ -37,65 +37,79 @@ import org.springframework.security.oauth2.provider.OAuth2Authentication;
  */
 public class OAuthClientVoter implements AccessDecisionVoter<Object>
 {
-	private String clientPrefix = "CLIENT_";
+    @Override
+    public boolean supports(ConfigAttribute attribute) {
+        return false;
+    }
 
-	public String getClientPrefix()
-	{
-		return clientPrefix;
-	}
+    @Override
+    public boolean supports(Class<?> clazz) {
+        return false;
+    }
 
-	public void setClientPrefix(final String clientPrefix)
-	{
-		this.clientPrefix = clientPrefix;
-	}
-
-	@Override
-	public boolean supports(final ConfigAttribute attribute)
-	{
-		return (attribute.getAttribute() != null) && attribute.getAttribute().startsWith(getClientPrefix());
-	}
-
-	/**
-	 * This implementation supports any type of class, because it does not query the presented secure object.
-	 * 
-	 * @param clazz
-	 *           the secure object
-	 * 
-	 * @return always <code>true</code>
-	 */
-	@Override
-	public boolean supports(final Class<?> clazz)
-	{
-		return true;
-	}
-
-	@Override
-	public int vote(final Authentication authentication, final Object object, final Collection<ConfigAttribute> attributes)
-	{
-		int result = ACCESS_ABSTAIN;
-
-		if (!(authentication instanceof OAuth2Authentication))
-		{
-			return ACCESS_ABSTAIN;
-		}
-
-		final OAuth2Authentication oAuth2Authentication = (OAuth2Authentication) authentication;
-		final String clientId = oAuth2Authentication.getOAuth2Request().getClientId();
-		final String clientIdPattern = getClientPrefix() + clientId.toUpperCase();
-
-		for (final ConfigAttribute attribute : attributes)
-		{
-			if (this.supports(attribute))
-			{
-				result = ACCESS_DENIED;
-
-				if (attribute.getAttribute().equalsIgnoreCase(clientIdPattern))
-				{
-					return ACCESS_GRANTED;
-				}
-			}
-		}
-
-		return result;
-	}
+    @Override
+    public int vote(Authentication authentication, Object object, Collection<ConfigAttribute> attributes) {
+        return 0;
+    }
+//	private String clientPrefix = "CLIENT_";
+//
+//	public String getClientPrefix()
+//	{
+//		return clientPrefix;
+//	}
+//
+//	public void setClientPrefix(final String clientPrefix)
+//	{
+//		this.clientPrefix = clientPrefix;
+//	}
+//
+//	@Override
+//	public boolean supports(final ConfigAttribute attribute)
+//	{
+//		return (attribute.getAttribute() != null) && attribute.getAttribute().startsWith(getClientPrefix());
+//	}
+//
+//	/**
+//	 * This implementation supports any type of class, because it does not query the presented secure object.
+//	 *
+//	 * @param clazz
+//	 *           the secure object
+//	 *
+//	 * @return always <code>true</code>
+//	 */
+//	@Override
+//	public boolean supports(final Class<?> clazz)
+//	{
+//		return true;
+//	}
+//
+//	@Override
+//	public int vote(final Authentication authentication, final Object object, final Collection<ConfigAttribute> attributes)
+//	{
+//		int result = ACCESS_ABSTAIN;
+//
+//		if (!(authentication instanceof OAuth2Authentication))
+//		{
+//			return ACCESS_ABSTAIN;
+//		}
+//
+//		final OAuth2Authentication oAuth2Authentication = (OAuth2Authentication) authentication;
+//		final String clientId = oAuth2Authentication.getOAuth2Request().getClientId();
+//		final String clientIdPattern = getClientPrefix() + clientId.toUpperCase();
+//
+//		for (final ConfigAttribute attribute : attributes)
+//		{
+//			if (this.supports(attribute))
+//			{
+//				result = ACCESS_DENIED;
+//
+//				if (attribute.getAttribute().equalsIgnoreCase(clientIdPattern))
+//				{
+//					return ACCESS_GRANTED;
+//				}
+//			}
+//		}
+//
+//		return result;
+//	}
 }

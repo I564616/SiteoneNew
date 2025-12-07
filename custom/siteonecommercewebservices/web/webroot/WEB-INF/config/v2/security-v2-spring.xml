@@ -16,6 +16,11 @@
 		http://www.springframework.org/schema/security 
 		http://www.springframework.org/schema/security/spring-security.xsd">
 
+    <!-- Base platform security -->
+    <import resource="classpath*:commons-security-spring.xml"/>
+
+    <!-- New OAuth2 resource server security -->
+    <import resource="classpath*:resourceserver-commons-spring.xml"/>
 
 	<!-- Swagger resources -->
 	<!-- <security:http pattern="/v2/#{configurationService.configuration.getProperty('springfox.documentation.swagger.v2.path')}" security="none"/>
@@ -25,43 +30,91 @@
     <security:http pattern="/v2/api-docs*/**" security="none"/> 
 
 	<!-- Commerce Webservices V2-->
-	<http pattern="/**" entry-point-ref="oauthAuthenticationEntryPointV2"
-	      access-decision-manager-ref="webSecurityAccessDecisionManager"
-	      xmlns="http://www.springframework.org/schema/security" create-session="stateless">
+<!--	<http pattern="/**" entry-point-ref="oauthAuthenticationEntryPointV2"-->
+<!--	      access-decision-manager-ref="webSecurityAccessDecisionManager"-->
+<!--	      xmlns="http://www.springframework.org/schema/security" create-session="stateless">-->
 
-		<anonymous username="anonymous" granted-authority="ROLE_ANONYMOUS"/>
-		<!--<session-management session-authentication-strategy-ref="fixation"/>-->
+<!--		<anonymous username="anonymous" granted-authority="ROLE_ANONYMOUS"/>-->
+<!--		&lt;!&ndash;<session-management session-authentication-strategy-ref="fixation"/>&ndash;&gt;-->
 
-		<intercept-url pattern="/**" requires-channel="https" access="permitAll()"/>
+<!--		<intercept-url pattern="/**" requires-channel="https" access="permitAll()"/>-->
 
-		<port-mappings>
-			<port-mapping http="#{configurationService.configuration.getProperty('tomcat.http.port')}"
-			              https="#{configurationService.configuration.getProperty('tomcat.ssl.port')}"/>
-			<port-mapping http="#{configurationService.configuration.getProperty('embeddedserver.http.port')}" 
-						  https="#{configurationService.configuration.getProperty('embeddedserver.ssl.port')}" />
-		</port-mappings>
+<!--		<port-mappings>-->
+<!--			<port-mapping http="#{configurationService.configuration.getProperty('tomcat.http.port')}"-->
+<!--			              https="#{configurationService.configuration.getProperty('tomcat.ssl.port')}"/>-->
+<!--			<port-mapping http="#{configurationService.configuration.getProperty('embeddedserver.http.port')}" -->
+<!--						  https="#{configurationService.configuration.getProperty('embeddedserver.ssl.port')}" />-->
+<!--		</port-mappings>-->
 
-		<custom-filter ref="resourceServerFilter" before="PRE_AUTH_FILTER"/>
-		<access-denied-handler ref="oauthAccessDeniedHandlerV2"/>
-		
-		<headers >
-			<content-type-options />
-			<hsts include-subdomains="true" max-age-seconds="16070400" />
-			<xss-protection />
-			<security:frame-options disabled="true"/>
-		</headers>
-		<security:csrf disabled="true"/>
-	</http>
+<!--		<custom-filter ref="resourceServerFilter" before="PRE_AUTH_FILTER"/>-->
+<!--		<access-denied-handler ref="oauthAccessDeniedHandlerV2"/>-->
+<!--		-->
+<!--		<headers >-->
+<!--			<content-type-options />-->
+<!--			<hsts include-subdomains="true" max-age-seconds="16070400" />-->
+<!--			<xss-protection />-->
+<!--			<security:frame-options disabled="true"/>-->
+<!--		</headers>-->
+<!--		<security:csrf disabled="true"/>-->
+<!--	</http>-->
 
-	<bean id="oauthAuthenticationEntryPointV2" parent="oauthAuthenticationEntryPoint">
-		<property name="exceptionRenderer" ref="oAuth2ExceptionRendererV2"/>
-	</bean>
+    <security:http pattern="/**"
+                   create-session="stateless"
+                   use-expressions="true"
+                   use-authorization-manager="true">
 
-	<bean id="oauthAccessDeniedHandlerV2" parent="oauthAccessDeniedHandler">
-		<property name="exceptionRenderer" ref="oAuth2ExceptionRendererV2"/>
-	</bean>
+        <!-- Allow anonymous (valid Spring Security 6 element) -->
+        <security:anonymous username="anonymous" granted-authority="ROLE_ANONYMOUS"/>
 
-	<bean id="oAuth2ExceptionRendererV2" parent="oAuth2ExceptionRenderer">
-		<property name="messageConverters" ref="messageConvertersV2"/>
-	</bean>
+        <!-- HTTPS enforcement -->
+        <security:intercept-url
+                pattern="/**"
+                requires-channel="https"
+                access="permitAll()"/>
+
+        <security:port-mappings>
+            <security:port-mapping
+                    http="#{configurationService.configuration.getProperty('tomcat.http.port')}"
+                    https="#{configurationService.configuration.getProperty('tomcat.ssl.port')}"/>
+            <security:port-mapping
+                    http="#{configurationService.configuration.getProperty('embeddedserver.http.port')}"
+                    https="#{configurationService.configuration.getProperty('embeddedserver.ssl.port')}"/>
+        </security:port-mappings>
+
+        <!-- NEW OAuth2 Resource Server -->
+        <security:oauth2-resource-server entry-point-ref="enrichingAuthenticationEntryPoint">
+            <security:jwt
+                    decoder-ref="jwtDecoder"
+                    jwt-authentication-converter-ref="jwtAuthenticationRoleConverter"/>
+        </security:oauth2-resource-server>
+
+        <!-- NEW Access Denied (403) handler -->
+        <security:access-denied-handler ref="enrichingAccessDeniedHandler"/>
+
+        <!-- NEW JwtAuthenticationUserFilter (replaces hybrisUserFilter + legacy oauth filters) -->
+        <security:custom-filter ref="jwtAuthenticationUserFilter" after="LAST"/>
+
+        <!-- Security headers -->
+        <security:headers>
+            <security:content-type-options />
+            <security:hsts include-subdomains="true" max-age-seconds="16070400"/>
+            <security:xss-protection />
+            <security:frame-options disabled="true"/>
+        </security:headers>
+
+        <!-- OCC is stateless → CSRF disabled -->
+        <security:csrf disabled="true"/>
+    </security:http>
+
+<!--	<bean id="oauthAuthenticationEntryPointV2" parent="oauthAuthenticationEntryPoint">-->
+<!--		<property name="exceptionRenderer" ref="oAuth2ExceptionRendererV2"/>-->
+<!--	</bean>-->
+
+<!--	<bean id="oauthAccessDeniedHandlerV2" parent="oauthAccessDeniedHandler">-->
+<!--		<property name="exceptionRenderer" ref="oAuth2ExceptionRendererV2"/>-->
+<!--	</bean>-->
+
+<!--	<bean id="oAuth2ExceptionRendererV2" parent="oAuth2ExceptionRenderer">-->
+<!--		<property name="messageConverters" ref="messageConvertersV2"/>-->
+<!--	</bean>-->
 </beans>

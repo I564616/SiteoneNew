@@ -42,11 +42,11 @@
 		</property>
 	</bean>
 
-	<bean class="de.hybris.platform.commercefacades.xstream.conv.TypeConverterMapping">
-		<property name="converter">
-			<bean class="com.siteone.conv.Oauth2AccessTokenConverter" />
-		</property>
-	</bean>
+<!--	<bean class="de.hybris.platform.commercefacades.xstream.conv.TypeConverterMapping">-->
+<!--		<property name="converter">-->
+<!--			<bean class="com.siteone.conv.Oauth2AccessTokenConverter" />-->
+<!--		</property>-->
+<!--	</bean>-->
 	<bean class="de.hybris.platform.commercefacades.xstream.conv.TypeConverterMapping">
 		<property name="converter">
 			<bean class="com.siteone.conv.SearchQueryDataConverter">
@@ -362,10 +362,10 @@
 		<property name="aliasedClass" value="de.hybris.platform.commercefacades.user.data.PrincipalData" />
 	</bean>
 
-	<bean class="de.hybris.platform.commercefacades.xstream.alias.TypeAliasMapping">
-		<property name="alias" value="oauth2Token" />
-		<property name="aliasedClass" value="org.springframework.security.oauth2.common.DefaultOAuth2AccessToken" />
-	</bean>
+<!--	<bean class="de.hybris.platform.commercefacades.xstream.alias.TypeAliasMapping">-->
+<!--		<property name="alias" value="oauth2Token" />-->
+<!--		<property name="aliasedClass" value="org.springframework.security.oauth2.common.DefaultOAuth2AccessToken" />-->
+<!--	</bean>-->
 
 	<bean class="de.hybris.platform.commercefacades.xstream.alias.TypeAliasMapping">
 		<property name="alias" value="store" />
