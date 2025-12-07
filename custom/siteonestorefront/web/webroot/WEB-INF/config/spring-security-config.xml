@@ -386,4 +386,5 @@
 		</constructor-arg>
 	</bean>
 
+    <bean id="webSecurityExpressionHandler" class="org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler"/>
 </beans>
