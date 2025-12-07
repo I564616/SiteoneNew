@@ -3,8 +3,8 @@
  */
 package de.hybris.platform.acceleratorstorefrontcommons.forms.validation;
 
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
 
 import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.lang.builder.EqualsBuilder;

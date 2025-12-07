@@ -14,8 +14,8 @@ import java.util.Date;
 import java.util.Locale;
 
 import javax.annotation.Resource;
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
 
 import org.apache.commons.lang.StringUtils;
 import org.springframework.context.MessageSource;

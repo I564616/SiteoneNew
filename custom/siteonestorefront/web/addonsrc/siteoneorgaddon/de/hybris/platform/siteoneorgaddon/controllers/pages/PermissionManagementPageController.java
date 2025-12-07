@@ -32,7 +32,7 @@ import de.hybris.platform.servicelayer.interceptor.impl.UniqueAttributesIntercep
 import java.text.ParseException;
 import java.util.List;
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;

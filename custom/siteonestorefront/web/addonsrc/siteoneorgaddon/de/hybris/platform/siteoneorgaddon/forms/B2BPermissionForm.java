@@ -12,7 +12,7 @@ package de.hybris.platform.siteoneorgaddon.forms;
 
 import de.hybris.platform.b2bapprovalprocessfacades.company.data.B2BPermissionTypeData;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 
 
 /**

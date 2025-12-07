@@ -5,8 +5,8 @@ package de.hybris.platform.acceleratorstorefrontcommons.forms;
 
 import de.hybris.platform.acceleratorstorefrontcommons.forms.validation.QuoteExpirationTime;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 
 /**

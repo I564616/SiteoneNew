@@ -30,7 +30,7 @@ import de.hybris.platform.commerceservices.search.pagedata.SearchPageData;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;

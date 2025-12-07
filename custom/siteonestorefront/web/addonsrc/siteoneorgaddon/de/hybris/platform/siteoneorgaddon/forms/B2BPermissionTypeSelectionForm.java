@@ -10,7 +10,7 @@
  */
 package de.hybris.platform.siteoneorgaddon.forms;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 
 
 /**

@@ -18,8 +18,8 @@ import de.hybris.platform.commercefacades.user.data.CustomerData;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
 

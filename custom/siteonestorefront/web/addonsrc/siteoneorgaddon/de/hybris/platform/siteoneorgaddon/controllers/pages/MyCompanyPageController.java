@@ -65,7 +65,7 @@ import de.hybris.platform.search.restriction.SearchRestrictionService;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.text.ParseException;

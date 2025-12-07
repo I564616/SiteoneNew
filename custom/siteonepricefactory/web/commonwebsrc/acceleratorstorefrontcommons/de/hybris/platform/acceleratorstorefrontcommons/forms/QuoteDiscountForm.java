@@ -3,7 +3,7 @@
  */
 package de.hybris.platform.acceleratorstorefrontcommons.forms;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 
 
 /**
