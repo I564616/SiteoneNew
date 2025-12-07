@@ -17,6 +17,7 @@
            http://www.springframework.org/schema/context/spring-context.xsd">
 
     <import resource="siteonesamlsinglesignon-spring-security-config.xml"/>
+    <import resource="siteonesamlsinglesignon-spring-mvc-config.xml"/>
 
     <context:annotation-config/>
 
