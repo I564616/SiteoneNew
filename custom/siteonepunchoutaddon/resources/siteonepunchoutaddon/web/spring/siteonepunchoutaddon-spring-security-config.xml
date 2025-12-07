@@ -26,7 +26,7 @@
 	
 		<security:anonymous username="anonymous" granted-authority="ROLE_ANONYMOUS"/>
 		
-		<security:intercept-url pattern="/**" requires-channel="https"/>
+		<security:intercept-url pattern="/**" requires-channel="https" access="permitAll()"/>
 		
 		<security:form-login
 				login-page="/login"
