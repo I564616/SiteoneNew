@@ -16,7 +16,7 @@ import jakarta.annotation.Resource;
 
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.validator.GenericValidator;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
 
@@ -100,7 +100,7 @@ public class StaticMediaUrlStrategy implements MediaURLStrategy
 	private String assembleUrl(final String folderQualifier, final MediaSource mediaSource)
 	{
 		String result = "";
-		if ((!(GenericValidator.isBlankOrNull(folderQualifier))) && (!(GenericValidator.isBlankOrNull(mediaSource.getLocation()))))
+		if ((!(StringUtils.isBlank(folderQualifier))) && (!(StringUtils.isBlank(mediaSource.getLocation()))))
 		{
 			if (this.prettyUrlEnabled)
 			{
