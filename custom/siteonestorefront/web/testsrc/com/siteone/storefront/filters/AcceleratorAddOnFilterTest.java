@@ -56,7 +56,7 @@ public class AcceleratorAddOnFilterTest
 	public void prepare() throws FileNotFoundException
 	{
 		MockitoAnnotations.initMocks(this);
-		Mockito.doReturn("/addons/").when(request).getAttribute("javax.servlet.include.servlet_path");
+		Mockito.doReturn("/addons/").when(request).getAttribute("jakarta.servlet.include.servlet_path");
 	}
 
 	private void setAddOnFilterActive(final boolean active)

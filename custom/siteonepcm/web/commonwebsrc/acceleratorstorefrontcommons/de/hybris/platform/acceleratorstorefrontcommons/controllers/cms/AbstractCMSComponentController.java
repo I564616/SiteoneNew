@@ -12,8 +12,8 @@ import de.hybris.platform.cms2.model.contents.components.AbstractCMSComponentMod
 import de.hybris.platform.cms2.servicelayer.services.CMSComponentService;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;

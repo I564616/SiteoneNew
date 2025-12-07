@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="jakarta.tags.core"%>
 <%@ taglib prefix="product" tagdir="/WEB-INF/tags/responsive/product" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
+<%@ taglib prefix="fn" uri="jakarta.tags.functions" %>
 <%-- <c:if test="${component.promotionalBanner.code eq categoryCode }"> --%>
 <%-- <c:set var="categoryPromotion" value="${component.media}"/> --%>
 <c:set var="categoryPromotionBanner" value="${component.media}"/>

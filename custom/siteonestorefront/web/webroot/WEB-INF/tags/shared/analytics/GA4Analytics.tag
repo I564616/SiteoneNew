@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="jakarta.tags.core"%>
 <%@ taglib prefix="fn" uri="jakarta.tags.functions" %>
 <%@ taglib prefix="cms" uri="http://hybris.com/tld/cmstags" %>
-<%@ taglib prefix ="fmt" uri ="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix ="fmt" uri ="<%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>"%>
 
 <c:set var="isLoggedIn" value='${loginFlagModel ne null}' />
 <c:set var="currentUrl" value="https://${header.host}${requestScope['jakarta.servlet.forward.request_uri']}" />

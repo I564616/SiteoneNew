@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="jakarta.tags.core"%>
 <%@ taglib prefix="article" tagdir="/WEB-INF/tags/responsive/article" %>
 <%@ taglib prefix="nav" tagdir="/WEB-INF/tags/responsive/nav" %>
-<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
+<%@ taglib prefix="fn" uri="jakarta.tags.functions" %>
 
 
 <c:forEach items="${searchPageData.contentCategoryData}" var="articleCategory">

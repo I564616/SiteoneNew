@@ -30,7 +30,7 @@ import de.hybris.platform.core.model.user.UserModel;
 import java.util.List;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 
 import org.apache.log4j.Logger;

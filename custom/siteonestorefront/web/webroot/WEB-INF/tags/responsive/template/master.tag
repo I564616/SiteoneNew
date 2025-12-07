@@ -13,7 +13,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ taglib prefix="htmlmeta" uri="http://hybris.com/tld/htmlmeta"%>
-<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
+<%@ taglib prefix="fn" uri="jakarta.tags.functions" %>
 
  <c:set var="popupcountry" value="<%=de.hybris.platform.util.Config.getParameter(\"popupcountry\")%>"/>
 <c:set var="briteVerifyEnable" value="<%=de.hybris.platform.util.Config.getParameter(\"briteverify.enable\")%>"/> 

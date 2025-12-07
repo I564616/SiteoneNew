@@ -21,7 +21,7 @@
  * 
  * import java.util.Map;
  * 
- * import javax.servlet.http.HttpServletRequest; import jakarta.validation.Valid;
+ * import jakarta.servlet.http.HttpServletRequest; import jakarta.validation.Valid;
  * 
  * import org.apache.commons.lang.StringUtils; import org.apache.log4j.Logger; import
  * org.springframework.stereotype.Controller; import org.springframework.ui.Model; import

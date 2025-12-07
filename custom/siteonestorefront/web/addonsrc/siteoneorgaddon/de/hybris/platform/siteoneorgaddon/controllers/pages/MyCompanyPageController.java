@@ -64,7 +64,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import de.hybris.platform.search.restriction.SearchRestrictionService;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import java.math.BigDecimal;
 import java.text.DateFormat;

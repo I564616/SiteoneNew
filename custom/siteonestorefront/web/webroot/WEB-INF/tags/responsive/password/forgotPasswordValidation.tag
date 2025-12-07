@@ -1,6 +1,6 @@
 <%@ tag body-content="empty" trimDirectiveWhitespaces="true" %>
 <%@ taglib prefix="spring"  uri="http://www.springframework.org/tags"%>
-<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ taglib prefix="ycommerce" uri="http://hybris.com/tld/ycommercetags"%>
 <%@ taglib prefix="user" tagdir="/WEB-INF/tags/responsive/user" %>
 <div id="fgtPwdResponseSection">

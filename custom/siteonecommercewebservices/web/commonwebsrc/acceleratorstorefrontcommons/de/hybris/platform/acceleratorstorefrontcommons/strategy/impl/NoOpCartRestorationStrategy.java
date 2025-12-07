@@ -5,7 +5,7 @@ package de.hybris.platform.acceleratorstorefrontcommons.strategy.impl;
 
 import de.hybris.platform.acceleratorstorefrontcommons.strategy.CartRestorationStrategy;
 
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
 

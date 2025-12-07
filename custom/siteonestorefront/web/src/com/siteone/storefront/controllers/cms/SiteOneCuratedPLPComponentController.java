@@ -65,7 +65,7 @@ public class SiteOneCuratedPLPComponentController
 	private static final String PAGINATION_NUMBER_OF_RESULTS_COUNT = "pagination.number.results.count";
 	private static final int L2_CATEGORY_LENGTH = 6;
 	private static final int L3_CATEGORY_LENGTH = 9;
-	private static final String REFERER = "javax.servlet.forward.request_uri";
+	private static final String REFERER = "jakarta.servlet.forward.request_uri";
 	private static final String NEAR_BY = "nearby";
 	private static final String INSTOCK = "inStock";
 	private static final String INSTOCKTOGGLE = "InStockToggle";

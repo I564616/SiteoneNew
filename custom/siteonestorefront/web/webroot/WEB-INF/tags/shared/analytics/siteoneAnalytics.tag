@@ -4,7 +4,7 @@
 <%@ taglib prefix="fn" uri="jakarta.tags.functions"%>
 <%@ taglib prefix="cms" uri="http://hybris.com/tld/cmstags" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
-<%@ taglib prefix ="fmt" uri ="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix ="fmt" uri ="<%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>"%>
 
 <%-- 
 <script type="text/javascript" src="${sharedResourcePath}/js/analyticsmediator.js"></script>

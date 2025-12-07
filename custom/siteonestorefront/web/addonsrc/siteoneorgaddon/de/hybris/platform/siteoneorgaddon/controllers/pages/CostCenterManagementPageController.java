@@ -29,7 +29,7 @@ import de.hybris.platform.commerceservices.search.pagedata.SearchPageData;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 
 import org.apache.log4j.Logger;

@@ -9,7 +9,7 @@ import de.hybris.platform.commerceservices.order.CommerceCartRestorationExceptio
 
 import java.util.Arrays;
 
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;

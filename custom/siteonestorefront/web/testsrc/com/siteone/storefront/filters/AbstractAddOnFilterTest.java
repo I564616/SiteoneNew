@@ -82,7 +82,7 @@ public abstract class AbstractAddOnFilterTest
 
 		Mockito.doReturn(webExtensionPhysicalPath).when(extensionAccessor).getExtensionDir(STOREFRONT_NAME);
 		Mockito.doReturn(addOnExtensionPhysicalPath).when(extensionAccessor).getExtensionDir(ADDONTWO_NAME);
-		Mockito.doReturn("/addons/").when(request).getAttribute("javax.servlet.include.servlet_path");
+		Mockito.doReturn("/addons/").when(request).getAttribute("jakarta.servlet.include.servlet_path");
 	}
 
 	protected File createWebCtxPhysicalPath()

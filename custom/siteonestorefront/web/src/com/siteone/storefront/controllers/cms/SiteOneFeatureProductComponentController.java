@@ -61,7 +61,7 @@ public class SiteOneFeatureProductComponentController
 		String categoryId = "";
 		String productId = "";
 		final String sessionId = request.getSession().getId();
-		final String request_uri = (String) request.getAttribute("javax.servlet.forward.request_uri");
+		final String request_uri = (String) request.getAttribute("jakarta.servlet.forward.request_uri");
 		final String[] uriArr = request_uri.split("/");
 		if (uriArr.length >= 5)
 		{

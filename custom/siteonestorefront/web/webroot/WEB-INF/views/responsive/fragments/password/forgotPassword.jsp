@@ -4,7 +4,7 @@
 <%@ taglib prefix="theme" tagdir="/WEB-INF/tags/shared/theme" %>
 <%@ taglib prefix="ycommerce" uri="http://hybris.com/tld/ycommercetags"%>
 <%@ taglib prefix="password" tagdir="/WEB-INF/tags/responsive/password" %>
-<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 
 
 <div class="forgotten-password forgotten-pass">

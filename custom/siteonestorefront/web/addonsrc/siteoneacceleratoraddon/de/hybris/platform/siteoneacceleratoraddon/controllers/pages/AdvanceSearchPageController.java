@@ -41,7 +41,7 @@ import java.util.Set;
 import java.util.HashSet;
 import java.util.function.Predicate;
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringEscapeUtils;

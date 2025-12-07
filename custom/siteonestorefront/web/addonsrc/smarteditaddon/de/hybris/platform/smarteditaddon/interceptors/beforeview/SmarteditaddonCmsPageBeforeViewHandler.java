@@ -15,8 +15,8 @@ import de.hybris.platform.cmsfacades.data.ItemData;
 import de.hybris.platform.cmsfacades.uniqueidentifier.UniqueItemIdentifierService;
 import de.hybris.platform.servicelayer.exceptions.UnknownIdentifierException;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Required;
 import org.springframework.web.servlet.ModelAndView;

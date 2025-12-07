@@ -26,7 +26,7 @@ import java.util.Map;
 
 import java.util.function.Predicate;
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletResponse;
 
 import de.hybris.platform.util.Config;
 import org.springframework.stereotype.Controller;
