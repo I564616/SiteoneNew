@@ -63,7 +63,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import de.hybris.platform.search.restriction.SearchRestrictionService;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import java.math.BigDecimal;

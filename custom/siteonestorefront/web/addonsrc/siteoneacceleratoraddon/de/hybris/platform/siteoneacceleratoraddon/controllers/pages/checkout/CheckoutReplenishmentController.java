@@ -21,7 +21,7 @@ import de.hybris.platform.cms2.exceptions.CMSItemNotFoundException;
 import de.hybris.platform.cms2.model.pages.AbstractPageModel;
 import de.hybris.platform.servicelayer.exceptions.ModelNotFoundException;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang.StringUtils;

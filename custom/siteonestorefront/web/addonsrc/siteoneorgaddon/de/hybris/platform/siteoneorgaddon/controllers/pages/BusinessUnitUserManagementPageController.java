@@ -29,7 +29,7 @@ import de.hybris.platform.core.model.user.UserModel;
 
 import java.util.List;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 

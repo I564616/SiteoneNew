@@ -18,7 +18,7 @@ import de.hybris.platform.util.Config;
 
 import java.util.Map;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang.StringUtils;

@@ -6,7 +6,7 @@ package de.hybris.platform.acceleratorstorefrontcommons.forms.payment.impl;
 import de.hybris.platform.acceleratorstorefrontcommons.forms.payment.MerchantCallbackUrlStrategy;
 import de.hybris.platform.servicelayer.config.ConfigurationService;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 
 import org.springframework.stereotype.Component;
 

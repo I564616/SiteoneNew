@@ -10,7 +10,7 @@
  */
 package de.hybris.platform.siteoneacceleratoraddon.controllers.pages;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;

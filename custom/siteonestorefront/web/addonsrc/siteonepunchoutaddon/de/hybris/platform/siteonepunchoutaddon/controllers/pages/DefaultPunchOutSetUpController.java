@@ -22,7 +22,7 @@ import de.hybris.platform.b2b.punchout.services.PunchOutSessionService;
 import java.io.StringWriter;
 import java.util.Date;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;

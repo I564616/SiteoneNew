@@ -10,7 +10,7 @@ import de.hybris.platform.commercefacades.user.data.AddressData;
 import de.hybris.platform.commercefacades.user.data.CountryData;
 import de.hybris.platform.commercefacades.user.data.RegionData;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 
 import org.apache.commons.lang.StringUtils;
 

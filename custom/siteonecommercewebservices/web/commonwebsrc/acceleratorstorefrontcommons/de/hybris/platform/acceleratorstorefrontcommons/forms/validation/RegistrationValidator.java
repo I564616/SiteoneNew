@@ -10,7 +10,7 @@ import de.hybris.platform.servicelayer.config.ConfigurationService;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Component;

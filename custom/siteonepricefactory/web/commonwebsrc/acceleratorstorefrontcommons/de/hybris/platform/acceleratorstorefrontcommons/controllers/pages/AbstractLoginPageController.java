@@ -17,7 +17,7 @@ import de.hybris.platform.site.BaseSiteService;
 
 import java.util.Collections;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpSession;
 
 import org.springframework.ui.Model;

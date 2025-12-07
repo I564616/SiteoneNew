@@ -21,7 +21,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Required;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 
 
 /**

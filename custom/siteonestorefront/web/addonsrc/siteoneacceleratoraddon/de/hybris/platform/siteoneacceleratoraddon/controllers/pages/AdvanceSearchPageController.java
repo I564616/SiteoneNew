@@ -40,7 +40,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.HashSet;
 import java.util.function.Predicate;
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
 
 import org.apache.commons.collections.CollectionUtils;

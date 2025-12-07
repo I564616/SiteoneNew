@@ -37,7 +37,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

@@ -25,7 +25,7 @@ import java.util.List;
 import java.util.Map;
 
 import java.util.function.Predicate;
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletResponse;
 
 import de.hybris.platform.util.Config;

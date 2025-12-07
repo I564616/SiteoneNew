@@ -15,7 +15,7 @@
 //import de.hybris.platform.b2b.punchout.services.CXMLBuilder;
 //import de.hybris.platform.b2b.punchout.services.PunchOutService;
 //
-//import javax.annotation.Resource;
+//import jakarta.annotation.Resource;
 //
 //import org.apache.log4j.Logger;
 //import org.cxml.CXML;

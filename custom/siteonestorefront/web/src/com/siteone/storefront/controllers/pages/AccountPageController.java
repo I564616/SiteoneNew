@@ -109,7 +109,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.log4j.Logger;
 import org.hibernate.validator.constraints.URL;
-import org.springframework.security.oauth2.common.OAuth2AccessToken;
+import org.springframework.security.oauth2.core.OAuth2AccessToken;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

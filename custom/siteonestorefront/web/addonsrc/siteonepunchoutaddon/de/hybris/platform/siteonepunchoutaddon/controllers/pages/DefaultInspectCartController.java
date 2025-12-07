@@ -17,7 +17,7 @@ import de.hybris.platform.commercefacades.order.CartFacade;
 import de.hybris.platform.commercefacades.order.data.CartData;
 import de.hybris.platform.commercefacades.order.data.OrderEntryData;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 
 import org.springframework.stereotype.Component;
 import org.springframework.ui.Model;

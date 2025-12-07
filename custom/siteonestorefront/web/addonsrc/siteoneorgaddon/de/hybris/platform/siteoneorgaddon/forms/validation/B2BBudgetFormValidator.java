@@ -15,7 +15,7 @@ import de.hybris.platform.siteoneorgaddon.forms.B2BBudgetForm;
 
 import java.text.ParseException;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Component;

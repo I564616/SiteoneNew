@@ -8,7 +8,7 @@ import com.siteone.integration.services.okta.data.OktaSetPasswordResponseData;
 import com.siteone.integration.services.okta.data.OktaUnlockUserResponseData;
 import com.siteone.integration.services.okta.data.OktaVerifyRecoveryTokenResponseData;
 
-import org.springframework.security.oauth2.common.OAuth2AccessToken;
+import org.springframework.security.oauth2.core.OAuth2AccessToken;
 import org.springframework.web.client.ResourceAccessException;
 
 import com.siteone.integration.exception.okta.OktaInvalidPasswordException;

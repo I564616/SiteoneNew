@@ -20,7 +20,7 @@ import de.hybris.platform.siteonepunchoutaddon.services.PunchOutUserAuthenticati
 import de.hybris.platform.core.model.order.CartModel;
 import de.hybris.platform.order.CartService;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 

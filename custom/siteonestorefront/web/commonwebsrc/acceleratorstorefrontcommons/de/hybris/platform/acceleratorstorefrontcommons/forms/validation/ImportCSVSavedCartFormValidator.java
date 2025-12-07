@@ -6,7 +6,7 @@ package de.hybris.platform.acceleratorstorefrontcommons.forms.validation;
 import de.hybris.platform.acceleratorservices.config.SiteConfigService;
 import de.hybris.platform.acceleratorstorefrontcommons.forms.ImportCSVSavedCartForm;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
