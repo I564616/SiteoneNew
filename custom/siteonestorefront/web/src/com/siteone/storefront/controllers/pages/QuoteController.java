@@ -67,7 +67,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.SmartValidator;
+//import org.springframework.validation.SmartValidator;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -137,8 +137,8 @@ public class QuoteController extends AbstractCartPageController
 		return getQuoteFacade().getDiscountTypes();
 	}
 
-	@Autowired
-	private SmartValidator smartValidator;
+//	@Autowired
+//	private SmartValidator smartValidator;
 
 	/**
 	 * Creates a new quote based on session cart.
@@ -512,7 +512,7 @@ public class QuoteController extends AbstractCartPageController
 		final boolean isSeller = Functions.isQuoteUserSalesRep();
 		final Object validationGroup = isSeller ? QuoteForm.Seller.class : QuoteForm.Buyer.class;
 
-		smartValidator.validate(quoteForm, bindingResult, validationGroup);
+		//smartValidator.validate(quoteForm, bindingResult, validationGroup);
 
 		if (bindingResult.hasErrors())
 		{
@@ -617,7 +617,7 @@ public class QuoteController extends AbstractCartPageController
 	public ResponseEntity<String> setQuoteExpiration(@PathVariable("quoteCode") final String quoteCode, final QuoteForm quoteForm,
 			final BindingResult bindingResult)
 	{
-		smartValidator.validate(quoteForm, bindingResult, QuoteForm.Seller.class);
+		//smartValidator.validate(quoteForm, bindingResult, QuoteForm.Seller.class);
 
 		if (bindingResult.hasErrors())
 		{
@@ -662,7 +662,7 @@ public class QuoteController extends AbstractCartPageController
 	public ResponseEntity<String> setQuoteMetadata(@PathVariable("quoteCode") final String quoteCode, final QuoteForm quoteForm,
 			final BindingResult bindingResult)
 	{
-		smartValidator.validate(quoteForm, bindingResult, QuoteForm.Buyer.class);
+		//smartValidator.validate(quoteForm, bindingResult, QuoteForm.Buyer.class);
 
 		if (bindingResult.hasErrors())
 		{
