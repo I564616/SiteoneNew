@@ -1,4 +1,5 @@
 ext {
 	libraries = []
+	mavenCompilerRelease = "21"
 }
-libraries << "org.glassfish.web:javax.servlet.jsp.jstl:1.2.5"
+libraries << "org.glassfish.web:jakarta.servlet.jsp.jstl:3.0.1"

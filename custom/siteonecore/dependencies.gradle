@@ -1,5 +1,6 @@
 ext {
 	libraries = []
+	mavenCompilerRelease = "21"
 }
 libraries << "com.google.zxing:core:3.5.3"
 libraries << "com.google.zxing:javase:3.5.3"
