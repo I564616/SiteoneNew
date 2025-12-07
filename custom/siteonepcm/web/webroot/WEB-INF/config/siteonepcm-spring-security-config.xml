@@ -11,6 +11,7 @@
 -->
 <beans:beans xmlns="http://www.springframework.org/schema/security"
              xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns:security="http://www.springframework.org/schema/security"
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
              xsi:schemaLocation="http://www.springframework.org/schema/security
            http://www.springframework.org/schema/security/spring-security.xsd
@@ -18,16 +19,16 @@
            http://www.springframework.org/schema/beans/spring-beans.xsd"
 >
 
-    <http pattern="/500.jsp" security="none" />
-    <http pattern="/404.jsp" security="none" />
-    <http pattern="/static/**" security="none" />
+    <security:http pattern="/500.jsp" security="none" />
+    <security:http pattern="/404.jsp" security="none" />
+    <security:http pattern="/static/**" security="none" />
 
-    <http  use-expressions="true" use-authorization-manager="false">
+    <security:http  use-expressions="true" use-authorization-manager="false">
 <!--        <session-management session-authentication-strategy-ref="fixation"/>-->
-        <intercept-url pattern="/login.jsp" access="PERMIT_ALL"/>
-        <intercept-url pattern="/**" access="hasRole('HYBRIS_NOT_INITIALIZED') or hasRole('ROLE_CUSTOMERGROUP')"/>
-        <http-basic />
-        <form-login 
+        <security:intercept-url pattern="/login.jsp" access="PERMIT_ALL"/>
+        <security:intercept-url pattern="/**" access="hasRole('HYBRIS_NOT_INITIALIZED') or hasRole('ROLE_CUSTOMERGROUP')"/>
+        <security:http-basic />
+        <security:form-login
         	always-use-default-target="false" 
         	login-page="/login.jsp" 
         	username-parameter="j_username"
@@ -35,13 +36,13 @@
 			login-processing-url="/j_spring_security_check"
         	authentication-failure-url="/login.jsp?login_error=1"
         />
-        <remember-me services-ref="rememberMeServices" key="adminweb"/>
-        <logout logout-url="/j_spring_security_logout" logout-success-url="/login.jsp"/>
-        <csrf />
-        <headers>
-            <frame-options disabled="true"/>
-        </headers>
-    </http>
+        <security:remember-me services-ref="rememberMeServices" key="adminweb"/>
+        <security:logout logout-url="/j_spring_security_logout" logout-success-url="/login.jsp"/>
+        <security:csrf />
+        <security:headers>
+            <security:frame-options disabled="true"/>
+        </security:headers>
+    </security:http>
 
 <!--    <beans:bean id="fixation" class="de.hybris.platform.servicelayer.security.spring.HybrisSessionFixationProtectionStrategy">-->
 <!--        <beans:property name="migrateSessionAttributes" value="false"/>-->
