@@ -327,8 +327,8 @@
     	<property name="siteOneOktaConfigUserAppDetailsRestClient" ref="siteOneOktaRestClient"/>
     	<property name="sessionService" ref="sessionService"/>
 		<property name="restTemplate" ref="restTemplate"/>
-		<property name="clientDetailsService" ref="oauthClientDetails"/>
-		<property name="smarteditOAuth2RequestFactory" ref="smarteditOAuth2RequestFactory"/>
+<!--		<property name="clientDetailsService" ref="oauthClientDetails"/>-->
+<!--		<property name="smarteditOAuth2RequestFactory" ref="smarteditOAuth2RequestFactory"/>-->
 </bean>
      
      <bean id="siteOneLeadGenerationService" class="com.siteone.integration.watson.impl.DefaultSiteOneLeadGenerationService" >

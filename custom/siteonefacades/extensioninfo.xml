@@ -22,6 +22,7 @@
 		<requires-extension name="siteoneintegration"/>
 		<requires-extension name="b2bacceleratorfacades"/>
 		<requires-extension name="wishlist"/>
+        <requires-extension name="commercefacades"/>
 
 		<coremodule generated="true" manager="de.hybris.platform.jalo.extension.GenericManager" packageroot="com.siteone.facades"/>
 
