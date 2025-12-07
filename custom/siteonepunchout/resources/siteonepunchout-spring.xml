@@ -27,9 +27,9 @@
 		<property name="modelService" ref="modelService"/>
 		<property name="punchOutSessionPopulator" ref="punchOutSessionPopulator"/>
 		<property name="b2bCustomerService" ref="b2bCustomerService"/>
-		<property name="oauthClientDetails" ref="oauthClientDetails"/>
-		<property name="oauthTokenServices" ref="oauthTokenServices"/>
-		<property name="oAuth2RequestFactory" ref="oAuth2RequestFactory"/>
+<!--		<property name="oauthClientDetails" ref="oauthClientDetails"/>-->
+<!--		<property name="oauthTokenServices" ref="oauthTokenServices"/>-->
+<!--		<property name="oAuth2RequestFactory" ref="oAuth2RequestFactory"/>-->
 	</bean>
 	
 	<alias name="defaultSiteOneOrderRequestCartPopulator" alias="orderRequestCartPopulator"/>

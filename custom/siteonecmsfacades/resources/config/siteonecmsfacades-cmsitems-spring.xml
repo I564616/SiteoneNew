@@ -242,12 +242,12 @@
 
     <bean id="cmsAbstractPagePopulatorsList" class="org.springframework.beans.factory.config.ListFactoryBean">
         <property name="sourceList"
-                  value="#{ T(org.apache.commons.collections.ListUtils).union(@cmsAbstractPageBasePopulatorsList, @cmsCategoryOrProductPageRestorePopulatorsList) }"/>
+                  value="#{ T(org.apache.commons.collections4.ListUtils).union(@cmsAbstractPageBasePopulatorsList, @cmsCategoryOrProductPageRestorePopulatorsList) }"/>
     </bean>
 
     <bean id="cmsContentPagePopulatorsList" class="org.springframework.beans.factory.config.ListFactoryBean">
         <property name="sourceList"
-                  value="#{ T(org.apache.commons.collections.ListUtils).union(@cmsAbstractPageBasePopulatorsList, @cmsContentPageTrashOrRestorePopulatorsList) }"/>
+                  value="#{ T(org.apache.commons.collections4.ListUtils).union(@cmsAbstractPageBasePopulatorsList, @cmsContentPageTrashOrRestorePopulatorsList) }"/>
     </bean>
     
     <alias name="defaultCmsAbstractPagePopulator" alias="cmsAbstractPagePopulator"/>
