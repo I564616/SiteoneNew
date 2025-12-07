@@ -55,8 +55,7 @@
     <!-- instantiates a JCacheManagerFactoryBean instance using the cache configuration provided at the mentioned location -->
     <alias name="defaultWSEhcache" alias="wsEhcache"/>
     <bean id="defaultWSEhcache" class="org.springframework.cache.jcache.JCacheManagerFactoryBean">
-<!--        JDK-21 Fix needed-->
-<!--        <property name="cacheManagerUri" value="classpath:${siteonecommercewebservices.ehcache.location:/WEB-INF/cache/ehcache.xml}" />-->
+        <property name="cacheManagerUri" value="classpath:${siteonecommercewebservices.ehcache.location:siteonecommercewebservices/cache/ehcache.xml}" />
     </bean>
 	
 </beans>
