@@ -17,6 +17,7 @@
            http://www.springframework.org/schema/context/spring-context.xsd">
 
     <import resource="siteonepimintegration-spring-security-config.xml"/>
+    <import resource="siteonepimintegration-spring-mvc-config.xml"/>
 
     <context:annotation-config/>
 

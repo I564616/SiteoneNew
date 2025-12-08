@@ -25,6 +25,7 @@
            http://www.springframework.org/schema/context/spring-context.xsd">
 
     <import resource="siteonepricefactory-spring-security-config.xml"/>
+    <import resource="siteonepricefactory-spring-mvc-config.xml"/>
 
     <context:annotation-config/>
 
