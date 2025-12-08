@@ -183,13 +183,13 @@
 <!--	</servlet-mapping>-->
 
 	<!-- Uncomment to make v2 available -->
-	<filter>
-		<description>
-			Spring configured chain of spring filter beans
-		</description>
-		<filter-name>commerceWebServicesFilterChainV2</filter-name>
-		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
-	</filter>
+<!--	<filter>-->
+<!--		<description>-->
+<!--			Spring configured chain of spring filter beans-->
+<!--		</description>-->
+<!--		<filter-name>commerceWebServicesFilterChainV2</filter-name>-->
+<!--		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>-->
+<!--	</filter>-->
 
 	<filter-mapping>
 		<filter-name>httpFormFilter</filter-name>
@@ -212,10 +212,10 @@
 	</filter-mapping>
 
 
-	<filter-mapping>
-		<filter-name>commerceWebServicesFilterChainV2</filter-name>
-		<servlet-name>springmvc-v2</servlet-name>
-	</filter-mapping>
+<!--	<filter-mapping>-->
+<!--		<filter-name>commerceWebServicesFilterChainV2</filter-name>-->
+<!--		<servlet-name>springmvc-v2</servlet-name>-->
+<!--	</filter-mapping>-->
 
 	<servlet>
 		<servlet-name>springmvc-v2</servlet-name>
@@ -229,12 +229,12 @@
             <param-name>detectAllHandlerExceptionResolvers</param-name>
             <param-value>false</param-value>
         </init-param>
-		<init-param>
-			<param-name>contextClass</param-name>
-			<param-value>
-				org.springframework.web.context.support.AnnotationConfigWebApplicationContext
-			</param-value>
-		</init-param>
+<!--		<init-param>-->
+<!--			<param-name>contextClass</param-name>-->
+<!--			<param-value>-->
+<!--				org.springframework.web.context.support.AnnotationConfigWebApplicationContext-->
+<!--			</param-value>-->
+<!--		</init-param>-->
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
 			<param-value>
