@@ -25,6 +25,7 @@
            http://www.springframework.org/schema/context/spring-context.xsd">
 
     <import resource="siteonecontentsearch-spring-security-config.xml"/>
+    <import resource="siteonecontentsearch-spring-mvc-config.xml"/>
 
     <context:annotation-config/>
 
