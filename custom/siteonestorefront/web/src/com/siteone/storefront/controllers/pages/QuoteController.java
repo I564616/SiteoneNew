@@ -136,7 +136,7 @@ public class QuoteController extends AbstractCartPageController
 	{
 		return getQuoteFacade().getDiscountTypes();
 	}
-
+//JDK-21 Fix needed
 //	@Autowired
 //	private SmartValidator smartValidator;
 
